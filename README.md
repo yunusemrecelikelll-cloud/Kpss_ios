@@ -1,17 +1,28 @@
-# kpss_telefon
+# KPSS Hazırlık — iOS
 
-A new Flutter project.
+Bu klasör, KPSS Hazırlık uygulamasının **sadece iOS** için hazırlanmış sürümüdür.
+`Kpss_Telefon` klasöründeki ortak Flutter kod tabanından türetildi; `android/`,
+`web/` ve `windows/` platform klasörleri kasıtlı olarak kaldırıldı — bu klasör
+App Store'a yüklenecek iOS derlemesi için tek kaynaktır.
 
-## Getting Started
+Android sürümü için `Kpss_Android` klasörüne bakın.
 
-This project is a starting point for a Flutter application.
+**Bu klasör bir Mac + Xcode gerektirir** (bkz. daha önce anlatılan Mac kurulum
+rehberi). Widget extension (`DailyCodeWidget`) hâlâ Xcode'da elle tamamlanması
+gereken bir target — bkz. `WIDGET_SETUP.md`.
 
-A few resources to get you started if this is your first Flutter project:
+## Derleme (Mac'te)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```
+flutter pub get
+cd ios && pod install && cd ..
+flutter build ipa --release   # App Store Connect yüklemesi için
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Notlar
+
+- `lib/`, `assets/` ve `pubspec.yaml` içeriği Kpss_Android ile birebir aynı
+  tutulmalı — bundan sonraki özellik/hata düzeltme istekleri hem bu klasöre hem
+  Kpss_Android'e aynı şekilde uygulanacak.
+- Firebase/Ödeme/Widget kurulumu için kök dizindeki `FIREBASE_SETUP.md`,
+  `IAP_SETUP.md`, `WIDGET_SETUP.md` dosyalarına bakın.

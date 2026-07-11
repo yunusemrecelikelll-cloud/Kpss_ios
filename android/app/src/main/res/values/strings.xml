@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- "Günün Kilit Ekranı Kodu" ana ekran widget'ı için Android'in widget
-         seçme ekranında gösterdiği açıklama metni. -->
-    <string name="lock_widget_description">Günün akılda kalıcı KPSS kodlaması</string>
-</resources>
