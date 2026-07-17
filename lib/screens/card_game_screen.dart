@@ -8,7 +8,7 @@ import '../theme/theme_provider.dart';
 import 'tools_hub_screen.dart';
 
 /// JS: FREE_CARDGAME_DAILY
-const int kFreeCardGameDaily = 3;
+const int kFreeCardGameDaily = 10;
 
 /// Kart Eşleştirme Oyunu (v1) — JS: renderCardGame / renderCardGameBoard.
 /// Kapalı kartlar, hafıza oyunu — tüm derslerin karışık kart havuzundan oynanır.
@@ -25,10 +25,31 @@ class _CardGameScreenState extends State<CardGameScreen> {
   bool _started = false;
   bool _locked = false;
 
+  // Toplam oynama süresi takibi: bu ekran ekranda kaldığı sürece (ilk başarılı
+  // başlangıçtan dispose'a kadar, "Yeni Oyun" ile yeniden başlatmalar dahil)
+  // TEK bir oturum sayılır; erken çıkışta da (dispose her zaman çağrılır) kısmi
+  // süre kaydedilir.
+  DateTime? _sessionStart;
+  late final StorageService _storage;
+
   @override
   void initState() {
     super.initState();
+    _storage = context.read<StorageService>();
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
+  }
+
+  @override
+  void dispose() {
+    _flushPlayTime();
+    super.dispose();
+  }
+
+  void _flushPlayTime() {
+    final start = _sessionStart;
+    if (start == null) return;
+    _sessionStart = null;
+    _storage.addGameTimeSpent(kKartOyunuGameId, DateTime.now().difference(start));
   }
 
   Future<void> _boot() async {
@@ -49,6 +70,7 @@ class _CardGameScreenState extends State<CardGameScreen> {
       _started = true;
       _locked = false;
     });
+    _sessionStart ??= DateTime.now();
   }
 
   void _newGame() {
@@ -86,7 +108,7 @@ class _CardGameScreenState extends State<CardGameScreen> {
     if (_locked) {
       return const LockedFeatureCard(
         title: 'Kart Eşleştirme Oyunu',
-        desc: "Bugünkü 3 ücretsiz hakkını kullandın. Yarın tekrar oynayabilir ya da Premium'a geçip "
+        desc: "Bugünkü $kFreeCardGameDaily ücretsiz hakkını kullandın. Yarın tekrar oynayabilir ya da Premium'a geçip "
             'sınırsız oynayabilirsin.',
       );
     }
@@ -113,8 +135,20 @@ class _CardGameScreenState extends State<CardGameScreen> {
       );
     }
 
+    final totalSeconds = storage.getGameTimeSpent(kKartOyunuGameId);
     return Scaffold(
-      appBar: AppBar(title: const Text('🃏 Kart Eşleştirme Oyunu')),
+      appBar: AppBar(
+        title: const Text('🃏 Kart Eşleştirme Oyunu'),
+        actions: const [
+          HowToPlayButton(
+            title: '🃏 Nasıl Oynanır?',
+            body: 'Kapalı kartlardan ikisini açarak aynı terim-tanım çiftini bulmaya '
+                'çalış. Eşleşirse kartlar açık kalır, eşleşmezse kısa süre sonra tekrar '
+                'kapanır. Tüm çiftleri en az hamlede bulmaya çalış; istersen "🔄 Yeni '
+                'Oyun" ile istediğin zaman baştan başlayabilirsin.',
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -124,6 +158,11 @@ class _CardGameScreenState extends State<CardGameScreen> {
               'Terimi tanımıyla eşleştir. Hamle: ${_engine.moves}'
               '${premium ? '' : ' • Kalan günlük hakkın: $remaining'}',
               style: TextStyle(fontSize: 13, color: colors.textFaint),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Toplam: ${formatPlayDuration(totalSeconds)} oynadın',
+              style: TextStyle(fontSize: 11.5, color: colors.textFaint),
             ),
             const SizedBox(height: 12),
             Expanded(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/attempt.dart';
+import '../models/badge.dart';
+import '../services/data_service.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
@@ -36,9 +38,34 @@ Color motivationColorFor(int skor, KpssColors c) {
   return c.danger;
 }
 
-class ResultScreen extends StatelessWidget {
+class ResultScreen extends StatefulWidget {
   final Attempt result;
   const ResultScreen({super.key, required this.result});
+
+  @override
+  State<ResultScreen> createState() => _ResultScreenState();
+}
+
+class _ResultScreenState extends State<ResultScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _checkBadges());
+  }
+
+  Future<void> _checkBadges() async {
+    final storage = context.read<StorageService>();
+    final subjects = context.read<DataService>().cachedSubjects;
+    final newlyUnlocked = await checkAndUnlockBadges(storage, subjects);
+    if (newlyUnlocked.isEmpty || !mounted) return;
+    for (final b in newlyUnlocked) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('🏅 Yeni rozet: ${b.name}!'), duration: const Duration(seconds: 4)),
+      );
+    }
+  }
+
+  Attempt get result => widget.result;
 
   @override
   Widget build(BuildContext context) {

@@ -10,6 +10,11 @@ class Question {
   final String? topicBaslik;
   final String? subjectId;
   final String? subjectAd;
+  /// Sorunun hangi sınav türüne özel olduğu: 'lisans' | 'onlisans' | 'ortaogretim'.
+  /// null ise soru TÜM sınav türleri için uygundur (ör. daha önce üretilmiş genel
+  /// sorular). QuestionPicker, kullanıcının Profil'de seçtiği sınav türüne göre
+  /// bu alanı filtreler — null olanlar her zaman dahil edilir.
+  final String? examType;
 
   const Question({
     required this.soru,
@@ -21,6 +26,7 @@ class Question {
     this.topicBaslik,
     this.subjectId,
     this.subjectAd,
+    this.examType,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
@@ -31,6 +37,7 @@ class Question {
       aciklama: json['aciklama'] as String? ?? '',
       distractorAciklama: json['distractorAciklama'] as String?,
       kaynak: json['kaynak'] as String?,
+      examType: json['examType'] as String?,
     );
   }
 
@@ -45,6 +52,7 @@ class Question {
       topicBaslik: topicBaslik ?? this.topicBaslik,
       subjectId: subjectId ?? this.subjectId,
       subjectAd: subjectAd ?? this.subjectAd,
+      examType: examType,
     );
   }
 

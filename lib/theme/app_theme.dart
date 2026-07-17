@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// styles.css'teki CSS değişkenlerinin (:root ve [data-theme="..."]) birebir karşılığı.
 class KpssColors {
@@ -76,7 +77,7 @@ const kThemes = <String, KpssColors>{
     violet: Color(0xFF7C3AED), violetL: Color(0xFF8B5CF6),
     rose: Color(0xFFDB2777), roseL: Color(0xFFEC4899),
     gold: Color(0xFFD97706), mint: Color(0xFF059669),
-    text: Color(0xFF1E0835), textDim: Color(0xFF4A2D70), textFaint: Color(0xFF8B7AA8),
+    text: Color(0xFF1E0835), textDim: Color(0xFF4A2D70), textFaint: Color(0xFF73618E),
     success: Color(0xFF059669), danger: Color(0xFFDC2626), warn: Color(0xFFD97706),
     isLight: true,
   ),
@@ -88,7 +89,7 @@ const kThemes = <String, KpssColors>{
     violet: Color(0xFF9333EA), violetL: Color(0xFFA855F7),
     rose: Color(0xFFE11D48), roseL: Color(0xFFF43F5E),
     gold: Color(0xFFD97706), mint: Color(0xFF0D9488),
-    text: Color(0xFF3B0A2A), textDim: Color(0xFF6B2349), textFaint: Color(0xFF9D6B80),
+    text: Color(0xFF3B0A2A), textDim: Color(0xFF6B2349), textFaint: Color(0xFF89576E),
     success: Color(0xFF0D9488), danger: Color(0xFFE11D48), warn: Color(0xFFD97706),
     isLight: true,
   ),
@@ -160,7 +161,7 @@ const kThemes = <String, KpssColors>{
     violet: Color(0xFF0D9488), violetL: Color(0xFF14B8A6),
     rose: Color(0xFFDB2777), roseL: Color(0xFFEC4899),
     gold: Color(0xFFD97706), mint: Color(0xFF059669),
-    text: Color(0xFF042F2E), textDim: Color(0xFF115E59), textFaint: Color(0xFF5EAAA0),
+    text: Color(0xFF042F2E), textDim: Color(0xFF115E59), textFaint: Color(0xFF36736D),
     success: Color(0xFF059669), danger: Color(0xFFDC2626), warn: Color(0xFFD97706),
     isLight: true,
   ),
@@ -171,6 +172,11 @@ const List<String> kFreeThemeIds = ['default', 'safak', 'pembe'];
 
 ThemeData buildThemeData(KpssColors c) {
   final base = c.isLight ? ThemeData.light() : ThemeData.dark();
+  // Uygulama genelinde daha okunaklı/modern bir tipografi: gövde metni için
+  // yuvarlak hatlı, sıcak bir yazı tipi (Nunito); başlıklar için mevcut
+  // Baloo2 markası (bkz. home_screen.dart'taki "KPSS Hazırlık" başlığı) ile
+  // tutarlı bir görünüm.
+  final googleTextTheme = GoogleFonts.nunitoTextTheme(base.textTheme);
   return base.copyWith(
     scaffoldBackgroundColor: c.bg,
     colorScheme: (c.isLight ? const ColorScheme.light() : const ColorScheme.dark()).copyWith(
@@ -180,8 +186,28 @@ ThemeData buildThemeData(KpssColors c) {
       error: c.danger,
       onSurface: c.text,
     ),
-    textTheme: base.textTheme.apply(bodyColor: c.text, displayColor: c.text),
-    appBarTheme: AppBarTheme(backgroundColor: c.headerBg, foregroundColor: c.text, elevation: 0),
+    textTheme: googleTextTheme.apply(bodyColor: c.text, displayColor: c.text),
+    appBarTheme: AppBarTheme(
+      backgroundColor: c.headerBg,
+      foregroundColor: c.text,
+      elevation: 0,
+      titleTextStyle: GoogleFonts.baloo2(color: c.text, fontSize: 20, fontWeight: FontWeight.w700),
+    ),
+    // NOT: Alt navigasyon etiketlerinde (ör. "Yanlışlarım") harflerin alt
+    // uzantısı (ör. 'm', 'ğ') önceden kesiliyordu — varsayılan labelSmall
+    // stilinin satır yüksekliği çok dardı. Burada AÇIKÇA daha ferah bir
+    // `height` ve biraz küçültülmüş font boyutu veriyoruz.
+    navigationBarTheme: NavigationBarThemeData(
+      labelTextStyle: WidgetStateProperty.resolveWith((states) {
+        final selected = states.contains(WidgetState.selected);
+        return GoogleFonts.nunito(
+          fontSize: 10.5,
+          height: 1.5,
+          fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+          color: selected ? c.violet : c.textFaint,
+        );
+      }),
+    ),
     cardColor: c.glass2,
     dividerColor: c.border,
   );

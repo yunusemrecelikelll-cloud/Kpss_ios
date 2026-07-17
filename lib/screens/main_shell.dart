@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
+import '../services/league_service.dart';
 import '../services/sound_service.dart';
+import '../services/storage_service.dart';
 import 'home_screen.dart';
-import 'badges_screen.dart';
-import 'missions_screen.dart';
+import 'chat_screen.dart';
+import 'wrong_bank_screen.dart';
 import 'settings_screen.dart';
+import 'tools_hub_screen.dart';
 
-/// Alt navigasyon çubuğu — Anasayfa / Rozetler / Görevler / Ayarlar.
-/// Oyunlar, Premium ve Yanlışlarım ekranlarına Anasayfa'daki çekmeceden
-/// (Drawer) erişiliyor.
+/// Alt navigasyon çubuğu — Anasayfa / Sohbet / Oyunlar / (Premium'da:
+/// Yanlışlarım) / Ayarlar. Oyunlar sekmesi hem ücretsiz hem premium
+/// kullanıcıda gösterilir. Premium ekranına Anasayfa'daki çekmeceden
+/// (Drawer) erişiliyor. Rozetler artık ayrı bir alt sekme DEĞİL — Profil
+/// ekranının (bkz. profile_screen.dart AppBar'ındaki 🏆 butonu) içinden
+/// erişilir.
+///
+/// Her sekme kendi iç Navigator'ına sahiptir (nested Navigator deseni) —
+/// böylece bu sekmelerden açılan HERHANGİ bir ekran (Premium, Oyunlar, Konu
+/// Anlatımı, Profil vb.) alt navigasyon çubuğunun ÜSTÜNDE açılır ve bar
+/// görünür kalır. Sadece Soru/Test ekranı (QuizScreen), tam ekran kaplaması
+/// gerektiği için kasıtlı olarak KÖK Navigator'a
+/// (`Navigator.of(context, rootNavigator: true)`) push edilir — bu yüzden
+/// quiz sırasında alt bar görünmez.
 class MainShell extends StatefulWidget {
   final List<Subject> subjects;
   const MainShell({super.key, required this.subjects});
@@ -21,45 +35,103 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   int _index = 0;
 
+  // Tüm olası sekmeler için sabit anahtarlar — premium durumu değişse bile
+  // (ör. test amaçlı "Ücretsiz Aç" ile) her sekmenin iç gezinme geçmişi
+  // korunur.
+  final Map<String, GlobalKey<NavigatorState>> _navKeys = {
+    'home': GlobalKey<NavigatorState>(),
+    'chat': GlobalKey<NavigatorState>(),
+    'games': GlobalKey<NavigatorState>(),
+    'wrong': GlobalKey<NavigatorState>(),
+    'settings': GlobalKey<NavigatorState>(),
+  };
+
+  static const _labels = {
+    'home': ('Anasayfa', Icons.home_outlined, Icons.home),
+    'chat': ('Sohbet', Icons.chat_bubble_outline, Icons.chat_bubble),
+    'games': ('Oyunlar', Icons.sports_esports_outlined, Icons.sports_esports),
+    'wrong': ('Yanlışlarım', Icons.close_outlined, Icons.close),
+    'settings': ('Ayarlar', Icons.settings_outlined, Icons.settings),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    // Uygulama ana ekranı (bottom nav) her açıldığında BİR KEZ kendi güncel
+    // stat/rozet özetini Firestore'a yayınla (bkz. LeagueService.publishMyScore)
+    // — ÖNCEDEN bu yalnızca kullanıcı kendi Profil ekranını elle açtığında
+    // tetikleniyordu (bkz. profile_screen.dart), bu yüzden hiç Profil'e
+    // uğramamış bir kullanıcının 'league_scores/{uid}' dokümanı hiç
+    // oluşmuyor, sohbetten "Profili Görüntüle" diyen başka kullanıcılar
+    // hiçbir stat/rozet göremiyordu. Burada, kullanıcının GÖRÜLME olasılığı
+    // (sohbete girmesi) ile aynı ana ekranda, daha erken ve güvenilir bir
+    // noktada tetikleniyor. Sessizce başarısız olur (offline/giriş yok/Firebase
+    // yapılandırılmamış) — bu ekranın kendi görünümünü ETKİLEMEZ.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      // ignore: unawaited_futures
+      LeagueService().publishMyScore(context.read<StorageService>());
+    });
+  }
+
+  Widget _tabNavigator(String id, Widget root) {
+    return Navigator(
+      key: _navKeys[id],
+      onGenerateRoute: (settings) => MaterialPageRoute(builder: (_) => root),
+    );
+  }
+
+  void _onDestinationSelected(int i, List<String> ids) {
+    context.read<SoundService>().click();
+    if (i == _index) {
+      _navKeys[ids[i]]?.currentState?.popUntil((r) => r.isFirst);
+    } else {
+      setState(() => _index = i);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final screens = [
-      HomeScreen(subjects: widget.subjects),
-      const BadgesScreen(),
-      const MissionsScreen(),
-      const SettingsScreen(),
-    ];
+    final premium = context.watch<StorageService>().isPremiumUser();
 
-    return Scaffold(
-      body: IndexedStack(index: _index, children: screens),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (i) {
-          context.read<SoundService>().click();
-          setState(() => _index = i);
-        },
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Anasayfa',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.emoji_events_outlined),
-            selectedIcon: Icon(Icons.emoji_events),
-            label: 'Rozetler',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.checklist_outlined),
-            selectedIcon: Icon(Icons.checklist),
-            label: 'Görevler',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Ayarlar',
-          ),
-        ],
+    final tabWidgets = <String, Widget>{
+      'home': HomeScreen(subjects: widget.subjects),
+      'chat': const ChatScreen(),
+      'games': const ToolsHubScreen(),
+      if (premium) 'wrong': const WrongBankScreen(),
+      'settings': const SettingsScreen(),
+    };
+    final ids = tabWidgets.keys.toList();
+    if (_index >= ids.length) _index = 0;
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        final nav = _navKeys[ids[_index]]?.currentState;
+        if (nav != null && nav.canPop()) {
+          nav.pop();
+        } else if (_index != 0) {
+          setState(() => _index = 0);
+        }
+      },
+      child: Scaffold(
+        body: IndexedStack(
+          index: _index,
+          children: [for (final id in ids) _tabNavigator(id, tabWidgets[id]!)],
+        ),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _index,
+          onDestinationSelected: (i) => _onDestinationSelected(i, ids),
+          destinations: [
+            for (final id in ids)
+              NavigationDestination(
+                icon: Icon(_labels[id]!.$2),
+                selectedIcon: Icon(_labels[id]!.$3),
+                label: _labels[id]!.$1,
+              ),
+          ],
+        ),
       ),
     );
   }

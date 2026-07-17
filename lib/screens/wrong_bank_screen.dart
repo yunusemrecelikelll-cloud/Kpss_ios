@@ -26,7 +26,7 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
           distractorAciklama: w['distractorAciklama'] as String?,
           kaynak: w['kaynak'] as String?,
         )).toList();
-    Navigator.of(context).push(MaterialPageRoute(
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
       builder: (_) => QuizScreen(
         subjectId: 'wrong',
         subjectAd: 'Yanlışlarım',
@@ -34,6 +34,7 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
         topicBaslik: 'Yanlışlar Testi',
         questions: qs,
         isFullTest: false,
+        isWrongBankMode: true,
       ),
     ));
   }

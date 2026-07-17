@@ -80,6 +80,13 @@ dependencies:
   # Widget'ı (bkz. lib/services/lock_widget_service.dart, WIDGET_SETUP.md)
   home_widget: ^0.9.3
 
+  # Konu anlatımı + soruları PDF olarak dışa aktarma (tek dokunuşla kaydet/paylaş)
+  pdf: ^3.11.1
+  printing: ^5.13.4
+
+  # Firestore'dan indirilen soru havuzlarını cihazda dosya olarak önbelleklemek için
+  path_provider: ^2.1.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -105,6 +112,12 @@ flutter:
   assets:
     - assets/data/
     - assets/sounds/
+    - assets/fonts/
+
+  fonts:
+    - family: NotoSansPdf
+      fonts:
+        - asset: assets/fonts/NotoSans-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

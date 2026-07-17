@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/attempt.dart';
@@ -115,12 +116,24 @@ class StorageService extends ChangeNotifier {
   String getUserCharacter() => _get('character', '') as String;
   Future<void> setUserCharacter(String c) => _set('character', c);
 
+  // ── Hedef meslek (ör. 'polis', 'ogretmen', 'memur', 'uzman-yardimcisi') ──
+  String getTargetProfession() => _get('targetProfession', '') as String;
+  Future<void> setTargetProfession(String p) => _set('targetProfession', p);
+
   // ── Sınav türü: 'lisans' | 'onlisans' | 'ortaogretim' ──
   String getExamType() => _get('examType', '') as String;
   Future<void> setExamType(String t) => _set('examType', t);
 
   /// Bu profil bir kez oluşturulduktan sonra tekrar sorulmaz (tek kullanıcılı uygulama).
   bool get hasProfile => getUserName().isNotEmpty;
+
+  /// "Beni Sına" (teşhis/yerleştirme sınavı) kullanıcı daha önce tamamladı mı
+  /// — hasProfile ile AYNI kalıcı bayrak deseni. Anasayfa'daki "Beni Sına"
+  /// kartı bu bayrağa göre ilk-kez davetkâr metinden "Tekrar Dene" metnine
+  /// geçer (bkz. home_screen.dart) — böylece kullanıcı testi bir kez
+  /// tamamladıktan sonra agresif biçimde tekrar tekrar davet edilmez.
+  bool get hasTakenPlacementExam => _get('placement_exam_taken', false) as bool;
+  Future<void> markPlacementExamTaken() => _set('placement_exam_taken', true);
 
   String getUserName() => _get('name', '') as String;
   Future<void> setUserName(String n) {
@@ -182,10 +195,15 @@ class StorageService extends ChangeNotifier {
   List<Map<String, dynamic>> getWrongBank() =>
       List<Map<String, dynamic>>.from((_get('wrong', <dynamic>[]) as List).map((e) => Map<String, dynamic>.from(e as Map)));
 
+  /// Yanlış bankası anahtarı — addWrongQuestions/removeFromWrongBank ile
+  /// QuizEngine.finish() arasında (Yanlışlarım'dan doğru çözülen soruyu
+  /// bankadan silme) TUTARLI olması için tek noktadan üretiliyor.
+  String wrongBankKeyFor(String soru) => soru.length > 40 ? soru.substring(0, 40) : soru;
+
   Future<void> addWrongQuestions(List<Question> questions, String subjectId, String subjectAd) async {
     final bank = getWrongBank();
     for (final q in questions) {
-      final key = q.soru.length > 40 ? q.soru.substring(0, 40) : q.soru;
+      final key = wrongBankKeyFor(q.soru);
       final idx = bank.indexWhere((w) => w['key'] == key);
       if (idx == -1) {
         bank.add({
@@ -216,6 +234,31 @@ class StorageService extends ChangeNotifier {
 
   Future<void> clearWrongBank() => _set('wrong', <dynamic>[]);
 
+  /// Buluttaki (cloud_backups) yanlış bankası girdilerini yerel bankayla
+  /// BİRLEŞTİRİR — asla üzerine yazmaz. Aynı 'key' hem yerelde hem bulutta
+  /// varsa, 'count' değerlerinin BÜYÜĞÜ tutulur; sadece bulutta olan girdi
+  /// olduğu gibi eklenir. CloudSyncService.syncDown tarafından, kullanıcı
+  /// başka bir cihazda Google ile giriş yaptığında yanlış bankasının
+  /// "kaybolmuş" gibi görünmemesi için kullanılır.
+  Future<void> mergeWrongBank(List<Map<String, dynamic>> remoteBank) async {
+    if (remoteBank.isEmpty) return;
+    final bank = getWrongBank();
+    for (final remote in remoteBank) {
+      final key = remote['key'] as String?;
+      if (key == null) continue;
+      final idx = bank.indexWhere((w) => w['key'] == key);
+      if (idx == -1) {
+        bank.add(Map<String, dynamic>.from(remote));
+      } else {
+        final localCount = (bank[idx]['count'] as num?)?.toInt() ?? 1;
+        final remoteCount = (remote['count'] as num?)?.toInt() ?? 1;
+        bank[idx]['count'] = localCount > remoteCount ? localCount : remoteCount;
+      }
+    }
+    final trimmed = bank.length > 200 ? bank.sublist(bank.length - 200) : bank;
+    await _set('wrong', trimmed);
+  }
+
   // ── Rozetler ──
   List<String> getUnlockedBadges() => List<String>.from(_get('badges', <dynamic>[]));
   Future<bool> unlockBadge(String id) async {
@@ -229,28 +272,6 @@ class StorageService extends ChangeNotifier {
   }
 
   bool isBadgeUnlocked(String id) => getUnlockedBadges().contains(id);
-
-  // ── Görevler ──
-  Map<String, int> getMissionsDone() => Map<String, int>.from(_get('missions_done', <String, dynamic>{}));
-  Future<void> markMissionDone(String id) async {
-    final m = getMissionsDone();
-    m[id] = DateTime.now().millisecondsSinceEpoch;
-    await _set('missions_done', m);
-    await _set('missions_total', getMissionsCompletedTotal() + 1);
-  }
-
-  /// resetDailyMissions ile günlük/haftalık kayıtlar silinse bile hiç azalmayan,
-  /// "bugüne kadar toplam kaç görev tamamladın" sayacı — görev rozetleri için.
-  int getMissionsCompletedTotal() => (_get('missions_total', 0) as num).toInt();
-
-  bool isMissionDone(String id) => getMissionsDone().containsKey(id);
-
-  Future<void> resetDailyMissions() async {
-    final m = getMissionsDone();
-    final yesterday = DateTime.now().subtract(const Duration(days: 1)).millisecondsSinceEpoch;
-    m.removeWhere((k, v) => v < yesterday);
-    await _set('missions_done', m);
-  }
 
   // ── Seri (streak) ──
   Map<String, dynamic> getStreak() => Map<String, dynamic>.from(_get('streak', {'count': 0, 'lastDate': null}));
@@ -266,15 +287,57 @@ class StorageService extends ChangeNotifier {
     return s;
   }
 
-  // ── Taslak test (yarım kalan) ──
-  Future<void> saveDraft(Map<String, dynamic> state) => _set('draft', state);
-  Map<String, dynamic>? getDraft() {
-    final d = _get('draft', null);
-    return d == null ? null : Map<String, dynamic>.from(d as Map);
+  /// Bulut yedeğindeki (cloud_backups) seriyi DOĞRUDAN geri yükler —
+  /// SADECE CloudSyncService.syncDown tarafından, yerelde henüz gerçek bir
+  /// seri yokken (count == 0) kullanılır. touchStreak()'in "bugün/dün"
+  /// mantığından farklı olarak burada bulut verisi olduğu gibi yazılır.
+  Future<void> restoreStreak(Map<String, dynamic> data) => _set('streak', data);
+
+  // ── Sohbet günlük mesaj limiti (ücretsiz: 10/gün genel sohbet) ──
+  int getChatMessagesSentToday() {
+    final today = DateTime.now().toString().split(' ')[0];
+    final data = Map<String, dynamic>.from(_get('chat_daily', {'date': null, 'count': 0}));
+    if (data['date'] != today) return 0;
+    return (data['count'] as num).toInt();
   }
 
-  Future<void> clearDraft() async {
-    await _prefs?.remove(_prefix() + 'draft');
+  Future<void> incrementChatMessagesSentToday() async {
+    final today = DateTime.now().toString().split(' ')[0];
+    final current = getChatMessagesSentToday();
+    await _set('chat_daily', {'date': today, 'count': current + 1});
+  }
+
+  /// DM gelen kutusunda karşı tarafın uid'ini görünen isme çevirmek için
+  /// yerel önbellek — bir DM ilk başlatıldığında (genel sohbetteki bir
+  /// mesajdan) karşı tarafın adı buraya kaydedilir.
+  Map<String, String> getDmPeerNames() => Map<String, String>.from(_get('dm_peer_names', <String, dynamic>{}));
+
+  Future<void> saveDmPeerName(String uid, String name) async {
+    final m = getDmPeerNames();
+    m[uid] = name;
+    await _set('dm_peer_names', m);
+  }
+
+  // ── Taslak testler (yarım kalan, BİRDEN FAZLA aynı anda desteklenir) ──
+  // Anahtar = testi tetikleyen kimlik (konu id'si, '{subjectId}-sinav' ya da
+  // 'full-test') — böylece farklı testlerin taslakları bir arada tutulur;
+  // aynı kimlikle yeniden başlanan test üzerine yazar.
+  Future<void> saveDraft(String key, Map<String, dynamic> state) async {
+    final all = getAllDrafts();
+    all[key] = state;
+    await _set('drafts', all);
+  }
+
+  Map<String, Map<String, dynamic>> getAllDrafts() {
+    final raw = _get('drafts', <String, dynamic>{}) as Map;
+    return raw.map((k, v) => MapEntry(k as String, Map<String, dynamic>.from(v as Map)));
+  }
+
+  Map<String, dynamic>? getDraft(String key) => getAllDrafts()[key];
+
+  Future<void> clearDraft(String key) async {
+    final all = getAllDrafts()..remove(key);
+    await _set('drafts', all);
     notifyListeners();
   }
 
@@ -289,6 +352,8 @@ class StorageService extends ChangeNotifier {
     'plan': 'free',
     'notifications': {'reminders': true, 'updates': true},
     'cloudBackupEnabled': false,
+    'hideStats': false,
+    'adaptationSoundsEnabled': false,
   };
 
   Map<String, dynamic> getSettings() {
@@ -320,6 +385,23 @@ class StorageService extends ChangeNotifier {
   bool getCloudBackupEnabled() => getSettings()['cloudBackupEnabled'] == true;
   Future<void> setCloudBackupEnabled(bool enabled) => saveSettings({'cloudBackupEnabled': enabled});
 
+  /// "İstatistiklerimi Gizle" gizlilik tercihi — açıksa, bu kullanıcının
+  /// profili başka bir kullanıcı tarafından sohbet/DM üzerinden görüntülenmeye
+  /// çalışıldığında (bkz. PublicProfileScreen, LeagueService.fetchUserProfile)
+  /// gerçek sayılar yerine "istatistiklerini gizli tutuyor" yer tutucusu
+  /// gösterilir. Diğer senkronize kullanıcı tercihleri (plan, cloudBackupEnabled
+  /// vb.) ile AYNI `settings` deseni kullanılır.
+  bool getHideStatsEnabled() => getSettings()['hideStats'] == true;
+  Future<void> setHideStatsEnabled(bool enabled) => saveSettings({'hideStats': enabled});
+
+  /// "Adaptasyon Sesleri" — testi çözerken arka planda gerçekçi bir sınav
+  /// salonu atmosferi (öksürük, kağıt hışırtısı, kalem sesi vb.) duyulsun mu?
+  /// bkz. QuizScreen (tetikleme) ve SoundService.startFocusAmbience/
+  /// stopFocusAmbience (zaten var olan, önceden hiçbir yerden çağrılmayan
+  /// oynatma mekanizması — burada sadece bir ayar anahtarıyla bağlanıyor).
+  bool getAdaptationSoundsEnabled() => getSettings()['adaptationSoundsEnabled'] == true;
+  Future<void> setAdaptationSoundsEnabled(bool enabled) => saveSettings({'adaptationSoundsEnabled': enabled});
+
   // ── Kart Eşleştirme Oyunu: günlük hak takibi ──
   Map<String, dynamic> getCardGameState() {
     final today = DateTime.now().toString().split(' ')[0];
@@ -333,6 +415,29 @@ class StorageService extends ChangeNotifier {
     s['plays'] = (s['plays'] as int) + 1;
     await _set('cardgame', s);
     return s['plays'] as int;
+  }
+
+  // ── Eşleştirme Solitaire: oyun-içi coin/altın ekonomisi ──
+  // ÖNEMLİ: Bu coin YALNIZCA Eşleştirme Solitaire oyununa özel, tamamen
+  // KOZMETİK bir oyun-içi puandır. Gerçek para / `in_app_purchase` ile HİÇBİR
+  // ilgisi YOKTUR; App Store / Play Store satın almalarına bağlanmaz. Oyuncu
+  // doğru eşleştirme yaptıkça kazanır, oyun içi markette ekstra ipucu / geri-al
+  // / joker / hamle satın almak için harcar. (Kalıcı, günlük sıfırlanmaz.)
+  int getSolitaireCoins() => ((_get('solitaire_coins', 0) as num?) ?? 0).toInt();
+
+  Future<void> addSolitaireCoins(int amount) async {
+    if (amount <= 0) return;
+    await _set('solitaire_coins', getSolitaireCoins() + amount);
+  }
+
+  /// Yeterli coin varsa [amount] kadar düşer ve true döner; YETERSİZSE hiç
+  /// düşmez ve false döner (market butonları buna göre pasifleşir).
+  Future<bool> spendSolitaireCoins(int amount) async {
+    if (amount <= 0) return true;
+    final cur = getSolitaireCoins();
+    if (cur < amount) return false;
+    await _set('solitaire_coins', cur - amount);
+    return true;
   }
 
   // ── Genel oyun günlük hak takibi (Kart Oyunu V2 / Solitaire) — JS: getGamePlayState/useGamePlay.
@@ -374,6 +479,59 @@ class StorageService extends ChangeNotifier {
 
   int getTotalStudyTime() => getStudyTime().values.fold(0, (a, b) => a + b);
 
+  // ── Mini oyun bazlı toplam oynama süresi (Kart Oyunu / Balon Patlat / Hız 60 /
+  // Düello vb.) — `getStudyTime`/`addStudyTime` ile AYNI desen (Map<String, int>,
+  // ders yerine oyun kimliği anahtarlı), ama TAMAMEN AYRI bir alanda tutulur;
+  // "kaç saat/dakika oynadın" gibi kalıcı, hiç sıfırlanmayan bir toplam sağlar.
+  Map<String, int> getGameTimeSpentAll() => Map<String, int>.from(_get('game_time_spent', <String, dynamic>{}));
+
+  /// [gameId] için o oyunda geçirilen kümülatif süreyi saniye cinsinden döner.
+  int getGameTimeSpent(String gameId) => getGameTimeSpentAll()[gameId] ?? 0;
+
+  /// Bir oyun oturumu bittiğinde (dispose/finish, erken çıkış dahil) çağrılır;
+  /// [duration] o oturumda geçen süredir ve mevcut toplama EKLENİR.
+  Future<void> addGameTimeSpent(String gameId, Duration duration) async {
+    final seconds = duration.inSeconds;
+    if (seconds <= 0) return;
+    final t = getGameTimeSpentAll();
+    t[gameId] = (t[gameId] ?? 0) + seconds;
+    await _set('game_time_spent', t);
+  }
+
+  // ── İçerik güncelleme bildirimi ("Yeni sorular eklendi") ──
+  // Sunucudaki (Firestore app_meta/content_version) son güncelleme zaman
+  // damgası, kullanıcının EN SON GÖRDÜĞÜ sürümle karşılaştırılır — sunucu
+  // daha yeniyse "Tüm Soruları İndir" ile güncelleme bildirimi gösterilir.
+  int getLastSeenContentVersionMs() => (_get('last_seen_content_version', 0) as num).toInt();
+  Future<void> setLastSeenContentVersionMs(int millis) => _set('last_seen_content_version', millis);
+
+  // ── Haftalık lig puanı (Pazartesi başlangıçlı; hafta değişince otomatik sıfırlanır) ──
+  String _mondayOf(DateTime d) {
+    final monday = d.subtract(Duration(days: d.weekday - 1));
+    final day = DateTime(monday.year, monday.month, monday.day);
+    return day.toIso8601String().split('T')[0];
+  }
+
+  Map<String, dynamic> _weeklyRaw() =>
+      Map<String, dynamic>.from(_get('weekly_points', <String, dynamic>{'weekStart': '', 'points': 0}));
+
+  /// Bu haftanın (Pazartesi'den bugüne) lig puanı — hafta değiştiyse 0 döner.
+  int getWeeklyPoints() {
+    final raw = _weeklyRaw();
+    if (raw['weekStart'] != _mondayOf(DateTime.now())) return 0;
+    return (raw['points'] as num?)?.toInt() ?? 0;
+  }
+
+  /// Doğru cevap başına çağrılır (bkz. QuizEngine.finish) — hafta değiştiyse
+  /// önce sıfırlar, sonra puanı ekler.
+  Future<void> addWeeklyPoints(int points) async {
+    if (points <= 0) return;
+    final thisWeek = _mondayOf(DateTime.now());
+    final raw = _weeklyRaw();
+    final current = raw['weekStart'] == thisWeek ? ((raw['points'] as num?)?.toInt() ?? 0) : 0;
+    await _set('weekly_points', {'weekStart': thisWeek, 'points': current + points});
+  }
+
   // ── Konu testi sıfırlama ──
   Future<void> resetTopicAttempts(String topicId) async {
     final remaining = getAttempts().where((a) => a.topicId != topicId).toList();
@@ -381,7 +539,35 @@ class StorageService extends ChangeNotifier {
     final c = getCompletedTopics()..remove(topicId);
     await _set('completed', c);
     await resetUsedQuestions(topicId);
-    await clearDraft();
+    await clearDraft(topicId);
+  }
+
+  // ── Bilgi Maratonu: en uzun seri (yerel rekor) ──
+  int getBestMarathonStreak() => ((_get('best_marathon_streak', 0) as num?) ?? 0).toInt();
+
+  Future<void> setBestMarathonStreak(int streak) async {
+    if (streak > getBestMarathonStreak()) {
+      await _set('best_marathon_streak', streak);
+    }
+  }
+
+  // ── Günün Patronu: günde 1 kez oynanabilir + toplam tamamlama sayacı ──
+  // (rozet eşiği için, bkz. models/badge.dart 'gunun-patronu').
+  String? getGununPatronuLastDate() => _get('gunun_patronu_last', null) as String?;
+
+  bool hasPlayedGununPatronuToday() {
+    final today = DateTime.now().toString().split(' ')[0];
+    return getGununPatronuLastDate() == today;
+  }
+
+  int getGununPatronuCompletedCount() => ((_get('gunun_patronu_count', 0) as num?) ?? 0).toInt();
+
+  /// 20 soruluk günlük Günün Patronu turu tamamlandığında çağrılır — bugünü
+  /// "oynandı" olarak kilitler ve toplam tamamlama sayacını bir artırır.
+  Future<void> markGununPatronuCompleted() async {
+    final today = DateTime.now().toString().split(' ')[0];
+    await _set('gunun_patronu_last', today);
+    await _set('gunun_patronu_count', getGununPatronuCompletedCount() + 1);
   }
 
   // ── İstatistik yardımcıları ──
@@ -397,5 +583,100 @@ class StorageService extends ChangeNotifier {
     final correct = a.fold(0, (s, x) => s + x.dogru);
     final rate = solved > 0 ? ((correct / solved) * 100).round() : 0;
     return (solved: solved, correct: correct, rate: rate, tests: a.length);
+  }
+
+  // ── Toplam XP / Seviye (KALICI, asla sıfırlanmaz) ──
+  // NOT: Bu, hafta değişince sıfırlanan `weekly_points` (bkz. getWeeklyPoints/
+  // addWeeklyPoints, haftalık lig puanı) alanından TAMAMEN AYRI bir alandır.
+  // Toplam XP hiç sıfırlanmaz; kullanıcının kalıcı "Seviye"sini besler.
+  int getTotalXp() => ((_get('total_xp', 0) as num?) ?? 0).toInt();
+
+  /// QuizEngine.finish() içinde her doğru cevap için çağrılır (bkz. XP=5/doğru,
+  /// haftalık lig puanı=10/doğru — birbirinden bağımsız iki katsayı).
+  Future<void> addXp(int amount) async {
+    if (amount <= 0) return;
+    await _set('total_xp', getTotalXp() + amount);
+  }
+
+  /// Seviye eğrisi: level = 1 + floor(sqrt(xp / 50)).
+  /// Seviye 1: 0-49 XP, Seviye 2: 50-199 XP, Seviye 3: 200-449 XP, Seviye 4: 450-799 XP, ...
+  /// Kare kök eğrisi seçildi çünkü bir sonraki seviyeye ulaşmak için gereken XP
+  /// farkı seviye arttıkça büyür (50, 150, 250, 350, ...) — bu da erken
+  /// seviyelerin hızlı, ileri seviyelerin daha zor açılmasını sağlar.
+  static int getLevelForXp(int xp) {
+    if (xp <= 0) return 1;
+    return 1 + sqrt(xp / 50).floor();
+  }
+
+  /// getLevelForXp'nin tersi: verilen seviyeye ulaşmak için gereken TOPLAM XP eşiği.
+  /// xp = 50 * (level - 1)^2
+  static int xpForLevel(int level) {
+    if (level <= 1) return 0;
+    final n = level - 1;
+    return 50 * n * n;
+  }
+
+  /// Şu anki seviyeden BİR SONRAKİ seviyeye geçmek için gereken TOPLAM XP eşiği.
+  static int xpForNextLevel(int currentLevel) => xpForLevel(currentLevel + 1);
+
+  // ── Sezon XP (aylık; ay değişince otomatik sıfırlanır — weekly_points ile
+  // AYNI desen, sadece Pazartesi yerine ay bazlı bir "seasonKey" kullanılır). ──
+  String _seasonKeyOf(DateTime d) => '${d.year}-${d.month.toString().padLeft(2, '0')}';
+
+  Map<String, dynamic> _seasonRaw() =>
+      Map<String, dynamic>.from(_get('season_xp', <String, dynamic>{'seasonKey': '', 'xp': 0}));
+
+  /// Bu ayın (sezonun) toplam XP'si — ay değiştiyse 0 döner.
+  int getSeasonXp() {
+    final raw = _seasonRaw();
+    if (raw['seasonKey'] != _seasonKeyOf(DateTime.now())) return 0;
+    return (raw['xp'] as num?)?.toInt() ?? 0;
+  }
+
+  /// QuizEngine.finish() içinde toplam XP ile AYNI ANDA (aynı katsayıyla)
+  /// çağrılır — toplam XP kalıcı seviye içindir, sezon XP'si sadece bu ayki
+  /// performansı gösterir ve ay değişince sıfırlanır.
+  Future<void> addSeasonXp(int amount) async {
+    if (amount <= 0) return;
+    final thisSeason = _seasonKeyOf(DateTime.now());
+    final raw = _seasonRaw();
+    final current = raw['seasonKey'] == thisSeason ? ((raw['xp'] as num?)?.toInt() ?? 0) : 0;
+    await _set('season_xp', {'seasonKey': thisSeason, 'xp': current + amount});
+  }
+
+  /// Profil ekranında gösterilen "Temmuz 2026 Sezonu" gibi bir etiket üretir.
+  String getCurrentSeasonLabel() {
+    const months = [
+      'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+      'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık',
+    ];
+    final now = DateTime.now();
+    return '${months[now.month - 1]} ${now.year}';
+  }
+
+  // ── Günlük Görevler (Daily Quests) — seçim/tamamlanma verisi burada
+  // saklanır; görev HAVUZU ve ilerleme hesaplama mantığı
+  // lib/services/daily_quests_service.dart içindedir. ──
+  Map<String, dynamic> getDailyQuestsData() => Map<String, dynamic>.from(_get('daily_quests', <String, dynamic>{
+        'date': null,
+        'questIds': <dynamic>[],
+        'completedIds': <dynamic>[],
+      }));
+
+  Future<void> saveDailyQuestsData(Map<String, dynamic> data) => _set('daily_quests', data);
+
+  // ── Günlük Giriş Ödülü ──
+  static const int kDailyLoginRewardXp = 15;
+
+  /// Uygulama bugün ilk kez açıldığında (ya da ilk kez bu metot çağrıldığında)
+  /// bir kerelik XP ödülü verir ve `true` döner; bugün zaten alındıysa `false`
+  /// döner. bkz. HomeScreen._checkDailyLoginReward.
+  Future<bool> claimDailyLoginRewardIfNeeded() async {
+    final today = DateTime.now().toString().split(' ')[0];
+    final last = _get('daily_login_reward_last', null) as String?;
+    if (last == today) return false;
+    await _set('daily_login_reward_last', today);
+    await addXp(kDailyLoginRewardXp);
+    return true;
   }
 }

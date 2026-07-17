@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import 'cloud_sync_service.dart';
 import 'storage_service.dart';
 
 /// ============================================================================
@@ -207,6 +208,11 @@ class PurchaseService extends ChangeNotifier {
           if (purchase.productID == kOgrenciPremiumId ||
               purchase.productID == kTamPremiumId) {
             await _storage.setUserPlan('premium');
+            // Satın alma anında girişliyse buluta hemen yansıt — böylece
+            // başka bir cihazda/kurulumda tekrar giriş yapınca premium
+            // durumu kaybolmuş görünmez (bkz. CloudSyncService.syncDown).
+            // ignore: unawaited_futures
+            CloudSyncService().syncUp(_storage);
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);

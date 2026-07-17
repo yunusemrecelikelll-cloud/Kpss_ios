@@ -11,7 +11,7 @@ import 'tools_hub_screen.dart';
 import 'topic_screen.dart';
 
 /// JS: FREE_GAME_DAILY / GAME2_MAX_MISTAKES
-const int kFreeGameDaily = 3;
+const int kFreeGameDaily = 10;
 const int kGame2MaxMistakes = 3;
 const String kGame2Id = 'cardgame2';
 
@@ -29,15 +29,32 @@ class CardGameV2Screen extends StatelessWidget {
     final gp = storage.getGamePlayState(kGame2Id);
     final left = (kFreeGameDaily - (gp['plays'] as int)).clamp(0, kFreeGameDaily);
     final progress = storage.getGamePassedTopics(kGame2Id);
+    final totalSeconds = storage.getGameTimeSpent(kKartOyunuGameId);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('🃏 Kart Oyunu V2')),
+      appBar: AppBar(
+        title: const Text('🃏 Kart Oyunu V2'),
+        actions: const [
+          HowToPlayButton(
+            title: '🃏 Nasıl Oynanır?',
+            body: 'Önce bir ders, sonra bir konu seç. Soldaki terimi sağdaki doğru '
+                'tanımıyla eşleştirmek için ikisine sırayla dokun; doğru eşleşmeler bir '
+                'çizgiyle birleşir. Belirli bir yanlış sayısını geçersen konuyu '
+                'kaybedersin, tüm eşleşmeleri tamamlarsan konuyu geçersin.',
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           Text(
             'Bir ders seç. ${premium ? "Sınırsız oynarsın." : "Bugün $left hakkın kaldı."}',
             style: TextStyle(fontSize: 13.5, color: colors.textFaint),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Toplam: ${formatPlayDuration(totalSeconds)} oynadın',
+            style: TextStyle(fontSize: 11.5, color: colors.textFaint),
           ),
           const SizedBox(height: 16),
           for (final s in subjects)
@@ -206,17 +223,32 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
   bool? _passed; // null: oynanıyor, true/false: bitti
   List<_LineSeg> _lines = [];
 
+  // Toplam oynama süresi takibi (Kart Oyunu ortak kimliği, bkz. tools_hub_screen.dart) —
+  // ekran açık kaldığı sürece (tekrar denemeler dahil) TEK oturum sayılır; erken
+  // çıkışta da dispose her zaman çağrıldığından kısmi süre kaydedilir.
+  DateTime? _sessionStart;
+  late final StorageService _storage;
+
   @override
   void initState() {
     super.initState();
+    _storage = context.read<StorageService>();
     _shakeCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 420));
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
 
   @override
   void dispose() {
+    _flushPlayTime();
     _shakeCtrl.dispose();
     super.dispose();
+  }
+
+  void _flushPlayTime() {
+    final start = _sessionStart;
+    if (start == null) return;
+    _sessionStart = null;
+    _storage.addGameTimeSpent(kKartOyunuGameId, DateTime.now().difference(start));
   }
 
   Future<void> _boot() async {
@@ -241,6 +273,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
       _flashWrong = false;
       _lines = [];
     });
+    _sessionStart ??= DateTime.now();
   }
 
   void _retry() {
@@ -322,7 +355,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
     if (_locked) {
       return const LockedFeatureCard(
         title: 'Kart Oyunu V2',
-        desc: "Bugünkü 3 ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
+        desc: "Bugünkü $kFreeGameDaily ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
     }
     if (!_started) {
@@ -347,7 +380,18 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
     final colors = context.watch<ThemeProvider>().colors;
 
     return Scaffold(
-      appBar: AppBar(title: Text('🃏 Kart Oyunu V2 — ${widget.topic.baslik}')),
+      appBar: AppBar(
+        title: Text('🃏 Kart Oyunu V2 — ${widget.topic.baslik}'),
+        actions: const [
+          HowToPlayButton(
+            title: '🃏 Nasıl Oynanır?',
+            body: 'Soldaki terimi sağdaki doğru tanımıyla eşleştirmek için ikisine '
+                'sırayla dokun; doğru eşleşmeler bir çizgiyle birleşir. Belirli bir '
+                'yanlış sayısını geçersen konuyu kaybedersin, tüm eşleşmeleri '
+                'tamamlarsan konuyu geçersin.',
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

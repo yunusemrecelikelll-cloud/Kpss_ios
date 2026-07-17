@@ -17,6 +17,16 @@ class QuizEngine extends ChangeNotifier {
   List<int?> answers = [];
   int durationSec = 0;
   bool isFullTest = false;
+  /// Bu oturum Yanlışlarım ("Yanlışlar Testi") pratik oturumu mu? — evetse
+  /// finish() burada doğru çözülen soruları yanlış bankasından kalıcı olarak
+  /// siler VE quiz_screen.dart._finish() genel istatistik sayaçlarını
+  /// (addAttempt/markTopicCompleted/addUsedQuestions) ATLAR (bkz. Fix 1).
+  bool isWrongBankMode = false;
+  // "Beni Sına" teşhis (yerleştirme) sınavı mı? bkz. placement_exam_screen.dart
+  // / placement_result_screen.dart — quiz_screen.dart _finish() bu bayrağa
+  // bakıp normal ResultScreen yerine ders bazlı zayıf/güçlü analiz ekranına
+  // yönlendirir.
+  bool isPlacementExam = false;
   DateTime? startedAt;
 
   bool get isActive => questions.isNotEmpty;
@@ -29,6 +39,8 @@ class QuizEngine extends ChangeNotifier {
     required List<Question> questions,
     required int durationSec,
     bool isFullTest = false,
+    bool isWrongBankMode = false,
+    bool isPlacementExam = false,
   }) {
     this.subjectId = subjectId;
     this.subjectAd = subjectAd;
@@ -39,6 +51,8 @@ class QuizEngine extends ChangeNotifier {
     this.answers = List<int?>.filled(questions.length, null);
     this.durationSec = durationSec;
     this.isFullTest = isFullTest;
+    this.isWrongBankMode = isWrongBankMode;
+    this.isPlacementExam = isPlacementExam;
     this.startedAt = DateTime.now();
     _saveDraft();
     notifyListeners();
@@ -56,6 +70,8 @@ class QuizEngine extends ChangeNotifier {
     answers = List<int?>.from(draft['answers'] as List? ?? []);
     durationSec = draft['durationSec'] as int? ?? 0;
     isFullTest = draft['isFullTest'] as bool? ?? false;
+    isWrongBankMode = draft['isWrongBankMode'] as bool? ?? false;
+    isPlacementExam = draft['isPlacementExam'] as bool? ?? false;
     startedAt = draft['startedAt'] != null
         ? DateTime.fromMillisecondsSinceEpoch(draft['startedAt'] as int)
         : DateTime.now();
@@ -64,7 +80,7 @@ class QuizEngine extends ChangeNotifier {
 
   void _saveDraft() {
     if (!isActive) return;
-    storage.saveDraft({
+    storage.saveDraft(topicId ?? '', {
       'subjectId': subjectId,
       'subjectAd': subjectAd,
       'topicId': topicId,
@@ -83,6 +99,8 @@ class QuizEngine extends ChangeNotifier {
       'answers': answers,
       'durationSec': durationSec,
       'isFullTest': isFullTest,
+      'isWrongBankMode': isWrongBankMode,
+      'isPlacementExam': isPlacementExam,
       'startedAt': startedAt?.millisecondsSinceEpoch,
     });
   }
@@ -118,6 +136,9 @@ class QuizEngine extends ChangeNotifier {
     int dogru = 0, yanlis = 0, bos = 0;
     final wrongQs = <Question>[];
     final review = <ReviewItem>[];
+    // Fix 1: Yanlışlarım oturumunda doğru çözülen soruların anahtarları —
+    // testten sonra bankadan kalıcı olarak silinecekler (bir daha çıkmasınlar).
+    final resolvedWrongBankKeys = <String>[];
 
     for (var i = 0; i < questions.length; i++) {
       final q = questions[i];
@@ -129,6 +150,9 @@ class QuizEngine extends ChangeNotifier {
       } else if (given == q.dogruIndex) {
         dogru++;
         status = 'dogru';
+        if (isWrongBankMode) {
+          resolvedWrongBankKeys.add(storage.wrongBankKeyFor(q.soru));
+        }
       } else {
         yanlis++;
         status = 'yanlis';
@@ -166,8 +190,20 @@ class QuizEngine extends ChangeNotifier {
     if (wrongQs.isNotEmpty) {
       await storage.addWrongQuestions(wrongQs, subjectId ?? '', subjectAd ?? '');
     }
+    // Fix 1: Yanlışlarım'dan doğru çözülen sorular bankadan kalıcı olarak
+    // çıkar — bir daha karşımıza çıkmasın (bkz. wrong_bank_screen.dart).
+    for (final key in resolvedWrongBankKeys) {
+      await storage.removeFromWrongBank(key);
+    }
+    // Haftalık lig puanı: her doğru cevap 10 puan (bkz. LeagueService).
+    await storage.addWeeklyPoints(dogru * 10);
+    // Toplam XP (kalıcı, seviye sistemi için) + Sezon XP (aylık, ay değişince
+    // sıfırlanır) — ikisi de aynı katsayıyla (doğru başına 5 XP) beslenir ama
+    // haftalık lig puanından TAMAMEN AYRI iki alandır.
+    await storage.addXp(dogru * 5);
+    await storage.addSeasonXp(dogru * 5);
 
-    await storage.clearDraft();
+    await storage.clearDraft(topicId ?? '');
     questions = [];
     answers = [];
     notifyListeners();
@@ -175,7 +211,7 @@ class QuizEngine extends ChangeNotifier {
   }
 
   void abandon() {
-    storage.clearDraft();
+    storage.clearDraft(topicId ?? '');
     questions = [];
     answers = [];
     notifyListeners();

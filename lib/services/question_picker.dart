@@ -14,9 +14,19 @@ class QuestionPicker {
   static const int premiumTopicPoolSize = 100;
 
   List<Question> pickForTopic(List<Question> all, int count, String? topicId, {required bool premium}) {
+    // Sınav türüne özel etiketlenmiş sorular (examType != null) sadece
+    // kullanıcının Profil'de seçtiği sınav türüyle eşleşirse gösterilir;
+    // etiketsiz sorular (examType == null) her sınav türü için uygundur ve
+    // her zaman dahil edilir. Kullanıcı henüz bir sınav türü seçmediyse
+    // (examType boşsa) hiçbir filtre uygulanmaz, tüm sorular gösterilir.
+    final examType = storage.getExamType();
+    final filtered = examType.isEmpty
+        ? all
+        : all.where((q) => q.examType == null || q.examType == examType).toList();
+
     // Ücretsiz kullanıcılar konunun sadece ilk N sorusunu görür (havuz sınırlaması),
     // premium kullanıcılar tüm havuza (≈100) erişir.
-    final pool0 = premium ? all : all.take(freeTopicPoolSize).toList();
+    final pool0 = premium ? filtered : filtered.take(freeTopicPoolSize).toList();
     return pick(pool0, count, topicId);
   }
 

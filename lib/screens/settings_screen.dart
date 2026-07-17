@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../services/data_service.dart';
+import '../services/remote_question_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/theme_provider.dart';
 import 'premium_screen.dart';
+import 'privacy_policy_screen.dart';
 
 const List<String> _kCharacterOpts = ['🦉', '🦁', '🐯', '🦄', '🐼', '🚀', '🏆', '📚'];
 const List<int> _kSecsOpts = [30, 45, 60, 90, 120];
@@ -18,6 +21,72 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool _downloading = false;
+  int _downloadDone = 0;
+  int _downloadTotal = 0;
+  int? _cachedCount;
+
+  List<String> _allTopicIds(BuildContext context) {
+    final subjects = context.read<DataService>().cachedSubjects;
+    return [for (final s in subjects) for (final t in s.konular) t.id];
+  }
+
+  Future<void> _refreshCachedCount() async {
+    final ids = _allTopicIds(context);
+    final remote = context.read<RemoteQuestionService>();
+    final n = await remote.countCached(ids);
+    if (!mounted) return;
+    setState(() => _cachedCount = n);
+  }
+
+  Future<void> _downloadAll() async {
+    final ids = _allTopicIds(context);
+    final remote = context.read<RemoteQuestionService>();
+    setState(() {
+      _downloading = true;
+      _downloadDone = 0;
+      _downloadTotal = ids.length;
+    });
+    final succeeded = await remote.downloadAll(ids, onProgress: (done, total) {
+      if (!mounted) return;
+      setState(() {
+        _downloadDone = done;
+        _downloadTotal = total;
+      });
+    });
+    if (!mounted) return;
+    final n = await remote.countCached(ids);
+    if (!mounted) return;
+    // Başarılıysa "Yeni sorular eklendi" bildirimini de temizle — kullanıcı
+    // artık en güncel içeriği indirmiş oldu.
+    if (succeeded >= ids.length) {
+      final serverUpdatedAt = await remote.getServerContentUpdatedAt();
+      if (serverUpdatedAt != null) {
+        await context.read<StorageService>().setLastSeenContentVersionMs(serverUpdatedAt.millisecondsSinceEpoch);
+      }
+    }
+    if (!mounted) return;
+    setState(() {
+      _downloading = false;
+      _cachedCount = n;
+    });
+    // DÜRÜST sonuç: her konu gerçekten indirilebildiyse başarı mesajı,
+    // aksi halde (internet yok / sunucuya erişilemedi) bunu AÇIKÇA söyle —
+    // "tamamlandı" diye yanlış bir izlenim verme.
+    final allOk = succeeded >= ids.length;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(allOk
+          ? 'Tüm sorular indirildi — artık internetsiz de çalışır.'
+          : '$succeeded / ${ids.length} konu indirilebildi. İnternet bağlantını kontrol edip tekrar dene.'),
+    ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _refreshCachedCount());
+  }
+
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
@@ -30,6 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final notif = storage.getNotificationSettings();
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
+    final adaptationSounds = storage.getAdaptationSoundsEnabled();
 
     return Scaffold(
       appBar: AppBar(title: const Text('⚙️ Ayarlar')),
@@ -81,12 +151,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
             // ── Ses ──
             const _SectionTitle('🔊 Ses Efektleri'),
             Card(
-              child: SwitchListTile(
-                title: const Text('Buton sesleri', style: TextStyle(fontWeight: FontWeight.w700)),
-                subtitle: const Text('Tıklamalarda ses çıkar; son 5 saniye tik-tak sesi gelir',
-                    style: TextStyle(fontSize: 12)),
-                value: soundOn,
-                onChanged: (v) => storage.saveSettings({'soundEnabled': v}),
+              child: Column(
+                children: [
+                  SwitchListTile(
+                    title: const Text('Buton sesleri', style: TextStyle(fontWeight: FontWeight.w700)),
+                    subtitle: const Text('Tıklamalarda ses çıkar; son 5 saniye tik-tak sesi gelir',
+                        style: TextStyle(fontSize: 12)),
+                    value: soundOn,
+                    onChanged: (v) => storage.saveSettings({'soundEnabled': v}),
+                  ),
+                  const Divider(height: 1),
+                  SwitchListTile(
+                    title: const Text('Adaptasyon Sesleri', style: TextStyle(fontWeight: FontWeight.w700)),
+                    subtitle: const Text(
+                        'Test çözerken gerçekçi sınav salonu sesleri duy — öksürük, kağıt hışırtısı, kalem sesi',
+                        style: TextStyle(fontSize: 12)),
+                    value: adaptationSounds,
+                    onChanged: (v) => storage.setAdaptationSoundsEnabled(v),
+                  ),
+                ],
               ),
             ),
 
@@ -286,6 +369,72 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(v ? 'Bulut yedekleme hazırlandı.' : 'Bulut yedekleme kapatıldı.')),
                   );
+                },
+              ),
+            ),
+            // ── Çevrimdışı Kullanım ──
+            const _SectionTitle('📥 Çevrimdışı Kullanım'),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Text('Tüm Soruları İndir', style: TextStyle(fontWeight: FontWeight.w700)),
+                        const SizedBox(width: 6),
+                        Text('(${formatEstimatedSize(kQuestionBankEstimatedBytes)})',
+                            style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Her konunun tüm soru havuzunu cihazına indirir; internetin olmadığı '
+                      'yerlerde bile testlere sınırsız girebilirsin.',
+                      style: TextStyle(fontSize: 12, color: c.textFaint),
+                    ),
+                    const SizedBox(height: 10),
+                    if (_downloading) ...[
+                      LinearProgressIndicator(
+                        value: _downloadTotal == 0 ? null : _downloadDone / _downloadTotal,
+                      ),
+                      const SizedBox(height: 6),
+                      Text('$_downloadDone / $_downloadTotal konu indirildi...',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                    ] else ...[
+                      if (_cachedCount != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: Text(
+                            '$_cachedCount konu şu an cihazda hazır (internetsiz kullanılabilir).',
+                            style: TextStyle(fontSize: 12, color: c.textFaint),
+                          ),
+                        ),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          context.read<SoundService>().click();
+                          _downloadAll();
+                        },
+                        icon: const Icon(Icons.download),
+                        label: const Text('Tüm Soruları İndir'),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+
+            // ── Yasal ──
+            const _SectionTitle('📄 Yasal'),
+            Card(
+              child: ListTile(
+                leading: const Text('🔒'),
+                title: const Text('Gizlilik Politikası'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
                 },
               ),
             ),

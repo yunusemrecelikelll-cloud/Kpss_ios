@@ -39,7 +39,6 @@ class CloudSyncService {
         'attempts': storage.getAttempts().map((a) => a.toJson()).toList(),
         'completed': storage.getCompletedTopics(),
         'badges': storage.getUnlockedBadges(),
-        'missionsDone': storage.getMissionsDone(),
         'streak': storage.getStreak(),
         'studyTime': storage.getStudyTime(),
         'wrongBank': storage.getWrongBank(),
@@ -59,7 +58,11 @@ class CloudSyncService {
   /// EKSİK olan veriyi ekler (idempotent): zaten var olan denemeler tekrar
   /// eklenmez, tamamlanan konular ve rozetler zaten var olsa da tekrar
   /// işaretlenmesi zararsızdır (StorageService bu metodlarda kendi
-  /// tekilliğini garanti eder).
+  /// tekilliğini garanti eder). syncUp'ın yazdığı TÜM alanlar (attempts,
+  /// completed, badges, streak, studyTime, wrongBank, plan, userName) burada
+  /// geri okunur — böylece Google ile YENİ bir cihazda giriş yapan kullanıcı
+  /// serisinin/çalışma süresinin/yanlışlar bankasının "kaybolduğunu"
+  /// görmez.
   ///
   /// Kullanıcı giriş yapmamışsa, Firebase yapılandırılmamışsa ya da bulutta
   /// hiç yedek yoksa `false` döner.
@@ -96,6 +99,54 @@ class CloudSyncService {
       final badges = List<String>.from(data['badges'] as List? ?? const []);
       for (final b in badges) {
         await storage.unlockBadge(b);
+      }
+
+      // Seri (streak): yerelde henüz GERÇEK bir seri yoksa (count == 0/yok)
+      // buluttakini geri yükle. Yerelde zaten gerçek bir seri varsa (count > 0)
+      // hiç dokunulmaz — attempts/plan ile AYNI "yerel ilerlemeyi asla geriye
+      // düşürme" ihtiyatı.
+      final localStreak = storage.getStreak();
+      final localStreakCount = (localStreak['count'] as num?)?.toInt() ?? 0;
+      if (localStreakCount == 0) {
+        final remoteStreak = Map<String, dynamic>.from(data['streak'] as Map? ?? const {});
+        final remoteStreakCount = (remoteStreak['count'] as num?)?.toInt() ?? 0;
+        if (remoteStreakCount > 0) {
+          await storage.restoreStreak(remoteStreak);
+        }
+      }
+
+      // Çalışma süresi: yerelde hiç kayıtlı çalışma süresi yoksa (toplam == 0)
+      // buluttaki ders başına süreleri ekle (addStudyTime zaten toplama
+      // yapıyor, bu yüzden yerelde 0 iken bu sadece bulut değerlerini yazar).
+      if (storage.getTotalStudyTime() == 0) {
+        final remoteStudyTime = Map<String, dynamic>.from(data['studyTime'] as Map? ?? const {});
+        for (final entry in remoteStudyTime.entries) {
+          final seconds = (entry.value as num?)?.toInt() ?? 0;
+          if (seconds > 0) await storage.addStudyTime(entry.key, seconds);
+        }
+      }
+
+      // Yanlışlar bankası: yerelle BİRLEŞTİR (üzerine yazma) — cihaz
+      // değiştirince yanlış bankasının kaybolmuş gibi görünmemesi için.
+      final remoteWrongBank = (data['wrongBank'] as List? ?? const [])
+          .map((w) => Map<String, dynamic>.from(w as Map))
+          .toList();
+      await storage.mergeWrongBank(remoteWrongBank);
+
+      // Premium/plan durumu: cihaz değiştirince ya da uygulamayı silip tekrar
+      // kurunca satın almanın "kaybolmuş" gibi görünmemesi için bulut
+      // kaydındaki plan'ı geri yükle (sadece bulutta 'premium' ise ve
+      // yerelde henüz premium değilse — yereldeki premium durumunu asla
+      // geriye, 'free'ye düşürmeyiz).
+      final remotePlan = data['plan'] as String?;
+      if (remotePlan == 'premium' && !storage.isPremiumUser()) {
+        await storage.setUserPlan('premium');
+      }
+
+      // İsim: yerelde henüz isim yoksa buluttakini kullan.
+      final remoteName = data['userName'] as String?;
+      if (storage.getUserName().isEmpty && remoteName != null && remoteName.isNotEmpty) {
+        await storage.setUserName(remoteName);
       }
 
       return true;

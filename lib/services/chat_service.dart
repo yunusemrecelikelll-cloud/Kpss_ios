@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 import '../firebase_bootstrap.dart';
 
@@ -82,6 +83,14 @@ class DirectMessage {
   }
 }
 
+/// 'Mesajlarım' gelen kutusunda gösterilen bir DM thread'inin özeti.
+class DmThreadSummary {
+  final String threadId;
+  final String peerUid;
+  final DateTime? updatedAt;
+  const DmThreadSummary({required this.threadId, required this.peerUid, required this.updatedAt});
+}
+
 /// Genel sohbet + DM + basit moderasyon (kötü-söz filtresi, rapor, engelleme)
 /// servis katmanı.
 ///
@@ -94,6 +103,14 @@ class ChatService {
   static const String reportsCollection = 'chat_reports';
   static const String dmCollection = 'dm_threads';
   static const String blockedCollection = 'blocked_users';
+  /// Hafif, kişi-başı bildirim kutusu (ör. "mesajın rapor edildi" bildirimi).
+  /// Tam bir bildirim merkezi DEĞİLDİR — bkz. fetchAndClearNotifications.
+  /// NOT: Bu koleksiyon için Firestore güvenlik kuralı EKLENMESİ gerekir
+  /// (bkz. firestore_user_notifications_rules_ADD.txt) — rapor eden kullanıcı
+  /// KENDİ uid'i olmayan bir belgeye (rapor edilen kişinin bildirim kutusuna)
+  /// yazmak zorunda olduğu için mevcut "isOwner" deseni yetmez. Bu kural insan
+  /// onayı olmadan YAYINLANMAMALIDIR.
+  static const String notificationsCollection = 'user_notifications';
 
   /// Çok kısa, temel bir uygunsuz kelime listesi. Gerçek bir moderasyon
   /// ekibi/servisi (ör. Cloud Functions + üçüncü parti bir moderasyon API'si)
@@ -180,10 +197,17 @@ class ChatService {
 
   /// Bir mesajı 'chat_reports' koleksiyonuna rapor eder (moderatörlerin
   /// incelemesi için). Mesajın kendisini silmez.
+  ///
+  /// [reportedUid] verildiğinde, rapor edilen kullanıcıya hafif bir uygulama
+  /// içi bildirim ("Bir mesajınız incelenmek üzere bildirildi.") bırakmayı
+  /// dener — bkz. [_notifyUser]. Bu adım BEST-EFFORT'tur: ilgili Firestore
+  /// kuralı henüz yayınlanmadıysa (bkz. notificationsCollection yorumu)
+  /// sessizce başarısız olur, raporun kendisi yine de kaydedilir.
   Future<void> reportMessage({
     required String messageId,
     required String reporterUid,
     required String reason,
+    String? reportedUid,
   }) async {
     _requireConfigured();
     await _db.collection(reportsCollection).add({
@@ -194,6 +218,48 @@ class ChatService {
       'createdAt': FieldValue.serverTimestamp(),
       'status': 'open',
     });
+    if (reportedUid != null && reportedUid.isNotEmpty) {
+      await _notifyUser(reportedUid, 'Bir mesajınız incelenmek üzere bildirildi.');
+    }
+  }
+
+  /// [uid] kullanıcısının hafif bildirim kutusuna tek satırlık bir bildirim
+  /// yazar. HİÇBİR ZAMAN istisna fırlatmaz — Firestore kuralı henüz izin
+  /// vermiyorsa (yeni koleksiyon, insan onayı bekleniyor) sessizce yutar.
+  Future<void> _notifyUser(String uid, String message, {String type = 'info'}) async {
+    if (!isConfigured) return;
+    try {
+      await _db.collection(notificationsCollection).doc(uid).collection('items').add({
+        'type': type,
+        'message': message,
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      debugPrint('ChatService._notifyUser başarısız (Firestore kuralı henüz yayınlanmamış olabilir): $e');
+    }
+  }
+
+  /// [uid] kullanıcısının bekleyen tüm hafif bildirimlerini okur, HEPSİNİ SİLER
+  /// (tam bir bildirim merkezi değil — tek seferlik "son ziyaretten beri neler
+  /// oldu" gösterimi) ve mesaj metinlerini döner. Hata/izin sorunu olursa
+  /// sessizce boş liste döner.
+  Future<List<String>> fetchAndClearNotifications(String uid) async {
+    if (!isConfigured) return const [];
+    try {
+      final snap = await _db.collection(notificationsCollection).doc(uid).collection('items').get();
+      final messages = snap.docs
+          .map((d) => d.data()['message'] as String? ?? '')
+          .where((m) => m.isNotEmpty)
+          .toList();
+      for (final doc in snap.docs) {
+        // ignore: unawaited_futures
+        doc.reference.delete();
+      }
+      return messages;
+    } catch (e) {
+      debugPrint('ChatService.fetchAndClearNotifications başarısız: $e');
+      return const [];
+    }
   }
 
   /// Bir kullanıcıyı yerel/bulut engelli listesine ekler — engellenen
@@ -261,6 +327,29 @@ class ChatService {
       'message': trimmed,
       'createdAt': FieldValue.serverTimestamp(),
     });
+  }
+
+  /// Kullanıcının katıldığı tüm DM thread'lerini (en son güncellenen önce)
+  /// dinler — 'Mesajlarım' gelen kutusu listesi için. Karşı tarafın uid'ini
+  /// taşır; görünen ismi çözmek çağıran tarafın işidir (bkz.
+  /// StorageService.getDmPeerNames — yerel önbellek).
+  Stream<List<DmThreadSummary>> streamMyThreads(String myUid) {
+    if (!isConfigured) return Stream<List<DmThreadSummary>>.value(const []);
+    return _db
+        .collection(dmCollection)
+        .where('participants', arrayContains: myUid)
+        .orderBy('updatedAt', descending: true)
+        .snapshots()
+        .map((snap) => snap.docs.map((d) {
+              final participants = List<String>.from(d.data()['participants'] as List? ?? const []);
+              final peer = participants.firstWhere((p) => p != myUid, orElse: () => '');
+              final ts = d.data()['updatedAt'];
+              return DmThreadSummary(
+                threadId: d.id,
+                peerUid: peer,
+                updatedAt: ts is Timestamp ? ts.toDate() : null,
+              );
+            }).toList());
   }
 
   Stream<List<DirectMessage>> streamDirectMessages({

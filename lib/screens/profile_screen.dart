@@ -2,10 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/subject.dart';
+import '../models/badge.dart';
+import '../services/league_service.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
+import '../theme/app_theme.dart';
 import '../theme/theme_provider.dart';
+import '../utils/exam_dates.dart';
+import 'badges_screen.dart';
+import 'detailed_stats_screen.dart';
 import 'premium_screen.dart';
+
+/// Kullanıcının hedeflediği KPSS mesleği — profilde ve isteğe bağlı olarak
+/// ileride kişiselleştirilmiş içerikte (ör. ilgili kadro soruları) kullanılmak
+/// üzere sadece yerelde saklanır.
+const List<({String id, String label, String icon})> kTargetProfessions = [
+  (id: 'polis', label: 'Polis', icon: '👮'),
+  (id: 'ogretmen', label: 'Öğretmen', icon: '👨‍🏫'),
+  (id: 'memur', label: 'Memur', icon: '👨‍💼'),
+  (id: 'uzman-yardimcisi', label: 'Uzman Yardımcısı', icon: '👨‍⚖️'),
+];
+
+({String id, String label, String icon})? _targetProfessionOrNull(String id) {
+  for (final p in kTargetProfessions) {
+    if (p.id == id) return p;
+  }
+  return null;
+}
 
 /// JS karşılığı: renderProfile() (src/js/app.js).
 class ProfileScreen extends StatelessWidget {
@@ -27,6 +50,16 @@ class ProfileScreen extends StatelessWidget {
     final streakCount = (streak['count'] as int?) ?? 0;
     final wrongCount = storage.getWrongBank().length;
     final badgeCount = storage.getUnlockedBadges().length;
+    final hideStats = storage.getHideStatsEnabled();
+
+    // Bu ekran açıldığında (ya da veriler değişip yeniden çizildiğinde) kendi
+    // güncel stat/rozet/gizlilik özetini Firestore'a yayınla — böylece
+    // sohbet/DM'den bu kullanıcının profiline bakan BAŞKA kullanıcılar
+    // (bkz. PublicProfileScreen) güncel veriyi görür. Sessizce başarısız olur
+    // (offline/Firebase yapılandırılmamış/giriş yok) — bu ekranın kendi
+    // görünümünü ETKİLEMEZ.
+    // ignore: unawaited_futures
+    LeagueService().publishMyScore(storage);
 
     // JS: SUBJECTS.filter(s => s.data).map(...).filter(avg !== null)
     final subjectAverages = <({String id, String label, int avg})>[];
@@ -46,6 +79,14 @@ class ProfileScreen extends StatelessWidget {
         title: const Text('👤 Profil'),
         actions: [
           IconButton(
+            tooltip: 'Rozetler',
+            icon: const Text('🏆', style: TextStyle(fontSize: 20)),
+            onPressed: () {
+              context.read<SoundService>().click();
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const BadgesScreen()));
+            },
+          ),
+          IconButton(
             tooltip: 'İsim / Cinsiyet Düzenle',
             icon: const Icon(Icons.edit_outlined),
             onPressed: () {
@@ -56,6 +97,8 @@ class ProfileScreen extends StatelessWidget {
                   storage: storage,
                   initialName: name == 'Aday' ? '' : name,
                   initialGender: gender,
+                  initialExamType: storage.getExamType(),
+                  initialProfession: storage.getTargetProfession(),
                 ),
               );
             },
@@ -69,38 +112,78 @@ class ProfileScreen extends StatelessWidget {
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(18),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('👤 $name Profili',
-                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                          const SizedBox(height: 4),
-                          Text(
-                            "Ücretsiz hesabın temel özetini, Premium'da ise detaylı analizleri gör.",
-                            style: TextStyle(fontSize: 12.5, color: c.textFaint),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    Row(
                       children: [
-                        Chip(
-                          label: Text(premium ? 'Premium' : 'Ücretsiz'),
-                          backgroundColor: premium
-                              ? c.gold.withValues(alpha: 0.2)
-                              : null,
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('👤 $name Profili',
+                                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Ücretsiz hesabın temel özetini, Premium'da ise detaylı analizleri gör.",
+                                style: TextStyle(fontSize: 12.5, color: c.textFaint),
+                              ),
+                              if (_targetProfessionOrNull(storage.getTargetProfession()) case final p?) ...[
+                                const SizedBox(height: 6),
+                                Chip(
+                                  label: Text('${p.icon} Hedef: ${p.label}', style: const TextStyle(fontSize: 11.5)),
+                                  visualDensity: VisualDensity.compact,
+                                  backgroundColor: c.violet.withValues(alpha: 0.12),
+                                ),
+                              ],
+                            ],
+                          ),
                         ),
-                        if (premium) ...[
-                          const SizedBox(height: 4),
-                          const Text('VIP', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800)),
-                        ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Chip(
+                              label: Text(premium ? 'Premium' : 'Ücretsiz'),
+                              backgroundColor: premium
+                                  ? c.gold.withValues(alpha: 0.2)
+                                  : null,
+                            ),
+                            if (premium) ...[
+                              const SizedBox(height: 4),
+                              const Text('VIP', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800)),
+                            ],
+                          ],
+                        ),
                       ],
                     ),
+                    const SizedBox(height: 14),
+                    const Divider(height: 1),
+                    const SizedBox(height: 12),
+                    _LevelXpSection(storage: storage, colors: c),
+                    const SizedBox(height: 10),
+                    Text(
+                      '🗓️ ${storage.getCurrentSeasonLabel()} Sezonu: ${storage.getSeasonXp()} XP',
+                      style: TextStyle(fontSize: 11.5, color: c.textFaint, fontWeight: FontWeight.w600),
+                    ),
                   ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 14),
+            Card(
+              child: SwitchListTile(
+                value: hideStats,
+                onChanged: (v) async {
+                  context.read<SoundService>().click();
+                  await storage.setHideStatsEnabled(v);
+                  // ignore: unawaited_futures
+                  LeagueService().publishMyScore(storage);
+                },
+                title: const Text('İstatistiklerimi Gizle', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13.5)),
+                subtitle: Text(
+                  'Açıkken, diğer kullanıcılar sohbet/DM üzerinden profiline baktığında '
+                  'gerçek sayılar yerine sadece "istatistiklerini gizli tutuyor" yazısını görür.',
+                  style: TextStyle(fontSize: 11, color: c.textFaint),
                 ),
               ),
             ),
@@ -145,6 +228,24 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 14),
+            Card(
+              child: ListTile(
+                leading: Icon(Icons.query_stats, color: c.violet),
+                title: const Text('Detaylı İstatistikler', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
+                subtitle: Text(
+                  'Ders/konu bazlı başarı, seri geçmişi, çalışma süresi ve rozet ilerlemeni gör.',
+                  style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DetailedStatsScreen()));
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
+            _UnlockedBadgesCard(unlockedIds: storage.getUnlockedBadges().toSet()),
             const SizedBox(height: 16),
             if (premium)
               Card(
@@ -270,6 +371,47 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
+/// Seviye + XP ilerleme çubuğu — mevcut seviyeden bir sonraki seviyeye olan
+/// ilerlemeyi gösterir (bkz. StorageService.getLevelForXp/xpForNextLevel).
+class _LevelXpSection extends StatelessWidget {
+  final StorageService storage;
+  final KpssColors colors;
+  const _LevelXpSection({required this.storage, required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    final xp = storage.getTotalXp();
+    final level = StorageService.getLevelForXp(xp);
+    final levelStartXp = StorageService.xpForLevel(level);
+    final nextLevelXp = StorageService.xpForNextLevel(level);
+    final span = nextLevelXp - levelStartXp;
+    final into = xp - levelStartXp;
+    final ratio = span <= 0 ? 1.0 : (into / span).clamp(0.0, 1.0);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('⭐ Seviye $level', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13.5)),
+            Text('$xp XP toplam', style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
+          ],
+        ),
+        const SizedBox(height: 6),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: LinearProgressIndicator(value: ratio, minHeight: 8),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Sonraki seviyeye $into / $span XP',
+          style: TextStyle(fontSize: 10.5, color: colors.textFaint),
+        ),
+      ],
+    );
+  }
+}
+
 class _StatCard extends StatelessWidget {
   final String label, value, foot;
   const _StatCard({required this.label, required this.value, required this.foot});
@@ -289,6 +431,67 @@ class _StatCard extends StatelessWidget {
             Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
             const SizedBox(height: 4),
             Text(foot, style: const TextStyle(fontSize: 10), maxLines: 2, overflow: TextOverflow.ellipsis),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Kullanıcının şu ana kadar açtığı rozetleri gösterir. Hiç rozet açılmadıysa
+/// teşvik edici bir boş durum mesajı gösterir.
+class _UnlockedBadgesCard extends StatelessWidget {
+  final Set<String> unlockedIds;
+  const _UnlockedBadgesCard({required this.unlockedIds});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final unlocked = kBadgeDefs.where((b) => unlockedIds.contains(b.id)).toList();
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('🏅 Rozetlerim (${unlocked.length}/${kBadgeDefs.length})',
+                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+            const SizedBox(height: 12),
+            if (unlocked.isEmpty)
+              Text('Henüz rozet açmadın. Test çözmeye devam et, ilk rozetin yakında!',
+                  style: TextStyle(fontSize: 12.5, color: c.textFaint))
+            else
+              Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (final b in unlocked)
+                    Tooltip(
+                      message: b.desc,
+                      child: Container(
+                        width: 72,
+                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+                        decoration: BoxDecoration(
+                          color: b.color.withValues(alpha: 0.14),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: b.color.withValues(alpha: 0.4)),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(b.icon, style: const TextStyle(fontSize: 22)),
+                            const SizedBox(height: 4),
+                            Text(b.name,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 9.5, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              ),
           ],
         ),
       ),
@@ -374,10 +577,14 @@ class _EditProfileDialog extends StatefulWidget {
   final StorageService storage;
   final String initialName;
   final String initialGender;
+  final String initialExamType;
+  final String initialProfession;
   const _EditProfileDialog({
     required this.storage,
     required this.initialName,
     required this.initialGender,
+    required this.initialExamType,
+    required this.initialProfession,
   });
 
   @override
@@ -387,12 +594,16 @@ class _EditProfileDialog extends StatefulWidget {
 class _EditProfileDialogState extends State<_EditProfileDialog> {
   late final TextEditingController _nameCtrl;
   late String _gender;
+  late String _examType;
+  late String _profession;
 
   @override
   void initState() {
     super.initState();
     _nameCtrl = TextEditingController(text: widget.initialName);
     _gender = widget.initialGender;
+    _examType = widget.initialExamType;
+    _profession = widget.initialProfession;
   }
 
   @override
@@ -410,6 +621,8 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
     }
     await widget.storage.setUserName(name);
     await widget.storage.setUserGender(_gender);
+    await widget.storage.setExamType(_examType);
+    await widget.storage.setTargetProfession(_profession);
     if (!mounted) return;
     Navigator.of(context).pop();
   }
@@ -418,7 +631,8 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: const Text('Profili Düzenle'),
-      content: Column(
+      content: SingleChildScrollView(
+        child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -449,7 +663,38 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+          const Text('Hangi sınava gireceksin?', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final e in kExamTypes)
+                ChoiceChip(
+                  label: Text(e.label),
+                  selected: _examType == e.id,
+                  onSelected: (_) => setState(() => _examType = e.id),
+                ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          const Text('Hedef mesleğin', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final p in kTargetProfessions)
+                ChoiceChip(
+                  label: Text('${p.icon} ${p.label}'),
+                  selected: _profession == p.id,
+                  onSelected: (_) => setState(() => _profession = p.id),
+                ),
+            ],
+          ),
         ],
+        ),
       ),
       actions: [
         TextButton(

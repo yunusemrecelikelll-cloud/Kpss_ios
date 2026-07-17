@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
+import '../services/data_service.dart';
+import '../services/remote_question_service.dart';
 import '../services/storage_service.dart';
 import '../services/question_picker.dart';
 import '../services/sound_service.dart';
+import '../services/tts_service.dart';
+import '../services/pdf_export_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
@@ -18,10 +22,106 @@ const _kParagraphEmojis = ['📖', '✏️', '🔍', '🎯', '💭', '📝', '�
 /// Anahtar nokta kutucuklarında, metnin başında emoji yoksa kullanılacak yedek emojiler.
 const _kKeyPointFallbackEmojis = ['🔑', '💡', '⭐', '🎯'];
 
-class TopicScreen extends StatelessWidget {
+class TopicScreen extends StatefulWidget {
   final Subject subject;
   final Topic topic;
   const TopicScreen({super.key, required this.subject, required this.topic});
+
+  @override
+  State<TopicScreen> createState() => _TopicScreenState();
+}
+
+class _TopicScreenState extends State<TopicScreen> {
+  bool _startingQuiz = false;
+  late final TtsService _ttsService;
+
+  Subject get subject => widget.subject;
+  Topic get topic => widget.topic;
+
+  @override
+  void initState() {
+    super.initState();
+    // Konu ekranı açılır açılmaz bu konunun tam soru havuzunu arka planda
+    // sessizce indirmeye başla (bkz. RemoteQuestionService) — kullanıcı
+    // anlatımı okurken indirme tamamlanır, "Teste Başla" anında hazır olur.
+    context.read<RemoteQuestionService>().prefetch(topic.id);
+    _ttsService = context.read<TtsService>();
+  }
+
+  @override
+  void dispose() {
+    // Kullanıcı sesli anlatımı dinlerken ekrandan ayrılırsa konuşmayı durdur.
+    _ttsService.stop();
+    super.dispose();
+  }
+
+  /// Özet + paragraflar + anahtar noktaları tek, akıcı bir metin haline
+  /// getirir (sesli anlatım için).
+  String _speechText(Anlatim a) {
+    final buffer = StringBuffer();
+    if (a.ozet != null && a.ozet!.trim().isNotEmpty) {
+      buffer.writeln(a.ozet!.trim());
+      buffer.writeln();
+    }
+    for (final paragraf in a.icerik) {
+      final t = paragraf.trim();
+      if (t.isEmpty) continue;
+      buffer.writeln(t);
+      buffer.writeln();
+    }
+    if (a.anahtarNoktalar.isNotEmpty) {
+      buffer.writeln('Anahtar noktalar.');
+      for (final k in a.anahtarNoktalar) {
+        final t = k.trim();
+        if (t.isEmpty) continue;
+        buffer.writeln(t);
+      }
+    }
+    return buffer.toString().trim();
+  }
+
+  Future<void> _exportPdf(BuildContext context, bool premium) async {
+    context.read<SoundService>().click();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('PDF oluşturuluyor…'), duration: Duration(seconds: 2)),
+    );
+    try {
+      final pool = await context
+          .read<RemoteQuestionService>()
+          .getPool(topic.id, topic.sorular);
+      await PdfExportService.exportTopic(
+        subject: subject.meta,
+        topic: topic,
+        premium: premium,
+        soruHavuzu: pool,
+      );
+    } catch (e) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('PDF oluşturulamadı: $e')),
+      );
+    }
+  }
+
+  Future<void> _startQuiz(BuildContext context, StorageService storage, bool premium) async {
+    context.read<SoundService>().click();
+    setState(() => _startingQuiz = true);
+    final pool = await context.read<RemoteQuestionService>().getPool(topic.id, topic.sorular);
+    if (!context.mounted) return;
+    setState(() => _startingQuiz = false);
+    final picker = QuestionPicker(storage);
+    final qs = picker.pickForTopic(pool, 10, topic.id, premium: premium);
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+      builder: (_) => QuizScreen(
+        subjectId: subject.id,
+        subjectAd: subject.ad,
+        topicId: topic.id,
+        topicBaslik: topic.baslik,
+        questions: qs,
+        isFullTest: false,
+      ),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +134,23 @@ class TopicScreen extends StatelessWidget {
     final a = topic.anlatim;
 
     return Scaffold(
-      appBar: AppBar(title: Text('📘 ${topic.baslik}')),
+      appBar: AppBar(
+        title: Text('📘 ${topic.baslik}'),
+        actions: [
+          IconButton(
+            tooltip: 'PDF Oluştur',
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: () => _exportPdf(context, premium),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          if (a.ozet != null || a.icerik.isNotEmpty) ...[
+            _TtsListenButton(text: _speechText(a), colors: colors),
+            const SizedBox(height: 16),
+          ],
           if (a.ozet != null) ...[
             _SummaryBox(text: a.ozet!, colors: colors),
             const SizedBox(height: 18),
@@ -67,6 +180,61 @@ class TopicScreen extends StatelessWidget {
               const SizedBox(height: 8),
             ],
           ],
+          FutureBuilder<Map<String, List<String>>>(
+            future: context.read<DataService>().loadMnemonics(),
+            builder: (context, snap) {
+              final tips = snap.data?[topic.id] ?? const [];
+              if (tips.isEmpty) return const SizedBox.shrink();
+              return Padding(
+                padding: const EdgeInsets.only(top: 4, bottom: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _SectionHeader(emoji: '🧠', title: 'Akılda Kalıcı', colors: colors),
+                    const SizedBox(height: 10),
+                    if (!premium)
+                      Card(
+                        color: colors.gold.withValues(alpha: 0.08),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('🔒 Bu konu için akılda kalıcı kodlama teknikleri Premium\'a özel.',
+                                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+                              const SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: () {
+                                  context.read<SoundService>().click();
+                                  Navigator.of(context)
+                                      .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                                },
+                                child: const Text("Premium'a Geç"),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    else
+                      for (final tip in tips) ...[
+                        Card(
+                          color: colors.violet.withValues(alpha: 0.06),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(color: colors.violet.withValues(alpha: 0.25)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(14),
+                            child: Text(tip, style: const TextStyle(fontSize: 13, height: 1.5)),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                  ],
+                ),
+              );
+            },
+          ),
           const SizedBox(height: 12),
           if (attempts.isNotEmpty) ...[
             const Text('📋 Geçmiş Testlerin', style: TextStyle(fontWeight: FontWeight.w800)),
@@ -123,32 +291,68 @@ class TopicScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(premium
-                          ? '${topic.sorular.length} soruluk havuz • Sınırsız test hakkın var ✨'
-                          : '${topic.sorular.length} soruluk havuz • ${maxAtt - attempts.length} hak kaldı'),
+                          ? 'Sınırsıza yakın soru havuzu • Sınırsız test hakkın var ✨'
+                          : '20 soruluk havuz • ${maxAtt - attempts.length} hak kaldı'),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        final picker = QuestionPicker(storage);
-                        final qs = picker.pickForTopic(topic.sorular, 10, topic.id, premium: premium);
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => QuizScreen(
-                            subjectId: subject.id,
-                            subjectAd: subject.ad,
-                            topicId: topic.id,
-                            topicBaslik: topic.baslik,
-                            questions: qs,
-                            isFullTest: false,
-                          ),
-                        ));
-                      },
-                      child: Text(attempts.isNotEmpty ? 'Tekrar Çöz →' : 'Teste Başla →'),
+                      onPressed: _startingQuiz ? null : () => _startQuiz(context, storage, premium),
+                      child: _startingQuiz
+                          ? const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Text(attempts.isNotEmpty ? 'Tekrar Çöz →' : 'Teste Başla →'),
                     ),
                   ],
                 ),
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+/// Konu anlatımını Türkçe seslendiren dinle/durdur düğmesi.
+///
+/// `TtsService.isSpeaking`'i dinler ve buna göre "🔊 Sesli Dinle" /
+/// "⏹ Durdur" arasında geçiş yapar.
+class _TtsListenButton extends StatelessWidget {
+  final String text;
+  final KpssColors colors;
+  const _TtsListenButton({required this.text, required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    final tts = context.watch<TtsService>();
+    final speaking = tts.isSpeaking;
+    final accent = speaking ? colors.rose : colors.violet;
+
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: accent,
+          side: BorderSide(color: accent.withValues(alpha: 0.5), width: 1.2),
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        ),
+        icon: Icon(speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded),
+        label: Text(
+          speaking ? '⏹ Durdur' : '🔊 Sesli Dinle',
+          style: const TextStyle(fontWeight: FontWeight.w700),
+        ),
+        onPressed: text.isEmpty
+            ? null
+            : () {
+                context.read<SoundService>().click();
+                if (speaking) {
+                  context.read<TtsService>().stop();
+                } else {
+                  context.read<TtsService>().speak(text);
+                }
+              },
       ),
     );
   }

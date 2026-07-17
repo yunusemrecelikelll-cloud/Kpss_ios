@@ -19,14 +19,16 @@ const List<SubjectMeta> kSubjects = [
   SubjectMeta(id: 'turkce', ad: 'Türkçe', icon: '📖', dosya: 'assets/data/turkce.json'),
 ];
 
-/// Tam deneme sınavı dağılımı (toplam 120 soru) — JS: FULL_TEST_DIST
+/// Tam deneme sınavı dağılımı (toplam 120 soru) — gerçek KPSS Genel Yetenek/
+/// Genel Kültür soru dağılımına göre (Lisans/Önlisans/Ortaöğretim'de bu
+/// dağılım pratikte birebir aynıdır, sınav türüne göre değişmez).
 const Map<String, int> kFullTestDist = {
   'turkce': 30,
   'matematik': 30,
-  'tarih': 24,
-  'cografya': 24,
-  'vatandaslik': 8,
-  'guncel': 4,
+  'tarih': 27,
+  'cografya': 18,
+  'vatandaslik': 9,
+  'guncel': 6,
 };
 
 const int kSubjectExamQPerTopic = 3;

@@ -78,12 +78,18 @@ class SoundService {
 
   bool get isFocusPlaying => _ambiencePlaying;
 
-  /// Sınav ortamı odaklanma seslerini başlatır: sürekli döngülü alçak uğultu
-  /// + rastgele aralıklarla (1.8-5sn) tetiklenen olay sesi (kağıt hışırtısı,
-  /// sayfa çevirme, kalem sesi, sandalye gıcırtısı, nadiren öksürük).
+  /// Sınav ortamı odaklanma seslerini başlatır: çok alçak sesle sürekli
+  /// döngülü bir fon uğultusu + 15-40sn arası rastgele aralıklarla tetiklenen
+  /// TEK bir olay sesi (kağıt hışırtısı, sayfa çevirme, kalem sesi, sandalye
+  /// gıcırtısı, nadiren öksürük) — bkz. QuizScreen (Ayarlar'daki "Adaptasyon
+  /// Sesleri" açıkken aktif test ekranında çağrılır) ve web karşılığı
+  /// src/js/sounds.js#startFocusAmbience (orada "Sınav Ortamı Odaklanma
+  /// Sesleri" adıyla manuel bir aç/kapa düğmesiyle tetiklenir).
   ///
-  /// JS'teki gibi kullanıcı elle açıp kapattığı için soundEnabled ayarına
-  /// bağlı DEĞİLDİR.
+  /// Diğer tik/tık seslerini bastırmasın diye HEM döngü hem olay sesleri
+  /// düşük ses seviyesinde çalınır. JS'teki gibi kullanıcı elle açıp
+  /// kapattığı için soundEnabled ayarına bağlı DEĞİLDİR — gating çağıran
+  /// tarafta (QuizScreen'de "adaptationSoundsEnabled" ayarına göre) yapılır.
   Future<void> startFocusAmbience() async {
     if (_ambiencePlaying) return;
     _ambiencePlaying = true;
@@ -91,7 +97,7 @@ class SoundService {
       await _ambiencePlayer.setReleaseMode(ReleaseMode.loop);
       await _ambiencePlayer.play(
         AssetSource('sounds/focus_ambience_loop.wav'),
-        volume: 1.0,
+        volume: 0.12,
       );
     } catch (_) {
       _ambiencePlaying = false;
@@ -111,8 +117,14 @@ class SoundService {
     }
   }
 
+  // Sınav salonu "Adaptasyon Sesleri" için olay sesleri arası bekleme:
+  // 15-40sn arası rastgele — göze/kulağa batmayacak kadar seyrek, ama testin
+  // tamamı boyunca birkaç kez gerçekçi bir atmosfer hissi verecek kadar sık.
+  static const int _minEventDelayMs = 15000;
+  static const int _maxEventDelaySpanMs = 25000; // 15000 + [0, 25000) => 15-40sn
+
   void _scheduleNextAmbienceEvent() {
-    final delayMs = 1800 + _rand.nextInt(3200); // JS: 1800 + rand()*3200
+    final delayMs = _minEventDelayMs + _rand.nextInt(_maxEventDelaySpanMs);
     _ambienceEventTimer = Timer(Duration(milliseconds: delayMs), () async {
       if (!_ambiencePlaying) return;
       await _playRandomAmbienceEvent();
@@ -120,13 +132,17 @@ class SoundService {
     });
   }
 
+  // Olay sesleri de (tık/tik-tak ve varsa diğer geri bildirim sesleriyle
+  // çakışıp dikkat dağıtmasın diye) düşük sesle çalınır.
+  static const double _eventVolume = 0.45;
+
   Future<void> _playRandomAmbienceEvent() async {
     final total = _ambienceEvents.fold<int>(0, (sum, e) => sum + e.weight);
     var r = _rand.nextDouble() * total;
     for (final e in _ambienceEvents) {
       r -= e.weight;
       if (r <= 0) {
-        await _eventPools[e.name]?.play();
+        await _eventPools[e.name]?.play(volume: _eventVolume);
         return;
       }
     }
