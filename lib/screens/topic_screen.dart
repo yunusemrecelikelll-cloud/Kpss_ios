@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
 import '../models/question.dart';
@@ -649,22 +648,6 @@ class _TeacherVideosCard extends StatelessWidget {
     required this.colors,
   });
 
-  Future<void> _open(String name) async {
-    final uri = Uri.parse(youtubeSearchUrlFor(name, subjectAd, topicBaslik));
-    try {
-      await launchUrl(
-        uri,
-        // Web'de externalApplication modu desteklenmeyip sessizce başarısız
-        // olabiliyor; web'de platformDefault + yeni sekme, mobilde ise YouTube
-        // uygulamasını açan externalApplication kullanılır.
-        mode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
-        webOnlyWindowName: '_blank',
-      );
-    } catch (_) {
-      // yoksay
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -684,15 +667,20 @@ class _TeacherVideosCard extends StatelessWidget {
               spacing: 8,
               runSpacing: 8,
               children: [
+                // Link widget'ı web'de gerçek bir <a> bağlantısı olarak render
+                // edilir → tarayıcının popup engelleyicisine TAKILMADAN yeni
+                // sekmede açılır. Mobilde url_launcher ile YouTube açılır.
                 for (final t in teachers)
-                  ActionChip(
-                    avatar: const Icon(Icons.play_circle_fill,
-                        size: 18, color: Color(0xFFFF0000)),
-                    label: Text(t.name),
-                    onPressed: () {
-                      context.read<SoundService>().click();
-                      _open(t.name);
-                    },
+                  Link(
+                    uri: Uri.parse(
+                        youtubeSearchUrlFor(t.name, subjectAd, topicBaslik)),
+                    target: LinkTarget.blank,
+                    builder: (context, followLink) => ActionChip(
+                      avatar: const Icon(Icons.play_circle_fill,
+                          size: 18, color: Color(0xFFFF0000)),
+                      label: Text(t.name),
+                      onPressed: followLink,
+                    ),
                   ),
               ],
             ),
