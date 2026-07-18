@@ -73,6 +73,10 @@ class _QuizScreenState extends State<QuizScreen> {
   // değişmesin diye) bir kez seçilip önbelleğe alınıyor.
   final Map<int, String> _motivationCache = {};
   final Random _rng = Random();
+  // dispose()'ta context.read güvenli olmadığından (element defunct olabilir ve
+  // exception atabilir → ses durmadan kalır), SoundService referansı initState'te
+  // yakalanır ve ekrandan çıkışta bununla güvenle durdurulur.
+  late final SoundService _soundService;
 
   static const List<String> _kCorrectMsgs = [
     'Harika, devam et! 🎉',
@@ -109,6 +113,7 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void initState() {
     super.initState();
+    _soundService = context.read<SoundService>();
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
 
@@ -116,8 +121,10 @@ class _QuizScreenState extends State<QuizScreen> {
   void dispose() {
     // Ekrandan çıkılınca (test bitişi, geri tuşu, vb.) Adaptasyon Sesleri
     // çalıyorsa hemen durdurulur — arka planda çalmaya devam etmesin.
+    // (initState'te yakalanan referans kullanılır; dispose'ta context.read
+    // güvenli değildir.)
     // ignore: unawaited_futures
-    context.read<SoundService>().stopFocusAmbience();
+    _soundService.stopFocusAmbience();
     super.dispose();
   }
 
@@ -132,7 +139,7 @@ class _QuizScreenState extends State<QuizScreen> {
     // arka planda düşük sesle sınav salonu atmosferi çalınır (bkz.
     // SoundService.startFocusAmbience) — dispose()'da durdurulur.
     if (settings['adaptationSoundsEnabled'] == true) {
-      context.read<SoundService>().startFocusAmbience();
+      _soundService.startFocusAmbience();
     }
 
     if (widget.resume) {

@@ -167,7 +167,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         'Test çözerken gerçekçi sınav salonu sesleri duy — öksürük, kağıt hışırtısı, kalem sesi',
                         style: TextStyle(fontSize: 12)),
                     value: adaptationSounds,
-                    onChanged: (v) => storage.setAdaptationSoundsEnabled(v),
+                    onChanged: (v) {
+                      storage.setAdaptationSoundsEnabled(v);
+                      // Kapatılınca o an çalan atmosferi de hemen durdur —
+                      // yalnızca test içinde çalmalı, kapatınca susmalı.
+                      if (!v) context.read<SoundService>().stopFocusAmbience();
+                    },
                   ),
                 ],
               ),
