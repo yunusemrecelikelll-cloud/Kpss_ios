@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
+import '../models/question.dart';
 import '../services/data_service.dart';
 import '../services/remote_question_service.dart';
 import '../services/storage_service.dart';
@@ -80,8 +81,13 @@ class _TopicScreenState extends State<TopicScreen> {
     return buffer.toString().trim();
   }
 
-  Future<void> _exportPdf(BuildContext context, bool premium) async {
+  Future<void> _exportPdf(BuildContext context) async {
     context.read<SoundService>().click();
+    final storage = context.read<StorageService>();
+    final count = storage.getPdfExportCount(topic.id);
+    // İlk indirişte (count == 0) konu anlatımı dahil; sonrakilerde sadece
+    // farklı sorular.
+    final includeLecture = count == 0;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('PDF oluşturuluyor…'), duration: Duration(seconds: 2)),
     );
@@ -89,18 +95,30 @@ class _TopicScreenState extends State<TopicScreen> {
       final pool = await context
           .read<RemoteQuestionService>()
           .getPool(topic.id, topic.sorular);
+      final sorular = _pick20(pool, count);
       await PdfExportService.exportTopic(
         subject: subject.meta,
         topic: topic,
-        premium: premium,
-        soruHavuzu: pool,
+        sorular: sorular,
+        includeLecture: includeLecture,
       );
+      await storage.incrementPdfExportCount(topic.id);
     } catch (e) {
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('PDF oluşturulamadı: $e')),
       );
     }
+  }
+
+  /// Havuzdan 20 soru seçer; her indirişte (count arttıkça) kayan bir pencere
+  /// alınır ki tekrar indirince farklı sorular gelsin.
+  List<Question> _pick20(List<Question> pool, int count) {
+    const n = 20;
+    if (pool.isEmpty) return const <Question>[];
+    if (pool.length <= n) return List.of(pool);
+    final start = (count * n) % pool.length;
+    return [for (var k = 0; k < n; k++) pool[(start + k) % pool.length]];
   }
 
   Future<void> _startQuiz(BuildContext context, StorageService storage, bool premium) async {
@@ -136,13 +154,6 @@ class _TopicScreenState extends State<TopicScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('📘 ${topic.baslik}'),
-        actions: [
-          IconButton(
-            tooltip: 'PDF Oluştur',
-            icon: const Icon(Icons.picture_as_pdf_outlined),
-            onPressed: () => _exportPdf(context, premium),
-          ),
-        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -308,6 +319,33 @@ class _TopicScreenState extends State<TopicScreen> {
                 ),
               ),
             ),
+          const SizedBox(height: 16),
+          Card(
+            color: colors.mint.withValues(alpha: 0.08),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('📄 PDF Olarak İndir',
+                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+                  const SizedBox(height: 6),
+                  Text(
+                    'İlk indirişinde konu anlatımı + 20 soru gelir; soruların '
+                    'cevapları en son sayfada (cevap anahtarı) yer alır. Tekrar '
+                    'indirdiğinde konu anlatımı olmadan, sadece farklı 20 soru hazırlanır.',
+                    style: TextStyle(fontSize: 12, color: colors.textFaint),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton.icon(
+                    onPressed: () => _exportPdf(context),
+                    icon: const Icon(Icons.picture_as_pdf_outlined, size: 18),
+                    label: const Text('PDF Oluştur'),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

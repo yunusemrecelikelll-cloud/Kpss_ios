@@ -654,16 +654,20 @@ class StorageService extends ChangeNotifier {
     return '${months[now.month - 1]} ${now.year}';
   }
 
-  // ── Günlük Görevler (Daily Quests) — seçim/tamamlanma verisi burada
-  // saklanır; görev HAVUZU ve ilerleme hesaplama mantığı
-  // lib/services/daily_quests_service.dart içindedir. ──
-  Map<String, dynamic> getDailyQuestsData() => Map<String, dynamic>.from(_get('daily_quests', <String, dynamic>{
-        'date': null,
-        'questIds': <dynamic>[],
-        'completedIds': <dynamic>[],
-      }));
+  // ── PDF dışa aktarma sayacı — bir konu için kaç kez PDF oluşturulduğunu
+  // saklar; ilk PDF'de konu anlatımı dahil edilir, sonraki PDF'lerde yalnızca
+  // farklı sorular verilir (bkz. pdf_export_service.dart / topic_screen.dart). ──
+  int getPdfExportCount(String topicId) {
+    final m = _get('pdf_export_counts', <String, dynamic>{});
+    final v = m[topicId];
+    return v is int ? v : 0;
+  }
 
-  Future<void> saveDailyQuestsData(Map<String, dynamic> data) => _set('daily_quests', data);
+  Future<void> incrementPdfExportCount(String topicId) async {
+    final m = Map<String, dynamic>.from(_get('pdf_export_counts', <String, dynamic>{}));
+    m[topicId] = getPdfExportCount(topicId) + 1;
+    await _set('pdf_export_counts', m);
+  }
 
   // ── Günlük Giriş Ödülü ──
   static const int kDailyLoginRewardXp = 15;
