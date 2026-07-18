@@ -96,8 +96,12 @@ class SoundService {
     try {
       await _ambiencePlayer.setReleaseMode(ReleaseMode.loop);
       await _ambiencePlayer.play(
-        AssetSource('sounds/focus_ambience_loop.wav'),
-        volume: 0.12,
+        // Gerçek kütüphane ortam sesi (Freesound CC kaynaklı iki kaydın
+        // birleştirilip normalize edilmiş hali) — düşük sesle sürekli döngü.
+        // Üstüne aşağıdaki rastgele olaylar (kağıt/kalem/sayfa/öksürük) da
+        // çalınarak gerçekçi bir çalışma salonu atmosferi oluşur.
+        AssetSource('sounds/library_ambience.mp3'),
+        volume: 0.5,
       );
     } catch (_) {
       _ambiencePlaying = false;

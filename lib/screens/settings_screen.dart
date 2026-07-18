@@ -164,7 +164,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SwitchListTile(
                     title: const Text('Adaptasyon Sesleri', style: TextStyle(fontWeight: FontWeight.w700)),
                     subtitle: const Text(
-                        'Test çözerken gerçekçi sınav salonu sesleri duy — öksürük, kağıt hışırtısı, kalem sesi',
+                        'Test çözerken gerçekçi kütüphane/sınav salonu ortamı duy — kütüphane uğultusu, kağıt hışırtısı, kalem sesi, öksürük',
                         style: TextStyle(fontSize: 12)),
                     value: adaptationSounds,
                     onChanged: (v) {
