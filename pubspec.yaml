@@ -74,6 +74,9 @@ dependencies:
   # Firestore'dan indirilen soru havuzlarını cihazda dosya olarak önbelleklemek için
   path_provider: ^2.1.5
 
+  # Hoca konu-anlatım videoları için YouTube arama bağlantısını açma
+  url_launcher: ^6.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

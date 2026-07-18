@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
 import '../models/question.dart';
+import '../data/teachers.dart';
 import '../services/data_service.dart';
 import '../services/remote_question_service.dart';
 import '../services/storage_service.dart';
@@ -150,6 +152,7 @@ class _TopicScreenState extends State<TopicScreen> {
     final maxAtt = premium ? 1 << 30 : kFreeMaxAttemptsPerTopic;
     final maxed = attempts.length >= maxAtt;
     final a = topic.anlatim;
+    final teachers = kTeachersBySubject[subject.id] ?? const <Teacher>[];
 
     return Scaffold(
       appBar: AppBar(
@@ -319,6 +322,15 @@ class _TopicScreenState extends State<TopicScreen> {
                 ),
               ),
             ),
+          if (teachers.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            _TeacherVideosCard(
+              teachers: teachers,
+              subjectAd: subject.ad,
+              topicBaslik: topic.baslik,
+              colors: colors,
+            ),
+          ],
           const SizedBox(height: 16),
           Card(
             color: colors.mint.withValues(alpha: 0.08),
@@ -346,6 +358,10 @@ class _TopicScreenState extends State<TopicScreen> {
               ),
             ),
           ),
+          if (teachers.isNotEmpty) ...[
+            const SizedBox(height: 16),
+            _TeacherTemperamentsSection(teachers: teachers, colors: colors),
+          ],
         ],
       ),
     );
@@ -615,6 +631,111 @@ class _KeyPointCard extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Konu ekranında ilgili dersin hocalarını gösteren kart — bir hocaya
+/// dokununca o hocanın bu konudaki videoları YouTube'da açılır.
+class _TeacherVideosCard extends StatelessWidget {
+  final List<Teacher> teachers;
+  final String subjectAd;
+  final String topicBaslik;
+  final KpssColors colors;
+  const _TeacherVideosCard({
+    required this.teachers,
+    required this.subjectAd,
+    required this.topicBaslik,
+    required this.colors,
+  });
+
+  Future<void> _open(String name) async {
+    final url = youtubeSearchUrlFor(name, subjectAd, topicBaslik);
+    try {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    } catch (_) {
+      // yoksay
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: colors.rose.withValues(alpha: 0.07),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('🎥 Hocalardan Konu Anlatımı',
+                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+            const SizedBox(height: 4),
+            Text('Bir hoca seç, o hocanın bu konudaki videolarını YouTube\'da aç.',
+                style: TextStyle(fontSize: 12, color: colors.textFaint)),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final t in teachers)
+                  ActionChip(
+                    avatar: const Icon(Icons.play_circle_fill,
+                        size: 18, color: Color(0xFFFF0000)),
+                    label: Text(t.name),
+                    onPressed: () {
+                      context.read<SoundService>().click();
+                      _open(t.name);
+                    },
+                  ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Sayfanın en altındaki "Hocaların Mizaçları" bölümü — açılıp kapanabilen,
+/// her hocanın adını ve anlatım tarzını (mizacını) listeler.
+class _TeacherTemperamentsSection extends StatelessWidget {
+  final List<Teacher> teachers;
+  final KpssColors colors;
+  const _TeacherTemperamentsSection({required this.teachers, required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 16),
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          title: const Text('🎭 Hocaların Mizaçları',
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+          subtitle: Text('Sana en uygun anlatım tarzını seç',
+              style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
+          children: [
+            for (final t in teachers)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(t.name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 13.5,
+                            color: colors.violet)),
+                    const SizedBox(height: 3),
+                    Text(t.mizac,
+                        style: TextStyle(fontSize: 12.5, height: 1.4, color: colors.text)),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
