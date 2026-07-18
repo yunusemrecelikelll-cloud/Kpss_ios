@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -330,6 +331,8 @@ class _TopicScreenState extends State<TopicScreen> {
               topicBaslik: topic.baslik,
               colors: colors,
             ),
+            const SizedBox(height: 16),
+            _TeacherTemperamentsSection(teachers: teachers, colors: colors),
           ],
           const SizedBox(height: 16),
           Card(
@@ -358,10 +361,6 @@ class _TopicScreenState extends State<TopicScreen> {
               ),
             ),
           ),
-          if (teachers.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            _TeacherTemperamentsSection(teachers: teachers, colors: colors),
-          ],
         ],
       ),
     );
@@ -651,9 +650,16 @@ class _TeacherVideosCard extends StatelessWidget {
   });
 
   Future<void> _open(String name) async {
-    final url = youtubeSearchUrlFor(name, subjectAd, topicBaslik);
+    final uri = Uri.parse(youtubeSearchUrlFor(name, subjectAd, topicBaslik));
     try {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      await launchUrl(
+        uri,
+        // Web'de externalApplication modu desteklenmeyip sessizce başarısız
+        // olabiliyor; web'de platformDefault + yeni sekme, mobilde ise YouTube
+        // uygulamasını açan externalApplication kullanılır.
+        mode: kIsWeb ? LaunchMode.platformDefault : LaunchMode.externalApplication,
+        webOnlyWindowName: '_blank',
+      );
     } catch (_) {
       // yoksay
     }
