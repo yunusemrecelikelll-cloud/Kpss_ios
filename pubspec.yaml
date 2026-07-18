@@ -31,18 +31,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-
   # Durum yönetimi
   provider: ^6.1.2
 
   # Yerel depolama (localStorage'ın karşılığı)
   shared_preferences: ^2.3.2
-
-  # Yönlendirme
-  go_router: ^14.2.7
 
   # Grafikler (istatistik/lig/kronometre ekranları)
   fl_chart: ^0.69.0
@@ -52,12 +45,6 @@ dependencies:
 
   # Sesli özet (konu anlatımını okuma)
   flutter_tts: ^4.1.0
-
-  # Liderlik tablosu / Firebase REST çağrıları
-  http: ^1.2.2
-
-  # Tarih biçimlendirme
-  intl: ^0.19.0
 
   # Başlık/marka fontu (KPSS Hazırlık yazısı için)
   google_fonts: ^6.2.1

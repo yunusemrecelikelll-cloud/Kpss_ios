@@ -15,3 +15,15 @@ ios/Pods/
 ios/.symlinks/
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
+
+# Ajan/oturum çalışma dosyaları
+scratchpad/
+
+# Gizli anahtarlar — asla commit edilmemeli
+**/*firebase-adminsdk*.json
+**/*service-account*.json
+*.env
+*.pem
+**/key.properties
+**/*.keystore
+**/*.jks

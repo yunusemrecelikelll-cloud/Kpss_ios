@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/subject.dart';
 import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
 import '../services/data_service.dart';
@@ -68,5 +67,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-List<Subject> subjectsWithData(List<Subject> subjects) => subjects.where((s) => s.konular.isNotEmpty).toList();

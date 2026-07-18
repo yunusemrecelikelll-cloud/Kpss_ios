@@ -23,9 +23,6 @@ const List<String> kIklimKategorileri = ['Akdeniz', 'Karasal', 'Karadeniz', 'Mar
 
 bool _ilIklimeUyar(TurkeyProvince p, String kategori) => p.iklim.contains(kategori);
 
-List<TurkeyProvince> ilerIklime(String kategori) =>
-    kTurkeyProvinces.where((p) => _ilIklimeUyar(p, kategori)).toList();
-
 /// Mod 7 — "İklim Avı": bir iklim tipi sorulur, kullanıcı o iklimin
 /// görüldüğü illerden birini haritada işaretler.
 class IklimAviScreen extends StatefulWidget {
