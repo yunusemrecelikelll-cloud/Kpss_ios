@@ -214,8 +214,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
           price: _purchases.productFor(kOgrenciPremiumId)?.price ?? '100,00 ₺ / ay',
           caption: '🎓 Tam premium ile aynı özellikler burada da var. Sizden, '
               'öğrencilerden hiç ücret almak istemezdim ama uygulamanın '
-              'giderleri için biraz almam gerekiyor. İdare edin, söz '
-              'veriyorum ilerde telafi ederim dostlarım. 💙🙏',
+              'giderleri için uygun bir fiyat belirledim. 💙',
           selected: _selectedProductId == kOgrenciPremiumId,
           c: c,
           onTap: () => setState(() => _selectedProductId = kOgrenciPremiumId),

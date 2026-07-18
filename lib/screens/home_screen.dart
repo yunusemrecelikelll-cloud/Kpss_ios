@@ -11,7 +11,6 @@ import '../services/quiz_engine.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../services/remote_question_service.dart';
-import '../services/daily_quests_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/subject_colors.dart';
 import '../theme/theme_provider.dart';
@@ -97,29 +96,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Bugünün görev seçimini garanti eder (gerekirse yeni 3 görev seçer) ve
-  /// hedefe ulaşmış ama henüz ödüllendirilmemiş görevler için XP verir.
-  /// İdempotent olduğu için her build sonrası tekrar çağrılması güvenlidir
-  /// (bkz. build() içindeki addPostFrameCallback çağrısı) — bu sayede kullanıcı
-  /// başka bir sekmeden/testten Ana Sayfa'ya dönünce de görev ödülleri anında
-  /// hesaba yansır (HomeScreen IndexedStack içinde yaşadığı için initState
-  /// sadece bir kez çalışır).
-  Future<void> _maybeRewardDailyQuests() async {
-    if (!mounted) return;
-    final storage = context.read<StorageService>();
-    await DailyQuestsService.ensureTodaysSelection(storage);
-    final newlyCompleted = await DailyQuestsService.rewardNewlyCompleted(storage);
-    if (!mounted || newlyCompleted.isEmpty) return;
-    for (final q in newlyCompleted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('✅ Görev tamamlandı: ${q.title} (+$kDailyQuestRewardXp XP)'),
-          duration: const Duration(seconds: 3),
-        ),
-      );
-    }
-  }
-
   Future<void> _startFullTest(BuildContext context) async {
     final storage = context.read<StorageService>();
     final premium = storage.isPremiumUser();
@@ -173,11 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _maybeRewardDailyQuests());
     final subjects = widget.subjects;
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
-    final dailyQuests = DailyQuestsService.computeProgress(storage, storage.getDailyQuestsData());
     // getActiveUser() sadece profil oluşturulurken bir kere set edilen ham
     // kullanıcı kaydı adı ("Misafir") — Google/Apple girişinden sonra
     // güncellenen GERÇEK isim getUserName()'de tutulur (bkz. profile_screen.dart
@@ -200,15 +174,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('KPSS Hazırlık', style: GoogleFonts.baloo2(fontWeight: FontWeight.w700, fontSize: 22)),
         actions: [
-          TextButton.icon(
-            onPressed: () {
+          _ProfileAvatarButton(
+            name: name,
+            onTap: () {
               context.read<SoundService>().click();
               Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ProfileScreen()));
             },
-            icon: const Icon(Icons.person_outline),
-            label: const Text('Profil'),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 12),
         ],
       ),
       drawer: Drawer(
@@ -255,10 +228,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             for (final entry in drafts.entries) ...[
               _DraftResumeCard(draftKey: entry.key, draft: entry.value, colors: c),
-              const SizedBox(height: 12),
-            ],
-            if (dailyQuests.isNotEmpty) ...[
-              _DailyQuestsCard(quests: dailyQuests, colors: c),
               const SizedBox(height: 12),
             ],
             Card(
@@ -709,186 +678,56 @@ class _DraftResumeCard extends StatelessWidget {
   }
 }
 
-/// Ana sayfa "Günün Görevleri" kartı — bugün seçilen 3 görevi, her birinin
-/// ilerleme çubuğunu ve tamamlanmışsa ✓ işaretini gösterir. Görevlerin
-/// SEÇİMİ ve XP ödüllendirmesi DailyQuestsService içinde yönetilir; bu widget
-/// sadece salt-okunur bir görüntü — burada sadece daha "premium" bir görsel
-/// dil (gradyan zemin, dairesel toplam ilerleme rozeti, gradyanlı ilerleme
-/// çubukları) uygulanıyor, altındaki mantığa dokunulmuyor.
-class _DailyQuestsCard extends StatelessWidget {
-  final List<DailyQuestProgress> quests;
-  final KpssColors colors;
-  const _DailyQuestsCard({required this.quests, required this.colors});
+/// Sağ üstteki profil butonu — kullanıcının baş harfini gradyan bir dairede
+/// gösteren şık, yuvarlak bir avatar.
+class _ProfileAvatarButton extends StatelessWidget {
+  final String name;
+  final VoidCallback onTap;
+  const _ProfileAvatarButton({required this.name, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final completedCount = quests.where((q) => q.completed).length;
-    final overallRatio = quests.isEmpty ? 0.0 : completedCount / quests.length;
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colors.violet.withValues(alpha: colors.isLight ? 0.14 : 0.20),
-            colors.rose.withValues(alpha: colors.isLight ? 0.08 : 0.12),
-          ],
-        ),
-        border: Border.all(color: colors.violet.withValues(alpha: 0.28), width: 1.2),
-        boxShadow: [
-          BoxShadow(color: colors.violet.withValues(alpha: 0.14), blurRadius: 16, offset: const Offset(0, 6)),
-        ],
-      ),
-      padding: const EdgeInsets.all(18),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('📋 Günün Görevleri',
-                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.5, color: colors.text)),
-                    const SizedBox(height: 3),
-                    Text('Tamamla, +$kDailyQuestRewardXp XP kazan.',
-                        style: TextStyle(fontSize: 11, color: colors.textFaint)),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 10),
-              _QuestRing(ratio: overallRatio, label: '$completedCount/${quests.length}', colors: colors),
-            ],
-          ),
-          const SizedBox(height: 16),
-          for (var i = 0; i < quests.length; i++) ...[
-            _DailyQuestTile(q: quests[i], colors: colors),
-            if (i < quests.length - 1) const SizedBox(height: 10),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-/// Toplam görev ilerlemesini gösteren küçük dairesel rozet (ör. "1/3").
-class _QuestRing extends StatelessWidget {
-  final double ratio;
-  final String label;
-  final KpssColors colors;
-  const _QuestRing({required this.ratio, required this.label, required this.colors});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 46,
-      height: 46,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          CircularProgressIndicator(
-            value: ratio == 0 ? null : ratio,
-            strokeWidth: 4,
-            backgroundColor: colors.violet.withValues(alpha: 0.15),
-            valueColor: AlwaysStoppedAnimation(ratio >= 1 ? colors.success : colors.gold),
-          ),
-          Text(label, style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w800, color: colors.text)),
-        ],
-      ),
-    );
-  }
-}
-
-class _DailyQuestTile extends StatelessWidget {
-  final DailyQuestProgress q;
-  final KpssColors colors;
-  const _DailyQuestTile({required this.q, required this.colors});
-
-  @override
-  Widget build(BuildContext context) {
-    final def = q.def;
-    final ratio = def.target == 0 ? 0.0 : (q.current / def.target).clamp(0.0, 1.0);
-    final accent = q.completed ? colors.success : colors.gold;
-    return Container(
-      decoration: BoxDecoration(
-        color: colors.glass2.withValues(alpha: colors.isLight ? 0.5 : 0.35),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(
-          color: q.completed ? colors.success.withValues(alpha: 0.35) : colors.border,
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 34,
-            height: 34,
+    final c = context.watch<ThemeProvider>().colors;
+    final trimmed = name.trim();
+    final initial = trimmed.isNotEmpty ? trimmed[0].toUpperCase() : '\u{1F642}';
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Material(
+        color: Colors.transparent,
+        shape: const CircleBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Container(
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [accent.withValues(alpha: 0.28), accent.withValues(alpha: 0.12)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [c.violet, c.rose],
               ),
-            ),
-            child: Center(child: Text(def.icon, style: const TextStyle(fontSize: 16))),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        def.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.5,
-                          decoration: q.completed ? TextDecoration.lineThrough : null,
-                          color: q.completed ? colors.textFaint : colors.text,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 6),
-                    if (q.completed)
-                      Icon(Icons.check_circle, size: 16, color: colors.success)
-                    else
-                      Text(
-                        '${q.current}/${def.target}',
-                        style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w800, color: colors.textFaint),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    height: 7,
-                    child: Stack(
-                      children: [
-                        Container(color: accent.withValues(alpha: 0.14)),
-                        FractionallySizedBox(
-                          widthFactor: ratio,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [accent.withValues(alpha: 0.75), accent],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.65), width: 1.5),
+              boxShadow: [
+                BoxShadow(
+                  color: c.violet.withValues(alpha: 0.35),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
                 ),
               ],
             ),
+            alignment: Alignment.center,
+            child: Text(
+              initial,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+                fontSize: 17,
+              ),
+            ),
           ),
-        ],
+        ),
       ),
     );
   }
