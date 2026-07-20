@@ -91,8 +91,8 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
 
   Future<void> _createRoom() async {
     if (!_duel.isConfigured) {
-      _snack('Çok oyunculu mod için internet bağlantısı gerekli. '
-          '"Tek Başına Yarış"ı deneyebilirsin.');
+      _snack('Sunucuya bağlanılamadı, oda açılamıyor. İnternetini kontrol et. '
+          '"Tek Başına Yarış" çevrimdışı da çalışır.');
       return;
     }
     final cfg = await showModalBottomSheet<_RoomConfig>(
@@ -131,7 +131,8 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
 
   Future<void> _joinByCode() async {
     if (!_duel.isConfigured) {
-      _snack('Çok oyunculu mod için internet bağlantısı gerekli.');
+      _snack('Sunucuya bağlanılamadı, odaya katılınamıyor. '
+          'İnternetini kontrol et.');
       return;
     }
     final code = await showDialog<String>(

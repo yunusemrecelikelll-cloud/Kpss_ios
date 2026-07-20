@@ -11,13 +11,20 @@ import '../../theme/app_theme.dart';
 import '../tools_hub_screen.dart';
 
 /// Mini oyun — Kimim Ben: ipuçları sırayla açılır (genelden özele), ilk
-/// ipucunda bilen daha fazla puan alır (100 → 60 → 30, azalan puan sistemi).
-/// Kişiler [kKimimBenKisiler] içinde (lib/data/kimim_ben_data.dart)
+/// ipucunda bilen daha fazla puan alır (100 → 70 → 45 → 25, azalan puan
+/// sistemi). Kişiler [kKimimBenKisiler] içinde (lib/data/kimim_ben_data.dart)
 /// tanımlıdır — KPSS'de sık geçen gerçek Osmanlı padişahları, Cumhuriyet
 /// dönemi ve tarihi/edebi şahsiyetler.
 const String kKimimBenGameId = 'kimim-ben';
 const int kKimimBenRoundCount = 10;
-const List<int> kKimimBenClueScores = [100, 60, 30];
+
+/// İpucu sırasına göre puan. Liste, bir kişinin ipucu sayısından KISA olabilir
+/// (o durumda son değer tekrarlanır — bkz. [_clueScoreFor]), böylece veri
+/// tarafına yeni ipucu eklendiğinde burada değişiklik gerekmez.
+const List<int> kKimimBenClueScores = [100, 70, 45, 25];
+
+int _clueScoreFor(int clueIndex) =>
+    kKimimBenClueScores[min(clueIndex, kKimimBenClueScores.length - 1)];
 
 class KimimBenScreen extends StatefulWidget {
   const KimimBenScreen({super.key});
@@ -49,6 +56,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
   bool _showResult = false;
   bool _lastCorrect = false;
   int _lastPoints = 0;
+  bool _yeniRekor = false;
 
   @override
   void initState() {
@@ -80,6 +88,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
       _totalScore = 0;
       _correctCount = 0;
       _finished = false;
+      _yeniRekor = false;
       _booted = true;
       _round = _buildRound(_order[0]);
       _clueIndex = 0;
@@ -103,8 +112,12 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
 
+  /// Kişi başına ipucu sayısı veriye göre değişebildiğinden (3 ya da daha
+  /// fazla), sınır sabit değil listenin uzunluğundan hesaplanır.
+  int get _sonIpucuIndex => (_round?.kisi.ipuclari.length ?? 1) - 1;
+
   void _revealNextClue() {
-    if (_showResult || _clueIndex >= 2) return;
+    if (_showResult || _clueIndex >= _sonIpucuIndex) return;
     context.read<SoundService>().click();
     setState(() => _clueIndex += 1);
   }
@@ -113,7 +126,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
     if (_showResult || _round == null) return;
     context.read<SoundService>().click();
     final correct = name == _round!.kisi.isim;
-    final points = correct ? kKimimBenClueScores[_clueIndex] : 0;
+    final points = correct ? _clueScoreFor(_clueIndex) : 0;
     setState(() {
       _selectedName = name;
       _showResult = true;
@@ -124,11 +137,25 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
     });
   }
 
+  /// Oturum bitti: toplam puanı rekor olarak kaydeder.
+  Future<void> _finish() async {
+    setState(() => _finished = true);
+    final storage = context.read<StorageService>();
+    final yeni = await storage.submitHighScore(kKimimBenGameId, _totalScore);
+    await storage.setLastRoundStats(
+      kKimimBenGameId,
+      correct: _correctCount,
+      wrong: _order.length - _correctCount,
+    );
+    if (!mounted) return;
+    setState(() => _yeniRekor = yeni);
+  }
+
   void _next() {
     context.read<SoundService>().click();
     final isLast = _roundIndex + 1 >= _order.length;
     if (isLast) {
-      setState(() => _finished = true);
+      _finish();
       return;
     }
     final nextIndex = _roundIndex + 1;
@@ -163,6 +190,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
 
   Widget _buildResult(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final record = context.watch<StorageService>().getHighScore(kKimimBenGameId);
     return Scaffold(
       appBar: AppBar(title: const Text('🕵️ Kimim Ben')),
       body: Padding(
@@ -173,16 +201,26 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('🕵️', style: TextStyle(fontSize: 44)),
+                Text(_yeniRekor ? '🏆' : '🕵️', style: const TextStyle(fontSize: 44)),
                 const SizedBox(height: 12),
                 const Text('Oturum Bitti!', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
                 const SizedBox(height: 8),
                 Text(
-                  '$_correctCount/${_order.length} kişiyi doğru bildin!',
+                  '✓ $_correctCount doğru   •   ✗ ${_order.length - _correctCount} yanlış',
                   style: TextStyle(color: colors.textFaint),
                 ),
                 const SizedBox(height: 6),
                 Text('⭐ Toplam puan: $_totalScore', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+                const SizedBox(height: 4),
+                Text(
+                  _yeniRekor ? '🏆 YENİ REKOR! En Yüksek Skor: $record' : '🏆 En Yüksek Skor: $record',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 13,
+                    color: _yeniRekor ? colors.success : colors.textFaint,
+                  ),
+                ),
                 const SizedBox(height: 20),
                 Wrap(
                   spacing: 10,
@@ -234,6 +272,14 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
                 Text('⭐ $_totalScore', style: const TextStyle(fontWeight: FontWeight.w800)),
               ],
             ),
+            const SizedBox(height: 3),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                '🏆 En Yüksek Skor: ${context.watch<StorageService>().getHighScore(kKimimBenGameId)}',
+                style: TextStyle(fontSize: 11.5, color: colors.textFaint, fontWeight: FontWeight.w700),
+              ),
+            ),
             const SizedBox(height: 6),
             ClipRRect(
               borderRadius: BorderRadius.circular(6),
@@ -253,7 +299,8 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Bu ipucu için: ${kKimimBenClueScores[_clueIndex]} puan',
+                    'Bu ipucu için: ${_clueScoreFor(_clueIndex)} puan  •  '
+                    'İpucu ${_clueIndex + 1}/${round.kisi.ipuclari.length}',
                     style: TextStyle(fontSize: 11.5, color: colors.textFaint, fontWeight: FontWeight.w700),
                   ),
                   const SizedBox(height: 8),
@@ -268,7 +315,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
                         ],
                       ),
                     ),
-                  if (!_showResult && _clueIndex < 2)
+                  if (!_showResult && _clueIndex < _sonIpucuIndex)
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(

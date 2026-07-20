@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
+import '../games/card_game_engine.dart' show ciftRengi, kYanlisRengi;
 import '../games/card_game_v2_engine.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
@@ -159,45 +160,56 @@ class _V2TopicPicker extends StatelessWidget {
   }
 }
 
-class _LineSeg {
+/// Eşleşen bir çifti birleştiren ok — [renk] çiftin palet rengidir.
+class _EslesmeOku {
   final Offset a, b;
-  const _LineSeg(this.a, this.b);
+  final Color renk;
+  const _EslesmeOku(this.a, this.b, this.renk);
 }
 
+/// Okları çizer. Son eklenen ok [ilerleme] (0→1) değerine göre soldan sağa
+/// ANİMASYONLU uzar; önceki oklar tam çizilir.
 class _MatchLinePainter extends CustomPainter {
-  final List<_LineSeg> lines;
-  final Color color;
-  _MatchLinePainter(this.lines, this.color);
+  final List<_EslesmeOku> lines;
+  final double ilerleme;
+  _MatchLinePainter(this.lines, this.ilerleme);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final linePaint = Paint()
-      ..color = color
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-    final headPaint = Paint()..color = color;
-    for (final l in lines) {
-      canvas.drawLine(l.a, l.b, linePaint);
+    for (var i = 0; i < lines.length; i++) {
+      final l = lines[i];
+      final t = (i == lines.length - 1) ? ilerleme.clamp(0.0, 1.0) : 1.0;
+      if (t <= 0) continue;
+      final uc = Offset.lerp(l.a, l.b, t)!;
+
+      final linePaint = Paint()
+        ..color = l.renk
+        ..strokeWidth = 2.4
+        ..strokeCap = StrokeCap.round
+        ..style = PaintingStyle.stroke;
+      canvas.drawLine(l.a, uc, linePaint);
+      canvas.drawCircle(l.a, 3, Paint()..color = l.renk);
+
       final dir = l.b - l.a;
       final len = dir.distance;
       if (len == 0) continue;
       final unit = dir / len;
       final normal = Offset(-unit.dy, unit.dx);
-      final tip = l.b;
-      final back = tip - unit * 8;
-      final p1 = back + normal * 4;
-      final p2 = back - normal * 4;
+      final back = uc - unit * 9;
+      final p1 = back + normal * 4.5;
+      final p2 = back - normal * 4.5;
       final path = Path()
-        ..moveTo(tip.dx, tip.dy)
+        ..moveTo(uc.dx, uc.dy)
         ..lineTo(p1.dx, p1.dy)
         ..lineTo(p2.dx, p2.dy)
         ..close();
-      canvas.drawPath(path, headPaint);
+      canvas.drawPath(path, Paint()..color = l.renk);
     }
   }
 
   @override
-  bool shouldRepaint(covariant _MatchLinePainter oldDelegate) => oldDelegate.lines.length != lines.length;
+  bool shouldRepaint(covariant _MatchLinePainter oldDelegate) =>
+      oldDelegate.lines.length != lines.length || oldDelegate.ilerleme != ilerleme;
 }
 
 /// Kart Oyunu V2 tahtası + sonuç ekranı — JS: _renderGame2Board / _renderGameResult.
@@ -210,18 +222,21 @@ class _V2PlayScreen extends StatefulWidget {
   State<_V2PlayScreen> createState() => _V2PlayScreenState();
 }
 
-class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderStateMixin {
+class _V2PlayScreenState extends State<_V2PlayScreen> with TickerProviderStateMixin {
   final _engine = CardGameV2Engine();
   final _boardKey = GlobalKey();
   late List<GlobalKey> _leftKeys;
   late List<GlobalKey> _rightKeys;
   late AnimationController _shakeCtrl;
 
+  /// Yeni bir eşleşme okunun soldan sağa çizilme animasyonu.
+  late AnimationController _okCtrl;
+
   bool _locked = false;
   bool _started = false;
   bool _flashWrong = false;
   bool? _passed; // null: oynanıyor, true/false: bitti
-  List<_LineSeg> _lines = [];
+  List<_EslesmeOku> _lines = [];
 
   // Toplam oynama süresi takibi (Kart Oyunu ortak kimliği, bkz. tools_hub_screen.dart) —
   // ekran açık kaldığı sürece (tekrar denemeler dahil) TEK oturum sayılır; erken
@@ -234,6 +249,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
     super.initState();
     _storage = context.read<StorageService>();
     _shakeCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 420));
+    _okCtrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 520));
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
 
@@ -241,6 +257,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
   void dispose() {
     _flushPlayTime();
     _shakeCtrl.dispose();
+    _okCtrl.dispose();
     super.dispose();
   }
 
@@ -288,7 +305,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
   void _recomputeLines() {
     final boardBox = _boardKey.currentContext?.findRenderObject() as RenderBox?;
     if (boardBox == null || !boardBox.hasSize) return;
-    final newLines = <_LineSeg>[];
+    final newLines = <_EslesmeOku>[];
     for (var i = 0; i < _engine.left.length; i++) {
       final c = _engine.left[i];
       if (!c.matched) continue;
@@ -301,10 +318,13 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
       final rTopLeft = rBox.localToGlobal(Offset.zero, ancestor: boardBox);
       final p1 = lTopLeft + Offset(lBox.size.width, lBox.size.height / 2);
       final p2 = rTopLeft + Offset(0, rBox.size.height / 2);
-      newLines.add(_LineSeg(p1, p2));
+      newLines.add(_EslesmeOku(p1, p2, ciftRengi(c.renkIndex)));
     }
     if (newLines.length != _lines.length && mounted) {
+      final yeniOkVar = newLines.length > _lines.length;
       setState(() => _lines = newLines);
+      // Yeni eşleşmenin oku soldan sağa çizilsin.
+      if (yeniOkVar) _okCtrl.forward(from: 0);
     }
   }
 
@@ -411,26 +431,34 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
                   color: _flashWrong ? colors.danger.withValues(alpha: 0.14) : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
+                // Kartlar KARŞILIKLI iki sütunda, hepsi EŞİT boyutta duracak
+                // şekilde dizilir: her satır Expanded olduğundan yükseklikler
+                // eşitlenir, sıralama karışıktır ama ızgara hizalı kalır.
                 child: Stack(
                   key: _boardKey,
                   children: [
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: Column(
                             children: [
                               for (var i = 0; i < _engine.left.length; i++)
-                                _buildCard(side: 'left', i: i, key: _leftKeys[i], card: _engine.left[i]),
+                                Expanded(
+                                  child: _buildCard(
+                                      side: 'left', i: i, key: _leftKeys[i], card: _engine.left[i]),
+                                ),
                             ],
                           ),
                         ),
-                        const SizedBox(width: 32),
+                        const SizedBox(width: 34),
                         Expanded(
                           child: Column(
                             children: [
                               for (var i = 0; i < _engine.right.length; i++)
-                                _buildCard(side: 'right', i: i, key: _rightKeys[i], card: _engine.right[i]),
+                                Expanded(
+                                  child: _buildCard(
+                                      side: 'right', i: i, key: _rightKeys[i], card: _engine.right[i]),
+                                ),
                             ],
                           ),
                         ),
@@ -439,9 +467,9 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
                     Positioned.fill(
                       child: IgnorePointer(
                         child: AnimatedBuilder(
-                          animation: _shakeCtrl,
+                          animation: _okCtrl,
                           builder: (context, _) => CustomPaint(
-                            painter: _MatchLinePainter(_lines, Theme.of(context).colorScheme.primary),
+                            painter: _MatchLinePainter(_lines, _okCtrl.value),
                           ),
                         ),
                       ),
@@ -461,29 +489,47 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with SingleTickerProviderS
     final selected = side == 'left' ? _engine.selectedLeft == i : _engine.selectedRight == i;
     final isWrong = side == 'left' ? _engine.lastWrong?.leftIdx == i : _engine.lastWrong?.rightIdx == i;
 
-    Widget content = Container(
+    // Eşleşen çift AYNI paleti paylaşır; farklı çiftler farklı renk alır.
+    final Color? vurgu = isWrong
+        ? kYanlisRengi
+        : card.matched
+            ? ciftRengi(card.renkIndex)
+            : null;
+
+    Widget content = AnimatedContainer(
+      duration: const Duration(milliseconds: 260),
+      curve: Curves.easeOut,
       key: key,
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      margin: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       decoration: BoxDecoration(
-        color: card.matched
-            ? colors.success.withValues(alpha: 0.16)
+        color: vurgu != null
+            ? vurgu.withValues(alpha: 0.20)
             : selected
                 ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.18)
                 : Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: isWrong
-              ? colors.danger.withValues(alpha: 0.7)
-              : selected
-                  ? Theme.of(context).colorScheme.primary
-                  : colors.border,
-          width: isWrong || selected ? 1.6 : 1,
+          color: vurgu ??
+              (selected ? Theme.of(context).colorScheme.primary : colors.border),
+          width: vurgu != null || selected ? 1.8 : 1,
         ),
       ),
-      child: Text(
-        card.text,
-        style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600),
+      alignment: Alignment.center,
+      // Tüm kartlar eşit boyutta olduğundan metin, kartın içine sığacak
+      // şekilde gerektiğinde küçültülür.
+      child: LayoutBuilder(
+        builder: (context, kisit) => FittedBox(
+          fit: BoxFit.scaleDown,
+          child: SizedBox(
+            width: kisit.maxWidth.isFinite ? kisit.maxWidth : 140,
+            child: Text(
+              card.text,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600, color: colors.text),
+            ),
+          ),
+        ),
       ),
     );
 

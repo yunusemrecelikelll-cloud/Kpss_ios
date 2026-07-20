@@ -24,6 +24,27 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<!-- Google ile Giriş geri dönüş (callback) URL şeması.
+	     DEĞER, GoogleService-Info.plist içindeki REVERSED_CLIENT_ID ile
+	     BİREBİR AYNI olmalıdır; şu formattadır:
+	         com.googleusercontent.apps.993008276386-XXXXXXXXXXXX
+
+	     ŞU ANKİ DURUM: Firebase Console'dan indirilen GoogleService-Info.plist
+	     içinde CLIENT_ID / REVERSED_CLIENT_ID anahtarları YOK (Google
+	     sağlayıcısı Authentication'da açılmadığı için). Aşağıdaki değer bu
+	     yüzden yer tutucudur ve Google ile giriş çalışmaz — Apple ile giriş
+	     etkilenmez. Bkz. FIREBASE_IOS_SETUP.md -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>REVERSED_CLIENT_ID_BURAYA_YAPISTIR</string>
+			</array>
+		</dict>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

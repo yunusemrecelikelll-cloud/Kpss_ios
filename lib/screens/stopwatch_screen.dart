@@ -21,22 +21,72 @@ class StopwatchScreen extends StatefulWidget {
   State<StopwatchScreen> createState() => _StopwatchScreenState();
 }
 
-class _StopwatchScreenState extends State<StopwatchScreen> {
+class _StopwatchScreenState extends State<StopwatchScreen> with WidgetsBindingObserver {
   Timer? _timer;
   int _seconds = 0;
   bool _running = false;
   String _subjectId = kSubjects.first.id;
 
+  /// Uygulama arka plana alındığı için kronometreyi BİZ duraklattıysak true
+  /// olur — kullanıcıya "otomatik duraklatıldı" bilgisini bir kez göstermek
+  /// için kullanılır. Kullanıcının kendi elle duraklatmasından ayırt edilir.
+  bool _autoPaused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel();
     super.dispose();
+  }
+
+  /// Uygulamadan çıkılınca (ana ekrana dönme, uygulama değiştirme, ekran
+  /// kilidi) kronometre DURSUN — aksi halde çalışılmayan süre de çalışma
+  /// süresi olarak kaydediliyordu.
+  ///
+  /// `inactive` DAHİL edilir çünkü iOS'ta uygulama arka plana giderken önce
+  /// bu duruma düşer (kontrol merkezi, gelen arama, uygulama değiştirici).
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    final gittiArkaPlana = state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.detached;
+
+    if (gittiArkaPlana && _running) {
+      _timer?.cancel();
+      setState(() {
+        _running = false;
+        _autoPaused = true;
+      });
+    } else if (state == AppLifecycleState.resumed && _autoPaused) {
+      // Geri dönüldüğünde kendiliğinden BAŞLATMIYORUZ — kullanıcı gerçekten
+      // çalışmaya devam ettiğinde kendisi "Başlat"a bassın ki kayıt dürüst
+      // kalsın. Sadece ne olduğunu bir kez bildiriyoruz.
+      setState(() => _autoPaused = false);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Uygulamadan çıktığın için kronometre duraklatıldı. '
+                'Devam etmek için "Başlat"a bas.'),
+            duration: Duration(seconds: 3),
+          ),
+        );
+      }
+    }
   }
 
   void _toggle() {
     context.read<SoundService>().click();
     setState(() {
       _running = !_running;
+      _autoPaused = false;
       if (_running) {
         _timer = Timer.periodic(const Duration(seconds: 1), (_) => setState(() => _seconds++));
       } else {

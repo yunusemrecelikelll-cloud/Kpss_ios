@@ -25,6 +25,13 @@ class _CardGameScreenState extends State<CardGameScreen> {
   bool _started = false;
   bool _locked = false;
 
+  /// Yanlış eşleşmede KIRMIZI gösterilecek iki kartın indisleri; ~600 ms sonra
+  /// boşaltılır ve kartlar eski rengine (animasyonlu) döner.
+  Set<int> _yanlisKartlar = {};
+
+  /// Yanlış gösterim süresi — kart kapanma gecikmesiyle aynı tutulur.
+  static const Duration _yanlisSuresi = Duration(milliseconds: 600);
+
   // Toplam oynama süresi takibi: bu ekran ekranda kaldığı sürece (ilk başarılı
   // başlangıçtan dispose'a kadar, "Yeni Oyun" ile yeniden başlatmalar dahil)
   // TEK bir oturum sayılır; erken çıkışta da (dispose her zaman çağrılır) kısmi
@@ -87,10 +94,12 @@ class _CardGameScreenState extends State<CardGameScreen> {
     if (res.status == 'ignored') return;
     setState(() {});
     if (res.status == 'pending-nomatch') {
-      Future.delayed(const Duration(milliseconds: 900), () {
+      // Yanlış eşleşme: iki kart kısa süre KIRMIZI yanar, sonra eski rengine döner.
+      setState(() => _yanlisKartlar = _engine.flipped.toSet());
+      Future.delayed(_yanlisSuresi, () {
         if (!mounted) return;
         _engine.clearPending();
-        setState(() {});
+        setState(() => _yanlisKartlar = {});
       });
     }
     if (_engine.isComplete) {
@@ -165,42 +174,83 @@ class _CardGameScreenState extends State<CardGameScreen> {
               style: TextStyle(fontSize: 11.5, color: colors.textFaint),
             ),
             const SizedBox(height: 12),
+            // Kartlar ekrana TAM SIĞAR: kalan yükseklik LayoutBuilder ile ölçülüp
+            // hücre oranı ve yazı boyutu ona göre hesaplanır, scroll kapalıdır.
             Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 0.85,
-                ),
-                itemCount: _engine.cards.length,
-                itemBuilder: (context, i) {
-                  final c = _engine.cards[i];
-                  final flippedNow = _engine.flipped.contains(i) || c.matched;
-                  return InkWell(
-                    onTap: () => _onFlip(i),
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: c.matched
-                            ? colors.success.withValues(alpha: 0.18)
-                            : flippedNow
-                                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.15)
-                                : Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: colors.border),
-                      ),
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(6),
-                      child: Text(
-                        flippedNow ? c.text : '❓',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: flippedNow ? 11 : 22,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+              child: LayoutBuilder(
+                builder: (context, kisit) {
+                  const sutun = 3;
+                  const bosluk = 8.0;
+                  final satir = (_engine.cards.length / sutun).ceil();
+                  final hucreGenislik = (kisit.maxWidth - bosluk * (sutun - 1)) / sutun;
+                  final hucreYukseklik =
+                      (kisit.maxHeight - bosluk * (satir - 1)) / (satir == 0 ? 1 : satir);
+                  final oran = hucreYukseklik <= 0 ? 0.85 : hucreGenislik / hucreYukseklik;
+                  final yaziBoyu = (hucreYukseklik * 0.15).clamp(9.0, 14.0);
+                  final soruBoyu = (hucreYukseklik * 0.32).clamp(16.0, 30.0);
+
+                  return GridView.builder(
+                    padding: EdgeInsets.zero,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: sutun,
+                      mainAxisSpacing: bosluk,
+                      crossAxisSpacing: bosluk,
+                      childAspectRatio: oran <= 0 ? 0.85 : oran,
                     ),
+                    itemCount: _engine.cards.length,
+                    itemBuilder: (context, i) {
+                      final c = _engine.cards[i];
+                      final acik = _engine.flipped.contains(i) || c.matched;
+                      final yanlis = _yanlisKartlar.contains(i);
+                      // Her doğru çift paletten KENDİ rengini alır (çift1 yeşil,
+                      // çift2 mor, çift3 turuncu ...), yanlışta kırmızı yanar.
+                      final vurgu = yanlis
+                          ? kYanlisRengi
+                          : c.matched
+                              ? ciftRengi(c.pairId)
+                              : null;
+
+                      return InkWell(
+                        onTap: () => _onFlip(i),
+                        borderRadius: BorderRadius.circular(10),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 260),
+                          curve: Curves.easeOut,
+                          decoration: BoxDecoration(
+                            color: vurgu != null
+                                ? vurgu.withValues(alpha: 0.22)
+                                : acik
+                                    ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.15)
+                                    : Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: vurgu ?? colors.border,
+                              width: vurgu != null ? 2 : 1,
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(6),
+                          // Metin önce hücre genişliğinde satırlara bölünür,
+                          // taşarsa FittedBox küçülterek kartın içinde tutar.
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: SizedBox(
+                              width: (hucreGenislik - 12).clamp(24.0, 400.0),
+                              child: Text(
+                                acik ? c.text : '❓',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: acik ? yaziBoyu : soruBoyu,
+                                  fontWeight: FontWeight.w600,
+                                  color: colors.text,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),

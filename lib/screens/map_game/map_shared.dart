@@ -212,23 +212,82 @@ class TurkeyMapCanvas extends StatefulWidget {
   State<TurkeyMapCanvas> createState() => _TurkeyMapCanvasState();
 }
 
-class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> {
-  // ÖNEMLİ (düzeltilen hata): `boundaryMargin: EdgeInsets.zero` ile pan+zoom
-  // birlikte kullanıldığında InteractiveViewer'ın dahili kırpma/sınır mantığı
-  // "büyütülüyor ama küçültülemiyor" şeklinde bir sıkışmaya yol açabiliyordu
-  // (kullanıcı zoom yaptıktan sonra tekrar 1.0 ölçeğe dönemiyordu). Şimdi:
-  // (1) küçük bir boundaryMargin ile sınır matematiğine nefes payı verildi,
-  // (2) bir TransformationController + çift dokunuşla/butonla anında
-  // "yakınlaştırmayı sıfırla" imkânı eklendi (gesture matematiği her zaman
-  // mükemmel olmasa bile kullanıcı için her zaman bir çıkış yolu olsun diye).
-  final _controller = TransformationController();
+class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProviderStateMixin {
+  // ── Yakınlaşma/uzaklaşma (zoom) davranışı ──────────────────────────────
+  // ÖNEMLİ (düzeltilen hata): Eskiden `constrained: false` kullanılıyordu.
+  // Bu modda InteractiveViewer çocuğu SINIRSIZ ölçüyle yerleştirir ve dahili
+  // sınır (boundary) matematiği viewport ile çocuğun ölçüsünü karıştırdığından
+  // harita "büyüyor ama bir daha küçülmüyor" ve büyürken sıçramalı/dengesiz
+  // davranıyordu. Artık:
+  //   (1) `constrained: true` (varsayılan) — viewport = çocuk, sınır
+  //       matematiği tutarlı; ölçek her iki yönde de serbestçe değişebilir,
+  //   (2) `boundaryMargin` cömert tutuldu ki içeri/dışarı sıkışma olmasın,
+  //   (3) parmak kaldırıldığında ölçek 1.0'a çok yaklaşmışsa harita YUMUŞAK
+  //       bir animasyonla tam oturmuş hâline geri döner (küçültememe hatasına
+  //       karşı garantili çıkış yolu),
+  //   (4) çift dokunuş, dokunulan noktayı merkez alarak KADEMELİ (animasyonlu)
+  //       yakınlaştırır; zaten yakınlaşmışsa aynı animasyonla sıfırlar.
+  static const double _kMinScale = 1.0;
+  static const double _kMaxScale = 4.0;
+  static const double _kDoubleTapScale = 2.4;
+  static const Duration _kZoomDuration = Duration(milliseconds: 260);
 
-  void _resetZoom() {
-    _controller.value = Matrix4.identity();
+  final _controller = TransformationController();
+  late final AnimationController _anim;
+  Animation<Matrix4>? _zoomAnimation;
+  Offset? _doubleTapPos;
+
+  @override
+  void initState() {
+    super.initState();
+    _anim = AnimationController(vsync: this, duration: _kZoomDuration)
+      ..addListener(() {
+        final a = _zoomAnimation;
+        if (a != null) _controller.value = a.value;
+      });
+  }
+
+  /// Mevcut dönüşümden [target] dönüşüme yumuşak (kademeli) geçiş.
+  void _animateTo(Matrix4 target) {
+    _zoomAnimation = Matrix4Tween(begin: _controller.value, end: target)
+        .animate(CurvedAnimation(parent: _anim, curve: Curves.easeOutCubic));
+    _anim.forward(from: 0);
+  }
+
+  void _resetZoom() => _animateTo(Matrix4.identity());
+
+  double get _scale => _controller.value.getMaxScaleOnAxis();
+
+  void _handleDoubleTap() {
+    // Zaten yakınlaşmışsa sıfırla, değilse dokunulan noktaya yaklaş.
+    if (_scale > _kMinScale + 0.05) {
+      _resetZoom();
+      return;
+    }
+    final pos = _doubleTapPos;
+    if (pos == null) {
+      _resetZoom();
+      return;
+    }
+    const s = _kDoubleTapScale;
+    // Dokunulan nokta sabit kalsın: s * p + t = p  →  t = -p * (s - 1)
+    _animateTo(Matrix4.identity()
+      ..translateByDouble(-pos.dx * (s - 1), -pos.dy * (s - 1), 0, 1)
+      ..scaleByDouble(s, s, 1, 1));
+  }
+
+  /// Parmak kaldırıldığında ölçek tam oturmuş hâle çok yakınsa küçük
+  /// kaymaları temizleyip haritayı tam oturmuş hâline geri yaslar.
+  void _snapIfNearFit() {
+    if (_scale <= _kMinScale + 0.02) {
+      final m = _controller.value;
+      if (m != Matrix4.identity()) _animateTo(Matrix4.identity());
+    }
   }
 
   @override
   void dispose() {
+    _anim.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -246,70 +305,62 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> {
         for (final g in geos)
           if (widget.overlayFor!(byId[g.id]!) != null) g.id: widget.overlayFor!(byId[g.id]!)!,
     };
-    return LayoutBuilder(builder: (context, constraints) {
-      final w = constraints.maxWidth;
-      final h = w / kMapAspectRatio;
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(18),
-        child: SizedBox(
-          width: w,
-          height: h,
-          child: Stack(
-            children: [
-              GestureDetector(
-                onDoubleTap: _resetZoom,
-                child: InteractiveViewer(
-                  transformationController: _controller,
-                  constrained: false,
-                  minScale: 1.0,
-                  maxScale: 3.2,
-                  boundaryMargin: const EdgeInsets.all(40),
-                  child: SizedBox(
-                    width: w,
-                    height: h,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colors.glass,
-                        border: Border.all(color: colors.border),
-                      ),
-                      child: TurkeyMapWidget(
-                        geos: geos,
-                        fillColors: fillColors,
-                        defaultFillColor: colors.violet.withValues(alpha: 0.15),
-                        borderColor: colors.border,
-                        dimmedIds: widget.dimmed,
-                        overlays: overlays,
-                        onProvinceTap: widget.onTap == null
-                            ? null
-                            : (id) {
-                                final p = byId[id];
-                                if (p == null) return;
-                                context.read<SoundService>().click();
-                                widget.onTap!(p);
-                              },
-                      ),
-                    ),
-                  ),
+    // NOT: Haritanın arkasında ARTIK beyaz/`glass` bir dolgu ve çerçeve YOK —
+    // kullanıcı "haritanın etrafındaki beyazlığı kaldır" dedi. Harita kendi
+    // en/boy oranını koruyup alana ortalandığı için (bkz. TurkeyMapWidget)
+    // artan boşluk şeffaf kalır ve ekranın tema gradyanı görünür.
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(18),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              onDoubleTapDown: (d) => _doubleTapPos = d.localPosition,
+              onDoubleTap: _handleDoubleTap,
+              child: InteractiveViewer(
+                transformationController: _controller,
+                minScale: _kMinScale,
+                maxScale: _kMaxScale,
+                boundaryMargin: const EdgeInsets.all(48),
+                onInteractionStart: (_) {
+                  if (_anim.isAnimating) _anim.stop();
+                },
+                onInteractionEnd: (_) => _snapIfNearFit(),
+                child: TurkeyMapWidget(
+                  geos: geos,
+                  fillColors: fillColors,
+                  defaultFillColor: colors.violet.withValues(alpha: 0.15),
+                  borderColor: colors.border,
+                  dimmedIds: widget.dimmed,
+                  overlays: overlays,
+                  onProvinceTap: widget.onTap == null
+                      ? null
+                      : (id) {
+                          final p = byId[id];
+                          if (p == null) return;
+                          context.read<SoundService>().click();
+                          widget.onTap!(p);
+                        },
                 ),
               ),
-              Positioned(
-                right: 6,
-                bottom: 6,
-                child: Material(
-                  color: colors.glass2,
-                  shape: const CircleBorder(),
-                  child: IconButton(
-                    tooltip: 'Yakınlaştırmayı sıfırla',
-                    icon: Icon(Icons.zoom_out_map, size: 18, color: colors.text),
-                    onPressed: _resetZoom,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      );
-    });
+          Positioned(
+            right: 6,
+            bottom: 6,
+            child: Material(
+              color: colors.glass2,
+              shape: const CircleBorder(),
+              child: IconButton(
+                tooltip: 'Yakınlaştırmayı sıfırla',
+                icon: Icon(Icons.zoom_out_map, size: 18, color: colors.text),
+                onPressed: _resetZoom,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

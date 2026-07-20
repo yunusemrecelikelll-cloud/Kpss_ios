@@ -131,6 +131,78 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Hesap silme gibi hassas işlemler için kimliği TAZELER.
+  ///
+  /// Firebase, `user.delete()` çağrısını yalnızca yakın zamanda giriş yapmış
+  /// oturumlarda kabul eder; oturum eskiyse `requires-recent-login` döner. Bu
+  /// metod kullanıcının HANGİ sağlayıcıyla giriş yaptığını `providerData`'dan
+  /// okur ve aynı sağlayıcıyla yeniden doğrulama yapar.
+  ///
+  /// Anonim kullanıcılarda yeniden doğrulama diye bir şey yoktur — bu durumda
+  /// başarılı sayılır (Auth kaydı zaten doğrudan silinebilir).
+  Future<AuthResult> reauthenticate() async {
+    if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return const AuthResult.failure('Oturum açık değil.');
+    if (user.isAnonymous) return AuthResult.success(user);
+
+    final saglayicilar = user.providerData.map((p) => p.providerId).toSet();
+    try {
+      if (saglayicilar.contains('apple.com')) {
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: const [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+        final credential = OAuthProvider('apple.com').credential(
+          idToken: appleCredential.identityToken,
+          accessToken: appleCredential.authorizationCode,
+        );
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      if (saglayicilar.contains('google.com')) {
+        await _ensureGoogleSignInInitialized();
+        final googleSignIn = _googleSignIn!;
+        if (!googleSignIn.supportsAuthenticate()) {
+          return const AuthResult.failure(
+            'Bu platformda Google ile yeniden giriş desteklenmiyor.',
+          );
+        }
+        final account = await googleSignIn.authenticate();
+        final idToken = account.authentication.idToken;
+        if (idToken == null) {
+          return const AuthResult.failure(
+            'Google kimlik doğrulaması bir idToken döndürmedi.',
+          );
+        }
+        final credential = GoogleAuthProvider.credential(idToken: idToken);
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      return const AuthResult.failure(
+        'Bu hesabın giriş yöntemi için yeniden doğrulama desteklenmiyor.',
+      );
+    } on SignInWithAppleAuthorizationException catch (e) {
+      if (e.code == AuthorizationErrorCode.canceled) {
+        return const AuthResult.failure('Giriş iptal edildi.');
+      }
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.message}');
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        return const AuthResult.failure('Giriş iptal edildi.');
+      }
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.description ?? e.code}');
+    } on FirebaseAuthException catch (e) {
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.message ?? e.code}');
+    } catch (e) {
+      return AuthResult.failure('Yeniden giriş başarısız: $e');
+    }
+  }
+
   Future<void> signOut() async {
     if (!isConfigured) return;
     try {

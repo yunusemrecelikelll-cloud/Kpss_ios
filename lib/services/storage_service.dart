@@ -7,7 +7,7 @@ import '../models/question.dart';
 
 /// storage.js'nin Dart/SharedPreferences karşılığı.
 /// Çok kullanıcılı yapı: her anahtar aktif kullanıcı adına göre önekleniyor
-/// (JS: kpss_v2_<kullanıcı>_<anahtar>), localStorage yerine SharedPreferences kullanılıyor.
+/// (JS: `kpss_v2_<kullanıcı>_<anahtar>`), localStorage yerine SharedPreferences kullanılıyor.
 class StorageService extends ChangeNotifier {
   SharedPreferences? _prefs;
   String _activeUser = '';
@@ -24,8 +24,11 @@ class StorageService extends ChangeNotifier {
     final buf = StringBuffer();
     for (final ch in name.runes) {
       final c = String.fromCharCode(ch);
-      if (RegExp(r'[a-zA-Z0-9ğüşıöçĞÜŞİÖÇ]').hasMatch(c)) buf.write(c);
-      else buf.write('_');
+      if (RegExp(r'[a-zA-Z0-9ğüşıöçĞÜŞİÖÇ]').hasMatch(c)) {
+        buf.write(c);
+      } else {
+        buf.write('_');
+      }
     }
     final s = buf.toString();
     return s.length > 40 ? s.substring(0, 40) : s;
@@ -549,6 +552,52 @@ class StorageService extends ChangeNotifier {
     if (streak > getBestMarathonStreak()) {
       await _set('best_marathon_streak', streak);
     }
+  }
+
+  // ── Oyun rekorları: her mini oyun için "en yüksek skor" + son doğru/yanlış ──
+  //
+  // Tek bir ortak API; her oyun kendi `gameId`'sini verir (ör. 'hiz_60',
+  // 'yazim_yanlislari', 'tarihleri_bil', 'kimim_ben'). Böylece her oyuna ayrı
+  // ayrı anahtar/metod eklemek gerekmez.
+
+  Map<String, dynamic> _highScores() =>
+      Map<String, dynamic>.from((_get('game_high_scores', {}) as Map?) ?? {});
+
+  /// [gameId] için kaydedilmiş en yüksek skor (hiç oynanmadıysa 0).
+  int getHighScore(String gameId) =>
+      ((_highScores()[gameId] as num?) ?? 0).toInt();
+
+  /// Skoru kaydeder — SADECE önceki rekordan büyükse günceller.
+  /// Yeni bir rekor kırıldıysa `true` döner (UI "Yeni rekor!" gösterebilir).
+  Future<bool> submitHighScore(String gameId, int score) async {
+    if (score <= getHighScore(gameId)) return false;
+    final all = _highScores();
+    all[gameId] = score;
+    await _set('game_high_scores', all);
+    return true;
+  }
+
+  /// Bir oyunun EN SON turundaki doğru/yanlış sayısı — sonuç ekranında
+  /// "hangisine çalışmalısın" yorumunu üretmek için kullanılır.
+  Map<String, int> getLastRoundStats(String gameId) {
+    final all = Map<String, dynamic>.from(
+        (_get('game_last_round', {}) as Map?) ?? {});
+    final row = Map<String, dynamic>.from((all[gameId] as Map?) ?? {});
+    return {
+      'correct': ((row['correct'] as num?) ?? 0).toInt(),
+      'wrong': ((row['wrong'] as num?) ?? 0).toInt(),
+    };
+  }
+
+  Future<void> setLastRoundStats(
+    String gameId, {
+    required int correct,
+    required int wrong,
+  }) async {
+    final all = Map<String, dynamic>.from(
+        (_get('game_last_round', {}) as Map?) ?? {});
+    all[gameId] = {'correct': correct, 'wrong': wrong};
+    await _set('game_last_round', all);
   }
 
   // ── Günün Patronu: günde 1 kez oynanabilir + toplam tamamlama sayacı ──

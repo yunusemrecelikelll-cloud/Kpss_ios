@@ -5,6 +5,7 @@ import '../../models/question.dart';
 import '../../models/subject.dart';
 import '../../services/remote_question_service.dart';
 import '../../services/sound_service.dart';
+import '../../services/storage_service.dart';
 import '../../theme/theme_provider.dart';
 
 /// 5 şıklı sorularda ortak harf etiketleri (A-E) — Bilgi Maratonu / Günün
@@ -61,6 +62,85 @@ class QuickModesShared {
     return all;
   }
 }
+
+/// Hızlı Modlar'ın ortak SKOR ŞERİDİ — doğru/yanlış sayısını AYRI AYRI ve
+/// hemen ALTINDA kullanıcının o oyundaki "En Yüksek Skor"unu (rekorunu)
+/// gösterir. Rekor [StorageService.getHighScore] ile okunur; `context.watch`
+/// kullanıldığı için tur bitip yeni rekor kaydedildiğinde kendiliğinden
+/// tazelenir.
+///
+/// [leading] soldaki serbest metindir (ör. '⏳ 42 sn' ya da 'Soru 3/25');
+/// [extraLine] varsa rekor satırının altına eklenen ikinci küçük satırdır
+/// (ör. toplam oynama süresi).
+class QuickModeScoreBar extends StatelessWidget {
+  final String gameId;
+  final int correct;
+  final int wrong;
+  final String? leading;
+  final Color? leadingColor;
+  final String? extraLine;
+
+  const QuickModeScoreBar({
+    super.key,
+    required this.gameId,
+    required this.correct,
+    required this.wrong,
+    this.leading,
+    this.leadingColor,
+    this.extraLine,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.watch<ThemeProvider>().colors;
+    final record = context.watch<StorageService>().getHighScore(gameId);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            if (leading != null)
+              Flexible(
+                child: Text(
+                  leading!,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                    color: leadingColor ?? colors.text,
+                  ),
+                ),
+              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('✓ $correct', style: TextStyle(color: colors.success, fontWeight: FontWeight.w800)),
+                const SizedBox(width: 12),
+                Text('✗ $wrong', style: TextStyle(color: colors.danger, fontWeight: FontWeight.w800)),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(height: 3),
+        Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            '🏆 En Yüksek Skor: $record',
+            style: TextStyle(fontSize: 11.5, color: colors.textFaint, fontWeight: FontWeight.w700),
+          ),
+        ),
+        if (extraLine != null)
+          Text(extraLine!, style: TextStyle(fontSize: 11, color: colors.textFaint)),
+      ],
+    );
+  }
+}
+
+/// Sonuç ekranlarında kullanılan tek satırlık rekor metni — yeni rekor
+/// kırıldıysa vurgulu bir mesaj döner. [QuickModeResultCard.subMessage]
+/// içine gömmek için tasarlandı.
+String quickModeRecordLine({required int record, required bool yeniRekor}) =>
+    yeniRekor ? '🏆 YENİ REKOR! En Yüksek Skor: $record' : '🏆 En Yüksek Skor: $record';
 
 /// Hızlı Modlar'ın ortak "oturum bitti" sonuç kartı — harita oyununun
 /// MapSessionResult'ına görsel olarak benzer, ama Hızlı Modlar kendi

@@ -615,3 +615,382 @@ const List<KategoriGrubu> kKategoriGruplari = [
     terimler: ['Birleşmiş Milletler (BM)', 'NATO', 'AGİT', 'İslam İşbirliği Teşkilatı', 'D-8'],
   ),
 ];
+
+// ════════════════════════════════════════════════════════════════════════════
+//  KART OYUNLARI (v1 + V2) İÇİN KISA EŞLEŞTİRME ÇİFTLERİ
+// ════════════════════════════════════════════════════════════════════════════
+
+/// Kart oyunlarında kullanılan tek bir eşleştirme çifti.
+///
+/// [sol] terim/olay, [sag] ise onun karşılığıdır (tarih, kişi, sonuç...).
+/// Kartlara sığması ve AKILDA KALICI olması için her iki taraf da bilinçli
+/// olarak 1-3 kelime tutulmuştur; uzun cümle kullanılmaz.
+class EslestirmeCifti {
+  final String sol;
+  final String sag;
+  const EslestirmeCifti(this.sol, this.sag);
+}
+
+/// Konu id'sine göre ELLE HAZIRLANMIŞ kısa eşleştirmeler.
+///
+/// Neden var: konu JSON'larındaki `anahtarNoktalar` alanı bazı konularda
+/// "Terim: Tanım" biçiminde olmadığından (özellikle TÜM Tarih konularında)
+/// kart oyunu için çift üretilemiyordu. Burası o eksik konuları tamamlar ve
+/// aynı zamanda v1 (kapalı kart) oyununun kısa-kelime havuzunu besler.
+///
+/// ÖNEMLİ: Buradaki tüm bilgiler tarihsel/ders bilgisi olarak DOĞRUDUR.
+/// Aynı konu içinde iki kartın metni asla aynı olmamalıdır (oyun aksi hâlde
+/// belirsizleşir), bu yüzden tarihler/karşılıklar bilinçli olarak ayrıştırıldı.
+const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
+  // ─────────────────────────── TARİH ───────────────────────────
+  'tarih-ilk-turk-devletleri': [
+    EslestirmeCifti('Asya Hun', 'Mete Han'),
+    EslestirmeCifti('Avrupa Hun', 'Attila'),
+    EslestirmeCifti('Kavimler Göçü', '375'),
+    EslestirmeCifti('"Türk" Adı', 'Göktürk Devleti'),
+    EslestirmeCifti('Orhun Yazıtları', 'II. Göktürk'),
+    EslestirmeCifti('Uygurlar', 'Yerleşik Hayat'),
+    EslestirmeCifti('Talas Savaşı', '751'),
+  ],
+  'tarih-ilk-turk-islam': [
+    EslestirmeCifti('Karahanlılar', 'İlk Müslüman Türk Devleti'),
+    EslestirmeCifti('Gazneliler', 'Gazneli Mahmud'),
+    EslestirmeCifti('Büyük Selçuklu', 'Tuğrul Bey'),
+    EslestirmeCifti('Dandanakan', '1040'),
+    EslestirmeCifti('Malazgirt', '1071'),
+    EslestirmeCifti('Nizamiye Medresesi', 'Nizamülmülk'),
+    EslestirmeCifti('Katvan Savaşı', '1141'),
+  ],
+  'tarih-anadolu-selcuklu': [
+    EslestirmeCifti('Anadolu Selçuklu Kurucusu', 'Süleyman Şah'),
+    EslestirmeCifti('Başkent', 'Konya'),
+    EslestirmeCifti('Miryokefalon', '1176'),
+    EslestirmeCifti('Kösedağ', '1243'),
+    EslestirmeCifti('Yassıçemen', 'Harzemşahlar'),
+    EslestirmeCifti('En Parlak Dönem', 'I. Alaeddin Keykubad'),
+    EslestirmeCifti('Kervansaray', 'Ticaret Konaklaması'),
+  ],
+  'tarih-osmanli-kurulus': [
+    EslestirmeCifti('Osmanlı Kurucusu', 'Osman Bey'),
+    EslestirmeCifti('Koyunhisar', 'İlk Bizans Zaferi'),
+    EslestirmeCifti("Bursa'nın Fethi", 'Orhan Bey'),
+    EslestirmeCifti('Çimpe Kalesi', "Rumeli'ye Geçiş"),
+    EslestirmeCifti('I. Kosova', '1389'),
+    EslestirmeCifti('Ankara Savaşı', '1402'),
+    EslestirmeCifti("İstanbul'un Fethi", '1453'),
+    EslestirmeCifti('Otlukbeli', 'Akkoyunlular'),
+    EslestirmeCifti('Çaldıran', 'Safeviler'),
+    EslestirmeCifti('Ridaniye', 'Memlükler'),
+    EslestirmeCifti('Mohaç', '1526'),
+    EslestirmeCifti('Preveze', '1538'),
+  ],
+  'tarih-osmanli-gerileme': [
+    EslestirmeCifti('II. Viyana Kuşatması', '1683'),
+    EslestirmeCifti('Karlofça', '1699'),
+    EslestirmeCifti('Pasarofça', 'Lale Devri'),
+    EslestirmeCifti('Küçük Kaynarca', '1774'),
+    EslestirmeCifti('Yaş Antlaşması', '1792'),
+    EslestirmeCifti('Nizam-ı Cedid', 'III. Selim'),
+    EslestirmeCifti('Sened-i İttifak', '1808'),
+    EslestirmeCifti('Tanzimat Fermanı', '1839'),
+    EslestirmeCifti('Islahat Fermanı', '1856'),
+    EslestirmeCifti('I. Meşrutiyet', '1876'),
+  ],
+  'tarih-20yy-osmanli': [
+    EslestirmeCifti('II. Meşrutiyet', '1908'),
+    EslestirmeCifti('31 Mart Olayı', '1909'),
+    EslestirmeCifti('Trablusgarp', 'İtalya'),
+    EslestirmeCifti('Uşi Antlaşması', '1912'),
+    EslestirmeCifti('Londra Antlaşması', 'I. Balkan Sonu'),
+    EslestirmeCifti('Bükreş Antlaşması', 'II. Balkan Sonu'),
+    EslestirmeCifti('Çanakkale', '1915'),
+    EslestirmeCifti('Mondros', '1918'),
+    EslestirmeCifti('Sevr', '1920'),
+  ],
+  'tarih-kurtulus-savasi': [
+    EslestirmeCifti('Amasya Genelgesi', '22 Haziran 1919'),
+    EslestirmeCifti('Erzurum Kongresi', '23 Temmuz 1919'),
+    EslestirmeCifti('Sivas Kongresi', '4 Eylül 1919'),
+    EslestirmeCifti('TBMM Açılışı', '23 Nisan 1920'),
+    EslestirmeCifti('Gümrü', 'Ermenistan'),
+    EslestirmeCifti('Sakarya', '1921'),
+    EslestirmeCifti('Büyük Taarruz', '30 Ağustos 1922'),
+    EslestirmeCifti('Mudanya Ateşkesi', '11 Ekim 1922'),
+    EslestirmeCifti('Lozan', '1923'),
+  ],
+  'tarih-ataturk': [
+    EslestirmeCifti('Saltanatın Kaldırılması', '1922'),
+    EslestirmeCifti('Cumhuriyetin İlanı', '1923'),
+    EslestirmeCifti('Halifeliğin Kaldırılması', '1924'),
+    EslestirmeCifti('Şapka Kanunu', '1925'),
+    EslestirmeCifti('Medeni Kanun', '1926'),
+    EslestirmeCifti('Harf İnkılabı', '1928'),
+    EslestirmeCifti('Türk Dil Kurumu', '1932'),
+    EslestirmeCifti('Soyadı Kanunu', '1934'),
+    EslestirmeCifti('Tevhid-i Tedrisat', 'Eğitim Birliği'),
+  ],
+  'tarih-cumhuriyet-donemi': [
+    EslestirmeCifti('Terakkiperver Fırka', '1924'),
+    EslestirmeCifti('Serbest Cumhuriyet Fırkası', '1930'),
+    EslestirmeCifti('Montrö Boğazlar', '1936'),
+    EslestirmeCifti("Hatay'ın Katılımı", '1939'),
+    EslestirmeCifti('Çok Partili Seçim', '1946'),
+    EslestirmeCifti('Marshall Yardımı', '1948'),
+    EslestirmeCifti('Kore Savaşı', '1950'),
+    EslestirmeCifti('NATO Üyeliği', '1952'),
+    EslestirmeCifti('Kıbrıs Barış Harekâtı', '1974'),
+  ],
+  'tarih-turk-kulturu': [
+    EslestirmeCifti('Kutadgu Bilig', 'Yusuf Has Hacib'),
+    EslestirmeCifti("Divanü Lugati't-Türk", 'Kaşgarlı Mahmud'),
+    EslestirmeCifti("Atabetü'l-Hakayık", 'Edip Ahmet'),
+    EslestirmeCifti('Divan-ı Hikmet', 'Ahmet Yesevi'),
+    EslestirmeCifti('Şehname', 'Firdevsi'),
+    EslestirmeCifti('Ahilik', 'Esnaf Teşkilatı'),
+    EslestirmeCifti('Selimiye Camii', 'Mimar Sinan'),
+    EslestirmeCifti('Vakıf', 'Hayır Kurumu'),
+  ],
+  'tarih-dunya-tarihi': [
+    EslestirmeCifti('Magna Carta', '1215'),
+    EslestirmeCifti("Amerika'nın Keşfi", '1492'),
+    EslestirmeCifti('Fransız İhtilali', '1789'),
+    EslestirmeCifti('Matbaanın İcadı', 'Gutenberg'),
+    EslestirmeCifti('Sanayi Devrimi', 'İngiltere'),
+    EslestirmeCifti('I. Dünya Savaşı', '1914-1918'),
+    EslestirmeCifti('II. Dünya Savaşı', '1939-1945'),
+    EslestirmeCifti("Berlin Duvarı'nın Yıkılışı", '1989'),
+    EslestirmeCifti("Sovyetler'in Dağılması", '1991'),
+  ],
+
+  // ─────────────────────────── COĞRAFYA ───────────────────────────
+  'cografya-yer-sekilleri': [
+    EslestirmeCifti('Orojenez', 'Dağ Oluşumu'),
+    EslestirmeCifti('Epirojenez', 'Kıta Hareketi'),
+    EslestirmeCifti('Volkanizma', 'Magma Yükselmesi'),
+    EslestirmeCifti('En Yüksek Dağ', 'Ağrı Dağı'),
+    EslestirmeCifti('Karstik Şekil', 'Kireç Taşı'),
+    EslestirmeCifti('Delta Ovası', 'Akarsu Birikimi'),
+    EslestirmeCifti('Falez', 'Kıyı Şekli'),
+    EslestirmeCifti('Peribacası', 'Ürgüp-Göreme'),
+  ],
+  'cografya-dogal-afetler': [
+    EslestirmeCifti('Deprem', 'Fay Hattı'),
+    EslestirmeCifti('Heyelan', 'Karadeniz'),
+    EslestirmeCifti('Erozyon', 'Toprak Kaybı'),
+    EslestirmeCifti('Çığ', 'Doğu Anadolu'),
+    EslestirmeCifti('Tsunami', 'Deniz Depremi'),
+    EslestirmeCifti('Sera Etkisi', 'Küresel Isınma'),
+    EslestirmeCifti('Asit Yağmuru', 'Hava Kirliliği'),
+  ],
+  'cografya-su-kaynaklari': [
+    EslestirmeCifti('En Uzun Akarsu', 'Kızılırmak'),
+    EslestirmeCifti('En Büyük Göl', 'Van Gölü'),
+    EslestirmeCifti('En Büyük Tatlı Su Gölü', 'Beyşehir'),
+    EslestirmeCifti('Atatürk Barajı', 'Fırat'),
+    EslestirmeCifti('Tuz Gölü', 'İç Anadolu'),
+    EslestirmeCifti('Sapanca Gölü', 'Tektonik'),
+    EslestirmeCifti('Manavgat Çayı', 'Düzenli Rejim'),
+  ],
+  'cografya-ticaret': [
+    EslestirmeCifti('İthalat', 'Dışarıdan Alım'),
+    EslestirmeCifti('İhracat', 'Dışarıya Satım'),
+    EslestirmeCifti('Dış Ticaret Açığı', 'İthalat Fazlası'),
+    EslestirmeCifti('Serbest Bölge', 'Gümrüksüz Alan'),
+    EslestirmeCifti('Transit Ticaret', 'Aktarma'),
+    EslestirmeCifti('Gümrük Birliği', '1996'),
+    EslestirmeCifti('Borsa İstanbul', 'Menkul Kıymet'),
+  ],
+
+  // ─────────────────────────── GÜNCEL BİLGİLER ───────────────────────────
+  'guncel-teknoloji': [
+    EslestirmeCifti('Yapay Zekâ', 'Makine Öğrenmesi'),
+    EslestirmeCifti('Blok Zinciri', 'Dağıtık Kayıt'),
+    EslestirmeCifti('Nesnelerin İnterneti', 'IoT'),
+    EslestirmeCifti('Büyük Veri', 'Big Data'),
+    EslestirmeCifti('Bulut Bilişim', 'Uzak Sunucu'),
+    EslestirmeCifti('5G', 'Mobil İletişim'),
+    EslestirmeCifti('e-Devlet', 'Kamu Hizmeti'),
+    EslestirmeCifti('TÜBİTAK', 'Bilimsel Araştırma'),
+    EslestirmeCifti('Siber Güvenlik', 'Veri Koruma'),
+  ],
+
+  // ─────────────────────────── MATEMATİK ───────────────────────────
+  'matematik-temel-kavramlar': [
+    EslestirmeCifti('Rakam', "0'dan 9'a"),
+    EslestirmeCifti('Doğal Sayılar', 'N'),
+    EslestirmeCifti('Tam Sayılar', 'Z'),
+    EslestirmeCifti('En Küçük Asal', '2'),
+    EslestirmeCifti('Çift Sayı', '2n'),
+    EslestirmeCifti('Tek Sayı', '2n+1'),
+    EslestirmeCifti('Ardışık Sayılar', 'Birer Artan'),
+    EslestirmeCifti('Basamak Değeri', 'Rakam × Basamak'),
+  ],
+  'matematik-problemler': [
+    EslestirmeCifti('Kâr', 'Satış - Maliyet'),
+    EslestirmeCifti('Zarar', 'Maliyet - Satış'),
+    EslestirmeCifti('Maliyet', 'Alış Fiyatı'),
+    EslestirmeCifti('Basit Faiz', 'A·n·t/100'),
+    EslestirmeCifti('Yaş Farkı', 'Hep Aynı'),
+    EslestirmeCifti('%20 Artış', '1,2 Katı'),
+    EslestirmeCifti('%25 İndirim', '0,75 Katı'),
+  ],
+  'matematik-geometri-temelleri': [
+    EslestirmeCifti('Üçgenin İç Açıları', '180°'),
+    EslestirmeCifti('Dörtgenin İç Açıları', '360°'),
+    EslestirmeCifti('Pisagor', 'a² + b² = c²'),
+    EslestirmeCifti('Dairenin Çevresi', '2πr'),
+    EslestirmeCifti('Dairenin Alanı', 'πr²'),
+    EslestirmeCifti('Üçgenin Alanı', 'Taban × Yükseklik / 2'),
+    EslestirmeCifti('Karenin Alanı', 'a²'),
+    EslestirmeCifti('Küpün Hacmi', 'a³'),
+  ],
+  'matematik-istatistik': [
+    EslestirmeCifti('Aritmetik Ortalama', 'Toplam / Adet'),
+    EslestirmeCifti('Medyan', 'Ortanca Değer'),
+    EslestirmeCifti('Mod', 'En Çok Tekrar Eden'),
+    EslestirmeCifti('Açıklık', 'En Büyük - En Küçük'),
+    EslestirmeCifti('Daire Grafiği', 'Yüzde Dağılım'),
+    EslestirmeCifti('Sütun Grafiği', 'Karşılaştırma'),
+    EslestirmeCifti('Standart Sapma', 'Yayılma Ölçüsü'),
+  ],
+  'matematik-uslu-sayilar': [
+    EslestirmeCifti('a⁰', '1'),
+    EslestirmeCifti('a⁻ⁿ', '1/aⁿ'),
+    EslestirmeCifti('aᵐ · aⁿ', 'aᵐ⁺ⁿ'),
+    EslestirmeCifti('aᵐ / aⁿ', 'aᵐ⁻ⁿ'),
+    EslestirmeCifti('(aᵐ)ⁿ', 'aᵐ·ⁿ'),
+    EslestirmeCifti('2³', '8'),
+    EslestirmeCifti('(-2)²', '4'),
+    EslestirmeCifti('10⁻²', '0,01'),
+  ],
+  'matematik-koklu-sayilar': [
+    EslestirmeCifti('√a · √b', '√(a·b)'),
+    EslestirmeCifti('√a / √b', '√(a/b)'),
+    EslestirmeCifti('√(a²)', '|a|'),
+    EslestirmeCifti('√4', '2'),
+    EslestirmeCifti('√9', '3'),
+    EslestirmeCifti('∛8', '2 (küp kök)'),
+    EslestirmeCifti('√2', 'İrrasyonel'),
+    EslestirmeCifti('2√3 + 3√3', '5√3'),
+  ],
+
+  // ─────────────────────────── TÜRKÇE ───────────────────────────
+  'turkce-cumle-turleri': [
+    EslestirmeCifti('Kurallı Cümle', 'Yüklem Sonda'),
+    EslestirmeCifti('Devrik Cümle', 'Yüklem Sonda Değil'),
+    EslestirmeCifti('Fiil Cümlesi', 'Yüklemi Fiil'),
+    EslestirmeCifti('İsim Cümlesi', 'Yüklemi İsim'),
+    EslestirmeCifti('Basit Cümle', 'Tek Yargı'),
+    EslestirmeCifti('Birleşik Cümle', 'Birden Çok Yargı'),
+    EslestirmeCifti('Sıralı Cümle', 'Virgülle Bağlanır'),
+    EslestirmeCifti('Bağlı Cümle', 'Bağlaçla Bağlanır'),
+    EslestirmeCifti('Eksiltili Cümle', 'Yüklemi Söylenmemiş'),
+  ],
+  'turkce-cumlenin-ogeleri': [
+    EslestirmeCifti('Özne', 'İşi Yapan'),
+    EslestirmeCifti('Yüklem', 'Yargı Bildiren'),
+    EslestirmeCifti('Belirtili Nesne', '-i Hâli'),
+    EslestirmeCifti('Belirtisiz Nesne', 'Yalın Hâl'),
+    EslestirmeCifti('Dolaylı Tümleç', '-e, -de, -den'),
+    EslestirmeCifti('Zarf Tümleci', 'Nasıl, Ne Zaman'),
+    EslestirmeCifti('Gizli Özne', 'Yüklemden Bulunur'),
+    EslestirmeCifti('Cümle Dışı Unsur', 'Ünlem, Hitap'),
+  ],
+  'turkce-sozel-mantik': [
+    EslestirmeCifti('Tümdengelim', 'Genelden Özele'),
+    EslestirmeCifti('Tümevarım', 'Özelden Genele'),
+    EslestirmeCifti('Öncül', 'Verilen Bilgi'),
+    EslestirmeCifti('Çıkarım', 'Sonuca Ulaşma'),
+    EslestirmeCifti('Analoji', 'Benzerlik Kurma'),
+    EslestirmeCifti('Çelişki', 'Aynı Anda Doğru Olamaz'),
+    EslestirmeCifti('Sıralama Sorusu', 'Kim Nerede'),
+    EslestirmeCifti('Tablo Kurma', 'Bilgi Yerleştirme'),
+  ],
+  'turkce-paragrafta-anlatim-bicimi': [
+    EslestirmeCifti('Açıklayıcı Anlatım', 'Bilgi Verme'),
+    EslestirmeCifti('Tartışmacı Anlatım', 'Görüş Çürütme'),
+    EslestirmeCifti('Betimleyici Anlatım', 'Görüntü Çizme'),
+    EslestirmeCifti('Öyküleyici Anlatım', 'Olay Anlatma'),
+    EslestirmeCifti('Tanımlama', 'Nedir Sorusu'),
+    EslestirmeCifti('Örneklendirme', 'Somutlaştırma'),
+    EslestirmeCifti('Karşılaştırma', 'Benzerlik-Farklılık'),
+    EslestirmeCifti('Tanık Gösterme', 'Uzman Sözü'),
+    EslestirmeCifti('Sayısal Veri', 'İstatistik Kullanma'),
+  ],
+  'turkce-paragraf-sorulari': [
+    EslestirmeCifti('Ana Düşünce', 'Metnin Özü'),
+    EslestirmeCifti('Yardımcı Düşünce', 'Destekleyici Bilgi'),
+    EslestirmeCifti('Başlık', 'En Kapsayıcı İfade'),
+    EslestirmeCifti('Konu', 'Neden Söz Ediliyor'),
+    EslestirmeCifti('Anahtar Cümle', 'Giriş Cümlesi'),
+    EslestirmeCifti('Akışı Bozan Cümle', 'Konu Dışı'),
+    EslestirmeCifti('Paragrafın Sonu', 'Sonuç Cümlesi'),
+    EslestirmeCifti('Yazarın Amacı', 'Yazma Nedeni'),
+  ],
+
+  // ─────────────────────────── VATANDAŞLIK ───────────────────────────
+  'vatandaslik-hukukun-temelleri': [
+    EslestirmeCifti('Hukuk', 'Toplumsal Kurallar'),
+    EslestirmeCifti('Yaptırım', 'Kurala Uymama Sonucu'),
+    EslestirmeCifti('Kamu Hukuku', 'Devlet - Birey'),
+    EslestirmeCifti('Özel Hukuk', 'Birey - Birey'),
+    EslestirmeCifti('Hak Ehliyeti', 'Sağ Doğmak'),
+    EslestirmeCifti('Fiil Ehliyeti', 'Ergin ve Ayırt Eden'),
+    EslestirmeCifti('Örf ve Âdet', 'Yazısız Kaynak'),
+    EslestirmeCifti('Erginlik Yaşı', '18'),
+  ],
+  'vatandaslik-anayasa': [
+    EslestirmeCifti('Kanun-i Esasi', '1876'),
+    EslestirmeCifti('Teşkilat-ı Esasiye', '1921'),
+    EslestirmeCifti('Yürürlükteki Anayasa', '1982'),
+    EslestirmeCifti('Devletin Şekli', 'Cumhuriyet'),
+    EslestirmeCifti('Değiştirilemez Maddeler', 'İlk Üç Madde'),
+    EslestirmeCifti('Anayasa Değişikliği', '3/5 Çoğunluk'),
+    EslestirmeCifti('Anayasa Mahkemesi', 'Norm Denetimi'),
+    EslestirmeCifti('Başlangıç Hükümleri', 'Anayasaya Dâhil'),
+  ],
+  'vatandaslik-yasama': [
+    EslestirmeCifti('Milletvekili Sayısı', '600'),
+    EslestirmeCifti('Seçilme Yaşı', '18'),
+    EslestirmeCifti('Seçim Dönemi', '5 Yıl'),
+    EslestirmeCifti('Toplantı Yeter Sayısı', '1/3'),
+    EslestirmeCifti('Genel Af', '3/5 Çoğunluk'),
+    EslestirmeCifti('Bütçe Kanunu', 'TBMM Onayı'),
+    EslestirmeCifti('Yasama Dokunulmazlığı', 'Milletvekili Güvencesi'),
+  ],
+  'vatandaslik-yargi': [
+    EslestirmeCifti('Yargıtay', 'Adli Yargı'),
+    EslestirmeCifti('Danıştay', 'İdari Yargı'),
+    EslestirmeCifti('Sayıştay', 'Mali Denetim'),
+    EslestirmeCifti('Anayasa Mahkemesi', 'Bireysel Başvuru'),
+    EslestirmeCifti('Uyuşmazlık Mahkemesi', 'Görev Uyuşmazlığı'),
+    EslestirmeCifti('HSK', 'Hâkim Atamaları'),
+    EslestirmeCifti('Muhtar', 'Köy ve Mahalle'),
+    EslestirmeCifti('İl Özel İdaresi', 'Vali Başkanlığı'),
+  ],
+  'vatandaslik-temel-haklar': [
+    EslestirmeCifti('Koruyucu Haklar', 'Negatif Statü'),
+    EslestirmeCifti('İsteme Hakları', 'Pozitif Statü'),
+    EslestirmeCifti('Katılma Hakları', 'Aktif Statü'),
+    EslestirmeCifti('Seçme ve Seçilme', 'Siyasi Hak'),
+    EslestirmeCifti('Eğitim Hakkı', 'Sosyal Hak'),
+    EslestirmeCifti('Konut Dokunulmazlığı', 'Kişi Hakkı'),
+    EslestirmeCifti('Dilekçe Hakkı', 'Başvuru Hakkı'),
+    EslestirmeCifti('Hakların Sınırlanması', 'Kanunla'),
+  ],
+  'vatandaslik-idare-hukuku': [
+    EslestirmeCifti('Merkezi İdare', 'Bakanlıklar'),
+    EslestirmeCifti('Taşra Teşkilatı', 'İl ve İlçe'),
+    EslestirmeCifti('Vali', 'İlin Başı'),
+    EslestirmeCifti('Kaymakam', 'İlçenin Başı'),
+    EslestirmeCifti('Yerinden Yönetim', 'Mahalli İdare'),
+    EslestirmeCifti('Hizmet Yerinden Yönetim', 'Üniversite, TRT'),
+    EslestirmeCifti('İdari İşlem', 'Tek Yanlı Karar'),
+    EslestirmeCifti('Büyükşehir Belediyesi', '30 İl'),
+  ],
+};
+
+/// Tüm konulardaki kısa eşleştirmelerin düz listesi — v1 (kapalı kart)
+/// oyununun kart havuzu bunu temel alır.
+List<EslestirmeCifti> get kTumKisaEslestirmeler =>
+    [for (final liste in kKonuEslestirmeleri.values) ...liste];

@@ -50,11 +50,33 @@ class TurkeyMapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final size = Size(constraints.maxWidth, constraints.maxHeight);
-        if (size.width <= 0 || size.height <= 0) return const SizedBox.shrink();
+        final availW = constraints.maxWidth;
+        // Yükseklik sınırsız gelirse (ör. kaydırılabilir bir Column içinde)
+        // haritanın kendi en/boy oranından türetilen yükseklik kullanılır.
+        final availH = constraints.maxHeight.isFinite
+            ? constraints.maxHeight
+            : availW / kTurkeyMapAspectRatio;
+        if (availW <= 0 || availH <= 0) return const SizedBox.shrink();
+
+        // ÖNEMLİ (düzeltilen hata): Eskiden poligonlar doğrudan kullanılabilir
+        // alanın TAMAMINA (genişlik × yükseklik) esnetiliyordu; alanın en/boy
+        // oranı haritanınkinden farklı olduğunda (ör. "Haritadan Öğren"deki
+        // uzun/dar alan) Türkiye şekli YAYVANLAŞIP SIKIŞIYORDU. Artık harita
+        // BoxFit.contain gibi davranır: gerçek en/boy oranı [kTurkeyMapAspectRatio]
+        // KORUNUR, alana sığdırılır ve ortalanır. Artan boşluk ŞEFFAF bırakılır
+        // (arka planda beyaz bir dolgu ÇİZİLMEZ).
+        var mapW = availW;
+        var mapH = mapW / kTurkeyMapAspectRatio;
+        if (mapH > availH) {
+          mapH = availH;
+          mapW = mapH * kTurkeyMapAspectRatio;
+        }
+        final origin = Offset((availW - mapW) / 2, (availH - mapH) / 2);
+        final mapSize = Size(mapW, mapH);
+        final size = Size(availW, availH);
 
         final paths = <String, Path>{
-          for (final g in geos) g.id: _buildPath(g, size),
+          for (final g in geos) g.id: _buildPath(g, mapSize, origin),
         };
 
         return GestureDetector(
@@ -89,8 +111,8 @@ class TurkeyMapWidget extends StatelessWidget {
               for (final g in geos)
                 if (overlays[g.id] != null)
                   Positioned(
-                    left: (g.centroid.dx * size.width - 10).clamp(0.0, size.width - 20),
-                    top: (g.centroid.dy * size.height - 10).clamp(0.0, size.height - 20),
+                    left: (origin.dx + g.centroid.dx * mapW - 10).clamp(0.0, availW - 20),
+                    top: (origin.dy + g.centroid.dy * mapH - 10).clamp(0.0, availH - 20),
                     child: IgnorePointer(child: overlays[g.id]!),
                   ),
             ],
@@ -100,14 +122,15 @@ class TurkeyMapWidget extends StatelessWidget {
     );
   }
 
-  /// Bir ilin normalize edilmiş (0.0-1.0) poligon noktalarını verilen
-  /// pixel boyutuna göre bir [Path]'e dönüştürür.
-  static Path _buildPath(TurkeyProvinceGeo g, Size size) {
+  /// Bir ilin normalize edilmiş (0.0-1.0) poligon noktalarını, en/boy oranı
+  /// korunarak hesaplanmış [mapSize] kutusuna ve [origin] kaymasına göre bir
+  /// [Path]'e dönüştürür.
+  static Path _buildPath(TurkeyProvinceGeo g, Size mapSize, Offset origin) {
     final path = Path();
     for (var i = 0; i < g.points.length; i++) {
       final pt = g.points[i];
-      final dx = pt.dx * size.width;
-      final dy = pt.dy * size.height;
+      final dx = origin.dx + pt.dx * mapSize.width;
+      final dy = origin.dy + pt.dy * mapSize.height;
       if (i == 0) {
         path.moveTo(dx, dy);
       } else {

@@ -4,9 +4,10 @@
 /// KATEGORİYE eşleştirme oyununu yönetir.
 ///
 /// Akış:
-///  * [startLevel] ile 3-5 [KategoriGrubu] verilir. Her kategori için gerçek
-///    üye-terim sayısına göre bir hedef sayaç (3-6) belirlenir ve o kadar
-///    terim kartı üretilir. Tüm kartlar karıştırılıp 5 sütuna (tableau)
+///  * [startLevel] ile 5-20 [KategoriGrubu] verilir (Kolay 5 / Orta 10 / Zor
+///    20). Her kategori için gerçek üye-terim sayısına göre bir hedef sayaç
+///    (3-8; bkz. [kKartAltSinir]) belirlenir ve o kadar terim kartı üretilir.
+///    Tüm kartlar karıştırılıp 5 sütuna (tableau)
 ///    dağıtılır; her sütunda üstte kapalı kartlar, en altta (oynanabilir) 1
 ///    açık kart bulunur.
 ///  * Oyuncu önce açık bir terim kartını seçer ([tapCard]), sonra ait olduğunu
@@ -33,7 +34,18 @@ const int kSutunSayisi = 5;
 /// Seviye kurulurken her sütuna başlangıçta dağıtılan MAKSİMUM kart sayısı.
 /// Bunun üzerindeki terimler "çekme destesi" kuyruğunda ([bekleyenKuyruk])
 /// bekletilir ve oyuncu desteye dokundukça tableau'ya dağıtılır.
-const int kBaslangicSutunDerinlik = 3;
+const int kBaslangicSutunDerinlik = 4;
+
+/// Kategori başına üretilecek terim (kart) sayısı aralığı — AZ kategorili
+/// seviyeler için. Toplam kart sayısını artırmak amacıyla yükseltildi.
+const int kKartAltSinir = 4;
+const int kKartUstSinir = 8;
+
+/// ÇOK kategorili seviyelerde (bkz. [kCokKategoriEsigi]) kategori başına daha
+/// az kart üretilir; aksi hâlde toplam kart sayısı oynanamayacak kadar şişer.
+const int kCokKategoriEsigi = 10;
+const int kCokKategoriAltSinir = 3;
+const int kCokKategoriUstSinir = 5;
 
 /// Hamle bütçesi = toplam terim (kart) sayısı × bu çarpan (yukarı yuvarlanır).
 /// 2.5 kat: her kartı doğru yere koymak en az 1 hamle olduğundan, dikkatli bir
@@ -128,11 +140,19 @@ class KategoriEslestirmeEngine {
     hedefler = [];
     final tumKartlar = <TerimKart>[];
 
+    // Kategori sayısı arttıkça kategori başına kart sayısı düşürülür (bkz.
+    // [kCokKategoriEsigi]) — böylece Zor seviyede 20 kategori olsa bile toplam
+    // kart sayısı makul kalır.
+    final cokKategori = gruplar.length >= kCokKategoriEsigi;
+    final altSinir = cokKategori ? kCokKategoriAltSinir : kKartAltSinir;
+    final ustSinir = cokKategori ? kCokKategoriUstSinir : kKartUstSinir;
+
     for (final g in gruplar) {
       final terimler = List<String>.from(g.terimler)..shuffle(_rnd);
-      final maxHedef = min(terimler.length, 6);
-      // 3 ile maxHedef arasında makul bir hedef.
-      final hedef = maxHedef <= 3 ? maxHedef : 3 + _rnd.nextInt(maxHedef - 3 + 1);
+      final maxHedef = min(terimler.length, ustSinir);
+      // [altSinir] ile maxHedef arasında makul bir hedef.
+      final hedef =
+          maxHedef <= altSinir ? maxHedef : altSinir + _rnd.nextInt(maxHedef - altSinir + 1);
       final secilen = terimler.take(hedef).toList();
       hedefler.add(KategoriHedef(kategoriAdi: g.kategoriAdi, ders: g.ders, hedef: hedef));
       for (final t in secilen) {

@@ -15,8 +15,9 @@ import 'map_shared.dart';
 const List<String> kOptionLetters = ['A', 'B', 'C', 'D', 'E'];
 
 const String _kHowToPlay =
-    'Haritada bir ile dokun, 5 soruluk mini bir quiz çöz. En az 3/5 doğru '
-    'cevaplarsan o ili fethedersin. Günlük hak sınırı YOKTUR — istediğin '
+    'Haritada bir ile dokun, 5 soruluk mini bir quiz çöz. 5 sorunun 5\'ini de '
+    'doğru cevaplarsan o ili fethedersin — tek bir yanlış bile fethi engeller. '
+    'Günlük hak sınırı YOKTUR — istediğin '
     'kadar il deneyebilir, fethedilmiş illeri de tekrar oynayabilirsin. 81 '
     'ilin tamamını fethedince özel bir "KPSS Fatihi" rozeti kazanırsın.';
 
@@ -84,7 +85,7 @@ class _IlFethiScreenState extends State<IlFethiScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Bir ile dokun, 5 soruluk mini quiz\'i çöz, ili fethet! Günlük hak sınırı YOK.',
+                      'Bir ile dokun, 5 soruluk mini quiz\'i çöz. 5/5 doğru yaparsan ili fethedersin! Günlük hak sınırı YOK.',
                       style: TextStyle(fontSize: 13, color: colors.textFaint),
                     ),
                   ),
@@ -144,7 +145,9 @@ class _IlFethiScreenState extends State<IlFethiScreen> {
   }
 }
 
-/// Bir ilin 5 soruluk fetih quiz'i. En az 3/5 doğru cevap ile il fethedilir.
+/// Bir ilin 5 soruluk fetih quiz'i. İl ancak SORULARIN TAMAMI (5/5) doğru
+/// cevaplanırsa fethedilir — kullanıcı isteği üzerine eşik 3/5'ten 5/5'e
+/// yükseltildi (bkz. [_ProvinceQuizScreenState.kPassThreshold]).
 class _ProvinceQuizScreen extends StatefulWidget {
   final TurkeyProvince province;
   final bool alreadyConquered;
@@ -168,7 +171,11 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
   bool _finished = false;
   bool _justUnlockedFatih = false;
 
-  static const int kPassThreshold = 3;
+  /// Fetih eşiği: quizdeki TÜM soruların doğru cevaplanması gerekir (5 soruluk
+  /// standart quizde 5/5). Sabit bir sayı yerine soru sayısına bağlanmıştır ki
+  /// bir il için havuzda 5'ten az soru varsa da "hepsi doğru" kuralı geçerli
+  /// kalsın.
+  int get _passThreshold => _questions.length;
 
   @override
   void initState() {
@@ -197,7 +204,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
       return;
     }
     // Quiz bitti.
-    final passedNow = _correct >= kPassThreshold;
+    final passedNow = _correct >= _passThreshold;
     if (passedNow) {
       final storage = context.read<StorageService>();
       final before = storage.getGamePassedTopics(kMapGameId).length;
@@ -337,7 +344,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
   }
 
   Widget _buildFinished(BuildContext context) {
-    final passedNow = _correct >= kPassThreshold;
+    final passedNow = _correct >= _passThreshold;
     if (_justUnlockedFatih) {
       return const _FatihCelebrationScreen();
     }
@@ -357,7 +364,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
                 Text(
                   passedNow
                       ? '${widget.province.ad} ilini fethettin! ${_questions.length} sorudan $_correct tanesini doğru bildin.'
-                      : '${widget.province.ad} ilini fethedemedin (${_questions.length} sorudan $_correct doğru, en az $kPassThreshold doğru gerekiyor). Tekrar dene!',
+                      : '${widget.province.ad} ilini fethedemedin (${_questions.length} sorudan $_correct doğru). Fetih için soruların TAMAMINI (${_questions.length}/${_questions.length}) doğru bilmen gerekiyor. Tekrar dene!',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: colors.textFaint, height: 1.5),
                 ),

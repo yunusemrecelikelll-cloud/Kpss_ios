@@ -7,7 +7,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/theme_provider.dart';
 import '../tools_hub_screen.dart';
-import 'iklim_avi_mode.dart' show kIklimKategorileri;
+import 'iklim_avi_mode.dart' show IklimSorusu, kIklimSorulari;
 import 'map_shared.dart';
 import 'urun_haritasi_mode.dart' show UrunEsleme, kUrunEslemeleri;
 
@@ -22,6 +22,12 @@ const String _kHowToPlay =
 /// verirsen skorun o kadar yüksek olur.
 abstract class _HizPrompt {
   String get metin;
+
+  /// Sorunun hangi konu başlığından geldiği — oyun sonunda "en çok nerede
+  /// yanlış yaptın, neye çalışmalısın" yorumunu üretmek için yanlışlar bu
+  /// başlığa göre gruplanır.
+  String get kategori;
+
   bool dogruMu(TurkeyProvince p);
 }
 
@@ -30,6 +36,8 @@ class _IlHiz extends _HizPrompt {
   _IlHiz(this.hedef);
   @override
   String get metin => '"${hedef.ad}" ilini bul!';
+  @override
+  String get kategori => 'İl konumları';
   @override
   bool dogruMu(TurkeyProvince p) => p.id == hedef.id;
 }
@@ -40,6 +48,8 @@ class _BolgeHiz extends _HizPrompt {
   @override
   String get metin => '"$bolge" Bölgesi\'nden bir il seç!';
   @override
+  String get kategori => 'Bölgeler';
+  @override
   bool dogruMu(TurkeyProvince p) => p.bolge == bolge;
 }
 
@@ -48,6 +58,8 @@ class _KomsuHiz extends _HizPrompt {
   _KomsuHiz(this.hedef);
   @override
   String get metin => '"${hedef.ad}"nin bir komşusunu seç!';
+  @override
+  String get kategori => 'Komşu iller';
   @override
   bool dogruMu(TurkeyProvince p) => hedef.komsular.contains(p.id);
 }
@@ -59,16 +71,23 @@ class _UrunHiz extends _HizPrompt {
   @override
   String get metin => '"$urun" ürünüyle özdeşleşen ili seç!';
   @override
+  String get kategori => 'Tarım ürünleri';
+  @override
   bool dogruMu(TurkeyProvince p) => ilIds.contains(p.id);
 }
 
+/// İklim sorusu — artık iklimin ADINI söyleyen basit eşleştirme yerine, İklim
+/// Avı modunun yeni soru havuzundaki (bkz. iklim_avi_mode.dart
+/// [kIklimSorulari]) ÇIKARIM GEREKTİREN tarifleri kullanır.
 class _IklimHiz extends _HizPrompt {
-  final String kategori;
-  _IklimHiz(this.kategori);
+  final IklimSorusu soru;
+  _IklimHiz(this.soru);
   @override
-  String get metin => '"$kategori" iklimi görülen bir il seç!';
+  String get metin => soru.soru;
   @override
-  bool dogruMu(TurkeyProvince p) => p.iklim.contains(kategori);
+  String get kategori => 'İklim bilgisi';
+  @override
+  bool dogruMu(TurkeyProvince p) => soru.dogruIller.contains(p.id);
 }
 
 List<_HizPrompt> _generatePromptBatch(Random rnd) {
@@ -86,8 +105,8 @@ List<_HizPrompt> _generatePromptBatch(Random rnd) {
   for (final u in (List<UrunEsleme>.from(kUrunEslemeleri)..shuffle(rnd)).take(7)) {
     list.add(_UrunHiz(u.urun, u.ilIds));
   }
-  for (final k in (List<String>.from(kIklimKategorileri)..shuffle(rnd)).take(5)) {
-    list.add(_IklimHiz(k));
+  for (final s in (List<IklimSorusu>.from(kIklimSorulari)..shuffle(rnd)).take(5)) {
+    list.add(_IklimHiz(s));
   }
   list.shuffle(rnd);
   return list;
@@ -108,13 +127,24 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
   bool _finished = false;
   int _secondsLeft = kHizSuresi;
   int _score = 0;
+  int _wrong = 0;
   int _attempts = 0;
   final _rnd = Random();
   final List<_HizPrompt> _queue = [];
   _HizPrompt? _current;
-  bool _flash = false;
-  bool _flashCorrect = false;
-  TurkeyProvince? _lastTapped;
+
+  /// Son cevabın doğru mu yanlış mı olduğu — akışı durdurmayan ✓/✗ geri
+  /// bildirim satırı için. null ise henüz cevap verilmemiştir.
+  bool? _sonCevapDogruMu;
+
+  /// Yanlış yapılan soruların konu başlığına göre sayımı — oyun sonundaki
+  /// "neye çalışmalısın" yorumunu üretir.
+  final Map<String, int> _yanlisKategoriler = {};
+
+  /// Bu turda kırılan yeni bir rekor var mı (sonuç ekranında vurgulanır).
+  bool _yeniRekor = false;
+  int _oncekiRekor = 0;
+
   Timer? _ticker;
   DateTime? _sessionStart;
 
@@ -150,10 +180,12 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
       _finished = false;
       _secondsLeft = kHizSuresi;
       _score = 0;
+      _wrong = 0;
       _attempts = 0;
-      _flash = false;
-      _flashCorrect = false;
-      _lastTapped = null;
+      _sonCevapDogruMu = null;
+      _yanlisKategoriler.clear();
+      _yeniRekor = false;
+      _oncekiRekor = context.read<StorageService>().getHighScore(kHizliTurkiyeGameId);
       _current = _popNext();
     });
     context.read<SoundService>().resetTickPhase();
@@ -174,29 +206,87 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
     }
     if (_secondsLeft <= 0) {
       _ticker?.cancel();
-      setState(() => _finished = true);
+      _turuBitir();
     }
   }
 
+  /// Süre bittiğinde skoru kalıcı olarak kaydeder (rekor + son tur dağılımı)
+  /// ve sonuç ekranına geçer.
+  Future<void> _turuBitir() async {
+    final storage = context.read<StorageService>();
+    final rekorKirildi = await storage.submitHighScore(kHizliTurkiyeGameId, _score);
+    await storage.setLastRoundStats(kHizliTurkiyeGameId, correct: _score, wrong: _wrong);
+    if (!mounted) return;
+    setState(() {
+      _yeniRekor = rekorKirildi;
+      _finished = true;
+    });
+  }
+
+  /// Dokunulduğu ANDA cevabı işler ve sıradaki soruya geçer.
+  ///
+  /// ÖNCEDEN burada 260 ms'lik bir `Future.delayed` vardı; doğru/yanlış
+  /// yanıp sönme animasyonu bitene kadar sonraki soru gelmiyordu ve oyun
+  /// "tıklayınca hemen seçmiyor" hissi veriyordu. 60 saniyelik bir modda bu
+  /// gecikme toplamda onlarca saniye kaybettiriyordu. Artık geri bildirim
+  /// akışı DURDURMAYAN kısa bir ✓/✗ satırıyla veriliyor.
   void _onTapProvince(TurkeyProvince p) {
-    if (_flash || _finished || _current == null) return;
+    if (_finished || _current == null) return;
     context.read<SoundService>().click();
     final correct = _current!.dogruMu(p);
+    if (!correct) {
+      _yanlisKategoriler[_current!.kategori] =
+          (_yanlisKategoriler[_current!.kategori] ?? 0) + 1;
+    }
     setState(() {
       _attempts++;
-      if (correct) _score++;
-      _flash = true;
-      _flashCorrect = correct;
-      _lastTapped = p;
+      if (correct) {
+        _score++;
+      } else {
+        _wrong++;
+      }
+      _sonCevapDogruMu = correct;
+      _current = _popNext();
     });
-    Future.delayed(const Duration(milliseconds: 260), () {
-      if (!mounted || _finished) return;
-      setState(() {
-        _flash = false;
-        _lastTapped = null;
-        _current = _popNext();
-      });
-    });
+  }
+
+  /// Oyun sonunda doğru/yanlış dağılımına ve yanlışların hangi konuda
+  /// yoğunlaştığına göre kişiye özel bir değerlendirme metni üretir.
+  String _sonucYorumu() {
+    final b = StringBuffer();
+    b.writeln('✅ Doğru: $_score    ❌ Yanlış: $_wrong');
+
+    if (_attempts == 0) {
+      b.writeln('\nHiç cevap vermedin — haritaya dokunarak başlayabilirsin.');
+      return b.toString().trim();
+    }
+
+    final oran = (_score * 100 / _attempts).round();
+    b.writeln('İsabet oranın: %$oran');
+    b.writeln();
+
+    if (oran >= 85) {
+      b.writeln('Harika! Türkiye haritasına gerçekten hâkimsin.');
+    } else if (oran >= 60) {
+      b.writeln('İyi gidiyorsun. Biraz daha tekrarla üst seviyeye çıkarsın.');
+    } else if (oran >= 40) {
+      b.writeln('Fena değil ama haritayı daha sık çalışman gerekiyor.');
+    } else {
+      b.writeln('Temelden tekrar etmelisin. "Haritadan Öğren" bölümü iyi bir başlangıç olur.');
+    }
+
+    if (_yanlisKategoriler.isNotEmpty) {
+      final sirali = _yanlisKategoriler.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+      final enZayif = sirali.first;
+      b.writeln();
+      b.writeln('📌 En çok "${enZayif.key}" konusunda zorlandın '
+          '(${enZayif.value} yanlış). Önce buraya çalış.');
+      if (sirali.length > 1 && sirali[1].value > 0) {
+        b.writeln('Ardından "${sirali[1].key}" konusunu tekrar et.');
+      }
+    }
+    return b.toString().trim();
   }
 
   void _retry() {
@@ -219,10 +309,14 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
+      final rekor = context.read<StorageService>().getHighScore(kHizliTurkiyeGameId);
+      final rekorSatiri = _yeniRekor
+          ? '\n\n🏆 YENİ REKOR! (önceki: $_oncekiRekor)'
+          : '\n\n🏆 En Yüksek Skor: $rekor';
       return MapSessionResult(
         title: '⏱️ 60 Saniyede Türkiye',
-        emoji: _score >= 15 ? '🎉' : '📚',
-        message: '$_attempts denemede $_score doğru cevap verdin!',
+        emoji: _yeniRekor ? '🏆' : (_score >= 15 ? '🎉' : '📚'),
+        message: '${_sonucYorumu()}$rekorSatiri',
         onRetry: _retry,
         palette: mapModePaletteFor(kHizliTurkiyeGameId),
       );
@@ -252,7 +346,22 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('⏳ $_secondsLeft sn', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: _secondsLeft <= 10 ? colors.danger : colors.text)),
-                  Text('Skor: $_score / $_attempts', style: const TextStyle(fontWeight: FontWeight.w800)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Row(
+                        children: [
+                          Text('✅ $_score',
+                              style: TextStyle(fontWeight: FontWeight.w800, color: colors.success)),
+                          const SizedBox(width: 10),
+                          Text('❌ $_wrong',
+                              style: TextStyle(fontWeight: FontWeight.w800, color: colors.danger)),
+                        ],
+                      ),
+                      Text('🏆 Rekor: $_oncekiRekor',
+                          style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 8),
@@ -261,27 +370,27 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
               Expanded(
                 child: TurkeyMapCanvas(
                   provinces: kTurkeyProvinces,
-                  colorFor: (p) {
-                    if (!_flash) return colors.violet.withValues(alpha: 0.32);
-                    final match = _current?.dogruMu(p) ?? false;
-                    if (match) return colors.success;
-                    if (p.id == _lastTapped?.id) return colors.danger;
-                    return colors.violet.withValues(alpha: 0.12);
-                  },
+                  colorFor: (p) => colors.violet.withValues(alpha: 0.32),
                   onTap: _onTapProvince,
                 ),
               ),
-              if (_flash)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    _flashCorrect ? '✅ Doğru!' : '❌ Yanlış!',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      color: _flashCorrect ? colors.success : colors.danger,
-                    ),
-                  ),
-                ),
+              // Akışı DURDURMAYAN geri bildirim: sonraki soru zaten ekranda,
+              // bu satır sadece bir önceki cevabın sonucunu gösterir.
+              SizedBox(
+                height: 24,
+                child: _sonCevapDogruMu == null
+                    ? null
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: Text(
+                          _sonCevapDogruMu! ? '✅ Doğru!' : '❌ Yanlış!',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: _sonCevapDogruMu! ? colors.success : colors.danger,
+                          ),
+                        ),
+                      ),
+              ),
             ],
           ),
         ),

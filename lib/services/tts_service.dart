@@ -137,6 +137,17 @@ class TtsService extends ChangeNotifier {
     }
   }
 
+  /// [stop]'un "bekleme gerektirmeyen" hali — `dispose()` ve
+  /// `didChangeAppLifecycleState` gibi async olamayan yerlerden güvenle
+  /// çağrılabilir (asla hata fırlatmaz, sonucu beklenmez).
+  ///
+  /// Ekran değişiminde / teste girerken sesli anlatımın arka planda çalmaya
+  /// devam etmemesi için kullanılır (bkz. topic_screen.dart, quiz_screen.dart,
+  /// subject_screen.dart).
+  void stopNow() {
+    unawaited(stop());
+  }
+
   /// Bazı platform/motor kombinasyonlarında desteklenmeyebilir; desteklenmiyorsa
   /// sessizce yoksayılır.
   Future<void> pause() async {

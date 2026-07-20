@@ -4,28 +4,22 @@ import '../models/subject.dart';
 import '../services/data_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'card_game_screen.dart';
 import 'card_game_v2_screen.dart';
 import 'map_game/map_game_screen.dart';
 import 'map_game/map_shared.dart';
 import 'solitaire_screen.dart';
-import 'mnemonics_screen.dart';
-import 'predictor_screen.dart';
-import 'league_screen.dart';
-import 'stopwatch_screen.dart';
-import 'mentor_screen.dart';
 import 'premium_screen.dart';
 import 'quick_modes/hizli_karar_screen.dart';
 import 'quick_modes/bilgi_maratonu_screen.dart';
 import 'quick_modes/gunun_patronu_screen.dart';
 import 'quick_modes/hiz_60_screen.dart';
-import 'quick_modes/balon_patlat_screen.dart';
 import 'quick_modes/zincirleme_bilgi_screen.dart';
 import 'quick_modes/kimim_ben_screen.dart';
 import 'quick_modes/yazim_yanlislari_screen.dart';
 import 'quick_modes/tarihleri_bil_screen.dart';
-import 'score_calculator_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import '../theme/subject_colors.dart';
 
@@ -41,8 +35,8 @@ const int kFreeGameDailyLimit = 10;
 const String kKartOyunuGameId = 'kart_oyunu';
 
 /// Saniye cinsinden bir süreyi "1 sa 12 dk" / "8 dk" / "45 sn" gibi kısa,
-/// kullanıcı dostu bir Türkçe metne çevirir — Kart Oyunu / Balon Patlat /
-/// Hız 60 / Düello ekranlarındaki "Toplam ... oynadın" etiketlerinde kullanılır.
+/// kullanıcı dostu bir Türkçe metne çevirir — Kart Oyunu / Hız 60 /
+/// Düello ekranlarındaki "Toplam ... oynadın" etiketlerinde kullanılır.
 String formatPlayDuration(int totalSeconds) {
   if (totalSeconds < 60) return '$totalSeconds sn';
   final h = totalSeconds ~/ 3600;
@@ -52,8 +46,8 @@ String formatPlayDuration(int totalSeconds) {
 }
 
 /// Oyun ekranlarının AppBar'ına eklenen "ℹ️" bilgi butonu — kısa bir "nasıl
-/// oynanır" açıklamasını AlertDialog içinde gösterir. Kart Oyunu / Balon
-/// Patlat / Hız 60 / Düello ekranlarının HEPSİNDE AYNI keşfedilebilir mekanizma
+/// oynanır" açıklamasını AlertDialog içinde gösterir. Kart Oyunu / Hız 60 /
+/// Düello ekranlarının HEPSİNDE AYNI keşfedilebilir mekanizma
 /// (bir bilgi ikonu) kullanılsın diye burada tek noktadan tanımlanır.
 class HowToPlayButton extends StatelessWidget {
   final String title;
@@ -99,14 +93,6 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
     _future = context.read<DataService>().loadAll();
   }
 
-  void _goPremiumGated(BuildContext context, bool premium, Widget screen) {
-    if (!premium) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-      return;
-    }
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
-  }
-
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
@@ -136,8 +122,6 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
           final h60Left = (kFreeGameDailyLimit - (h60['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final gununPatronuOynandi = storage.hasPlayedGununPatronuToday();
 
-          final bp = storage.getGamePlayState(kBalonPatlatGameId);
-          final bpLeft = (kFreeGameDailyLimit - (bp['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final zb = storage.getGamePlayState(kZincirlemeBilgiGameId);
           final zbLeft = (kFreeGameDailyLimit - (zb['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final kb = storage.getGamePlayState(kKimimBenGameId);
@@ -149,27 +133,52 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
           final tbLeft = (kFreeGameDailyLimit - (tb['plays'] as int)).clamp(0, kFreeGameDailyLimit);
 
           final c = context.watch<ThemeProvider>().colors;
+
+          // Kartın sağ üstündeki hak çipinin metni — premium'da "Sınırsız",
+          // ücretsiz hesapta o oyunun BUGÜN kalan hakkı. Sayaçların kendisi
+          // yukarıda, eskisiyle birebir aynı şekilde hesaplanıyor.
+          String hakEtiketi(int kalan) => premium ? 'Sınırsız' : 'Bugün $kalan hak';
+
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Text('Çalışmanı güçlendirecek oyunlar ve ekstra araçlar.',
-                  style: TextStyle(fontSize: 13.5, color: c.textFaint)),
-              const SizedBox(height: 18),
-              const _SectionTitle('🎮 Oyunlar'),
+              // ── Sayfanın kahraman kartı ───────────────────────────────
+              // Öne çıkan oyun KPSS Düello: hem en popüler mod hem de tek
+              // canlı/çok oyunculu deneyim olduğu için buradan kısayol verilir.
+              DsHeroCard(
+                emoji: '🎮',
+                title: 'Oyunlarla Öğren',
+                subtitle: 'Test çözmekten sıkıldığında oyunlarla tekrar et: rakiplerinle '
+                    'düello yap, kart eşleştir, haritada il fethet. Her oyun bildiklerini '
+                    'pekiştirir, XP ve rozet kazandırır.',
+                accent: c.violet,
+                accent2: c.rose,
+                actionLabel: 'Düelloya Başla',
+                overline: 'Oyunlar',
+                badge: 'POPÜLER',
+                illustrationEmoji: '🕹️',
+                onAction: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => const DuelLobbyScreen()));
+                },
+              ),
+              const SizedBox(height: 22),
+              const DsSectionHeader(title: '🎮 Oyunlar'),
               const SizedBox(height: 10),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1.0,
+                mainAxisSpacing: kDsGap,
+                crossAxisSpacing: kDsGap,
+                childAspectRatio: 0.86,
                 children: [
                   ToolCard(
                     icon: '⚔️',
                     title: 'KPSS Düello',
-                    desc: 'POPÜLER! Rakiplerinle canlı 1v1 düello ya da çok kişilik Royale. '
-                        '${premium ? "Sınırsız oyna." : "Günde $kFreeGameDailyLimit ücretsiz maç."}',
+                    desc: 'Rakiplerinle canlı 1v1 düello ya da çok kişilik Royale.',
+                    chipLabel: premium ? 'Sınırsız' : 'Günde $kFreeGameDailyLimit maç',
                     palette: const SubjectPalette(Color(0xFFEF4444), Color(0xFF7C2D12)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const DuelLobbyScreen())),
@@ -177,7 +186,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🃏',
                     title: 'Kart Eşleştirme Oyunu',
-                    desc: premium ? 'Sınırsız oyna.' : 'Bugün $cgLeft hakkın kaldı.',
+                    desc: 'Eşleşen kartları bul, hafızanı ve bilgini birlikte çalıştır.',
+                    chipLabel: hakEtiketi(cgLeft),
                     palette: const SubjectPalette(Color(0xFFF472B6), Color(0xFFC026D3)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => CardGameScreen(subjects: subjects))),
@@ -185,8 +195,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🃏',
                     title: 'Kart Oyunu V2',
-                    desc: 'Ders/konu seç, açık kartları eşleştir. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $g2Left hakkın kaldı."}',
+                    desc: 'Ders/konu seç, açık kartları eşleştir.',
+                    chipLabel: hakEtiketi(g2Left),
                     palette: const SubjectPalette(Color(0xFFA78BFA), Color(0xFF7C3AED)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => CardGameV2Screen(subjects: subjects))),
@@ -194,8 +204,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🂡',
                     title: 'Solitaire',
-                    desc: 'Ders/konu seç, kartları sırayla temizle. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $solLeft hakkın kaldı."}',
+                    desc: 'Ders/konu seç, kartları sırayla temizle.',
+                    chipLabel: hakEtiketi(solLeft),
                     palette: const SubjectPalette(Color(0xFF34D399), Color(0xFF059669)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => SolitaireScreen(subjects: subjects))),
@@ -207,30 +217,30 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                     // Oyunu'na girince (bkz. map_game/map_game_screen.dart) hem
                     // puansız "Haritadan Öğren" kütüphanesi hem TÜM skorlu mini
                     // oyun modları tek ekranda birlikte listeleniyor.
-                    desc: 'Türkiye haritasında illeri, bölgeleri fethet ya da puansız öğren. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $haritaLeft hakkın kaldı."}',
+                    desc: 'Türkiye haritasında illeri, bölgeleri fethet ya da puansız öğren.',
+                    chipLabel: hakEtiketi(haritaLeft),
                     palette: const SubjectPalette(Color(0xFF60A5FA), Color(0xFF2563EB)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => MapGameScreen(subjects: subjects))),
                   ),
                 ],
               ),
-              const SizedBox(height: 26),
-              const _SectionTitle('⚡ Hızlı Modlar'),
+              const SizedBox(height: 24),
+              const DsSectionHeader(title: '⚡ Hızlı Modlar'),
               const SizedBox(height: 10),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1.0,
+                mainAxisSpacing: kDsGap,
+                crossAxisSpacing: kDsGap,
+                childAspectRatio: 0.86,
                 children: [
                   ToolCard(
                     icon: '⚡',
                     title: 'Hızlı Karar',
-                    desc: 'Her soru için sadece birkaç saniyen var, doğru/yanlış hızlı seç. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $hkLeft hakkın kaldı."}',
+                    desc: 'Her soru için sadece birkaç saniyen var, doğru/yanlış hızlı seç.',
+                    chipLabel: hakEtiketi(hkLeft),
                     palette: const SubjectPalette(Color(0xFFFBBF24), Color(0xFFD97706)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => HizliKararScreen(subjects: subjects))),
@@ -238,8 +248,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🏃',
                     title: 'Bilgi Maratonu',
-                    desc: 'Tüm derslerden sonsuz soru akışı, ilk yanlışta seri biter. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $bmLeft hakkın kaldı."}',
+                    desc: 'Tüm derslerden sonsuz soru akışı, ilk yanlışta seri biter.',
+                    chipLabel: hakEtiketi(bmLeft),
                     palette: const SubjectPalette(Color(0xFFFB923C), Color(0xFFDC2626)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => BilgiMaratonuScreen(subjects: subjects))),
@@ -250,6 +260,7 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                     desc: gununPatronuOynandi
                         ? 'Bugün zaten oynadın, yarın tekrar gel.'
                         : '20 özel soruluk günlük tur. Günde 1 kez oynanır.',
+                    chipLabel: gununPatronuOynandi ? 'Bugün bitti' : 'Günde 1 hak',
                     palette: const SubjectPalette(Color(0xFFFACC15), Color(0xFF7C3AED)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => GununPatronuScreen(subjects: subjects))),
@@ -257,8 +268,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '⏱️',
                     title: '60 Saniye Challenge',
-                    desc: 'Tüm derslerden karışık sorularla 60 saniyede kaç doğru yapabilirsin? '
-                        '${premium ? "Sınırsız oyna." : "Bugün $h60Left hakkın kaldı."}',
+                    desc: 'Karışık sorularla 60 saniyede kaç doğru yapabilirsin?',
+                    chipLabel: hakEtiketi(h60Left),
                     palette: const SubjectPalette(Color(0xFFF87171), Color(0xFFEA580C)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => Hiz60Screen(subjects: subjects))),
@@ -266,8 +277,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '✍️',
                     title: 'Yazım Yanlışları',
-                    desc: 'Doğru yazımı bul, süre dolmadan seç! '
-                        '${premium ? "Sınırsız oyna." : "Bugün $yyLeft hakkın kaldı."}',
+                    desc: 'Doğru yazımı bul, süre dolmadan seç!',
+                    chipLabel: hakEtiketi(yyLeft),
                     palette: const SubjectPalette(Color(0xFF2DD4BF), Color(0xFF0891B2)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const YazimYanlislariScreen())),
@@ -275,39 +286,30 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '📅',
                     title: 'Tarihleri Bil',
-                    desc: 'Önemli olayların doğru yılını bil. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $tbLeft hakkın kaldı."}',
+                    desc: 'Önemli olayların doğru yılını bil.',
+                    chipLabel: hakEtiketi(tbLeft),
                     palette: const SubjectPalette(Color(0xFFB45309), Color(0xFF78350F)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const TarihleriBilScreen())),
                   ),
                 ],
               ),
-              const SizedBox(height: 26),
-              const _SectionTitle('🧩 Ek Oyunlar'),
+              const SizedBox(height: 24),
+              const DsSectionHeader(title: '🧩 Ek Oyunlar'),
               const SizedBox(height: 10),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1.0,
+                mainAxisSpacing: kDsGap,
+                crossAxisSpacing: kDsGap,
+                childAspectRatio: 0.86,
                 children: [
-                  ToolCard(
-                    icon: '🎈',
-                    title: 'Balon Patlat',
-                    desc: 'Doğru cevabın balonuna dokun, yanlışlardan kaç. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $bpLeft hakkın kaldı."}',
-                    palette: const SubjectPalette(Color(0xFF38BDF8), Color(0xFFF472B6)),
-                    onTap: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => BalonPatlatScreen(subjects: subjects))),
-                  ),
                   ToolCard(
                     icon: '🔗',
                     title: 'Zincirleme Bilgi',
-                    desc: 'Tarihi/coğrafi bilgi zincirlerini adım adım çöz. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $zbLeft zincir hakkın kaldı."}',
+                    desc: 'Tarihi/coğrafi bilgi zincirlerini adım adım çöz.',
+                    chipLabel: premium ? 'Sınırsız' : 'Bugün $zbLeft zincir',
                     palette: const SubjectPalette(Color(0xFF6366F1), Color(0xFF3B82F6)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const ZincirlemeBilgiScreen())),
@@ -315,88 +317,31 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🕵️',
                     title: 'Kimim Ben',
-                    desc: 'İpuçlarıyla tarihi kişiyi bil, erken bilirsen daha çok puan al. '
-                        '${premium ? "Sınırsız oyna." : "Bugün $kbLeft hakkın kaldı."}',
+                    desc: 'İpuçlarıyla tarihi kişiyi bil, erken bilirsen daha çok puan al.',
+                    chipLabel: hakEtiketi(kbLeft),
                     palette: const SubjectPalette(Color(0xFF8B5CF6), Color(0xFFD946EF)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const KimimBenScreen())),
                   ),
                 ],
               ),
-              const SizedBox(height: 26),
-              const _SectionTitle('🧰 Diğer Araçlar'),
-              const SizedBox(height: 10),
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 1.0,
-                children: [
-                  ToolCard(
-                    icon: '🧠',
-                    title: 'Akılda Kalıcı Kodlama',
-                    desc: 'Konuların kısa, şifreli özetleriyle hızlı tekrar.',
-                    locked: !premium,
-                    palette: const SubjectPalette(Color(0xFF14B8A6), Color(0xFF16A34A)),
-                    onTap: () => _goPremiumGated(context, premium, MnemonicsScreen(subjects: subjects)),
-                  ),
-                  ToolCard(
-                    icon: '🎯',
-                    title: 'Bugün Sınava Girsen Kaç Alırsın?',
-                    desc: 'Geçmiş performansına göre tahmini puan.',
-                    locked: !premium,
-                    palette: const SubjectPalette(Color(0xFFF59E0B), Color(0xFFEA580C)),
-                    onTap: () => _goPremiumGated(context, premium, const PredictorScreen()),
-                  ),
-                  ToolCard(
-                    icon: '🏆',
-                    title: 'Özel Lig',
-                    desc: 'Başarı seviyene göre lig rütbeni gör.',
-                    locked: !premium,
-                    palette: const SubjectPalette(Color(0xFFFACC15), Color(0xFFB45309)),
-                    onTap: () => _goPremiumGated(context, premium, const LeagueScreen()),
-                  ),
-                  ToolCard(
-                    icon: '⏱️',
-                    title: 'Çalışma Kronometresi',
-                    desc: 'Ders bazlı çalışma sürelerini kaydet ve analiz et.',
-                    locked: !premium,
-                    palette: const SubjectPalette(Color(0xFF60A5FA), Color(0xFF1E3A8A)),
-                    onTap: () => _goPremiumGated(context, premium, const StopwatchScreen()),
-                  ),
-                  ToolCard(
-                    icon: '🎓',
-                    title: 'Mentörlük Seansları',
-                    desc: 'Sınav stratejileri ve haftalık plan önerileri.',
-                    locked: !premium,
-                    palette: const SubjectPalette(Color(0xFF8B5CF6), Color(0xFF4338CA)),
-                    onTap: () => _goPremiumGated(context, premium, const MentorScreen()),
-                  ),
-                  ToolCard(
-                    icon: '🧮',
-                    title: 'Puan Hesaplama',
-                    desc: 'Doğru/yanlış sayılarını gir, net ve tahmini KPSS puanını gör.',
-                    palette: const SubjectPalette(Color(0xFF22C55E), Color(0xFF0D9488)),
-                    onTap: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => const ScoreCalculatorScreen())),
-                  ),
-                ],
-              ),
+              // NOT: Buradaki "🧰 Diğer Araçlar" bölümü kaldırıldı — içindeki
+              // araçlar oyun değil çalışma aracı oldukları için ait oldukları
+              // yerlere taşındı:
+              //   • Bugün Sınava Girsen Kaç Alırsın? → Profil
+              //   • Özel Lig                        → Profil
+              //   • Puan Hesaplama                  → Profil
+              //   • Akılda Kalıcı Kodlama           → Anasayfa çekmecesi (Drawer)
+              //   • Mentörlük Seansları             → Anasayfa çekmecesi (Drawer)
+              //   • Çalışma Kronometresi            → Anasayfa çekmecesi (Drawer)
+              // Böylece "Oyunlar" sekmesi yalnızca gerçekten oyun olanları
+              // barındırıyor.
             ],
           );
         },
       ),
     );
   }
-}
-
-class _SectionTitle extends StatelessWidget {
-  final String text;
-  const _SectionTitle(this.text);
-  @override
-  Widget build(BuildContext context) => Text(text, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800));
 }
 
 const SubjectPalette _kToolCardFallbackPalette = SubjectPalette(Color(0xFF8B5CF6), Color(0xFFF472B6));
@@ -410,6 +355,11 @@ class ToolCard extends StatelessWidget {
   final String icon, title, desc;
   final bool locked;
   final SubjectPalette? palette;
+
+  /// Sağ üstteki küçük durum çipi — ör. "Bugün 7 hak" / "Sınırsız".
+  /// İsteğe bağlıdır: verilmezse çip hiç çizilmez, böylece bu bileşeni
+  /// kullanan mevcut çağrılar aynen çalışmaya devam eder.
+  final String? chipLabel;
   final VoidCallback onTap;
   const ToolCard({
     super.key,
@@ -418,6 +368,7 @@ class ToolCard extends StatelessWidget {
     required this.desc,
     this.locked = false,
     this.palette,
+    this.chipLabel,
     required this.onTap,
   });
 
@@ -425,27 +376,45 @@ class ToolCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final p = palette ?? _kToolCardFallbackPalette;
-    return Container(
-      decoration: subjectCardDecoration(palette: p, isLight: c.isLight),
+    // Açık temada paletin koyu tonu, koyu temada parlak tonu daha okunaklı.
+    final vurgu = c.isLight ? p.b : p.a;
+
+    final kart = Container(
+      decoration: subjectCardDecoration(palette: p, isLight: c.isLight, radius: kDsRadius),
       clipBehavior: Clip.antiAlias,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(kDsRadius),
           onTap: () {
             context.read<SoundService>().click();
             onTap();
           },
           child: Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.all(13),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(locked ? '🔒' : icon, style: const TextStyle(fontSize: 24)),
+                // Üst şerit: solda büyük emoji (kilitliyse kilit), sağda hak çipi.
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(locked ? '🔒' : icon, style: const TextStyle(fontSize: 26)),
+                    const SizedBox(width: 6),
+                    if (chipLabel != null)
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: DsChip(label: chipLabel!, color: vurgu),
+                        ),
+                      ),
+                  ],
+                ),
                 const SizedBox(height: 8),
                 Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13.5),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800, fontSize: 13.5, color: c.text),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -453,9 +422,25 @@ class ToolCard extends StatelessWidget {
                 Expanded(
                   child: Text(
                     desc,
-                    style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                    maxLines: 3,
+                    style: TextStyle(fontSize: 11.5, height: 1.3, color: c.textFaint),
+                    maxLines: 4,
                     overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                // Sağ altta daire içinde ok — "buraya dokunulur" işareti.
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: c.glass2,
+                      border: Border.all(color: vurgu.withValues(alpha: 0.45)),
+                    ),
+                    child: Icon(locked ? Icons.lock_outline : Icons.arrow_forward,
+                        size: 15, color: vurgu),
                   ),
                 ),
               ],
@@ -464,6 +449,9 @@ class ToolCard extends StatelessWidget {
         ),
       ),
     );
+
+    // Kilitli kartlar soluk görünür (dokunma davranışı çağıranın sorumluluğunda).
+    return locked ? Opacity(opacity: 0.55, child: kart) : kart;
   }
 }
 
@@ -475,29 +463,53 @@ class LockedFeatureCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
     return Scaffold(
       appBar: AppBar(title: Text('🔒 $title')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(desc, style: TextStyle(color: context.watch<ThemeProvider>().colors.textFaint, height: 1.6)),
-                const SizedBox(height: 18),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                  },
-                  child: const Text("Premium'a Geç"),
-                ),
-              ],
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            DsCard(
+              accent: c.gold,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      DsIconBadge(emoji: '🔒', color: c.gold),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w900, color: c.text),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Text(desc, style: TextStyle(color: c.textFaint, height: 1.6, fontSize: 13)),
+                  const SizedBox(height: 18),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: DsPillButton(
+                      label: "Premium'a Geç",
+                      color: c.gold,
+                      trailingIcon: Icons.arrow_forward,
+                      onPressed: () {
+                        context.read<SoundService>().click();
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

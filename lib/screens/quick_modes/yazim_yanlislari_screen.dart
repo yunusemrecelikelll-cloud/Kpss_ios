@@ -22,6 +22,11 @@ const String kYazimYanlislariGameId = 'yazim-yanlislari';
 const int kYazimYanlislariSoruSayisi = 25;
 const int kYazimYanlislariSureSn = 8;
 
+/// Cevap YANLIŞ (ya da süre doldu) olduğunda doğru yazımın ekranda kaldığı
+/// süre — bu sırada soru sayacı DURUR ve sonraki soruya otomatik geçilir.
+/// Doğru cevapta ise hiç beklenmez, anında sonraki soruya geçilir.
+const Duration kYazimYanlislariYanlisBekleme = Duration(milliseconds: 1800);
+
 class YazimYanlislariScreen extends StatefulWidget {
   const YazimYanlislariScreen({super.key});
 
@@ -53,6 +58,13 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   String? _selectedText;
   Timer? _ticker;
 
+  /// Yanlış cevaptan sonra sonraki soruya otomatik geçişi sağlayan zamanlayıcı
+  /// — ekran kapanırsa iptal edilebilsin diye alanda tutuluyor.
+  Timer? _autoNext;
+
+  /// Rekor bir kez kaydedilsin diye.
+  bool _yeniRekor = false;
+
   @override
   void initState() {
     super.initState();
@@ -62,6 +74,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   @override
   void dispose() {
     _ticker?.cancel();
+    _autoNext?.cancel();
     super.dispose();
   }
 
@@ -121,9 +134,13 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
     }
   }
 
+  /// Cevap işlenir. DOĞRUYSA hiç beklemeden sonraki soruya geçilir; YANLIŞSA
+  /// (ya da süre dolduysa) süre durur, doğru yazım ekranda gösterilir ve
+  /// [kYazimYanlislariYanlisBekleme] kadar sonra otomatik olarak sonraki
+  /// soruya geçilir — kullanıcının butona basması gerekmez.
   void _answer(String? metin) {
     if (_answered) return;
-    _ticker?.cancel();
+    _ticker?.cancel(); // süre DURUR
     if (metin != null) context.read<SoundService>().click();
     final item = _order[_index];
     final correct = metin == item.dogru;
@@ -137,23 +154,44 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
         _wrongCount++;
       }
     });
+    if (correct) {
+      _next();
+    } else {
+      _autoNext?.cancel();
+      _autoNext = Timer(kYazimYanlislariYanlisBekleme, () {
+        if (!mounted) return;
+        _next();
+      });
+    }
   }
 
   void _next() {
-    context.read<SoundService>().click();
+    _autoNext?.cancel();
     final isLast = _index + 1 >= _order.length;
     if (isLast) {
-      setState(() => _finished = true);
+      _finish();
       return;
     }
     setState(() => _index++);
     _startQuestion();
   }
 
+  /// Test bitti: doğru sayısını rekor olarak kaydeder.
+  Future<void> _finish() async {
+    setState(() => _finished = true);
+    final storage = context.read<StorageService>();
+    final yeni = await storage.submitHighScore(kYazimYanlislariGameId, _correctCount);
+    await storage.setLastRoundStats(kYazimYanlislariGameId, correct: _correctCount, wrong: _wrongCount);
+    if (!mounted) return;
+    setState(() => _yeniRekor = yeni);
+  }
+
   void _retry() {
+    _autoNext?.cancel();
     setState(() {
       _locked = false;
       _booted = false;
+      _yeniRekor = false;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
@@ -174,11 +212,13 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
     }
     if (_finished) {
       final basari = _correctCount >= (_order.length * 0.7);
+      final record = context.watch<StorageService>().getHighScore(kYazimYanlislariGameId);
       return QuickModeResultCard(
         title: '✍️ Yazım Yanlışları',
-        emoji: basari ? '🎉' : '📚',
+        emoji: _yeniRekor ? '🏆' : (basari ? '🎉' : '📚'),
         message: '$_correctCount/${_order.length} doğru yazımı buldun!',
-        subMessage: '✓ $_correctCount doğru   •   ✗ $_wrongCount yanlış',
+        subMessage: '✓ $_correctCount doğru   •   ✗ $_wrongCount yanlış\n'
+            '${quickModeRecordLine(record: record, yeniRekor: _yeniRekor)}',
         onRetry: _retry,
       );
     }
@@ -194,18 +234,12 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('${_index + 1}/${_order.length}', style: TextStyle(fontSize: 12.5, color: colors.textFaint, fontWeight: FontWeight.w700)),
-                Row(
-                  children: [
-                    Text('✓ $_correctCount', style: TextStyle(color: colors.success, fontWeight: FontWeight.w800)),
-                    const SizedBox(width: 10),
-                    Text('✗ $_wrongCount', style: TextStyle(color: colors.danger, fontWeight: FontWeight.w800)),
-                  ],
-                ),
-              ],
+            QuickModeScoreBar(
+              gameId: kYazimYanlislariGameId,
+              correct: _correctCount,
+              wrong: _wrongCount,
+              leading: '${_index + 1}/${_order.length}',
+              leadingColor: colors.textFaint,
             ),
             const SizedBox(height: 6),
             ClipRRect(
@@ -222,31 +256,36 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
             ),
             const SizedBox(height: 12),
             for (final opt in _options) _buildOption(opt, colors),
-            if (_answered) ...[
+            // Doğru cevapta anında sonraki soruya geçildiği için bu panel
+            // pratikte YALNIZCA yanlış cevap / süre dolması durumunda görünür:
+            // doğru yazımı gösterir, süre durmuştur ve kısa bir bekleyişin
+            // ardından sonraki soruya otomatik geçilir.
+            if (_answered && !_lastCorrect) ...[
               const SizedBox(height: 8),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: (_lastCorrect ? colors.success : colors.danger).withValues(alpha: 0.12),
+                  color: colors.danger.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: (_lastCorrect ? colors.success : colors.danger).withValues(alpha: 0.4)),
+                  border: Border.all(color: colors.danger.withValues(alpha: 0.4)),
                 ),
-                child: Text(
-                  _lastCorrect
-                      ? '✅ Doğru!'
-                      : (_selectedText == null
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      _selectedText == null
                           ? '⏰ Süre doldu! Doğru yazım: "${_order[_index].dogru}"'
-                          : '❌ Doğru yazım: "${_order[_index].dogru}"'),
-                  style: TextStyle(fontWeight: FontWeight.w800, color: _lastCorrect ? colors.success : colors.danger),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ElevatedButton(
-                  onPressed: _next,
-                  child: Text(_index + 1 >= _order.length ? 'Bitir 🏁' : 'Sonraki Soru →'),
+                          : '❌ Doğru yazım: "${_order[_index].dogru}"',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: colors.danger),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _index + 1 >= _order.length ? 'Test bitiyor...' : 'Sonraki soruya geçiliyor...',
+                      style: TextStyle(fontSize: 11.5, color: colors.textFaint),
+                    ),
+                  ],
                 ),
               ),
             ],

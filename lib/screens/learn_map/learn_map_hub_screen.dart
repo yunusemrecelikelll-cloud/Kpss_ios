@@ -10,7 +10,8 @@ import 'learn_map_detail_screen.dart';
 const String _kHowToPlay =
     'Bir kategori seç (Bölgeler, Tarım, Hayvancılık, Madenler, Enerji), '
     'ardından üstteki çiplerden bir maddeye dokun — o maddeyle ilgili iller '
-    'haritada vurgulanır ve altta kısa bir açıklama ile kaynağı görünür. '
+    'haritada vurgulanır ve altta kısa bir açıklama görünür. Haritayı iki '
+    'parmakla yakınlaştırıp uzaklaştırabilir, çift dokunarak sıfırlayabilirsin. '
     'Bu bir öğrenme modudur, puan/skor tutulmaz, günlük hak sınırı yoktur.';
 
 /// "Haritadan Öğren" kütüphanesinin giriş ekranı — kategori kartlarını

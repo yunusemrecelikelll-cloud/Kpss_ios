@@ -11,7 +11,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/theme_provider.dart';
-import '../quick_modes/quick_modes_shared.dart' show QuickModesShared, kQuickModeOptionLetters;
+import '../quick_modes/quick_modes_shared.dart' show kQuickModeOptionLetters;
 import '../tools_hub_screen.dart' show HowToPlayButton;
 import 'duel_lobby_screen.dart' show kDuelloGameId;
 import 'duel_result_screen.dart';
@@ -88,13 +88,22 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     List<Question> pool = const [];
     try {
       final remote = context.read<RemoteQuestionService>();
-      pool = await QuickModesShared.collectAll(widget.soloSubjects, remote);
+      // ÖNCEDEN doğrudan QuickModesShared.collectAll kullanılıyordu; bu, soru
+      // havuzunu tamamen indirilmiş/JSON banka verisine bağlıyor ve turdan
+      // tura aynı soruların gelmesini engellemiyordu. buildSoloQuestions ise
+      // JSON bankasını gömülü 90 soruluk solo havuzuyla birleştirir, tekrarı
+      // eler ve daha önce sorulanları atlar — böylece "Tek Başına Yarış"
+      // çevrimdışıyken de dolu bir havuzla çalışır.
+      pool = await _duel.buildSoloQuestions(
+        subjects: widget.soloSubjects,
+        remote: remote,
+      );
     } catch (_) {
       pool = const [];
     }
     if (!mounted) return;
     setState(() {
-      _questions = pool.take(10).toList();
+      _questions = pool;
       _total = _questions.length;
       _perQ = 30;
       _startedAt = DateTime.now();

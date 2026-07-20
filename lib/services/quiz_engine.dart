@@ -47,13 +47,13 @@ class QuizEngine extends ChangeNotifier {
     this.topicId = topicId;
     this.topicBaslik = topicBaslik;
     this.questions = questions;
-    this.currentIndex = 0;
-    this.answers = List<int?>.filled(questions.length, null);
+    currentIndex = 0;
+    answers = List<int?>.filled(questions.length, null);
     this.durationSec = durationSec;
     this.isFullTest = isFullTest;
     this.isWrongBankMode = isWrongBankMode;
     this.isPlacementExam = isPlacementExam;
-    this.startedAt = DateTime.now();
+    startedAt = DateTime.now();
     _saveDraft();
     notifyListeners();
   }

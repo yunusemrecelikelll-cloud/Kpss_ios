@@ -107,4 +107,96 @@ const List<YazimYanlisi> kYazimYanlislari = [
   YazimYanlisi(dogru: 'pantolon', yanlis: 'pantalon'),
   YazimYanlisi(dogru: 'aktüel', yanlis: 'aktuel'),
   YazimYanlisi(dogru: 'hakkında', yanlis: 'hakkinda'),
+
+  // ── Bitişik / ayrı yazım (ek grup) ──
+  YazimYanlisi(dogru: 'bir şey', yanlis: 'birşey'),
+  YazimYanlisi(dogru: 'pek çok', yanlis: 'pekçok'),
+  YazimYanlisi(dogru: 'hiçbiri', yanlis: 'hiç biri'),
+  YazimYanlisi(dogru: 'birbiri', yanlis: 'bir biri'),
+  YazimYanlisi(dogru: 'bugün', yanlis: 'bu gün'),
+  YazimYanlisi(dogru: 'herkesin', yanlis: 'herkezin'),
+  YazimYanlisi(dogru: 'hoş geldiniz', yanlis: 'hoşgeldiniz'),
+  YazimYanlisi(dogru: 'hoş bulduk', yanlis: 'hoşbulduk'),
+  YazimYanlisi(dogru: 'sağ ol', yanlis: 'sağol'),
+  YazimYanlisi(dogru: 'otuz beş', yanlis: 'otuzbeş'),
+  YazimYanlisi(dogru: 'kırk iki', yanlis: 'kırkiki'),
+
+  // ── "ki" bağlacının / ekinin yazımı ──
+  YazimYanlisi(dogru: 'demek ki', yanlis: 'demekki'),
+  YazimYanlisi(dogru: 'sanki', yanlis: 'san ki'),
+
+  // ── Soru eki (mi/mı/mu/mü) her zaman AYRI yazılır ──
+  YazimYanlisi(dogru: 'var mı', yanlis: 'varmı'),
+  YazimYanlisi(dogru: 'geliyor mu', yanlis: 'geliyormu'),
+  YazimYanlisi(dogru: 'güzel mi', yanlis: 'güzelmi'),
+  YazimYanlisi(dogru: 'okudun mu', yanlis: 'okudunmu'),
+
+  // ── "de/da" bağlacı (ek grup) ──
+  YazimYanlisi(dogru: 'siz de', yanlis: 'sizde'),
+
+  // ── Kesme işareti ──
+  YazimYanlisi(dogru: "Ankara'nın", yanlis: 'Ankaranın'),
+  YazimYanlisi(dogru: "TBMM'nin", yanlis: 'TBMMnin'),
+  YazimYanlisi(dogru: "İzmir'den", yanlis: 'İzmirden'),
+  YazimYanlisi(dogru: "Mehmet'e", yanlis: 'Mehmete'),
+  YazimYanlisi(dogru: "2023'te", yanlis: '2023te'),
+  // Kurum ve kuruluş adlarına gelen ekler kesme işaretiyle AYRILMAZ.
+  YazimYanlisi(dogru: 'Türk Dil Kurumuna', yanlis: "Türk Dil Kurumu'na"),
+
+  // ── Ünlü daralması (ek grup) ──
+  YazimYanlisi(dogru: 'atlıyor', yanlis: 'atlayor'),
+  YazimYanlisi(dogru: 'gizliyor', yanlis: 'gizleyor'),
+  YazimYanlisi(dogru: 'temizliyor', yanlis: 'temizleyor'),
+  YazimYanlisi(dogru: 'özlüyor', yanlis: 'özleyor'),
+  YazimYanlisi(dogru: 'deniyor', yanlis: 'deneyor'),
+  YazimYanlisi(dogru: 'yakalıyor', yanlis: 'yakalayor'),
+
+  // ── Ünsüz benzeşmesi (ek grup) ──
+  YazimYanlisi(dogru: 'saatçi', yanlis: 'saatci'),
+  YazimYanlisi(dogru: 'sütçü', yanlis: 'sütcü'),
+  YazimYanlisi(dogru: 'işçi', yanlis: 'işci'),
+  YazimYanlisi(dogru: 'çiftçi', yanlis: 'çiftci'),
+  YazimYanlisi(dogru: 'Türkçe', yanlis: 'Türkce'),
+  YazimYanlisi(dogru: 'ağaçtan', yanlis: 'ağaçdan'),
+  YazimYanlisi(dogru: 'dolapta', yanlis: 'dolapda'),
+
+  // ── Ünsüz yumuşaması ve ünlü düşmesi (ek grup) ──
+  YazimYanlisi(dogru: 'ekmeği', yanlis: 'ekmeki'),
+  YazimYanlisi(dogru: 'dolabı', yanlis: 'dolapı'),
+  YazimYanlisi(dogru: 'kitaba', yanlis: 'kitapa'),
+  YazimYanlisi(dogru: 'ağacın', yanlis: 'ağaçın'),
+  YazimYanlisi(dogru: 'kanadı', yanlis: 'kanatı'),
+  YazimYanlisi(dogru: 'ümidi', yanlis: 'ümiti'),
+  YazimYanlisi(dogru: 'geçidi', yanlis: 'geçiti'),
+  YazimYanlisi(dogru: 'armudu', yanlis: 'armutu'),
+  YazimYanlisi(dogru: 'burnu', yanlis: 'burunu'),
+  YazimYanlisi(dogru: 'ağzı', yanlis: 'ağızı'),
+  YazimYanlisi(dogru: 'oğlu', yanlis: 'oğulu'),
+  YazimYanlisi(dogru: 'şehri', yanlis: 'şehiri'),
+  YazimYanlisi(dogru: 'gönlü', yanlis: 'gönülü'),
+  YazimYanlisi(dogru: 'beyni', yanlis: 'beyini'),
+  YazimYanlisi(dogru: 'göğsü', yanlis: 'göğüsü'),
+
+  // ── Yabancı kökenli kelimeler (ek grup) ──
+  YazimYanlisi(dogru: 'makine', yanlis: 'makina'),
+  YazimYanlisi(dogru: 'laboratuvar', yanlis: 'laboratuar'),
+  YazimYanlisi(dogru: 'aksesuar', yanlis: 'aksesuvar'),
+  YazimYanlisi(dogru: 'tıraş', yanlis: 'traş'),
+  YazimYanlisi(dogru: 'sandviç', yanlis: 'sandaviç'),
+  YazimYanlisi(dogru: 'kurdele', yanlis: 'kurdela'),
+  YazimYanlisi(dogru: 'inisiyatif', yanlis: 'insiyatif'),
+  YazimYanlisi(dogru: 'ayakkabı', yanlis: 'ayakabı'),
+  YazimYanlisi(dogru: 'meyve', yanlis: 'meyva'),
+  YazimYanlisi(dogru: 'kılavuz', yanlis: 'klavuz'),
+  YazimYanlisi(dogru: 'espri', yanlis: 'espiri'),
+  YazimYanlisi(dogru: 'antrenman', yanlis: 'antreman'),
+  YazimYanlisi(dogru: 'antrenör', yanlis: 'antronör'),
+  YazimYanlisi(dogru: 'eşofman', yanlis: 'eşortman'),
+  YazimYanlisi(dogru: 'motosiklet', yanlis: 'motorsiklet'),
+  YazimYanlisi(dogru: 'unvan', yanlis: 'ünvan'),
+  YazimYanlisi(dogru: 'tereddüt', yanlis: 'tereddüd'),
+  YazimYanlisi(dogru: 'seyahat', yanlis: 'seyehat'),
+  YazimYanlisi(dogru: 'hastane', yanlis: 'hastahane'),
+  YazimYanlisi(dogru: 'eczane', yanlis: 'eczahane'),
+  YazimYanlisi(dogru: 'mütevazı', yanlis: 'mütevazi'),
 ];

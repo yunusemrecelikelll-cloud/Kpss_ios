@@ -94,16 +94,16 @@
           "aciklama": "'Araba' ünlüyle biter, '-ı' eki de ünlüyle başlar. İki ünlünün yan yana gelmesini önlemek için araya 'y' sesi girer ve kelime 'arabayı' biçimini alır. Bu sese kaynaştırma (yardımcı) sesi denir; Türkçede kaynaştırma sesleri y, ş, s, n'den ibarettir."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili kelimede ünsüz yumuşaması örneği yoktur?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki kelimede ünsüz yumuşaması örneği yoktur?",
           "secenekler": [
-            "Bahçedeki ağaca tırmandı.",
-            "Kitabı masaya bıraktı.",
-            "Yolu takip ederek köye vardı.",
-            "Sokakta uzun süre yürüdü.",
-            "Kazandığı parayı bankaya yatırdı."
+            "Bahçedeki \"ağaca\" tırmandı.",
+            "\"Kitabı\" masaya bıraktı.",
+            "Kırılan \"bardağı\" dikkatlice çöpe attı.",
+            "\"Sokakta\" uzun süre yürüdü.",
+            "Yeni aldığı \"kazağı\" dolaba yerleştirdi."
           ],
           "dogruIndex": 3,
-          "aciklama": "'Sokakta' kelimesinde 'sokak' kelimesi 'k' ile biter ve ünsüzle başlayan '-ta' eki aldığı için burada bir sertleşme/yumuşama değil, doğrudan sert ünsüz uyumu (sertleşme) söz konusudur ama yumuşama yoktur çünkü ek ünlüyle başlamıyor. Diğer seçeneklerde (ağaca, kitabı, yolu, parayı) sert ünsüzle biten kelimeler ünlüyle başlayan ek alarak yumuşamıştır (ağaç-ağaca, kitap-kitabı)."
+          "aciklama": "'Sokakta' sözcüğünde 'sokak' kelimesi 'k' ile biter ama ünsüzle başlayan '-ta' ekini aldığı için ünsüz yumuşaması gerçekleşmez. Diğer seçeneklerde sert ünsüzle biten sözcükler ünlüyle başlayan ek alarak yumuşamıştır: ağaç-ağaca (ç>c), kitap-kitabı (p>b), bardak-bardağı (k>ğ), kazak-kazağı (k>ğ)."
         },
         {
           "soru": "Aşağıdakilerden hangisinde küçük ünlü uyumuna aykırılık vardır?",
@@ -672,7 +672,7 @@
       },
       "sorular": [
         {
-          "soru": "\"Bu haberi duyunca yüreği dağ gibi oldu.\" cümlesinde altı çizili 'dağ' kelimesi hangi anlamda kullanılmıştır?",
+          "soru": "\"Bu haberi duyunca yüreği dağ gibi oldu.\" cümlesindeki 'dağ' kelimesi hangi anlamda kullanılmıştır?",
           "secenekler": [
             "Gerçek anlam",
             "Mecaz anlam",
@@ -684,13 +684,13 @@
           "aciklama": "'Dağ' kelimesinin gerçek anlamı yerden yükselen büyük doğal oluşumdur. Cümlede 'yüreği dağ gibi oldu' ifadesiyle yüreğin büyüklüğü, sağlamlığı, dayanıklılığı dağa benzetilerek anlatılmıştır; bu, kelimenin gerçek anlamından tamamen uzaklaşıp benzetme yoluyla yeni bir anlam kazanması, yani mecaz anlamda kullanılmasıdır."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili kelime yan anlamıyla kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki kelime yan anlamıyla kullanılmıştır?",
           "secenekler": [
-            "Sırtındaki çanta çok ağırdı.",
-            "Dağın eteğinde küçük bir köy vardı.",
-            "Bahçedeki güller çok güzel kokuyordu.",
-            "Sınıfın penceresi açıktı.",
-            "Kitabı masanın üstüne bıraktı."
+            "Sırtındaki \"çanta\" çok ağırdı.",
+            "Dağın \"eteğinde\" küçük bir köy vardı.",
+            "Bahçedeki \"güller\" çok güzel kokuyordu.",
+            "Sınıfın \"penceresi\" açıktı.",
+            "Kitabı \"masanın\" üstüne bıraktı."
           ],
           "dogruIndex": 1,
           "aciklama": "'Etek' kelimesinin gerçek anlamı bir giysinin alt kısmı veya insan vücudunun bel-diz arası bölgesidir. 'Dağın eteği' ifadesinde bu kelime, dağın alt/taban kısmını ifade etmek için benzetme yoluyla kullanılmış ve dilde yerleşmiş, kalıcı bir anlam kazanmıştır; bu bir yan anlam örneğidir. Diğer seçeneklerdeki kelimeler (çanta, gül, pencere, masa) gerçek anlamlarıyla kullanılmıştır."
@@ -720,7 +720,7 @@
           "aciklama": "'İçine atmak' deyim olarak 'bir üzüntüyü/sıkıntıyı kimseye söylemeden kendi içinde saklamak' anlamına gelir; cümlede 'içine atamadı' biçiminde olumsuz çekimlenerek kullanılmıştır, bu da deyimlerin cümle içinde çekimlenebildiğinin bir göstergesidir. 'Damlaya damlaya göl olur' ve 'Komşu komşunun külüne muhtaçtır' ise atasözüdür; atasözleri kalıplaşmıştır ve değiştirilip çekimlenemez."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili kelime sesteş (eş sesli) olarak kullanılmıştır?\n\"Çocuk top oynarken yüzünü kanattı.\" - \"Nehirde yüzerek karşıya geçti.\"",
+          "soru": "\"Çocuk top oynarken yüzünü kanattı.\" - \"Nehirde yüzerek karşıya geçti.\"\nYukarıdaki cümlelerde geçen 'yüz' sözcüğü için aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "Yüz kelimesi her iki cümlede de aynı anlamdadır.",
             "Yüz kelimesi ilk cümlede organ, ikinci cümlede yüzme eylemiyle ilgili farklı bir anlamdadır.",
@@ -792,13 +792,13 @@
           "aciklama": "'Ağır' kelimesinin gerçek anlamı bir cismin kütlesinin fazla olması, taşınmasının zor olmasıdır. 'Sınavın soruları çok ağırdı' cümlesinde ise 'ağır' kelimesi somut bir ağırlık değil, soruların zorluk derecesinin yüksek olması anlamında kullanılmıştır; bu, kelimenin gerçek anlamından benzetme yoluyla uzaklaşması, yani mecaz kullanımıdır. Diğer seçeneklerde 'ağır' kelimesi fiziksel ağırlık anlamında, yani gerçek anlamıyla kullanılmıştır."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük mecaz anlamda kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük mecaz anlamda kullanılmıştır?",
           "secenekler": [
-            "A) Elma __ağacı__ meyve verdi.",
-            "B) Bu söz beni __yaktı__.",
-            "C) Sobayı __yaktık__.",
-            "D) Araba __hızla__ gitti.",
-            "E) Kitabı __masaya__ koydu."
+            "A) Elma \"ağacı\" meyve verdi.",
+            "B) Bu söz beni \"yaktı\".",
+            "C) Sobayı \"yaktık\".",
+            "D) Araba \"hızla\" gitti.",
+            "E) Kitabı \"masaya\" koydu."
           ],
           "dogruIndex": 1,
           "aciklama": "'Bu söz beni yaktı.' cümlesinde 'yaktı' sözcüğü gerçek anlamda (ateşle yakmak) değil, mecaz anlamda (çok üzdü, incitti) kullanılmıştır."
@@ -1463,13 +1463,13 @@
           "aciklama": "'Gözlemci': göz (isim kökü) + lem (isimden fiil eki, gözlemek) değil; göz+lem = gözlem (isimden isim) + ci (isimden isim). Kök isimdir, iki yapım eki almıştır."
         },
         {
-          "soru": "Aşağıdaki seçeneklerde altı çizili sözcüğün aldığı ek hangisinde 'isimden isim yapım eki'dir?",
+          "soru": "Aşağıdaki seçeneklerde tırnak içindeki sözcüğün aldığı ek hangisinde 'isimden isim yapım eki'dir?",
           "secenekler": [
-            "A) Çamlık orman",
-            "B) Çalışkan öğrenci",
-            "C) Yazmak zor",
-            "D) Koşucu yoruldu",
-            "E) Okuyucu kalabalıktı"
+            "A) \"Çamlık\" orman",
+            "B) \"Çalışkan\" öğrenci",
+            "C) \"Yazmak\" zor",
+            "D) \"Koşucu\" yoruldu",
+            "E) \"Okuyucu\" kalabalıktı"
           ],
           "dogruIndex": 0,
           "aciklama": "'Çamlık': çam (isim) + lık (isimden isim yapım eki). 'Çalışkan': çalış (fiil) + kan; 'koşucu': koş (fiil) + ucu; bunlar fiilden isim yapım ekidir."
@@ -2158,184 +2158,184 @@
       },
       "sorular": [
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Öğrenciler sabah erkenden okula gitti.",
-            "Yorgun işçiler akşam evlerine döndü.",
-            "Ben bu projeyi tek başıma tamamladım.",
-            "Çocuk bahçede hızlı koştu.",
-            "Kardeşi gibi o da çok çalışkandır."
+            "\"Öğrenciler\" sabah erkenden okula gitti.",
+            "\"Yorgun\" işçiler akşam evlerine döndü.",
+            "\"Ben\" bu projeyi tek başıma tamamladım.",
+            "Çocuk bahçede \"hızlı\" koştu.",
+            "Kardeşi \"gibi\" o da çok çalışkandır."
           ],
           "dogruIndex": 0,
-          "aciklama": "Bu cümlede 'Öğrenciler' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla edat, sıfat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Öğrenciler' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla edat, sıfat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Bu, hayatımda aldığım en doğru karardı.",
-            "Masanın üzerinde duran kitaba baktı.",
-            "Yarın sabah erkenden yola çıkacağız.",
-            "Okula kadar yürüyerek gitti.",
-            "Çok çalıştı ama istediği sonucu alamadı."
+            "\"Bu\", hayatımda aldığım en doğru karardı.",
+            "Masanın üzerinde duran \"kitaba\" baktı.",
+            "\"Yarın\" sabah erkenden yola çıkacağız.",
+            "Okula \"kadar\" yürüyerek gitti.",
+            "Çok çalıştı \"ama\" istediği sonucu alamadı."
           ],
           "dogruIndex": 1,
-          "aciklama": "Bu cümlede 'kitaba' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'kitaba' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "İçeri girer girmez telefonuna baktı.",
-            "Sınavı kazanmak için gece gündüz çalıştı.",
-            "Ankara, Türkiye'nin başkentidir.",
-            "Geç kaldı çünkü otobüsü kaçırmıştı.",
-            "Aferin sana, harika bir iş çıkardın!"
+            "\"İçeri\" girer girmez telefonuna baktı.",
+            "Sınavı kazanmak \"için\" gece gündüz çalıştı.",
+            "\"Ankara\", Türkiye'nin başkentidir.",
+            "Geç kaldı \"çünkü\" otobüsü kaçırmıştı.",
+            "\"Aferin\" sana, harika bir iş çıkardın!"
           ],
           "dogruIndex": 2,
-          "aciklama": "Bu cümlede 'Ankara' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, zarf, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Ankara' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, zarf, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Arkadaşıyla birlikte pikniğe gitti.",
-            "Çay ya da kahve içebilirsin.",
-            "Vah vah, ne kadar üzücü bir haber!",
-            "Onun gösterdiği sevgi herkesi etkiledi.",
-            "Erken kalkmak günün verimini artırır."
+            "Arkadaşıyla \"birlikte\" pikniğe gitti.",
+            "Çay \"ya da\" kahve içebilirsin.",
+            "\"Vah vah\", ne kadar üzücü bir haber!",
+            "Onun gösterdiği \"sevgi\" herkesi etkiledi.",
+            "Erken \"kalkmak\" günün verimini artırır."
           ],
           "dogruIndex": 3,
-          "aciklama": "Bu cümlede 'sevgi' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, isim-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'sevgi' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, isim-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Ben de bu konuda seninle aynı fikirdeyim.",
-            "Maşallah, çok çalışkan bir öğrencisin!",
-            "Yüzme, en sevdiğim spor dalıdır.",
-            "Yarın teslim edilecek proje henüz bitmedi.",
-            "Uzaktan gelen kalabalık meydanı doldurdu."
+            "Ben \"de\" bu konuda seninle aynı fikirdeyim.",
+            "\"Maşallah\", çok çalışkan bir öğrencisin!",
+            "\"Yüzme\", en sevdiğim spor dalıdır.",
+            "Yarın teslim \"edilecek\" proje henüz bitmedi.",
+            "Uzaktan gelen \"kalabalık\" meydanı doldurdu."
           ],
           "dogruIndex": 4,
-          "aciklama": "Bu cümlede 'kalabalık' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'kalabalık' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Bahçedeki güller rüzgârda sallanıyordu.",
-            "Eyvah, anahtarı içeride unutmuşum!",
-            "Bu sınavı kazanmak hepimizin hayaliydi.",
-            "Bahçede oynayan çocuklar eve çağrıldı.",
-            "Ders çalışmadan sınava girdi."
+            "Bahçedeki \"güller\" rüzgârda sallanıyordu.",
+            "\"Eyvah\", anahtarı içeride unutmuşum!",
+            "Bu sınavı \"kazanmak\" hepimizin hayaliydi.",
+            "Bahçede \"oynayan\" çocuklar eve çağrıldı.",
+            "Ders \"çalışmadan\" sınava girdi."
           ],
           "dogruIndex": 0,
-          "aciklama": "Bu cümlede 'güller' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağ-fiil, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'güller' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağ-fiil, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Onun konuşması herkesi derinden etkiledi.",
-            "Yeni aldığı bilgisayarla ödevini yaptı.",
-            "Kırılan cam hemen değiştirildi.",
-            "Eve döner dönmez odasına çekildi.",
-            "Yarışmayı kazanırsa çok mutlu olacak."
+            "Onun \"konuşması\" herkesi derinden etkiledi.",
+            "Yeni aldığı \"bilgisayarla\" ödevini yaptı.",
+            "\"Kırılan\" cam hemen değiştirildi.",
+            "Eve \"döner dönmez\" odasına çekildi.",
+            "Yarışmayı \"kazanırsa\" çok mutlu olacak."
           ],
           "dogruIndex": 1,
-          "aciklama": "Bu cümlede 'bilgisayarla' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), isim-fiil, sıfat-fiil görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'bilgisayarla' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), isim-fiil, sıfat-fiil görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Yazdığım mektup postaya verildi.",
-            "Ayağa kalkarak herkesi selamladı.",
-            "Mutluluk, insanın en çok aradığı duygulardan biridir.",
-            "Toplantı saat onda başlayacak.",
-            "Üçüncü kattaki daireyi kiraladılar."
+            "\"Yazdığım\" mektup postaya verildi.",
+            "Ayağa \"kalkarak\" herkesi selamladı.",
+            "\"Mutluluk\", insanın en çok aradığı duygulardan biridir.",
+            "Toplantı saat onda \"başlayacak\".",
+            "\"Üçüncü\" kattaki daireyi kiraladılar."
           ],
           "dogruIndex": 2,
-          "aciklama": "Bu cümlede 'Mutluluk' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), sıfat, sıfat-fiil görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Mutluluk' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), sıfat, sıfat-fiil görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük isim görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük isim görevinde kullanılmıştır?",
           "secenekler": [
-            "Okuldan çıkalı çok olmamıştı.",
-            "Herkes onun başarısına sevindi.",
-            "Akıllı çözümler her zaman takdir görür.",
-            "Sınıftaki öğretmen dersi çok iyi anlattı.",
-            "Çantanda ne var, gösterir misin?"
+            "Okuldan \"çıkalı\" çok olmamıştı.",
+            "Herkes onun başarısına \"sevindi\".",
+            "\"Akıllı\" çözümler her zaman takdir görür.",
+            "Sınıftaki \"öğretmen\" dersi çok iyi anlattı.",
+            "Çantanda \"ne\" var, gösterir misin?"
           ],
           "dogruIndex": 3,
-          "aciklama": "Bu cümlede 'öğretmen' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), sıfat, zamir görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'öğretmen' sözcüğü bir varlığı, kavramı ya da nesneyi karşıladığı için isim (ad) soylu bir sözcüktür. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağ-fiil, fiil (çekimli/tam yüklem), sıfat, zamir görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "Yorgun işçiler akşam evlerine döndü.",
-            "Öğrenciler sabah erkenden okula gitti.",
-            "Ben bu projeyi tek başıma tamamladım.",
-            "Çocuk bahçede hızlı koştu.",
-            "Kardeşi gibi o da çok çalışkandır."
+            "\"Yorgun\" işçiler akşam evlerine döndü.",
+            "\"Öğrenciler\" sabah erkenden okula gitti.",
+            "\"Ben\" bu projeyi tek başıma tamamladım.",
+            "Çocuk bahçede \"hızlı\" koştu.",
+            "Kardeşi \"gibi\" o da çok çalışkandır."
           ],
           "dogruIndex": 0,
-          "aciklama": "Bu cümlede 'Yorgun' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla edat, isim, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Yorgun' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla edat, isim, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "Bu, hayatımda aldığım en doğru karardı.",
-            "Bu çanta bana çok pahalıya mal oldu.",
-            "Yarın sabah erkenden yola çıkacağız.",
-            "Okula kadar yürüyerek gitti.",
-            "Çok çalıştı ama istediği sonucu alamadı."
+            "\"Bu\", hayatımda aldığım en doğru karardı.",
+            "\"Bu\" çanta bana çok pahalıya mal oldu.",
+            "\"Yarın\" sabah erkenden yola çıkacağız.",
+            "Okula \"kadar\" yürüyerek gitti.",
+            "Çok çalıştı \"ama\" istediği sonucu alamadı."
           ],
           "dogruIndex": 1,
-          "aciklama": "Bu cümlede 'Bu' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Bu' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, zamir, zarf görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "İçeri girer girmez telefonuna baktı.",
-            "Sınavı kazanmak için gece gündüz çalıştı.",
-            "Sınıfta beş öğrenci sınavdan devamsız kaldı.",
-            "Geç kaldı çünkü otobüsü kaçırmıştı.",
-            "Aferin sana, harika bir iş çıkardın!"
+            "\"İçeri\" girer girmez telefonuna baktı.",
+            "Sınavı kazanmak \"için\" gece gündüz çalıştı.",
+            "Sınıfta \"beş\" öğrenci sınavdan devamsız kaldı.",
+            "Geç kaldı \"çünkü\" otobüsü kaçırmıştı.",
+            "\"Aferin\" sana, harika bir iş çıkardın!"
           ],
           "dogruIndex": 2,
-          "aciklama": "Bu cümlede 'beş' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, zarf, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'beş' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, zarf, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "Arkadaşıyla birlikte pikniğe gitti.",
-            "Çay ya da kahve içebilirsin.",
-            "Vah vah, ne kadar üzücü bir haber!",
-            "Hangi kitabı okumak istersin?",
-            "Erken kalkmak günün verimini artırır."
+            "Arkadaşıyla \"birlikte\" pikniğe gitti.",
+            "Çay \"ya da\" kahve içebilirsin.",
+            "\"Vah vah\", ne kadar üzücü bir haber!",
+            "\"Hangi\" kitabı okumak istersin?",
+            "Erken \"kalkmak\" günün verimini artırır."
           ],
           "dogruIndex": 3,
-          "aciklama": "Bu cümlede 'Hangi' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, edat, isim-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Hangi' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, edat, isim-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "Ben de bu konuda seninle aynı fikirdeyim.",
-            "Maşallah, çok çalışkan bir öğrencisin!",
-            "Yüzme, en sevdiğim spor dalıdır.",
-            "Yarın teslim edilecek proje henüz bitmedi.",
-            "Bazı insanlar eleştiriye açık değildir."
+            "Ben \"de\" bu konuda seninle aynı fikirdeyim.",
+            "\"Maşallah\", çok çalışkan bir öğrencisin!",
+            "\"Yüzme\", en sevdiğim spor dalıdır.",
+            "Yarın teslim \"edilecek\" proje henüz bitmedi.",
+            "\"Bazı\" insanlar eleştiriye açık değildir."
           ],
           "dogruIndex": 4,
-          "aciklama": "Bu cümlede 'Bazı' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağlaç, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Bazı' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağlaç, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük sıfat görevinde kullanılmıştır?",
+          "soru": "Aşağıdaki cümlelerin hangisinde tırnak içindeki sözcük sıfat görevinde kullanılmıştır?",
           "secenekler": [
-            "Kırmızı gömleğini giyip dışarı çıktı.",
-            "Eyvah, anahtarı içeride unutmuşum!",
-            "Bu sınavı kazanmak hepimizin hayaliydi.",
-            "Bahçede oynayan çocuklar eve çağrıldı.",
-            "Ders çalışmadan sınava girdi."
+            "\"Kırmızı\" gömleğini giyip dışarı çıktı.",
+            "\"Eyvah\", anahtarı içeride unutmuşum!",
+            "Bu sınavı \"kazanmak\" hepimizin hayaliydi.",
+            "Bahçede \"oynayan\" çocuklar eve çağrıldı.",
+            "Ders \"çalışmadan\" sınava girdi."
           ],
           "dogruIndex": 0,
-          "aciklama": "Bu cümlede 'Kırmızı' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki altı çizili sözcükler ise sırasıyla bağ-fiil, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
+          "aciklama": "Bu cümlede 'Kırmızı' sözcüğü kendisinden sonra gelen ismi niteleyip/belirttiği için sıfattır. Diğer seçeneklerdeki tırnak içindeki sözcükler ise sırasıyla bağ-fiil, isim-fiil, sıfat-fiil, ünlem görevindedir; bu nedenle istenen türe uymazlar."
         }
       ]
     },
@@ -2349,8 +2349,8 @@
           "Özne, yükleme 'kim, ne' sorusu sorularak bulunan, işi yapan ya da yargının kendisiyle ilgili olduğu ögedir. Etken cümlelerde özne işi bizzat yapar ('Öğrenci ödevini yaptı'); edilgen çatılı cümlelerde ise gerçek özne bilinmez ya da önemsizdir, cümlede yalnızca işin kime/neye yapıldığını bildiren bir 'sözde özne' bulunur ('Ödev yapıldı' cümlesinde 'ödev' sözde öznedir, işi yapan belli değildir).",
           "Nesne, yüklemin bildirdiği işten etkilenen varlığı gösterir ve ikiye ayrılır: belirtili nesne, '-i' belirtme hâli ekini alır ve 'kimi, neyi' sorusuna cevap verir ('Kitabı okudum'); belirtisiz nesne ise hiçbir hâl eki almadan yükleme yakın durur ve 'ne' sorusuna cevap verir ('Kitap okudum'). Belirtisiz nesne, hâl eki almadığı için bazen zarf tümleciyle karıştırılır; ayırt etmek için yükleme 'ne' sorusu sorulup sorulamayacağına bakılır.",
           "Dolaylı tümleç (yer tamlayıcısı), yüklemi yönelme (-e), bulunma (-de) ya da ayrılma (-den) hâl eklerinden biriyle tamamlayan ögedir; 'kime, kimde, kimden, nereye, nerede, nereden' sorularına cevap verir. 'Öğretmen öğrencilere anlattı' cümlesinde 'öğrencilere' dolaylı tümleçtir. Bir isim bu hâl eklerinden birini aldığında, başka bir görevi (örneğin zarf tümleci) üstlenip üstlenmediğine dikkat edilmelidir; bulunma/ayrılma/yönelme hâli çoğunlukla dolaylı tümleç kurar.",
-          "Zarf tümleci, yüklemi zaman, durum (tarz) ya da miktar bakımından tamamlayan, herhangi bir hâl eki almadan (ya da -ca/-ce gibi zarf yapım ekiyle) kullanılan ögedir; 'ne zaman, nasıl, ne kadar' sorularına cevap verir. 'Dün geldi', 'hızlıca yazdı', 'çok çalıştı' örneklerinde altı çizili sözler zarf tümlecidir. '-la/-le' (ile edatının bitişik biçimi) ile kurulan söz öbekleri ise KPSS'de genellikle zarf tümleci değil, edat tümleci (vasıta/birliktelik) kabul edilir; bu ayrım sınavda dikkat gerektirir.",
-          "Edat tümleci, bir edatla ('gibi, kadar, için, ile, göre, rağmen, üzere, karşı, dolayı') kurulan söz öbeğidir ve yüklemi çeşitli yönlerden tamamlar. 'Kardeşi gibi çalışkandır', 'sınav için çalıştı', 'kredi ile aldı' örneklerindeki altı çizili öbekler edat tümlecidir. Edat tümleci bazı kaynaklarda zarf tümlecinin bir alt türü sayılsa da KPSS'de çoğunlukla ayrı bir öge olarak ele alınır.",
+          "Zarf tümleci, yüklemi zaman, durum (tarz) ya da miktar bakımından tamamlayan, herhangi bir hâl eki almadan (ya da -ca/-ce gibi zarf yapım ekiyle) kullanılan ögedir; 'ne zaman, nasıl, ne kadar' sorularına cevap verir. 'Dün geldi', 'hızlıca yazdı', 'çok çalıştı' örneklerinde tırnak içindeki sözler zarf tümlecidir. '-la/-le' (ile edatının bitişik biçimi) ile kurulan söz öbekleri ise KPSS'de genellikle zarf tümleci değil, edat tümleci (vasıta/birliktelik) kabul edilir; bu ayrım sınavda dikkat gerektirir.",
+          "Edat tümleci, bir edatla ('gibi, kadar, için, ile, göre, rağmen, üzere, karşı, dolayı') kurulan söz öbeğidir ve yüklemi çeşitli yönlerden tamamlar. 'Kardeşi gibi çalışkandır', 'sınav için çalıştı', 'kredi ile aldı' örneklerindeki tırnak içindeki öbekler edat tümlecidir. Edat tümleci bazı kaynaklarda zarf tümlecinin bir alt türü sayılsa da KPSS'de çoğunlukla ayrı bir öge olarak ele alınır.",
           "Öge bulma sırası şu şekilde özetlenebilir: önce yüklem bulunur; sonra yükleme 'kim/ne' sorulup özne bulunur; ardından 'kimi/neyi' sorulup belirtili nesne, 'ne' sorulup belirtisiz nesne aranır; 'kime/nereye/nerede/nereden' sorularıyla dolaylı tümleç, 'ne zaman/nasıl/ne kadar' sorularıyla zarf tümleci, edatlı öbekler aranarak da edat tümleci belirlenir. Bir isim tamlaması ya da sıfat tamlaması cümlede TEK bir öge olarak değerlendirilir, tamlayan ile tamlanan ayrı ögeler sayılmaz.",
           "Cümledeki ögelerin sırası (kurallı-devrik cümle farkı) ögenin görevini değiştirmez; Türkçe sondan eklemeli bir dil olduğu için öge sırası oldukça esnektir. Ayrıca birden fazla dolaylı tümleç ya da zarf tümleci aynı cümlede bulunabilir; sınav sorularında genellikle bunlardan yalnızca biri sorulur ve diğerleri seçeneklerde çeldirici olarak yer alır.",
           "Bir cümlede özne açıkça belirtilmemiş olsa da yüklemin aldığı kişi ekinden anlaşılabilir; buna gizli özne denir: 'Yarın erken kalkacağım' cümlesinde yüklemdeki '-im' kişi ekinden öznenin 'ben' olduğu anlaşılır, ayrıca yazılmasına gerek yoktur. Cümle dışı unsurlar ise cümlenin temel ögelerinden hiçbirinin görevini üstlenmeyen, çıkarıldığında cümlenin dil bilgisi yapısını hiç etkilemeyen sözlerdir: seslenme/hitap sözleri ('Ahmet, buraya gel'), ünlemler ('Eyvah, geç kaldım') ve bazı bağlayıcı/açıklayıcı sözler ('yani, işte, mesela') bu gruba girer. Cümle dışı unsurlar öge sayılmaz; öge sayma sorularında sıkça gözden kaçan bir noktadır.",

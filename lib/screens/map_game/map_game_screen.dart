@@ -123,7 +123,7 @@ class MapGameScreen extends StatelessWidget {
             gameId: kIklimAviGameId,
             icon: '☀️',
             title: 'İklim Avı',
-            desc: 'Sorulan iklim tipinin görüldüğü bir il seç.',
+            desc: 'Yağış, sıcaklık, bitki örtüsü ipuçlarından ili bul.',
             storage: storage,
             onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const IklimAviScreen())),
           ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/link.dart';
@@ -11,8 +13,10 @@ import '../services/storage_service.dart';
 import '../services/question_picker.dart';
 import '../services/sound_service.dart';
 import '../services/tts_service.dart';
+import '../services/timer_service.dart';
 import '../services/pdf_export_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
 import 'premium_screen.dart';
@@ -34,9 +38,24 @@ class TopicScreen extends StatefulWidget {
   State<TopicScreen> createState() => _TopicScreenState();
 }
 
-class _TopicScreenState extends State<TopicScreen> {
+class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
   bool _startingQuiz = false;
   late final TtsService _ttsService;
+  // dispose()'ta context.read güvenli olmadığından depolama referansı da
+  // initState'te yakalanır.
+  late final StorageService _storageService;
+
+  // ── Çalışma süresi sayacı (madde 4) ──
+  // Konu ekranında geçirilen süre üstte canlı gösterilir ve ekrandan
+  // çıkılırken mevcut istatistik altyapısına (StorageService.addStudyTime —
+  // Çalışma Kronometresi ile aynı alan) yazılır.
+  final Stopwatch _studySw = Stopwatch();
+  Timer? _studyTicker;
+  bool _studySaved = false;
+  /// Bu konudan açılan test ekranı hâlâ üstte mi? Öyleyse buradaki sayaç
+  /// duraklatılmış kalmalı (aynı süre iki kez kaydedilmesin) — uygulama arka
+  /// plandan geri dönse bile yeniden başlatılmaz.
+  bool _quizAcik = false;
 
   Subject get subject => widget.subject;
   Topic get topic => widget.topic;
@@ -49,13 +68,55 @@ class _TopicScreenState extends State<TopicScreen> {
     // anlatımı okurken indirme tamamlanır, "Teste Başla" anında hazır olur.
     context.read<RemoteQuestionService>().prefetch(topic.id);
     _ttsService = context.read<TtsService>();
+    _storageService = context.read<StorageService>();
+    WidgetsBinding.instance.addObserver(this);
+
+    // Başka bir konudan/ekrandan gelinmiş olabilir — orada başlatılmış bir
+    // sesli anlatım varsa burada devam etmesin (madde 2).
+    _ttsService.stopNow();
+
+    _studySw.start();
+    _studyTicker = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _studyTicker?.cancel();
+    _saveStudyTime();
     // Kullanıcı sesli anlatımı dinlerken ekrandan ayrılırsa konuşmayı durdur.
-    _ttsService.stop();
+    _ttsService.stopNow();
     super.dispose();
+  }
+
+  /// Uygulama arka plana gidince sesli anlatım sussun ve çalışma süresi sayacı
+  /// duraklasın — çalışılmayan süre kaydedilmesin (madde 2 + 4).
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    final arkaPlanda = state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.detached;
+    if (arkaPlanda) {
+      _ttsService.stopNow();
+      _studySw.stop();
+    } else if (state == AppLifecycleState.resumed && !_quizAcik) {
+      _studySw.start();
+    }
+  }
+
+  /// Bu ekranda geçen süreyi ders bazlı çalışma süresine ekler (tek kez).
+  void _saveStudyTime() {
+    if (_studySaved) return;
+    _studySaved = true;
+    _studySw.stop();
+    final sn = _studySw.elapsed.inSeconds;
+    if (sn <= 0) return;
+    // ignore: unawaited_futures
+    _storageService.addStudyTime(subject.id, sn);
   }
 
   /// Özet + paragraflar + anahtar noktaları tek, akıcı bir metin haline
@@ -125,13 +186,25 @@ class _TopicScreenState extends State<TopicScreen> {
 
   Future<void> _startQuiz(BuildContext context, StorageService storage, bool premium) async {
     context.read<SoundService>().click();
+    // Madde 2: teste girerken sesli anlatım kesin olarak dursun.
+    _ttsService.stopNow();
     setState(() => _startingQuiz = true);
     final pool = await context.read<RemoteQuestionService>().getPool(topic.id, topic.sorular);
     if (!context.mounted) return;
     setState(() => _startingQuiz = false);
     final picker = QuestionPicker(storage);
     final qs = picker.pickForTopic(pool, 10, topic.id, premium: premium);
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+
+    // Madde 1: test süresini kullanıcı kendisi belirler (elle dakika yazar ya
+    // da "soru başına saniye" preset'lerinden seçer). Vazgeçerse test açılmaz.
+    final sureSn = await showTestSuresiDialog(context, qs.length);
+    if (sureSn == null || !context.mounted) return;
+
+    // Madde 4: test ekranı kendi süresini saydığı için buradaki sayaç
+    // duraklatılır — aynı süre iki kez kaydedilmesin.
+    _studySw.stop();
+    _quizAcik = true;
+    await Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
       builder: (_) => QuizScreen(
         subjectId: subject.id,
         subjectAd: subject.ad,
@@ -139,8 +212,12 @@ class _TopicScreenState extends State<TopicScreen> {
         topicBaslik: topic.baslik,
         questions: qs,
         isFullTest: false,
+        durationSec: sureSn,
       ),
     ));
+    _quizAcik = false;
+    if (!mounted) return;
+    _studySw.start();
   }
 
   @override
@@ -157,6 +234,26 @@ class _TopicScreenState extends State<TopicScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('📘 ${topic.baslik}'),
+        // Madde 4: konu ekranında da üstteki zaman sayacı işler — burada
+        // geçirilen süre ders bazlı çalışma süresine eklenir.
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.schedule, size: 16),
+                  const SizedBox(width: 4),
+                  Text(
+                    TimerService.format(_studySw.elapsed.inSeconds),
+                    style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -170,7 +267,7 @@ class _TopicScreenState extends State<TopicScreen> {
             const SizedBox(height: 18),
           ],
           if (a.icerik.isNotEmpty) ...[
-            _SectionHeader(emoji: '📚', title: 'Konu Anlatımı', colors: colors),
+            const DsSectionHeader(title: '📚 Konu Anlatımı'),
             const SizedBox(height: 10),
             for (var i = 0; i < a.icerik.length; i++) ...[
               _ParagraphCard(
@@ -183,7 +280,7 @@ class _TopicScreenState extends State<TopicScreen> {
             const SizedBox(height: 8),
           ],
           if (a.anahtarNoktalar.isNotEmpty) ...[
-            _SectionHeader(emoji: '🔑', title: 'Anahtar Noktalar', colors: colors),
+            const DsSectionHeader(title: '🔑 Anahtar Noktalar'),
             const SizedBox(height: 10),
             for (var i = 0; i < a.anahtarNoktalar.length; i++) ...[
               _KeyPointCard(
@@ -204,45 +301,44 @@ class _TopicScreenState extends State<TopicScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _SectionHeader(emoji: '🧠', title: 'Akılda Kalıcı', colors: colors),
+                    const DsSectionHeader(title: '🧠 Akılda Kalıcı'),
                     const SizedBox(height: 10),
                     if (!premium)
-                      Card(
-                        color: colors.gold.withValues(alpha: 0.08),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('🔒 Bu konu için akılda kalıcı kodlama teknikleri Premium\'a özel.',
-                                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
-                              const SizedBox(height: 10),
-                              ElevatedButton(
+                      DsCard(
+                        accent: colors.gold,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '🔒 Bu konu için akılda kalıcı kodlama teknikleri Premium\'a özel.',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 13, color: colors.text),
+                            ),
+                            const SizedBox(height: 12),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: DsPillButton(
+                                label: "Premium'a Geç",
+                                color: colors.gold,
                                 onPressed: () {
                                   context.read<SoundService>().click();
                                   Navigator.of(context)
                                       .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
                                 },
-                                child: const Text("Premium'a Geç"),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       )
                     else
                       for (final tip in tips) ...[
-                        Card(
-                          color: colors.violet.withValues(alpha: 0.06),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(color: colors.violet.withValues(alpha: 0.25)),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(14),
-                            child: Text(tip, style: const TextStyle(fontSize: 13, height: 1.5)),
-                          ),
+                        DsCard(
+                          accent: colors.violet,
+                          padding: const EdgeInsets.all(14),
+                          child: Text(tip,
+                              style: TextStyle(fontSize: 13, height: 1.5, color: colors.text)),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: kDsGap),
                       ],
                   ],
                 ),
@@ -251,75 +347,104 @@ class _TopicScreenState extends State<TopicScreen> {
           ),
           const SizedBox(height: 12),
           if (attempts.isNotEmpty) ...[
-            const Text('📋 Geçmiş Testlerin', style: TextStyle(fontWeight: FontWeight.w800)),
-            const SizedBox(height: 8),
-            for (var i = 0; i < attempts.length; i++)
-              Card(
-                child: ListTile(
-                  dense: true,
-                  leading: Text('${i + 1}. Test'),
-                  title: Text('${attempts[i].dogru} doğru / ${attempts[i].yanlis} yanlış'),
-                  trailing: Text('%${attempts[i].skor}',
-                      style: const TextStyle(fontWeight: FontWeight.w800)),
-                ),
+            const DsSectionHeader(title: '📋 Geçmiş Testlerin'),
+            const SizedBox(height: 10),
+            DsCard(
+              child: Column(
+                children: [
+                  for (var i = 0; i < attempts.length; i++) ...[
+                    if (i > 0)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Container(height: 1, color: colors.border),
+                      ),
+                    Row(
+                      children: [
+                        DsChip(label: '${i + 1}. TEST', color: colors.violetL),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            '${attempts[i].dogru} doğru / ${attempts[i].yanlis} yanlış',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 13, color: colors.textDim),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text('%${attempts[i].skor}',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900, fontSize: 15, color: colors.text)),
+                      ],
+                    ),
+                  ],
+                ],
               ),
-            const SizedBox(height: 12),
+            ),
+            const SizedBox(height: kDsGap),
           ],
           if (maxed)
-            Card(
-              color: colors.gold.withValues(alpha: 0.08),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('🎓 Ücretsiz pakette bu konuyu $maxAtt kez çözdün. '
-                        "Sınırsız test için Premium'a geç ya da sıfırlayıp yeniden başla."),
-                    const SizedBox(height: 10),
-                    Wrap(spacing: 8, children: [
-                      OutlinedButton(
-                        onPressed: () async {
-                          context.read<SoundService>().click();
-                          await storage.resetTopicAttempts(topic.id);
-                        },
-                        child: const Text('🔄 Testleri Sıfırla'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.read<SoundService>().click();
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                        },
-                        child: const Text("💎 Premium'a Geç"),
-                      ),
-                    ]),
-                  ],
-                ),
+            DsCard(
+              accent: colors.gold,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '🎓 Ücretsiz pakette bu konuyu $maxAtt kez çözdün. '
+                    "Sınırsız test için Premium'a geç ya da sıfırlayıp yeniden başla.",
+                    style: TextStyle(fontSize: 13, height: 1.4, color: colors.text),
+                  ),
+                  const SizedBox(height: 12),
+                  Wrap(spacing: 8, runSpacing: 8, children: [
+                    DsPillButton(
+                      label: '🔄 Testleri Sıfırla',
+                      color: colors.violetL,
+                      filled: false,
+                      onPressed: () async {
+                        context.read<SoundService>().click();
+                        await storage.resetTopicAttempts(topic.id);
+                      },
+                    ),
+                    DsPillButton(
+                      label: "💎 Premium'a Geç",
+                      color: colors.gold,
+                      onPressed: () {
+                        context.read<SoundService>().click();
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                      },
+                    ),
+                  ]),
+                ],
               ),
             )
           else
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text(premium
-                          ? 'Sınırsıza yakın soru havuzu • Sınırsız test hakkın var ✨'
-                          : '20 soruluk havuz • ${maxAtt - attempts.length} hak kaldı'),
+            DsCard(
+              accent: colors.violet,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    premium
+                        ? 'Sınırsıza yakın soru havuzu • Sınırsız test hakkın var ✨'
+                        : '20 soruluk havuz • ${maxAtt - attempts.length} hak kaldı',
+                    style: TextStyle(fontSize: 13, height: 1.4, color: colors.textDim),
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: DsPillButton(
+                      // Soru havuzu indirilirken buton pasif kalsın.
+                      label: _startingQuiz
+                          ? 'Hazırlanıyor…'
+                          : (attempts.isNotEmpty ? 'Tekrar Çöz' : 'Teste Başla'),
+                      color: colors.violet,
+                      gradient: LinearGradient(colors: [colors.violet, colors.rose]),
+                      trailingIcon: Icons.arrow_forward,
+                      onPressed:
+                          _startingQuiz ? null : () => _startQuiz(context, storage, premium),
                     ),
-                    ElevatedButton(
-                      onPressed: _startingQuiz ? null : () => _startQuiz(context, storage, premium),
-                      child: _startingQuiz
-                          ? const SizedBox(
-                              width: 16,
-                              height: 16,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : Text(attempts.isNotEmpty ? 'Tekrar Çöz →' : 'Teste Başla →'),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           if (teachers.isNotEmpty) ...[
@@ -334,30 +459,41 @@ class _TopicScreenState extends State<TopicScreen> {
             _TeacherTemperamentsSection(teachers: teachers, colors: colors),
           ],
           const SizedBox(height: 16),
-          Card(
-            color: colors.mint.withValues(alpha: 0.08),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('📄 PDF Olarak İndir',
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                  const SizedBox(height: 6),
-                  Text(
-                    'İlk indirişinde konu anlatımı + 20 soru gelir; soruların '
-                    'cevapları en son sayfada (cevap anahtarı) yer alır. Tekrar '
-                    'indirdiğinde konu anlatımı olmadan, sadece farklı 20 soru hazırlanır.',
-                    style: TextStyle(fontSize: 12, color: colors.textFaint),
-                  ),
-                  const SizedBox(height: 10),
-                  ElevatedButton.icon(
+          DsCard(
+            accent: colors.mint,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    DsIconBadge(emoji: '📄', color: colors.mint, size: 44, glow: false),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text('PDF Olarak İndir',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 15, color: colors.text)),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'İlk indirişinde konu anlatımı + 20 soru gelir; soruların '
+                  'cevapları en son sayfada (cevap anahtarı) yer alır. Tekrar '
+                  'indirdiğinde konu anlatımı olmadan, sadece farklı 20 soru hazırlanır.',
+                  style: TextStyle(fontSize: 12, height: 1.4, color: colors.textFaint),
+                ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: DsPillButton(
+                    label: 'PDF Oluştur',
+                    color: colors.mint,
+                    filled: false,
+                    leadingIcon: Icons.picture_as_pdf_outlined,
                     onPressed: () => _exportPdf(context),
-                    icon: const Icon(Icons.picture_as_pdf_outlined, size: 18),
-                    label: const Text('PDF Oluştur'),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
@@ -381,20 +517,13 @@ class _TtsListenButton extends StatelessWidget {
     final speaking = tts.isSpeaking;
     final accent = speaking ? colors.rose : colors.violet;
 
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: accent,
-          side: BorderSide(color: accent.withValues(alpha: 0.5), width: 1.2),
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        ),
-        icon: Icon(speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded),
-        label: Text(
-          speaking ? '⏹ Durdur' : '🔊 Sesli Dinle',
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        ),
+    // İkincil eylem: dış çizgili hap buton.
+    return Center(
+      child: DsPillButton(
+        label: speaking ? 'Durdur' : 'Sesli Dinle',
+        color: accent,
+        filled: false,
+        leadingIcon: speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded,
         onPressed: text.isEmpty
             ? null
             : () {
@@ -410,45 +539,7 @@ class _TtsListenButton extends StatelessWidget {
   }
 }
 
-/// Bölüm başlığı: emoji + başlık + ince ayraç çizgisi.
-class _SectionHeader extends StatelessWidget {
-  final String emoji;
-  final String title;
-  final KpssColors colors;
-  const _SectionHeader({required this.emoji, required this.title, required this.colors});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(emoji, style: const TextStyle(fontSize: 18)),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 15,
-            letterSpacing: 0.2,
-            color: colors.text,
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Container(
-            height: 1.5,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colors.violet.withValues(alpha: 0.5), colors.violet.withValues(alpha: 0)],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-/// Özet için dikkat çekici, temaya göre gradient dolgulu kutu.
+/// Özet için dikkat çekici, temaya göre gradient dolgulu kart.
 class _SummaryBox extends StatelessWidget {
   final String text;
   final KpssColors colors;
@@ -456,33 +547,21 @@ class _SummaryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DsCard(
+      accent: colors.violet,
       padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            colors.violet.withValues(alpha: 0.20),
-            colors.rose.withValues(alpha: 0.14),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: colors.violet.withValues(alpha: 0.35), width: 1.2),
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          colors.violet.withValues(alpha: colors.isLight ? 0.16 : 0.24),
+          colors.rose.withValues(alpha: colors.isLight ? 0.08 : 0.14),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: colors.violet.withValues(alpha: 0.22),
-              shape: BoxShape.circle,
-            ),
-            child: const Text('💡', style: TextStyle(fontSize: 20)),
-          ),
+          DsIconBadge(emoji: '💡', color: colors.violet, size: 42, glow: false),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -650,42 +729,49 @@ class _TeacherVideosCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: colors.rose.withValues(alpha: 0.07),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('🎥 Hocalardan Konu Anlatımı',
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-            const SizedBox(height: 4),
-            Text('Bir hoca seç, o hocanın bu konudaki videolarını YouTube\'da aç.',
-                style: TextStyle(fontSize: 12, color: colors.textFaint)),
-            const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                // Link widget'ı web'de gerçek bir <a> bağlantısı olarak render
-                // edilir → tarayıcının popup engelleyicisine TAKILMADAN yeni
-                // sekmede açılır. Mobilde url_launcher ile YouTube açılır.
-                for (final t in teachers)
-                  Link(
-                    uri: Uri.parse(
-                        youtubeSearchUrlFor(t.name, subjectAd, topicBaslik)),
-                    target: LinkTarget.blank,
-                    builder: (context, followLink) => ActionChip(
-                      avatar: const Icon(Icons.play_circle_fill,
-                          size: 18, color: Color(0xFFFF0000)),
-                      label: Text(t.name),
-                      onPressed: followLink,
-                    ),
+    return DsCard(
+      accent: colors.rose,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(emoji: '🎥', color: colors.rose, size: 44, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text('Hocalardan Konu Anlatımı',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 15, color: colors.text)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text('Bir hoca seç, o hocanın bu konudaki videolarını YouTube\'da aç.',
+              style: TextStyle(fontSize: 12, height: 1.4, color: colors.textFaint)),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              // Link widget'ı web'de gerçek bir <a> bağlantısı olarak render
+              // edilir → tarayıcının popup engelleyicisine TAKILMADAN yeni
+              // sekmede açılır. Mobilde url_launcher ile YouTube açılır.
+              for (final t in teachers)
+                Link(
+                  uri: Uri.parse(
+                      youtubeSearchUrlFor(t.name, subjectAd, topicBaslik)),
+                  target: LinkTarget.blank,
+                  builder: (context, followLink) => DsPillButton(
+                    label: t.name,
+                    color: colors.rose,
+                    filled: false,
+                    leadingIcon: Icons.play_circle_fill,
+                    onPressed: followLink,
                   ),
-              ],
-            ),
-          ],
-        ),
+                ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -700,14 +786,19 @@ class _TeacherTemperamentsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return DsCard(
+      padding: EdgeInsets.zero,
       child: Theme(
         data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
         child: ExpansionTile(
+          // Kart kendi kenarlığını çizdiği için açılır başlık şeffaf kalır.
+          backgroundColor: Colors.transparent,
+          collapsedBackgroundColor: Colors.transparent,
           tilePadding: const EdgeInsets.symmetric(horizontal: 16),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-          title: const Text('🎭 Hocaların Mizaçları',
-              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+          title: Text('🎭 Hocaların Mizaçları',
+              style: TextStyle(
+                  fontWeight: FontWeight.w800, fontSize: 15, color: colors.text)),
           subtitle: Text('Sana en uygun anlatım tarzını seç',
               style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
           children: [

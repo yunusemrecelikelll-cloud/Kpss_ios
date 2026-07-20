@@ -12,6 +12,7 @@ import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../services/remote_question_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
 import '../theme/theme_provider.dart';
 import '../utils/exam_dates.dart';
@@ -20,6 +21,9 @@ import 'quiz_screen.dart';
 import 'profile_screen.dart';
 import 'premium_screen.dart';
 import 'score_distribution_screen.dart';
+import 'mnemonics_screen.dart';
+import 'mentor_screen.dart';
+import 'stopwatch_screen.dart';
 import 'account_login_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
@@ -162,8 +166,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final overall = storage.computeOverall();
     final completed = storage.getCompletedTopics();
     final totalTopics = subjects.fold(0, (s, x) => s + x.konular.length);
-    final totalQuestions = subjects.fold<int>(
-        0, (s, x) => s + x.konular.fold<int>(0, (s2, t) => s2 + t.sorular.length));
     final doneTopics = subjects.fold(0, (s, x) => s + x.konular.where((t) => completed[t.id] == true).length);
     final fullTestDone = storage.getAttempts().where((a) => a.topicId == 'full-test').length;
     final examInfo = examInfoFor(storage.getExamType());
@@ -208,6 +210,38 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ScoreDistributionScreen()));
                 },
               ),
+              const Divider(height: 24),
+              // Aşağıdaki üç araç ÖNCEDEN "Oyunlar" sekmesindeki "Diğer
+              // Araçlar" bölümündeydi. Bunlar oyun değil çalışma aracı
+              // oldukları için buraya, Premium/Soru Dağılımı ile aynı
+              // çekmeceye taşındı (bkz. tools_hub_screen.dart).
+              ListTile(
+                leading: const Text('🧠'),
+                title: const Text('Akılda Kalıcı Kodlama'),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => MnemonicsScreen(subjects: widget.subjects)));
+                },
+              ),
+              ListTile(
+                leading: const Text('🎓'),
+                title: const Text('Mentörlük Seansları'),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => const MentorScreen()));
+                },
+              ),
+              ListTile(
+                leading: const Text('⏱️'),
+                title: const Text('Çalışma Kronometresi'),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => const StopwatchScreen()));
+                },
+              ),
             ],
           ),
         ),
@@ -216,167 +250,134 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            if (examInfo != null) _ExamCountdownBar(examInfo: examInfo),
-            if (examInfo != null) const SizedBox(height: 12),
+            // 1) Sınav geri sayım kartı.
+            if (examInfo != null) _ExamCountdownCard(examInfo: examInfo),
+            if (examInfo != null) const SizedBox(height: kDsGap),
+            // 2) Giriş banner'ı.
             if (!auth.isSignedIn) ...[
-              _LoginBanner(colors: c),
-              const SizedBox(height: 12),
+              const _LoginBanner(),
+              const SizedBox(height: kDsGap),
             ],
             if (_newContentAvailableAt != null) ...[
               _ContentUpdateBanner(colors: c, updatedAt: _newContentAvailableAt!),
-              const SizedBox(height: 12),
+              const SizedBox(height: kDsGap),
             ],
             for (final entry in drafts.entries) ...[
               _DraftResumeCard(draftKey: entry.key, draft: entry.value, colors: c),
-              const SizedBox(height: 12),
+              const SizedBox(height: kDsGap),
             ],
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(_heroGreetingFor(gender, name),
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-                    const SizedBox(height: 6),
-                    const Text('2026 KPSS hazırlığında bugün ne çalışmak istersin?'),
-                    const SizedBox(height: 10),
-                    Chip(label: Text(premium ? 'Premium' : 'Ücretsiz')),
-                  ],
-                ),
+            // Karşılama kartı (mevcut davranış korunuyor, sadece yüzeyi
+            // tasarım sistemine taşındı).
+            DsCard(
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(_heroGreetingFor(gender, name),
+                      style: TextStyle(
+                          fontSize: 19, fontWeight: FontWeight.w900, color: c.text)),
+                  const SizedBox(height: 6),
+                  Text('2026 KPSS hazırlığında bugün ne çalışmak istersin?',
+                      style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textDim)),
+                  const SizedBox(height: 10),
+                  DsChip(
+                    label: premium ? 'PREMIUM' : 'ÜCRETSİZ',
+                    color: premium ? c.gold : c.violetL,
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(child: _StatCard(icon: '🎯', value: '${overall.rate}%', label: 'Genel Başarı')),
-                const SizedBox(width: 10),
-                Expanded(child: _StatCard(icon: '📝', value: '${overall.solved}', label: 'Çözülen Soru')),
-                const SizedBox(width: 10),
-                Expanded(child: _StatCard(icon: '✅', value: '$doneTopics/$totalTopics', label: 'Konu')),
-              ],
+            const SizedBox(height: kDsGap),
+            // 3) Hedef/motivasyon banner'ı — "hedef mesleğin" alanı profil
+            // ekranındaki profil düzenleme akışında yaşıyor.
+            const _GoalBanner(),
+            const SizedBox(height: kDsGap),
+            // 4) İstatistik şeridi.
+            _HomeStatsStrip(
+              rate: overall.rate,
+              solved: overall.solved,
+              doneTopics: doneTopics,
+              totalTopics: totalTopics,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: kDsGap),
+            // 5) "Beni Sına" banner'ı.
             _BeniSinaCard(
-              colors: c,
               alreadyTaken: storage.hasTakenPlacementExam,
               subjects: subjects,
             ),
+            // 6) Premium kartı — premium kullanıcıya gösterilmez.
             if (!premium) ...[
-              const SizedBox(height: 16),
-              Card(
-                color: c.violet.withValues(alpha: 0.08),
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('💎 Ek ayrıcalıklar ve daha fazla soru için Premium\'a geç!',
-                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5)),
-                      const SizedBox(height: 6),
-                      Text('$totalQuestions soruluk tam soru bankası, sınırsız test, oyunlar ve daha fazlası.',
-                          style: TextStyle(fontSize: 12, color: c.textFaint)),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: () {
-                          context.read<SoundService>().click();
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                        },
-                        child: const Text("Premium'a Geç →"),
-                      ),
-                    ],
-                  ),
-                ),
+              const SizedBox(height: kDsGap),
+              DsBannerCard(
+                emoji: '💎',
+                accent: c.violet,
+                highlighted: true,
+                title: 'Premium ile sınırlarını aş!',
+                subtitle: 'Reklamsız kullanım, gelişmiş analizler ve özel içeriklere eriş.',
+                actionLabel: "👑 Premium'a Geç",
+                onAction: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                },
               ),
             ],
-            const SizedBox(height: 16),
-            Card(
-              color: c.gold.withValues(alpha: 0.08),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('🎯 Tam Deneme Sınavı', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                    const SizedBox(height: 4),
-                    const Text('Gerçek KPSS formatında 120 soru', style: TextStyle(fontSize: 12)),
-                    const SizedBox(height: 8),
-                    Text(
-                      premium
-                          ? '✨ Sınırsız deneme hakkın var'
-                          : '${(kFreeMaxFullTestAttempts - fullTestDone).clamp(0, kFreeMaxFullTestAttempts)} / $kFreeMaxFullTestAttempts deneme hakkın kaldı',
-                      style: TextStyle(fontSize: 12, color: c.warn),
-                    ),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: _startingFullTest
-                          ? null
-                          : () {
-                              context.read<SoundService>().click();
-                              _startFullTest(context);
-                            },
-                      child: _startingFullTest
-                          ? const SizedBox(
-                              width: 16, height: 16,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Text('Sınava Gir ➜'),
-                    ),
-                  ],
-                ),
-              ),
+            const SizedBox(height: kDsGap),
+            // 7) Tam Deneme Sınavı hero kartı.
+            DsHeroCard(
+              emoji: '🎯',
+              title: 'Tam Deneme Sınavı',
+              subtitle: 'Gerçek KPSS formatında 120 soru',
+              highlightLine: premium
+                  ? '✨ Sınırsız deneme hakkın var'
+                  : '✨ ${(kFreeMaxFullTestAttempts - fullTestDone).clamp(0, kFreeMaxFullTestAttempts)} / $kFreeMaxFullTestAttempts deneme hakkın kaldı',
+              accent: c.violet,
+              accent2: c.violetL,
+              illustrationEmoji: '🚀',
+              // Sınav hazırlanırken buton pasifleşir (eski spinner'ın yerine
+              // etiket değişiyor) — mantık aynı.
+              actionLabel: _startingFullTest ? 'Hazırlanıyor…' : 'Sınava Gir',
+              onAction: _startingFullTest
+                  ? null
+                  : () {
+                      context.read<SoundService>().click();
+                      _startFullTest(context);
+                    },
             ),
-            const SizedBox(height: 16),
-            Card(
-              color: c.rose.withValues(alpha: 0.10),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Text('⚔️ KPSS Düello',
-                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: c.rose.withValues(alpha: 0.25),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text('POPÜLER',
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, color: c.rose)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    const Text('Rakiplerinle canlı yarış: 1v1 Düello veya çok kişilik Royale',
-                        style: TextStyle(fontSize: 12)),
-                    const SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) => const DuelLobbyScreen()));
-                      },
-                      child: const Text('Düelloya Gir ➜'),
-                    ),
-                  ],
-                ),
-              ),
+            const SizedBox(height: kDsGap),
+            // 8) KPSS Düello hero kartı.
+            DsHeroCard(
+              emoji: '⚔️',
+              title: 'KPSS Düello',
+              badge: 'POPÜLER',
+              subtitle: 'Rakiplerinle canlı yarış: 1v1 Düello veya çok kişilik Royale',
+              accent: c.rose,
+              accent2: c.roseL,
+              illustrationEmoji: '🏆',
+              actionLabel: 'Düelloya Gir',
+              onAction: () {
+                context.read<SoundService>().click();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const DuelLobbyScreen()));
+              },
             ),
             const SizedBox(height: 20),
-            const Text('Dersler', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
-            const SizedBox(height: 10),
-            GridView.count(
-              crossAxisCount: 2,
+            // 9) Dersler — projede ayrı bir "tüm dersler" ekranı olmadığı için
+            // başlıkta aksiyon bağlantısı yok.
+            const DsSectionHeader(title: 'Dersler'),
+            const SizedBox(height: 8),
+            GridView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 1.3,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: kDsGap,
+                crossAxisSpacing: kDsGap,
+                // Sabit en-boy oranı yerine sabit yükseklik: büyük yazı
+                // ölçeğinde kart da büyür, böylece taşma olmaz.
+                mainAxisExtent: 168 *
+                    (MediaQuery.textScalerOf(context).scale(14) / 14).clamp(1.0, 1.6),
+              ),
               children: [
                 for (final s in subjects.where((s) => s.konular.isNotEmpty))
                   _SubjectCard(
@@ -399,17 +400,20 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-/// Ay/Gün/Saat/Dakika hassasiyetinde canlı geri sayım — dakika değiştikçe
-/// (ekranın geri kalanı yeniden çizilmeden) kendi kendine güncellenir.
-class _ExamCountdownBar extends StatefulWidget {
+/// Ay/Gün/Saat/Dakika hassasiyetinde canlı geri sayım kartı — dakika
+/// değiştikçe (ekranın geri kalanı yeniden çizilmeden) kendi kendine
+/// güncellenir. Geri sayım metni yine `formatCountdown` tarafından üretilir;
+/// burada yalnızca "12 Gün" gibi parçalara ayrılıp sayı büyük, birim küçük
+/// olacak şekilde çizilir — hesaplama mantığı değişmez.
+class _ExamCountdownCard extends StatefulWidget {
   final ExamInfo examInfo;
-  const _ExamCountdownBar({required this.examInfo});
+  const _ExamCountdownCard({required this.examInfo});
 
   @override
-  State<_ExamCountdownBar> createState() => _ExamCountdownBarState();
+  State<_ExamCountdownCard> createState() => _ExamCountdownCardState();
 }
 
-class _ExamCountdownBarState extends State<_ExamCountdownBar> {
+class _ExamCountdownCardState extends State<_ExamCountdownCard> {
   Timer? _timer;
 
   @override
@@ -433,25 +437,97 @@ class _ExamCountdownBarState extends State<_ExamCountdownBar> {
     final date = nextExamDate(examInfo);
     final countdown = formatCountdown(date);
     final dateStr = '${date.day} ${_monthName(date.month)}';
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        gradient: LinearGradient(
-          colors: [Theme.of(context).colorScheme.primary.withValues(alpha: 0.18),
-              Theme.of(context).colorScheme.secondary.withValues(alpha: 0.14)],
-        ),
-      ),
-      child: Column(
+    final parts = _splitCountdown(countdown);
+
+    return DsCard(
+      accent: c.violet,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('📅 ${examInfo.label} KPSS — $dateStr', style: TextStyle(fontSize: 12, color: c.textDim)),
-          const SizedBox(height: 2),
-          Text('Sınava kalan süre: $countdown',
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    DsIconBadge(
+                      emoji: '📅',
+                      color: c.violetL,
+                      size: 38,
+                      circle: false,
+                      glow: false,
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        '${examInfo.label} KPSS — $dateStr',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 12, color: c.textFaint),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Text('Sınava kalan süre',
+                    style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                const SizedBox(height: 4),
+                if (parts.isEmpty)
+                  // "Sınav bugün! 🎯" gibi parçalanamayan metin olduğu gibi.
+                  Text(countdown,
+                      style: TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.w900, color: c.text))
+                else
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 2,
+                    crossAxisAlignment: WrapCrossAlignment.end,
+                    children: [
+                      for (final p in parts)
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(p.$1,
+                                style: TextStyle(
+                                    fontSize: 34,
+                                    height: 1.05,
+                                    fontWeight: FontWeight.w900,
+                                    color: c.text)),
+                            const SizedBox(width: 3),
+                            Text(p.$2,
+                                style: TextStyle(
+                                    fontSize: 12.5,
+                                    fontWeight: FontWeight.w700,
+                                    color: c.textFaint)),
+                          ],
+                        ),
+                    ],
+                  ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          DsIllustration(emoji: '⏳', size: 76, glowColor: c.violetL),
         ],
       ),
     );
+  }
+
+  /// `formatCountdown` çıktısını ("2 Ay 5 Gün 3 Saat 20 Dk") (değer, birim)
+  /// ikililerine böler. Beklenmedik bir biçim gelirse boş liste döner ve
+  /// metin olduğu gibi gösterilir.
+  static List<(String, String)> _splitCountdown(String text) {
+    final tokens = text.split(' ').where((t) => t.isNotEmpty).toList();
+    if (tokens.length < 2 || tokens.length.isOdd) return const [];
+    final out = <(String, String)>[];
+    for (var i = 0; i + 1 < tokens.length; i += 2) {
+      if (int.tryParse(tokens[i]) == null) return const [];
+      out.add((tokens[i], tokens[i + 1]));
+    }
+    return out;
   }
 
   static String _monthName(int m) {
@@ -466,41 +542,112 @@ class _ExamCountdownBarState extends State<_ExamCountdownBar> {
 /// Anasayfa banner'ı — kullanıcı hesaba giriş yapmamışsa gösterilir ve
 /// giriş yapmanın getirdiği artıları özetler.
 class _LoginBanner extends StatelessWidget {
-  final KpssColors colors;
-  const _LoginBanner({required this.colors});
+  const _LoginBanner();
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: colors.violet.withValues(alpha: 0.08),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            const Text('🔐', style: TextStyle(fontSize: 28)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Giriş yap, kaybolma!', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
-                  const SizedBox(height: 3),
-                  Text('Sohbette gerçek adınla mesajlaş, ilerlemen hesabına bağlansın.',
-                      style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
-                ],
-              ),
+    final c = context.watch<ThemeProvider>().colors;
+    return DsBannerCard(
+      icon: Icons.lock_outline,
+      accent: c.violet,
+      title: 'Hesabını koru, ilerlemeni kaybetme!',
+      subtitle: 'Sohbette gerçek adınla mesajlaş, ilerlemen hesabına bağlansın.',
+      actionLabel: 'Giriş Yap',
+      onAction: () {
+        context.read<SoundService>().click();
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
+      },
+    );
+  }
+}
+
+/// Motivasyon banner'ı — "hedef belirleme" akışı olarak profil ekranına
+/// götürür; hedef meslek seçimi orada, profil düzenleme bölümünde yaşıyor
+/// (bkz. profile_screen.dart, "Hedef mesleğin").
+class _GoalBanner extends StatelessWidget {
+  const _GoalBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsBannerCard(
+      emoji: '👑',
+      accent: c.gold,
+      title: 'Bugün, dünden daha güçlü ol! 🚀',
+      subtitle: 'Hedeflerine bir adım daha yaklaşmak senin elinde.',
+      actionLabel: '🎯 Hedef Belirle',
+      filledAction: false,
+      onAction: () {
+        context.read<SoundService>().click();
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const ProfileScreen()));
+      },
+    );
+  }
+}
+
+/// Anasayfadaki üç sütunlu istatistik şeridi. Değerlerin hepsi çağıran
+/// taraftan (mevcut hesaplamalardan) gelir.
+class _HomeStatsStrip extends StatelessWidget {
+  final int rate;
+  final int solved;
+  final int doneTopics;
+  final int totalTopics;
+
+  const _HomeStatsStrip({
+    required this.rate,
+    required this.solved,
+    required this.doneTopics,
+    required this.totalTopics,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsStatStrip(
+      items: [
+        DsStatItem(
+          // Dairesel ilerleme halkasının ortasında yüzde değeri.
+          visual: SizedBox(
+            width: 54,
+            height: 54,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox.expand(
+                  child: CircularProgressIndicator(
+                    value: (rate / 100).clamp(0.0, 1.0),
+                    strokeWidth: 5.5,
+                    strokeCap: StrokeCap.round,
+                    backgroundColor: c.border,
+                    valueColor: AlwaysStoppedAnimation<Color>(c.violetL),
+                  ),
+                ),
+                Text('%$rate',
+                    style: TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w900, color: c.text)),
+              ],
             ),
-            const SizedBox(width: 8),
-            ElevatedButton(
-              onPressed: () {
-                context.read<SoundService>().click();
-                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
-              },
-              child: const Text('Giriş Yap'),
-            ),
-          ],
+          ),
+          value: '',
+          label: 'Genel Başarı',
+          sublabel: 'Ortalama',
         ),
-      ),
+        DsStatItem(
+          visual: DsIconBadge(emoji: '📋', color: c.gold, size: 44, glow: false),
+          value: '$solved',
+          label: 'Çözülen Soru',
+          sublabel: 'Toplam',
+        ),
+        DsStatItem(
+          visual: DsIconBadge(
+              icon: Icons.check_rounded, color: c.success, size: 44, glow: false),
+          value: '$doneTopics/$totalTopics',
+          label: 'Konu',
+          sublabel: 'Tamamlanan',
+        ),
+      ],
     );
   }
 }
@@ -514,65 +661,35 @@ class _LoginBanner extends StatelessWidget {
 /// tonuna geçer — böylece kullanıcı agresif biçimde tekrar tekrar davet
 /// edilmiş gibi hissetmez.
 class _BeniSinaCard extends StatelessWidget {
-  final KpssColors colors;
   final bool alreadyTaken;
   final List<Subject> subjects;
-  const _BeniSinaCard({required this.colors, required this.alreadyTaken, required this.subjects});
+  const _BeniSinaCard({required this.alreadyTaken, required this.subjects});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: colors.mint.withValues(alpha: 0.10),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(alreadyTaken ? '🎯 Beni Sına' : '🎯 Beni Sına',
-                    style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                if (!alreadyTaken) ...[
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: colors.mint.withValues(alpha: 0.25),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text('YENİ',
-                        style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, color: colors.mint)),
-                  ),
-                ],
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(
-              alreadyTaken
-                  ? 'Güncel seviyeni görmek için kısa teşhis testini tekrar çöz.'
-                  : 'Her dersten birkaç soruyla nerede güçlü, nerede eksik olduğunu 5 dakikada öğren!',
-              style: TextStyle(fontSize: 12, color: colors.textFaint),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                context.read<SoundService>().click();
-                // Tam Deneme Sınavı/"yarıda kalan test" ile AYNI desen: quiz
-                // akışı (ve bu akışın kısa yükleme ekranı) alt navigasyon
-                // çubuğunun üstünde, KÖK Navigator'da açılır (bkz.
-                // main_shell.dart üstteki açıklama) — bu yüzden burada da
-                // pushReplacement DEĞİL, kök navigator'a push kullanılıyor;
-                // PlacementExamScreen kendi içinde quiz'e geçerken zaten
-                // AYNI kök navigator üzerinde pushReplacement yapıyor (bkz.
-                // placement_exam_screen.dart).
-                Navigator.of(context, rootNavigator: true)
-                    .push(MaterialPageRoute(builder: (_) => PlacementExamScreen(subjects: subjects)));
-              },
-              child: Text(alreadyTaken ? 'Tekrar Sına →' : 'Beni Sına →'),
-            ),
-          ],
-        ),
-      ),
+    final c = context.watch<ThemeProvider>().colors;
+    return DsBannerCard(
+      emoji: '🎯',
+      accent: c.mint,
+      title: 'Beni Sına',
+      subtitle: alreadyTaken
+          ? 'Güncel seviyeni görmek için kısa teşhis testini tekrar çöz.'
+          : 'Her dersten birkaç soruyla nerede güçlü, nerede eksik olduğunu 5 dakikada öğren!',
+      actionLabel: alreadyTaken ? 'Tekrar Sına →' : 'Beni Sına →',
+      filledAction: false,
+      onAction: () {
+        context.read<SoundService>().click();
+        // Tam Deneme Sınavı/"yarıda kalan test" ile AYNI desen: quiz
+        // akışı (ve bu akışın kısa yükleme ekranı) alt navigasyon
+        // çubuğunun üstünde, KÖK Navigator'da açılır (bkz.
+        // main_shell.dart üstteki açıklama) — bu yüzden burada da
+        // pushReplacement DEĞİL, kök navigator'a push kullanılıyor;
+        // PlacementExamScreen kendi içinde quiz'e geçerken zaten
+        // AYNI kök navigator üzerinde pushReplacement yapıyor (bkz.
+        // placement_exam_screen.dart).
+        Navigator.of(context, rootNavigator: true)
+            .push(MaterialPageRoute(builder: (_) => PlacementExamScreen(subjects: subjects)));
+      },
     );
   }
 }
@@ -733,28 +850,6 @@ class _ProfileAvatarButton extends StatelessWidget {
   }
 }
 
-class _StatCard extends StatelessWidget {
-  final String icon, value, label;
-  const _StatCard({required this.icon, required this.value, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-        child: Column(
-          children: [
-            Text(icon, style: const TextStyle(fontSize: 20)),
-            const SizedBox(height: 6),
-            Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-            Text(label, style: const TextStyle(fontSize: 11), textAlign: TextAlign.center),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 /// Saniyeyi "1sa 20dk" / "45dk" gibi kısa okunur bir süreye çevirir.
 String _fmtStudyShort(int seconds) {
   final minutes = seconds ~/ 60;
@@ -779,43 +874,95 @@ class _SubjectCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final palette = subjectPaletteFor(subject.id);
+    final toplam = subject.konular.length;
     return Container(
-      decoration: subjectCardDecoration(palette: palette, isLight: c.isLight),
+      decoration: subjectCardDecoration(
+        palette: palette,
+        isLight: c.isLight,
+        radius: kDsRadius,
+      ),
       clipBehavior: Clip.antiAlias,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(kDsRadius),
           child: Padding(
             padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(subject.icon, style: const TextStyle(fontSize: 22)),
+                    Text(subject.icon, style: const TextStyle(fontSize: 24)),
                     const Spacer(),
+                    // Süre çipi yalnızca gerçekten çalışma süresi varsa.
                     if (studySeconds > 0)
-                      Row(
-                        children: [
-                          Icon(Icons.timer_outlined, size: 12, color: c.textFaint),
-                          const SizedBox(width: 2),
-                          Text(_fmtStudyShort(studySeconds), style: TextStyle(fontSize: 10.5, color: c.textFaint)),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: c.glass2,
+                          border: Border.all(color: c.border),
+                        ),
+                        child: Text(
+                          '⏱ ${_fmtStudyShort(studySeconds)}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 10.5, fontWeight: FontWeight.w700, color: c.textDim),
+                        ),
                       ),
                   ],
                 ),
-                const SizedBox(height: 6),
-                Text(subject.ad, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
-                const Spacer(),
-                LinearProgressIndicator(
-                  value: subject.konular.isEmpty ? 0 : completedCount / subject.konular.length,
-                  backgroundColor: palette.a.withValues(alpha: c.isLight ? 0.14 : 0.20),
-                  valueColor: AlwaysStoppedAnimation(palette.b),
+                const SizedBox(height: 8),
+                Flexible(
+                  child: Text(
+                    subject.ad,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 14.5, color: c.text),
+                  ),
                 ),
-                const SizedBox(height: 4),
-                Text('$completedCount/${subject.konular.length} konu', style: const TextStyle(fontSize: 11)),
+                const Spacer(),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          DsProgressBar(
+                            value: toplam == 0 ? 0 : completedCount / toplam,
+                            color: palette.b,
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            '$completedCount/$toplam konu',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 11, color: c.textDim),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Container(
+                      width: 30,
+                      height: 30,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: c.glass2,
+                        border: Border.all(color: palette.a.withValues(alpha: 0.55)),
+                      ),
+                      child: Icon(Icons.arrow_forward, size: 15, color: c.text),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

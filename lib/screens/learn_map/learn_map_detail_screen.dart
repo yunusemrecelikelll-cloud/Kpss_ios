@@ -4,13 +4,17 @@ import '../../data/learn_map_data.dart';
 import '../../data/turkey_map_data.dart';
 import '../../services/sound_service.dart';
 import '../../theme/theme_provider.dart';
-import '../../widgets/turkey_map_painter.dart';
+import '../map_game/map_shared.dart';
 
 /// Bir "Haritadan Öğren" kategorisi (ör. "Tarım") seçildiğinde açılan ekran.
 /// Üstte kategorideki maddelerin (ör. "Fındık", "Çay", "Zeytin"...) yatay
 /// seçim çipleri, altında seçili maddeye göre vurgulanmış GERÇEK Türkiye
-/// haritası ([TurkeyMapWidget]) ve en altta madde açıklaması + veri kaynağı
-/// gösterilir.
+/// haritası ve en altta madde açıklaması gösterilir.
+///
+/// Harita, oyun modlarıyla AYNI [TurkeyMapCanvas] bileşenini kullanır — böylece
+/// yakınlaştırma/uzaklaştırma davranışı (kademeli animasyon, min/max ölçek,
+/// çift dokunuşla sıfırlama) ve en/boy oranını koruyan yerleşim uygulamanın
+/// TÜM haritalarında birebir aynıdır.
 class LearnMapDetailScreen extends StatefulWidget {
   final LearnMapCategory category;
   const LearnMapDetailScreen({super.key, required this.category});
@@ -32,11 +36,6 @@ class _LearnMapDetailScreenState extends State<LearnMapDetailScreen> {
   Widget build(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
     final highlighted = _selected.provinceIds.toSet();
-
-    final fillColors = <String, Color>{
-      for (final p in kTurkeyProvinces)
-        p.id: highlighted.contains(p.id) ? colors.violet : colors.textFaint.withValues(alpha: 0.18),
-    };
 
     return Scaffold(
       appBar: AppBar(title: Text('${widget.category.icon} ${widget.category.title}')),
@@ -67,24 +66,15 @@ class _LearnMapDetailScreenState extends State<LearnMapDetailScreen> {
                 ),
               ),
               const SizedBox(height: 12),
+              // NOT: Harita artık kendi en/boy oranını KORUYARAK alana sığar
+              // (sıkışmaz/yayvanlaşmaz) ve arkasında beyaz bir dolgu/çerçeve
+              // ÇİZİLMEZ — artan boşluk şeffaf kalır.
               Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(18),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: colors.glass,
-                      border: Border.all(color: colors.border),
-                    ),
-                    child: InteractiveViewer(
-                      minScale: 1.0,
-                      maxScale: 3.2,
-                      child: TurkeyMapWidget(
-                        fillColors: fillColors,
-                        defaultFillColor: colors.textFaint.withValues(alpha: 0.18),
-                        borderColor: colors.border,
-                      ),
-                    ),
-                  ),
+                child: TurkeyMapCanvas(
+                  provinces: kTurkeyProvinces,
+                  colorFor: (p) => highlighted.contains(p.id)
+                      ? colors.violet
+                      : colors.textFaint.withValues(alpha: 0.18),
                 ),
               ),
               const SizedBox(height: 12),
@@ -106,20 +96,11 @@ class _LearnMapDetailScreenState extends State<LearnMapDetailScreen> {
                     ),
                     const SizedBox(height: 6),
                     Text(_selected.subtitle, style: TextStyle(fontSize: 12.5, color: colors.text, height: 1.4)),
-                    const SizedBox(height: 8),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(Icons.verified_outlined, size: 14, color: colors.mint),
-                        const SizedBox(width: 6),
-                        Expanded(
-                          child: Text(
-                            'Kaynak: ${_selected.kaynak}',
-                            style: TextStyle(fontSize: 10.5, color: colors.textFaint, fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // NOT: Alttaki "Kaynak: ..." satırı kullanıcı isteğiyle
+                    // KALDIRILDI. Kaynak bilgisi verinin kendisinde
+                    // ([LearnMapItem.kaynak], bkz. lib/data/learn_map_data.dart)
+                    // doğruluk denetimi için KORUNUYOR, sadece ekranda
+                    // gösterilmiyor.
                   ],
                 ),
               ),

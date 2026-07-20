@@ -4,6 +4,7 @@ import '../services/purchase_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'privacy_policy_screen.dart';
 
@@ -126,12 +127,16 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Premium ile Sınırsız Erişim',
-            style: TextStyle(color: c.gold, fontWeight: FontWeight.w800, fontSize: 17)),
+        centerTitle: true,
+        title: Text(
+          'Premium ile Sınırsız Erişim',
+          style: TextStyle(color: c.gold, fontWeight: FontWeight.w800, fontSize: 16.5),
+        ),
         actions: [
+          // Geçmiş satın alımları geri yükleme — mevcut _restore akışı.
           IconButton(
             tooltip: 'Satın Alımları Geri Yükle',
-            icon: const Icon(Icons.restore),
+            icon: const Icon(Icons.history),
             onPressed: () => _restore(context),
           ),
         ],
@@ -149,66 +154,77 @@ class _PremiumScreenState extends State<PremiumScreen> {
     // "Premium Ayrıntıları Gör" butonuna basınca boş görünmesinin sebebi
     // buydu. Artık premium kullanıcı da tam özellik tablosunu görüyor.
     return ListView(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
       children: [
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Text('Premium hesabın aktif ✨',
-                    style: TextStyle(fontWeight: FontWeight.w800, color: c.gold, fontSize: 16)),
-                const SizedBox(height: 6),
-                Text(
-                  'Aşağıdaki tüm ayrıcalıklar hesabında açık.',
-                  style: TextStyle(fontSize: 12.5, color: c.textFaint),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 12),
-                OutlinedButton(
-                  onPressed: () {
-                    context.read<SoundService>().click();
-                    storage.setUserPlan('free');
-                  },
-                  child: const Text('Ücretsiz Plan'),
-                ),
-              ],
-            ),
+        DsCard(
+          accent: c.gold,
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            children: [
+              DsIllustration(emoji: '👑', glowColor: c.gold, size: 84),
+              const SizedBox(height: 6),
+              Text(
+                'Premium hesabın aktif ✨',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.w900, color: c.gold, fontSize: 16),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Aşağıdaki tüm ayrıcalıklar hesabında açık.',
+                style: TextStyle(fontSize: 12.5, color: c.textFaint),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 14),
+              DsPillButton(
+                label: 'Ücretsiz Plan',
+                color: c.textDim,
+                filled: false,
+                onPressed: () {
+                  context.read<SoundService>().click();
+                  storage.setUserPlan('free');
+                },
+              ),
+            ],
           ),
         ),
         const SizedBox(height: 18),
-        _FeatureComparisonTable(c: c),
+        const _FeatureComparisonTable(),
       ],
     );
   }
 
   Widget _buildOfferState(BuildContext context, KpssColors c) {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 20),
       children: [
-        if (_purchases.status == PurchaseServiceStatus.unavailable)
-          Card(
-            color: Theme.of(context).colorScheme.errorContainer,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                'Mağaza şu an kullanılamıyor: ${_purchases.lastError ?? "bilinmeyen sebep"}',
-                style: TextStyle(color: Theme.of(context).colorScheme.onErrorContainer),
-              ),
+        if (_purchases.status == PurchaseServiceStatus.unavailable) ...[
+          DsCard(
+            accent: c.danger,
+            padding: const EdgeInsets.all(14),
+            child: Row(
+              children: [
+                DsIconBadge(icon: Icons.store_mall_directory_outlined, color: c.danger, size: 38, circle: false, glow: false),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'Mağaza şu an kullanılamıyor: ${_purchases.lastError ?? "bilinmeyen sebep"}',
+                    style: TextStyle(fontSize: 12, height: 1.4, color: c.text),
+                  ),
+                ),
+              ],
             ),
           ),
-        Text(
-          'Premium\'da konu başına soru havuzu limiti kalkar, tüm oyunlar '
-          'sınırsız oynanır ve kilitli tüm araçların (Yanlışlarım Bankası, '
-          'Akılda Kalıcı Kodlama, Özel Lig ve daha fazlası) kilidi açılır.',
-          style: TextStyle(fontSize: 12.5, color: c.textFaint, height: 1.5),
-        ),
-        const SizedBox(height: 18),
-        _FeatureComparisonTable(c: c),
+          const SizedBox(height: 14),
+        ],
+        _PremiumHero(c: c),
         const SizedBox(height: 22),
-        Text('Planını seç', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: c.text)),
-        const SizedBox(height: 10),
-        _PlanRow(
+        DsSectionHeader(title: 'Ücretsiz mi, Premium mi?'),
+        const SizedBox(height: 6),
+        const _FeatureComparisonTable(),
+        const SizedBox(height: 24),
+        DsSectionHeader(title: 'Planını seç'),
+        const SizedBox(height: 6),
+        _PlanCard(
           title: 'Öğrenci Premium',
           tag: '🎓 Öğrenciler için',
           price: _purchases.productFor(kOgrenciPremiumId)?.price ?? '100,00 ₺ / ay',
@@ -217,17 +233,15 @@ class _PremiumScreenState extends State<PremiumScreen> {
               'giderleri için biraz almam gerekiyor. İdare edin, ileride '
               'telafi ederim dostlarım. 💙🙏',
           selected: _selectedProductId == kOgrenciPremiumId,
-          c: c,
           onTap: () => setState(() => _selectedProductId = kOgrenciPremiumId),
         ),
-        const SizedBox(height: 10),
-        _PlanRow(
+        const SizedBox(height: kDsGap),
+        _PlanCard(
           title: 'Tam Premium',
           tag: '⭐ Standart',
           price: _purchases.productFor(kTamPremiumId)?.price ?? '300,00 ₺ / ay',
           caption: '☕ Sadece bir kahve parasına... hayatın değişebilir mi? 😌✨',
           selected: _selectedProductId == kTamPremiumId,
-          c: c,
           onTap: () => setState(() => _selectedProductId = kTamPremiumId),
         ),
         const SizedBox(height: 16),
@@ -235,42 +249,52 @@ class _PremiumScreenState extends State<PremiumScreen> {
           'Abonelikler otomatik yenilenir. İstediğin zaman mağaza hesabının '
           'abonelik ayarlarından iptal edebilirsin.',
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 11, color: c.textFaint),
+          style: TextStyle(fontSize: 11, color: c.textFaint, height: 1.45),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 10),
         Center(
           child: Wrap(
             alignment: WrapAlignment.center,
+            spacing: 10,
+            runSpacing: 10,
             children: [
-              TextButton(
+              DsPillButton(
+                label: 'Satın Alımları Geri Yükle',
+                color: c.gold,
+                filled: false,
+                leadingIcon: Icons.history,
                 onPressed: () => _restore(context),
-                child: const Text('Satın Alımları Geri Yükle'),
               ),
-              TextButton(
+              DsPillButton(
+                label: 'Gizlilik Politikası',
+                color: c.violetL,
+                filled: false,
+                leadingIcon: Icons.privacy_tip_outlined,
                 onPressed: () {
                   context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
                 },
-                child: const Text('Gizlilik Politikası'),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 8),
-        const Divider(),
-        const SizedBox(height: 8),
+        const SizedBox(height: 18),
+        Divider(color: c.border, height: 1),
+        const SizedBox(height: 14),
         Text(
           'Test aşaması — aşağıdaki buton geliştirme amaçlıdır, ilerleyen '
           'zamanlarda kaldırılacaktır.',
-          style: TextStyle(fontSize: 11, color: c.textFaint),
+          style: TextStyle(fontSize: 11, color: c.textFaint, height: 1.4),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton(
+        const SizedBox(height: 10),
+        Center(
+          child: DsPillButton(
+            label: '🧪 Ücretsiz Aç (Test)',
+            color: c.textDim,
+            filled: false,
             onPressed: () => _openFreeForTesting(context),
-            child: const Text('🧪 Ücretsiz Aç (Test)'),
           ),
         ),
       ],
@@ -278,21 +302,53 @@ class _PremiumScreenState extends State<PremiumScreen> {
   }
 
   Widget _buildStickyCta(BuildContext context, KpssColors c) {
+    // Alttaki birincil eylem: altın degradeli, tam genişlikte hap buton.
+    // (DsPillButton içerik genişliğinde durduğu için burada aynı görsel dil
+    // tam genişlik + yükleniyor göstergesiyle birlikte kuruluyor.)
+    final aktif = !_purchases.isPurchasing;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 10, 16, 14),
-        child: SizedBox(
-          width: double.infinity,
-          height: 52,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: c.gold,
-              foregroundColor: Colors.black,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(999),
+            onTap: aktif ? () => _buy(context, _selectedProductId) : null,
+            child: Ink(
+              height: 54,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(999),
+                gradient: LinearGradient(
+                  colors: [c.gold, Color.lerp(c.gold, c.rose, 0.35)!],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: c.gold.withValues(alpha: aktif ? 0.34 : 0.12),
+                    blurRadius: 16,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: _purchases.isPurchasing
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      )
+                    : const Text(
+                        'Devam Et',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 15.5,
+                          color: Colors.white,
+                        ),
+                      ),
+              ),
             ),
-            onPressed: _purchases.isPurchasing ? null : () => _buy(context, _selectedProductId),
-            child: _purchases.isPurchasing
-                ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
-                : const Text('Devam Et', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.5)),
           ),
         ),
       ),
@@ -300,84 +356,334 @@ class _PremiumScreenState extends State<PremiumScreen> {
   }
 }
 
-/// Referans tasarımdaki gibi "Özellikler | Ücretsiz | Premium" tablo görünümü
-/// — çoğu özellik kilitli/açık (✓/✗) olduğundan işaretle, miktar bazlı olanlar
-/// (soru havuzu, tema sayısı, günlük oyun hakkı gibi) kısa metinle gösterilir.
-class _FeatureComparisonTable extends StatelessWidget {
+/// ── Kahraman bölümü ───────────────────────────────────────────────────────
+///
+/// Kart değil; sayfanın üstünde serbest yerleşim: solda iki satırlık büyük
+/// başlık (ikinci satırın son kelimesi altın), sağda taç illüstrasyonu.
+class _PremiumHero extends StatelessWidget {
   final KpssColors c;
-  const _FeatureComparisonTable({required this.c});
-
-  static const _rows = [
-    ('📚 Konu başına soru havuzu', '20 soru', 'Sınırsıza yakın'),
-    ('❌ Yanlışlarım Bankası', null, 'Tüm yanlışları tekrar çöz'),
-    ('🃏 Kart Oyunu & Solitaire', 'Günde 10 oyun', 'Sınırsız oyun'),
-    ('⚔️ KPSS Düello & Royale', 'Günde 10 maç', 'Sınırsız maç'),
-    ('🗺️ Harita Oyunu', 'Günde 10 mini oyun', 'Sınırsız oyun'),
-    ('🎨 Uygulama Temaları', '3 tema', '9 tema'),
-    ('🧠 Akılda Kalıcı Kodlama', null, 'Tüm mnemonik teknikleri'),
-    ('🎯 Sınav Puanı Tahmini', null, 'Anlık net/puan tahmini'),
-    ('⏱️ Çalışma Kronometresi', null, 'Detaylı zaman analizi'),
-    ('🎓 Mentörlük Seansları', null, 'Tüm seanslara erişim'),
-    ('🏆 Özel Lig', null, 'Haftalık sıralama ve kademe'),
-    ('📊 İstatistik Derinliği', 'Temel özet', 'Konu bazlı detaylı analiz'),
-  ];
+  const _PremiumHero({required this.c});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
-        child: Column(
+    return LayoutBuilder(
+      builder: (context, cons) {
+        // Çok dar ekran / büyük yazı ölçeğinde illüstrasyon küçülür, taşma olmaz.
+        final gorselBoyut = cons.maxWidth < 320
+            ? 74.0
+            : cons.maxWidth < 380
+                ? 92.0
+                : 110.0;
+        final baslikBoyut = cons.maxWidth < 340 ? 23.0 : 27.0;
+
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(
+                        fontSize: baslikBoyut,
+                        fontWeight: FontWeight.w900,
+                        height: 1.18,
+                        color: c.text,
+                      ),
+                      children: [
+                        const TextSpan(text: 'Senin hedefin,\n'),
+                        const TextSpan(text: 'bizim '),
+                        TextSpan(text: 'desteğimiz.', style: TextStyle(color: c.gold)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  RichText(
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 12.5, height: 1.45, color: c.textDim),
+                      children: [
+                        const TextSpan(text: 'Ücretsiz sürüm temel içerikleri sunar.\n'),
+                        TextSpan(
+                          text: 'Premium',
+                          style: TextStyle(color: c.gold, fontWeight: FontWeight.w900),
+                        ),
+                        const TextSpan(text: ' ile sınırları kaldır!'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            DsIllustration(emoji: '👑', glowColor: c.gold, size: gorselBoyut),
+          ],
+        );
+      },
+    );
+  }
+}
+
+/// ── Karşılaştırma tablosu ─────────────────────────────────────────────────
+///
+/// Ekranın ana öğesi: iki sütunlu (Ücretsiz / Premium) özellik karşılaştırması.
+/// Premium sütunu, başlığıyla birlikte boydan boya altın çerçeve içinde durur —
+/// görsel olarak "seçilmiş plan" hissi verir.
+///
+/// Satır içerikleri uygulamadaki gerçek limitlerle uyumludur:
+/// oyun limitleri `kFreeGameDailyLimit` (10/gün), konu havuzu 20 soru,
+/// ücretsiz temalar 3 / toplam 9 tema.
+class _FeatureComparisonTable extends StatelessWidget {
+  const _FeatureComparisonTable();
+
+  /// (emoji, özellik adı, ücretsiz değeri — null ise ✕, premium değeri)
+  static const _rows = <(String, String, String?, String)>[
+    ('📚', 'Konu başına soru havuzu', '20 soru', 'Sınırsıza yakın'),
+    ('❌', 'Yanlışlarım Bankası', null, 'Tüm yanlışları tekrar çöz'),
+    ('🃏', 'Kart Oyunu & Solitaire', 'Günde 10 oyun', 'Sınırsız oyun'),
+    ('⚔️', 'KPSS Düello & Royale', 'Günde 10 maç', 'Sınırsız maç'),
+    ('🗺️', 'Harita Oyunu', 'Günde 10 mini oyun', 'Sınırsız oyun'),
+    ('🎨', 'Uygulama Temaları', '3 tema', '9 tema'),
+    ('🧠', 'Akılda Kalıcı Kodlama', null, 'Tüm mnemonik teknikleri'),
+    ('🎯', 'Sınav Puanı Tahmini', null, 'Anlık net/puan tahmini'),
+    ('⏱️', 'Çalışma Kronometresi', null, 'Detaylı zaman analizi'),
+    ('🎓', 'Mentörlük Seansları', null, 'Tüm seanslara erişim'),
+    ('🏆', 'Özel Lig', null, 'Haftalık sıralama ve kademe'),
+    ('📊', 'İstatistik Derinliği', 'Temel özet', 'Konu bazlı detaylı istatistikler'),
+  ];
+
+  /// Satır rozetlerinin renkleri — tema token'larından döngüyle seçilir.
+  List<Color> _rozetRenkleri(KpssColors c) => [
+        c.violetL,
+        c.rose,
+        c.mint,
+        c.gold,
+        c.violet,
+        c.roseL,
+        c.success,
+        c.warn,
+      ];
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final renkler = _rozetRenkleri(c);
+
+    return LayoutBuilder(
+      builder: (context, cons) {
+        final w = cons.maxWidth;
+        // Sütun genişlikleri oranla belirlenir; Premium sütunu altın çerçeve
+        // olarak Stack'te konumlanacağı için piksel değeri gerekiyor.
+        final premiumW = (w * 0.30).clamp(92.0, 160.0);
+        final ucretsizW = (w * 0.24).clamp(70.0, 128.0);
+        final ozellikW = (w - premiumW - ucretsizW).clamp(80.0, w);
+
+        final govde = Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                const Expanded(flex: 5, child: Text('Özellikler', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 13))),
-                Expanded(
-                  flex: 3,
-                  child: Text('Ücretsiz', textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12, color: c.textFaint)),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text('Premium', textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12, color: c.gold)),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            const Divider(height: 1),
-            for (final row in _rows) _buildRow(row.$1, row.$2, row.$3),
+            _baslikSatiri(c, ozellikW, ucretsizW, premiumW),
+            for (var i = 0; i < _rows.length; i++) ...[
+              if (i > 0) Container(height: 1, color: c.border),
+              _satir(c, _rows[i], renkler[i % renkler.length], ozellikW, ucretsizW, premiumW),
+            ],
+            const SizedBox(height: 10),
           ],
+        );
+
+        return Stack(
+          children: [
+            // Premium sütununu boydan boya saran altın çerçeve.
+            Positioned(
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: premiumW,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(kDsRadius),
+                  color: c.gold.withValues(alpha: c.isLight ? 0.07 : 0.10),
+                  border: Border.all(
+                    color: c.gold.withValues(alpha: c.isLight ? 0.45 : 0.55),
+                    width: 1.4,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: c.gold.withValues(alpha: c.isLight ? 0.14 : 0.22),
+                      blurRadius: 20,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            govde,
+          ],
+        );
+      },
+    );
+  }
+
+  /// İki ayrı başlık kartı: solda nötr "👤 Ücretsiz", sağda altın "👑 Premium".
+  Widget _baslikSatiri(KpssColors c, double ozellikW, double ucretsizW, double premiumW) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        SizedBox(
+          width: ozellikW,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 2, bottom: 12),
+            child: Text(
+              'Özellikler',
+              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: c.textDim),
+            ),
+          ),
         ),
+        SizedBox(
+          width: ucretsizW,
+          child: _baslikKarti(
+            c: c,
+            emoji: '👤',
+            label: 'Ücretsiz',
+            renk: c.textDim,
+            vurgulu: false,
+          ),
+        ),
+        SizedBox(
+          width: premiumW,
+          child: _baslikKarti(
+            c: c,
+            emoji: '👑',
+            label: 'Premium',
+            renk: c.gold,
+            vurgulu: true,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _baslikKarti({
+    required KpssColors c,
+    required String emoji,
+    required String label,
+    required Color renk,
+    required bool vurgulu,
+  }) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: vurgulu ? 6 : 4),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kDsRadiusSm),
+        color: vurgulu
+            ? renk.withValues(alpha: c.isLight ? 0.14 : 0.18)
+            : c.glass,
+        border: Border.all(
+          color: vurgulu ? renk.withValues(alpha: 0.6) : c.border,
+          width: vurgulu ? 1.3 : 1,
+        ),
+        boxShadow: vurgulu
+            ? [BoxShadow(color: renk.withValues(alpha: 0.26), blurRadius: 14)]
+            : null,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 17)),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+              color: vurgulu ? renk : c.textDim,
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildRow(String title, String? free, String premiumValue) {
+  Widget _satir(
+    KpssColors c,
+    (String, String, String?, String) row,
+    Color rozetRengi,
+    double ozellikW,
+    double ucretsizW,
+    double premiumW,
+  ) {
+    final (emoji, ad, ucretsiz, premium) = row;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 11),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(flex: 5, child: Text(title, style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w600))),
-          Expanded(
-            flex: 3,
-            child: Center(
-              child: free == null
-                  ? Icon(Icons.close, size: 17, color: c.textFaint.withValues(alpha: 0.6))
-                  : Text(free, textAlign: TextAlign.center, style: TextStyle(fontSize: 10.5, color: c.textFaint)),
+          SizedBox(
+            width: ozellikW,
+            child: Row(
+              children: [
+                DsIconBadge(
+                  emoji: emoji,
+                  color: rozetRengi,
+                  size: 34,
+                  circle: false,
+                  glow: false,
+                ),
+                const SizedBox(width: 9),
+                Expanded(
+                  child: Text(
+                    ad,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      height: 1.25,
+                      fontWeight: FontWeight.w700,
+                      color: c.text,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 6),
+              ],
             ),
           ),
-          Expanded(
-            flex: 3,
-            child: Center(
-              child: premiumValue.trim().isEmpty
-                  ? Icon(Icons.check_circle, size: 17, color: c.success)
+          // Ücretsiz sütunu — özellik yoksa soluk ✕.
+          SizedBox(
+            width: ucretsizW,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: ucretsiz == null
+                  ? Icon(Icons.close_rounded,
+                      size: 18, color: c.danger.withValues(alpha: 0.55))
                   : Text(
-                      premiumValue,
+                      ucretsiz,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w700, color: c.success),
+                      style: TextStyle(fontSize: 10.5, height: 1.3, color: c.textFaint),
                     ),
+            ),
+          ),
+          // Premium sütunu — değer + yeşil onay ikonu.
+          SizedBox(
+            width: premiumW,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.check_circle, size: 17, color: c.success),
+                  const SizedBox(height: 3),
+                  Text(
+                    premium,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10.5,
+                      height: 1.3,
+                      fontWeight: FontWeight.w800,
+                      color: c.text,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -386,71 +692,78 @@ class _FeatureComparisonTable extends StatelessWidget {
   }
 }
 
-/// Seçilebilir bir abonelik satırı — referans tasarımdaki fiyat kartlarına
-/// benzer, seçiliyken altın çerçeveyle vurgulanır.
-class _PlanRow extends StatelessWidget {
+/// ── Plan kartı ────────────────────────────────────────────────────────────
+///
+/// Seçilebilir abonelik kartı — seçiliyken altın vurgulu görünür.
+class _PlanCard extends StatelessWidget {
   final String title;
   final String tag;
   final String price;
   final String? caption;
   final bool selected;
-  final KpssColors c;
   final VoidCallback onTap;
-  const _PlanRow({
+
+  const _PlanCard({
     required this.title,
     required this.tag,
     required this.price,
     this.caption,
     required this.selected,
-    required this.c,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    final c = context.watch<ThemeProvider>().colors;
+
+    return DsCard(
+      accent: selected ? c.gold : null,
       onTap: onTap,
-      borderRadius: BorderRadius.circular(14),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: selected ? c.gold.withValues(alpha: 0.10) : c.glass2,
-          border: Border.all(color: selected ? c.gold : c.border, width: selected ? 2 : 1),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                  color: selected ? c.gold : c.textFaint,
-                  size: 20,
+      padding: const EdgeInsets.all(15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                color: selected ? c.gold : c.textFaint,
+                size: 21,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900, fontSize: 14.5, color: c.text),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(tag, style: TextStyle(fontSize: 11, color: c.textFaint)),
+                  ],
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5)),
-                      const SizedBox(height: 2),
-                      Text(tag, style: TextStyle(fontSize: 11, color: c.textFaint)),
-                    ],
-                  ),
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  price,
+                  textAlign: TextAlign.end,
+                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15, color: c.gold),
                 ),
-                Text(price, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15, color: c.gold)),
-              ],
-            ),
-            if (caption != null) ...[
-              const SizedBox(height: 10),
-              Text(
-                caption!,
-                style: TextStyle(fontSize: 11.5, color: c.textDim, height: 1.45, fontStyle: FontStyle.italic),
               ),
             ],
+          ),
+          if (caption != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              caption!,
+              style: TextStyle(
+                  fontSize: 11.5, color: c.textDim, height: 1.45, fontStyle: FontStyle.italic),
+            ),
           ],
-        ),
+        ],
       ),
     );
   }
