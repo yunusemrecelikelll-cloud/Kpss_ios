@@ -36,8 +36,8 @@ class _MainShellState extends State<MainShell> {
   int _index = 0;
 
   // Tüm olası sekmeler için sabit anahtarlar — premium durumu değişse bile
-  // (ör. test amaçlı "Ücretsiz Aç" ile) her sekmenin iç gezinme geçmişi
-  // korunur.
+  // (ör. abonelik satın alındığında ya da geri yüklendiğinde) her sekmenin
+  // iç gezinme geçmişi korunur.
   final Map<String, GlobalKey<NavigatorState>> _navKeys = {
     'home': GlobalKey<NavigatorState>(),
     'chat': GlobalKey<NavigatorState>(),

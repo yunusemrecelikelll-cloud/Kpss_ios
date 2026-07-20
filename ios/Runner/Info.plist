@@ -6,8 +6,17 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<!-- Ana ekranda uygulama ikonunun altında görünen isim. App Store'daki
+	     isimle tutarlı olmalı (Guideline 2.3.7). Önceden Flutter şablonundan
+	     kalan "Kpss Telefon" yazıyordu. -->
 	<key>CFBundleDisplayName</key>
-	<string>Kpss Telefon</string>
+	<string>KPSS Hazırlık</string>
+	<!-- Şifreleme beyanı: uygulama yalnızca standart HTTPS kullanıyor, ihraç
+	     kısıtlamasına tabi özel şifreleme içermiyor. Bu anahtar olmadan her
+	     yüklemede App Store Connect "Missing Compliance" sorar ve build
+	     TestFlight'a/incelemeye düşmeden bekler. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

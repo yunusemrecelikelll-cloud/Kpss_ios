@@ -27,9 +27,19 @@ class CloudSyncService {
   }
 
   /// Yerel StorageService verisini Firestore'a yedekler (upsert/merge).
-  /// Kullanıcı giriş yapmamışsa ya da Firebase yapılandırılmamışsa `false`
-  /// döner ve hiçbir şey yapmaz.
+  ///
+  /// Şu üç durumdan biri varsa hiçbir şey yapmaz ve `false` döner:
+  ///   • Firebase yapılandırılmamış
+  ///   • Kullanıcı giriş yapmamış
+  ///   • Kullanıcı "Bulut yedekleme" ayarını AÇMAMIŞ (varsayılan: kapalı)
+  ///
+  /// Üçüncü koşul kritik: bu kontrol eskiden YOKTU, dolayısıyla ayar kapalı
+  /// (hatta hiç açılmamış) olsa bile kullanıcının test sonuçları, çalışma
+  /// süresi ve adı Firestore'a yükleniyordu. Ayar ekrandaki anahtarı yalnızca
+  /// görsel olarak etkiliyordu. Bu hem yanıltıcıydı hem de App Store
+  /// "App Privacy" / Play "Data Safety" beyanını yanlış çıkarıyordu.
   Future<bool> syncUp(StorageService storage) async {
+    if (!storage.getCloudBackupEnabled()) return false;
     final uid = _currentUid;
     final doc = uid == null ? null : _backupDocFor(uid);
     if (doc == null) return false;
@@ -66,6 +76,14 @@ class CloudSyncService {
   ///
   /// Kullanıcı giriş yapmamışsa, Firebase yapılandırılmamışsa ya da bulutta
   /// hiç yedek yoksa `false` döner.
+  ///
+  /// NOT: [syncUp]'ın aksine bu metod "Bulut yedekleme" ayarına BAKMAZ ve bu
+  /// kasıtlıdır. Geri yükleme yalnızca YEREL'e yazar, buluta hiçbir şey
+  /// göndermez; kullanıcının kendi kimliğiyle kendi verisini geri alması bir
+  /// gizlilik sorunu değil, yeni cihaza geçerken beklenen davranıştır. Ayarı
+  /// sonradan kapatmış bir kullanıcının ESKİ yedeği hâlâ duruyorsa onu geri
+  /// alabilmesi de bilinçli bir tercih (veriyi tamamen silmek isteyen
+  /// kullanıcı için Ayarlar > Hesabımı Sil var).
   Future<bool> syncDown(StorageService storage) async {
     final uid = _currentUid;
     final doc = uid == null ? null : _backupDocFor(uid);

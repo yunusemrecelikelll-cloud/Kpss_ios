@@ -36,15 +36,22 @@ class PrivacyPolicyScreen extends StatelessWidget {
             _Section(
               title: '2. Cihazında yerel olarak saklanan veriler',
               body:
-                  'Aşağıdaki bilgiler SADECE kendi cihazında (SharedPreferences ile) '
-                  'saklanır ve bizim sunucularımıza gönderilmez:\n\n'
+                  'Aşağıdaki bilgiler öncelikli olarak kendi cihazında '
+                  '(SharedPreferences ile) saklanır:\n\n'
                   '• Profil bilgilerin: isim, cinsiyet, hedeflediğin sınav türü '
                   '(Lisans/Önlisans/Ortaöğretim), hedef meslek tercihin\n'
                   '• Çözdüğün testler, doğru/yanlış sayıların, konu bazlı ilerlemen\n'
                   '• Rozet, seviye/XP, günlük görev ve çalışma serisi (streak) bilgilerin\n'
-                  '• Uygulama ayarların (tema, ses, bildirim tercihleri)\n'
+                  '• Uygulama ayarların (tema, ses tercihleri)\n'
                   '• Yanlış yaptığın soruların listesi ("Yanlışlarım Bankası")\n\n'
-                  'Bu veriler uygulamayı kaldırdığında (uninstall) cihazından tamamen silinir.',
+                  'ÖNEMLİ: Bu verilerin bir kısmı, YALNIZCA sen hesabına giriş yapmışsan '
+                  'VE Ayarlar > Hesap bölümündeki "Bulut yedekleme" seçeneğini AÇMIŞSAN '
+                  'hesabına bağlı olarak buluta da yedeklenir (bkz. 3. bölüm). Bulut '
+                  'yedekleme varsayılan olarak KAPALIDIR; kapalıyken hiçbir ilerleme '
+                  'verisi sunucularımıza gönderilmez.\n\n'
+                  'Yerel veriler, uygulamayı cihazından kaldırdığında (uninstall) '
+                  'tamamen silinir. Ancak bu, buluttaki hesabını SİLMEZ — bunun için '
+                  'Ayarlar > Hesap > "Hesabımı Sil" seçeneğini kullan (bkz. 6. bölüm).',
             ),
             _Section(
               title: '3. Bulut sunucularında (Firebase) saklanan veriler',
@@ -80,10 +87,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
             _Section(
               title: '6. Verilerini silme hakkın',
               body:
-                  'Yerel verilerini istediğin zaman uygulamayı cihazından kaldırarak '
-                  'tamamen silebilirsin. Bulutta (Firebase) saklanan hesap/sohbet/lig/düello '
-                  'verilerinin silinmesini istersen bizimle iletişime geçebilirsin — '
-                  'talebini aldıktan sonra makul bir süre içinde ilgili verileri sileriz.',
+                  'Hesabını ve tüm verilerini uygulama içinden, tek başına silebilirsin: '
+                  'Ayarlar > Hesap > "Hesabımı Sil". Bu işlem geri alınamaz ve şunların '
+                  'tamamını kalıcı olarak siler: giriş hesabın, bulut yedeğin, test '
+                  'sonuçların ve istatistiklerin, rozetlerin ve lig kaydın, genel '
+                  'sohbetteki mesajların, özel konuşmaların, engellediğin kullanıcı '
+                  'listesi, gönderdiğin şikayet kayıtları ve açtığın düello odaları. '
+                  'Ayrıca cihazındaki tüm yerel ilerleme de temizlenir.\n\n'
+                  'Not: Uygulamayı cihazından kaldırmak yalnızca yerel veriyi siler, '
+                  'buluttaki hesabını silmez. Bir aboneliğin varsa hesap silmek aboneliği '
+                  'durdurmaz — aboneliği App Store / Google Play hesabından ayrıca iptal '
+                  'etmen gerekir.',
             ),
             _Section(
               title: '7. Çocukların gizliliği',

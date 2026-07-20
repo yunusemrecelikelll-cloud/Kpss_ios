@@ -136,19 +136,35 @@ class ChatService {
 
   FirebaseFirestore get _db => FirebaseFirestore.instance;
 
+  /// Yasaklı kelimeler için KELİME SINIRI ile eşleşen düzenli ifadeler.
+  ///
+  /// ÖNEMLİ: Eskiden burada düz `lower.contains(w)` kullanılıyordu ve bu,
+  /// yasaklı kelimeyi İÇİNDE barındıran masum kelimeleri de engelliyordu:
+  ///   • 'mal'  →  "normal", "malzeme", "maliyet", "kamera"...
+  ///   • 'göt'  →  "götür", "götüren", "götürmek"
+  /// Bir KPSS uygulamasında "normal" yazamamak gerçek bir hataydı.
+  ///
+  /// Dart'ın `\b` sınırı ASCII tabanlı olduğu ve Türkçe harfleri (ç, ğ, ı, ö,
+  /// ş, ü) kelime karakteri saymadığı için `\b` yerine ELLE bir sınır sınıfı
+  /// kullanıyoruz: kelimenin önünde ve arkasında harf/rakam OLMAMALI.
+  static final List<RegExp> _bannedPatterns = _bannedWords.map((w) {
+    const harf = r'a-zA-Z0-9çğıöşüÇĞIİÖŞÜ';
+    return RegExp('(?<![$harf])${RegExp.escape(w)}(?![$harf])',
+        caseSensitive: false);
+  }).toList();
+
   /// Verilen metnin basit kötü-söz listesine göre uygunsuz olup olmadığını
-  /// döner. Türkçe karakter/aksan farklarını normalize etmeden, düz
-  /// küçük-harf alt-dize eşleşmesi yapar (basit ama gerçek bir kontrol).
+  /// döner. Yalnızca TAM KELİME eşleşmelerini yakalar.
   bool containsProfanity(String text) {
-    final lower = text.toLowerCase();
-    return _bannedWords.any((w) => lower.contains(w));
+    return _bannedPatterns.any((r) => r.hasMatch(text));
   }
 
   /// [text] içinde geçen ilk yasaklı kelimeyi döner, yoksa null.
   String? findProfanity(String text) {
-    final lower = text.toLowerCase();
-    for (final w in _bannedWords) {
-      if (lower.contains(w)) return w;
+    // containsProfanity ile AYNI kuralı kullanmalı — biri alt-dize, diğeri tam
+    // kelime eşleşseydi "engellendi ama sebebi bulunamadı" durumu oluşurdu.
+    for (var i = 0; i < _bannedPatterns.length; i++) {
+      if (_bannedPatterns[i].hasMatch(text)) return _bannedWords[i];
     }
     return null;
   }

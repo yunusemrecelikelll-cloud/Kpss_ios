@@ -40,9 +40,16 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       // kaydedilmişse önce onu indir (syncDown — yerelde eksik olanı tamamlar,
       // var olanı ÇİFTLEMEZ), sonra güncel yerel durumu buluta yaz (syncUp) —
       // böylece "giriş yap, ilerlemen/satın alman geri gelsin" gerçekten çalışır.
+      // Zaman aşımı: ağ kötüyse giriş akışı burada asılı kalmasın —
+      // senkronizasyon başarısız olsa bile giriş BAŞARILIDIR, veri bir
+      // sonraki açılışta/test bitiminde tekrar denenir.
       final cloud = CloudSyncService();
-      await cloud.syncDown(storage);
-      await cloud.syncUp(storage);
+      await cloud
+          .syncDown(storage)
+          .timeout(const Duration(seconds: 8), onTimeout: () => false);
+      await cloud
+          .syncUp(storage)
+          .timeout(const Duration(seconds: 8), onTimeout: () => false);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Giriş başarılı! 🎉')),

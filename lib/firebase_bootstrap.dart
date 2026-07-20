@@ -5,11 +5,12 @@ import 'package:flutter/foundation.dart';
 /// eklendiğinde, `main.dart`'ın `runApp` çağrısından ÖNCE tek satırla çağırması
 /// gereken başlatma fonksiyonu.
 ///
-/// Bu proje henüz gerçek bir Firebase projesine bağlı DEĞİL. Bu yüzden bu dosya
-/// hiçbir yerden çağrılmıyor (main.dart'a kasıtlı olarak dokunulmadı). Firebase
-/// projesi kurulup config dosyaları eklendiğinde, main.dart'taki
-/// `Future<void> main() async { ... }` bloğunun en başına şu satır eklenerek
-/// giriş/sohbet/canlı sınav/bulut yedekleme/lig servisleri tek adımda aktif olur:
+/// DURUM: Proje ARTIK gerçek bir Firebase projesine (kpss-52eb6) bağlıdır ve
+/// bu fonksiyon `lib/main.dart` içinden çağrılmaktadır. Config dosyaları
+/// (android/app/google-services.json, ios/Runner/GoogleService-Info.plist)
+/// yerinde ve iOS tarafında Xcode projesine kayıtlıdır.
+///
+/// Çağrı şekli (main.dart'ta hâlihazırda böyle):
 ///
 /// ```dart
 /// WidgetsFlutterBinding.ensureInitialized();

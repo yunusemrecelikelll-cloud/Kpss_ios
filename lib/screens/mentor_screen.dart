@@ -64,7 +64,11 @@ class MentorScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            'Genel sınav stratejileri — kişiye özel canlı mentörlük için yakında sohbet özellikleri açılacak.',
+            // NOT: Buradaki "yakında canlı mentörlük açılacak" vaadi kaldırıldı.
+            // Ekran premium'a kapalı; ücretli bir özellikte var olmayan bir
+            // şeyi vaat etmek hem App Store Guideline 2.1 hem Play'in
+            // yanıltıcı satın alma değerlendirmesi açısından risklidir.
+            'Sınavda işine yarayacak, denenmiş çalışma stratejileri.',
             style: TextStyle(fontSize: 13, color: c.textFaint),
           ),
           const SizedBox(height: 16),

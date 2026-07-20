@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../services/purchase_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
@@ -108,16 +109,46 @@ class _PremiumScreenState extends State<PremiumScreen> {
     );
   }
 
-  /// TEST AŞAMASI İÇİN GEÇİCİ BUTON — ödeme akışını atlayıp premium'u doğrudan
-  /// açar. Mağaza ürünleri/gerçek ödeme akışı tam kurulup test edildiğinde
-  /// BU BUTON KALDIRILACAK.
-  void _openFreeForTesting(BuildContext context) {
+  /// Apple'ın standart Kullanım Koşulları (EULA) sayfasını tarayıcıda açar.
+  /// App Store Guideline 3.1.2, abonelik satılan ekranda EULA bağlantısının
+  /// bulunmasını zorunlu kılar. Açma başarısız olursa uygulama ÇÖKMEZ —
+  /// kullanıcıya kısa bir bilgi mesajı gösterilir.
+  Future<void> _openTermsOfUse(BuildContext context) async {
     context.read<SoundService>().click();
-    context.read<StorageService>().setUserPlan('premium');
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Test modu: Premium açıldı (ödeme alınmadı).')),
-    );
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final acildi = await launchUrl(
+        Uri.parse('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'),
+        mode: LaunchMode.externalApplication,
+      );
+      if (!acildi) {
+        messenger.showSnackBar(
+          const SnackBar(content: Text('Kullanım Koşulları açılamadı.')),
+        );
+      }
+    } catch (_) {
+      messenger.showSnackBar(
+        const SnackBar(content: Text('Kullanım Koşulları açılamadı.')),
+      );
+    }
   }
+
+  /// Mağazadan gelen GERÇEK fiyatı, abonelik süresiyle birlikte döndürür
+  /// (ör. "₺300,00 / ay"). `ProductDetails.price` yalnızca tutarı içerdiği
+  /// için süre burada açıkça ekleniyor (Guideline 3.1.2).
+  ///
+  /// Ürün henüz yüklenmediyse `null` döner — çağıran taraf uydurma bir fiyat
+  /// YAZMAZ, "—" ya da yükleniyor göstergesi gösterir (Guideline 2.3.1).
+  String? _fiyatMetni(String productId) {
+    final p = _purchases.productFor(productId);
+    if (p == null) return null;
+    return '${p.price} / ay';
+  }
+
+  /// Mağaza hâlâ başlatılıyorsa true — fiyat yerine küçük bir yükleniyor
+  /// göstergesi çıkar.
+  bool get _fiyatYukleniyor =>
+      _purchases.status == PurchaseServiceStatus.idle && _purchases.products.isEmpty;
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +173,13 @@ class _PremiumScreenState extends State<PremiumScreen> {
         ],
       ),
       body: SafeArea(
-        child: premium ? _buildActiveState(context, storage, c) : _buildOfferState(context, c),
+        child: premium ? _buildActiveState(context, c) : _buildOfferState(context, c),
       ),
       bottomNavigationBar: premium ? null : _buildStickyCta(context, c),
     );
   }
 
-  Widget _buildActiveState(BuildContext context, StorageService storage, KpssColors c) {
+  Widget _buildActiveState(BuildContext context, KpssColors c) {
     // ÖNEMLİ: Bu ekran daha önce premium kullanıcıya sadece "hesabın aktif"
     // yazıp geçiyordu, hangi ayrıcalıkların dahil olduğunu GÖSTERMİYORDU —
     // "Premium Ayrıntıları Gör" butonuna basınca boş görünmesinin sebebi
@@ -175,14 +206,15 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 14),
-              DsPillButton(
-                label: 'Ücretsiz Plan',
-                color: c.textDim,
-                filled: false,
-                onPressed: () {
-                  context.read<SoundService>().click();
-                  storage.setUserPlan('free');
-                },
+              // NOT: Buradaki eski "Ücretsiz Plan" butonu KALDIRILDI. Uygulama
+              // içinden plan düşürmek, App Store'da abonelik devam ederken
+              // kullanıcıyı yanıltıyordu. Abonelik yönetimi tek yerden —
+              // mağazadan — yapılır.
+              Text(
+                'Aboneliğini yönetmek veya iptal etmek için '
+                'App Store > Abonelikler bölümünü kullanabilirsin.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 11.5, color: c.textFaint, height: 1.45),
               ),
             ],
           ),
@@ -227,7 +259,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
         _PlanCard(
           title: 'Öğrenci Premium',
           tag: '🎓 Öğrenciler için',
-          price: _purchases.productFor(kOgrenciPremiumId)?.price ?? '100,00 ₺ / ay',
+          price: _fiyatMetni(kOgrenciPremiumId),
+          priceLoading: _fiyatYukleniyor,
           caption: '🎓 Tam premium ile aynı özellikler burada da var. Sizden, '
               'öğrencilerden hiç ücret almak istemezdim ama uygulamanın '
               'giderleri için biraz almam gerekiyor. İdare edin, ileride '
@@ -239,15 +272,18 @@ class _PremiumScreenState extends State<PremiumScreen> {
         _PlanCard(
           title: 'Tam Premium',
           tag: '⭐ Standart',
-          price: _purchases.productFor(kTamPremiumId)?.price ?? '300,00 ₺ / ay',
+          price: _fiyatMetni(kTamPremiumId),
+          priceLoading: _fiyatYukleniyor,
           caption: '☕ Sadece bir kahve parasına... hayatın değişebilir mi? 😌✨',
           selected: _selectedProductId == kTamPremiumId,
           onTap: () => setState(() => _selectedProductId = kTamPremiumId),
         ),
         const SizedBox(height: 16),
         Text(
-          'Abonelikler otomatik yenilenir. İstediğin zaman mağaza hesabının '
-          'abonelik ayarlarından iptal edebilirsin.',
+          'Abonelik aylıktır ve otomatik yenilenir; istediğin zaman iptal '
+          'edebilirsin. Ücret, satın alma onayında App Store hesabından '
+          'tahsil edilir. Yenilemeyi durdurmak için dönem bitmeden en az 24 '
+          'saat önce App Store > Abonelikler bölümünden iptal etmen yeterli.',
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 11, color: c.textFaint, height: 1.45),
         ),
@@ -276,27 +312,19 @@ class _PremiumScreenState extends State<PremiumScreen> {
                       .push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
                 },
               ),
+              // Guideline 3.1.2 gereği abonelik ekranında Kullanım Koşulları
+              // (EULA) bağlantısı zorunlu — Apple'ın standart EULA'sı açılır.
+              DsPillButton(
+                label: 'Kullanım Koşulları',
+                color: c.mint,
+                filled: false,
+                leadingIcon: Icons.description_outlined,
+                onPressed: () => _openTermsOfUse(context),
+              ),
             ],
           ),
         ),
-        const SizedBox(height: 18),
-        Divider(color: c.border, height: 1),
-        const SizedBox(height: 14),
-        Text(
-          'Test aşaması — aşağıdaki buton geliştirme amaçlıdır, ilerleyen '
-          'zamanlarda kaldırılacaktır.',
-          style: TextStyle(fontSize: 11, color: c.textFaint, height: 1.4),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 10),
-        Center(
-          child: DsPillButton(
-            label: '🧪 Ücretsiz Aç (Test)',
-            color: c.textDim,
-            filled: false,
-            onPressed: () => _openFreeForTesting(context),
-          ),
-        ),
+        const SizedBox(height: 8),
       ],
     );
   }
@@ -305,7 +333,10 @@ class _PremiumScreenState extends State<PremiumScreen> {
     // Alttaki birincil eylem: altın degradeli, tam genişlikte hap buton.
     // (DsPillButton içerik genişliğinde durduğu için burada aynı görsel dil
     // tam genişlik + yükleniyor göstergesiyle birlikte kuruluyor.)
-    final aktif = !_purchases.isPurchasing;
+    // Satın alma yalnızca mağazadan GERÇEK ürün bilgisi geldiyse mümkün —
+    // ürün yüklenmemişken buton pasif kalır (Guideline 2.3.1).
+    final urunHazir = _purchases.productFor(_selectedProductId) != null;
+    final aktif = !_purchases.isPurchasing && urunHazir;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 10, 16, 14),
@@ -319,7 +350,12 @@ class _PremiumScreenState extends State<PremiumScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(999),
                 gradient: LinearGradient(
-                  colors: [c.gold, Color.lerp(c.gold, c.rose, 0.35)!],
+                  colors: aktif
+                      ? [c.gold, Color.lerp(c.gold, c.rose, 0.35)!]
+                      : [
+                          Color.lerp(c.gold, c.textFaint, 0.6)!,
+                          Color.lerp(c.gold, c.textFaint, 0.75)!,
+                        ],
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -339,12 +375,17 @@ class _PremiumScreenState extends State<PremiumScreen> {
                           valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       )
-                    : const Text(
-                        'Devam Et',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 15.5,
-                          color: Colors.white,
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          aktif ? 'Devam Et' : 'Şu an satın alınamıyor',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 15.5,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
               ),
@@ -698,7 +739,12 @@ class _FeatureComparisonTable extends StatelessWidget {
 class _PlanCard extends StatelessWidget {
   final String title;
   final String tag;
-  final String price;
+
+  /// Mağazadan gelen gerçek fiyat + süre (ör. "₺300,00 / ay").
+  /// null ise fiyat HENÜZ BİLİNMİYOR demektir — sabit/uydurma bir fiyat
+  /// gösterilmez, yerine "—" ya da yükleniyor göstergesi çıkar.
+  final String? price;
+  final bool priceLoading;
   final String? caption;
   final bool selected;
   final VoidCallback onTap;
@@ -707,6 +753,7 @@ class _PlanCard extends StatelessWidget {
     required this.title,
     required this.tag,
     required this.price,
+    this.priceLoading = false,
     this.caption,
     required this.selected,
     required this.onTap,
@@ -747,11 +794,37 @@ class _PlanCard extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Flexible(
-                child: Text(
-                  price,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15, color: c.gold),
-                ),
+                child: price != null
+                    ? Text(
+                        price!,
+                        textAlign: TextAlign.end,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 15, color: c.gold),
+                      )
+                    : priceLoading
+                        // Mağaza fiyatı hâlâ yükleniyor.
+                        ? Align(
+                            alignment: Alignment.centerRight,
+                            child: SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(c.gold),
+                              ),
+                            ),
+                          )
+                        // Fiyat bilinmiyor — asla uydurma bir tutar yazılmaz.
+                        : Text(
+                            '—',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 15,
+                                color: c.textFaint),
+                          ),
               ),
             ],
           ),

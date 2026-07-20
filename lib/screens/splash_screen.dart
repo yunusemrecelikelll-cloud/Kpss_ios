@@ -42,7 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
     // kurunca "her şey sıfırlanmış" gibi görünmez.
     final auth = context.read<AuthService>();
     if (auth.isSignedIn) {
-      await CloudSyncService().syncDown(storage);
+      // ZAMAN AŞIMI ŞART: Firestore'a hiç erişilemeyen bir ağda (uçak modu,
+      // captive portal, mağaza inceleme cihazının kısıtlı ağı) bu çağrı
+      // dakikalarca asılı kalabilir ve kullanıcı açılış ekranında sonsuz
+      // spinner görür. Yedek indirilemezse uygulama zaten yerel veriyle
+      // sorunsuz çalışır — bekletmeye değmez.
+      await CloudSyncService()
+          .syncDown(storage)
+          .timeout(const Duration(seconds: 8), onTimeout: () => false);
     }
     if (!mounted) return;
 

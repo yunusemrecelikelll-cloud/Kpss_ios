@@ -182,7 +182,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final soundOn = settings['soundEnabled'] != false;
     final timerMode = (settings['timerMode'] as String?) ?? 'auto';
     final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
-    final notif = storage.getNotificationSettings();
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
     final adaptationSounds = storage.getAdaptationSoundsEnabled();
@@ -474,36 +473,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Column(
                 children: [
-                  SwitchListTile(
-                    secondary: DsIconBadge(
-                        icon: Icons.notifications_active_outlined,
-                        color: c.roseL,
-                        size: 42,
-                        circle: false,
-                        glow: false),
-                    title: Text('Hatırlatma bildirimleri',
-                        style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                    subtitle: Text('Günlük soru hatırlatıcısı ve KPSS güncellemeleri al.',
-                        style: TextStyle(fontSize: 12, color: c.textFaint)),
-                    value: notif['reminders'] == true,
-                    onChanged: (v) => storage.saveNotificationSettings({'reminders': v}),
-                  ),
-                  Divider(height: 1, color: c.border),
-                  SwitchListTile(
-                    secondary: DsIconBadge(
-                        icon: Icons.campaign_outlined,
-                        color: c.violetL,
-                        size: 42,
-                        circle: false,
-                        glow: false),
-                    title: Text('Güncelleme bildirimleri',
-                        style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                    subtitle: Text('Yeni içerik ve duyuruları uygulama içinde gör.',
-                        style: TextStyle(fontSize: 12, color: c.textFaint)),
-                    value: notif['updates'] == true,
-                    onChanged: (v) => storage.saveNotificationSettings({'updates': v}),
-                  ),
-                  Divider(height: 1, color: c.border),
+                  // NOT: Buradaki "Hatırlatma bildirimleri" ve "Güncelleme
+                  // bildirimleri" anahtarları KALDIRILDI. Sebebi: projede
+                  // hiçbir bildirim paketi yok (flutter_local_notifications /
+                  // firebase_messaging kurulu değil) ve kaydedilen tercihler
+                  // ('reminders' / 'updates') kod tabanında hiçbir yerden
+                  // okunmuyordu — yani kullanıcı "günlük hatırlatıcı al" diyor,
+                  // hiçbir bildirim asla gelmiyordu. Çalışmayan görünür özellik
+                  // App Store Guideline 2.1 reddi sebebidir.
+                  // Gerçek bildirim desteği eklendiğinde buraya geri konabilir.
                   SwitchListTile(
                     secondary: DsIconBadge(
                         icon: Icons.cloud_upload_outlined,
@@ -513,17 +491,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         glow: false),
                     title: Text('Bulut yedekleme',
                         style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                    subtitle: Text('Profilini ve ilerlemeni çevrimiçi yedeklemeye hazırlık.',
+                    subtitle: Text(
+                        'Açıkken test sonuçların, rozetlerin ve çalışma sürelerin '
+                        'hesabına yedeklenir; yeni cihazda giriş yapınca geri gelir. '
+                        'Kapalıyken hiçbir veri yüklenmez.',
                         style: TextStyle(fontSize: 12, color: c.textFaint)),
                     value: cloudBackup,
                     onChanged: (v) {
-                      // TODO: Gerçek bulut senkronizasyonu (Firestore) henüz yok.
-                      // Bu switch şimdilik sadece tercihi yerelde saklıyor; asıl
-                      // yedekleme mantığı PORT_NOTES.md'deki Firebase entegrasyonu
-                      // tamamlanınca buraya bağlanacak.
+                      // Bu anahtar GERÇEKTEN yedeklemeyi denetler:
+                      // CloudSyncService.syncUp kapalıyken hiçbir şey yüklemez.
+                      // (Eskiden bu kontrol yoktu ve ayar kapalı olsa bile veri
+                      // buluta gidiyordu.)
                       storage.setCloudBackupEnabled(v);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(v ? 'Bulut yedekleme hazırlandı.' : 'Bulut yedekleme kapatıldı.')),
+                        SnackBar(
+                          content: Text(v
+                              ? 'Bulut yedekleme açıldı — ilerlemen bundan sonra hesabına yedeklenecek.'
+                              : 'Bulut yedekleme kapatıldı — yeni veri yüklenmeyecek.'),
+                        ),
                       );
                     },
                   ),
