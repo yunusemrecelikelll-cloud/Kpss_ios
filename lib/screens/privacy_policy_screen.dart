@@ -7,9 +7,12 @@ const String kPrivacyPolicyUpdatedAt = '16 Temmuz 2026';
 
 /// Gizlilik Politikası — uygulamanın GERÇEK veri toplama/kullanma
 /// davranışını yansıtır (bkz. StorageService, AuthService, ChatService,
-/// LeagueService, DuelService, PurchaseService). Yayına almadan önce
-/// aşağıdaki "[...]" ile işaretli yer tutucu iletişim bilgisini gerçek bir
-/// e-posta adresiyle değiştir.
+/// LeagueService, DuelService, PurchaseService, CloudSyncService).
+///
+/// ÖNEMLİ: Bu ekranın içeriği, GitHub Pages'te yayınlanan web sürümüyle
+/// (Kpss_Android/docs/gizlilik.html) AYNI kalmalıdır. Mağazalar politikanın
+/// web URL'ini zorunlu tutar ve iki metin çeliştiğinde bu bir uyumsuzluk
+/// olarak değerlendirilir. Birini değiştirirken diğerini de güncelle.
 class PrivacyPolicyScreen extends StatelessWidget {
   const PrivacyPolicyScreen({super.key});
 
@@ -117,7 +120,9 @@ class PrivacyPolicyScreen extends StatelessWidget {
               title: '9. İletişim',
               body:
                   'Gizlilikle ilgili sorular, veri erişim/silme talepleri için: '
-                  '[GELİŞTİRİCİ İLETİŞİM E-POSTASINI BURAYA EKLE]',
+                  'yunusemrecelikellll@gmail.com\n\n'
+                  'Bu politikanın web sürümü:\n'
+                  'https://yunusemrecelikelll-cloud.github.io/Kpss_Android/gizlilik.html',
             ),
           ],
         ),

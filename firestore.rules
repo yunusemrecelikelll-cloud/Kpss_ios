@@ -1,0 +1,137 @@
+// ===========================================================================
+// KPSS Hazırlık — Firestore güvenlik kuralları
+// ===========================================================================
+//
+// Firebase Console > Firestore Database > Rules ekranına BU DOSYANIN TAMAMINI
+// yapıştırıp "Publish" de. Ya da Firebase CLI ile:
+//     firebase deploy --only firestore:rules
+//
+// KRİTİK: "Hesabımı Sil" akışının (bkz. lib/services/account_deletion_service.dart)
+// çalışabilmesi için kullanıcının KENDİ dokümanlarını silme izni ŞARTTIR.
+// Bu kurallar yayınlanmazsa silme adımları sessizce başarısız olur, kullanıcı
+// "hesabım silindi" görür ama veriler sunucuda durmaya devam eder — hem
+// App Store 5.1.1(v) hem Google Play veri silme şartının ihlali olur.
+// ===========================================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Yardımcılar ────────────────────────────────────────────────────────
+    function girisli() {
+      return request.auth != null;
+    }
+    function sahip(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // ── Soru bankaları: herkes okur, kimse yazamaz ─────────────────────────
+    // İçerik yalnızca Firebase Console / Admin SDK üzerinden güncellenir.
+    match /question_banks/{topicId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Uygulama meta verisi (içerik sürümü) ───────────────────────────────
+    match /app_meta/{doc} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Düello / Royale odaları ────────────────────────────────────────────
+    // Odalar kısa ömürlü maç oturumlarıdır. Giriş yapmış (anonim dahil) her
+    // kullanıcı okuyup yazabilir — oyun akışı istemci tarafında yürüdüğü için
+    // katılımcıların birbirinin skor/cevap alanlarını güncellemesi gerekir.
+    match /duel_rooms/{roomId} {
+      allow read, write: if girisli();
+      match /{sub=**} {
+        allow read, write: if girisli();
+      }
+    }
+
+    // ── Herkese açık profil / lig özeti ────────────────────────────────────
+    // Sohbetten "Profili Görüntüle" diyen herkes okuyabilmeli; yalnızca
+    // sahibi yazabilir/silebilir.
+    match /league_scores/{uid} {
+      allow read: if true;
+      allow create, update, delete: if sahip(uid);
+    }
+
+    // ── Bulut yedeği ───────────────────────────────────────────────────────
+    // Tamamen özel: sadece sahibi okur, yazar ve siler.
+    match /cloud_backups/{uid} {
+      allow read, create, update, delete: if sahip(uid);
+    }
+
+    // ── Bildirimler ────────────────────────────────────────────────────────
+    // Kullanıcı kendi bildirimlerini okur/siler. Başka bir kullanıcının
+    // bildirim OLUŞTURABİLMESİ gerekir (ör. şikayet sonucu bilgilendirme),
+    // bu yüzden create girişli herkese açık; okuma/silme sahibine kapalı.
+    match /user_notifications/{uid} {
+      allow read, write, delete: if sahip(uid);
+
+      match /items/{itemId} {
+        allow read, update, delete: if sahip(uid);
+        allow create: if girisli();
+      }
+    }
+
+    // ── Engellenen kullanıcı listesi ───────────────────────────────────────
+    match /blocked_users/{uid} {
+      allow read, write, delete: if sahip(uid);
+
+      match /users/{blockedUid} {
+        allow read, create, update, delete: if sahip(uid);
+      }
+    }
+
+    // ── Genel sohbet ───────────────────────────────────────────────────────
+    // Giriş yapan herkes okur. Mesajı yalnızca sahibi oluşturabilir ve
+    // silebilir (hesap silmede toplu silme bu izne dayanır).
+    // Güncelleme kapalı: gönderilmiş mesaj sonradan değiştirilemez.
+    match /chat_messages/{msgId} {
+      allow read: if girisli();
+      allow create: if girisli()
+                    && request.resource.data.senderUid == request.auth.uid;
+      allow delete: if girisli()
+                    && resource.data.senderUid == request.auth.uid;
+      allow update: if false;
+    }
+
+    // ── Özel mesajlar (DM) ─────────────────────────────────────────────────
+    // Yalnızca konuşmanın taraflarına açık.
+    match /dm_threads/{threadId} {
+      allow read, update, delete: if girisli()
+                    && request.auth.uid in resource.data.participants;
+      allow create: if girisli()
+                    && request.auth.uid in request.resource.data.participants;
+
+      match /messages/{msgId} {
+        // Üst thread'in katılımcısı olmak şart.
+        allow read, create, delete: if girisli()
+          && request.auth.uid in
+             get(/databases/$(database)/documents/dm_threads/$(threadId))
+               .data.participants;
+        allow update: if false;
+      }
+    }
+
+    // ── Moderasyon şikayetleri ─────────────────────────────────────────────
+    // Kullanıcı kendi şikayetini oluşturur, okur ve (hesap silmede) siler.
+    // Başkasının şikayetini göremez; moderasyon Console/Admin SDK ile yapılır.
+    match /chat_reports/{reportId} {
+      allow create: if girisli()
+                    && request.resource.data.reporterUid == request.auth.uid;
+      allow read, delete: if girisli()
+                    && resource.data.reporterUid == request.auth.uid;
+      allow update: if false;
+    }
+
+    // ── Varsayılan: her şey kapalı ─────────────────────────────────────────
+    // Yukarıda açıkça izin verilmeyen hiçbir yola erişilemez.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
