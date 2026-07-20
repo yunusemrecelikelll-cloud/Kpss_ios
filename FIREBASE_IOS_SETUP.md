@@ -50,139 +50,62 @@ Otomatik imzalama açık, ama Xcode'un App ID'yi güncellemesi gerekiyor:
   (entitlements dosyasından otomatik gelmeli; gelmezse `+ Capability` ile ekle)
 - Signing bölümünde kırmızı hata olmadığından emin ol
 
-### 2. Firebase Console'da sağlayıcıları aç (ZORUNLU)
+### 2. Firebase Console'da sağlayıcıları aç — ✅ TAMAMLANDI
 
 `kpss-52eb6` projesinde **Authentication > Sign-in method** altında:
 
-- **Apple** → etkinleştir
-- **Anonymous** → etkinleştir
+- **Apple** → ✅ etkin
+- **Anonymous** → ✅ etkin
   (Düello odaları `signInAnonymously()` kullanıyor — bu kapalıysa **oda
   açma/katılma çalışmaz**, giriş yapmış olsan bile)
-- **Google** → etkinleştir (aşağıdaki 3. adım için gerekli)
+- **Google** → ✅ etkin
 
-### 3. Google ile Giriş için plist'i yenile (Google girişi istiyorsan)
+### 3. Google ile Giriş — ✅ TAMAMLANDI
 
-Şu anki `GoogleService-Info.plist` içinde **`CLIENT_ID` ve
-`REVERSED_CLIENT_ID` anahtarları yok**. Bu anahtarlar yalnızca Firebase
-Console'da Google sağlayıcısı açıkken üretilir. Onlar olmadan
-`GoogleSignIn.instance.initialize()` başarısız olur.
+Firebase Console'da Google sağlayıcısı açık ve `GoogleService-Info.plist`
+yeniden indirilip projeye kuruldu. Dosya artık `CLIENT_ID` ve
+`REVERSED_CLIENT_ID` anahtarlarını içeriyor.
 
-1. Firebase Console > Authentication > Sign-in method > **Google**'ı aç
-2. Project Settings > Your apps > iOS uygulaması > **GoogleService-Info.plist**'i
-   yeniden indir
-3. `ios/Runner/GoogleService-Info.plist` üzerine yaz
-   (Xcode kaydı zaten yapıldı, tekrar eklemene gerek yok)
-4. Yeni plist'teki `REVERSED_CLIENT_ID` değerini kopyala. Şu formatta olur:
-   `com.googleusercontent.apps.993008276386-XXXXXXXXXXXX`
-5. `ios/Runner/Info.plist` içindeki `CFBundleURLSchemes` altında duran
-   `REVERSED_CLIENT_ID_BURAYA_YAPISTIR` yer tutucusunu bu değerle **değiştir**
-
-Bu adımı atlarsan: **Apple ile giriş sorunsuz çalışır**, sadece Google
-butonu hata verir.
-
-### 4. Firestore kurallarını kontrol et
-
-Oda açma ve soru indirme Firestore'a yazar/okur. Kurallar test modundaysa ve
-süresi dolduysa her istek reddedilir. Gereken minimum:
+`ios/Runner/Info.plist` içindeki `CFBundleURLSchemes` değeri de plist'teki
+`REVERSED_CLIENT_ID` ile birebir eşleşecek şekilde güncellendi:
 
 ```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-
-    function girisli() { return request.auth != null; }
-    function sahip(uid) { return request.auth != null && request.auth.uid == uid; }
-
-    // Soru bankaları: herkes okuyabilir, kimse yazamaz
-    match /question_banks/{topicId} {
-      allow read: if true;
-      allow write: if false;
-    }
-
-    // Uygulama meta verisi (içerik sürümü)
-    match /app_meta/{doc} {
-      allow read: if true;
-      allow write: if false;
-    }
-
-    // Düello odaları: giriş yapmış (anonim dahil) herkes
-    match /duel_rooms/{roomId} {
-      allow read, write: if girisli();
-      match /{sub=**} {
-        allow read, write: if girisli();
-      }
-    }
-
-    // ── Hesap silme için ZORUNLU izinler ────────────────────────────
-    // Kullanıcı KENDİ dokümanlarını silebilmeli; aksi halde "Hesabımı Sil"
-    // sessizce yarım kalır ve veriler sunucuda durmaya devam eder.
-
-    // Herkese açık profil / lig özeti: herkes okur, sadece sahibi yazar/siler
-    match /league_scores/{uid} {
-      allow read: if true;
-      allow write, delete: if sahip(uid);
-    }
-
-    // Bulut yedeği: sadece sahibi
-    match /cloud_backups/{uid} {
-      allow read, write, delete: if sahip(uid);
-    }
-
-    // Bildirimler: sadece sahibi
-    match /user_notifications/{uid} {
-      allow read, write, delete: if sahip(uid);
-      match /items/{itemId} {
-        allow read, write, delete: if sahip(uid);
-      }
-    }
-
-    // Engellenen kullanıcılar: sadece sahibi
-    match /blocked_users/{uid} {
-      allow read, write, delete: if sahip(uid);
-      match /users/{blockedUid} {
-        allow read, write, delete: if sahip(uid);
-      }
-    }
-
-    // Genel sohbet: giriş yapan okur/yazar, mesajı SADECE yazarı silebilir
-    match /chat_messages/{msgId} {
-      allow read: if girisli();
-      allow create: if girisli() && request.resource.data.senderUid == request.auth.uid;
-      allow delete: if girisli() && resource.data.senderUid == request.auth.uid;
-      allow update: if false;
-    }
-
-    // Özel mesajlar: sadece konuşmanın tarafları
-    match /dm_threads/{threadId} {
-      allow read, write, delete: if girisli() &&
-        request.auth.uid in resource.data.participants;
-      allow create: if girisli() &&
-        request.auth.uid in request.resource.data.participants;
-      match /messages/{msgId} {
-        allow read, create: if girisli();
-        allow delete: if girisli();
-        allow update: if false;
-      }
-    }
-
-    // Moderasyon raporları: kullanıcı kendi raporunu oluşturur ve silebilir,
-    // başkasınınkini okuyamaz (moderasyon Console/Admin SDK üzerinden yapılır)
-    match /chat_reports/{reportId} {
-      allow create: if girisli() && request.resource.data.reporterUid == request.auth.uid;
-      allow read, delete: if girisli() && resource.data.reporterUid == request.auth.uid;
-      allow update: if false;
-    }
-  }
-}
+com.googleusercontent.apps.993008276386-78k2ralk6pk3adsr2uut0lhlc7g0m4kj
 ```
 
-> **Not:** `duel_rooms` üzerindeki `playerUids` dizisi tek alanlı bir
-> `arrayContains` sorgusuyla kullanılıyor — Firestore bunu otomatik indeksler,
-> elle composite index oluşturman gerekmez.
+> Firebase projesi ileride değişirse bu iki değer BİRLİKTE güncellenmelidir.
+> Ayrışırlarsa Google girişi, kullanıcı hesabını seçtikten sonra uygulamaya
+> geri dönemez.
 
-> `question_banks` koleksiyonunun **dolu olduğundan** da emin ol. Boşsa soru
-> indirme sessizce gömülü yedek soru setine düşer — hata vermez ama havuz
-> küçük kalır.
+### 4. Firestore kuralları — ✅ YAYINLANDI
+
+Kuralların tam ve güncel hali repo kökündeki **`firestore.rules`** dosyasında
+duruyor ve Firebase Console'a yayınlandı (21 Temmuz 2026).
+
+Kurallar değiştirilecekse `firestore.rules` düzenlenip Console'a yeniden
+yapıştırılmalı ya da şu komutla dağıtılmalı:
+
+```bash
+firebase deploy --only firestore:rules
+```
+
+Kritik nokta: kullanıcının KENDİ dokümanlarını silme izni, "Hesabımı Sil"
+akışının çalışması için şarttır. Bu izin olmadan silme adımları sessizce
+başarısız olur; kullanıcı "hesabım silindi" görür ama veriler sunucuda kalır
+(App Store 5.1.1(v) ve Google Play veri silme şartının ihlali).
+
+**Yayınlanan kural setinin kapsadıkları:** `question_banks`, `app_meta`,
+`duel_rooms`, `league_scores`, `cloud_backups`, `user_notifications`,
+`blocked_users`, `chat_messages`, `dm_threads`, `chat_reports` + sonda
+varsayılan-kapalı (default deny) bloğu.
+
+> **Kaldırılan koleksiyonlar:** Önceki kural setinde `support_tickets`,
+> `live_exams` ve `scores` için de bloklar vardı. Kod tabanı tarandı; bu üç
+> koleksiyon uygulamada **hiç kullanılmıyor** (eski bir tasarımdan kalma).
+> Varsayılan-kapalı bloğu bu yüzden hiçbir özelliği bozmuyor. İleride bu
+> koleksiyonlar gerçekten kullanılacaksa kuralları geri eklemek gerekir.
+
+> `question_banks` koleksiyonunun dolu olduğu doğrulandı (50+ konu dokümanı).
 
 ### 5. Yeni build al
 

@@ -34,15 +34,14 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<!-- Google ile Giriş geri dönüş (callback) URL şeması.
-	     DEĞER, GoogleService-Info.plist içindeki REVERSED_CLIENT_ID ile
-	     BİREBİR AYNI olmalıdır; şu formattadır:
-	         com.googleusercontent.apps.993008276386-XXXXXXXXXXXX
+	     DEĞER, ios/Runner/GoogleService-Info.plist içindeki REVERSED_CLIENT_ID
+	     ile BİREBİR AYNI olmalıdır. İkisi ayrışırsa Google girişi, kullanıcı
+	     hesabını seçtikten sonra uygulamaya geri dönemez.
 
-	     ŞU ANKİ DURUM: Firebase Console'dan indirilen GoogleService-Info.plist
-	     içinde CLIENT_ID / REVERSED_CLIENT_ID anahtarları YOK (Google
-	     sağlayıcısı Authentication'da açılmadığı için). Aşağıdaki değer bu
-	     yüzden yer tutucudur ve Google ile giriş çalışmaz — Apple ile giriş
-	     etkilenmez. Bkz. FIREBASE_IOS_SETUP.md -->
+	     Firebase Console'da Google sağlayıcısı açık olduğu için indirilen
+	     plist artık CLIENT_ID / REVERSED_CLIENT_ID içeriyor ve aşağıdaki
+	     değer gerçek değerdir. Firebase projesi değişirse ikisi de birlikte
+	     güncellenmelidir. Bkz. FIREBASE_IOS_SETUP.md -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -50,7 +49,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>REVERSED_CLIENT_ID_BURAYA_YAPISTIR</string>
+				<string>com.googleusercontent.apps.993008276386-78k2ralk6pk3adsr2uut0lhlc7g0m4kj</string>
 			</array>
 		</dict>
 	</array>
