@@ -291,6 +291,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
     final adaptationSounds = storage.getAdaptationSoundsEnabled();
+    // "Hesabımı Sil" yalnızca gerçekten bir hesap varken gösterilir.
+    // watch (read değil) — kullanıcı giriş/çıkış yapınca ekran kendini
+    // tazelesin ve seçenek anında görünsün/kaybolsun.
+    final girisYapildi = context.watch<AuthService>().isSignedIn;
 
     return Scaffold(
       appBar: AppBar(title: const Text('⚙️ Ayarlar')),
@@ -671,25 +675,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       );
                     },
                   ),
-                  Divider(height: 1, color: c.border),
                   // App Store İnceleme Kuralı 5.1.1(v): hesap oluşturmayı
                   // destekleyen uygulamalar hesabın UYGULAMA İÇİNDEN
                   // silinmesini de sunmak zorundadır.
-                  ListTile(
-                    leading: DsIconBadge(
-                        icon: Icons.person_remove_outlined,
-                        color: c.danger,
-                        size: 42,
-                        circle: false,
-                        glow: false),
-                    title: Text('Hesabımı Sil',
-                        style: TextStyle(fontWeight: FontWeight.w700, color: c.danger)),
-                    subtitle: Text(
-                        'Hesabını ve tüm verilerini kalıcı olarak siler. Geri alınamaz.',
-                        style: TextStyle(fontSize: 12, color: c.textFaint)),
-                    trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
-                    onTap: () => _hesabiSil(storage),
-                  ),
+                  //
+                  // Yalnızca GİRİŞ YAPMIŞ kullanıcıda gösteriliyor: giriş
+                  // yapılmamışken ortada silinecek bir hesap yoktur, seçenek
+                  // yalnızca kafa karıştırır. (Yerel ilerlemeyi temizlemek
+                  // isteyen kullanıcı için uygulamayı kaldırmak yeterli.)
+                  if (girisYapildi) ...[
+                    Divider(height: 1, color: c.border),
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.person_remove_outlined,
+                          color: c.danger,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Hesabımı Sil',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.danger)),
+                      subtitle: Text(
+                          'Hesabını ve tüm verilerini kalıcı olarak siler. Geri alınamaz.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () => _hesabiSil(storage),
+                    ),
+                  ],
                 ],
               ),
             ),
