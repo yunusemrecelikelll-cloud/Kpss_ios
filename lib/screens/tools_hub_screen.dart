@@ -20,12 +20,13 @@ import 'quick_modes/zincirleme_bilgi_screen.dart';
 import 'quick_modes/kimim_ben_screen.dart';
 import 'quick_modes/yazim_yanlislari_screen.dart';
 import 'quick_modes/tarihleri_bil_screen.dart';
+import 'quick_modes/dogru_yanlis_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import '../theme/subject_colors.dart';
 
-/// JS: FREE_CARDGAME_DAILY / FREE_GAME_DAILY — üç oyunun da günlük ücretsiz hakkı 10'dur
+/// JS: FREE_CARDGAME_DAILY / FREE_GAME_DAILY — tüm oyunların günlük ücretsiz hakkı 5'tir
 /// (JS'te her oyunun kendi ayrı sayacı vardır, bkz. StorageService.getGamePlayState).
-const int kFreeGameDailyLimit = 10;
+const int kFreeGameDailyLimit = 5;
 
 /// Kart Oyunu (v1 "Kart Eşleştirme Oyunu" + v2 "Kart Oyunu V2") ikisi birden
 /// TEK bir toplam oynama süresi altında toplansın diye kullanılan ortak oyun
@@ -131,6 +132,8 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
           final yyLeft = (kFreeGameDailyLimit - (yy['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final tb = storage.getGamePlayState(kTarihleriBilGameId);
           final tbLeft = (kFreeGameDailyLimit - (tb['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+          final dy = storage.getGamePlayState(kDogruYanlisGameId);
+          final dyLeft = (kFreeGameDailyLimit - (dy['plays'] as int)).clamp(0, kFreeGameDailyLimit);
 
           final c = context.watch<ThemeProvider>().colors;
 
@@ -222,6 +225,15 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                     palette: const SubjectPalette(Color(0xFF60A5FA), Color(0xFF2563EB)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => MapGameScreen(subjects: subjects))),
+                  ),
+                  ToolCard(
+                    icon: '🤔',
+                    title: 'Doğru mu Yanlış mı?',
+                    desc: 'Karttaki iddia doğru mu? Sağa/sola kaydır ya da butona bas.',
+                    chipLabel: hakEtiketi(dyLeft),
+                    palette: const SubjectPalette(Color(0xFF22D3EE), Color(0xFF0E7490)),
+                    onTap: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => const DogruYanlisScreen())),
                   ),
                 ],
               ),

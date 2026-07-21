@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/link.dart';
+import '../models/attempt.dart';
 import '../models/subject.dart';
 import '../models/topic.dart';
 import '../models/question.dart';
@@ -237,6 +238,17 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     _studySw.start();
   }
 
+  /// Bu konuda çözülmüş TÜM geçmiş testleri ayrı bir ekranda listeler.
+  void _tumTestleriAc(List<Attempt> attempts) {
+    context.read<SoundService>().click();
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => _TumGecmisTestlerScreen(
+        topicBaslik: topic.baslik,
+        attempts: attempts,
+      ),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
@@ -245,6 +257,10 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     final attempts = storage.getAttemptsForTopic(topic.id);
     final maxAtt = premium ? 1 << 30 : kFreeMaxAttemptsPerTopic;
     final maxed = attempts.length >= maxAtt;
+    // Geçmiş testler listesi yalnızca SON 3'ü gösterir; tamamı detay ekranında.
+    const gecmisOnizlemeAdedi = 3;
+    final tumunuGor = attempts.length > gecmisOnizlemeAdedi;
+    final sonUcBaslangic = tumunuGor ? attempts.length - gecmisOnizlemeAdedi : 0;
     final a = topic.anlatim;
     final teachers = kTeachersBySubject[subject.id] ?? const <Teacher>[];
 
@@ -364,49 +380,29 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
           ),
           const SizedBox(height: 12),
           if (attempts.isNotEmpty) ...[
-            const DsSectionHeader(title: '📋 Geçmiş Testlerin'),
+            // Listede yalnızca SON 3 test görünür; hepsi detay ekranında.
+            // 3'ten az test varsa "tümünü gör" bağlantısı hiç çıkmaz.
+            DsSectionHeader(
+              title: '📋 Geçmiş Testlerin',
+              actionLabel: tumunuGor ? 'Tümünü Gör (${attempts.length})' : null,
+              onAction: tumunuGor ? () => _tumTestleriAc(attempts) : null,
+            ),
             const SizedBox(height: 10),
             DsCard(
+              // Karta dokunmak da tüm geçmişi açar (başlıktaki bağlantıyla aynı).
+              onTap: tumunuGor ? () => _tumTestleriAc(attempts) : null,
               child: Column(
                 children: [
-                  for (var i = 0; i < attempts.length; i++) ...[
-                    if (i > 0)
+                  for (var i = sonUcBaslangic; i < attempts.length; i++) ...[
+                    if (i > sonUcBaslangic)
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Container(height: 1, color: colors.border),
                       ),
-                    Row(
-                      children: [
-                        DsChip(label: '${i + 1}. TEST', color: colors.violetL),
-                        const SizedBox(width: 10),
-                        // Sonuç + testin çözüldüğü tarih. Dar ekranda tarih
-                        // alt satıra iner, taşma olmaz.
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                '${attempts[i].dogru} doğru / ${attempts[i].yanlis} yanlış',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 13, color: colors.textDim),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                '🗓️ ${_kisaTarih(attempts[i].tarih)}',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 11.5, color: colors.textFaint),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text('%${attempts[i].skor}',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900, fontSize: 15, color: colors.text)),
-                      ],
+                    _GecmisTestSatiri(
+                      sira: i + 1,
+                      attempt: attempts[i],
+                      colors: colors,
                     ),
                   ],
                 ],
@@ -420,23 +416,19 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Kota dolduğunda tek çıkış yolu Premium'dur — "sıfırla"
+                  // seçeneği bilerek KALDIRILDI (kotayı sıfırlamak Premium'u
+                  // anlamsız kılıyordu). Mesaj bu yüzden net ve dürüst.
                   Text(
-                    '🎓 Ücretsiz pakette bu konuyu $maxAtt kez çözdün. '
-                    "Sınırsız test için Premium'a geç ya da sıfırlayıp yeniden başla.",
+                    '🎓 Bu konudaki ücretsiz soruların bitti '
+                    '(ücretsiz pakette konu başına $maxAtt test). '
+                    "Sınırsız soru için Premium'a geç.",
                     style: TextStyle(fontSize: 13, height: 1.4, color: colors.text),
                   ),
                   const SizedBox(height: 12),
-                  Wrap(spacing: 8, runSpacing: 8, children: [
-                    DsPillButton(
-                      label: '🔄 Testleri Sıfırla',
-                      color: colors.violetL,
-                      filled: false,
-                      onPressed: () async {
-                        context.read<SoundService>().click();
-                        await storage.resetTopicAttempts(topic.id);
-                      },
-                    ),
-                    DsPillButton(
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: DsPillButton(
                       label: "💎 Premium'a Geç",
                       color: colors.gold,
                       onPressed: () {
@@ -445,7 +437,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                             .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
                       },
                     ),
-                  ]),
+                  ),
                 ],
               ),
             )
@@ -525,6 +517,136 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                     onPressed: () => _exportPdf(context),
                   ),
                 ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Tek bir geçmiş test satırı: sıra rozeti + doğru/yanlış + tarih + skor.
+///
+/// Hem konu ekranındaki son 3'lük önizlemede hem de "tümünü gör" detay
+/// ekranında AYNI widget kullanılır — iki yerde de tarih gösterimi
+/// ("🗓️ Bugün" / "Dün" / "12 Tem 2026") korunur.
+class _GecmisTestSatiri extends StatelessWidget {
+  /// Kullanıcıya gösterilen test numarası (1'den başlar, kronolojik).
+  final int sira;
+  final Attempt attempt;
+  final KpssColors colors;
+
+  const _GecmisTestSatiri({
+    required this.sira,
+    required this.attempt,
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        DsChip(label: '$sira. TEST', color: colors.violetL),
+        const SizedBox(width: 10),
+        // Sonuç + testin çözüldüğü tarih. Dar ekranda tarih alt satıra iner,
+        // taşma olmaz.
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '${attempt.dogru} doğru / ${attempt.yanlis} yanlış',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 13, color: colors.textDim),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                '🗓️ ${_kisaTarih(attempt.tarih)}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 11.5, color: colors.textFaint),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 8),
+        Text('%${attempt.skor}',
+            style: TextStyle(
+                fontWeight: FontWeight.w900, fontSize: 15, color: colors.text)),
+      ],
+    );
+  }
+}
+
+/// Bir konuda çözülmüş TÜM geçmiş testleri gösteren detay ekranı.
+/// Konu ekranındaki liste yalnızca son 3'ü gösterdiği için tam geçmiş
+/// buradan görülür — en yeni test en üstte.
+class _TumGecmisTestlerScreen extends StatelessWidget {
+  final String topicBaslik;
+
+  /// Kronolojik (en eskiden en yeniye) sıralı liste — ekranda ters çevrilir.
+  final List<Attempt> attempts;
+
+  const _TumGecmisTestlerScreen({required this.topicBaslik, required this.attempts});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.watch<ThemeProvider>().colors;
+    // En iyi skor ve ortalama, geçmişe bakarken hızlı bir üst bakış sağlar.
+    final enIyi = attempts.map((a) => a.skor).reduce((x, y) => x > y ? x : y);
+    final ortalama =
+        (attempts.map((a) => a.skor).reduce((x, y) => x + y) / attempts.length).round();
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('📋 Geçmiş Testlerin')),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          DsCard(
+            accent: colors.violet,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  topicBaslik,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900, fontSize: 15, color: colors.text),
+                ),
+                const SizedBox(height: 10),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    DsChip(label: '${attempts.length} test', color: colors.violetL),
+                    DsChip(label: '⭐ En iyi %$enIyi', color: colors.gold),
+                    DsChip(label: '📈 Ortalama %$ortalama', color: colors.mint),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: kDsGap),
+          const DsSectionHeader(title: 'Tüm Testler'),
+          const SizedBox(height: 10),
+          DsCard(
+            child: Column(
+              children: [
+                // En yeni test en üstte görünsün.
+                for (var i = attempts.length - 1; i >= 0; i--) ...[
+                  if (i < attempts.length - 1)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Container(height: 1, color: colors.border),
+                    ),
+                  _GecmisTestSatiri(
+                    sira: i + 1,
+                    attempt: attempts[i],
+                    colors: colors,
+                  ),
+                ],
               ],
             ),
           ),

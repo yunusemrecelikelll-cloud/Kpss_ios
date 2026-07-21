@@ -1,28 +1,34 @@
 /// Kategori Eşleştirme Solitaire — motor.
 ///
 /// Bu, klasik iskambil solitaire'i DEĞİL; KPSS terim/kavram kartlarını doğru
-/// KATEGORİYE eşleştirme oyununu yönetir.
+/// KATEGORİYE eşleştirme oyununu yönetir. Ancak yerleşim ve etkileşim klasik
+/// solitaire'den ödünç alınır: tableau sütunları, yığma (stack), çekme destesi
+/// ve "çevrilen kart" (waste).
 ///
 /// Akış:
-///  * [startLevel] ile 5-20 [KategoriGrubu] verilir (Kolay 5 / Orta 10 / Zor
-///    20). Her kategori için gerçek üye-terim sayısına göre bir hedef sayaç
-///    (3-8; bkz. [kKartAltSinir]) belirlenir ve o kadar terim kartı üretilir.
-///    Tüm kartlar karıştırılıp 5 sütuna (tableau)
-///    dağıtılır; her sütunda üstte kapalı kartlar, en altta (oynanabilir) 1
-///    açık kart bulunur.
-///  * Oyuncu önce açık bir terim kartını seçer ([tapCard]), sonra ait olduğunu
-///    düşündüğü kategoriye dokunur ([tapCategory]). Doğruysa kart düşer,
-///    kategorinin sayacı artar ve alttaki kart açılır; yanlışsa [tapCategory]
-///    false döner (UI kırmızı flaş gösterir).
-///  * [undo] son doğru eşleştirmeyi geri alır (sınırlı hak). [hint] bir sütunun
-///    üstteki kartının doğru kategorisini verir (sınırlı hak).
-///  * TÜM kartlar eşleşince ([seviyeTamamlandi]) seviye biter.
+///  * [startLevel] ile seviyedeki TÜM kategoriler verilir (Kolay 5 / Orta 10 /
+///    Zor 20). Zorluk ne olursa olsun tahtada AYNI ANDA en fazla
+///    [kHedefSlotSayisi] hedef kategori durur; oyun hep 5 hedefle BAŞLAR.
+///    Kalan kategoriler çekme destesine "hedef kategori kartı" olarak konur ve
+///    oyuncu bunları çekip tahtadaki BOŞ slota yerleştirerek oyunu büyütür.
+///  * Bir hedef kategori tamamlanınca tahtadan KALKAR ([_slotTemizle]) ve yeri
+///    boşalır; o boş slota yalnızca yeni bir HEDEF KATEGORİ kartı konabilir.
+///  * Tableau'da kartlar KATEGORİSİNE göre üst üste yığılabilir ([tasi]).
+///    Bir yığının herhangi bir açık kartından itibaren ÜSTÜNDEKİ TÜM kartlar
+///    birlikte taşınır (klasik solitaire davranışı).
+///  * Boşalan bir tableau sütununa (kategori şartı olmadan) herhangi bir açık
+///    kart/yığın taşınabilir.
+///  * Çekme destesinden HEM terim kartı HEM hedef kategori kartı çıkar
+///    ([cekDeste]); çekilen kart [cekilen] yuvasında bekler ve oradan
+///    sürüklenerek oynanır. Yeniden çekilince eldeki kart destenin ALTINA gider
+///    (kilitlenme olmaz).
+///  * TÜM terimler eşleşince ([seviyeTamamlandi]) seviye biter.
 library;
 
 import 'dart:math';
 import '../data/kategori_eslestirme_data.dart';
 
-/// Session başına sabit ipucu hakkı (satın alınamaz — coin ekonomisi yoktur).
+/// Session başına sabit ipucu hakkı.
 const int kBaslangicIpucuHakki = 3;
 
 /// Session başına sabit geri alma hakkı.
@@ -31,13 +37,16 @@ const int kBaslangicGeriAlHakki = 5;
 /// Tableau sütun sayısı (referans görseldeki gibi 5).
 const int kSutunSayisi = 5;
 
+/// Tahtada AYNI ANDA duran hedef kategori slotu sayısı. Her zorluk bu kadar
+/// hedefle başlar; fark, desteden çekilen EK hedeflerle toplam kategori
+/// sayısının artmasıdır.
+const int kHedefSlotSayisi = 5;
+
 /// Seviye kurulurken her sütuna başlangıçta dağıtılan MAKSİMUM kart sayısı.
-/// Bunun üzerindeki terimler "çekme destesi" kuyruğunda ([bekleyenKuyruk])
-/// bekletilir ve oyuncu desteye dokundukça tableau'ya dağıtılır.
 const int kBaslangicSutunDerinlik = 4;
 
 /// Kategori başına üretilecek terim (kart) sayısı aralığı — AZ kategorili
-/// seviyeler için. Toplam kart sayısını artırmak amacıyla yükseltildi.
+/// seviyeler için.
 const int kKartAltSinir = 4;
 const int kKartUstSinir = 8;
 
@@ -48,12 +57,9 @@ const int kCokKategoriAltSinir = 3;
 const int kCokKategoriUstSinir = 5;
 
 /// Hamle bütçesi = toplam terim (kart) sayısı × bu çarpan (yukarı yuvarlanır).
-/// 2.5 kat: her kartı doğru yere koymak en az 1 hamle olduğundan, dikkatli bir
-/// oyuncu (birkaç yanlış deneme + birkaç yığma payıyla) rahat bitirir; çok fazla
-/// yanlış deneme yapan oyuncu ise bütçeyi tüketip kaybeder. (Bkz. [kalanHamle].)
 const double kHamleButceCarpani = 2.5;
 
-/// Tek bir terim kartı (bir sütunda yer alır).
+/// Tek bir terim kartı (bir sütunda / destede yer alır).
 class TerimKart {
   final String terim;
 
@@ -66,7 +72,7 @@ class TerimKart {
   TerimKart({required this.terim, required this.kategoriAdi, this.faceUp = false});
 }
 
-/// Üstteki hedef kategori slotu (başlık + ilerleme sayacı).
+/// Bir hedef kategori slotu (başlık + ilerleme sayacı).
 class KategoriHedef {
   final String kategoriAdi;
   final String ders;
@@ -85,48 +91,102 @@ class KategoriHedef {
   });
 
   bool get tamamlandi => eslesen >= hedef;
+
+  /// Daha kaç kart kabul edebilir.
+  int get kalan => hedef - eslesen;
+}
+
+/// Çekme destesindeki bir öğe: ya bir TERİM kartı ya da yeni bir HEDEF
+/// KATEGORİ kartı.
+enum DesteTuru { terim, hedef }
+
+class DesteKarti {
+  final DesteTuru tur;
+  final TerimKart? terim;
+  final KategoriHedef? hedef;
+
+  DesteKarti.terimKarti(TerimKart k)
+      : tur = DesteTuru.terim,
+        terim = k,
+        hedef = null;
+
+  DesteKarti.hedefKarti(KategoriHedef h)
+      : tur = DesteTuru.hedef,
+        hedef = h,
+        terim = null;
+
+  bool get hedefMi => tur == DesteTuru.hedef;
+
+  /// Kartın üstünde yazan metin (önizleme ve sürükleme için).
+  String get baslik => hedefMi ? hedef!.kategoriAdi : terim!.terim;
 }
 
 /// Geri alma için tek bir doğru eşleştirmenin kaydı.
 class _UndoKayit {
-  final int sutunIndex;
+  /// Kaynak tableau sütunu — null ise kart DESTEDEN (çekilen yuvasından) geldi.
+  final int? sutunIndex;
 
-  /// Bu eşleştirmede birlikte düşen açık grup (yığma sayesinde 1'den fazla
-  /// olabilir — hepsi aynı kategoriye aittir).
+  /// Bu eşleştirmede birlikte düşen açık grup (yığma sayesinde 1'den fazla).
   final List<TerimKart> grup;
 
-  /// Bu eşleştirme sırasında bir alttaki kart açıldı mı? (Geri alırken tekrar
-  /// kapatmak için.)
+  /// Bu eşleştirme sırasında bir alttaki kart açıldı mı?
   final bool altKartAcildi;
 
-  _UndoKayit(this.sutunIndex, this.grup, this.altKartAcildi);
+  /// Kartların gittiği hedef (sayacı geri almak için).
+  final KategoriHedef hedef;
+
+  /// Bu eşleştirme hedefi TAMAMLAYIP tahtadan kaldırdı mı?
+  final bool hedefKalkti;
+
+  /// Hedefin kalktığı slot indeksi (geri alırken aynı yere dönsün).
+  final int slotIndex;
+
+  _UndoKayit({
+    required this.sutunIndex,
+    required this.grup,
+    required this.altKartAcildi,
+    required this.hedef,
+    required this.hedefKalkti,
+    required this.slotIndex,
+  });
 }
 
 class KategoriEslestirmeEngine {
   final Random _rnd;
 
-  List<KategoriHedef> hedefler = [];
+  /// Tahtadaki hedef slotları — null olan slot BOŞTUR ve yalnızca desteden
+  /// çekilen yeni bir HEDEF KATEGORİ kartını kabul eder.
+  List<KategoriHedef?> slotlar = List<KategoriHedef?>.filled(kHedefSlotSayisi, null);
+
+  /// Seviyedeki TÜM kategoriler (tahtada olan + destede bekleyen + tamamlanan).
+  List<KategoriHedef> tumHedefler = [];
+
+  /// Tamamlanıp tahtadan kalkan kategoriler (sonuç ekranı için).
+  List<KategoriHedef> tamamlananlar = [];
+
   List<List<TerimKart>> sutunlar = [];
 
-  /// Henüz tableau'ya DAĞITILMAMIŞ, "çekme destesinde" (draw pile) bekleyen
-  /// terimler. Oyuncu desteye dokundukça ([cekDeste]) baştan alınıp boş bir
-  /// sütuna ya da en az kartlı sütunun üstüne konur.
-  List<TerimKart> bekleyenKuyruk = [];
+  /// Çekme destesi — terim ve hedef kartları karışık.
+  List<DesteKarti> deste = [];
 
-  /// Toplam eşleştirme/yığma DENEMESİ sayacı (doğru + yanlış). Bu sayaç
-  /// [hamleButcesi] ile karşılaştırılarak "Kalan Hamle" hesaplanır.
+  /// Desteden çekilmiş, oynanmayı bekleyen kart ("waste" yuvası). Kendi
+  /// yerinde durur; başka kartların üstüne binmez.
+  DesteKarti? cekilen;
+
+  /// Seviyedeki toplam terim kartı sayısı.
+  int toplamKart = 0;
+
+  /// Şimdiye kadar doğru eşleşen toplam kart sayısı.
+  int eslesenKart = 0;
+
+  /// Toplam eşleştirme/taşıma DENEMESİ sayacı (doğru + yanlış).
   int hamle = 0;
 
-  /// Bu seviye için verilen toplam hamle bütçesi (SINIRLI kaynak). [hamle] bu
-  /// değere ulaşınca ve seviye bitmemişse oyun KAYBEDİLİR ([kaybedildi]).
+  /// Bu seviye için verilen toplam hamle bütçesi.
   int hamleButcesi = 0;
 
-  /// Son BAŞARILI eşleştirmede kaç kartın birlikte düştüğü (yığın sayesinde
-  /// 1'den fazla olabilir) — UI'ın coin ödülünü kart başına vermesi için.
+  /// Son BAŞARILI eşleştirmede kaç kartın birlikte düştüğü.
   int sonEslesenAdet = 0;
-
-  /// Seçili terim kartının bulunduğu sütun (null = seçili kart yok).
-  int? seciliSutun;
 
   int ipucuHakki = kBaslangicIpucuHakki;
   int geriAlHakki = kBaslangicGeriAlHakki;
@@ -135,120 +195,172 @@ class KategoriEslestirmeEngine {
 
   KategoriEslestirmeEngine([Random? rnd]) : _rnd = rnd ?? Random();
 
-  /// Seçilen kategori gruplarından bir seviye kurar.
-  void startLevel(List<KategoriGrubu> gruplar) {
-    hedefler = [];
-    final tumKartlar = <TerimKart>[];
+  // ── Seviye kurulumu ────────────────────────────────────────────────────
 
-    // Kategori sayısı arttıkça kategori başına kart sayısı düşürülür (bkz.
-    // [kCokKategoriEsigi]) — böylece Zor seviyede 20 kategori olsa bile toplam
-    // kart sayısı makul kalır.
+  /// Seçilen kategori gruplarından bir seviye kurar. Zorluk ne olursa olsun
+  /// tahta [kHedefSlotSayisi] hedefle başlar; kalan kategoriler desteye
+  /// "hedef kartı" olarak eklenir.
+  void startLevel(List<KategoriGrubu> gruplar) {
+    tumHedefler = [];
+    tamamlananlar = [];
+    slotlar = List<KategoriHedef?>.filled(kHedefSlotSayisi, null);
+    deste = [];
+    cekilen = null;
+
     final cokKategori = gruplar.length >= kCokKategoriEsigi;
     final altSinir = cokKategori ? kCokKategoriAltSinir : kKartAltSinir;
     final ustSinir = cokKategori ? kCokKategoriUstSinir : kKartUstSinir;
 
+    // Her kategori için hedef sayacı + o kadar terim kartı üret.
+    final kategoriKartlari = <List<TerimKart>>[];
     for (final g in gruplar) {
       final terimler = List<String>.from(g.terimler)..shuffle(_rnd);
       final maxHedef = min(terimler.length, ustSinir);
-      // [altSinir] ile maxHedef arasında makul bir hedef.
-      final hedef =
+      final hedefAdet =
           maxHedef <= altSinir ? maxHedef : altSinir + _rnd.nextInt(maxHedef - altSinir + 1);
-      final secilen = terimler.take(hedef).toList();
-      hedefler.add(KategoriHedef(kategoriAdi: g.kategoriAdi, ders: g.ders, hedef: hedef));
-      for (final t in secilen) {
-        tumKartlar.add(TerimKart(terim: t, kategoriAdi: g.kategoriAdi));
-      }
+      final h = KategoriHedef(kategoriAdi: g.kategoriAdi, ders: g.ders, hedef: hedefAdet);
+      tumHedefler.add(h);
+      kategoriKartlari.add([
+        for (final t in terimler.take(hedefAdet))
+          TerimKart(terim: t, kategoriAdi: g.kategoriAdi),
+      ]);
     }
+    toplamKart = kategoriKartlari.fold(0, (a, l) => a + l.length);
+    eslesenKart = 0;
 
-    tumKartlar.shuffle(_rnd);
+    // İlk [kHedefSlotSayisi] kategori tahtaya; kartları tableau'ya dağıtılır.
+    final aktifAdet = min(kHedefSlotSayisi, tumHedefler.length);
+    final acilisKartlar = <TerimKart>[];
+    for (var i = 0; i < aktifAdet; i++) {
+      slotlar[i] = tumHedefler[i];
+      acilisKartlar.addAll(kategoriKartlari[i]);
+    }
+    acilisKartlar.shuffle(_rnd);
+
     sutunlar = List.generate(kSutunSayisi, (_) => <TerimKart>[]);
-    bekleyenKuyruk = [];
-    // Başlangıçta yalnızca sütun başına [kBaslangicSutunDerinlik] kart dağıtılır;
-    // geri kalanlar çekme destesi kuyruğunda bekletilir.
     final tableauKapasite = kSutunSayisi * kBaslangicSutunDerinlik;
-    for (var i = 0; i < tumKartlar.length; i++) {
+    for (var i = 0; i < acilisKartlar.length; i++) {
       if (i < tableauKapasite) {
-        sutunlar[i % kSutunSayisi].add(tumKartlar[i]);
+        sutunlar[i % kSutunSayisi].add(acilisKartlar[i]);
       } else {
-        bekleyenKuyruk.add(tumKartlar[i]);
+        deste.add(DesteKarti.terimKarti(acilisKartlar[i]));
       }
     }
-    // Her sütunun EN ALTTAKİ (son) kartı açık/oynanabilir olur.
     for (final c in sutunlar) {
       if (c.isNotEmpty) c.last.faceUp = true;
     }
 
+    // Bekleyen kategoriler: önce HEDEF kartı, ardından o kategorinin terimleri.
+    // (Sıra bilinçli: bir terim tahtada karşılığı olmayan bir kategoriye ait
+    // kalmasın diye hedef kartı hep kendi terimlerinden ÖNCE gelir.)
+    for (var i = aktifAdet; i < tumHedefler.length; i++) {
+      deste.add(DesteKarti.hedefKarti(tumHedefler[i]));
+      final t = List<TerimKart>.from(kategoriKartlari[i])..shuffle(_rnd);
+      deste.addAll(t.map(DesteKarti.terimKarti));
+    }
+
     hamle = 0;
-    // Hamle bütçesi, toplam kart sayısına göre ölçeklenir (bkz. [kHamleButceCarpani]).
-    hamleButcesi = (toplamTerim * kHamleButceCarpani).ceil();
+    hamleButcesi = (toplamKart * kHamleButceCarpani).ceil();
     sonEslesenAdet = 0;
-    seciliSutun = null;
     ipucuHakki = kBaslangicIpucuHakki;
     geriAlHakki = kBaslangicGeriAlHakki;
     _undoStack.clear();
   }
 
-  /// O sütunun oynanabilir (açık, en alttaki) kartı — yoksa null.
+  // ── Tahta sorguları ────────────────────────────────────────────────────
+
+  /// Tahtadaki (dolu) hedef kategoriler.
+  List<KategoriHedef> get hedefler => slotlar.whereType<KategoriHedef>().toList();
+
+  /// Boş hedef slotu var mı? (Desteden çekilen hedef kartı konabilir mi?)
+  bool get bosSlotVar => slotlar.any((s) => s == null);
+
+  /// O sütunun EN ÜSTTEKİ (son) açık kartı — yoksa null.
   TerimKart? topKart(int sutunIndex) {
     final c = sutunlar[sutunIndex];
     if (c.isEmpty) return null;
-    final k = c.last;
-    return k.faceUp ? k : null;
+    return c.last.faceUp ? c.last : null;
   }
 
-  /// Şu an seçili olan terim kartı (yoksa null).
-  TerimKart? get seciliKart => seciliSutun == null ? null : topKart(seciliSutun!);
-
-  /// Açık bir terim kartını seçer/seçimi kaldırır. Kart açık değilse yok sayılır.
-  void tapCard(int sutunIndex) {
-    if (topKart(sutunIndex) == null) return;
-    if (seciliSutun == sutunIndex) {
-      seciliSutun = null; // aynı karta tekrar dokununca seçimi kaldır
-    } else {
-      seciliSutun = sutunIndex;
+  /// Sütundaki ilk AÇIK kartın indeksi (açık kart yoksa -1). Açık kartlar her
+  /// zaman sütunun sonunda, kesintisiz ve TEK kategoriden oluşur.
+  int acikBaslangic(int sutunIndex) {
+    final c = sutunlar[sutunIndex];
+    var i = c.length - 1;
+    if (i < 0 || !c[i].faceUp) return -1;
+    while (i - 1 >= 0 && c[i - 1].faceUp) {
+      i--;
     }
+    return i;
   }
 
-  /// Bir sütunun sondaki (alttaki) ARDIŞIK açık kartlarından, EN ALTTAKİ kartla
-  /// AYNI kategoriye ait olanların oluşturduğu "oynanabilir grup". Yığma
-  /// ([stackCard]) sayesinde bir sütunun altında aynı kategoriden birden fazla
-  /// açık kart üst üste durabilir; bunlar bir kategoriye birlikte eşleşir.
-  /// Kategori sınırına ya da kapalı bir karta gelince durur (böylece grup her
-  /// zaman TEK kategoriden oluşur — güvenli).
-  List<TerimKart> _acikGrupKartlari(List<TerimKart> c) {
-    if (c.isEmpty || !c.last.faceUp) return const [];
-    final kat = c.last.kategoriAdi;
-    final grup = <TerimKart>[];
-    for (var i = c.length - 1; i >= 0; i--) {
-      if (c[i].faceUp && c[i].kategoriAdi == kat) {
-        grup.insert(0, c[i]);
-      } else {
-        break;
-      }
-    }
-    return grup;
+  /// Sütunun açık (oynanabilir) kart listesi.
+  List<TerimKart> acikGrup(int sutunIndex) {
+    final bas = acikBaslangic(sutunIndex);
+    if (bas < 0) return const [];
+    return sutunlar[sutunIndex].sublist(bas);
   }
 
-  /// UI için: bir sütunun sondaki açık (oynanabilir) grubu — hepsi aynı kategori.
-  List<TerimKart> acikGrup(int sutunIndex) => _acikGrupKartlari(sutunlar[sutunIndex]);
+  /// [index] kartından İTİBAREN üstündeki tüm kartlar — bir yığının ortasına
+  /// dokunulduğunda birlikte taşınacak grup. Kart açık değilse boş liste.
+  List<TerimKart> altGrup(int sutunIndex, int index) {
+    final c = sutunlar[sutunIndex];
+    if (index < 0 || index >= c.length || !c[index].faceUp) return const [];
+    return c.sublist(index);
+  }
 
-  /// Verilen kategori için henüz TAMAMLANMAMIŞ hedefi döndürür (yoksa null).
-  KategoriHedef? _uygunHedef(String kategoriAdi) {
-    for (final h in hedefler) {
-      if (h.kategoriAdi == kategoriAdi && !h.tamamlandi) return h;
+  /// Verilen kategori için tahtada AÇIK (tamamlanmamış) bir slot var mı?
+  KategoriHedef? _slotHedef(String kategoriAdi) {
+    for (final s in slotlar) {
+      if (s != null && s.kategoriAdi == kategoriAdi && !s.tamamlandi) return s;
     }
     return null;
   }
 
-  /// [sutunIndex]'in açık grubunu [hedef]e yerleştirir (doğruluk ÖNCEDEN garanti
-  /// edilmiş olmalı). Grubu düşürür, sayacı grup boyutu kadar artırır, alttaki
-  /// kartı açar, geri-al kaydı bırakır ve düşen kart sayısını döndürür.
-  int _yerlestirGrup(int sutunIndex, KategoriHedef hedef) {
+  /// Tamamlanan hedefleri tahtadan kaldırır (yerleri boşalır).
+  void _slotTemizle() {
+    for (var i = 0; i < slotlar.length; i++) {
+      final s = slotlar[i];
+      if (s != null && s.tamamlandi) {
+        tamamlananlar.add(s);
+        slotlar[i] = null;
+      }
+    }
+  }
+
+  int _slotIndexOf(KategoriHedef h) {
+    for (var i = 0; i < slotlar.length; i++) {
+      if (identical(slotlar[i], h)) return i;
+    }
+    return -1;
+  }
+
+  // ── Eşleştirme (tableau → hedef) ───────────────────────────────────────
+
+  /// [sutunIndex] sütununun [index] kartından itibaren yukarısındaki tüm grubu
+  /// [kategoriAdi] hedefine yerleştirmeyi dener. Doğruysa grup düşer, sayaç
+  /// artar, alttaki kart açılır ve hedef tamamlandıysa tahtadan kalkar.
+  /// Yanlışsa hiçbir şey değişmez. Her iki durumda da [hamle] artar.
+  bool eslestir(int sutunIndex, int index, String kategoriAdi) {
+    final grup = altGrup(sutunIndex, index);
+    hamle++;
+    if (grup.isEmpty) return false;
+    final hedef = _slotHedef(kategoriAdi);
+    if (hedef == null) return false;
+    if (grup.any((k) => k.kategoriAdi != kategoriAdi)) return false;
+    if (grup.length > hedef.kalan) return false;
+    _yerlestir(sutunIndex, index, hedef);
+    return true;
+  }
+
+  /// Doğruluğu ÖNCEDEN garanti edilmiş bir grubu hedefe yerleştirir.
+  void _yerlestir(int sutunIndex, int index, KategoriHedef hedef) {
     final c = sutunlar[sutunIndex];
-    final grup = _acikGrupKartlari(c);
-    if (grup.isEmpty) return 0;
-    c.removeRange(c.length - grup.length, c.length);
+    final grup = c.sublist(index);
+    c.removeRange(index, c.length);
     hedef.eslesen += grup.length;
+    eslesenKart += grup.length;
+    sonEslesenAdet = grup.length;
 
     var altKartAcildi = false;
     if (c.isNotEmpty && !c.last.faceUp) {
@@ -256,175 +368,183 @@ class KategoriEslestirmeEngine {
       altKartAcildi = true;
     }
 
-    _undoStack.add(_UndoKayit(sutunIndex, grup, altKartAcildi));
-    return grup.length;
+    final slotIndex = _slotIndexOf(hedef);
+    final kalkti = hedef.tamamlandi;
+    _undoStack.add(_UndoKayit(
+      sutunIndex: sutunIndex,
+      grup: grup,
+      altKartAcildi: altKartAcildi,
+      hedef: hedef,
+      hedefKalkti: kalkti,
+      slotIndex: slotIndex,
+    ));
+    _slotTemizle();
   }
 
-  /// Seçili kartı (ve varsa üstündeki aynı kategoriden açık grubu) [kategoriAdi]
-  /// ile eşleştirmeyi dener.
+  // ── Taşıma (tableau → tableau) ─────────────────────────────────────────
+
+  /// Kart-üstüne-kart YIĞMA: [kaynakSutun]'un [kaynakIndex] kartından itibaren
+  /// üstündeki tüm grubu [hedefSutun]'a taşır.
   ///
-  /// Doğruysa: gruptaki TÜM kartları düşürür, kategorinin sayacını grup boyutu
-  /// kadar artırır, alttaki kartı açar, true döner ([sonEslesenAdet] düşen kart
-  /// sayısını tutar). Yanlışsa: durum değişmez, false döner (UI kırmızı flaş
-  /// göstermeli). Her iki durumda da [hamle] artar.
-  bool tapCategory(String kategoriAdi) {
-    final kart = seciliKart;
-    if (kart == null) return false; // önce kart seçilmeli
-
-    final hedef = hedefler.firstWhere(
-      (h) => h.kategoriAdi == kategoriAdi,
-      orElse: () => KategoriHedef(kategoriAdi: '', ders: '', hedef: 0),
-    );
-    if (hedef.kategoriAdi.isEmpty) return false;
-
-    hamle++;
-
-    if (kart.kategoriAdi != kategoriAdi || hedef.tamamlandi) {
-      return false; // yanlış eşleştirme
-    }
-
-    sonEslesenAdet = _yerlestirGrup(seciliSutun!, hedef);
-    seciliSutun = null;
-    return true;
-  }
-
-  /// Sürükle-bırak eşleştirmesi: [sutunIndex] sütununun açık kartını doğrudan
-  /// [kategoriAdi] hedefine bırakmayı dener. Dokun-seç adımını atlar; içeride
-  /// [tapCategory] mantığını kullanır (aynı doğru/yanlış kuralı, aynı [hamle]
-  /// sayacı). Sürükleme sonrası seçim durumu her hâlükârda temizlenir.
-  bool matchCard(int sutunIndex, String kategoriAdi) {
-    if (topKart(sutunIndex) == null) return false;
-    seciliSutun = sutunIndex;
-    final ok = tapCategory(kategoriAdi);
-    seciliSutun = null;
-    return ok;
-  }
-
-  /// Kart-üstüne-kart ARA HAMLESİ: [kaynakSutun]'un açık grubunu, [hedefSutun]'un
-  /// açık kartının üzerine YIĞAR — YALNIZCA iki üst kart AYNI kategoriye aitse.
-  ///
-  /// Başarılıysa: kaynağın açık grubu hedef sütunun üstüne taşınır (hedefte artık
-  /// aynı kategoriden birden fazla açık kart üst üste durur), kaynak sütun boşalır
-  /// / varsa alttaki kartı açılır, true döner. Bu bir TAMAMLAMA DEĞİLDİR — hiçbir
-  /// kategori sayacı ARTMAZ; yalnızca sıkışık sütunları açmaya/organize etmeye
-  /// yarayan bir hamledir. Kategoriler farklıysa hiçbir şey değişmez, false döner
-  /// (UI kırmızı flaş göstermeli). Her iki durumda da [hamle] artar (bir deneme).
-  bool stackCard(int kaynakSutun, int hedefSutun) {
+  /// Kural: hedef sütun BOŞSA her grup kabul edilir (boşalan sütuna yanındaki
+  /// açık kartlar taşınabilsin diye); doluysa hedefin üst kartı AÇIK ve
+  /// grupla AYNI kategoride olmalıdır. Sayaç artmaz — bu bir düzenleme
+  /// hamlesidir. Her iki durumda da [hamle] artar.
+  bool tasi(int kaynakSutun, int kaynakIndex, int hedefSutun) {
     if (kaynakSutun == hedefSutun) return false;
-    final kaynakTop = topKart(kaynakSutun);
-    final hedefTop = topKart(hedefSutun);
-    if (kaynakTop == null || hedefTop == null) return false;
+    final grup = altGrup(kaynakSutun, kaynakIndex);
+    hamle++;
+    if (grup.isEmpty) return false;
 
-    hamle++; // yığma da sürükle-bırak denemesidir → bir hamle harcar
-
-    if (kaynakTop.kategoriAdi != hedefTop.kategoriAdi) {
-      return false; // FARKLI kategori → yığılamaz (kırmızı flaş)
+    final hedefC = sutunlar[hedefSutun];
+    if (hedefC.isNotEmpty) {
+      final ust = hedefC.last;
+      if (!ust.faceUp || ust.kategoriAdi != grup.first.kategoriAdi) return false;
     }
 
-    // Aynı kategori: kaynağın tüm açık grubunu hedefin üstüne taşı.
     final kaynak = sutunlar[kaynakSutun];
-    final hedef = sutunlar[hedefSutun];
-    final grup = _acikGrupKartlari(kaynak);
-    kaynak.removeRange(kaynak.length - grup.length, kaynak.length);
+    kaynak.removeRange(kaynakIndex, kaynak.length);
     for (final k in grup) {
       k.faceUp = true;
-      hedef.add(k);
+      hedefC.add(k);
     }
-    // Kaynakta bir alt kart açılır.
     if (kaynak.isNotEmpty && !kaynak.last.faceUp) {
       kaynak.last.faceUp = true;
     }
-    seciliSutun = null;
     return true;
   }
 
-  /// Satın alınan JOKER: oynanabilir bir kartı (grubu) DOĞRU kategorisine
-  /// otomatik yerleştirir. Yerleştirilecek uygun bir kart varsa true (ve
-  /// [sonEslesenAdet] düşen kart sayısını tutar), yoksa false döner. Bir hamle
-  /// HARCAMAZ (satın alınmış yardımcı). Coin/market kontrolü UI'da yapılır.
+  // ── Çekme destesi ve çekilen kart ──────────────────────────────────────
+
+  /// Desteden bir sonraki kartı çeker. Elde oynanmamış bir kart varsa o kart
+  /// destenin ALTINA gider (klasik "waste" davranışı; kilitlenme olmaz).
+  bool cekDeste() {
+    if (deste.isEmpty) return false; // çekilecek yeni kart yok
+    if (cekilen != null) {
+      deste.add(cekilen!);
+      cekilen = null;
+    }
+    cekilen = deste.removeAt(0);
+    return true;
+  }
+
+  /// Çekilen TERİM kartını doğrudan bir hedef kategoriye eşleştirir.
+  bool cekilenEslestir(String kategoriAdi) {
+    final ck = cekilen;
+    hamle++;
+    if (ck == null || ck.hedefMi) return false;
+    final kart = ck.terim!;
+    final hedef = _slotHedef(kategoriAdi);
+    if (hedef == null || kart.kategoriAdi != kategoriAdi) return false;
+
+    hedef.eslesen++;
+    eslesenKart++;
+    sonEslesenAdet = 1;
+    cekilen = null;
+    final slotIndex = _slotIndexOf(hedef);
+    _undoStack.add(_UndoKayit(
+      sutunIndex: null,
+      grup: [kart],
+      altKartAcildi: false,
+      hedef: hedef,
+      hedefKalkti: hedef.tamamlandi,
+      slotIndex: slotIndex,
+    ));
+    _slotTemizle();
+    return true;
+  }
+
+  /// Çekilen TERİM kartını bir tableau sütununa koyar (boş sütun ya da aynı
+  /// kategoriden açık kartın üstü).
+  bool cekilenSutunaKoy(int sutunIndex) {
+    final ck = cekilen;
+    hamle++;
+    if (ck == null || ck.hedefMi) return false;
+    final kart = ck.terim!;
+    final c = sutunlar[sutunIndex];
+    if (c.isNotEmpty) {
+      final ust = c.last;
+      if (!ust.faceUp || ust.kategoriAdi != kart.kategoriAdi) return false;
+    }
+    kart.faceUp = true;
+    c.add(kart);
+    cekilen = null;
+    return true;
+  }
+
+  /// Çekilen HEDEF KATEGORİ kartını tahtadaki BOŞ slota yerleştirir. Bu bir
+  /// eşleştirme denemesi olmadığı için hamle HARCAMAZ.
+  bool cekilenHedefiYerlestir(int slotIndex) {
+    final ck = cekilen;
+    if (ck == null || !ck.hedefMi) return false;
+    if (slotIndex < 0 || slotIndex >= slotlar.length) return false;
+    if (slotlar[slotIndex] != null) return false;
+    slotlar[slotIndex] = ck.hedef;
+    cekilen = null;
+    return true;
+  }
+
+  // ── Yardımcılar (market) ───────────────────────────────────────────────
+
+  /// Satın alınan JOKER: oynanabilir bir grubu DOĞRU kategorisine otomatik
+  /// yerleştirir. Hamle harcamaz.
   bool joker() {
     for (var i = 0; i < sutunlar.length; i++) {
-      final k = topKart(i);
-      if (k == null) continue;
-      final hedef = _uygunHedef(k.kategoriAdi);
+      final bas = acikBaslangic(i);
+      if (bas < 0) continue;
+      final kat = sutunlar[i][bas].kategoriAdi;
+      final hedef = _slotHedef(kat);
       if (hedef == null) continue;
-      sonEslesenAdet = _yerlestirGrup(i, hedef);
-      seciliSutun = null;
+      final grup = sutunlar[i].sublist(bas);
+      if (grup.any((k) => k.kategoriAdi != kat) || grup.length > hedef.kalan) continue;
+      _yerlestir(i, bas, hedef);
       return true;
     }
-    return false;
-  }
-
-  /// Joker'in şu an yerleştirebileceği bir kart var mı? (Market butonunu
-  /// etkinleştirmek için.)
-  bool get jokerUygun {
-    for (var i = 0; i < sutunlar.length; i++) {
-      final k = topKart(i);
-      if (k != null && _uygunHedef(k.kategoriAdi) != null) return true;
+    // Tableau'da uygun grup yoksa elde bekleyen kartı denemeyi dene.
+    final ck = cekilen;
+    if (ck != null && !ck.hedefMi && _slotHedef(ck.terim!.kategoriAdi) != null) {
+      hamle--; // cekilenEslestir bir hamle sayar; joker hamle harcamaz
+      return cekilenEslestir(ck.terim!.kategoriAdi);
     }
     return false;
   }
 
-  // ── Market ile satın alınan yardımcılar (coin harcaması UI'da yapılır) ──
+  /// Joker'in şu an yerleştirebileceği bir kart var mı?
+  bool get jokerUygun {
+    for (var i = 0; i < sutunlar.length; i++) {
+      final bas = acikBaslangic(i);
+      if (bas < 0) continue;
+      final kat = sutunlar[i][bas].kategoriAdi;
+      final hedef = _slotHedef(kat);
+      if (hedef != null && sutunlar[i].length - bas <= hedef.kalan) return true;
+    }
+    final ck = cekilen;
+    return ck != null && !ck.hedefMi && _slotHedef(ck.terim!.kategoriAdi) != null;
+  }
+
   void satinAlinanIpucu() => ipucuHakki++;
   void satinAlinanGeriAl() => geriAlHakki++;
 
-  /// Kaybetme ekranındaki "Hamle Hakkı Satın Al" için bütçeyi büyütür.
+  /// Market'teki "Ek Hamle" ürünü ve kayıp ekranındaki kurtarma için bütçeyi
+  /// büyütür.
   void hamleEkle(int adet) {
     if (adet > 0) hamleButcesi += adet;
   }
 
-  /// Çekme destesinden (kuyruk) bir sonraki terimi tableau'ya dağıtır.
-  ///
-  /// BOŞ bir sütun varsa oraya konur; yoksa EN AZ kartlı sütunun üstüne
-  /// (üst üste ekstra kart olarak) eklenir. Yeni kart açık/oynanabilir olur,
-  /// üstüne konduğu önceki kart kapanır. Kuyruk boşsa false döner.
-  bool cekDeste() {
-    if (bekleyenKuyruk.isEmpty) return false;
-    final kart = bekleyenKuyruk.removeAt(0);
+  // ── İpucu / geri al ────────────────────────────────────────────────────
 
-    // Önce boş sütun ara.
-    int hedefSutun = -1;
-    for (var i = 0; i < sutunlar.length; i++) {
-      if (sutunlar[i].isEmpty) {
-        hedefSutun = i;
-        break;
-      }
-    }
-    // Boş sütun yoksa en az kartlı sütunu seç.
-    if (hedefSutun < 0) {
-      hedefSutun = 0;
-      for (var i = 1; i < sutunlar.length; i++) {
-        if (sutunlar[i].length < sutunlar[hedefSutun].length) hedefSutun = i;
-      }
-    }
-
-    final c = sutunlar[hedefSutun];
-    // Önceki açık grubun TAMAMI kapanır (yeni çekilen kart yeni bir açık grup
-    // başlatır; böylece bir sütunun açık grubu her zaman tek kategoriden olur).
-    for (var i = c.length - 1; i >= 0 && c[i].faceUp; i--) {
-      c[i].faceUp = false;
-    }
-    kart.faceUp = true;
-    c.add(kart);
-    return true;
-  }
-
-  /// Bu seviyedeki kategorilerin ait olduğu ortak dersi verir; birden fazla
-  /// dersten kategori varsa "Karışık" döner (üstteki ders rozeti için).
-  String get seviyeDers {
-    if (hedefler.isEmpty) return 'Karışık';
-    final ilk = hedefler.first.ders;
-    return hedefler.every((h) => h.ders == ilk) ? ilk : 'Karışık';
-  }
-
-  /// Çekme destesinde bekleyen kart sayısı (draw pile sayacı).
-  int get bekleyenSayisi => bekleyenKuyruk.length;
-
-  /// Seçim gerektirmeyen ipucu: oynanabilir bir kart bulup terim + doğru
-  /// kategorisini döndürür ve ipucu hakkını düşürür. Hak yoksa null döner.
+  /// Seçim gerektirmeyen ipucu: tahtadaki bir hedefe uyan bir kart bulup
+  /// terim + kategorisini döndürür ve ipucu hakkını düşürür.
   ({String terim, String kategori})? hintAny() {
     if (ipucuHakki <= 0) return null;
+    // Önce gerçekten oynanabilir (hedefi tahtada olan) bir kart ara.
+    for (var i = 0; i < sutunlar.length; i++) {
+      final k = topKart(i);
+      if (k != null && _slotHedef(k.kategoriAdi) != null) {
+        ipucuHakki--;
+        return (terim: k.terim, kategori: k.kategoriAdi);
+      }
+    }
     for (var i = 0; i < sutunlar.length; i++) {
       final k = topKart(i);
       if (k != null) {
@@ -432,37 +552,15 @@ class KategoriEslestirmeEngine {
         return (terim: k.terim, kategori: k.kategoriAdi);
       }
     }
+    final ck = cekilen;
+    if (ck != null && !ck.hedefMi) {
+      ipucuHakki--;
+      return (terim: ck.terim!.terim, kategori: ck.terim!.kategoriAdi);
+    }
     return null;
   }
 
-  /// Son doğru eşleştirmeyi geri alır. Hak yoksa ya da geri alınacak hamle
-  /// yoksa false döner.
-  bool undo() {
-    if (geriAlHakki <= 0 || _undoStack.isEmpty) return false;
-    final kayit = _undoStack.removeLast();
-    final c = sutunlar[kayit.sutunIndex];
-
-    // Bu eşleştirmeyle açılan alt kartı tekrar kapat.
-    if (kayit.altKartAcildi && c.isNotEmpty) {
-      c.last.faceUp = false;
-    }
-    // Grubun tamamını geri koy (tekrar açık ve oynanabilir).
-    for (final k in kayit.grup) {
-      k.faceUp = true;
-      c.add(k);
-    }
-
-    // Kategori sayacını grup boyutu kadar düşür.
-    final hedef = hedefler.firstWhere((h) => h.kategoriAdi == kayit.grup.first.kategoriAdi);
-    hedef.eslesen = (hedef.eslesen - kayit.grup.length).clamp(0, hedef.hedef);
-
-    geriAlHakki--;
-    seciliSutun = null;
-    return true;
-  }
-
   /// O sütunun üstteki kartının doğru kategorisini verir; ipucu hakkını düşürür.
-  /// Hak yoksa ya da açık kart yoksa null döner.
   String? hint(int sutunIndex) {
     if (ipucuHakki <= 0) return null;
     final kart = topKart(sutunIndex);
@@ -471,16 +569,84 @@ class KategoriEslestirmeEngine {
     return kart.kategoriAdi;
   }
 
-  /// Kalan (henüz eşleşmemiş) toplam terim sayısı — tableau + çekme destesi.
-  int get kalanTerim =>
-      sutunlar.fold(0, (a, c) => a + c.length) + bekleyenKuyruk.length;
+  /// Son doğru eşleştirmeyi geri alır.
+  bool undo() {
+    if (geriAlHakki <= 0 || _undoStack.isEmpty) return false;
+    final kayit = _undoStack.last;
 
-  /// Seviyedeki toplam terim (kart) sayısı.
-  int get toplamTerim => hedefler.fold(0, (a, h) => a + h.hedef);
+    // Hedef tamamlanıp tahtadan kalktıysa geri dönebilmesi için boş slot gerek.
+    var geriSlot = -1;
+    if (kayit.hedefKalkti) {
+      if (kayit.slotIndex >= 0 &&
+          kayit.slotIndex < slotlar.length &&
+          slotlar[kayit.slotIndex] == null) {
+        geriSlot = kayit.slotIndex;
+      } else {
+        geriSlot = slotlar.indexWhere((s) => s == null);
+      }
+      if (geriSlot < 0) return false; // yer yok → geri alınamaz
+    }
+
+    _undoStack.removeLast();
+
+    if (kayit.sutunIndex != null) {
+      final c = sutunlar[kayit.sutunIndex!];
+      if (kayit.altKartAcildi && c.isNotEmpty) {
+        c.last.faceUp = false;
+      }
+      for (final k in kayit.grup) {
+        k.faceUp = true;
+        c.add(k);
+      }
+    } else {
+      // Kart desteden oynanmıştı: elde yer varsa oraya, yoksa destenin başına.
+      final kart = kayit.grup.first..faceUp = true;
+      if (cekilen == null) {
+        cekilen = DesteKarti.terimKarti(kart);
+      } else {
+        deste.insert(0, DesteKarti.terimKarti(kart));
+      }
+    }
+
+    kayit.hedef.eslesen =
+        (kayit.hedef.eslesen - kayit.grup.length).clamp(0, kayit.hedef.hedef);
+    eslesenKart = (eslesenKart - kayit.grup.length).clamp(0, toplamKart);
+    if (kayit.hedefKalkti && geriSlot >= 0) {
+      slotlar[geriSlot] = kayit.hedef;
+      tamamlananlar.remove(kayit.hedef);
+    }
+
+    geriAlHakki--;
+    return true;
+  }
+
+  // ── Durum özetleri ─────────────────────────────────────────────────────
+
+  /// Bu seviyedeki kategorilerin ait olduğu ortak ders; karışıksa "Karışık".
+  String get seviyeDers {
+    if (tumHedefler.isEmpty) return 'Karışık';
+    final ilk = tumHedefler.first.ders;
+    return tumHedefler.every((h) => h.ders == ilk) ? ilk : 'Karışık';
+  }
+
+  /// Çekme destesinde bekleyen kart sayısı.
+  int get bekleyenSayisi => deste.length;
+
+  /// Destede bekleyen HEDEF KATEGORİ kartı sayısı (üstte rozet olarak gösterilir).
+  int get bekleyenHedefSayisi => deste.where((d) => d.hedefMi).length;
+
+  /// Seviyedeki toplam terim (kart) sayısı — hamle bütçesinin dayanağı.
+  int get toplamTerim => toplamKart;
+
+  /// Henüz eşleşmemiş kart sayısı.
+  int get kalanTerim => toplamKart - eslesenKart;
+
+  /// Seviyedeki toplam kategori sayısı (Kolay 5 / Orta 10 / Zor 20).
+  int get toplamKategori => tumHedefler.length;
 
   bool get geriAlinabilir => geriAlHakki > 0 && _undoStack.isNotEmpty;
 
-  bool get seviyeTamamlandi => kalanTerim == 0;
+  bool get seviyeTamamlandi => eslesenKart >= toplamKart && toplamKart > 0;
 
   /// Kalan hamle hakkı (bütçe − yapılan deneme). Negatif olmaz.
   int get kalanHamle {

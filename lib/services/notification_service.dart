@@ -34,10 +34,26 @@ class NotificationService {
   final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
   final Random _rastgele = Random();
 
-  /// Plan bildirimleri için kimlik tabanı — gün numarası (1-7) eklenerek
-  /// 9101..9107 aralığı kullanılır. Uygulamadaki başka bir bildirimle
+  /// Plan bildirimleri için kimlik tabanı. Uygulamadaki başka bir bildirimle
   /// çakışmaması için yüksek ve ayrık bir aralık seçildi.
+  ///
+  /// KİMLİK ŞEMASI (çoklu seans): Aynı güne birden fazla çalışma aralığı
+  /// eklenebildiği için gün başına tek id yetmiyor. Her gün için
+  /// [StudyPlanService.kMaxSeansPerGun] kadar bölme ayrılır:
+  ///
+  ///   id = _kBaseId + 1 + (gun - 1) * kMaxSeansPerGun + seansSirasi
+  ///
+  /// Böylece 9101..9184 aralığı plan bildirimlerine ayrılmış olur ve hiçbir
+  /// seansın kimliği bir diğeriyle çakışmaz. 9100 (taban) tek seferlik test
+  /// bildirimi için ayrılmıştır, bu aralığın dışındadır.
   static const int _kBaseId = 9100;
+
+  /// Plan bildirimlerine ayrılmış kimlik sayısı (7 gün × gün başına seans).
+  static const int _kPlanIdAdedi = 7 * StudyPlanService.kMaxSeansPerGun;
+
+  /// [gun] (1-7) gününün [sira]. seansı için bildirim kimliği.
+  static int _planBildirimId(int gun, int sira) =>
+      _kBaseId + 1 + (gun - 1) * StudyPlanService.kMaxSeansPerGun + sira;
 
   static const String _kChannelId = 'kpss_calisma_plani';
   static const String _kChannelName = 'Çalışma Planı Hatırlatıcıları';
@@ -183,38 +199,60 @@ class NotificationService {
     final ad = _hitap(storage);
     final detaylar = _detaylar();
 
-    for (final entry in plan) {
-      if (!entry.aktif || !entry.gecerliMi) continue;
+    // Her gün için ayrı bir sıra sayacı: aynı güne birden fazla seans varsa
+    // her biri kendi kimlik bölmesini alır (bkz. _planBildirimId).
+    final gunSayaci = <int, int>{};
+
+    // Kimliklerin cihaz yeniden kurulumları arasında tutarlı olması için
+    // seansları gün + başlangıç saatine göre sıralı işliyoruz.
+    final sirali = plan.where((e) => e.aktif && e.gecerliMi).toList()
+      ..sort((a, b) {
+        final g = a.gun.compareTo(b.gun);
+        if (g != 0) return g;
+        return a.baslangicDakikaToplam.compareTo(b.baslangicDakikaToplam);
+      });
+
+    for (final entry in sirali) {
+      final sira = gunSayaci[entry.gun] ?? 0;
+      if (sira >= StudyPlanService.kMaxSeansPerGun) {
+        debugPrint('NotificationService: ${StudyPlanService.gunAdi(entry.gun)} '
+            'için seans kimliği kalmadı, atlandı.');
+        continue;
+      }
+      gunSayaci[entry.gun] = sira + 1;
+
       try {
         final zaman = _sonrakiHaftalikAn(entry.gun, entry.baslangicSaat, entry.baslangicDakika);
         await _plugin.zonedSchedule(
-          _kBaseId + entry.gun,
+          _planBildirimId(entry.gun, sira),
           _baslikSec(ad),
           _govdeSec(ad, entry),
           zaman,
           detaylar,
           androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
           matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
-          payload: 'study_plan_${entry.gun}',
+          payload: 'study_plan_${entry.gun}_${entry.id}',
         );
         debugPrint('NotificationService: ${StudyPlanService.gunAdi(entry.gun)} '
-            '${entry.baslangicMetni} için bildirim kuruldu.');
+            '${entry.araliqMetni} için bildirim kuruldu.');
       } catch (e) {
-        // Tek bir günün kurulamaması diğerlerini engellemesin.
-        debugPrint('NotificationService: ${entry.gun}. gün bildirimi kurulamadı: $e');
+        // Tek bir seansın kurulamaması diğerlerini engellemesin.
+        debugPrint('NotificationService: ${entry.gun}. gün / ${entry.baslangicMetni} '
+            'bildirimi kurulamadı: $e');
       }
     }
   }
 
-  /// SADECE çalışma planı bildirimlerini (9101..9107) iptal eder — uygulamanın
+  /// SADECE çalışma planı bildirimlerini (9101..9184) iptal eder — uygulamanın
   /// ileride ekleyebileceği başka bildirimlere dokunmaz.
   Future<void> cancelPlanNotifications() async {
     if (!destekleniyorMu || !_hazir) return;
-    for (var gun = 1; gun <= 7; gun++) {
+    for (var i = 1; i <= _kPlanIdAdedi; i++) {
+      final id = _kBaseId + i;
       try {
-        await _plugin.cancel(_kBaseId + gun);
+        await _plugin.cancel(id);
       } catch (e) {
-        debugPrint('NotificationService: ${_kBaseId + gun} iptal edilemedi: $e');
+        debugPrint('NotificationService: $id iptal edilemedi: $e');
       }
     }
   }
@@ -256,7 +294,7 @@ class NotificationService {
     try {
       final hepsi = await _plugin.pendingNotificationRequests();
       return hepsi
-          .where((r) => r.id > _kBaseId && r.id <= _kBaseId + 7)
+          .where((r) => r.id > _kBaseId && r.id <= _kBaseId + _kPlanIdAdedi)
           .length;
     } catch (e) {
       debugPrint('NotificationService.pendingPlanCount hatası: $e');

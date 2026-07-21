@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 
 import '../models/subject.dart';
@@ -7,8 +9,12 @@ import 'storage_service.dart';
 /// Günlük Çalışma Planı — veri katmanı
 /// ─────────────────────────────────────────────────────────────────────────
 ///
-/// Kullanıcı haftanın hangi GÜNLERİNDE hangi SAAT ARALIĞINDA çalışacağını
+/// Kullanıcı haftanın hangi GÜNLERİNDE hangi SAAT ARALIKLARINDA çalışacağını
 /// belirler; bu servis o planı [StorageService] üzerinden kalıcı olarak saklar.
+///
+/// ÇOKLU SEANS: Aynı gün için BİRDEN FAZLA çalışma aralığı (seans) tanımlanır.
+/// Örn. Pazartesi 09:00–11:00 ve 19:00–21:00. Her seansın kendine ait bir [id]
+/// değeri vardır; düzenleme/silme/aç-kapa işlemleri bu id üzerinden yürür.
 ///
 /// ÖNEMLİ: StorageService'in `_get`/`_set` yardımcıları private olduğu için
 /// burada PUBLIC olan `getSettings()` / `saveSettings(Map)` API'si kullanılıyor
@@ -16,10 +22,15 @@ import 'storage_service.dart';
 /// Böylece storage_service.dart'a hiç dokunulmadan yeni bir alan eklenmiş olur
 /// (aynı desen: cloudBackupEnabled, hideStats vb.).
 ///
-/// LİMİT: Ücretsiz kullanıcı EN FAZLA 1 gün planlayabilir; premium sınırsız.
+/// LİMİT: Ücretsiz kullanıcı EN FAZLA 1 GÜN planlayabilir (o güne istediği
+/// kadar seans ekleyebilir); premium sınırsız gün.
 
-/// Haftalık plandaki tek bir gün kaydı.
+/// Haftalık plandaki tek bir çalışma seansı.
 class StudyPlanEntry {
+  /// Seansın benzersiz kimliği — aynı güne birden fazla seans eklenebildiği
+  /// için düzenleme/silme bu değere göre yapılır.
+  final String id;
+
   /// 1 = Pazartesi ... 7 = Pazar (DateTime.weekday ile birebir aynı).
   final int gun;
 
@@ -32,6 +43,7 @@ class StudyPlanEntry {
   final bool aktif;
 
   const StudyPlanEntry({
+    required this.id,
     required this.gun,
     required this.baslangicSaat,
     required this.baslangicDakika,
@@ -40,7 +52,15 @@ class StudyPlanEntry {
     this.aktif = true,
   });
 
+  static final Random _rnd = Random();
+
+  /// Yeni bir seans kimliği üretir (zaman damgası + rastgele son ek).
+  static String yeniId() =>
+      '${DateTime.now().microsecondsSinceEpoch.toRadixString(36)}'
+      '${_rnd.nextInt(1 << 20).toRadixString(36)}';
+
   StudyPlanEntry copyWith({
+    String? id,
     int? gun,
     int? baslangicSaat,
     int? baslangicDakika,
@@ -49,6 +69,7 @@ class StudyPlanEntry {
     bool? aktif,
   }) {
     return StudyPlanEntry(
+      id: id ?? this.id,
       gun: gun ?? this.gun,
       baslangicSaat: baslangicSaat ?? this.baslangicSaat,
       baslangicDakika: baslangicDakika ?? this.baslangicDakika,
@@ -59,6 +80,7 @@ class StudyPlanEntry {
   }
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'gun': gun,
         'bs': baslangicSaat,
         'bd': baslangicDakika,
@@ -68,11 +90,15 @@ class StudyPlanEntry {
       };
 
   /// Bozuk/eksik JSON'da bile çökmez — makul varsayılanlara düşer.
+  /// ESKİ KAYITLAR: `id` alanı olmayan (tek seanslı dönemden kalma) kayıtlara
+  /// otomatik olarak yeni bir kimlik verilir; veri kaybı olmaz.
   static StudyPlanEntry? fromJson(Map<String, dynamic> j) {
     try {
       final gun = ((j['gun'] as num?) ?? 0).toInt();
       if (gun < 1 || gun > 7) return null;
+      final ham = (j['id'] as String?)?.trim();
       return StudyPlanEntry(
+        id: (ham == null || ham.isEmpty) ? yeniId() : ham,
         gun: gun,
         baslangicSaat: (((j['bs'] as num?) ?? 19).toInt()).clamp(0, 23),
         baslangicDakika: (((j['bd'] as num?) ?? 0).toInt()).clamp(0, 59),
@@ -94,8 +120,20 @@ class StudyPlanEntry {
   /// Seansın dakika cinsinden uzunluğu.
   int get sureDakika => (bitisDakikaToplam - baslangicDakikaToplam).clamp(0, 24 * 60);
 
+  /// İki seans aynı gün içinde zaman olarak üst üste biniyor mu?
+  bool cakisiyorMu(StudyPlanEntry other) {
+    if (other.gun != gun) return false;
+    return baslangicDakikaToplam < other.bitisDakikaToplam &&
+        other.baslangicDakikaToplam < bitisDakikaToplam;
+  }
+
+  /// 24 saat biçiminde başlangıç saati ("09:00").
   String get baslangicMetni => _ss(baslangicSaat, baslangicDakika);
+
+  /// 24 saat biçiminde bitiş saati ("20:30").
   String get bitisMetni => _ss(bitisSaat, bitisDakika);
+
+  /// "19:00–20:30" — her zaman 24 saat biçimi (Türkiye standardı).
   String get araliqMetni => '$baslangicMetni–$bitisMetni';
 
   static String _ss(int s, int d) =>
@@ -107,11 +145,17 @@ enum StudyPlanSaveResult {
   /// Kaydedildi.
   basarili,
 
-  /// Ücretsiz kullanıcı gün limitini aştı — premium'a yönlendirilmeli.
+  /// Ücretsiz kullanıcı GÜN limitini aştı — premium'a yönlendirilmeli.
   premiumGerekli,
 
   /// Saat aralığı geçersiz (bitiş, başlangıçtan önce ya da aynı).
   gecersizSaat,
+
+  /// Aynı gün içindeki başka bir seansla zaman çakışması var.
+  cakisma,
+
+  /// Bir güne eklenebilecek en fazla seans sayısı aşıldı.
+  seansLimiti,
 
   /// Beklenmedik bir hata (disk/JSON) — kaydedilemedi.
   hata,
@@ -160,8 +204,13 @@ class StudyPlanService {
   /// settings içindeki alan adı.
   static const String kPlanKey = 'studyPlan';
 
-  /// Ücretsiz kullanıcının planlayabileceği en fazla gün sayısı.
+  /// Ücretsiz kullanıcının planlayabileceği en fazla GÜN sayısı.
+  /// (O güne eklenebilecek seans sayısı sınırsızdır — bkz. [kMaxSeansPerGun].)
   static const int kFreeMaxDays = 1;
+
+  /// Tek bir güne eklenebilecek en fazla seans sayısı. Bildirim kimlik şeması
+  /// bu sayıya göre bölmelendiği için (bkz. NotificationService) sabit tutulur.
+  static const int kMaxSeansPerGun = 12;
 
   static const List<String> kGunAdlari = [
     'Pazartesi',
@@ -192,7 +241,8 @@ class StudyPlanService {
 
   // ── Okuma ────────────────────────────────────────────────────────────────
 
-  /// Kayıtlı planı güne göre sıralı olarak döner. Hiç plan yoksa boş liste.
+  /// Kayıtlı planı gün ve başlangıç saatine göre sıralı döner. Plan yoksa boş
+  /// liste. Aynı gün için birden fazla seans dönebilir.
   List<StudyPlanEntry> getPlan() {
     try {
       final raw = storage.getSettings()[kPlanKey];
@@ -201,9 +251,10 @@ class StudyPlanService {
       for (final item in raw) {
         if (item is! Map) continue;
         final e = StudyPlanEntry.fromJson(Map<String, dynamic>.from(item));
-        if (e != null && list.every((x) => x.gun != e.gun)) list.add(e);
+        // Aynı kimlik iki kez geldiyse ilki geçerli sayılır.
+        if (e != null && list.every((x) => x.id != e.id)) list.add(e);
       }
-      list.sort((a, b) => a.gun.compareTo(b.gun));
+      list.sort(_sirala);
       return list;
     } catch (e) {
       debugPrint('StudyPlanService.getPlan hatası: $e');
@@ -211,8 +262,22 @@ class StudyPlanService {
     }
   }
 
-  /// Sadece bildirim kurulacak (aktif) günler.
+  /// Önce güne, sonra başlangıç saatine göre sıralama.
+  static int _sirala(StudyPlanEntry a, StudyPlanEntry b) {
+    final g = a.gun.compareTo(b.gun);
+    if (g != 0) return g;
+    return a.baslangicDakikaToplam.compareTo(b.baslangicDakikaToplam);
+  }
+
+  /// Sadece bildirim kurulacak (aktif) seanslar.
   List<StudyPlanEntry> getActivePlan() => getPlan().where((e) => e.aktif).toList();
+
+  /// Verilen günün seansları (saate göre sıralı).
+  List<StudyPlanEntry> getGunSeanslari(int gun) =>
+      getPlan().where((e) => e.gun == gun).toList();
+
+  /// Planda en az bir seansı olan günlerin kümesi.
+  Set<int> get planlananGunler => getPlan().map((e) => e.gun).toSet();
 
   bool get isPremium {
     try {
@@ -222,37 +287,61 @@ class StudyPlanService {
     }
   }
 
-  /// Ücretsiz kullanıcı için kalan gün hakkı (premium'da her zaman true).
+  /// Bu güne yeni seans eklenebilir mi? Ücretsiz kullanıcı yalnızca
+  /// [kFreeMaxDays] farklı GÜN planlayabilir; zaten planlı bir güne seans
+  /// eklemek limite takılmaz.
   bool canAddDay(int gun) {
     if (isPremium) return true;
-    final plan = getPlan();
-    // Zaten planlı bir günü DÜZENLEMEK limit sayılmaz.
-    if (plan.any((e) => e.gun == gun)) return true;
-    return plan.length < kFreeMaxDays;
+    final gunler = planlananGunler;
+    if (gunler.contains(gun)) return true;
+    return gunler.length < kFreeMaxDays;
   }
 
-  /// Ücretsiz kullanıcının hâlâ ekleyebileceği gün sayısı (premium'da -1 =
+  /// Ücretsiz kullanıcının hâlâ ekleyebileceği GÜN sayısı (premium'da -1 =
   /// sınırsız).
-  int get kalanGunHakki => isPremium ? -1 : (kFreeMaxDays - getPlan().length).clamp(0, kFreeMaxDays);
+  int get kalanGunHakki => isPremium
+      ? -1
+      : (kFreeMaxDays - planlananGunler.length).clamp(0, kFreeMaxDays);
 
   // ── Yazma ────────────────────────────────────────────────────────────────
 
-  /// Tüm planı topluca kaydeder. Limit aşılırsa HİÇBİR ŞEY yazılmaz ve
-  /// [StudyPlanSaveResult.premiumGerekli] döner.
+  /// Tüm planı topluca kaydeder. Doğrulamaların herhangi biri başarısız olursa
+  /// HİÇBİR ŞEY yazılmaz ve ilgili sonuç döner.
   Future<StudyPlanSaveResult> savePlan(List<StudyPlanEntry> plan) async {
     try {
-      // Aynı gün iki kez girilmişse sonuncusu kazanır.
-      final benzersiz = <int, StudyPlanEntry>{};
+      final temiz = <StudyPlanEntry>[];
+      final gorulenId = <String>{};
       for (final e in plan) {
         if (e.gun < 1 || e.gun > 7) continue;
         if (!e.gecerliMi) return StudyPlanSaveResult.gecersizSaat;
-        benzersiz[e.gun] = e;
+        if (!gorulenId.add(e.id)) continue; // Aynı kimlik iki kez gelmesin.
+        temiz.add(e);
       }
-      if (!isPremium && benzersiz.length > kFreeMaxDays) {
+
+      // Gün bazlı doğrulamalar: seans sayısı + çakışma.
+      final gunBazli = <int, List<StudyPlanEntry>>{};
+      for (final e in temiz) {
+        (gunBazli[e.gun] ??= <StudyPlanEntry>[]).add(e);
+      }
+      for (final seanslar in gunBazli.values) {
+        if (seanslar.length > kMaxSeansPerGun) {
+          return StudyPlanSaveResult.seansLimiti;
+        }
+        for (var i = 0; i < seanslar.length; i++) {
+          for (var j = i + 1; j < seanslar.length; j++) {
+            if (seanslar[i].cakisiyorMu(seanslar[j])) {
+              return StudyPlanSaveResult.cakisma;
+            }
+          }
+        }
+      }
+
+      if (!isPremium && gunBazli.length > kFreeMaxDays) {
         return StudyPlanSaveResult.premiumGerekli;
       }
-      final sirali = benzersiz.values.toList()..sort((a, b) => a.gun.compareTo(b.gun));
-      await storage.saveSettings({kPlanKey: sirali.map((e) => e.toJson()).toList()});
+
+      temiz.sort(_sirala);
+      await storage.saveSettings({kPlanKey: temiz.map((e) => e.toJson()).toList()});
       return StudyPlanSaveResult.basarili;
     } catch (e) {
       debugPrint('StudyPlanService.savePlan hatası: $e');
@@ -260,26 +349,50 @@ class StudyPlanService {
     }
   }
 
-  /// Tek bir günü ekler ya da (aynı gün varsa) günceller.
-  Future<StudyPlanSaveResult> upsertEntry(StudyPlanEntry entry) async {
+  /// Tek bir seansı ekler ya da (aynı [StudyPlanEntry.id] varsa) günceller.
+  Future<StudyPlanSaveResult> upsertSession(StudyPlanEntry entry) async {
     if (!entry.gecerliMi) return StudyPlanSaveResult.gecersizSaat;
     if (!canAddDay(entry.gun)) return StudyPlanSaveResult.premiumGerekli;
-    final plan = getPlan().where((e) => e.gun != entry.gun).toList()..add(entry);
+
+    final digerleri = getPlan().where((e) => e.id != entry.id).toList();
+
+    // Aynı gündeki başka bir seansla çakışıyor mu? (Kullanıcıya net mesaj
+    // verebilmek için savePlan'a gitmeden önce burada da kontrol ediliyor.)
+    if (digerleri.any((e) => e.cakisiyorMu(entry))) {
+      return StudyPlanSaveResult.cakisma;
+    }
+    final ayniGun = digerleri.where((e) => e.gun == entry.gun).length;
+    if (ayniGun + 1 > kMaxSeansPerGun) return StudyPlanSaveResult.seansLimiti;
+
+    return savePlan(digerleri..add(entry));
+  }
+
+  /// Tek bir seansı plandan çıkarır.
+  Future<StudyPlanSaveResult> removeSession(String id) async {
+    final plan = getPlan().where((e) => e.id != id).toList();
     return savePlan(plan);
   }
 
-  /// Bir günü plandan tamamen çıkarır.
-  Future<StudyPlanSaveResult> removeEntry(int gun) async {
+  /// Bir günün TÜM seanslarını plandan çıkarır.
+  Future<StudyPlanSaveResult> removeDay(int gun) async {
     final plan = getPlan().where((e) => e.gun != gun).toList();
     return savePlan(plan);
   }
 
-  /// Bir günün aktif/pasif durumunu değiştirir.
-  Future<StudyPlanSaveResult> toggleEntry(int gun, bool aktif) async {
+  /// Bir seansın aktif/pasif durumunu değiştirir.
+  Future<StudyPlanSaveResult> toggleSession(String id, bool aktif) async {
     final plan = getPlan();
-    final idx = plan.indexWhere((e) => e.gun == gun);
+    final idx = plan.indexWhere((e) => e.id == id);
     if (idx == -1) return StudyPlanSaveResult.hata;
     plan[idx] = plan[idx].copyWith(aktif: aktif);
+    return savePlan(plan);
+  }
+
+  /// Bir günün tüm seanslarını topluca açar/kapatır.
+  Future<StudyPlanSaveResult> toggleDay(int gun, bool aktif) async {
+    final plan = getPlan()
+        .map((e) => e.gun == gun ? e.copyWith(aktif: aktif) : e)
+        .toList();
     return savePlan(plan);
   }
 
@@ -289,7 +402,7 @@ class StudyPlanService {
   // ── Bir sonraki seans ────────────────────────────────────────────────────
 
   /// [now] anından itibaren ilk denk gelen çalışma seansını bulur. Plan yoksa
-  /// (ya da tüm günler pasifse) null döner.
+  /// (ya da tüm seanslar pasifse) null döner.
   NextStudySession? nextSession([DateTime? now]) {
     try {
       final an = now ?? DateTime.now();
@@ -333,7 +446,7 @@ class StudyPlanService {
   }
 
   /// Kartta gösterilecek kısa zaman etiketi: "Bugün 19:00–20:30",
-  /// "Yarın 09:00–10:00", "Cuma 19:00–20:30".
+  /// "Yarın 09:00–10:00", "Cuma 19:00–20:30" (her zaman 24 saat biçimi).
   String nextSessionLabel([DateTime? now]) {
     final s = nextSession(now);
     if (s == null) return '';

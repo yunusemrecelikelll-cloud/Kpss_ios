@@ -17,23 +17,6 @@ import 'predictor_screen.dart';
 import 'league_screen.dart';
 import 'score_calculator_screen.dart';
 
-/// Kullanıcının hedeflediği KPSS mesleği — profilde ve isteğe bağlı olarak
-/// ileride kişiselleştirilmiş içerikte (ör. ilgili kadro soruları) kullanılmak
-/// üzere sadece yerelde saklanır.
-const List<({String id, String label, String icon})> kTargetProfessions = [
-  (id: 'polis', label: 'Polis', icon: '👮'),
-  (id: 'ogretmen', label: 'Öğretmen', icon: '👨‍🏫'),
-  (id: 'memur', label: 'Memur', icon: '👨‍💼'),
-  (id: 'uzman-yardimcisi', label: 'Uzman Yardımcısı', icon: '👨‍⚖️'),
-];
-
-({String id, String label, String icon})? _targetProfessionOrNull(String id) {
-  for (final p in kTargetProfessions) {
-    if (p.id == id) return p;
-  }
-  return null;
-}
-
 /// JS karşılığı: renderProfile() (src/js/app.js).
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -102,7 +85,6 @@ class ProfileScreen extends StatelessWidget {
                   initialName: name == 'Aday' ? '' : name,
                   initialGender: gender,
                   initialExamType: storage.getExamType(),
-                  initialProfession: storage.getTargetProfession(),
                 ),
               );
             },
@@ -148,11 +130,6 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 if (examInfoFor(storage.getExamType()) case final e?)
                                   DsChip(label: 'KPSS ${e.label}'.toUpperCase(), color: c.violetL),
-                                if (_targetProfessionOrNull(storage.getTargetProfession())
-                                    case final p?)
-                                  DsChip(
-                                      label: '${p.icon} ${p.label}'.toUpperCase(),
-                                      color: c.mint),
                               ],
                             ),
                           ],
@@ -692,20 +669,23 @@ class _PremiumPerksCard extends StatelessWidget {
   }
 }
 
-/// İsim ve cinsiyet düzenleme diyaloğu.
-/// Kaydedince StorageService.setUserName() / setUserGender() çağrılır.
+/// İsim / cinsiyet / sınav türü düzenleme diyaloğu.
+///
+/// Tasarım dili uygulamanın geri kalanıyla aynı: zemin `c.bg2`, bölümler
+/// [DsCard] içinde, seçimler hap biçimli, eylemler [DsPillButton]. Tüm renkler
+/// [ThemeProvider] token'larından gelir — 9 tema + açık temada okunur kalır.
+/// Kaydedince StorageService.setUserName() / setUserGender() / setExamType()
+/// çağrılır.
 class _EditProfileDialog extends StatefulWidget {
   final StorageService storage;
   final String initialName;
   final String initialGender;
   final String initialExamType;
-  final String initialProfession;
   const _EditProfileDialog({
     required this.storage,
     required this.initialName,
     required this.initialGender,
     required this.initialExamType,
-    required this.initialProfession,
   });
 
   @override
@@ -716,7 +696,9 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
   late final TextEditingController _nameCtrl;
   late String _gender;
   late String _examType;
-  late String _profession;
+
+  /// İsim boşken "Kaydet"e basılırsa alan altında gösterilen uyarı.
+  String? _isimHata;
 
   @override
   void initState() {
@@ -724,7 +706,6 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
     _nameCtrl = TextEditingController(text: widget.initialName);
     _gender = widget.initialGender;
     _examType = widget.initialExamType;
-    _profession = widget.initialProfession;
   }
 
   @override
@@ -736,103 +717,318 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
   Future<void> _save() async {
     final name = _nameCtrl.text.trim();
     if (name.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Lütfen bir isim gir.')));
+      setState(() => _isimHata = 'Lütfen bir isim gir.');
       return;
     }
     await widget.storage.setUserName(name);
     await widget.storage.setUserGender(_gender);
     await widget.storage.setExamType(_examType);
-    await widget.storage.setTargetProfession(_profession);
     if (!mounted) return;
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Profili Düzenle'),
-      content: SingleChildScrollView(
-        child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-            controller: _nameCtrl,
-            decoration: const InputDecoration(labelText: 'İsim'),
-            textCapitalization: TextCapitalization.words,
+    final c = context.watch<ThemeProvider>().colors;
+    final secilenSinav = examInfoFor(_examType);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 460),
+        child: Container(
+          decoration: BoxDecoration(
+            color: c.bg2,
+            borderRadius: BorderRadius.circular(kDsRadius),
+            border: Border.all(color: c.border),
           ),
-          const SizedBox(height: 16),
-          const Text('Cinsiyet', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Row(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: ChoiceChip(
-                  label: const Text('👩 Kadın'),
-                  selected: _gender == 'k',
-                  onSelected: (_) => setState(() => _gender = 'k'),
+              // ── Başlık ────────────────────────────────────────────────
+              Row(
+                children: [
+                  DsIconBadge(
+                    icon: Icons.edit_outlined,
+                    color: c.violetL,
+                    size: 42,
+                    circle: false,
+                    glow: false,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Profili Düzenle',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 16.5,
+                              fontWeight: FontWeight.w900,
+                              color: c.text),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          'Bu bilgiler yalnızca cihazında saklanır.',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (secilenSinav != null) ...[
+                    const SizedBox(width: 8),
+                    DsChip(
+                        label: 'KPSS ${secilenSinav.label}'.toUpperCase(),
+                        color: c.violetL),
+                  ],
+                ],
+              ),
+              const SizedBox(height: 14),
+
+              // ── Alanlar (klavye açıkken kaydırılabilir) ───────────────
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DsCard(
+                        padding: const EdgeInsets.all(14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const _AlanBasligi(text: 'İsmin'),
+                            const SizedBox(height: 8),
+                            TextField(
+                              controller: _nameCtrl,
+                              textCapitalization: TextCapitalization.words,
+                              textInputAction: TextInputAction.done,
+                              onChanged: (_) {
+                                if (_isimHata != null) {
+                                  setState(() => _isimHata = null);
+                                }
+                              },
+                              onSubmitted: (_) => _save(),
+                              style: TextStyle(fontSize: 14.5, color: c.text),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: c.glass2,
+                                hintText: 'Adın nasıl görünsün?',
+                                hintStyle:
+                                    TextStyle(fontSize: 13.5, color: c.textFaint),
+                                prefixIcon: Icon(Icons.person_outline,
+                                    size: 19, color: c.textFaint),
+                                errorText: _isimHata,
+                                errorStyle:
+                                    TextStyle(fontSize: 11.5, color: c.danger),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 14, vertical: 14),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide: BorderSide(color: c.border),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide:
+                                      BorderSide(color: c.violetL, width: 1.6),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide: BorderSide(color: c.danger),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide:
+                                      BorderSide(color: c.danger, width: 1.6),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: kDsGap),
+                      DsCard(
+                        padding: const EdgeInsets.all(14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const _AlanBasligi(text: 'Cinsiyet'),
+                            const SizedBox(height: 10),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: [
+                                _SecimPili(
+                                  label: '👩 Kadın',
+                                  selected: _gender == 'k',
+                                  onTap: () => setState(() => _gender = 'k'),
+                                ),
+                                _SecimPili(
+                                  label: '👨 Erkek',
+                                  selected: _gender == 'e',
+                                  onTap: () => setState(() => _gender = 'e'),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: kDsGap),
+                      DsCard(
+                        padding: const EdgeInsets.all(14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const _AlanBasligi(text: 'Hangi sınava gireceksin?'),
+                            const SizedBox(height: 10),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: [
+                                for (final e in kExamTypes)
+                                  _SecimPili(
+                                    label: e.label,
+                                    selected: _examType == e.id,
+                                    onTap: () =>
+                                        setState(() => _examType = e.id),
+                                  ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: ChoiceChip(
-                  label: const Text('👨 Erkek'),
-                  selected: _gender == 'e',
-                  onSelected: (_) => setState(() => _gender = 'e'),
-                ),
+
+              // ── Eylemler ──────────────────────────────────────────────
+              const SizedBox(height: 14),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Vazgeç',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: c.textDim)),
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: DsPillButton(
+                      label: 'Kaydet',
+                      color: c.violetL,
+                      leadingIcon: Icons.check_rounded,
+                      onPressed: () {
+                        context.read<SoundService>().click();
+                        _save();
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          const Text('Hangi sınava gireceksin?', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final e in kExamTypes)
-                ChoiceChip(
-                  label: Text(e.label),
-                  selected: _examType == e.id,
-                  onSelected: (_) => setState(() => _examType = e.id),
-                ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Text('Hedef mesleğin', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final p in kTargetProfessions)
-                ChoiceChip(
-                  label: Text('${p.icon} ${p.label}'),
-                  selected: _profession == p.id,
-                  onSelected: (_) => setState(() => _profession = p.id),
-                ),
-            ],
-          ),
-        ],
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            context.read<SoundService>().click();
-            Navigator.of(context).pop();
-          },
-          child: const Text('Vazgeç'),
+    );
+  }
+}
+
+/// Düzenleme diyaloğundaki bölüm başlığı ("İsmin", "Cinsiyet" ...).
+class _AlanBasligi extends StatelessWidget {
+  final String text;
+  const _AlanBasligi({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Text(
+      text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.w800, color: c.textDim),
+    );
+  }
+}
+
+/// Seçilebilir hap etiketi — cinsiyet ve sınav türü seçimlerinde kullanılır.
+/// Seçiliyken tema vurgu rengine boyanır, değilken cam zeminde sönük durur;
+/// her iki durumda da metin kontrastı korunur.
+class _SecimPili extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _SecimPili({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(999),
+          color: selected
+              ? c.violetL.withValues(alpha: c.isLight ? 0.16 : 0.22)
+              : c.glass2,
+          border: Border.all(
+            color: selected ? c.violetL : c.border,
+            width: selected ? 1.6 : 1,
+          ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            context.read<SoundService>().click();
-            _save();
-          },
-          child: const Text('Kaydet'),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (selected) ...[
+              Icon(Icons.check_rounded, size: 15, color: c.violetL),
+              const SizedBox(width: 6),
+            ],
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                  color: selected ? c.violetL : c.textDim,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

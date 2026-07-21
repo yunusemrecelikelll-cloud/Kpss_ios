@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -324,6 +325,50 @@ class _PremiumScreenState extends State<PremiumScreen> {
             ],
           ),
         ),
+        // ── Geliştirme derlemesine özel test kısayolu ──
+        //
+        // ÖNEMLİ: Bu buton ödemeyi atladığı için App Store denetiminde
+        // sorun çıkarır (Guideline 2.1 / 3.1.1). Bu yüzden SADECE debug
+        // derlemesinde derlenir: `kDebugMode` sabit olduğundan release ve
+        // profile derlemelerinde tree-shaking ile koddan tamamen çıkar.
+        // Bu koşulun dışına ASLA taşınmamalıdır.
+        if (kDebugMode) ...[
+          const SizedBox(height: 18),
+          DsCard(
+            accent: c.warn,
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '🛠️ Geliştirici Aracı',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900, fontSize: 13.5, color: c.warn),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Yalnızca geliştirme derlemesinde görünür. '
+                  'TestFlight ve App Store sürümlerinde yer almaz.',
+                  style: TextStyle(fontSize: 11.5, height: 1.45, color: c.textFaint),
+                ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: DsPillButton(
+                    label: 'Ücretsiz Aç (Test)',
+                    color: c.warn,
+                    filled: false,
+                    leadingIcon: Icons.bug_report_outlined,
+                    onPressed: () async {
+                      context.read<SoundService>().click();
+                      await context.read<StorageService>().setUserPlan('premium');
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
         const SizedBox(height: 8),
       ],
     );

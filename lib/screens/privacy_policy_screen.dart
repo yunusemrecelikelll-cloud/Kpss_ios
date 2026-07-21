@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../theme/theme_provider.dart';
 
 /// Son güncelleme tarihi — politika metni değiştikçe elle güncellenmeli.
-const String kPrivacyPolicyUpdatedAt = '16 Temmuz 2026';
+const String kPrivacyPolicyUpdatedAt = '21 Temmuz 2026';
 
 /// Gizlilik Politikası — uygulamanın GERÇEK veri toplama/kullanma
 /// davranışını yansıtır (bkz. StorageService, AuthService, ChatService,
@@ -42,15 +42,21 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   'Aşağıdaki bilgiler öncelikli olarak kendi cihazında '
                   '(SharedPreferences ile) saklanır:\n\n'
                   '• Profil bilgilerin: isim, cinsiyet, hedeflediğin sınav türü '
-                  '(Lisans/Önlisans/Ortaöğretim), hedef meslek tercihin\n'
+                  '(Lisans/Önlisans/Ortaöğretim)\n'
                   '• Çözdüğün testler, doğru/yanlış sayıların, konu bazlı ilerlemen\n'
                   '• Rozet, seviye/XP, günlük görev ve çalışma serisi (streak) bilgilerin\n'
                   '• Uygulama ayarların (tema, ses tercihleri)\n'
                   '• Yanlış yaptığın soruların listesi ("Yanlışlarım Bankası")\n\n'
-                  'ÖNEMLİ: Bu verilerin bir kısmı, YALNIZCA sen hesabına giriş yapmışsan '
-                  'VE Ayarlar > Hesap bölümündeki "Bulut yedekleme" seçeneğini AÇMIŞSAN '
-                  'hesabına bağlı olarak buluta da yedeklenir (bkz. 3. bölüm). Bulut '
-                  'yedekleme varsayılan olarak KAPALIDIR; kapalıyken hiçbir ilerleme '
+                  'ÖNEMLİ — bulut yedekleme nasıl çalışır:\n'
+                  '• Hesabınla GİRİŞ YAPMADIĞIN sürece bu verilerin hiçbiri '
+                  'sunucularımıza gönderilmez; her şey yalnızca cihazında kalır.\n'
+                  '• Bir hesapla giriş yaptığında (e-posta, Google ya da Apple) bulut '
+                  'yedekleme OTOMATİK OLARAK AÇILIR ve yukarıdaki verilerin bir kısmı '
+                  'hesabına bağlı olarak buluta yedeklenmeye başlar (bkz. 3. bölüm). '
+                  'Bunun amacı, telefonunu değiştirdiğinde ya da uygulamayı yeniden '
+                  'kurduğunda ilerlemenin kaybolmamasıdır.\n'
+                  '• Bunu istemiyorsan Ayarlar > Hesap bölümündeki "Bulut yedekleme" '
+                  'seçeneğini istediğin zaman KAPATABİLİRSİN. Kapalıyken yeni ilerleme '
                   'verisi sunucularımıza gönderilmez.\n\n'
                   'Yerel veriler, uygulamayı cihazından kaldırdığında (uninstall) '
                   'tamamen silinir. Ancak bu, buluttaki hesabını SİLMEZ — bunun için '

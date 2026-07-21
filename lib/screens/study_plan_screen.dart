@@ -15,17 +15,29 @@ import 'premium_screen.dart';
 /// ─────────────────────────────────────────────────────────────────────────
 ///
 /// Kullanıcı haftanın günlerinden birine (ücretsiz) ya da istediği kadarına
-/// (premium) çalışma saati aralığı atar. Plan kaydedildiği anda
-/// [NotificationService] haftalık tekrarlayan hatırlatıcıları yeniden kurar.
+/// (premium) çalışma saati aralığı atar. AYNI GÜNE birden fazla aralık (seans)
+/// eklenebilir — ör. Pazartesi 09:00–11:00 ve 19:00–21:00. Plan kaydedildiği
+/// anda [NotificationService] haftalık tekrarlayan hatırlatıcıları yeniden
+/// kurar (her seans için ayrı bildirim).
 ///
 /// Ayrıca ekranın altında, çözülen testlerin ortalamalarına bakarak
 /// "en zayıf ders" önerisi gösterilir (bkz. StudyPlanService.weakestSubject).
-/// [plan] içinde [gun] gününe ait kayıt varsa döner, yoksa null.
-StudyPlanEntry? _gunKaydi(List<StudyPlanEntry> plan, int gun) {
-  for (final e in plan) {
-    if (e.gun == gun) return e;
+
+/// Bir [TimeOfDay]'i metne çevirir.
+///
+/// Varsayılan 24 SAAT biçimidir ("19:00") — Türkiye'de standart budur ve
+/// ekranda gösterilen tüm saatler bu biçimi kullanır. [onikiSaat] true
+/// verilirse 12 saat biçimine düşülür; bu durumda İngilizce AM/PM yerine
+/// Türkçe karşılıkları yazılır: "ÖÖ" (öğleden önce) / "ÖS" (öğleden sonra).
+String saatMetni(TimeOfDay t, {bool onikiSaat = false}) {
+  final dk = t.minute.toString().padLeft(2, '0');
+  if (!onikiSaat) {
+    return '${t.hour.toString().padLeft(2, '0')}:$dk';
   }
-  return null;
+  final ek = t.hour < 12 ? 'ÖÖ' : 'ÖS';
+  var saat = t.hour % 12;
+  if (saat == 0) saat = 12;
+  return '${saat.toString().padLeft(2, '0')}:$dk $ek';
 }
 
 class StudyPlanScreen extends StatefulWidget {
@@ -69,51 +81,133 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
     }
   }
 
+  // ── Saat seçimi ──────────────────────────────────────────────────────────
+
+  /// Saat seçiciyi 24 SAAT biçimine zorlayarak açar. `MediaQuery` ile
+  /// `alwaysUse24HourFormat: true` verildiği için AM/PM hiç görünmez; cihazın
+  /// dil/bölge ayarı 12 saat biçiminde olsa bile plan saatleri Türkiye
+  /// standardındaki gibi 00–23 arasında seçilir.
+  Future<TimeOfDay?> _saatSec({
+    required String yardimMetni,
+    required String onayMetni,
+    required TimeOfDay baslangic,
+  }) {
+    return showTimePicker(
+      context: context,
+      helpText: yardimMetni,
+      confirmText: onayMetni,
+      cancelText: 'VAZGEÇ',
+      hourLabelText: 'Saat',
+      minuteLabelText: 'Dakika',
+      initialTime: baslangic,
+      builder: (ctx, child) => MediaQuery(
+        data: MediaQuery.of(ctx).copyWith(alwaysUse24HourFormat: true),
+        child: child ?? const SizedBox.shrink(),
+      ),
+    );
+  }
+
+  /// Başlangıç + bitiş saatini sırayla sorar. Kullanıcı vazgeçerse null döner.
+  Future<({TimeOfDay bas, TimeOfDay bit})?> _araligiSor({
+    required int gun,
+    required String basligiOnEki,
+    TimeOfDay? mevcutBas,
+    TimeOfDay? mevcutBit,
+  }) async {
+    final gunAdi = StudyPlanService.gunAdi(gun);
+
+    final bas = await _saatSec(
+      yardimMetni: '$gunAdi — $basligiOnEki başlangıç saati',
+      onayMetni: 'İLERİ',
+      baslangic: mevcutBas ?? const TimeOfDay(hour: 19, minute: 0),
+    );
+    if (bas == null || !mounted) return null;
+
+    final bit = await _saatSec(
+      yardimMetni: '$gunAdi — bitiş saati (başlangıç ${saatMetni(bas)})',
+      onayMetni: 'KAYDET',
+      baslangic: mevcutBit ?? TimeOfDay(hour: (bas.hour + 1) % 24, minute: bas.minute),
+    );
+    if (bit == null || !mounted) return null;
+
+    return (bas: bas, bit: bit);
+  }
+
   // ── Kullanıcı eylemleri ──────────────────────────────────────────────────
 
-  Future<void> _gunuDuzenle(int gun) async {
+  /// Verilen güne YENİ bir çalışma seansı ekler.
+  Future<void> _seansEkle(int gun) async {
     _tik();
     final servis = _servis(context);
-    final mevcut = _gunKaydi(servis.getPlan(), gun);
 
-    // Ücretsiz kullanıcı ikinci günü eklemeye çalışıyorsa premium'a yönlendir.
-    if (mevcut == null && !servis.canAddDay(gun)) {
+    // Ücretsiz kullanıcı YENİ bir gün açmaya çalışıyorsa premium'a yönlendir.
+    // (Zaten planlı bir güne seans eklemek serbesttir.)
+    if (!servis.canAddDay(gun)) {
       await _premiumBilgisiGoster();
       return;
     }
 
-    final baslangic = await showTimePicker(
-      context: context,
-      helpText: '${StudyPlanService.gunAdi(gun)} — Başlangıç saati',
-      confirmText: 'İLERİ',
-      cancelText: 'VAZGEÇ',
-      initialTime: mevcut == null
-          ? const TimeOfDay(hour: 19, minute: 0)
-          : TimeOfDay(hour: mevcut.baslangicSaat, minute: mevcut.baslangicDakika),
-    );
-    if (baslangic == null || !mounted) return;
+    final mevcutlar = servis.getGunSeanslari(gun);
+    if (mevcutlar.length >= StudyPlanService.kMaxSeansPerGun) {
+      _mesaj('Bir güne en fazla ${StudyPlanService.kMaxSeansPerGun} seans '
+          'ekleyebilirsin.');
+      return;
+    }
 
-    final bitis = await showTimePicker(
-      context: context,
-      helpText: '${StudyPlanService.gunAdi(gun)} — Bitiş saati',
-      confirmText: 'KAYDET',
-      cancelText: 'VAZGEÇ',
-      initialTime: mevcut == null
-          ? TimeOfDay(hour: (baslangic.hour + 1) % 24, minute: baslangic.minute)
-          : TimeOfDay(hour: mevcut.bitisSaat, minute: mevcut.bitisDakika),
-    );
-    if (bitis == null || !mounted) return;
+    // Yeni seans için makul bir varsayılan: günün son seansının bitişinden
+    // bir saat sonrası; hiç seans yoksa 19:00.
+    TimeOfDay? onerilen;
+    if (mevcutlar.isNotEmpty) {
+      final son = mevcutlar.last;
+      onerilen = TimeOfDay(hour: (son.bitisSaat + 1) % 24, minute: son.bitisDakika);
+    }
 
-    final entry = StudyPlanEntry(
+    final aralik = await _araligiSor(
       gun: gun,
-      baslangicSaat: baslangic.hour,
-      baslangicDakika: baslangic.minute,
-      bitisSaat: bitis.hour,
-      bitisDakika: bitis.minute,
-      aktif: mevcut?.aktif ?? true,
+      basligiOnEki: 'yeni seans',
+      mevcutBas: onerilen,
     );
+    if (aralik == null || !mounted) return;
 
-    final sonuc = await servis.upsertEntry(entry);
+    await _kaydet(
+      StudyPlanEntry(
+        id: StudyPlanEntry.yeniId(),
+        gun: gun,
+        baslangicSaat: aralik.bas.hour,
+        baslangicDakika: aralik.bas.minute,
+        bitisSaat: aralik.bit.hour,
+        bitisDakika: aralik.bit.minute,
+      ),
+      basariMesaji: '${StudyPlanService.gunAdi(gun)} planına eklendi ✅',
+    );
+  }
+
+  /// Var olan bir seansın saatlerini değiştirir.
+  Future<void> _seansDuzenle(StudyPlanEntry entry) async {
+    _tik();
+    final aralik = await _araligiSor(
+      gun: entry.gun,
+      basligiOnEki: 'seans',
+      mevcutBas: TimeOfDay(hour: entry.baslangicSaat, minute: entry.baslangicDakika),
+      mevcutBit: TimeOfDay(hour: entry.bitisSaat, minute: entry.bitisDakika),
+    );
+    if (aralik == null || !mounted) return;
+
+    await _kaydet(
+      entry.copyWith(
+        baslangicSaat: aralik.bas.hour,
+        baslangicDakika: aralik.bas.minute,
+        bitisSaat: aralik.bit.hour,
+        bitisDakika: aralik.bit.minute,
+      ),
+      basariMesaji: 'Seans güncellendi ✅',
+    );
+  }
+
+  /// Ekleme/düzenleme sonrası ortak kayıt + geri bildirim akışı.
+  Future<void> _kaydet(StudyPlanEntry entry, {required String basariMesaji}) async {
+    final servis = _servis(context);
+    final sonuc = await servis.upsertSession(entry);
     if (!mounted) return;
 
     switch (sonuc) {
@@ -121,20 +215,38 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
         await _bildirimleriYenile();
         if (!mounted) return;
         setState(() {});
-        _mesaj('${StudyPlanService.gunAdi(gun)} planına eklendi ✅');
+        _mesaj(basariMesaji);
       case StudyPlanSaveResult.premiumGerekli:
         await _premiumBilgisiGoster();
       case StudyPlanSaveResult.gecersizSaat:
-        _mesaj('Bitiş saati, başlangıçtan sonra olmalı ⏰');
+        _mesaj('Bitiş saati, başlangıç saatinden sonra olmalı ⏰');
+      case StudyPlanSaveResult.cakisma:
+        _mesaj('Bu aralık aynı gündeki başka bir seansla çakışıyor. '
+            'Farklı bir saat seç ⏰');
+      case StudyPlanSaveResult.seansLimiti:
+        _mesaj('Bir güne en fazla ${StudyPlanService.kMaxSeansPerGun} seans '
+            'ekleyebilirsin.');
       case StudyPlanSaveResult.hata:
         _mesaj('Plan kaydedilemedi, tekrar dener misin?');
     }
   }
 
+  Future<void> _seansSil(StudyPlanEntry entry) async {
+    _tik();
+    final servis = _servis(context);
+    await servis.removeSession(entry.id);
+    if (!mounted) return;
+    await _bildirimleriYenile();
+    if (!mounted) return;
+    setState(() {});
+    _mesaj('${StudyPlanService.gunAdi(entry.gun)} ${entry.araliqMetni} '
+        'seansı silindi');
+  }
+
   Future<void> _gunuSil(int gun) async {
     _tik();
     final servis = _servis(context);
-    await servis.removeEntry(gun);
+    await servis.removeDay(gun);
     if (!mounted) return;
     await _bildirimleriYenile();
     if (!mounted) return;
@@ -142,10 +254,10 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
     _mesaj('${StudyPlanService.gunAdi(gun)} plandan çıkarıldı');
   }
 
-  Future<void> _gunuAcKapa(int gun, bool aktif) async {
+  Future<void> _seansAcKapa(StudyPlanEntry entry, bool aktif) async {
     _tik();
     final servis = _servis(context);
-    await servis.toggleEntry(gun, aktif);
+    await servis.toggleSession(entry.id, aktif);
     if (!mounted) return;
     await _bildirimleriYenile();
     if (!mounted) return;
@@ -159,7 +271,7 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
       ..showSnackBar(SnackBar(content: Text(metin)));
   }
 
-  /// Ücretsiz kullanıcı gün limitini aştığında gösterilen bilgi kutusu.
+  /// Ücretsiz kullanıcı GÜN limitini aştığında gösterilen bilgi kutusu.
   Future<void> _premiumBilgisiGoster() async {
     final c = context.read<ThemeProvider>().colors;
     final gitsinMi = await showDialog<bool>(
@@ -180,9 +292,10 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
           ],
         ),
         content: Text(
-          'Ücretsiz planda haftada ${StudyPlanService.kFreeMaxDays} gün '
-          'planlayabilirsin. Premium ile haftanın 7 gününe ayrı ayrı çalışma '
-          'saati koyabilir, her biri için hatırlatma alabilirsin.',
+          'Ücretsiz planda haftada ${StudyPlanService.kFreeMaxDays} GÜN '
+          'planlayabilirsin — o güne istediğin kadar çalışma aralığı '
+          'ekleyebilirsin. Premium ile haftanın 7 gününü ayrı ayrı planla, '
+          'her seans için ayrı hatırlatma al.',
           style: TextStyle(fontSize: 13.5, height: 1.45, color: c.textDim),
         ),
         actions: [
@@ -247,12 +360,14 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
             const DsSectionHeader(title: 'Haftalık Plan'),
             const SizedBox(height: 4),
             for (var gun = 1; gun <= 7; gun++) ...[
-              _GunSatiri(
+              _GunKarti(
                 gun: gun,
-                entry: _gunKaydi(plan, gun),
-                onDuzenle: () => _gunuDuzenle(gun),
-                onSil: () => _gunuSil(gun),
-                onAcKapa: (v) => _gunuAcKapa(gun, v),
+                seanslar: plan.where((e) => e.gun == gun).toList(),
+                onEkle: () => _seansEkle(gun),
+                onGunuSil: () => _gunuSil(gun),
+                onSeansDuzenle: _seansDuzenle,
+                onSeansSil: _seansSil,
+                onSeansAcKapa: _seansAcKapa,
               ),
               const SizedBox(height: kDsGap),
             ],
@@ -282,60 +397,198 @@ class _OzetKart extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final sonraki = servis.nextSession();
-    final planVar = servis.getPlan().isNotEmpty;
+    final plan = servis.getPlan();
+    final planVar = plan.isNotEmpty;
+    final gunSayisi = servis.planlananGunler.length;
 
     final baslik = sonraki != null
         ? servis.nextSessionLabel()
-        : (planVar ? 'Tüm günlerin kapalı' : 'Henüz planın yok');
+        : (planVar ? 'Tüm seansların kapalı' : 'Henüz planın yok');
     final altBaslik = sonraki != null
         ? '${servis.nextSessionCountdown()} • ${sonraki.entry.sureDakika} dakikalık seans'
         : (planVar
-            ? 'Aşağıdan bir günü tekrar açarsan hatırlatma gönderirim.'
-            : 'Aşağıdan bir gün seç, çalışma saatini belirle. O saatte seni dürteceğim.');
+            ? 'Aşağıdan bir seansı tekrar açarsan hatırlatma gönderirim.'
+            : 'Aşağıdan bir gün seç, çalışma saatini belirle. Aynı güne birden '
+                'fazla aralık ekleyebilirsin.');
 
     return DsCard(
       accent: c.violet,
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          DsIconBadge(
-            emoji: sonraki != null ? '⏰' : '🗓️',
-            color: sonraki?.suAnDevamEdiyor == true ? c.success : c.violet,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DsIconBadge(
+                emoji: sonraki != null ? '⏰' : '🗓️',
+                color: sonraki?.suAnDevamEdiyor == true ? c.success : c.violet,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      baslik,
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w900, color: c.text),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      altBaslik,
+                      style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textFaint),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+          if (planVar) ...[
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
               children: [
-                Text(
-                  baslik,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: c.text),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  altBaslik,
-                  style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textFaint),
-                ),
+                DsChip(label: '$gunSayisi GÜN', color: c.violetL),
+                DsChip(label: '${plan.length} SEANS', color: c.mint),
               ],
             ),
-          ),
+          ],
         ],
       ),
     );
   }
 }
 
-/// Haftanın tek bir günü: planlıysa saat aralığı + aç/kapa + sil, değilse ekle.
-class _GunSatiri extends StatelessWidget {
+/// Haftanın tek bir günü: o güne ait TÜM seanslar alt alta listelenir; her
+/// seans ayrı ayrı düzenlenebilir, açılıp kapatılabilir ve silinebilir.
+class _GunKarti extends StatelessWidget {
   final int gun;
-  final StudyPlanEntry? entry;
+  final List<StudyPlanEntry> seanslar;
+  final VoidCallback onEkle;
+  final VoidCallback onGunuSil;
+  final ValueChanged<StudyPlanEntry> onSeansDuzenle;
+  final ValueChanged<StudyPlanEntry> onSeansSil;
+  final void Function(StudyPlanEntry entry, bool aktif) onSeansAcKapa;
+
+  const _GunKarti({
+    required this.gun,
+    required this.seanslar,
+    required this.onEkle,
+    required this.onGunuSil,
+    required this.onSeansDuzenle,
+    required this.onSeansSil,
+    required this.onSeansAcKapa,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final planli = seanslar.isNotEmpty;
+    final aktifVar = seanslar.any((e) => e.aktif);
+    final bugunMu = DateTime.now().weekday == gun;
+    final vurgu = planli ? (aktifVar ? c.violet : c.textFaint) : c.textFaint;
+
+    return DsCard(
+      accent: planli ? vurgu : null,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      // Gün boşken kartın herhangi bir yerine dokunmak seans eklemeye götürür.
+      onTap: planli ? null : onEkle,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(
+                emoji: planli ? '✅' : '➕',
+                color: vurgu,
+                size: 44,
+                circle: false,
+                glow: false,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Flexible(
+                          child: Text(
+                            StudyPlanService.gunAdi(gun),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 14.5,
+                                fontWeight: FontWeight.w800,
+                                color: c.text),
+                          ),
+                        ),
+                        if (bugunMu) ...[
+                          const SizedBox(width: 6),
+                          DsChip(label: 'BUGÜN', color: c.gold),
+                        ],
+                      ],
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      planli
+                          ? '${seanslar.length} seans • '
+                              '${seanslar.fold<int>(0, (t, e) => t + e.sureDakika)} dk'
+                          : 'Saat aralığı eklemek için dokun',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 4),
+              IconButton(
+                tooltip: 'Seans ekle',
+                visualDensity: VisualDensity.compact,
+                icon: Icon(Icons.add_circle_outline, size: 22, color: c.violetL),
+                onPressed: onEkle,
+              ),
+              if (planli)
+                IconButton(
+                  tooltip: 'Günü plandan çıkar',
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(Icons.delete_outline, size: 20, color: c.textFaint),
+                  onPressed: onGunuSil,
+                ),
+            ],
+          ),
+          if (planli) ...[
+            const SizedBox(height: 10),
+            for (final e in seanslar) ...[
+              _SeansSatiri(
+                entry: e,
+                onDuzenle: () => onSeansDuzenle(e),
+                onSil: () => onSeansSil(e),
+                onAcKapa: (v) => onSeansAcKapa(e, v),
+              ),
+              if (e != seanslar.last) const SizedBox(height: 8),
+            ],
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// Bir gün kartının içindeki tek çalışma aralığı satırı.
+class _SeansSatiri extends StatelessWidget {
+  final StudyPlanEntry entry;
   final VoidCallback onDuzenle;
   final VoidCallback onSil;
   final ValueChanged<bool> onAcKapa;
 
-  const _GunSatiri({
-    required this.gun,
+  const _SeansSatiri({
     required this.entry,
     required this.onDuzenle,
     required this.onSil,
@@ -345,76 +598,60 @@ class _GunSatiri extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final e = entry;
-    final planli = e != null;
-    final bugunMu = DateTime.now().weekday == gun;
-    final vurgu = planli ? (e.aktif ? c.violet : c.textFaint) : c.textFaint;
+    final vurgu = entry.aktif ? c.violetL : c.textFaint;
 
-    return DsCard(
-      accent: planli ? vurgu : null,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+    return InkWell(
       onTap: onDuzenle,
-      child: Row(
-        children: [
-          DsIconBadge(
-            emoji: planli ? '✅' : '➕',
-            color: vurgu,
-            size: 44,
-            circle: false,
-            glow: false,
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        StudyPlanService.gunAdi(gun),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 14.5, fontWeight: FontWeight.w800, color: c.text),
-                      ),
-                    ),
-                    if (bugunMu) ...[
-                      const SizedBox(width: 6),
-                      DsChip(label: 'BUGÜN', color: c.gold),
-                    ],
-                  ],
-                ),
-                const SizedBox(height: 3),
-                Text(
-                  planli
-                      ? '${e.araliqMetni} • ${e.sureDakika} dk'
-                          '${e.aktif ? '' : ' • kapalı'}'
-                      : 'Saat belirlemek için dokun',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                ),
-              ],
+      borderRadius: BorderRadius.circular(kDsRadiusSm),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(12, 8, 4, 8),
+        decoration: BoxDecoration(
+          color: c.glass2,
+          borderRadius: BorderRadius.circular(kDsRadiusSm),
+          border: Border.all(color: c.border),
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.schedule, size: 17, color: vurgu),
+            const SizedBox(width: 9),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    // 24 saat biçimi: "19:00–20:30"
+                    entry.araliqMetni,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w800,
+                        color: entry.aktif ? c.text : c.textFaint),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${entry.sureDakika} dk${entry.aktif ? '' : ' • kapalı'}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 11, color: c.textFaint),
+                  ),
+                ],
+              ),
             ),
-          ),
-          if (planli) ...[
-            const SizedBox(width: 4),
             Switch(
-              value: e.aktif,
+              value: entry.aktif,
               onChanged: onAcKapa,
               activeThumbColor: c.violet,
             ),
             IconButton(
-              tooltip: 'Kaldır',
+              tooltip: 'Seansı kaldır',
               visualDensity: VisualDensity.compact,
-              icon: Icon(Icons.close_rounded, size: 20, color: c.textFaint),
+              icon: Icon(Icons.close_rounded, size: 19, color: c.textFaint),
               onPressed: onSil,
             ),
-          ] else
-            Icon(Icons.chevron_right, size: 20, color: c.textFaint),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -447,8 +684,9 @@ class _UcretsizLimitKarti extends StatelessWidget {
                             fontSize: 14.5, fontWeight: FontWeight.w900, color: c.text)),
                     const SizedBox(height: 4),
                     Text(
-                      'Premium ile haftanın 7 gününü ayrı ayrı planla, her gün için '
-                      'hatırlatma al.',
+                      'Tek bir güne istediğin kadar çalışma aralığı ekleyebilirsin. '
+                      'Premium ile haftanın 7 gününü ayrı ayrı planla, her seans '
+                      'için hatırlatma al.',
                       style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textFaint),
                     ),
                   ],
@@ -567,8 +805,9 @@ class _BilgiNotu extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              'Planladığın gün ve saatte telefonuna hatırlatma gönderilir; '
-              'hatırlatmalar her hafta aynı saatte tekrarlanır. Bildirimleri '
+              'Planladığın her seansın başlangıç saatinde telefonuna ayrı bir '
+              'hatırlatma gönderilir; hatırlatmalar her hafta aynı saatte '
+              'tekrarlanır. Saatler 24 saat biçiminde gösterilir. Bildirimleri '
               'Ayarlar\'dan tamamen kapatabilirsin.',
               style: TextStyle(fontSize: 11.5, height: 1.45, color: colors.textFaint),
             ),

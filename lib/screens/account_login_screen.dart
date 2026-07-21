@@ -99,6 +99,12 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       if (displayName != null && displayName.isNotEmpty) {
         await storage.setUserName(displayName);
       }
+      // ÖNEMLİ: Bulut yedeklemeyi giriş BAŞARILI olur olmaz aç. Bu satır
+      // syncDown/syncUp'tan ÖNCE olmalı: CloudSyncService.syncUp bu ayarı
+      // kontrol ediyor, kapalıyken hiçbir şey yüklemiyor — yani ilk senkron
+      // sessizce boşa giderdi. Kullanıcı istemezse Ayarlar > Hesap
+      // bölümünden istediği zaman kapatabilir.
+      await storage.setCloudBackupEnabled(true);
       // ÖNEMLİ: Bu hesapla daha önce başka bir cihazda/kurulumda ilerleme
       // kaydedilmişse önce onu indir (syncDown — yerelde eksik olanı tamamlar,
       // var olanı ÇİFTLEMEZ), sonra güncel yerel durumu buluta yaz (syncUp) —
