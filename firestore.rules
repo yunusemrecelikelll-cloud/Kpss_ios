@@ -208,8 +208,18 @@ service cloud.firestore {
     // Doküman kimliği "{gonderenUid}_{alanUid}" biçimindedir.
     match /friend_requests/{requestId} {
       // İsteği yalnızca tarafları görebilir.
+      //
+      // `resource == null` ŞART: istek göndermeden önce istemci "karşı taraf
+      // bana zaten istek atmış mı?" diye TERS dokümanı okuyor. O doküman çoğu
+      // zaman YOKTUR. Firestore'da var olmayan bir dokümanı, kural
+      // `resource.data`'ya bakarken okumaya çalışmak permission-denied ile
+      // reddedilir (resource null olduğu için kural değerlendirmesi hata
+      // verir). Bu yüzden var olmayan dokümanın okunmasına açıkça izin
+      // veriyoruz — geriye null döner, hiçbir veri sızmaz. Bu satır olmadan
+      // arkadaşlık isteği GÖNDERİLEMİYORDU.
       allow read: if girisli()
-                  && (resource.data.fromUid == request.auth.uid
+                  && (resource == null
+                      || resource.data.fromUid == request.auth.uid
                       || resource.data.toUid == request.auth.uid);
 
       // İsteği yalnızca GÖNDEREN oluşturabilir ve kendi adına göndermek

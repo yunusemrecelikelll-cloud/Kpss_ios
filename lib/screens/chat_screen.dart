@@ -45,7 +45,7 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -106,7 +106,13 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
         title: const Text('💬 Sohbet'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [Tab(text: 'Genel Sohbet'), Tab(text: 'Mesajlarım')],
+          isScrollable: true,
+          tabAlignment: TabAlignment.center,
+          tabs: const [
+            Tab(text: 'Genel Sohbet'),
+            Tab(text: 'Mesajlarım'),
+            Tab(text: 'Arkadaşlar'),
+          ],
         ),
         actions: [
           IconButton(
@@ -136,7 +142,11 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
           // Mesajlarım (DM) artık ücretsiz kullanıcılar için de açık —
           // sadece genel sohbetle AYNI paylaşılan günlük mesaj hakkına tabi
           // (bkz. kFreeMaxChatMessagesPerDay, _DmThreadScreenState._send).
-          _DmInboxTab(chat: _chat, uid: uid, myName: displayName),
+          _DmInboxTab(chat: _chat, uid: uid),
+          // Arkadaşlar sekmesi: gelen istekler + arkadaş listesi. İstekler
+          // buraya alındı çünkü bir isteği kabul etmek = arkadaş edinmek;
+          // ikisi aynı yerde durunca akış daha anlaşılır.
+          _FriendsTab(chat: _chat, uid: uid, myName: displayName),
         ],
       ),
     );
@@ -689,24 +699,106 @@ class _BlockedUsersScreen extends StatelessWidget {
   }
 }
 
-/// "Mesajlarım" sekmesi: gelen arkadaşlık istekleri + arkadaş listesi +
-/// sürmekte olan özel sohbetler, TEK bir kaydırılabilir listede.
+/// "Mesajlarım" sekmesi: yalnızca sürmekte olan özel sohbetler (DM).
 ///
-/// İstekler için ayrı bir sekme/ekran AÇILMADI: kullanıcı istekleri günde bir
-/// kez görür, kalıcı bir sekmeyi hak edecek kadar sık kullanılmaz. Mesajların
-/// üstünde, yalnızca bekleyen istek VARKEN görünen bir bölüm hem dikkat çeker
-/// hem de boşken yer kaplamaz.
+/// Arkadaşlık istekleri ve arkadaş listesi ARTIK ayrı "Arkadaşlar" sekmesinde
+/// (bkz. _FriendsTab). Böylece bu sekme tek işe odaklanıyor: konuşmalarım.
 class _DmInboxTab extends StatelessWidget {
   final ChatService chat;
   final String uid;
-  final String myName;
-  const _DmInboxTab({required this.chat, required this.uid, required this.myName});
+  const _DmInboxTab({required this.chat, required this.uid});
 
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
     final peerNames = storage.getDmPeerNames();
+
+    return StreamBuilder<List<DmThreadSummary>>(
+      stream: chat.streamMyThreads(uid),
+      builder: (context, snap) {
+        // HATA GÖRÜNÜR OLMALI. Eskiden yalnızca `hasData` kontrol ediliyordu;
+        // sorgu hata verince (ör. eksik Firestore indeksi) ekran sonsuza dek
+        // dönen halkada kalıyor ve kullanıcı "Mesajlarım çalışmıyor" diyordu.
+        if (snap.hasError) {
+          return _HataNotu(mesaj: 'Mesajların yüklenemedi.\n${snap.error}');
+        }
+        if (!snap.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        final threads = snap.data!.where((t) => t.peerUid.isNotEmpty).toList();
+
+        if (threads.isEmpty) {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('💬', style: TextStyle(fontSize: 40)),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Henüz özel mesajın yok.\n\nGenel sohbette ya da Arkadaşlar sekmesinde '
+                    'birine dokunup mesaj gönderebilirsin.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: c.textFaint, height: 1.5),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return ListView(
+          padding: const EdgeInsets.all(12),
+          children: [
+            for (final t in threads)
+              _KisiSatiri(
+                ad: peerNames[t.peerUid] ?? 'Kullanıcı',
+                emoji: '💬',
+                colors: c,
+                altBilgi: _sonMesajZamani(t.updatedAt),
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => _DmThreadScreen(
+                      chat: chat,
+                      myUid: uid,
+                      peerUid: t.peerUid,
+                      peerName: peerNames[t.peerUid] ?? 'Kullanıcı',
+                    ),
+                  ));
+                },
+                onProfil: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => PublicProfileScreen(
+                      uid: t.peerUid,
+                      fallbackName: peerNames[t.peerUid] ?? 'Kullanıcı'),
+                )),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+/// "Arkadaşlar" sekmesi: gelen arkadaşlık istekleri (en üstte, yalnızca varsa)
+/// + arkadaş listesi.
+///
+/// İstekler buraya alındı çünkü bir isteği KABUL etmek = arkadaş edinmek;
+/// ikisinin aynı ekranda olması akışı doğal kılıyor. İstek varken en üstte
+/// altın renkli kartlarla belirginleşiyor, yokken hiç yer kaplamıyor.
+class _FriendsTab extends StatelessWidget {
+  final ChatService chat;
+  final String uid;
+  final String myName;
+  const _FriendsTab({required this.chat, required this.uid, required this.myName});
+
+  @override
+  Widget build(BuildContext context) {
+    final storage = context.watch<StorageService>();
+    final c = context.watch<ThemeProvider>().colors;
 
     return StreamBuilder<List<FriendRequest>>(
       stream: chat.streamIncomingRequests(uid),
@@ -716,151 +808,116 @@ class _DmInboxTab extends StatelessWidget {
         return StreamBuilder<List<Friend>>(
           stream: chat.streamFriends(uid),
           builder: (context, arkadasSnap) {
+            if (arkadasSnap.hasError) {
+              return _HataNotu(mesaj: 'Arkadaşların yüklenemedi.\n${arkadasSnap.error}');
+            }
+            if (!arkadasSnap.hasData && istekler.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
             final arkadaslar = arkadasSnap.data ?? const <Friend>[];
 
-            return StreamBuilder<List<DmThreadSummary>>(
-              stream: chat.streamMyThreads(uid),
-              builder: (context, snap) {
-                // HATA GÖRÜNÜR OLMALI. Eskiden yalnızca `hasData` kontrol
-                // ediliyordu; sorgu hata verince (ör. eksik Firestore indeksi)
-                // ekran sonsuza dek dönen halkada kalıyor ve kullanıcı
-                // "Mesajlarım çalışmıyor" diyordu. Artık sebebi yazıyoruz.
-                if (snap.hasError) {
-                  return _HataNotu(mesaj: 'Mesajların yüklenemedi.\n${snap.error}');
-                }
-                if (!snap.hasData && istekler.isEmpty && arkadaslar.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                final threads =
-                    (snap.data ?? const <DmThreadSummary>[]).where((t) => t.peerUid.isNotEmpty).toList();
-
-                if (istekler.isEmpty && arkadaslar.isEmpty && threads.isEmpty) {
-                  return Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text('📬', style: TextStyle(fontSize: 40)),
-                          const SizedBox(height: 10),
-                          Text(
-                            'Henüz mesajın ve arkadaşın yok.\n\nGenel sohbette birinin mesajına dokunup '
-                            '"Mesaj Gönder" ya da "Arkadaş Ekle" diyebilirsin.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: c.textFaint, height: 1.5),
-                          ),
-                        ],
+            if (istekler.isEmpty && arkadaslar.isEmpty) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text('👥', style: TextStyle(fontSize: 40)),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Henüz arkadaşın yok.\n\nGenel sohbette birinin mesajına dokunup '
+                        '"Arkadaş Ekle" diyerek istek gönderebilirsin.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: c.textFaint, height: 1.5),
                       ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            return ListView(
+              padding: const EdgeInsets.all(12),
+              children: [
+                if (istekler.isNotEmpty) ...[
+                  DsSectionHeader(title: '🤝 Gelen İstekler (${istekler.length})'),
+                  const SizedBox(height: 8),
+                  for (final istek in istekler)
+                    _IstekKarti(
+                      istek: istek,
+                      colors: c,
+                      onKabul: () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        try {
+                          await chat.acceptFriendRequest(
+                            myUid: uid,
+                            myName: myName,
+                            fromUid: istek.fromUid,
+                            fromName: istek.fromName,
+                          );
+                          await storage.saveDmPeerName(istek.fromUid, istek.fromName);
+                          messenger.showSnackBar(SnackBar(
+                              content: Text('${istek.fromName} artık arkadaşın!')));
+                        } catch (e) {
+                          messenger.showSnackBar(
+                              SnackBar(content: Text('Kabul edilemedi: $e')));
+                        }
+                      },
+                      onRed: () async {
+                        final messenger = ScaffoldMessenger.of(context);
+                        try {
+                          await chat.rejectFriendRequest(
+                              myUid: uid, fromUid: istek.fromUid);
+                          messenger.showSnackBar(
+                              const SnackBar(content: Text('İstek reddedildi.')));
+                        } catch (e) {
+                          messenger.showSnackBar(
+                              SnackBar(content: Text('İşlem başarısız: $e')));
+                        }
+                      },
                     ),
-                  );
-                }
+                  const SizedBox(height: 18),
+                ],
 
-                return ListView(
-                  padding: const EdgeInsets.all(12),
-                  children: [
-                    if (istekler.isNotEmpty) ...[
-                      DsSectionHeader(title: '🤝 İstekler (${istekler.length})'),
-                      const SizedBox(height: 8),
-                      for (final istek in istekler)
-                        _IstekKarti(
-                          istek: istek,
-                          colors: c,
-                          onKabul: () async {
-                            final messenger = ScaffoldMessenger.of(context);
-                            try {
-                              await chat.acceptFriendRequest(
-                                myUid: uid,
-                                myName: myName,
-                                fromUid: istek.fromUid,
-                                fromName: istek.fromName,
-                              );
-                              await storage.saveDmPeerName(istek.fromUid, istek.fromName);
-                              messenger.showSnackBar(SnackBar(
-                                  content: Text('${istek.fromName} artık arkadaşın!')));
-                            } catch (e) {
-                              messenger.showSnackBar(
-                                  SnackBar(content: Text('Kabul edilemedi: $e')));
-                            }
-                          },
-                          onRed: () async {
-                            final messenger = ScaffoldMessenger.of(context);
-                            try {
-                              await chat.rejectFriendRequest(
-                                  myUid: uid, fromUid: istek.fromUid);
-                              messenger.showSnackBar(
-                                  const SnackBar(content: Text('İstek reddedildi.')));
-                            } catch (e) {
-                              messenger.showSnackBar(
-                                  SnackBar(content: Text('İşlem başarısız: $e')));
-                            }
-                          },
-                        ),
-                      const SizedBox(height: 18),
-                    ],
-
-                    if (arkadaslar.isNotEmpty) ...[
-                      DsSectionHeader(title: '👥 Arkadaşlarım (${arkadaslar.length})'),
-                      const SizedBox(height: 8),
-                      for (final a in arkadaslar)
-                        _KisiSatiri(
-                          ad: a.name,
-                          emoji: '👤',
-                          colors: c,
-                          altBilgi: 'Arkadaşın',
-                          onTap: () async {
-                            context.read<SoundService>().click();
-                            await storage.saveDmPeerName(a.uid, a.name);
-                            if (!context.mounted) return;
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => _DmThreadScreen(
-                                  chat: chat, myUid: uid, peerUid: a.uid, peerName: a.name),
-                            ));
-                          },
-                          onProfil: () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) =>
-                                PublicProfileScreen(uid: a.uid, fallbackName: a.name),
-                          )),
-                          onCikar: () async {
-                            final messenger = ScaffoldMessenger.of(context);
-                            await chat.removeFriend(myUid: uid, friendUid: a.uid);
-                            messenger.showSnackBar(SnackBar(
-                                content: Text('${a.name} arkadaşlıktan çıkarıldı.')));
-                          },
-                        ),
-                      const SizedBox(height: 18),
-                    ],
-
-                    if (threads.isNotEmpty) ...[
-                      const DsSectionHeader(title: '💬 Sohbetler'),
-                      const SizedBox(height: 8),
-                      for (final t in threads)
-                        _KisiSatiri(
-                          ad: peerNames[t.peerUid] ?? 'Kullanıcı',
-                          emoji: '💬',
-                          colors: c,
-                          altBilgi: _sonMesajZamani(t.updatedAt),
-                          onTap: () {
-                            context.read<SoundService>().click();
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => _DmThreadScreen(
-                                chat: chat,
-                                myUid: uid,
-                                peerUid: t.peerUid,
-                                peerName: peerNames[t.peerUid] ?? 'Kullanıcı',
-                              ),
-                            ));
-                          },
-                          onProfil: () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => PublicProfileScreen(
-                                uid: t.peerUid,
-                                fallbackName: peerNames[t.peerUid] ?? 'Kullanıcı'),
-                          )),
-                        ),
-                    ],
-                  ],
-                );
-              },
+                DsSectionHeader(
+                    title: arkadaslar.isEmpty
+                        ? '👥 Arkadaşlarım'
+                        : '👥 Arkadaşlarım (${arkadaslar.length})'),
+                const SizedBox(height: 8),
+                if (arkadaslar.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text('Henüz arkadaşın yok.',
+                        style: TextStyle(color: c.textFaint)),
+                  ),
+                for (final a in arkadaslar)
+                  _KisiSatiri(
+                    ad: a.name,
+                    emoji: '👤',
+                    colors: c,
+                    altBilgi: 'Mesaj göndermek için dokun',
+                    onTap: () async {
+                      context.read<SoundService>().click();
+                      await storage.saveDmPeerName(a.uid, a.name);
+                      if (!context.mounted) return;
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => _DmThreadScreen(
+                            chat: chat, myUid: uid, peerUid: a.uid, peerName: a.name),
+                      ));
+                    },
+                    onProfil: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) =>
+                          PublicProfileScreen(uid: a.uid, fallbackName: a.name),
+                    )),
+                    onCikar: () async {
+                      final messenger = ScaffoldMessenger.of(context);
+                      await chat.removeFriend(myUid: uid, friendUid: a.uid);
+                      messenger.showSnackBar(SnackBar(
+                          content: Text('${a.name} arkadaşlıktan çıkarıldı.')));
+                    },
+                  ),
+              ],
             );
           },
         );
