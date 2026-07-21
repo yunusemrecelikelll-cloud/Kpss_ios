@@ -8,6 +8,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
+import '../premium_screen.dart';
 import '../tools_hub_screen.dart';
 
 /// Mini oyun — "Doğru mu Yanlış mı?": Tinder benzeri bir kart destesi.
@@ -23,6 +24,10 @@ const String kDogruYanlisGameId = 'dogru_yanlis';
 
 /// Oyun başında seçilebilen soru sayıları.
 const List<int> kDogruYanlisAdetSecenekleri = [10, 20, 50, 100];
+
+/// Ücretsiz pakette oynanabilen TEK deste boyutu. Diğer seçenekler kilitli
+/// görünür ve dokununca Premium ekranına yönlendirir.
+const int kUcretsizAdet = 10;
 
 /// Kartın cevaplanmış sayılması için gereken yatay sürükleme mesafesi (px).
 const double _kSwipeEsigi = 92;
@@ -52,6 +57,9 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   bool _locked = false;
   bool _booted = false;
 
+  /// Seçili deste boyutu. Ücretsiz kullanıcıda [_boot] bunu
+  /// [kUcretsizAdet]'e sabitler — varsayılanı 20 bırakmak, kilitli bir
+  /// seçeneğin baştan seçili görünmesine yol açardı.
   int _adet = 20;
   final List<DogruYanlisOnerme> _deste = [];
   int _index = 0;
@@ -75,6 +83,8 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   void _boot() {
     final storage = context.read<StorageService>();
     if (!storage.isPremiumUser()) {
+      // Ücretsiz pakette yalnızca en küçük deste açık — seçimi ona sabitle.
+      _adet = kUcretsizAdet;
       final gp = storage.getGamePlayState(kDogruYanlisGameId);
       if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
         setState(() {
@@ -92,6 +102,9 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   Future<void> _basla() async {
     final storage = context.read<StorageService>();
     if (!storage.isPremiumUser()) {
+      // Güvenlik ağı: ücretsiz kullanıcı hiçbir yoldan kilitli bir deste
+      // boyutuyla oyuna başlayamasın.
+      _adet = kUcretsizAdet;
       final gp = storage.getGamePlayState(kDogruYanlisGameId);
       if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
         if (!mounted) return;
@@ -268,7 +281,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
               ),
             ),
             const SizedBox(height: 22),
-            const DsSectionHeader(title: 'Kaç önerme çözelim?'),
+            const DsSectionHeader(title: 'Kaç kart çözelim?'),
             const SizedBox(height: 10),
             Wrap(
               spacing: kDsGap,
@@ -277,14 +290,30 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
                 for (final adet in kDogruYanlisAdetSecenekleri)
                   _AdetSecenegi(
                     adet: adet,
+                    // Ücretsiz pakette yalnızca en küçük deste (10 kart)
+                    // oynanabilir; diğerleri premium'a özel.
+                    kilitli: !premium && adet != kUcretsizAdet,
                     secili: _adet == adet,
                     onTap: () {
                       context.read<SoundService>().click();
+                      if (!premium && adet != kUcretsizAdet) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => const PremiumScreen()));
+                        return;
+                      }
                       setState(() => _adet = adet);
                     },
                   ),
               ],
             ),
+            if (!premium) ...[
+              const SizedBox(height: 10),
+              Text(
+                'Ücretsiz pakette $kUcretsizAdet kartlık deste açık. '
+                'Daha uzun desteler için Premium\'a geç.',
+                style: TextStyle(fontSize: 12, color: c.textFaint, height: 1.35),
+              ),
+            ],
             const SizedBox(height: 20),
             DsStatStrip(
               items: [
@@ -296,7 +325,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
                 DsStatItem(
                   visual: DsIconBadge(emoji: '🃏', color: c.violet, size: 44),
                   value: '$_adet',
-                  label: 'Seçilen önerme',
+                  label: 'Seçilen kart',
                 ),
                 DsStatItem(
                   visual: DsIconBadge(
@@ -311,7 +340,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
             const SizedBox(height: 20),
             Center(
               child: DsPillButton(
-                label: '$_adet Önerme ile Başla',
+                label: '$_adet Kart ile Başla',
                 color: c.violet,
                 trailingIcon: Icons.play_arrow_rounded,
                 onPressed: () {
@@ -366,7 +395,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
                   Row(
                     children: [
                       Text(
-                        'Önerme ${_index + 1}/${_deste.length}',
+                        'Kart ${_index + 1}/${_deste.length}',
                         style: TextStyle(
                             fontSize: 12.5, fontWeight: FontWeight.w800, color: c.textDim),
                       ),
@@ -584,12 +613,28 @@ class _AdetSecenegi extends StatelessWidget {
   final int adet;
   final bool secili;
   final VoidCallback onTap;
-  const _AdetSecenegi({required this.adet, required this.secili, required this.onTap});
+
+  /// Bu seçenek premium'a mı özel? Ücretsiz pakette yalnızca en küçük
+  /// seçenek (10 kart) açık; diğerleri kilitli görünür ve dokununca
+  /// Premium ekranına yönlendirir.
+  final bool kilitli;
+
+  const _AdetSecenegi({
+    required this.adet,
+    required this.secili,
+    required this.onTap,
+    this.kilitli = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final vurgu = secili ? c.violet : c.border;
+    // Kilitli seçenek altın kenarlıkla "premium" hissi verir; seçili olan
+    // menekşe. Kilitli olan asla "seçili" görünmez.
+    final vurgu = kilitli
+        ? c.gold.withValues(alpha: 0.55)
+        : (secili ? c.violet : c.border);
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -601,19 +646,28 @@ class _AdetSecenegi extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kDsRadiusSm),
-            color: secili ? c.violet.withValues(alpha: 0.14) : c.glass,
-            border: Border.all(color: vurgu, width: secili ? 1.6 : 1),
+            color: kilitli
+                ? c.gold.withValues(alpha: 0.07)
+                : (secili ? c.violet.withValues(alpha: 0.14) : c.glass),
+            border: Border.all(color: vurgu, width: secili && !kilitli ? 1.6 : 1),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              if (kilitli)
+                Icon(Icons.lock_outline, size: 16, color: c.gold)
+              else
+                const SizedBox(height: 16),
+              const SizedBox(height: 2),
               Text('$adet',
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w900,
-                      color: secili ? c.violet : c.text)),
+                      color: kilitli
+                          ? c.gold
+                          : (secili ? c.violet : c.text))),
               const SizedBox(height: 2),
-              Text('önerme',
+              Text('kart',
                   style: TextStyle(fontSize: 10.5, color: c.textFaint)),
             ],
           ),
