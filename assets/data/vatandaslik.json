@@ -1746,18 +1746,6 @@
      "aciklama": "Kullanıcılar yasal düzenleme ile tam olarak bir ülkenin yasaların ve yönetmeliklerin tümünü kasteden bir tanıma ulaşmışlardır. Bu nedenle doğru cevabı seçmiş olabilirler."
     },
     {
-     "soru": "Hukukun temel kavramlarından biri olan 'yasal düzenleme' ile 'yasal güvence' arasındaki fark nedir?",
-     "secenekler": [
-      "Yasal düzenleme ve yasal güvence birbirinin yerine kullanılır.",
-      "Yasal düzenleme, bir ülkenin yasaların ve yönetmeliklerinin tümünü ifade ederken, yasal güvence bir ülkenin hukuki yapısını ifade eder.",
-      "Yasal düzenleme ve yasal güvence aynı şeyi ifade eder.",
-      "Yasal düzenleme, bir ülkenin yasaların ve yönetmeliklerinin tümünü ifade ederken, yasal güvence sadece bir ülkenin hukuki yapısını belirler.",
-      "Yasal düzenleme, bir ülkenin yasaların ve yönetmeliklerinin tümünü ifade ederken, yasal güvence bir ülkenin hukuki yapısını ifade eder."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcılar yasal düzenleme ve yasal güvence arasındaki farkı doğru bir şekilde algılamışlardır. Bu nedenle doğru cevabı seçmiş olabilirler."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan \"İrade\" kavramı ne demektir?",
      "secenekler": [
       "İrade, bireyin kendi iradesini kullanarak hareket etmesidir.",
@@ -2154,18 +2142,6 @@
      "aciklama": "Bunun doğru cevabıdır, çünkü Hukuk Normu yasalar ve anlaşmaların birleşmesinden oluşur."
     },
     {
-     "soru": "Hukukun temel kavramlarından biri olan 'Yargı' ne ifade eder?",
-     "secenekler": [
-      "Yargı, bir devletin yargı organlarının verdiği kararlarıdır.",
-      "Yargı, bir toplumun kendi kendini düzenlemesine izin verir.",
-      "Yargı, bir devletin yasama organının verdiği kararları ifade eder.",
-      "Yargı, bir kişi veya organizasyonun sahip olduğu hak ve yeteneklere referanstır.",
-      "Yargı, bir devletin yargı organlarının verdiği kararlarıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçenler doğru cevabı seçmişlerdir, çünkü yargı bir devletin yargı organlarının verdiği kararlarını ifade eder."
-    },
-    {
      "soru": "Hukukun temel kavramlarından bir tanesi olan 'Hukukun Kaynakları'ndan hangisi hukuken bağlayıcıdır?",
      "secenekler": [
       "Anayasal Yasa",
@@ -2358,18 +2334,6 @@
      "aciklama": "Anayasa, bir ülkenin temel yasası ve hukuksal kaynağı olarak kabul edilir."
     },
     {
-     "soru": "Hukukun temel kavramlarından biri olan 'Hak' hangi durumları ifade eder?",
-     "secenekler": [
-      "Herhangi bir olayın olmasını istememek",
-      "Herhangi bir olayın olmasını istememek",
-      "Herhangi bir olayın olmasını istemektir.",
-      "Herhangi bir olayın olmasını istememek",
-      "Herhangi bir olayın olmasını istememek"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü hak, bir olayın olmasını istemektir."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan \"hukukun üstünlüğü\" ilkesini tanımlayan kavram aşağıdakilerden hangisidir?",
      "secenekler": [
       "Hukukun genel geçerliği",
@@ -2380,54 +2344,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Haklı ve yanlış bir tercih değil, ancak seçenekler arasında en uygunu."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biri de 'Adalet' kavramıdır. 'Adalet' kavramının ne anlama geldiğini açıklamalıdır.",
-     "secenekler": [
-      "Adalet, bireylerin haklarını korumak ve haklarından mahrum edilmemelerini sağlamak için yapılan işlemlerdir.",
-      "Adalet, toplumsal düzeni sağlamak ve toplumun huzurunu korumak için yapılan işlemlerdir.",
-      "Adalet, bireylerin haklarını elde etmek için yapılan işlemlerdir.",
-      "Adalet, toplumsal düzeni sağlamak ve toplumun huzurunu korumak için yapılan işlemlerdir.",
-      "Adalet, bireylerin haklarını elde etmek için yapılan işlemlerdir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceği: Bu seçeneği seçen kişiler, adaletin bireylerin haklarını korumak ve haklarından mahrum edilmemelerini sağlamak için yapılan işlemler olduğunu anlamış olabilirler. Bu yüzden bu seçeneği seçmiş olabilirler."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biri de 'Hukukun Üstünlüğü' kavramıdır. 'Hukukun Üstünlüğü' kavramının ne anlama geldiğini açıklamalıdır.",
-     "secenekler": [
-      "Hukukun Üstünlüğü, hukuk kurallarının diğer tüm kurallardan üstün olduğunu ve bunlara uymak zorunluluğunu ifade eder.",
-      "Hukukun Üstünlüğü, devletin hukuk kurallarını uygulamak zorunda olduğunu ve bunlara uymak zorunluluğunu ifade eder.",
-      "Hukukun Üstünlüğü, bireylerin kendi haklarını ve özgürlüklerini kullanarak hukuk kurallarına uymak zorunda olduklarını ifade eder.",
-      "Hukukun Üstünlüğü, devletin bireylerin haklarını ve özgürlüklerini korumak için hukuk kurallarını uygulamak zorunda olduğunu ifade eder.",
-      "Hukukun Üstünlüğü, hukuk kurallarının diğer tüm kurallardan üstün olduğunu ve bunlara uymak zorunluluğunu ifade eder."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceği: Bu seçeneği seçen kişiler, hukukun üstünlüğünün hukuk kurallarının diğer tüm kurallardan üstün olduğunu ve bunlara uymak zorunluluğunu ifade ettiğini anlamış olabilirler. Bu yüzden bu seçeneği seçmiş olabilirler."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biri de 'Hukukun Genel ve Özel Kavramları' kavramıdır. 'Hukukun Genel ve Özel Kavramları' kavramının ne anlama geldiğini açıklamalıdır.",
-     "secenekler": [
-      "Hukukun Genel, toplumsal düzeni sağlamak için yapılan işlemlerdir. Hukukun Özel, bireylerin haklarını elde etmek için yapılan işlemlerdir.",
-      "Hukukun Genel, bireylerin haklarını elde etmek için yapılan işlemlerdir. Hukukun Özel, toplumsal düzeni sağlamak için yapılan işlemlerdir.",
-      "Hukukun Genel, toplumsal düzeni sağlamak için yapılan işlemlerdir. Hukukun Özel, bireylerin haklarını elde etmek için yapılan işlemlerdir.",
-      "Hukukun Genel, bireylerin haklarını elde etmek için yapılan işlemlerdir. Hukukun Özel, toplumsal düzeni sağlamak için yapılan işlemlerdir.",
-      "Hukukun Genel, toplumsal düzeni sağlamak için yapılan işlemlerdir. Hukukun Özel, bireylerin haklarını elde etmek için yapılan işlemlerdir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceği: Bu seçeneği seçen kişiler, hukukun genel ve özel kavramlarının toplumsal düzeni sağlamak için yapılan işlemler ve bireylerin haklarını elde etmek için yapılan işlemler olduğunu anlamış olabilirler. Bu yüzden bu seçeneği seçmiş olabilirler."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynaklarının Kategorileri' kavramı ne demektir?",
-     "secenekler": [
-      "Hukukun kaynaklarının kategorileri, pozitif ve negatif hukuk kaynaklarıdır.",
-      "Hukukun kaynaklarının kategorileri, pozitif ve pozitif hukuk kaynaklarıdır.",
-      "Hukukun kaynaklarının kategorileri, negatif ve negatif hukuk kaynaklarıdır.",
-      "Hukukun kaynaklarının kategorileri, pozitif ve negatif hukuk kaynaklarıdır.",
-      "Hukukun kaynaklarının kategorileri, pozitif ve pozitif hukuk kaynaklarıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru cevaptır. Hukukun kaynaklarının kategorileri, pozitif ve negatif hukuk kaynaklarıdır. Pozitif hukuk kaynağı, yasama organı tarafından oluşturulan hukuk kurallarıdır. Negatif hukuk kaynağı, yargı organı tarafından oluşturulan hukuk kurallarıdır."
     },
     {
      "soru": "Hukukun temel kavramlarından biri olan hukukun üstünlüğü nedir?",
@@ -2670,66 +2586,6 @@
      "aciklama": "International anlaşmalar, hukukun temel kaynaklarından değildir."
     },
     {
-     "soru": "Yargıçların görevlerinin birini aşağıda listeledik. Hangisi doğrudur?",
-     "secenekler": [
-      "Yargıçlar, yargılama işlemlerini sonuçlandırmak için yargı kararları verir.",
-      "Yargıçlar, yargılama işlemlerini sonuçlandırmak için yargı kararları verir.",
-      "Yargıçlar, yargılama işlemlerini sonuçlandırmak için yargı kararları verir.",
-      "Yargıçlar, yargılama işlemlerini sonuçlandırmak için yargı kararları verir.",
-      "Yargıçlar, yargılama işlemlerini sonuçlandırmak için yargı kararları verir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, yargıçların görevini doğru olarak algılamış olabilir."
-    },
-    {
-     "soru": "Hukukun bir kavramını aşağıda listeledik. Hangisi doğru?",
-     "secenekler": [
-      "Hukuk, bir devletin yaptıklarını yargılamak için kullanılan kuralları ifade eder.",
-      "Hukuk, bir toplumun yaptıklarını yargılamak için kullanılan kuralları ifade eder.",
-      "Hukuk, bir devletin yaptıklarını yargılamak için kullanılan kuralları ifade eder.",
-      "Hukuk, bir toplumun yaptıklarını yargılamak için kullanılan kuralları ifade eder.",
-      "Hukuk, devletin yaptıklarını yargılamak için kullanılan kuralları ifade eder."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen, hukuku toplumla sınırlı olarak algılamış olabilir."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından hangisi, özgürlüğün güvencesidir?",
-     "secenekler": [
-      "Adalet",
-      "Hürriyet",
-      "Özgürlük",
-      "Eşitlik",
-      "Adalet"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Özgürlük, özgürlüğün güvencesidir. Hukukun temel kavramlarından biridir."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından hangisi, bireylerin hak ve özgürlüklerini korur?",
-     "secenekler": [
-      "Adalet",
-      "Hürriyet",
-      "Özgürlük",
-      "Eşitlik",
-      "Adalet"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Hürriyet, bireylerin hak ve özgürlüklerini korur. Hukukun temel kavramlarından biridir."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından hangisi, bireylerin birbirleriyle eşit durumdadır?",
-     "secenekler": [
-      "Adalet",
-      "Hürriyet",
-      "Özgürlük",
-      "Eşitlik",
-      "Adalet"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Eşitlik, bireylerin birbirleriyle eşit durumdadır. Hukukun temel kavramlarından biridir."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Geçerlilik Süresi' nedir?",
      "secenekler": [
       "Hukukun uygulanması süresi",
@@ -2740,30 +2596,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Öğrenciler hukukun geçerlilik süresini doğru olarak seçmişlerdir, çünkü yürürlük hukukun uygulandığı ve geçerli olduğu süre anlamına gelir."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biri olan 'Hukuk'un türlerinden biri nedir?",
-     "secenekler": [
-      "Hukuk, pozitif ve hukuksal bir türdür.",
-      "Hukuk, objektif ve bağımsız bir türdür.",
-      "Hukuk, subjektif ve bağlı bir türdür.",
-      "Hukuk, pozitif ve hukuksal bir türdür.",
-      "Hukuk, sosyal ve ekonomik bir türdür."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek doğru çünkü 'pozitif ve hukuksal' ifadesi hukuk türlerinden birisidir."
-    },
-    {
-     "soru": "Hukukun temel kavramlarından biridir.",
-     "secenekler": [
-      "Yargı",
-      "Yargıç",
-      "Yargıçlık",
-      "Yargılama",
-      "Yargı"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Yargı, hukukun temel kavramlarından biridir. Yargı, yargıçların verdikleri kararları ifade eder."
     },
     {
      "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynağı'ne dair bir tanımlama aşağıda verilmiştir. Bu tanımda doğru olan hukuka kaynaklık eden unsur hangisidir?",
@@ -2910,18 +2742,6 @@
      "aciklama": "Yargı organı, yasal güvenceyi sağlamakla sorumludur. Yargı organı, yasal güvenceyi sağlamak için yargılama işlemlerini yürütür."
     },
     {
-     "soru": "Hukukun temel kavramlarından biri olan 'hukukun güvencesi'ne göre, hangi organın hukukun güvencesini sağlamakla sorumlu olmadığını söylemek doğru olur mu?",
-     "secenekler": [
-      "Evet",
-      "Hayır",
-      "Herhangi bir organ",
-      "Herhangi bir organ değil",
-      "Herhangi bir organ değil"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Yürütme organı hukukun güvencesini sağlamakla sorumlu değildir. Yürütme organı hukuku uygular."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan 'Kanun Yürütücüsü' kimdir?",
      "secenekler": [
       "Kanun Yürütücüsü, devletin yargı organlarıdır.",
@@ -3028,18 +2848,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Yasama devletin organlarından biridir ve yasaları yapma ve onaylama görevini yerine getirir."
-    },
-    {
-     "soru": "Tüm kamu hukukunu oluşturan temel kaynaklar nelerdir?",
-     "secenekler": [
-      "Tüm kamu hukukunu oluşturan temel kaynaklar kanunlar, yönetmelikler ve genelgelerdir.",
-      "Kanunlar, uluslararası anlaşmalar ve anayasal ilkeler tüm kamu hukukunu oluşturan temel kaynaklardır.",
-      "Kanunlar, uluslararası anlaşmalar ve anayasal ilkeler tüm kamu hukukunu oluşturan temel kaynaklardır.",
-      "Tüm kamu hukukunu oluşturan temel kaynaklar kanunlar, yönetmelikler ve uluslararası anlaşmalardır.",
-      "Tüm kamu hukukunu oluşturan temel kaynaklar kanunlar, uluslararası anlaşmalar ve genelgelerdir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru cevaptır."
     },
     {
      "soru": "Anayasa, hangi konularda değişiklik kabul edebilir?",
@@ -5628,18 +5436,6 @@
      "aciklama": "Referandum 12 Eylül 1980'de yapıldı. Ancak bu tarih anayasanın kabul edildiği tarihtir."
     },
     {
-     "soru": "1982 Anayasasıyla birlikte Türkiye Cumhuriyeti'nin yeni bir anayasası kabul edildi.",
-     "secenekler": [
-      "Doğru",
-      "1982 Anayasası Türkiye Cumhuriyeti'nin eski anayasasıdır.",
-      "1982 Anayasası Türkiye Cumhuriyeti'nin yeni anayasasıdır.",
-      "1982 Anayasası Türkiye Cumhuriyeti'nin eski anayasasıdır.",
-      "1982 Anayasası Türkiye Cumhuriyeti'nin yeni anayasasıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Referandum tarihini hatırlamakta güçlük çekebilir."
-    },
-    {
      "soru": "Anayasa Mahkemesi, Anayasa'nın 148. maddesine göre kurulmuştur.",
      "secenekler": [
       "Doğru",
@@ -5674,18 +5470,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Referandum 12 Eylül 1980'de yapıldı. Ancak bu tarih anayasanın kabul edildiği tarihtir."
-    },
-    {
-     "soru": "Türkiye Cumhuriyeti'nin ilk cumhurbaşkanı Mustafa Kemal Atatürk'tür.",
-     "secenekler": [
-      "Doğru",
-      "Mustafa Kemal Atatürk'tür.",
-      "İsmet İnönü'tür.",
-      "Celâl Bayar'tır.",
-      "İsmet İnönü'tür."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Referandum tarihini hatırlamakta güçlük çekebilir."
     },
     {
      "soru": "1982 Anayasası'nın kabul edilmesinin en önemli nedeni nedir?",
@@ -6070,18 +5854,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "1982 Anayasası, kabul edildiği tarihten bugüne kadar çeşitli değişikliklerle birlikte yürürlükte kalmaya devam ederek Türk anayasa tarihinde en uzun süre yürürlükte kalan anayasa olma özelliğini taşımaktadır."
-    },
-    {
-     "soru": "1982 Anayasasının kabul edildiği tarih hangisidir?",
-     "secenekler": [
-      "20 Temmuz 1982",
-      "7 Kasım 1982",
-      "18 Ekim 1982",
-      "9 Kasım 1982",
-      "7 Kasım 1982"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "1982 Anayasası, 7 Kasım 1982 tarihinde yapılan halk oylaması (referandum) sonucunda kabul edilerek yürürlüğe girmiştir."
     },
     {
      "soru": "Türkiye Cumhuriyeti Anayasasının 2. maddesinde hangi ilke yer almaktadır?",
@@ -10204,18 +9976,6 @@
      "aciklama": "Bu seçenek, TBMM'nin seçim usulünü doğru bir şekilde belirtmektedir."
     },
     {
-     "soru": "TBMM'nin yapısı ve yetkileri nelerdir?",
-     "secenekler": [
-      "Yürütme, yargı ve yasama organları, kanunlar çıkarmak ve yürütme organını denetlemek",
-      "Yürütme ve yargı organları, yasama organını seçmek ve yürütme organını denetlemek",
-      "Yürütme, yargı ve yargı organları, yasama organını seçmek ve yürütme organını denetlemek",
-      "Yürütme, yargı ve yasama organları, yasama organını seçmek ve yürütme organını denetlemek",
-      "Yürütme, yargı ve yargı organları, yasama organını seçmek ve yürütme organını denetlemek"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, TBMM'nin yapısı ve yetkilerini doğru bir şekilde belirtmektedir."
-    },
-    {
      "soru": "Türkiye'de yasama organı olarak görev yapan TBMM'nin seçim yöntemi ne?",
      "secenekler": [
       "Güçlü partinin tek başına iktidar olmasını sağlayan seçim yöntemi",
@@ -10444,30 +10204,6 @@
      "aciklama": "Bu seçeneği seçen, Türk vatandaşı olmayı kaybeden kişinin ceza alabileceğini anlayabilmiştir."
     },
     {
-     "soru": "Türk vatandaşı olan bir kişi, yurt dışındaki bir devlet tarafından Türk vatandaşı olmayı reddetse ne olur?",
-     "secenekler": [
-      "Bu durum, Türk vatandaşı olmayı kaybeder.",
-      "Bu durum, Türk vatandaşı olmayı kaybederse de ceza alınmaz.",
-      "Bu durum, Türk vatandaşı olmayı kaybederse de ceza alması gerekmez.",
-      "Bu durum, Türk vatandaşı olmayı kaybederse de ceza alması gerekmez ve hapis cezası almaz.",
-      "Bu durum, Türk vatandaşı olmayı kaybederse de ceza alması gerekmez ve hapis cezası almaz."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, Türk vatandaşı olmayı kaybeden kişinin ceza alamayacağı yanılgısına düşmüş olabilir."
-    },
-    {
-     "soru": "Türk vatandaşı olan bir kişi, Türk vatandaşı olmayı kaybederse ne olur?",
-     "secenekler": [
-      "Bu durum, ceza alması gerekmez.",
-      "Bu durum, ceza alması gerekmez ve hapis cezası almaz.",
-      "Bu durum, ceza alması gerekmez ve hapis cezası almaz.",
-      "Bu durum, ceza alması gerekmez.",
-      "Bu durum, ceza alması gerekmez."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, Türk vatandaşı olmayı kaybeden kişinin ceza alamayacağı yanılgısına düşmüş olabilir."
-    },
-    {
      "soru": "TBMM'nin görevlerini yerine getirmesi için hangi organlar sorumludur?",
      "secenekler": [
       "Yüksek Mahkeme ve Yargıtay.",
@@ -10489,18 +10225,6 @@
       "Anayasa Mahkemesi'nin kararlarına."
      ],
      "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, TBMM'nin yasama yetkisinin sınırlayıcı unsurlarını bilmelidir."
-    },
-    {
-     "soru": "TBMM'nin yasama yetkisi hangi durumlardan sonra sınırlanır?",
-     "secenekler": [
-      "Anayasa Mahkemesi'nin kararları ve Yüksek Mahkeme'nin kararları.",
-      "Bakanlar Kurulu'nun önerileri ve Anayasa Mahkemesi'nin kararları.",
-      "Anayasa Mahkemesi'nin kararları.",
-      "Yüksek Mahkeme'nin kararları.",
-      "Anayasa Mahkemesi'nin kararları."
-     ],
-     "dogruIndex": 1,
      "aciklama": "Bu seçeneği seçen, TBMM'nin yasama yetkisinin sınırlayıcı unsurlarını bilmelidir."
     },
     {
@@ -11080,30 +10804,6 @@
      "aciklama": "Doğru cevabı seçen öğrenci, TBMM'nin yapısında genel kurul olduğunu bilir."
     },
     {
-     "soru": "TBMM'nin seçiminde hangi kurallara uymak zorundadır?",
-     "secenekler": [
-      "Ortak oy oranı %40'ı geçmek, seçim çevresinde oy kullanma oranını %50 geçmek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Ortak oy oranı %40'ı geçmek, seçim çevresinde oy kullanma oranını %50 geçmek."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru, çünkü TBMM'nin seçiminde seçim çevresinde oy kullanma oranını %50 geçmek ve seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek kuralları geçerlidir."
-    },
-    {
-     "soru": "TBMM'nin üyeleri nasıl seçilir?",
-     "secenekler": [
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek.",
-      "Seçim çevresinde oy kullanma oranını %50 geçmek, seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru, çünkü TBMM'nin üyeleri seçim çevresinde oy kullanma oranını %50 geçmek ve seçim çevresinde en fazla oy alan partiye 3 milletvekili vermek kuralları ile seçilir."
-    },
-    {
      "soru": "TBMM'nin oluşumuna nasıl karar verilir?",
      "secenekler": [
       "Cumhurbaşkanı kararı ile",
@@ -11114,18 +10814,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Cumhurbaşkanı ve Meclis kararı ile birlikte seçeneği doğru cevaptır. TBMM'nin oluşumuna karar vermede cumhurbaşkanı ve meclis birlikte yer alır."
-    },
-    {
-     "soru": "TBMM'nin görev alanına giren konular nelerdir?",
-     "secenekler": [
-      "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma",
-      "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma, Yargı yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma, Yürütme yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma, Yargı yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma, Yürütme yetkisinin kullanılması"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma seçeneği doğru cevaptır. TBMM'nin görev alanına giren konular arasında yürütme yetkisinin kullanılması, Anayasa değişikliği, Kanun çıkarma yer alır."
     },
     {
      "soru": "TBMM'nin oluşumu hangi yasayla gerçekleşmiştir?",
@@ -11632,30 +11320,6 @@
      "aciklama": "Bu doğru seçeneği seçen, TBMM'nin ilk başkanını bilmekte ve Fethi Okyar'ın başkanlığını anlayabilmektedir."
     },
     {
-     "soru": "TBMM'nin yasama yetkisinin neler olduğu hakkında bilgi verin?",
-     "secenekler": [
-      "Yürütme yetkisinin kullanılması, yargı yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi, yargı yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması, yargı yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması, yargı yetkisinin kullanılması ve kamu yararının korunması."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "C seçeneği doğru bir seçenektir. Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması ve kamu yararının korunması, TBMM'nin temel görevlerindendir."
-    },
-    {
-     "soru": "TBMM'nin oluşumu nasıl olur?",
-     "secenekler": [
-      "Cumhurbaşkanı tarafından seçilir.",
-      "Cumhurbaşkanı tarafından atanır.",
-      "Seçimle oluşur.",
-      "Atama yoluyla oluşur.",
-      "Seçimle oluşur."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "C seçeneği doğru bir seçenektir. Seçimle oluşum, TBMM'nin oluşumunda rol alır."
-    },
-    {
      "soru": "TBMM'nin görevlerinden biri de yargı yetkisini kullanmak mıdır?",
      "secenekler": [
       "Evet, yargı yetkisini kullanmak.",
@@ -11666,30 +11330,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "B seçeneği doğru bir seçenektir. Yargı yetkisini kullanmak, TBMM'nin görevlerinden değildir."
-    },
-    {
-     "soru": "TBMM'nin yasama yetkisinin hangi alanlarda kullanılması gerektiğini açıklar mısınız?",
-     "secenekler": [
-      "Yürütme yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi ve yasama yetkisinin kullanılması.",
-      "Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması ve kamu yararının korunması.",
-      "Yürütme yetkisinin denetlenmesi, yasama yetkisinin kullanılması ve kamu yararının korunması."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "C seçeneği doğru bir seçenektir. Yürütme yetkisinin denetlenmesi ve yasama yetkisinin kullanılması, TBMM'nin temel görevlerindendir."
-    },
-    {
-     "soru": "TBMM'nin oluşumu için gereken şartlar nelerdir?",
-     "secenekler": [
-      "Seçimle oluşur ve 450 üyeden oluşur.",
-      "Atama yoluyla oluşur ve 450 üyeden oluşur.",
-      "Seçimle oluşur ve 550 üyeden oluşur.",
-      "Atama yoluyla oluşur ve 550 üyeden oluşur.",
-      "Seçimle oluşur ve 450 üyeden oluşur."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "A seçeneği doğru bir seçenektir. Seçimle oluşum, TBMM'nin oluşumunda rol alır ve 450 üyeden oluşur."
     },
     {
      "soru": "Türkiye'de yasama organı hangi kuruluşa bağlıdır?",
@@ -11714,18 +11354,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Üyelerin seçimi için genel oy kullanılması, TBMM'nin yapısı ile ilgilidir. Üyelerin seçimi için genel oy kullanılması, TBMM'nin yapısını etkiler."
-    },
-    {
-     "soru": "TBMM'nin yasama yetkisinin bir örneği, yasama organının yasa yapmasıdır.",
-     "secenekler": [
-      "Yasama yetkisinin kullanılması",
-      "Yasama yetkisinin kullanılması için ön koşul",
-      "Yasama yetkisinin kullanılması ile alakalı bir ön koşul",
-      "Yasama yetkisinin kullanılması ile alakalı bir sonuç",
-      "Yasama yetkisinin kullanılması"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Yasama yetkisinin kullanılması, TBMM'nin yasama yetkisinin bir örneğidir. Yasama yetkisinin kullanılması, yasama organının yasa yapması ile ilgilidir."
     },
     {
      "soru": "Türkiye'de yasama organı, hangi kuruluşun yetki alanına girmemiştir?",
@@ -11800,30 +11428,6 @@
      "aciklama": "Bu seçenek doğru çünkü TBMM'nin yasa yapma yetkisi TBMM'nin genel kurul toplantısında kullanılır."
     },
     {
-     "soru": "TBMM'nin görevlerinden hangisi yasama yetkisinin kullanılmasıdır?",
-     "secenekler": [
-      "Yürütme yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması",
-      "Yasama yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü yasama yetkisinin kullanılması, yasama yetkisinin kullanılmasıdır."
-    },
-    {
-     "soru": "TBMM'nin görevleri nelerdir (paragraf)?",
-     "secenekler": [
-      "Yürütme yetkisinin kullanılması, yasama yetkisinin kullanılması, yasama organının yetkilerinin kullanılması",
-      "Yürütme yetkisinin kullanılması, yasama yetkisinin kullanılması, yürütme yetkisinin kullanılması",
-      "Yasama yetkisinin kullanılması, yasama organının yetkilerinin kullanılması, kanun yapma yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması, yasama yetkisinin kullanılması, yürütme yetkisinin kullanılması",
-      "Yürütme yetkisinin kullanılması, yasama yetkisinin kullanılması, yasama organının yetkilerinin kullanılması"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü TBMM'nin görevleri arasında yasama yetkisinin kullanılması, yasama organının yetkilerinin kullanılması ve kanun yapma yetkisinin kullanılması yer almaktadır."
-    },
-    {
      "soru": "TBMM'nin oluşumunda en önemli faktör hangisidir?",
      "secenekler": [
       "Osmanlı İmparatorluğu'nun dağılması",
@@ -11858,18 +11462,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Millî Savunma Kanunu ve Maliye Kanunu, TBMM'nin ilk kanunlarıdır. Bu kanunlar, TBMM'nin kurulmasıyla birlikte kabul edilmiştir."
-    },
-    {
-     "soru": "TBMM'nin oluşum süreci nedir?",
-     "secenekler": [
-      "TBMM, Türkiye Cumhuriyeti'nin kuruluşundan sonra kurulmuştur",
-      "TBMM, 1923 yılında kurulmuştur",
-      "TBMM, 1923 yılında kurulmuştur",
-      "TBMM, 1924 yılında kurulmuştur",
-      "TBMM, 1925 yılında kurulmuştur"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, TBMM'nin oluşum sürecini doğru bir şekilde tanımlamış olabilirler. TBMM, 1923 yılında kurulmuştur"
     },
     {
      "soru": "TBMM'nin kuruluş amacyı hangi maddede buluyoruz?",
@@ -14938,18 +14530,6 @@
      "aciklama": "Doğru cevabı seçen aday, cumhurbaşkanlığı hükümet sisteminde bakanların atanma kurallarını doğru yorumlamış demektir."
     },
     {
-     "soru": "Cumhurbaşkanlığı hükümet sisteminde, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçebilecek bir durum var mıdır?",
-     "secenekler": [
-      "Evet, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçebilecek bir durum vardır.",
-      "Hayır, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçemez.",
-      "Evet, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçebilecek bir durum vardır, ancak aynı partiye bağlı milletvekilleri tarafından atanabilir.",
-      "Hayır, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçemez, ancak aynı partiye bağlı milletvekilleri tarafından atanabilir.",
-      "Hayır, cumhurbaşkanı tarafından atanacak milletvekili sayısının iki katını geçemez."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Doğru cevabı seçen aday, cumhurbaşkanlığı hükümet sisteminde bakanların atanma kurallarını doğru yorumlamış demektir."
-    },
-    {
      "soru": "Cumhurbaşkanı, görevine başlarken Anayasa'ya sadakat anda bulunur. Bu andın amacı nedir?",
      "secenekler": [
       "Cumhurbaşkanı'nın Anayasa'ya aykırı hareket etmemesini sağlamak",
@@ -15154,18 +14734,6 @@
      "aciklama": "Bu seçenek, cumhurbaşkanının görevini bırakabileceği durumları doğru şekilde açıklar."
     },
     {
-     "soru": "Cumhurbaşkanı hangi durumlarda Meclis'i feshedebilir?",
-     "secenekler": [
-      "Cumhurbaşkanı, Meclis'in görevini tamamlamaması durumunda Meclis'i feshedebilir.",
-      "Cumhurbaşkanı, Meclis'in görevini tamamlaması durumunda Meclis'i feshedebilir.",
-      "Cumhurbaşkanı, Meclis'in görevini tamamlamaması durumunda Meclis'i feshedemez.",
-      "Cumhurbaşkanı, Meclis'in görevini tamamlaması durumunda Meclis'i feshedemez.",
-      "Cumhurbaşkanı, Meclis'in görevini tamamlaması durumunda Meclis'i feshedebilir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, cumhurbaşkanının Meclis'i feshedebileceği durumları doğru şekilde açıklar."
-    },
-    {
      "soru": "Cumhurbaşkanı hangi görevleri Meclis'in onayı olmadan gerçekleştirebilir?",
      "secenekler": [
       "Cumhurbaşkanı, Meclis'in onayı olmadan bir savaş ilan edebilir.",
@@ -15176,42 +14744,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçenek, cumhurbaşkanının Meclis'in onayı olmadan gerçekleştirebileceği görevleri doğru şekilde açıklar."
-    },
-    {
-     "soru": "Cumhurbaşkanı hangi durumlarda Meclis'e bir yasa taslağı sunabilir?",
-     "secenekler": [
-      "Cumhurbaşkanı, Meclis'e bir yasa taslağı sunabilir.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir yasa taslağı sunabilir.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir yasa taslağı sunamaz.",
-      "Cumhurbaşkanı, Meclis'e bir yasa taslağı sunamaz.",
-      "Cumhurbaşkanı, Meclis'e bir yasa taslağı sunabilir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, cumhurbaşkanının Meclis'e bir yasa taslağı sunabileceği durumları doğru şekilde açıklar."
-    },
-    {
-     "soru": "Cumhurbaşkanı hangi durumlarda bir iç siyaset konulu konuşma yapabilir?",
-     "secenekler": [
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir iç siyaset konulu konuşma yapabilir.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir iç siyaset konulu konuşma yapamaz.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir dış siyaset konulu konuşma yapabilir.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir dış siyaset konulu konuşma yapamaz.",
-      "Cumhurbaşkanı, Meclis'in onayı olmadan bir iç siyaset konulu konuşma yapamaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, cumhurbaşkanının bir iç siyaset konulu konuşma yapabileceği durumları doğru şekilde açıklar."
-    },
-    {
-     "soru": "Cumhurbaşkanı, görevine başlarken yemin eder ve bu yemin töreni Türkiye Büyük Millet Meclisi'nde yapılır. Bu yemin töreninde Cumhurbaşkanı'nın söylemesi gereken sözler aşağıdaki seçeneklerden hangisidir?",
-     "secenekler": [
-      "Cumhurbaşkanlığı görevini tarafsızlıkla yerine getireceğime, Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına, laiklik ve demokratik devlet düzenine bağlı kalacağıma, milletin huzur ve refahı için çalışacağıma, Türkiye'nin bölünmez bütünlüğü ve egemenlik kayıtsız şartsız milletin sahibi olduğuna ve bunları koruyacağıma, milletin güvenini ve inancını永远 hak ettiğime yemin ederim.",
-      "Cumhurbaşkanlığı görevini tarafsızlıkla yerine getireceğime, Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına bağlı kalacağıma, milletin huzur ve refahı için çalışacağıma, Türkiye'nin bölünmez bütünlüğü ve egemenlik kayıtsız şartsız milletin sahibi olduğuna ve bunları koruyacağıma, milletin güvenini ve inancını her zaman hak ettiğime yemin ederim.",
-      "Cumhurbaşkanlığı görevini tarafsızlıkla yerine getireceğime, Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına, laiklik ve demokratik devlet düzenine bağlı kalacağıma, milletin huzur ve refahı için çalışacağıma, Türkiye'nin bölünmez bütünlüğü ve egemenlik kayıtsız şartsız milletin sahibi olduğuna ve bunları koruyacağıma, milletin güvenini ve inancını daima hak ettiğime yemin ederim.",
-      "Cumhurbaşkanlığı görevini tarafsızlıkla yerine getireceğime, Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına, laiklik ve demokratik devlet düzenine bağlı kalacağıma, milletin huzur ve refahı için çalışacağıma, Türkiye'nin bölünmez bütünlüğü ve egemenlik kayıtsız şartsız milletin sahibi olduğuna ve bunları koruyacağıma, milletin güvenini ve inancını her daim hak ettiğime yemin ederim.",
-      "Cumhurbaşkanlığı görevini tarafsızlıkla yerine getireceğime, Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına, laiklik ve demokratik devlet düzenine bağlı kalacağıma, milletin huzur ve refahı için çalışacağıma, Türkiye'nin bölünmez bütünlüğü ve egemenlik kayıtsız şartsız milletin sahibi olduğuna ve bunları koruyacağıma, milletin güvenini ve inancını daima hak ettiğime yemin ederim."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Anayasanın 103. maddesinde düzenlenen Cumhurbaşkanlığı yemini; Anayasaya, hukukun üstünlüğüne, Atatürk ilke ve inkılaplarına, laik ve demokratik devlet düzenine bağlılığı, milletin bölünmez bütünlüğünü koruyacağını ve milletin güven ve desteğini her zaman hak etmeye çalışacağını ifade eden hükümleri içerir."
     },
     {
      "soru": "Yürütme yetkisi, Cumhurbaşkanı ve Bakanlar Kurulu tarafından kullanılır. Bakanlar Kurulu'nun oluşumu nasıldır?",
@@ -15260,18 +14792,6 @@
      ],
      "dogruIndex": 4,
      "aciklama": "Cumhurbaşkanı hakkında TBMM üye tam sayısının üçte iki çoğunluğuyla Meclis soruşturması sonucu Yüce Divana sevk edilmesi ve Anayasa Mahkemesi'nce (Yüce Divan sıfatıyla) mahkûm edilmesi hâlinde görevine son verilebilir; bu bakımdan görevine hem Meclis kararına dayalı süreçle hem de nihai olarak mahkeme kararıyla son verilebilir."
-    },
-    {
-     "soru": "Cumhurbaşkanı'nın görevine aday olmak için aranan şartlar nelerdir?",
-     "secenekler": [
-      "40 yaşını doldurmuş olmak, yükseköğrenim yapmış olmak, Türk vatandaşı olmak.",
-      "30 yaşını doldurmuş olmak, yükseköğrenim yapmış olmak, Türk vatandaşı olmak.",
-      "40 yaşını doldurmuş olmak, lise mezunu olmak, Türk vatandaşı olmak.",
-      "40 yaşını doldurmuş olmak, yükseköğrenim yapmış olmak ve en az 10 yıl kamu hizmetinde bulunmuş olmak.",
-      "40 yaşını doldurmuş olmak, yükseköğrenim yapmış olmak, Türk vatandaşı olmak."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Anayasanın 101. maddesine göre Cumhurbaşkanı adaylarında kırk yaşını doldurmuş olmak, yükseköğrenim yapmış olmak ve milletvekili seçilme yeterliliğine (bu kapsamda Türk vatandaşı olma dâhil) sahip olmak şartları aranır."
     },
     {
      "soru": "Cumhurbaşkanı'nın seçiminde kullanılan sistem hangisidir?",
@@ -18219,30 +17739,6 @@
      "aciklama": "Bu seçenek, mahalli idarelerin temel özelliklerini doğru bir şekilde yansıtmaktadır: kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır."
     },
     {
-     "soru": "İdarenin her türlü eylem ve işlemlerine karşı açılan davalara idari dava denir.",
-     "secenekler": [
-      "İdari dava, idarenin eylem ve işlemlerine karşı açılan bir dava türüdür.",
-      "İdari dava, yalnızca idarenin vergi ile ilgili işlemlerine karşı açılır.",
-      "İdari dava, idarenin her türlü eylem ve işlemlerine karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin görevini yapmamasına karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin eylem ve işlemlerine karşı açılan bir dava türüdür."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, idari davanın tanımını doğru bir şekilde yansıtmaktadır: idarenin her türlü eylem ve işlemlerine karşı açılan davalara idari dava denir."
-    },
-    {
-     "soru": "Yargı bağımsızlığı, hâkimlerin her türlü etkiden uzak olması anlamına gelir.",
-     "secenekler": [
-      "Yargı bağımsızlığı, hâkimlerin her türlü etkiden uzak olması anlamına gelir.",
-      "Yargı bağımsızlığı, hâkimlerin yalnızca siyasi etkiden uzak olması anlamına gelir.",
-      "Yargı bağımsızlığı, hâkimlerin her türlü etkiden uzak olması ve bağımsız olması anlamına gelir.",
-      "Yargı bağımsızlığı, hâkimlerin görevlerini kaybetmemesi için getirilen bir güvencedir.",
-      "Yargı bağımsızlığı, hâkimlerin her türlü etkiden uzak olması ve bağımsız olması anlamına gelir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek, yargı bağımsızlığının tanımını doğru bir şekilde yansıtmaktadır: hâkimlerin her türlü etkiden uzak olması ve bağımsız olması anlamına gelir."
-    },
-    {
      "soru": "Mahalli idarelerin görev ve yetkileri, Anayasa ve kanunlarla belirlenir.",
      "secenekler": [
       "Mahalli idarelerin görev ve yetkileri, yalnızca Anayasa tarafından belirlenir.",
@@ -18253,30 +17749,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçenek, mahalli idarelerin görev ve yetkilerinin belirlenme şeklini doğru bir şekilde yansıtmaktadır: Anayasa ve kanunlarla belirlenir."
-    },
-    {
-     "soru": "İdari dava, idarenin eylem ve işlemlerine karşı açılan bir dava türüdür.",
-     "secenekler": [
-      "İdari dava, idarenin eylem ve işlemlerine karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin görevini yapmamasına karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin her türlü eylem ve işlemlerine karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin vergi ile ilgili işlemlerine karşı açılan bir dava türüdür.",
-      "İdari dava, idarenin eylem ve işlemlerine karşı açılan bir dava türüdür."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, idari davanın tanımını doğru bir şekilde yansıtmaktadır: idarenin her türlü eylem ve işlemlerine karşı açılan bir dava türüdür."
-    },
-    {
-     "soru": "Mahalli idareler, kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır.",
-     "secenekler": [
-      "Mahalli idareler, kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır.",
-      "Mahalli idareler, yalnızca il ve ilçe düzeyinde faaliyet gösterir.",
-      "Mahalli idareler, seçmenler tarafından seçilen temsilcilerden oluşur.",
-      "Mahalli idareler, merkezî idarenin görev alanını kapsar.",
-      "Mahalli idareler, kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek, mahalli idarelerin tanımını doğru bir şekilde yansıtmaktadır: kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır."
     },
     {
      "soru": "Mahalli idareler hangileridir?",
@@ -18447,18 +17919,6 @@
      "aciklama": "Anayasa Mahkemesi, Anayasa'ya aykırılık kararı verdiği durumlarda mahkeme kararlarının uygulanmasına ilişkin yetkilere sahiptir."
     },
     {
-     "soru": "Yargı ve yerel yönetimler arasında görev dağılımı nedir?",
-     "secenekler": [
-      "Yargı, yerel yönetimler ile birlikte kamu hizmetlerini sağlar ve vergi politikalarını belirler.",
-      "Yargı ve yerel yönetimler eğitim ve sağlık politikalarını belirler ve kamu hizmetlerini sağlar.",
-      "Yargı, kamu hizmetlerini sağlar ve yerel yönetimler vergi politikalarını belirler.",
-      "Yargı, yerel yönetimler ile birlikte kamu hizmetlerini sağlar ve vergi politikalarını belirler.",
-      "Yargı ve yerel yönetimler arasındaki görev dağılımı yoktur."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneğin doğru olması nedeniyle bu açıklama kısaca olacaktır."
-    },
-    {
      "soru": "Yargı organlarının görevlerini yerine getirmelerinde hangi kuruluşlar yardımcı olur?",
      "secenekler": [
       "Hukuk Genel Müdürlüğü, Adalet Bakanlığı, Emniyet Genel Müdürlüğü, Savcılık ve Yargı İdareleri.",
@@ -18469,18 +17929,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçeneğin doğru seçilmesi, yargı organlarının görevlerini yerine getirmelerinde yardımcı olan kuruluşları tam olarak anlama ve yerine getirme başarısıdır."
-    },
-    {
-     "soru": "Yargı organlarının görevleri arasında neler sayılabilir?",
-     "secenekler": [
-      "Yargı organları hakemlik, yargılamalar ve yargı kararlarının uygulanması görevlerini yerine getirmektedir.",
-      "Yargı organları, yasaların uygulanmasını sağlamak, yargılamalar gerçekleştirmek ve yargı kararlarının uygulanmasını sağlamaktadır.",
-      "Yargı organları, yargılamalar gerçekleştirmek ve yargı kararlarının uygulanmasını sağlamakla görevlidir.",
-      "Yargı organları, yasaların uygulanmasını sağlamak, yargılamalar gerçekleştirmek ve yargı kararlarının uygulanmasını sağlamaktadır.",
-      "Yargı organları, yargılamalar gerçekleştirmek ve yargı kararlarının uygulanmasını sağlamakla görevlidir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru cevaptır. Yargı organlarının görevleri arasında yasaların uygulanmasını sağlamak, yargılamalar gerçekleştirmek ve yargı kararlarının uygulanmasını sağlamak yer almaktadır."
     },
     {
      "soru": "Yerel yönetimler hangi amaçlar için kurulmuştur?",
@@ -20489,18 +19937,6 @@
      "aciklama": "Doğru cevaptır çünkü haklar ve özgürlükler bireyin temel insan haklarıdır ve bu haklar herkesin temel insan haklarıdır."
     },
     {
-     "soru": "Hangi haklar, temel hak ve özgürlüklere örnek olarak gösterilebilir?",
-     "secenekler": [
-      "Toplantı ve örgütlenme hakkı, basın özgürlüğü, din özgürlüğü",
-      "Özgürlük ve güvenlik hakkı, eşitlik ve adalet hakkı, eğitim hakkı",
-      "Toplantı ve örgütlenme hakkı, basın özgürlüğü, din özgürlüğü, eğitim hakkı",
-      "Özgürlük ve güvenlik hakkı, eşitlik ve adalet hakkı, eğitim hakkı",
-      "Toplantı ve örgütlenme hakkı, basın özgürlüğü, din özgürlüğü, eğitim hakkı, sağlık hakkı"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Doğru cevaptır çünkü bu haklar, temel hak ve özgürlüklere örnek olarak gösterilebilir ve tam bir liste sunar."
-    },
-    {
      "soru": "Temel hak ve özgürlükler hangi hükümlerle korunur?",
      "secenekler": [
       "Hukukun genel ilkeleri, temel hak ve özgürlükler kanunları",
@@ -20583,18 +20019,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Anayasal güvence, temel hak ve özgürlüklerin temelini oluşturan en güçlü kaynaktır."
-    },
-    {
-     "soru": "Temel hak ve özgürlükler arasında yer alan bir diğer hak, vicdan hürriyetidir. Vicdan hürriyeti, bireyin inanç, düşünce ve kanaatlerini özgürce ifade edebilme hakını ifade eder. Bu hak, bireyin kendi dinini ve inancını özgürce seçebilmesi, inançlarını ve kanaatlerini açıklaması ve bu açıklamaların herhangi bir müdahaleye maruz kalmamasını sağlamaktadır.",
-     "secenekler": [
-      "Vicdan hürriyeti, bireyin inanç, düşünce ve kanaatlerini özgürce ifade edebilme hakını ifade eder.",
-      "Vicdan hürriyeti, bireyin yalnızca dinini seçebilmesi ve inançlarını açıklamasını sağlamaktadır.",
-      "Vicdan hürriyeti, yalnızca bireyin düşünce ve kanaatlerini özgürce ifade edebilme hakını ifade eder.",
-      "Vicdan hürriyeti, bireyin inanç, düşünce ve kanaatlerini özgürce seçebilmesi, açıklamasını ve bu açıklamaların herhangi bir müdahaleye maruz kalmamasını sağlamaktadır.",
-      "Vicdan hürriyeti, bireyin yalnızca dinini seçebilmesi ve inançlarını açıklamasını sağlamaktadır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek yanlış, çünkü vicdan hürriyeti yalnızca bireyin inanç, düşünce ve kanaatlerini özgürce seçebilmesi ve açıklamasını sağlar."
     },
     {
      "soru": "Temel hak ve özgürlükler arasında yer alan bir diğer hak, ifade hürriyetidir. İfade hürriyeti, bireyin düşüncelerini, kanaatlerini ve inançlarını özgürce ifade edebilme hakını ifade eder. Bu hak, bireyin basın, yayın, sanat ve eğitim gibi alanlarda özgürce ifade edebilmesini sağlar.",
@@ -23444,30 +22868,6 @@
      "aciklama": "Bu seçenek doğru bir tanımdır. Seçim sistemi, vatandaşların siyasi liderlerini seçmeleri için kullanılan bir yöntemdir."
     },
     {
-     "soru": "Seçim sistemlerinin özellikleri nelerdir?",
-     "secenekler": [
-      "Seçim sistemleri, vatandaşların siyasi liderlerini seçmeleri için kullanılan yöntemlerdir.",
-      "Seçim sistemleri, siyasi partilerin ülke çapında seçimleri kazanması için kullanılan yöntemlerdir.",
-      "Seçim sistemleri, vatandaşların siyasi liderlerini seçmeleri için kullanılan yöntemlerdir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır.",
-      "Seçim sistemleri, siyasi partilerin birbirleriyle yarışmaları için kullanılan yöntemlerdir.",
-      "Seçim sistemleri, vatandaşların siyasi liderlerini seçmeleri için kullanılan yöntemlerdir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru bir tanımdır. Seçim sistemleri, vatandaşların siyasi liderlerini seçmeleri için kullanılan yöntemlerdir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır."
-    },
-    {
-     "soru": "Seçim sistemlerinin amaçları nelerdir?",
-     "secenekler": [
-      "Seçim sistemlerinin amacı, vatandaşların siyasi liderlerini seçmeleridir.",
-      "Seçim sistemlerinin amacı, siyasi partilerin ülke çapında seçimleri kazanmasıdır.",
-      "Seçim sistemlerinin amacı, vatandaşların siyasi liderlerini seçmeleridir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır.",
-      "Seçim sistemlerinin amacı, siyasi partilerin birbirleriyle yarışmalarıdır.",
-      "Seçim sistemlerinin amacı, vatandaşların siyasi liderlerini seçmeleridir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru bir amaçtır. Seçim sistemlerinin amacı, vatandaşların siyasi liderlerini seçmeleridir ve siyasi partilerin ülke çapında seçimleri kazanması için de kullanılır."
-    },
-    {
      "soru": "Seçim sistemlerinde, siyasi partiler hangi şekilde temsil edilir?",
      "secenekler": [
       "Her partiye bir koltuk tahsis edilir ve o koltukta oyların yarısını alan parti temsil eder.",
@@ -23502,30 +22902,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçenek doğru, çünkü parti kamuoyunda en yüksek destek oranına sahipse finansman desteğine hak kazanır."
-    },
-    {
-     "soru": "Siyasi partiler, hangi nedenle seçim sürecinden yasaklanabilir?",
-     "secenekler": [
-      "Parti, hukuka aykırı davranışlarda bulunursa.",
-      "Parti, seçim kampanyasını gizli yollarla finanse ederse.",
-      "Parti, seçim sürecinde hileli davranışlarda bulunursa.",
-      "Parti, seçim sürecinde hukuksal bir neden olmaksızın yasaklanırsa.",
-      "Parti, seçim sürecinde hukuksal bir neden olmaksızın yasaklanırsa."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru, çünkü parti seçim sürecinde hileli davranışlarda bulunursa yasaklanabilir."
-    },
-    {
-     "soru": "Siyasi partiler, hangi nedenle yargı önüne çıkarılır?",
-     "secenekler": [
-      "Parti, hukuka aykırı davranışlarda bulunursa.",
-      "Parti, seçim kampanyasını gizli yollarla finanse ederse.",
-      "Parti, seçim sürecinde hileli davranışlarda bulunursa.",
-      "Parti, seçim sürecinde hukuksal bir neden olmaksızın yasaklanırsa.",
-      "Parti, seçim sürecinde hukuksal bir neden olmaksızın yasaklanırsa."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru, çünkü parti hukuka aykırı davranışlarda bulunursa yargı önüne çıkarılır."
     },
     {
      "soru": "Seçim sisteminin türleri nelerdir?",
@@ -23862,18 +23238,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçenek doğru çünkü seçim sisteminin temel amacı, halkın kendi temsilcilerini seçerek hükümeti oluşturmaya yardımcı olmaktır."
-    },
-    {
-     "soru": "Siyasi partilerin hangi özelliklerini taşıdığını söyleyiniz?",
-     "secenekler": [
-      "Siyasi partiler, belirli bir ideolojiye bağlı olmayan, politikacıların kişisel tercihlerine dayalı gruplardır.",
-      "Siyasi partiler, halkın temsilcisi olarak seçilen politikacıların oluşturduğu gruplardır.",
-      "Siyasi partiler, belirli bir ideolojiye bağlı olmayan, halkın temsilcisi olarak seçilen politikacıların oluşturduğu gruplardır.",
-      "Siyasi partiler, halkın temsilcisi olarak seçilen politikacıların oluşturduğu gruplardır.",
-      "Siyasi partiler, belirli bir ideolojiye bağlı olan, politikacıların kişisel tercihlerine dayalı gruplardır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü siyasi partiler, belirli bir ideolojiye bağlı olan, halkın temsilcisi olarak seçilen politikacıların oluşturduğu gruplardır."
     },
     {
      "soru": "Siyasi partilerin temel fonksiyonları nelerdir?",
@@ -25355,18 +24719,6 @@
      "aciklama": "Doğrudur. İdarenin işlem ve eylemlerinin hukuka uygunluğunun denetimi Anayasa'nın 125. maddesi uyarınca idari yargı mercilerince (Danıştay, bölge idare mahkemeleri, idare mahkemeleri) yapılırken, kamu hizmetlerinin bir kısmı da yerinden yönetim ilkesi gereği (Anayasa m.127) il özel idaresi ve belediyeler gibi mahalli idarelere bırakılmıştır; bu nedenle idare hukuku hem mahkemeleri hem de mahalli idareleri kapsar."
     },
     {
-     "soru": "İdare hukukunun temelini oluşturan ilkeler nelerdir?",
-     "secenekler": [
-      "Hukukun üstünlüğü, eşitlik ve adalet ilkeleri.",
-      "Hukukun üstünlüğü, eşitlik, adalet ve kamu yararına öncelik verme ilkeleri.",
-      "Hukukun üstünlüğü, eşitlik, adalet, kamu yararına öncelik verme ve kamu yararına öncelik verme ilkeleri.",
-      "Hukukun üstünlüğü, eşitlik, adalet ve kamu yararına öncelik verme ilkeleri.",
-      "Hukukun üstünlüğü, eşitlik, adalet ve kamu yararına öncelik verme ilkeleri."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Doğrudur. İdare hukuku, hukuk devleti ilkesi (Anayasa m.2) gereğince idarenin hukuka bağlılığını sağlayan hukukun üstünlüğü, kanun önünde eşitlik (m.10), adalet ve idari faaliyetlerde kamu yararının gözetilmesi ilkeleri üzerine kuruludur."
-    },
-    {
      "soru": "İdare hukukunda kamu yararına öncelik verme ilkesi ne anlama gelir?",
      "secenekler": [
       "Kamu yararı, bireysel çıkarların önüne geçer.",
@@ -25379,42 +24731,6 @@
      "aciklama": "Doğrudur. Kamu yararı ilkesi, idarenin işlem ve eylemlerinde bireysel çıkarlar yerine toplumun ortak menfaatini esas almasını ve kamu hizmetinin gereği gibi sürdürülmesi için gerekli önlemleri almasını ifade eder; ancak bu yetki ölçülülük ilkesiyle sınırlıdır."
     },
     {
-     "soru": "İdare hukukunda kamu yararına öncelik verme ilkesi, hangi durumlarda uygulanmaz?",
-     "secenekler": [
-      "Bireysel hak ve özgürlüklerin korunması sırasında.",
-      "Bireysel hak ve özgürlüklerin korunması sırasında ve kamu menfaatinin korunması için gerekli önlemler alınmaz.",
-      "Bireysel hak ve özgürlüklerin korunması sırasında ve kamu menfaatinin korunması için gerekli önlemler alınır.",
-      "Bireysel hak ve özgürlüklerin korunması sırasında.",
-      "Bireysel hak ve özgürlüklerin korunması sırasında ve kamu menfaatinin korunması için gerekli önlemler alınmaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Doğrudur. Anayasa'nın 13. maddesi uyarınca temel hak ve özgürlüklerin özüne dokunulamayacağından, bireysel hak ve özgürlüklerin korunması söz konusu olduğunda kamu yararı gerekçesiyle orantısız veya keyfi önlemler alınamaz; kamu yararı ilkesi bu noktada sınırlanır."
-    },
-    {
-     "soru": "İdare hukukunda yargı yetkisi hangi mercilere aittir?",
-     "secenekler": [
-      "Mahkeme ve idareye.",
-      "Mahkeme ve idareye, mahalli idarelere.",
-      "Mahkeme ve mahalli idarelere.",
-      "Mahkeme ve mahalli idarelere, idareye.",
-      "Mahkeme ve mahalli idarelere."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğrudur. Anayasa'nın 125. maddesine göre idarenin her türlü eylem ve işlemine karşı yargı yolu açık olup bu denetim mahkemelerce (idare mahkemeleri, Danıştay) yürütülür; ayrıca idare, kanunla kendisine tanınan yetkiye dayanarak idari para cezası gibi bazı yaptırımları resen uygulayabilir, bu bakımdan denetim ve yaptırım işlevi hem mahkemelere hem idareye aittir."
-    },
-    {
-     "soru": "İdare hukuku ve yönetim kavramı nedir?",
-     "secenekler": [
-      "İdare hukuku, kamu hukuku altındaki bir alt dalıdır.",
-      "İdare hukuku, özel hukukun altındaki bir alt dalıdır.",
-      "İdare hukuku, kamu hukukuyla özel hukukun sınırlarını belirleyen bir kavramdır.",
-      "İdare hukuku, kamu hukukuyla özel hukukun sınırlarını belirleyen bir kavramdır.",
-      "İdare hukuku, kamu hukuku altındaki bir alt dalıdır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, idare hukuku'nun kamu hukukuyla özel hukukun sınırlarını belirleyen bir kavram olduğunu doğru olarak anladığı için bu seçeneği seçecektir."
-    },
-    {
      "soru": "İdare hukuku hangi konularda uygulanır?",
      "secenekler": [
       "Sivil hak ve özgürlükler",
@@ -25425,30 +24741,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçeneği seçen, idare hukuku'nun hukuk kurallarının uygulanması konusunda doğru olduğunu anladığı için bu seçeneği seçecektir."
-    },
-    {
-     "soru": "İdare hukuku'nun temel ilkeleri nelerdir?",
-     "secenekler": [
-      "Hukukun üstünlüğü, kamu yararının korunması, yöneticilerin sorumluluğu",
-      "Hukukun üstünlüğü, kamu yararının korunması, hukukun eşitliği",
-      "Hukukun üstünlüğü, kamu yararının korunması, yöneticilerin yetkisi",
-      "Hukukun üstünlüğü, kamu yararının korunması, hukukun eşitliği",
-      "Hukukun üstünlüğü, kamu yararının korunması, yöneticilerin yetkisi"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, idare hukuku'nun temel ilkelerini doğru olarak anladığı için bu seçeneği seçecektir."
-    },
-    {
-     "soru": "İdare hukuku'nun amaçları nelerdir?",
-     "secenekler": [
-      "Kamu hizmetlerinin yürütülmesi, kamu hukukunun korunması, kamu yararının korunması",
-      "Kamu hizmetlerinin yürütülmesi, kamu hukukunun korunması, hukukun üstünlüğü",
-      "Kamu hizmetlerinin yürütülmesi, kamu hukukunun korunması, kamu yararının korunması",
-      "Kamu hizmetlerinin yürütülmesi, kamu hukukunun korunması, hukukun üstünlüğü",
-      "Kamu hizmetlerinin yürütülmesi, kamu hukukunun korunması, kamu yararının korunması"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen, idare hukuku'nun amaçlarını doğru olarak anladığı için bu seçeneği seçecektir."
     },
     {
      "soru": "İdare hukukunun başlıca kaynakları nelerdir?",
@@ -25485,18 +24777,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Doğru cevaptır, çünkü kamu kurumu, dolandırıcı olarak sorumlu tutulmaz."
-    },
-    {
-     "soru": "İdare hukuku açısından bir kamu kurumu hangi hallerde ihmalde olduğu durumlarda daha az sorumlu tutulur?",
-     "secenekler": [
-      "Kamu kurumu, ihmalde olduğu durumlarda daha az sorumlu tutulur.",
-      "Kamu kurumu, ihmalde olduğu durumlarda daha az sorumlu tutulmaz.",
-      "Kamu kurumu, ihmalde olduğu durumlarda daha fazla sorumlu tutulur.",
-      "Kamu kurumu, ihmalde olduğu durumlarda daha fazla sorumlu tutulmaz.",
-      "Kamu kurumu, ihmalde olduğu durumlarda daha az sorumlu tutulmaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Doğru cevaptır, çünkü kamu kurumu, ihmalde olduğu durumlarda daha az sorumlu tutulmaz."
     },
     {
      "soru": "İdare hukuku, hangi konularda hukuki kuralları düzenler?",
@@ -25581,18 +24861,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçeneğin doğru olması, kullanıcıların idare hukukunun kaynaklarını anlama yeteneklerini gösterir."
-    },
-    {
-     "soru": "İdare hukuku hangi kurumlara uygulanır?",
-     "secenekler": [
-      "İdare hukuku, kamu idareleri ve özel idarelere uygulanır.",
-      "İdare hukuku, kamu idarelerine uygulanır, ancak özel idarelere uygulanmaz.",
-      "İdare hukuku, kamu idarelerine uygulanır, ancak özel idarelere uygulanmaz.",
-      "İdare hukuku, özel idarelere uygulanır, ancak kamu idarelerine uygulanmaz.",
-      "İdare hukuku, kamu idarelerine ve özel idarelere uygulanır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olması, kullanıcıların idare hukukunun uygulanma alanını anlama yeteneklerini gösterir."
     },
     {
      "soru": "İdarenin kanunlara uygun hareket etmesi ve keyfi davranışlardan kaçınması hangi ilkeye dayanır?",
@@ -25739,54 +25007,6 @@
      "aciklama": "Doğru cevap"
     },
     {
-     "soru": "İdare hukuku kavramı nedir?",
-     "secenekler": [
-      "Hukukun idari organlar tarafından uygulanmasıdır.",
-      "İdari organların hukuki yetkilerine ilişkin kurallar bütünüdür.",
-      "İdari organların hukuki yetkilerine ilişkin kurallar bütünüdür.",
-      "İdari organların hukuki yetkilerine ilişkin kurallar bütünüdür.",
-      "İdari organların görev ve yetkilerini belirleyen hukuki kurallardır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru seçilmesi, idare hukukunun temelini oluşturan kuralları bilme nedeniyle gerçekleşebilir."
-    },
-    {
-     "soru": "İdare hukukunun görevleri nelerdir?",
-     "secenekler": [
-      "İdare hukukunun görevi, idari organların yetkilerini belirlemektir.",
-      "İdare hukukunun görevi, idari organları ve faaliyetlerini düzenlemektedir.",
-      "İdare hukukunun görevi, idari organların görev ve yetkilerini belirlemektir.",
-      "İdare hukukunun görevi, idari organların görev ve yetkilerini belirlemektir.",
-      "İdare hukukunun görevi, idari organların görev ve yetkilerini belirlemektir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru seçilmesi, idare hukukunun görevlerini bilme nedeniyle gerçekleşebilir."
-    },
-    {
-     "soru": "İdare hukukunun amaçları nelerdir?",
-     "secenekler": [
-      "İdare hukukunun amacı, idari organların yetkilerini belirlemektir.",
-      "İdare hukukunun amacı, idari organları ve faaliyetlerini düzenlemektedir.",
-      "İdare hukukunun amacı, idari organların görev ve yetkilerini belirlemektir.",
-      "İdare hukukunun amacı, idari organların görev ve yetkilerini belirlemektir.",
-      "İdare hukukunun amacı, idari organların görev ve yetkilerini belirlemektir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru seçilmesi, idare hukukunun amaçlarını bilme nedeniyle gerçekleşebilir."
-    },
-    {
-     "soru": "İdare hukukunun temel ilkeleri nelerdir?",
-     "secenekler": [
-      "İdare hukukunun temel ilkeleri, adil karar verme, eşitlik ilkesi, adalet ilkesidir.",
-      "İdare hukukunun temel ilkeleri, eşitlik ilkesi, adalet ilkesi, şeffaflık ilkesidir.",
-      "İdare hukukunun temel ilkeleri, adil karar verme, eşitlik ilkesi, şeffaflık ilkesidir.",
-      "İdare hukukunun temel ilkeleri, eşitlik ilkesi, adalet ilkesi, şeffaflık ilkesidir.",
-      "İdare hukukunun temel ilkeleri, adil karar verme, eşitlik ilkesi, adalet ilkesidir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru seçilmesi, idare hukukunun temel ilkelerini bilme nedeniyle gerçekleşebilir."
-    },
-    {
      "soru": "İdarenin temel özelliklerinden biri nedir?",
      "secenekler": [
       "Kanunlara uymak ve kamu yararı için çalışmak.",
@@ -25794,18 +25014,6 @@
       "Kanunlara uymamak ve kamu yararı için çalışmak.",
       "Kanunlara uymamak ve özel yararı için çalışmak.",
       "Kanunlara uymamak ve kamu yararı için çalışmamak."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama yok."
-    },
-    {
-     "soru": "İdareye karşı sorumluluklar nelerdir?",
-     "secenekler": [
-      "Kamu yararı için çalışmak ve kanunlara uymak.",
-      "Özel yararı için çalışmak ve kanunlara uymamak.",
-      "Kamu yararı için çalışmamak ve kanunlara uymak.",
-      "Özel yararı için çalışmak ve kanunlara uymamak.",
-      "Kamu yararı için çalışmak ve kanunlara uymamak."
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama yok."

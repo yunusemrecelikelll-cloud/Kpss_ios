@@ -1388,18 +1388,6 @@
      "aciklama": "Mütarekenin imzalanmasıyla birlikte, Türkiye'nin bağımsız devlet olarak tanındığı ve milletlerarası bir devlet olarak kabul edildiği için bu seçenek doğru cevaptır. Diğer seçenekler ise Türkiye'nin bağımsızlığını sağlamadığı için yanlıştır."
     },
     {
-     "soru": "II. Meşrutiyet döneminde, 1908 yılında açılan Meclis-i Mebusan'ın görevleri nelerdir?",
-     "secenekler": [
-      "Meclis-i Mebusan, milletvekillerini seçen ve yasaları onaylayan bir meclis olarak görev yapar.",
-      "Meclis-i Mebusan, milletvekillerini seçen ve yasaları hazırlayan bir meclis olarak görev yapar.",
-      "Meclis-i Mebusan, milletvekillerini seçen ve yasaları onaylayan bir meclis olarak görev yapar.",
-      "Meclis-i Mebusan, milletvekillerini seçen ve yasaları hazırlayan bir meclis olarak görev yapar.",
-      "Meclis-i Mebusan, milletvekillerini seçen ve yasaları onaylayan bir meclis olarak görev yapar."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru cevaptır çünkü Meclis-i Mebusan, milletvekillerini seçen ve yasaları onaylayan bir meclis olarak görev yapar."
-    },
-    {
      "soru": "Cumhuriyetin ilan edilmesinden sonra, 1923 yılında kabul edilen Anayasa'nın temel ilkeleri nelerdir?",
      "secenekler": [
       "Devletin laik ve demokratik bir cumhuriyet olması, hukukun üstünlüğü, eşitlik ve hürriyetin korunması.",
@@ -1736,18 +1724,6 @@
      "aciklama": "Laik eğitim sistemi Türk eğitim sisteminin temelini oluşturur."
     },
     {
-     "soru": "Türkiye'nin ilk Cumhurbaşkanı kimdir?",
-     "secenekler": [
-      "Kemal Atatürk",
-      "İsmet İnönü",
-      "Mustafa Kemal",
-      "Celâl Bayar",
-      "İsmet İnönü"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kemal Atatürk Türkiye'nin ilk Cumhurbaşkanıdır."
-    },
-    {
      "soru": "Türkiye'nin ilk kadın Başbakanı kimdir?",
      "secenekler": [
       "Tansu Çiller",
@@ -1782,18 +1758,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "1920 yılında kabul edilen Anayasa Türkiye'nin ilk Anayasasıdır."
-    },
-    {
-     "soru": "Türkiye'nin ilk Cumhuriyet Halk Partisi lideri kimdir?",
-     "secenekler": [
-      "Kemal Atatürk",
-      "İsmet İnönü",
-      "Mustafa Kemal",
-      "Celâl Bayar",
-      "İsmet İnönü"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kemal Atatürk Türkiye'nin ilk Cumhuriyet Halk Partisi lideridir."
     },
     {
      "soru": "Osmanlı İmparatorluğu'nun çöküşü ve Türkiye'nin temellerinin atılması ile ilgili en önemli faktör hangisidir?",
@@ -4107,30 +4071,6 @@
      "aciklama": "Kamu gelirleri, kamu giderlerini karşılamak için kanunla belirlenen amaçlar için kullanılır."
     },
     {
-     "soru": "Kamu hizmetleri, kamu idaresinin temel görevlerinden biridir:",
-     "secenekler": [
-      "Hizmet sunmak.",
-      "Hizmet sunmak ve kamu politikalarını uygulamak.",
-      "Hizmet sunmak ve kamu politikalarını uygulamak.",
-      "Kamu hizmetleri, kamu idaresinin temel görevlerinden değildir.",
-      "Kamu hizmetleri, kamu idaresinin temel görevlerinden biridir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Kamu hizmetleri, kamu idaresinin temel görevlerinden biridir."
-    },
-    {
-     "soru": "Kamu malı, kamu idaresi tarafından oluşturulan ve kullanılan mallardır:",
-     "secenekler": [
-      "Kamu idaresi tarafından oluşturulan ve kullanılan mallardır.",
-      "Kamu idaresi tarafından oluşturulan ve kullanılan mallar değildir.",
-      "Kamu malı, kamu idaresi tarafından oluşturulan ve kullanılan mallardır.",
-      "Kamu malı, kamu idaresi tarafından oluşturulan ve kullanılan mallar değildir.",
-      "Kamu malı, kamu idaresi tarafından oluşturulan ve kullanılan mallardır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kamu malı, kamu idaresi tarafından oluşturulan ve kullanılan mallardır."
-    },
-    {
      "soru": "Ekonomik krizin nedenleri arasında aşağıdakilerden hangisi yer almaz?",
      "secenekler": [
       "Dünya ekonomisinin aşırı bağımlılığını önleyen küresel ticaret anlaşmaları",
@@ -4239,30 +4179,6 @@
      "aciklama": "Kamu Maliye Bakanlığı'nın bir parçası olan Maliye İşleri Genel Müdürlüğünün bir birimi olan Kamu Hizmetleri Dairesi, kamu hizmetlerinin planlanması, organize edilmesi ve sunulmasında rol alır."
     },
     {
-     "soru": "Kamu kurumlarından biri olan Kamu İktisadi Teşekküller (KİT'ler) hangi amaçlarla kurulur?",
-     "secenekler": [
-      "Kamu hizmetlerinin sunulması ve kamu kaynaklarının yönetilmesi",
-      "Kamu kaynaklarının yönetilmesi ve kamu hizmetlerinin sunulmasında rol alan özel sektör kuruluşlarının desteği",
-      "Kamu kaynaklarının yönetilmesi, kamu hizmetlerinin sunulmasında rol alan özel sektör kuruluşlarının desteği ve kamu kaynaklarının yönetilmesinde rol alan kamu kurumlarının desteği",
-      "Kamu hizmetlerinin sunulması ve kamu kaynaklarının yönetilmesi",
-      "Kamu hizmetlerinin sunulması, kamu kaynaklarının yönetilmesi ve kamu kaynaklarının yönetilmesinde rol alan kamu kurumlarının desteği"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "KİT'ler, kamu kaynaklarının yönetilmesi, kamu hizmetlerinin sunulmasında rol alan özel sektör kuruluşlarının desteği ve kamu kaynaklarının yönetilmesinde rol alan kamu kurumlarının desteği için kurulur."
-    },
-    {
-     "soru": "Kamu Kurumları Yasası hangi amaçlarla yürürlüğe konmuştur?",
-     "secenekler": [
-      "Kamu hizmetlerinin sunulması ve kamu kaynaklarının yönetilmesi",
-      "Kamu kaynaklarının yönetilmesi ve kamu hizmetlerinin sunulmasında rol alan özel sektör kuruluşlarının desteği",
-      "Kamu kaynaklarının yönetilmesi, kamu hizmetlerinin sunulmasında rol alan özel sektör kuruluşlarının desteği ve kamu kaynaklarının yönetilmesinde rol alan kamu kurumlarının desteği",
-      "Kamu hizmetlerinin sunulması ve kamu kaynaklarının yönetilmesi",
-      "Kamu hizmetlerinin sunulması, kamu kaynaklarının yönetilmesi ve kamu kaynaklarının yönetilmesinde rol alan kamu kurumlarının desteği"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Kamu Kurumları Yasası, kamu hizmetlerinin sunulması ve kamu kaynaklarının yönetilmesi için yürürlüğe konur."
-    },
-    {
      "soru": "Ekonomik büyüme, bir ülkenin ekonomisinin uzun vadeli büyüme hızını ifade eder. Ekonomik büyüme, bir ülkenin zenginleşmesi ve refahının artması için önemlidir. Ekonomik büyümenin temel unsurları nelerdir?",
      "secenekler": [
       "Ekonomik büyüme, bir ülkenin gelirini artırmak, işsizliği azaltmak ve refahını artırmaktır.",
@@ -4273,30 +4189,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçenek, ekonomi büyümesinin temel unsurlarını doğru olarak ifade eder."
-    },
-    {
-     "soru": "Kamu kuruluşları, devlet tarafından kurulmuş ve yönetilen kuruluşlardır. Kamu kuruluşları, kamu hizmetlerinin sunulmasını sağlar. Kamu kuruluşlarının çeşitleri nelerdir?",
-     "secenekler": [
-      "Kamu kuruluşları, kamu bankaları, kamu şeker fabrikaları, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu kuruluşları, kamu bankaları, kamu şeker fabrikaları, kamu demiryolları ve kamu hastaneleri değildir.",
-      "Kamu kuruluşları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu kuruluşları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleri değildir.",
-      "Kamu kuruluşları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, kamu kuruluşlarının çeşitlerini doğru olarak ifade eder."
-    },
-    {
-     "soru": "Kamu bankaları, kamu kuruluşlarından biridir. Kamu bankaları, kamu hizmetlerinin sunulmasını sağlar. Kamu bankalarının görevleri nelerdir?",
-     "secenekler": [
-      "Kamu bankaları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu bankaları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu bankaları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu bankaları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir.",
-      "Kamu bankaları, kamu bankaları, kamu sigorta şirketleri, kamu demiryolları ve kamu hastaneleridir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, kamu bankalarının görevlerini doğru olarak ifade eder."
     },
     {
      "soru": "Kamu kurumlarının en önemli amaçlarından biri nedir?",
@@ -4333,18 +4225,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçeneğin doğru olduğunu düşünün, çünkü kamu kurumlarının finansmanı vergilerle sağlanır."
-    },
-    {
-     "soru": "Kamu kurumlarının görevleri nelerdir?",
-     "secenekler": [
-      "Kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmaktır.",
-      "Kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmak, kamuoyunu memnun etmek ve kamu kaynaklarını kendi çıkarları için kullanmaktır.",
-      "Kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmaktır.",
-      "Kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmak, kamuoyunu memnun etmek ve kamu kaynaklarını kendi çıkarları için kullanmaktır.",
-      "Kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğunu düşünün, çünkü kamu kurumlarının görevleri kamu kaynaklarını yönetmek, kamu hizmetlerini sunmak ve kamu kaynaklarını kullanmaktır."
     },
     {
      "soru": "Kamu kurumlarının temel fonksiyonu nedir?",
@@ -7305,30 +7185,6 @@
      "aciklama": "II. Abdülhamid döneminde Batılılaşma hareketinin bir parçası olarak sarayda ve bazı tiyatrolarda opera ve bale gösterileri düzenlenmiş, bu sanat dalları ilk kez resmî çevrelerde tanıtılmıştır."
     },
     {
-     "soru": "Güncel dönem kültür sanat ve bilimdeki gelişmelerden biri olan 'Kodamanlık' nedir?",
-     "secenekler": [
-      "Kodamanlar, bilgisayar sistemlerini ve yazılımları geliştirmek için kodlar yazan ve programcılar ile aynı anlam taşıyor.",
-      "Kodamanlar, modern teknolojinin gelişmesinde önemli rol oynayan ve bilgisayar sistemlerini kontrol eden uzmanlar.",
-      "Kodamanlar, eski zamanlarda bilgisayar sistemlerini ve yazılımları geliştirmek için kodlar yazan ve programcılar ile aynı anlam taşıyor.",
-      "Kodamanlar, modern teknolojinin gelişmesinde önemli rol oynayan ancak bilgisayar sistemlerini kontrol etmiyorlar.",
-      "Kodamanlar, bilgisayar sistemlerini ve yazılımları geliştirmek için kodlar yazan ve programcılar ile aynı anlam taşıyor."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, doğru cevabı bulmuşlardır."
-    },
-    {
-     "soru": "Tarihte en önemli kültür sanat ve bilim etkinliklerinden biri olan 'Olimpiyat Oyunları' hangi şehre aittir?",
-     "secenekler": [
-      "Atina",
-      "Roma",
-      "Paris",
-      "Londra",
-      "Atina"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, Olimpiyat Oyunlarının en önemli kültür sanat ve bilim etkinliklerinden biri olduğunu ve Atina'nın bu etkinliği ev sahipliği yaptığını bilirler."
-    },
-    {
      "soru": "Kültür sanat ve bilimdeki gelişmelerden biri olan 'Rönesans', hangi şehre aittir?",
      "secenekler": [
       "Roma",
@@ -9758,18 +9614,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Kültürel faktörler dünya siyasetinde etkili bir faktör olabilir."
-    },
-    {
-     "soru": "Birleşmiş Milletler Güvenlik Konseyi'nin (BMGK) görevleri nelerdir?",
-     "secenekler": [
-      "Barış ve güvenlik sağlamak, ekonomik işbirliği sağlamak, kültürel işbirliği sağlamak",
-      "Barış ve güvenlik sağlamak, diplomatik ilişkilere katkıda bulunmak, ekonomik işbirliği sağlamak",
-      "Barış ve güvenlik sağlamak, diplomatik ilişkilere katkıda bulunmak, kültürel işbirliği sağlamak",
-      "Barış ve güvenlik sağlamak, ekonomik işbirliği sağlamak, kültürel işbirliği sağlamak",
-      "Barış ve güvenlik sağlamak, diplomatik ilişkilere katkıda bulunmak, siyasi işbirliği sağlamak"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "BMGK'nın görevleri arasında barış ve güvenlik sağlamak yer alır."
     },
     {
      "soru": "Avrupa Birliği'nin (AB) temel amaçları nelerdir?",
@@ -14947,18 +14791,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçenek, doğru bir gözlemdir. Dijital dönüşüm, işletmelerde verimlilik artışı, müşteri ilişkilerinin iyileştirilmesi ve gelirlerin artırılmasına neden olabilir."
-    },
-    {
-     "soru": "Dijital dönüşümün işletmelerde oluşturduğu riskleri hangi faktörler etkiler?",
-     "secenekler": [
-      "Verimlilik, müşteri ilişkileri, gelirler, teknolojik gelişmeler, çalışanların iş kaybetmesi",
-      "Verimlilik, müşteri ilişkileri, gelirler, çalışanların iş kaybetmesi",
-      "Verimlilik, müşteri ilişkileri, teknolojik gelişmeler, çalışanların iş kaybetmesi",
-      "Verimlilik, gelirler, teknolojik gelişmeler, çalışanların iş kaybetmesi",
-      "Verimlilik, müşteri ilişkileri, gelirler, çalışanların iş kaybetmesi"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, doğru bir gözlemdir. Dijital dönüşüm, işletmelerde verimlilik artışı, müşteri ilişkilerinin iyileştirilmesi, gelirlerin artırılması, teknolojik gelişmelerin etkisi ve çalışanların iş kaybetmesine neden olabilir."
     },
     {
      "soru": "Teknoloji ve dijital dönüşümün gelişimi ile birlikte ortaya çıkan yeni iş modelleri ve iş yapış şekillerini değerlendiren bir kişi, aşağıdaki iş modellerinin en doğru tanımını yapabilir mi?",

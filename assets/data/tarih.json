@@ -1295,18 +1295,6 @@
      "aciklama": "Orta Asya, Kafkasya, Güney Sibirya ve Kuzey Çin Türklerin coğrafi dağılımının temel bölgeleridir."
     },
     {
-     "soru": "İslamiyet öncesi Türk tarihi ile ilgili olarak 'Göktürkler'in hangi devletin mirasçısı olduğu hususunda hangi görüşe sahip olan tarihçi vardır?",
-     "secenekler": [
-      "Büyük Hun Devleti'nin mirasçısı olduğu hususunda görüş sahibidir.",
-      "Büyük Bulgar Devleti'nin mirasçısı olduğu hususunda görüş sahibidir.",
-      "Büyük Hun Devleti'nin mirasçısı olduğu hususunda görüş sahibidir.",
-      "Büyük Bulgar Devleti'nin mirasçısı olduğu hususunda görüş sahibidir.",
-      "Herhangi bir devletin mirasçısı olduğu hususunda görüş sahibidir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu görüşe sahip olan tarihçi olan Mahmud Kaşgari'nin görüşüne dayanmaktadır. Göktürkler'in Büyük Hun Devleti'nin mirasçısı olduğu hususunda görüş sahibidir."
-    },
-    {
      "soru": "İslamiyet öncesi Türk tarihi ile ilgili olarak 'Soyadı' kavramının ilk olarak hangi Türk devletinde kullanıldığı hususunda hangi görüşe sahip olan tarihçi vardır?",
      "secenekler": [
       "Büyük Hun Devleti'nde kullanılmıştır.",
@@ -1319,18 +1307,6 @@
      "aciklama": "Bu görüşe sahip olan tarihçi olan Mahmud Kaşgari'nin görüşüne dayanmaktadır. Göktürk Devleti'nde kullanılmıştır."
     },
     {
-     "soru": "İslamiyet öncesi Türk tarihi ile ilgili olarak 'Türklerin' hangi coğrafi bölgede ilk olarak yerleşik hayata geçtikleri hususunda hangi görüşe sahip olan tarihçi vardır?",
-     "secenekler": [
-      "Orta Asya'da yerleşik hayata geçtikleri hususunda görüş sahibidir.",
-      "Kuzey Asya'da yerleşik hayata geçtikleri hususunda görüş sahibidir.",
-      "Orta Asya'da yerleşik hayata geçtikleri hususunda görüş sahibidir.",
-      "Kuzey Asya'da yerleşik hayata geçtikleri hususunda görüş sahibidir.",
-      "Herhangi bir coğrafi bölgede yerleşik hayata geçmemişlerdir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu görüşe sahip olan tarihçi olan Mahmud Kaşgari'nin görüşüne dayanmaktadır. Orta Asya'da yerleşik hayata geçtikleri hususunda görüş sahibidir."
-    },
-    {
      "soru": "İslamiyet öncesi Türk tarihi hakkında aşağıdakilerden hangisi doğrudur?",
      "secenekler": [
       "Türkler, İslamiyet'ten önce Hristiyanlık dinini kabul etmişlerdir.",
@@ -1341,18 +1317,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Doğru, Şamanizm Türkler tarafından uzun zamandır kabul edilmiştir."
-    },
-    {
-     "soru": "Türklerin ilk yerleşik yerleri hangileridir?",
-     "secenekler": [
-      "Kızıl İrem, Aşkabat, Söğüt",
-      "Söğüt, Kızıl İrem, Aşkabat, Eskişehir",
-      "Kızıl İrem, Aşkabat, Söğüt",
-      "Eskişehir, Söğüt, Kızıl İrem, Aşkabat",
-      "Söğüt, Eskişehir, Kızıl İrem, Aşkabat"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kızıl İrem, Aşkabat ve Söğüt, Türklerin ilk yerleşik yerleri olarak kabul edilir."
     },
     {
      "soru": "Türklerin ilk yerleşik yerlerinin hangi bölgede yer aldığına göre sınıflandırılır?",
@@ -1499,18 +1463,6 @@
      "aciklama": "Doğru, Türklerin Selçuklular'ın izlediği göç rotasıdır."
     },
     {
-     "soru": "Türklerin, Osmanlıların izlediği yönetim şeklidir?",
-     "secenekler": [
-      "Monarşi",
-      "Araştırma",
-      "Demokrasi",
-      "Monarşi",
-      "Feodalizm"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru, Türklerin Osmanlıların izlediği yönetim şeklidir."
-    },
-    {
      "soru": "İslamiyet öncesi Türk tarihinin ilk dönemlerinden biri olan Göktürklerin hangi kabileye bağlıydı?",
      "secenekler": [
       "Uygar",
@@ -1607,18 +1559,6 @@
      "aciklama": "Doğru cevaptır."
     },
     {
-     "soru": "İslamiyet öncesi Türk tarihi boyunca en önemli Türk devletlerinden biri olan Göktürk Devleti'nin Kuruluşu hangi tarihte gerçekleşmiştir?",
-     "secenekler": [
-      "552-553 yılları arasında",
-      "552-553 yılları arasında değil, 552-576 yılları arasında",
-      "552-553 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil",
-      "552-553 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil",
-      "552-553 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil, 552-576 yılları arasında değil"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "552-553 yılları arasında Göktürk Devleti'nin kuruluş yılı olabileceği içindir."
-    },
-    {
      "soru": "Göktürkler hangi dini kabul etmiştir?",
      "secenekler": [
       "Budizm",
@@ -1643,18 +1583,6 @@
      "aciklama": "Bilge Kağan Göktürklerin en önemli merkezi idi. Bu nedenle E seçeneği doğru cevaptır."
     },
     {
-     "soru": "Göktürklerin son lideri kimdi?",
-     "secenekler": [
-      "Bilge Kağan",
-      "Kutlug",
-      "Yollıg",
-      "Kutlug",
-      "Kutlug"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Yollıg Göktürklerin son lideri idi. Bu nedenle C seçeneği doğru cevaptır."
-    },
-    {
      "soru": "Göktürklerin en önemli merkezi hangi coğrafi bölgede bulunmaktaydı?",
      "secenekler": [
       "Orta Asya",
@@ -1665,30 +1593,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Göktürklerin en önemli merkezi Orta Asya'da bulunmaktaydı. Bu nedenle A seçeneği doğru cevaptır."
-    },
-    {
-     "soru": "Göktürklerin en önemli dini ritüeli kimdi?",
-     "secenekler": [
-      "Tapınak",
-      "Sütun",
-      "Kutlama",
-      "Sürü",
-      "Tapınak"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Kutlama Göktürklerin en önemli dini ritüeli idi. Bu nedenle C seçeneği doğru cevaptır."
-    },
-    {
-     "soru": "Göktürklerin en önemli savaş aracı kimdi?",
-     "secenekler": [
-      "At",
-      "Savaş Aracı",
-      "Savaş Arabası",
-      "Savaş Atı",
-      "At"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Savaş Arabası Göktürklerin en önemli savaş aracı idi. Bu nedenle C seçeneği doğru cevaptır."
     },
     {
      "soru": "İslamiyet öncesinde Türk devletlerinin en güçlü devleti kimdi?",
@@ -5405,18 +5309,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Osmanlı ordusunun yenilikçi yapısı, Osmanlı Devleti'nin yükselmesinde önemli bir faktör oldu."
-    },
-    {
-     "soru": "Osmanlı Devleti'nin yükselmesinde en önemli faktörler nelerdir?",
-     "secenekler": [
-      "Ordu ve devlet yönetiminin yenilikçi yapısı, iç siyasi istikrar ve dış politikadaki kararlılık",
-      "Ordu ve devlet yönetiminin yenilikçi yapısı, iç siyasi istikrar ve dış politikadaki kararlılık",
-      "Osmanlı ordusunun yenilikçi yapısı, iç siyasi istikrar ve dış politikadaki kararlılık",
-      "Osmanlı ordusunun yenilikçi yapısı, iç siyasi istikrar",
-      "Osmanlı Devleti'nin iç siyasi istikrarı ve dış politikadaki kararlılık"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru faktörleri içerir."
     },
     {
      "soru": "Osmanlı İmparatorluğu'nun kuruluşunda önemli bir rol oynayan Selçuklu Sultanı kimdir?",
@@ -14101,18 +13993,6 @@
      "aciklama": "Müttefikler, I. Dünya Savaşı'nda çar'ın düşmanı olan taraf idi. Bu, savaşın temel nedeni olan imparatorluğun genişlemesine karşı olan ülkelerin bir araya gelmesiydi."
     },
     {
-     "soru": "II. Dünya Savaşı'nda Mihver Devletleri'ni oluşturan ülkeler arasında hangi ülkeler yoktu?",
-     "secenekler": [
-      "Almanya, İtalya, Japonya ve Bulgaristan",
-      "Almanya, İtalya, Japonya ve Macaristan",
-      "Almanya, İtalya, Japonya ve Avusturya-Macaristan İmparatorluğu",
-      "Almanya, İtalya, Japonya ve Romanya",
-      "Almanya, İtalya, Japonya ve Bulgaristan"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Almanya, İtalya, Japonya ve Romanya, II. Dünya Savaşı'nda Mihver Devletleri'ni oluşturan ülkeler değildi. Bu nedenlerle, bu seçeneği seçen, savaşın temel nedenlerini ve tarafa ait bilgileri yeterince bilmelidir."
-    },
-    {
      "soru": "Tarih Boyunca en uzun süreli imparatorluk hangisi olmuştur?",
      "secenekler": [
       "Romalılar İmparatorluğu",
@@ -15773,18 +15653,6 @@
      "aciklama": "Haklı olan seçenek. Osman Bey, Osmanlı İmparatorluğu'nun kurucusudur."
     },
     {
-     "soru": "Tıp Biliminin gelişimine en büyük katkıyı sağlayan Türk Bilim Adamı kimdir?",
-     "secenekler": [
-      "İbn-i Sina",
-      "İbn-i Haldun",
-      "İbn-i Rüşd",
-      "İbn-i Hacer",
-      "İbn-i Sina"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Haklı olan seçenek. İbn-i Sina, Tıp Biliminin gelişimine en büyük katkıyı sağlayan Türk Bilim Adamıdır."
-    },
-    {
      "soru": "Türkler, İslam'ı kabul etmeden önce hangi medeniyete mensuptular?",
      "secenekler": [
       "Fars",
@@ -17395,18 +17263,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Türkiye Cumhuriyeti'nin kurulması, Türk Kurtuluş Savaşı'nın en önemli sonucu ve amaçlarından biridir."
-    },
-    {
-     "soru": "1923 yılında Türkiye Cumhuriyeti'nin ilk anayasası nedir?",
-     "secenekler": [
-      "Lozan Antlaşması",
-      "Seyh Süreyya Anayasası",
-      "Anayasa Hakkında 1924 Kanunu",
-      "İlk Anayasa Hakkında 1928 Kanunu",
-      "Seyh Süreyya Anayasası"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Seyh Süreyya Anayasası, Türkiye Cumhuriyeti'nin ilk anayasası ve 1924 yılında kabul edilmiştir."
     },
     {
      "soru": "Türkiye Cumhuriyeti'nin kuruluşunda en önemli faktör neydi?",
@@ -19867,18 +19723,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Doğru. Anadolu Selçuklu Devleti'nin sosyal yapısı kölelik, eşitsizlik ve sınıf ayrımı özelliği taşır."
-    },
-    {
-     "soru": "Anadolu Selçuklu Devleti'nin askeri sistemi hangi özellikleri taşır?",
-     "secenekler": [
-      "Ordunun disiplini, savaş stratejisi ve askeri eğitim",
-      "Ordunun disiplini, savaş taktikleri ve askeri eğitim",
-      "Ordunun disiplini, savaş stratejisi ve askeri taktikler",
-      "Ordunun disiplini, savaş taktikleri ve askeri eğitim",
-      "Ordunun disiplini, savaş stratejisi ve askeri eğitim"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru. Anadolu Selçuklu Devleti'nin askeri sistemi ordunun disiplini, savaş stratejisi ve askeri eğitim özellikleri taşır."
     },
     {
      "soru": "Anadolu Selçuklu Devleti'nin en önemli kültür merkezi nedir?",
@@ -23384,18 +23228,6 @@
      "aciklama": "Osmanlı İmparatorluğu'nun mutlak monarchi bir devlet olarak yönetildiğini bilirler. Bu nedenle doğru cevaptır."
     },
     {
-     "soru": "20. Yüzyılın başlarında Osmanlı İmparatorluğu'nun uluslararası ilişkileri hakkında neler söylenebilir?",
-     "secenekler": [
-      "Osmanlı İmparatorluğu, uluslararası ilişkilerde aktif bir rol oynamıyordu.",
-      "Osmanlı İmparatorluğu, uluslararası ilişkilerde aktif bir rol oynuyordu.",
-      "Osmanlı İmparatorluğu, uluslararası ilişkilerde pasif bir rol oynamıyordu.",
-      "Osmanlı İmparatorluğu, uluslararası ilişkilerde sınırlı bir rol oynamıyordu.",
-      "Osmanlı İmparatorluğu, uluslararası ilişkilerde aktif bir rol oynamıyordu."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Osmanlı İmparatorluğu, uluslararası ilişkilerde aktif bir rol oynuyordu. Doğru cevaptır."
-    },
-    {
      "soru": "20. yüzyılın başında Osmanlı Devleti'nin durumunu özetleyen bir ifade aşağıda verilmiştir. Bu ifade doğruysa (A), yanlış ise (B, C, D, E) seçenekleri arasında doğru olanı seçiniz.",
      "secenekler": [
       "Osmanlı Devleti, 20. yüzyılın başında bir imparatorluk olarak güçlü ve zengin bir devletti.",
@@ -23466,18 +23298,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Büyük ihtimalle seçmiş olabilir çünkü Osmanlı Devleti'nin bu dönemde Birinci Dünya Savaşı'ndan etkilenmiştir. Bu durum doğru bir tanımlamadır."
-    },
-    {
-     "soru": "Osmanlı Devleti'nin 20. yüzyılın başında hangi siyasi partinin etkisi vardı?",
-     "secenekler": [
-      "İttihat ve Terakki Partisi",
-      "Cumhuriyetçi Fırka",
-      "Osmanlı İttihadı ve Terakki Partisi",
-      "Osmanlı İttihat ve Terakki Partisi",
-      "Osmanlı İttihat ve Terakki Partisi"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle seçmiş olabilir çünkü Osmanlı Devleti'nin bu dönemde İttihat ve Terakki Partisi'nin etkisi vardı. Bu durum doğru bir tanımlamadır."
     },
     {
      "soru": "20. yüzyılın başında Osmanlı İmparatorluğu'nun en büyük sorunu neydi?",

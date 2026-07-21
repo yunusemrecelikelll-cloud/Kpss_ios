@@ -56,6 +56,23 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
   bool _soloLoading = true;
 
+  // ── SOLO akışı ────────────────────────────────────────────────────────────
+  // Solo'da rakip YOKTUR; bu yüzden soru indeksi zamandan DEĞİL, kendi
+  // sayacından ilerler — kullanıcı bir şık seçer seçmez sonraki soruya geçilir.
+  // Online'da ise senkron şart olduğu için indeks hâlâ `startedAt` üzerinden
+  // hesaplanır (herkes aynı anda aynı soruyu görmeli).
+  int _soloIndex = 0;
+  // İçinde bulunulan solo sorusunun başlangıç anı: süre HER SORU İÇİN baştan
+  // işlesin ve hız bonusu bu ana göre hesaplansın diye ayrı tutulur.
+  DateTime? _soloQuestionStart;
+  Timer? _soloAdvanceTimer; // doğru/yanlış geri bildirimi sonrası otomatik geçiş
+  bool _soloAdvancing = false; // geri bildirim sürerken yeni dokunuşlar yok sayılır
+
+  // NOT — "Önceki soru" butonu bilerek EKLENMEDİ: cevap verildiği anda puan
+  // işleniyor (solo'da hız bonusu, online'da Firestore'a `submitAnswer`), geri
+  // dönüp cevabı değiştirmek hem puanı hem de çok oyunculu senkronu bozardı.
+  // Cevaplanan soruların özeti zaten sonuç ekranında gösteriliyor.
+
   // Kendi cevap durumu.
   final Map<int, int> _mySelections = {}; // soruIndex -> seçilen şık
   int _soloScore = 0;
@@ -108,6 +125,8 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
       _total = _questions.length;
       _perQ = 30;
       _startedAt = DateTime.now();
+      _soloIndex = 0;
+      _soloQuestionStart = DateTime.now();
       _soloLoading = false;
     });
   }
@@ -116,10 +135,14 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   void dispose() {
     _storage.addGameTimeSpent(kDuelloGameId, DateTime.now().difference(_sessionStart));
     _ticker?.cancel();
+    _soloAdvanceTimer?.cancel();
     super.dispose();
   }
 
   int get _currentIndex {
+    // Solo: kendi sayacı (cevap verince / süre dolunca ilerler).
+    if (widget.isSolo) return _soloIndex;
+    // Online: senkron için indeks TAMAMEN zamandan hesaplanır — DOKUNMA.
     if (_startedAt == null) return 0;
     final elapsedMs = _now.difference(_startedAt!).inMilliseconds;
     if (elapsedMs < 0) return 0;
@@ -127,6 +150,12 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   }
 
   int _remainingMs(int index) {
+    if (widget.isSolo) {
+      // Solo'da geri sayım, o sorunun kendi başlangıcından itibaren işler.
+      final start = _soloQuestionStart;
+      if (start == null) return _perQ * 1000;
+      return start.add(Duration(seconds: _perQ)).difference(_now).inMilliseconds;
+    }
     if (_startedAt == null) return _perQ * 1000;
     final deadline = _startedAt!.add(Duration(milliseconds: (index + 1) * _perQ * 1000));
     return deadline.difference(_now).inMilliseconds;
@@ -141,6 +170,12 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   void _onTick() {
     if (!mounted) return;
     _now = DateTime.now();
+
+    if (widget.isSolo) {
+      _soloTick();
+      return;
+    }
+
     final idx = _currentIndex;
 
     // Oyun bitti mi?
@@ -159,6 +194,48 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
       }
     }
     setState(() {});
+  }
+
+  /// Solo tick: indeks zamandan ilerlemez, ama SÜRE SINIRI aynen geçerlidir —
+  /// 30 saniye dolduğunda soru cevapsız sayılıp otomatik geçilir.
+  void _soloTick() {
+    if (_soloLoading || _total <= 0) {
+      setState(() {});
+      return;
+    }
+    if (_soloIndex >= _total) {
+      _handleFinish();
+      setState(() {});
+      return;
+    }
+    // Geri bildirim gösterilirken zaman aşımı devreye girmesin; zaten
+    // _soloAdvanceTimer birazdan geçişi yapacak.
+    if (!_soloAdvancing && _remainingMs(_soloIndex) <= 0) {
+      _goToNextSolo();
+      return;
+    }
+    setState(() {});
+  }
+
+  /// Solo'da sonraki soruya geçer. Hem cevap sonrası geri bildirim timer'ından,
+  /// hem süre dolduğunda, hem de "Sonraki" butonundan çağrılır. Cevap
+  /// verilmemişse o soru cevapsız sayılır (_mySelections'a hiçbir şey yazılmaz).
+  void _goToNextSolo() {
+    _soloAdvanceTimer?.cancel();
+    _soloAdvanceTimer = null;
+    _soloAdvancing = false;
+    if (!mounted) return;
+    final next = _soloIndex + 1;
+    if (next >= _total) {
+      setState(() => _soloIndex = next);
+      _handleFinish();
+      return;
+    }
+    setState(() {
+      _soloIndex = next;
+      // Yeni sorunun 30 saniyesi SIFIRDAN başlar.
+      _soloQuestionStart = DateTime.now();
+    });
   }
 
   void _handleFinish() {
@@ -185,11 +262,16 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     final idx = _currentIndex;
     if (idx >= _total || idx >= _questions.length) return;
     if (_mySelections.containsKey(idx)) return; // zaten cevaplandı
+    if (widget.isSolo && _soloAdvancing) return; // geri bildirim sürerken dokunma yok
     if (!widget.isSolo && _amEliminated) return; // izleyici cevap veremez
 
     final q = _questions[idx];
     final correct = optionIdx == q.dogruIndex;
-    final questionStart = _startedAt!.add(Duration(milliseconds: idx * _perQ * 1000));
+    // Geçen süre: solo'da o sorunun KENDİ başlangıcına göre, online'da
+    // `startedAt + idx * perQ` senkron başlangıcına göre hesaplanır.
+    final DateTime questionStart = widget.isSolo
+        ? (_soloQuestionStart ?? _now)
+        : _startedAt!.add(Duration(milliseconds: idx * _perQ * 1000));
     final elapsedMs = _now.difference(questionStart).inMilliseconds.clamp(0, _perQ * 1000);
 
     setState(() => _mySelections[idx] = optionIdx);
@@ -198,10 +280,15 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
     if (widget.isSolo) {
       if (correct) {
+        // Hız bonusu KORUNDU: 100 puan + kalan saniye başına 3 puan.
         final bonus = ((_perQ * 1000 - elapsedMs) / 1000 * 3).round();
         _soloScore += 100 + bonus;
         _soloCorrect += 1;
       }
+      // Kısa doğru/yanlış geri bildirimi, ardından ANINDA sonraki soru.
+      _soloAdvancing = true;
+      _soloAdvanceTimer?.cancel();
+      _soloAdvanceTimer = Timer(const Duration(milliseconds: 700), _goToNextSolo);
     } else {
       _duel.submitAnswer(widget.roomId!, idx, optionIdx, elapsedMs, q.dogruIndex, _perQ);
     }
@@ -375,11 +462,42 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                         letter: i < kQuickModeOptionLetters.length ? kQuickModeOptionLetters[i] : '${i + 1}',
                         text: q.secenekler[i],
                         state: _optionState(answered, mySel, i, q.dogruIndex),
-                        onTap: (answered || eliminated) ? null : () => _answer(i),
+                        onTap: (answered || eliminated || (widget.isSolo && _soloAdvancing))
+                            ? null
+                            : () => _answer(i),
                       ),
                     if (answered) ...[
                       const SizedBox(height: 12),
-                      _AnswerFeedback(question: q, mySelection: mySel!, colors: c),
+                      _AnswerFeedback(
+                        question: q,
+                        mySelection: mySel!,
+                        colors: c,
+                        // "Sonraki soru bekleniyor" notu SADECE online'da anlamlı;
+                        // solo'da zaten anında geçiliyor.
+                        showWaitingNote: !widget.isSolo,
+                      ),
+                    ],
+                    // Online: cevap verildikten sonra ekran "donmuş" görünmesin —
+                    // cevabın kaydedildiği + rakipler için beklendiği net yazılır.
+                    if (answered && !widget.isSolo) ...[
+                      const SizedBox(height: 8),
+                      _WaitingForNextPanel(
+                        remainingSec: remainingSec,
+                        progress: progress,
+                        colors: c,
+                      ),
+                    ],
+                    // Solo: geri bildirimi beklemeden ilerleyebilmek için manuel
+                    // geçiş. Cevap verilmemişse soru cevapsız sayılarak geçilir.
+                    if (widget.isSolo) ...[
+                      const SizedBox(height: 12),
+                      DsPillButton(
+                        label: answered ? 'Sonraki' : 'Soruyu Geç',
+                        color: answered ? c.mint : c.textDim,
+                        filled: answered,
+                        trailingIcon: Icons.arrow_forward_rounded,
+                        onPressed: _goToNextSolo,
+                      ),
                     ],
                     const SizedBox(height: 16),
                     if (!widget.isSolo) _LiveLeaderboard(players: _players, myUid: _duel.currentUid, colors: c),
@@ -516,7 +634,13 @@ class _AnswerFeedback extends StatelessWidget {
   final Question question;
   final int mySelection;
   final KpssColors colors;
-  const _AnswerFeedback({required this.question, required this.mySelection, required this.colors});
+  final bool showWaitingNote;
+  const _AnswerFeedback({
+    required this.question,
+    required this.mySelection,
+    required this.colors,
+    this.showWaitingNote = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -539,9 +663,68 @@ class _AnswerFeedback extends StatelessWidget {
             Text(aciklama,
                 style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim)),
           ],
+          if (showWaitingNote) ...[
+            const SizedBox(height: 6),
+            Text('Sonraki soru bekleniyor...',
+                style: TextStyle(fontSize: 11, color: c.textFaint)),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+/// ÇOK OYUNCULU bekleme paneli: cevap verildikten sonra tüm oyuncular aynı
+/// anda ilerlediği için soru hemen değişmez. Bu panel, "ekran takıldı" hissini
+/// önlemek için cevabın kaydedildiğini ve sonraki soruya kaç saniye kaldığını
+/// açıkça gösterir. Cevap VERİLMEDİYSE gösterilmez — normal soru ekranı durur.
+class _WaitingForNextPanel extends StatelessWidget {
+  final int remainingSec;
+  final double progress; // 1 → süre yeni başladı, 0 → süre bitti
+  final KpssColors colors;
+  const _WaitingForNextPanel({
+    required this.remainingSec,
+    required this.progress,
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    return DsCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.cloud_done_outlined, size: 16, color: c.success),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text('Cevabın kaydedildi',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 13, color: c.success)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text('Sonraki soru: $remainingSec sn',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontWeight: FontWeight.w800, fontSize: 12.5, color: c.text)),
           const SizedBox(height: 6),
-          Text('Sonraki soru bekleniyor...',
-              style: TextStyle(fontSize: 11, color: c.textFaint)),
+          DsProgressBar(
+            value: progress,
+            color: progress < 0.3 ? c.danger : c.violetL,
+          ),
+          const SizedBox(height: 6),
+          Text('Tüm oyuncular aynı anda ilerler — rakipler bekleniyor.',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 11, height: 1.4, color: c.textFaint)),
         ],
       ),
     );

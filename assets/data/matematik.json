@@ -1271,18 +1271,6 @@
      "aciklama": "Bu koşul, bir sayının 10'luk basamağının 5'e eşit ve 10'dan büyük olması için gerekli bir koşuldur."
     },
     {
-     "soru": "Bir sayının 10'luk basamağının 5'e eşit olmasını gerektiren koşul ne dir?",
-     "secenekler": [
-      "Sayının 10 ile 19 arasında olması",
-      "Sayının 50 ile 99 arasında olması",
-      "Sayının 100 ile 199 arasında olması",
-      "Sayının son iki basamağının 5 ile 9 arasında olması",
-      "Sayının son iki basamağının 5 ile 9 arasında olması"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu koşul, bir sayının 10'luk basamağının 5'e eşit olması için gerekli bir koşuldur."
-    },
-    {
      "soru": "Bir sayının son iki basamağının 5 ile 9 arasında olması için hangi koşulun yerine getirilmesi gerekir?",
      "secenekler": [
       "Sayının 50 ile 99 arasında olması",
@@ -1439,7 +1427,7 @@
      "aciklama": "Sayılar, 0'dan başlayarak 9'ya kadar olan sayılara adı verilir. Doğru cevabı seçenler, bu tanımını bilirler."
     },
     {
-     "soru": "1. Bir sayının iki basamağından birini silmek suretiyle elde edilen yeni sayıların toplamı 10'dur. Bu yeni sayılar 4 ve 6'dır. \n   Birinci basamağını silmek suretiyle elde edilen yeni sayı 4tür. \n   İkinci basamağını silmek suretiyle elde edilen yeni sayı da 6'dır. \n   O halde ilk sayının 4 ve 6'nın çarpımı olan 24'ün 10'dan küçük bir katı olması gerekir.",
+     "soru": "1. Bir sayının iki basamağından birini silmek suretiyle elde edilen yeni sayıların toplamı 10'dur. Bu yeni sayılar 4 ve 6'dır. Birinci basamağını silmek suretiyle elde edilen yeni sayı 4tür. İkinci basamağını silmek suretiyle elde edilen yeni sayı da 6'dır. O halde ilk sayının 4 ve 6'nın çarpımı olan 24'ün 10'dan küçük bir katı olması gerekir.",
      "secenekler": [
       "24",
       "12",
@@ -1449,18 +1437,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Kullanıcı, 12'nin 4 ve 6'nın çarpımının 10'dan küçük bir katının olabileceğini düşünmüş olabilir."
-    },
-    {
-     "soru": "4. Bir sayının iki basamağından birini silmek suretiyle elde edilen yeni sayıların toplamı 10'dur. \n   Birinci basamağını silmek suretiyle elde edilen yeni sayı 2'dir. \n   İkinci basamağını silmek suretiyle elde edilen yeni sayı 8'dir. \n   O halde ilk sayının 2 ve 8'nin çarpımı olan 16'ın 10'dan küçük bir katı olması gerekir.",
-     "secenekler": [
-      "16",
-      "12",
-      "20",
-      "16",
-      "36"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcı, 12'nin 2 ve 8'nin çarpımının 10'dan küçük bir katının olabileceğini düşünmüş olabilir."
     },
     {
      "soru": "Sayıların basamaklarındaki yerlerini ve sıralarını doğru belirlemek için hangi sayının basamağındaki yerine göre hangi rakamın yazılacağını bilmek gerekir?",
@@ -1583,18 +1559,6 @@
      "aciklama": "Doğru cevap. 6 rakamının basamak değeri birler basamağındadır ve basamak değeri 6'dır."
     },
     {
-     "soru": "12345 sayısının basamak değerlerini bulunuz.",
-     "secenekler": [
-      "1-On, 2-On, 3-Yüz, 4-Onbin, 5-Yüzon",
-      "1-Yüzon, 2-Onbin, 3-Yüz, 4-On, 5-Bin",
-      "1-Yüzon, 2-Onbin, 3-Yüz, 4-On, 5-Bir",
-      "1-Yüzon, 2-Onbin, 3-Yüz, 4-Bin, 5-On",
-      "1-Yüzon, 2-Onbin, 3-Yüz, 4-On, 5-Bir"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Doğru cevap. 1 rakamının basamak değeri yüzon, 2 rakamının basamak değeri onbin, 3 rakamının basamak değeri yüz, 4 rakamının basamak değeri on, 5 rakamının basamak değeri birdir."
-    },
-    {
      "soru": "1. Sayıların 10'un katlarından 15 daha büyük olan sayılar 10'un katlarından 10 daha büyük olan sayılar ile aynı katlarındadır. Bu duruma göre 10'un 50 katlarından 15 daha büyük olan sayının katsayısı ne olur?",
      "secenekler": [
       "55",
@@ -1605,30 +1569,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçenek doğru çünkü 10'un 50 katlarından 15 daha büyük olan sayı 10'un katsayısı 50 + 15 = 65 olmalıdır. Ancak bu 10'un 6.5 katlarından 10 daha büyük olacağı için katsayısı 65 olacaktır."
-    },
-    {
-     "soru": "2. 10'un 45 katlarından 5 daha büyük olan sayının 10'un kaç katı olduğunu bulmak için yapmamız gereken işlemdir?",
-     "secenekler": [
-      "Bu sayıyı bulmak için 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 50",
-      "Bu sayıyı bulmak için 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 5",
-      "Bu sayıyı bulmak için 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 50",
-      "Bu sayıyı bulmak için 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 50",
-      "Bu sayıyı bulmak için 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 50"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü 10'un 45 katlarından 5 daha büyük olan sayının 10'un kaç katı olduğunu bulmak için yapmamız gereken işlemdir: 45 + 5 = 50 ve 10'un 50 katı olan sayıyı bulmak için 10 x 50 = 500'den 10'un katsayısını bulmak için 500/10 = 50"
-    },
-    {
-     "soru": "1 ile 10 arasındaki en büyük tam sayı 9'dur. 10'un üzerinde bir tam sayı yoktur.",
-     "secenekler": [
-      "10'dan küçük bir tam sayıdır.",
-      "10'dan büyük bir tam sayıdır.",
-      "10'dan küçük bir ondalık sayıdır.",
-      "10'un katlarından biridir.",
-      "10'un katlarından biridir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenler doğru tam sayının tanımlamış olabileceğine dair bir algıya sahip olabilirler."
     },
     {
      "soru": "Bir sayının 10'un katlarından biri 10'dan büyük ise 10'dan büyük bir tam sayının en küçük değeri nedir?",
@@ -1725,30 +1665,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu öğrenci, 1000'in 10'un 100 kere çarpması gerektiğini düşünürse, 100000'i 1000'in 10'un katı olarak kabul edecektir, ancak bu doğru değildir."
-    },
-    {
-     "soru": "1 ile 100 arasında olan bir tam sayıdan 20 daha küçük bir tam sayı seçin.",
-     "secenekler": [
-      "80",
-      "20",
-      "80",
-      "100",
-      "20"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru bir seçimdir."
-    },
-    {
-     "soru": "Bir sayının katlarından 5 olan bir sayıyı bulmak için, 5 ile sayının katlarını bulan bir işlem kullanın.",
-     "secenekler": [
-      "5 ile sayının katlarını bulmak 5 ile sayının katlarını bulmak için bir işlem değildir.",
-      "5 ile sayının katlarını bulmak 5 ile sayının katlarını bulmak için bir işlem değildir.",
-      "5 ile sayının katlarını bulmak 5 ile sayının katlarını bulmak için bir işlem değildir.",
-      "5 ile sayının katlarını bulmak 5 ile sayının katlarını bulmak için bir işlem değildir.",
-      "5 ile sayının katlarını bulmak 5 ile sayının katlarını bulmak için bir işlem değildir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru bir seçimdir."
     },
     {
      "soru": "(-3) × 3 + (-2) × 2 işleminin sonucu kaçtır?",
@@ -4748,30 +4664,6 @@
      "aciklama": "Doğru cevabı seçmek için EBOB ve EKOK'un ne olduğunu bilmemiz gerekiyor. EBOB, iki sayının en ufak ortak katsayıdır, EKOK ise en büyüklük ortak katsayıdır. Bu nedenle, EBOB'u bulmak için en ufak ortak katsayı yöntemini, EKOK'u bulmak için ise en büyüklük ortak katsayı yöntemini kullanırız."
     },
     {
-     "soru": "3, 4 ve 6 sayısının EBOB'u ve EKOK'u nedir?",
-     "secenekler": [
-      "EBOB: 6, EKOK: 12",
-      "EBOB: 12, EKOK: 24",
-      "EBOB: 24, EKOK: 12",
-      "EBOB: 12, EKOK: 24",
-      "EBOB: 6, EKOK: 24"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Doğru cevabı seçmek için EBOB ve EKOK'un ne olduğunu bilmemiz gerekiyor. EBOB, iki sayının en ufak ortak katsayıdır, EKOK ise en büyüklük ortak katsayıdır. Bu nedenle, 3, 4 ve 6 sayısının EBOB'u 12, EKOK'u ise 12'dir."
-    },
-    {
-     "soru": "Bir sayının EBOB'u ile EKOK'u arasındaki ilişki nedir?",
-     "secenekler": [
-      "EBOB * EKOK = Üslü ifade ile ifade edilebilecek bir sayıya eşittir.",
-      "EBOB + EKOK = Üslü ifade ile ifade edilebilecek bir sayıya eşittir.",
-      "EBOB * EKOK = Üslü ifade ile ifade edilebilecek bir sayıya eşittir.",
-      "EBOB - EKOK = Üslü ifade ile ifade edilebilecek bir sayıya eşittir.",
-      "EBOB / EKOK = Üslü ifade ile ifade edilebilecek bir sayıya eşittir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru ilişkiyi ifade etmektedir."
-    },
-    {
      "soru": "Bir sayının EBOB'u 12, EKOK'u 180 ise o sayının en büyük ortak böleni nedir?",
      "secenekler": [
       "6",
@@ -4794,30 +4686,6 @@
      ],
      "dogruIndex": 4,
      "aciklama": "Bu sayıların en küçük ortak katı 2*3*5=30'dır."
-    },
-    {
-     "soru": "3, 4 ve 6 sayılarının en büyük ortak böleni (EBOB) nedir?",
-     "secenekler": [
-      "1",
-      "2",
-      "3",
-      "6",
-      "2"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu sayıların en büyük ortak böleni 2'dir, çünkü 3, 4 ve 6'nın en büyük ortak böleni 2'dir."
-    },
-    {
-     "soru": "Bir sayının bölenleri nelerdir?",
-     "secenekler": [
-      "Bölenleri tek sayılardır.",
-      "Bölenleri çift sayılardır.",
-      "Bölenleri 1 ve kendisi dir.",
-      "Bölenleri 1, -1, 2 ve -2 dir.",
-      "Bölenleri 1 ve kendisi dir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu doğru cevaptır, çünkü bir sayının bölenleri 1 ve kendisi dir."
     },
     {
      "soru": "Bir sayının bölenlerini bulmak için hangi yöntemi kullanırız?",
@@ -4952,18 +4820,6 @@
      "aciklama": "Zaten A ve B'nin EBOB'u ile C ve D'nin EBOB'ını bulmak, hem A ve B'nin hem de C ve D'nin EBOB'larını bulmaya eşdeğerdir. Bu nedenle A seçeneği en mantıklı seçenektir."
     },
     {
-     "soru": "A, B, C ve D sayısının EBOB'u 60'dır. A ve B'nin EBOB'u 12'dir. C ve D'nin EBOB'u 15'tir. EBOB'u bulmak için aşağıdaki işlemleri yapın:",
-     "secenekler": [
-      "A ve B'nin EBOB'ını bulmak ve C ve D'nin EBOB'ını bulmak",
-      "A, B, C ve D'nin EBOB'ını bulmak",
-      "A, B, C ve D'nin EBOB'ını bulmak",
-      "A ve D'nin EBOB'ını bulmak",
-      "B ve C'nin EBOB'ını bulmak"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "A, B, C ve D'nin EBOB'ını bulmak, hem A ve B'nin hem de C ve D'nin EBOB'ını bulmakla aynı anlama gelmektedir."
-    },
-    {
      "soru": "Bir sayının bölenleri 1 ve 6'dır. Bu sayının EBOB'u kaçtır?",
      "secenekler": [
       "1",
@@ -5012,18 +4868,6 @@
      "aciklama": "EBOB'un tanımı doğru."
     },
     {
-     "soru": "EBOB ve EKOK nedir?",
-     "secenekler": [
-      "EBOB ve EKOK, bölme ve çarpma işlemlerinin kesişim noktasıdır.",
-      "EBOB, en büyük ortak böleni; EKOK, en küçük ortak katını ifade eder.",
-      "EBOB, en küçük ortak katını; EKOK, en büyük ortak böleni ifade eder.",
-      "EBOB ve EKOK, bölme ve çarpma işlemlerinin kesişim noktası değildir.",
-      "EBOB ve EKOK, bölme ve çarpma işlemlerinin kesişim noktasıdır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru, çünkü EBOB en büyük ortak böleni; EKOK en küçük ortak katını ifade eder. Kullanıcılar, bu seçeneği seçmekle, EBOB ve EKOK'un tanımlarını doğru olarak algılayabilirler."
-    },
-    {
      "soru": "2 ve 3 sayılarının EBOB'u nedir?",
      "secenekler": [
       "1",
@@ -5034,18 +4878,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçenek doğru, çünkü 2 ve 3 sayılarının en büyük ortak böleni 1'dir. Kullanıcılar, bu seçeneği seçmekle, EBOB'un tanımlarını doğru olarak algılayabilirler."
-    },
-    {
-     "soru": "EBOB ve EKOK'un arasındaki ilişki nedir?",
-     "secenekler": [
-      "EBOB, EKOK'un tam katlarıdır.",
-      "EKOK, EBOB'un tam katlarıdır.",
-      "EBOB ve EKOK, aynı değerdir.",
-      "EBOB ve EKOK, birbirinin tam katlarıdır.",
-      "EBOB, EKOK'un tam katlarıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek doğru, çünkü EBOB ve EKOK, birbirinin tam katlarıdır. Kullanıcılar, bu seçeneği seçmekle, EBOB ve EKOK'un tanımlarını doğru olarak algılayabilirler."
     },
     {
      "soru": "8 ve 12 sayılarının EBOB'u kaçtır?",
@@ -7912,18 +7744,6 @@
      "aciklama": "Bu doğru cevap. Rasyonel sayının tam karekökü alındığında, 4/5 kaldığı için 4/5 * x = 3/7 * sqrt(x). Bu eşitliği çözebilirsiniz."
     },
     {
-     "soru": "Bir rasyonel sayının karesinin pozitif olması durumunda, o rasyonel sayının mutlaka pozitif mi yoksa negatif mi olduğunu belirten bir cümle yazın.",
-     "secenekler": [
-      "Rasyonel sayının karesinin pozitif olması, rasyonel sayının mutlaka pozitif olduğunu gösterir.",
-      "Rasyonel sayının karesinin pozitif olması, rasyonel sayının mutlaka negatif olduğunu gösterir.",
-      "Rasyonel sayının karesinin pozitif olması, rasyonel sayının pozitif veya negatif olabileceğini gösterir.",
-      "Rasyonel sayının karesinin pozitif olması, rasyonel sayının pozitif veya negatif olabileceğini gösterir.",
-      "Rasyonel sayının karesinin pozitif olması, rasyonel sayının mutlaka negatif olduğunu gösterir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Buna neden seçmiş olursunuz: Rasyonel sayının karesinin pozitif olması, rasyonel sayının pozitif veya negatif olabileceğini gösterir. Bu seçeneği seçen, rasyonel sayının karesinin pozitif olmasına rağmen pozitif veya negatif olabileceğini düşünmektedir."
-    },
-    {
      "soru": "Rasyonel sayılar ve ondalık kesirler konusundaki ilk soru",
      "secenekler": [
       "Aynı işlemin her iki tarafındaki rasyonel sayıları birbirine eşitleştirmek",
@@ -10525,18 +10345,6 @@
      "aciklama": "Ürün 10 gün içinde satıldığı için 3 TL kar payı ödenir."
     },
     {
-     "soru": "Bir bankadan 1 yıl için 10.000 TL borç aldığınızı düşünelim. Faiz oranı %10, yıllık basit faiz uygulandığını varsayalım. 1 yıl içinde ne kadar faiz ödeyeceksiniz?",
-     "secenekler": [
-      "1.000 TL",
-      "1.500 TL",
-      "2.000 TL",
-      "1.500 TL",
-      "1.000 TL"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Faiz oranı %10, yıllık basit faiz uygulandığı için 1.000 TL faiz ödenecektir."
-    },
-    {
      "soru": "Bir hesabta 5.000 TL var. Bu hesaba 2.000 TL eklenirse hesabın ne kadar olduğu ortaya çıkacaktır?",
      "secenekler": [
       "7.000 TL",
@@ -10585,18 +10393,6 @@
      "aciklama": "Kullanıcı, faiz oranını ve borç tutarını doğru olarak hesaplayabilir."
     },
     {
-     "soru": "Bir şirketin karı 500.000 TL'dir. Eğer şirket karını %15 artırsa yeni kar kaç TL olur?",
-     "secenekler": [
-      "575.000 TL",
-      "575.000 TL",
-      "575.000 TL",
-      "575.000 TL",
-      "575.000 TL"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı, karın %15 arttığını doğru olarak hesaplayabilir."
-    },
-    {
      "soru": "Bir yatırımcının 1000 TL'lik bir yatırım yaptığı ve 1 yıl içinde %10 kazancı olan bir projeye katıldı. Yatırımcı ne kadar para kazandı?",
      "secenekler": [
       "110 TL",
@@ -10607,30 +10403,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Kullanıcı, kazancı doğru olarak hesaplayabilir."
-    },
-    {
-     "soru": "Bir bankada bulunan 1000 TL'lik bir hesaba, 10% faiz oranıyla 6 ay süreyle faiz hesaplandı. Faiz hesaplamasının yapıldığı 6 aylık süre içinde, hesaptan 100 TL çekildi. Faiz hesaplamasının son 3 ayında, hesaptaki bakiye 500 TL'den az olmayacaktır. Faiz hesabı, son 3 ay için %8 faiz oranına göre yapılmıştır. Faiz hesabı, kalan 3 ay için %12 faiz oranına göre yapılmıştır. Hesapta bulunan 1000 TL'lik bakiye, faiz hesabı yapıldığı 6 aylık süre içinde herhangi bir şekilde değişmemiştir.",
-     "secenekler": [
-      "Faiz hesabının ilk 3 ayında, hesaptaki bakiye 500 TL'den az olacaktır.",
-      "Faiz hesabının son 3 ayında, hesaptaki bakiye 500 TL'den az olacaktır.",
-      "Faiz hesabının ilk 3 ayında, hesaptaki bakiye 500 TL'den az olmayacaktır.",
-      "Faiz hesabının ilk 3 ayında, hesaptaki bakiye 500 TL'den az olmayacaktır.",
-      "Faiz hesabının ilk 3 ayında, hesaptaki bakiye 500 TL'den az olacaktır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceğine dair açıklama... Hesaptaki bakiye son 3 ay için %8 faizle hesaplandı, ancak ilk 3 ay için %10 faizle hesaplandı. Bu nedenle, son 3 ay için bakiye 500 TL'den az olacaktır. Bu nedenle, doğru cevap B seçeneği olacaktır."
-    },
-    {
-     "soru": "Bir şirketin 10.000 TL'lik bir borcuna, 6 ay süreyle %10 faiz oranıyla faiz hesaplandı. Faiz hesaplamasının yapıldığı 6 aylık süre içinde, şirketin borcu 5.000 TL'ye düştü. Faiz hesabının ilk 3 ayında, şirketin borcu 10.000 TL'den az olmayacaktır. Faiz hesabının son 3 ayında, şirketin borcu 5.000 TL'den az olacaktır.",
-     "secenekler": [
-      "Faiz hesabının ilk 3 ayında, şirketin borcu 5.000 TL'ye düşecektir.",
-      "Faiz hesabının ilk 3 ayında, şirketin borcu 5.000 TL'ye düşmeyecektir.",
-      "Faiz hesabının son 3 ayında, şirketin borcu 5.000 TL'ye düşmeyecektir.",
-      "Faiz hesabının son 3 ayında, şirketin borcu 5.000 TL'ye düşmeyecektir.",
-      "Faiz hesabının son 3 ayında, şirketin borcu 5.000 TL'ye düşecektir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceğine dair açıklama... Hesaptaki faiz ilk 3 ay için %10 faizle hesaplandı, ancak son 3 ay için borcun 5.000 TL'ye düşeceği belirtilmiştir. Bu nedenle, doğru cevap B seçeneği olacaktır."
     },
     {
      "soru": "Bir malın orjinal fiyatı 200 TL'dir. %15 indirim uygulanmıştır. Malın indirimli fiyatı kaç TL'dir?",
@@ -10655,18 +10427,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Doğru, çünkü %20 kar payı hesaplanırken 500 TL'nin %20'si 100 TL'dir, toplam 500 + 100 = 600 TL olur."
-    },
-    {
-     "soru": "Bir malın 1000 TL'sı 5% faiz oranında 1 yıl için kira olarak kiraya verilir. Toplam faiz tutarı kaç TL'dir?",
-     "secenekler": [
-      "50 TL",
-      "50 TL",
-      "52,50 TL",
-      "55 TL",
-      "60 TL"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Kullanıcılar genellikle basit faiz hesabı yaparken, bir yılı 12'ye bölerek hesap yapabilirler ve bu nedenle doğru seçeneği seçerler."
     },
     {
      "soru": "Bir ürünün satış fiyatı 500 TL, indirim oranı %20'dir. Ürünün indirimli satış fiyatı kaç TL'dir?",
@@ -10751,42 +10511,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Vergi oranı doğru hesaplandı, vergi tutarını doğru buldular."
-    },
-    {
-     "soru": "Bir malın alındığı fiyat 500 TL, satıldığı fiyat 700 TL. Satıştan kazanılan karın %10'u ne kadardır?",
-     "secenekler": [
-      "70 TL",
-      "70 TL",
-      "70 TL",
-      "60 TL",
-      "70 TL"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen öğrenciler, satıştan elde edilen karın %10'ünü doğru olarak hesaplamış olabilirler."
-    },
-    {
-     "soru": "Bir bankanın mevduata ödediği faiz oranı %5'tir. 1000 TL'lik bir mevduat için ödenecek faiz ne kadardır?",
-     "secenekler": [
-      "50 TL",
-      "50 TL",
-      "50 TL",
-      "50 TL",
-      "50 TL"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen öğrenciler, bankanın mevduata ödediği faiz oranını doğru olarak hesaplamış olabilirler."
-    },
-    {
-     "soru": "Bir malın satış fiyatı 120 TL, alıcıdan 8 TL KDV alındı. Malın bedelini ödeyen kişi ne kadar para ödedi?",
-     "secenekler": [
-      "128 TL",
-      "128 TL 8 Kuruş",
-      "120 TL",
-      "128 TL",
-      "128 TL 80 Kuruş"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Malın satış fiyatı 120 TL ve alıcıdan 8 TL KDV alındı, bu nedenle mal bedeli 120 TL, KDV bedeli 8 TL, toplam 128 TL."
     },
     {
      "soru": "Bir bankaya 1000 TL para yatırdığınızda 6 ay sonra 10 TL faiz alırsınız. Faiz oranını hesaplayınız.",
@@ -13581,7 +13305,7 @@
      "aciklama": "Buluşma süresi: 360/(70+50) = 360/120 = 3 saat. 07:00'e 3 saat eklenirse karşılaşma saati 10:00 olur."
     },
     {
-     "soru": "Bir fabrikada 8 saat çalışmak için 2 saat dinlenme süresi alan 20 işçi bulunmaktadır. \n   Bu işçilerin her birine günlük olarak 8 saat çalışır ve 2 saat dinlenir. \n   Çalışma ve dinlenme saatleri eşit şekilde dağılmışsa, 1 günde kaç saat çalışır ve kaç saat dinlenirler?",
+     "soru": "Bir fabrikada 8 saat çalışmak için 2 saat dinlenme süresi alan 20 işçi bulunmaktadır. Bu işçilerin her birine günlük olarak 8 saat çalışır ve 2 saat dinlenir. Çalışma ve dinlenme saatleri eşit şekilde dağılmışsa, 1 günde kaç saat çalışır ve kaç saat dinlenirler?",
      "secenekler": [
       "8 saat çalışır, 12 saat dinlenir",
       "12 saat çalışır, 8 saat dinlenir",
@@ -13758,7 +13482,7 @@
       "180 metrekare"
      ],
      "dogruIndex": 0,
-     "aciklama": "Iscinin saatlik boyama hizi 240 / 10 = 24 metrekaredir. 5 saatte boyayabilecegi alan 24 x 5 = 120 metrekaredir."
+     "aciklama": "İşçinin saatlik boyama hızı 240 / 10 = 24 metrekaredir. 5 saatte boyayabileceği alan 24 x 5 = 120 metrekaredir."
     },
     {
      "soru": "Bir fabrika, 8 saat içinde 480 ünite üretir. Aynı fabrika, 4 saat içinde kaç ünite üretir?",
@@ -13770,7 +13494,7 @@
       "320 ünite"
      ],
      "dogruIndex": 0,
-     "aciklama": "Fabrikanin saatlik uretim hizi 480 / 8 = 60 unitedir. 4 saatte uretilen unite sayisi 60 x 4 = 240'tir."
+     "aciklama": "Fabrikanın saatlik üretim hızı 480 / 8 = 60 ünitedir. 4 saatte üretilen ünite sayısı 60 x 4 = 240'tır."
     },
     {
      "soru": "Bir işçi havuzunda 15 işçiden 5'i 8 saat, 6'sı 4 saat ve 4'ü 6 saat çalışır. İşçilerin çalışdığı toplam saat sayısı kaçtır?",
@@ -16707,18 +16431,6 @@
      "aciklama": "Doğru, çünkü iki oran arasındaki orantı, iki oranın oranları ile belirlenir."
     },
     {
-     "soru": "Oran orantı probleminde, iki oran arasındaki orantı nasıl hesaplanır?",
-     "secenekler": [
-      "(a/b) / (c/d)",
-      "a/b + c/d",
-      "a/b - c/d",
-      "a/b x c/d",
-      "(a/b) / (c/d)"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru, çünkü iki oran arasındaki orantı, iki oranın oranları ile hesaplanır."
-    },
-    {
      "soru": "Oran orantı probleminde, iki oran arasındaki orantının karesinin karesi neye göre hesaplanır?",
      "secenekler": [
       "a/b x c/d",
@@ -16803,18 +16515,6 @@
      "aciklama": "Doğru cevap. Kar artışı oranı, (2019 yılı karı - 2018 yılı karı) / 2018 yılı karı formülü ile hesaplanır. Bu oran (150000 - 120000) / 120000 = 25000 / 120000 = 25 / 100'dir."
     },
     {
-     "soru": "Bir öğrencinin 5 dersten aldığı notların ortalaması 84'tür. Bu öğrencinin 5 dersten aldığı toplam notu kaçtır?",
-     "secenekler": [
-      "420",
-      "400",
-      "380",
-      "360",
-      "420"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru cevap. Bir öğrencinin 5 dersten aldığı notların ortalaması 84 ise, bu öğrencinin 5 dersten aldığı toplam notu 84 * 5 = 420'dir."
-    },
-    {
      "soru": "Bir kitabın %20'si 80 sayfadır. Kitabın toplam kaç sayfası vardır?",
      "secenekler": [
       "320",
@@ -16848,7 +16548,7 @@
       "7 saat"
      ],
      "dogruIndex": 1,
-     "aciklama": "Arabanin hizi 250 km / 5 saat = 50 km/saattir (sabit hiz varsayimiyla). 375 km'lik yolu almak icin gereken sure 375/50=7.5 saattir."
+     "aciklama": "Arabanın hızı 250 km / 5 saat = 50 km/saattir (sabit hız varsayımıyla). 375 km'lik yolu almak için gereken süre 375/50=7.5 saattir."
     },
     {
      "soru": "Bir fabrikada 15 işçi, 12 gün içinde 1800 metre kumaş üretebilmektedir. Aynı fabrikada 20 işçi, aynı süre içinde kaç metre kumaş üretebilir?",
@@ -16860,7 +16560,7 @@
       "2600 metre"
      ],
      "dogruIndex": 1,
-     "aciklama": "15 isci 12 gunde 1800 metre kumas uretiyorsa, isci basina uretim 1800/15=120 metredir. Ayni surede 20 isci 20x120=2400 metre kumas uretir."
+     "aciklama": "15 işçi 12 günde 1800 metre kumaş üretiyorsa, işçi başına üretim 1800/15=120 metredir. Aynı sürede 20 işçi 20x120=2400 metre kumaş üretir."
     },
     {
      "soru": "Bir öğrenci, 4 saatte 240 soru çözebilmektedir. Aynı öğrenci, 6 saatte kaç soru çözebilir?",
@@ -16872,7 +16572,7 @@
       "400 soru"
      ],
      "dogruIndex": 1,
-     "aciklama": "Ogrencinin saatlik cozum hizi 240/4=60 sorudur. 6 saatte cozebilecegi soru sayisi 60x6=360'tir."
+     "aciklama": "Öğrencinin saatlik çözüm hızı 240/4=60 sorudur. 6 saatte çözebileceği soru sayısı 60x6=360'tır."
     },
     {
      "soru": "Bir işçi, 8 saatte 48 metre duvar örrebilmektedir. Aynı işçi, 12 saatte kaç metre duvar örebilir?",
@@ -16884,31 +16584,7 @@
       "90 metre"
      ],
      "dogruIndex": 1,
-     "aciklama": "Iscinin saatlik duvar orme hizi 48/8=6 metredir. 12 saatte orebilecegi duvar uzunlugu 6x12=72 metredir."
-    },
-    {
-     "soru": "Oran orantı formülünün ne olduğunu açıklamaya çalışınız.",
-     "secenekler": [
-      "Oran orantı formülü: a/b = c/d şeklinde verilir.",
-      "Oran orantı formülü: a/b = c/d şeklinde verilir.",
-      "Oran orantı formülü: a/b = c/d şeklinde verilir.",
-      "Oran orantı formülü: a*b = c*d şeklinde verilir.",
-      "Oran orantı formülü: a-b = c-d şeklinde verilir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer bu seçeneği seçen biri, formülün doğru olduğunu bilerek seçerse yanlış yapmış olamaz. Ancak formülün ne işe yaradığını bilmiyorsa, seçeneği yanlış seçebilir. Örneğin, formülün a/b = c/d olduğunu bilmeden, sadece a ile c'nin birbiriyle orantılı olduğunu düşünebilir."
-    },
-    {
-     "soru": "Oran orantı formülünün bir örneğini veriniz.",
-     "secenekler": [
-      "a/b = c/d",
-      "a/b = c/d",
-      "a*b = c*d",
-      "a-b = c-d",
-      "a/b - c/d = 1"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer bu seçeneği seçen biri, formülün doğru olduğunu bilerek seçerse yanlış yapmış olamaz. Ancak formülün ne işe yaradığını bilmiyorsa, seçeneği yanlış seçebilir. Örneğin, formülün a ile c'nin birbiriyle orantılı olduğunu bilmeden, sadece a ile b'nin birbiriyle orantılı olduğunu düşünmeye çalışabilir."
+     "aciklama": "İşçinin saatlik duvar örme hızı 48/8=6 metredir. 12 saatte örebileceği duvar uzunluğu 6x12=72 metredir."
     },
     {
      "soru": "A ve B'nin orantısal ilişkisini bulalım. A = 2x + 3, B = 4x - 2. A ve B'nin orantısal ilişkisi nedir?",
@@ -20124,18 +19800,6 @@
      "aciklama": "Bu seçeneği seçen kullanıcı, taban alanının doğru hesaplanmasını ve yüzdesini doğru hesaplanmasını doğru bulabilir."
     },
     {
-     "soru": "İki dikdörtgenin alanlarının toplamı iki dikdörtgenin uzunluklarının toplamı ile iki dikdörtgenin en uzun kenarlarının ürününün yarısıdır. Bu durum iki dikdörtgenin",
-     "secenekler": [
-      "çarpık olduğuna delalet eder.",
-      "birbirinin içine girdiğine delalet eder.",
-      "birbirinin kenarlarından iki kenarın uzunluğu aynı ise, birbirlerinin içine girdiğine delalet eder.",
-      "birbirinin kenarlarından iki kenarın uzunluğu farklı ise, birbirlerinin içine girdiğine delalet eder.",
-      "çarpık olduğuna delalet eder."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu durum iki dikdörtgenin carpik olduğuna delalet eder."
-    },
-    {
      "soru": "Bir dairenin alanının formülünün içinde bulunan π (pi) sayısı 3,14 olduğunda, dairenin",
      "secenekler": [
       "çapının 3,14 katı ile aynıdır.",
@@ -20148,31 +19812,7 @@
      "aciklama": "Bu durum iki dikdörtgenin carpik olduğuna delalet eder."
     },
     {
-     "soru": "Bir silindirin hacminin formülünde bulunan π (pi) sayısı 3,14 olduğunda, silindirin",
-     "secenekler": [
-      "çapının karesinin 3,14 ile çarpılması ile aynıdır.",
-      "çapının 3,14 katının karesi ile aynıdır.",
-      "çapının 3,14 ile çarpılması ile aynıdır.",
-      "çapının 2 katının 3,14 ile çarpılması ile aynıdır.",
-      "çapının 3,14 katının karesi ile aynıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu durum silindirin hacminin formülünde bulunan pi sayısının gerçek değeri ile ilgilendiğini ve bu nedenle bu seçeneği seçmiş olabilir."
-    },
-    {
-     "soru": "Bir prizma'nın hacminin formülünde bulunan π (pi) sayısı 3,14 olduğunda, prizma'nın",
-     "secenekler": [
-      "çapının 3,14 katının karesi ile aynıdır.",
-      "çapının 3,14 ile çarpılması ile aynıdır.",
-      "çapının karesinin 3,14 ile çarpılması ile aynıdır.",
-      "çapının 2 katının 3,14 ile çarpılması ile aynıdır.",
-      "çapının 3,14 katının karesi ile aynıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu durum prizma'nın hacminin formülünde bulunan pi sayısının gerçek değeri ile ilgilendiğini ve bu nedenle bu seçeneği seçmiş olabilir."
-    },
-    {
-     "soru": "Bir dikdörtgenin iki kenar uzunluğu 5 cm ve 12 cm dir. \n   Dikdörtgenin alana eşit olan dikdörtgenin alanını bulmak için hangi işlemi kullanmamız gerekir?",
+     "soru": "Bir dikdörtgenin iki kenar uzunluğu 5 cm ve 12 cm dir. Dikdörtgenin alana eşit olan dikdörtgenin alanını bulmak için hangi işlemi kullanmamız gerekir?",
      "secenekler": [
       "Uzun kenar uzunluğunu karele çevirip, kısa kenar uzunluğunu kareye ekleyip, sonra uzun kenar uzunluğunun karesini çıkararak hesaplanır.",
       "Kısa kenar uzunluğunu karele çevirip, uzun kenar uzunluğunu kareye ekleyip, sonra kısa kenar uzunluğunun karesini çıkararak hesaplanır.",
@@ -20181,30 +19821,6 @@
       "Dikdörtgenin iki kenar uzunluğu ile kısa kenar uzunluğunun karesini çıkararak hesaplanır."
      ],
      "dogruIndex": 2,
-     "aciklama": "Bu seçeneğin doğru ve en mantıklı olanı."
-    },
-    {
-     "soru": "Bir dikdörtgenin iki kenar uzunluğu 6 cm ve 8 cm dir. \n   Dikdörtgenin kenar uzunluklarından birini kareye çevirip, diğerini kareye ekleyip, sonra uzun kenar uzunluğunun karesini çıkararak hesaplanmazsa, diğer bir yöntem ile diktörtgenin alanını bulmak için hangi işlemi kullanmamız gerekir?",
-     "secenekler": [
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile kısa kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile kısa kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneğin doğru ve en mantıklı olanı."
-    },
-    {
-     "soru": "Bir dikdörtgenin iki kenar uzunluğu 10 cm ve 15 cm dir. \n   Dikdörtgenin alanını en kısa yolla bulmak için hangi işlemi kullanmamız gerekir?",
-     "secenekler": [
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile kısa kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile kısa kenar uzunluğunun karesini çıkararak hesaplanır.",
-      "Dikdörtgenin iki kenar uzunluğu ile uzun kenar uzunluğunun karesini çıkararak hesaplanır."
-     ],
-     "dogruIndex": 3,
      "aciklama": "Bu seçeneğin doğru ve en mantıklı olanı."
     },
     {
@@ -23608,7 +23224,7 @@
       "0.2"
      ],
      "dogruIndex": 0,
-     "aciklama": "Standart sapma sayisi z = (x - ortalama) / standart sapma formuluyle hesaplanir: z = (80-70)/10 = 1. Yani bu puan ortalamanin 1 standart sapma ustundedir."
+     "aciklama": "Standart sapma sayısı z = (x - ortalama) / standart sapma formülüyle hesaplanır: z = (80-70)/10 = 1. Yani bu puan ortalamanın 1 standart sapma üstündedir."
     },
     {
      "soru": "Bir grup öğrencinin not ortalaması 85, ortalamanın standart sapması 10'dur. Bir öğrencinin notu 90'dır. Bu öğrencinin notunun ortalamanın kaç puan üstü olduğunu bulmak için hangi hesaplama yöntemini kullanmak gerekir?",
@@ -26871,30 +26487,6 @@
      "aciklama": "Kullanıcı, doğru seçeneği seçer. Asal bir sayının tek bir pozitif tam böleninin 1 ve kendisi olmasıdır."
     },
     {
-     "soru": "Çarpanlarına ayırma ile ilgili olarak; 12 nin en küçük ortak çarpanını bulmak için 12 nin çarpanlarını bulmak gerekir.",
-     "secenekler": [
-      "Çarpanlarına ayırma ile ilgili olarak; 12 nin en büyük ortak çarpanını bulmak için 12 nin çarpanlarını bulmak gerekir.",
-      "Çarpanlarına ayırma ile ilgili olarak; 12 nin en küçük ortak çarpanını bulmak için 12 nin çarpanlarını bulmak gerekir.",
-      "Çarpanlarına ayırma ile ilgili olarak; 12 nin en küçük ortak çarpanını bulmak için 12 nin en büyük ortak çarpanını bulmak gerekir.",
-      "Çarpanlarına ayırma ile ilgili olarak; 12 nin en büyük ortak çarpanını bulmak için 12 nin en küçük ortak çarpanını bulmak gerekir.",
-      "Çarpanlarına ayırma ile ilgili olarak; 12 nin en büyük ortak çarpanını bulmak için 12 nin en küçük ortak çarpanını bulmak gerekir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcı, doğru seçeneği seçer. Çarpanlarına ayırma ile ilgili olarak; 12 nin en küçük ortak çarpanını bulmak için 12 nin çarpanlarını bulmak gerekir."
-    },
-    {
-     "soru": "Bir sayının en büyük ortak çarpanını bulmak için hangi yöntemi kullanırız?",
-     "secenekler": [
-      "Bir sayının en küçük ortak çarpanını bulmak için kullanılan yöntemi kullanırız.",
-      "Bir sayının en büyük ortak çarpanını bulmak için kullanılan yöntemi kullanırız.",
-      "Bir sayının en büyük ortak çarpanını bulmak için kullanılan yöntemi kullanırız.",
-      "Bir sayının en büyük ortak çarpanını bulmak için kullanılan yöntemi kullanırız.",
-      "Bir sayının en büyük ortak çarpanını bulmak için kullanılan yöntemi kullanırız."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcı, doğru seçeneği seçer. Bir sayının en büyük ortak çarpanını bulmak için kullanılan yöntemi kullanırız."
-    },
-    {
      "soru": "Bir sayının asal olup olmadığını belirlerken, ilk olarak 1 ve kendisi hariç tüm bölenlerini kontrol ederiz. Bu sayede sayının asal olup olmadığını anlarız. Aşağıdaki örneklerde 15 sayısının asal olup olmadığını belirleyelim. 15 sayısını bölenler nelerdir?",
      "secenekler": [
       "1, 3 ve 5",
@@ -26989,18 +26581,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "2, en küçük asal sayıdır ve aynı zamanda tüm çift sayıların ortak çarpanıdır; bu nedenle bir sayı çiftse en küçük asal çarpanı her zaman 2'dir."
-    },
-    {
-     "soru": "Asal sayının tek ve çift faktörleri hangisidir?",
-     "secenekler": [
-      "Tek faktör: 1, Çift faktör: 2",
-      "Tek faktör: 2, Çift faktör: 1",
-      "Tek faktör: 1 ve 2, Çift faktör: 2",
-      "Tek faktör: 1, Çift faktör: 1",
-      "Tek faktör: 2, Çift faktör: 1"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "1 tek bir sayı olduğu için asal çarpanlaşmada tek faktör olarak kabul edilirken, 2 hem asal hem de çift olan tek sayı olduğundan çift faktör olarak kabul edilir."
     },
     {
      "soru": "Bir sayının en büyük asal bileşeni hangisidir?",
@@ -27108,7 +26688,7 @@
       "12"
      ],
      "dogruIndex": 1,
-     "aciklama": "8 = 2^3 ve 12 = 2^2 x 3 seklinde asal carpanlarina ayrilir. Her iki sayinin ortak asal carpani yalnizca 2'dir; hem 8'i hem de 12'yi bolen en kucuk (ve tek) asal sayi 2'dir."
+     "aciklama": "8 = 2^3 ve 12 = 2^2 x 3 şeklinde asal çarpanlarına ayrılır. Her iki sayının ortak asal çarpanı yalnızca 2'dir; hem 8'i hem de 12'yi bölen en küçük (ve tek) asal sayı 2'dir."
     },
     {
      "soru": "En az 4 farklı faktörünün olması koşuluyla 12'nin kaç farklı asal çarpanı vardır?",
@@ -27120,7 +26700,7 @@
       "6"
      ],
      "dogruIndex": 1,
-     "aciklama": "12 = 2^2 x 3 seklinde asal carpanlarina ayrilir. 12'nin farkli asal carpanlari 2 ve 3 olmak uzere yalnizca 2 tanedir (en az 4 boleni olma sarti - 1,2,3,4,6,12 - zaten saglanmaktadir)."
+     "aciklama": "12 = 2^2 x 3 şeklinde asal çarpanlarına ayrılır. 12'nin farklı asal çarpanları 2 ve 3 olmak üzere yalnızca 2 tanedir (en az 4 böleni olma şartı - 1,2,3,4,6,12 - zaten sağlanmaktadır)."
     },
     {
      "soru": "Asal sayı 3 ve 5'in katı ise, kaçıncı asal sayının katı olduğu hakkında bilgi verilebilir?",
@@ -27132,7 +26712,7 @@
       "Bu bilgi verilemez"
      ],
      "dogruIndex": 4,
-     "aciklama": "Bir asal sayinin hem 3'un hem de 5'in kati olabilmesi icin ayni zamanda 15'in de kati olmasi gerekir. Ancak 15'in kati olan bir sayinin 3, 5 ve 15 gibi birden fazla boleni bulunacagindan bu sayi asal olamaz. Dolayisiyla oncul kendi icinde celiskilidir ve hangi asal sayinin kati oldugu hakkinda kesin bir bilgi verilemez."
+     "aciklama": "Bir asal sayının hem 3'ün hem de 5'in katı olabilmesi için aynı zamanda 15'in de katı olması gerekir. Ancak 15'in katı olan bir sayının 3, 5 ve 15 gibi birden fazla böleni bulunacağından bu sayı asal olamaz. Dolayısıyla öncül kendi içinde çelişkilidir ve hangi asal sayının katı olduğu hakkında kesin bir bilgi verilemez."
     },
     {
      "soru": "Bir sayının asal olup olmadığını kontrol etmek için kullanılan bir yöntemdir.",
@@ -30045,7 +29625,7 @@
      "aciklama": "Bardakta şarabın 1/4'si 0,1 * 1/4 = 0,025 litre şarap eklemiştir. 3 litre şaraba 0,025 litre şarap eklemiştir ve 3 - 0,025 = 2,975 litre şarap kalmıştır. 6 litre su ve 2,975 litre şarap 3 litre şarap karıştırır."
     },
     {
-     "soru": "Bir kutunun yüzey alanı ve hacmi 2x^2 + 5x + 6 ve 3x^3 - 2x^2 + x + 1 olarak veriliyor. \n   Kutunun yüzey alanının hacmine oranı ne kadardır?",
+     "soru": "Bir kutunun yüzey alanı ve hacmi 2x^2 + 5x + 6 ve 3x^3 - 2x^2 + x + 1 olarak veriliyor. Kutunun yüzey alanının hacmine oranı ne kadardır?",
      "secenekler": [
       "6/1",
       "2/3",
@@ -30186,7 +29766,7 @@
       "26%"
      ],
      "dogruIndex": 2,
-     "aciklama": "15 litre %10'luk cozeltide 15x0.10=1.5 litre, 25 litre %30'luk cozeltide 25x0.30=7.5 litre asit vardir. Toplam asit 9 litre, toplam hacim 40 litre oldugundan oran 9/40=%22.5 olup en yakin secenek %22'dir."
+     "aciklama": "15 litre %10'luk çözeltide 15x0.10=1.5 litre, 25 litre %30'luk çözeltide 25x0.30=7.5 litre asit vardır. Toplam asit 9 litre, toplam hacim 40 litre olduğundan oran 9/40=%22.5 olup en yakın seçenek %22'dir."
     },
     {
      "soru": "10 litre %20 lik şeker çözeltisi ile 15 litre %40 lik şeker çözeltisinin karıştırılması sonucu oluşan karışımın şeker oranı kaçtır?",
@@ -30198,7 +29778,7 @@
       "36%"
      ],
      "dogruIndex": 2,
-     "aciklama": "10 litrede 10x0.20=2 litre, 15 litrede 15x0.40=6 litre seker vardir. Toplam seker 8 litre, toplam hacim 25 litre oldugundan oran 8/25=%32'dir."
+     "aciklama": "10 litrede 10x0.20=2 litre, 15 litrede 15x0.40=6 litre şeker vardır. Toplam şeker 8 litre, toplam hacim 25 litre olduğundan oran 8/25=%32'dir."
     },
     {
      "soru": "20 litre %10 luk alkol çözeltisi ile 30 litre %20 lik alkol çözeltisinin karıştırılması sonucu oluşan karışımın alkol oranı kaçtır?",
@@ -30210,7 +29790,7 @@
       "19%"
      ],
      "dogruIndex": 1,
-     "aciklama": "20 litrede 20x0.10=2 litre, 30 litrede 30x0.20=6 litre alkol vardir. Toplam alkol 8 litre, toplam hacim 50 litre oldugundan oran 8/50=%16'dir."
+     "aciklama": "20 litrede 20x0.10=2 litre, 30 litrede 30x0.20=6 litre alkol vardır. Toplam alkol 8 litre, toplam hacim 50 litre olduğundan oran 8/50=%16'dır."
     },
     {
      "soru": "Bir karışımın %20'si şekerdir. 4 kg karışımı 2 kg şekerle karıştırırsanız, yeni karışımın şeker oranı kaçtır?",
@@ -30222,7 +29802,7 @@
       "%50"
      ],
      "dogruIndex": 3,
-     "aciklama": "4 kg karisimda %20 seker vardir, yani 4x0.20=0.8 kg seker bulunur. 2 kg saf seker eklenince toplam seker 0.8+2=2.8 kg, toplam agirlik 4+2=6 kg olur. Oran 2.8/6=%46.7 olup en yakin secenek %45'tir."
+     "aciklama": "4 kg karışımda %20 şeker vardır, yani 4x0.20=0.8 kg şeker bulunur. 2 kg saf şeker eklenince toplam şeker 0.8+2=2.8 kg, toplam ağırlık 4+2=6 kg olur. Oran 2.8/6=%46.7 olup en yakın seçenek %45'tir."
     },
     {
      "soru": "10 litre %10'luk asit çözeltisi ile 5 litre %20'lik asit çözeltisi karıştırıldığında, elde edilen çözeltinin asit oranı nedir?",
@@ -30234,7 +29814,7 @@
       "%18"
      ],
      "dogruIndex": 1,
-     "aciklama": "10 litrede 10x0.10=1 litre, 5 litrede 5x0.20=1 litre asit vardir. Toplam asit 2 litre, toplam hacim 15 litre oldugundan oran 2/15=%13.3 olup en yakin secenek %14'tur."
+     "aciklama": "10 litrede 10x0.10=1 litre, 5 litrede 5x0.20=1 litre asit vardır. Toplam asit 2 litre, toplam hacim 15 litre olduğundan oran 2/15=%13.3 olup en yakın seçenek %14'tür."
     },
     {
      "soru": "Bir madenden %80 demir cevheri elde edilir. 100 ton madenden 80 ton demir cevheri elde edildiğinde, madenin demir cevheri oranı nedir?",
@@ -30246,7 +29826,7 @@
       "%90"
      ],
      "dogruIndex": 2,
-     "aciklama": "80 ton demir cevheri, 100 ton madenin 80/100=0.80, yani %80'ini olusturur; bu da baslangicta verilen %80 oranla tutarlidir."
+     "aciklama": "80 ton demir cevheri, 100 ton madenin 80/100=0.80, yani %80'ini oluşturur; bu da başlangıçta verilen %80 oranla tutarlıdır."
     },
     {
      "soru": "25 litre %20'lik tuz çözeltisi ile 15 litre %30'luk tuz çözeltisi karıştırıldığında, elde edilen çözeltinin tuz oranı nedir?",
@@ -30258,7 +29838,7 @@
       "%26"
      ],
      "dogruIndex": 2,
-     "aciklama": "25 litrede 25x0.20=5 litre, 15 litrede 15x0.30=4.5 litre tuz vardir. Toplam tuz 9.5 litre, toplam hacim 40 litre oldugundan oran 9.5/40=%23.75 olup en yakin secenek %24'tur."
+     "aciklama": "25 litrede 25x0.20=5 litre, 15 litrede 15x0.30=4.5 litre tuz vardır. Toplam tuz 9.5 litre, toplam hacim 40 litre olduğundan oran 9.5/40=%23.75 olup en yakın seçenek %24'tür."
     },
     {
      "soru": "Bir poşet içerisinde 10 adet kalem, 5 adet kalemin 1/4'ünün sarı renkte olduğu ve geri kalanının siyah renkte olduğu varsayımı ile sarı renkteki kalem sayısını bulunuz.",
@@ -30270,7 +29850,7 @@
       "7"
      ],
      "dogruIndex": 2,
-     "aciklama": "Posetteki 10 kalemin yarisi sari renktedir; bu nedenle sari kalem sayisi 10/2=5'tir."
+     "aciklama": "Poşetteki 10 kalemin yarısı sarı renktedir; bu nedenle sarı kalem sayısı 10/2=5'tir."
     },
     {
      "soru": "Bir öğrenci 15 dakika içinde 10 sayfa yazabilir. 10 dakika içinde 8 sayfa yazabilir. 20 dakika içinde kaç sayfa yazabilir?",
@@ -30282,7 +29862,7 @@
       "20"
      ],
      "dogruIndex": 2,
-     "aciklama": "Ikinci verilen hiza gore 10 dakikada 8 sayfa yaziliyorsa, dakika basina yazma hizi 8/10=0.8 sayfadir. 20 dakikada yazilabilecek sayfa sayisi 0.8x20=16'dir."
+     "aciklama": "İkinci verilen hıza göre 10 dakikada 8 sayfa yazılıyorsa, dakika başına yazma hızı 8/10=0.8 sayfadır. 20 dakikada yazılabilecek sayfa sayısı 0.8x20=16'dır."
     },
     {
      "soru": "Bir bardak su 10 dakika içinde 10°C'den 20°C'ye ulaşır. 20 dakika içinde 20°C'den 30°C'ye ulaşır. 30 dakika içinde 30°C'den kaç derece ulaşır?",
@@ -30294,7 +29874,7 @@
       "35°C"
      ],
      "dogruIndex": 2,
-     "aciklama": "Suyun isinma hizi zamanla yavaslamaktadir: ilk 10 dakikada 10 derecelik artis (dakikada 1 derece), sonraki 20 dakikada yine 10 derecelik artis (dakikada 0.5 derece) gerceklesmistir. Bu yavaslayan artis egilimi bir sonraki 30 dakikalik dilimde de surdugunde, sicaklik 30 dereceden yaklasik 31 dereceye ulasir."
+     "aciklama": "Suyun ısınma hızı zamanla yavaşlamaktadır: ilk 10 dakikada 10 derecelik artış (dakikada 1 derece), sonraki 20 dakikada yine 10 derecelik artış (dakikada 0.5 derece) gerçekleşmiştir. Bu yavaşlayan artış eğilimi bir sonraki 30 dakikalık dilimde de sürdüğünde, sıcaklık 30 dereceden yaklaşık 31 dereceye ulaşır."
     },
     {
      "soru": "Bir öğrenci 1 saat içinde 15 sayfa yazabilir. 1 saat içinde 10 sayfa yazabilir. 1 saat 45 dakika içinde kaç sayfa yazabilir?",
@@ -30306,7 +29886,7 @@
       "20"
      ],
      "dogruIndex": 3,
-     "aciklama": "Ikinci verilen hiza gore saatte 10 sayfa yaziliyorsa, dakika basina yazma hizi 10/60 sayfadir. 1 saat 45 dakika (105 dakika) icinde yazilan sayfa sayisi (10/60)x105=17.5 olup, en yakin tam secenek 18'dir."
+     "aciklama": "İkinci verilen hıza göre saatte 10 sayfa yazılıyorsa, dakika başına yazma hızı 10/60 sayfadır. 1 saat 45 dakika (105 dakika) içinde yazılan sayfa sayısı (10/60)x105=17.5 olup, en yakın tam seçenek 18'dir."
     },
     {
      "soru": "Bir kaseye 5 litre su ve 3 litre süt doldurulmuştur. Bunun ardından kaseye 2 litre süt eklenmektedir. Kasedeki su ve süt karışımının toplam hacmini litre cinsinden bulunuz.",
@@ -30318,7 +29898,7 @@
       "3 litre"
      ],
      "dogruIndex": 1,
-     "aciklama": "Kaseye baslangicta 5 litre su ve 3 litre sut konulmus, ardindan 2 litre sut daha eklenmistir. Toplam hacim 5+3+2=10 litredir."
+     "aciklama": "Kaseye başlangıçta 5 litre su ve 3 litre süt konulmuş, ardından 2 litre süt daha eklenmiştir. Toplam hacim 5+3+2=10 litredir."
     },
     {
      "soru": "Yumurtalar, 8 litrelik bir kasede %20 oranında su ile karıştırılmıştır. Bunun ardından kaseye 4 litre daha su eklenmektedir. Yumurtalar, kase içindeki suyun ne oranında karıştığını bulunuz.",
@@ -30330,7 +29910,7 @@
       "%70"
      ],
      "dogruIndex": 2,
-     "aciklama": "8 litrelik karisimin %20'si su oldugundan baslangicta 8x0.20=1.6 litre su vardir. 4 litre su daha eklenince toplam su 1.6+4=5.6 litre, toplam hacim 8+4=12 litre olur. Oran 5.6/12=%46.7 olup en yakin secenek %50'dir."
+     "aciklama": "8 litrelik karışımın %20'si su olduğundan başlangıçta 8x0.20=1.6 litre su vardır. 4 litre su daha eklenince toplam su 1.6+4=5.6 litre, toplam hacim 8+4=12 litre olur. Oran 5.6/12=%46.7 olup en yakın seçenek %50'dir."
     },
     {
      "soru": "2 litrelik bir kasede 1,2 litre su ve 0,8 litre süt bulunmaktadır. Kaseye 0,5 litre su eklenmektedir. Kase içindeki su ve süt karışımının ne kadarını su oluşturduğunu bulunuz.",
@@ -30342,7 +29922,7 @@
       "2 litre"
      ],
      "dogruIndex": 0,
-     "aciklama": "Kasede baslangicta 1.2 litre su ve 0.8 litre sut (toplam 2 litre) vardir. 0.5 litre su eklenince toplam su 1.2+0.5=1.7 litre, toplam hacim 2.5 litre olur. Suyun karisim icindeki orani 1.7/2.5=0.68 olup en yakin secenek 0.7'dir."
+     "aciklama": "Kasede başlangıçta 1.2 litre su ve 0.8 litre süt (toplam 2 litre) vardır. 0.5 litre su eklenince toplam su 1.2+0.5=1.7 litre, toplam hacim 2.5 litre olur. Suyun karışım içindeki oranı 1.7/2.5=0.68 olup en yakın seçenek 0.7'dir."
     },
     {
      "soru": "Bir kaseye 3 litre su ve 2 litre süt doldurulmuştur. Bunun ardından kaseye 1 litre süt eklenmektedir. Kase içindeki su ve süt karışımının ne kadarını su oluşturduğunu bulunuz.",
@@ -30354,7 +29934,7 @@
       "1,6 litre"
      ],
      "dogruIndex": 0,
-     "aciklama": "Kasede 3 litre su sabit kalir (yalniz sut eklenmistir), sut miktari 2+1=3 litre olur, toplam hacim 3+3=6 litredir. Suyun karisim icindeki orani 3/6=0.5 olup en yakin secenek 0.6'dir."
+     "aciklama": "Kasede 3 litre su sabit kalır (yalnız süt eklenmiştir), süt miktarı 2+1=3 litre olur, toplam hacim 3+3=6 litredir. Suyun karışım içindeki oranı 3/6=0.5 olup en yakın seçenek 0.6'dır."
     },
     {
      "soru": "Bir kaseye 4 litre su ve 2 litre süt doldurulmuştur. Kaseye 1 litre daha su eklenmektedir. Kase içindeki su ve süt karışımının su oranını bulunuz.",
@@ -30366,7 +29946,7 @@
       "%90"
      ],
      "dogruIndex": 2,
-     "aciklama": "Kasede 4 litre su, 1 litre daha su eklenince 5 litre su olur (sut miktari 2 litrede sabit kalir). Toplam hacim 4+2+1=7 litre oldugundan su orani 5/7=%71.4 olup en yakin secenek %70'tir."
+     "aciklama": "Kasede 4 litre su, 1 litre daha su eklenince 5 litre su olur (süt miktarı 2 litrede sabit kalır). Toplam hacim 4+2+1=7 litre olduğundan su oranı 5/7=%71.4 olup en yakın seçenek %70'tir."
     },
     {
      "soru": "%30 şekerli 200 g çözelti ile %25 şekerli 500 g çözelti karıştırılıyor. Oluşan karışımdaki şeker yüzdesi kaçtır?",
@@ -33208,42 +32788,6 @@
      "aciklama": "Bu doğru, |x^2 - 4| = x^2 - 4 ise x >= 2 veya x <= -2 ise."
     },
     {
-     "soru": "x^2 - 4x + 3 > 0 ve x^2 - 4x + 3 < 0 olan x için kaç tanesi vardır?",
-     "secenekler": [
-      "x > 1 ve x < 3",
-      "x < 1 ve x > 3",
-      "x ∈ (-∞, 1) ∪ (3, ∞)",
-      "x ∈ (-∞, 3) ∪ (1, ∞)",
-      "x ∈ (-∞, 1) ∪ (3, ∞)"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçeneği seçenlerin büyük ihtimalle x ∈ (-∞, 1) ∪ (3, ∞) koşullarını doğru anlamış olabileceğine dair bir analiz vardır."
-    },
-    {
-     "soru": "x^2 - 4x + 4 = 0'dan x > 0 olan x değerleri için kaç tanesi vardır?",
-     "secenekler": [
-      "x = 2",
-      "x = 1",
-      "x = 3",
-      "x = 4",
-      "x = 2"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçenlerin büyük ihtimalle x = 2 değeri için doğru anlamış olabileceğine dair bir analiz vardır."
-    },
-    {
-     "soru": "x^2 + 4x + 4 < 0 olan x için kaç tanesi vardır?",
-     "secenekler": [
-      "x > 2",
-      "x < 2",
-      "x ∈ (-∞, 2) ∪ (2, ∞)",
-      "x ∈ (-∞, 2) ∪ (2, ∞)",
-      "x ∈ (-∞, 2) ∪ (2, ∞)"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenlerin büyük ihtimalle x < 2 koşullarını doğru anlamış olabileceğine dair bir analiz vardır."
-    },
-    {
      "soru": "f(x) = |x^2 - 4| fonksiyonunun maksimum değeri hangi değerdedir?",
      "secenekler": [
       "x = 2",
@@ -33421,7 +32965,7 @@
       "Tümünü"
      ],
      "dogruIndex": 4,
-     "aciklama": "5 ile 11 arasindaki tam sayilar 6, 7, 8, 9 ve 10'dur. Seceneklerde verilen 6, 7, 8 ve 9 degerlerinin tumu bu araliga dahil oldugundan, tek bir sayi yerine 'tumunu' secenegi dogru kabul edilir."
+     "aciklama": "5 ile 11 arasındaki tam sayılar 6, 7, 8, 9 ve 10'dur. Seçeneklerde verilen 6, 7, 8 ve 9 değerlerinin tümü bu aralığa dahil olduğundan, tek bir sayı yerine 'tümünü' seçeneği doğru kabul edilir."
     },
     {
      "soru": "Eğer |x - 2| < 3 ise x kaçtır?",
@@ -33433,7 +32977,7 @@
       "-1 < x < 5"
      ],
      "dogruIndex": 4,
-     "aciklama": "|x - 2| < 3 esitsizligi -3 < x - 2 < 3 seklinde acilir. Esitsizligin her tarafina 2 eklenirse -1 < x < 5 bulunur."
+     "aciklama": "|x - 2| < 3 eşitsizliği -3 < x - 2 < 3 şeklinde açılır. Eşitsizliğin her tarafına 2 eklenirse -1 < x < 5 bulunur."
     },
     {
      "soru": "Eğer x > 2 ve x < 5 ise x kaçtır?",
@@ -33445,7 +32989,7 @@
       "2 < x < 5"
      ],
      "dogruIndex": 4,
-     "aciklama": "x > 2 ve x < 5 kosullarinin ikisi de ayni anda saglanmalidir. Bu iki esitsizlik kesistirildiginde 2 < x < 5 araligi elde edilir."
+     "aciklama": "x > 2 ve x < 5 koşullarının ikisi de aynı anda sağlanmalıdır. Bu iki eşitsizlik kesiştirildiğinde 2 < x < 5 aralığı elde edilir."
     },
     {
      "soru": "Eğer x < -1 veya x > 2 ise x kaçtır?",
@@ -33457,7 +33001,7 @@
       "x < -1 veya x > 2"
      ],
      "dogruIndex": 4,
-     "aciklama": "x < -1 veya x > 2 kosulu zaten iki ayri aralinin birlesimini ifade eder; bu nedenle cozum kumesi dogrudan x < -1 veya x > 2'dir."
+     "aciklama": "x < -1 veya x > 2 koşulu zaten iki ayrı aralığın birleşimini ifade eder; bu nedenle çözüm kümesi doğrudan x < -1 veya x > 2'dir."
     },
     {
      "soru": "x^2 - 4x + 3 > 0 ifadesinin geçerli olduğu sayısal değerler dizisidir.",
@@ -33508,18 +33052,6 @@
      "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x < 0 olduğu için |x| = -x ilişkisi doğru gibi gelebilir."
     },
     {
-     "soru": "x = 0 ise |x| = 0 dir.",
-     "secenekler": [
-      "x > 0 ise |x| = x dir.",
-      "x < 0 ise |x| = -x dir.",
-      "x > 0 ise |x| = -x dir.",
-      "x < 0 ise |x| = x dir.",
-      "x < 0 ise |x| = -x dir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x > 0 olduğu için |x| = -x ilişkisi doğru gibi gelebilir."
-    },
-    {
      "soru": "x > 0 ise |x| = x dir. Eğer x < 0 ise |x| = -x dir. Eğer x = 0 ise |x| = 0 dir. |x| = 0 ilişkisi x = 0 olduğunda gerçekleşir.",
      "secenekler": [
       "x > 0 ise |x| = x dir.",
@@ -33530,18 +33062,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x = 0 olduğu için |x| = 0 ilişkisi doğru gibi gelebilir."
-    },
-    {
-     "soru": "Bir fonksiyonun mutlak değerinin 5 olduğu koşullarını bulalım.",
-     "secenekler": [
-      "|f(x)| = 5 olduğunda f(x) = 5 veya f(x) = -5",
-      "|f(x)| = 5 olduğunda f(x) = 5 veya f(x) = 10",
-      "|f(x)| = 5 olduğunda f(x) = -5 veya f(x) = 10",
-      "|f(x)| = 5 olduğunda f(x) = 5 veya f(x) = -10",
-      "|f(x)| = 5 olduğunda f(x) = -5 veya f(x) = 10"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü mutlak değerinin 5 olduğu koşullar f(x) = 5 veya f(x) = -5'dir."
     },
     {
      "soru": "Eşitsizlikler ile ilgili bir sorudur. x > 3 olduğunda x^2 - 4x + 3 > ?",
@@ -36448,42 +35968,6 @@
      "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 4^-3 = 1/4^3 = 1/64."
     },
     {
-     "soru": "Üslü bir sayı olarak 5x^2 ifadesi verilmiştir. Bu ifadenin karesi ile aynı olan ifadeyi bulalım.",
-     "secenekler": [
-      "(5x^2)^2 = 25x^4",
-      "(5x^2)^2 = 25x^2",
-      "(5x^2)^2 = 25x^4",
-      "(5x^2)^2 = 25x^2",
-      "(5x^2)^2 = 25x^4"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı doğru cevabı seçmiş olmasının nedeni, üslü bir sayının karesini almanın mantığıdır. Kullanıcı bu mantığı doğru uygulamış ve doğru cevabı seçmiş olur."
-    },
-    {
-     "soru": "x > 0 için, (x^2 + 2x)^2 ifadesinin en az iki farklı faktörlendirme yöntemi ile genişletilmesini bulun.",
-     "secenekler": [
-      "(x + 1)^2(x + 2)^2",
-      "x^4 + 4x^3 + 4x^2",
-      "(x + 1)^2(x + 2)^2",
-      "x^4 + 4x^3 + 4x^2",
-      "x^4 + 4x^3 + 4x^2"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı doğru cevabı seçmiş olmasının nedeni, ifadenin iki farklı faktörlendirme yöntemi ile genişletilmesini doğru uygulamış olmasıdır."
-    },
-    {
-     "soru": "x > 0 için, (x^2 + 2x + 1)(x^2 - 2x + 1) ifadesinin genişletilmesini bulun.",
-     "secenekler": [
-      "x^4 - x^2 + 1",
-      "x^4 + 2x^3 + 2x^2 + 2x + 2",
-      "x^4 - x^2 + 1",
-      "x^4 + 2x^3 + 2x^2 + 2x + 2",
-      "x^4 - x^2 + 1"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcı doğru cevabı seçmiş olmasının nedeni, ifadenin genişletilmesini doğru uygulamış olmasıdır. Kullanıcı iki polinomun genişletilmesini doğru yapmıştır."
-    },
-    {
      "soru": "Üslü sayılar ile ilgili bir ifade veriliyor: (x^2 + y^2) / (x + y)^2. Bu ifadeyi en basit haliyle ifade eden fonksiyon hangisidir?",
      "secenekler": [
       "x + y",
@@ -36530,18 +36014,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçeneği seçen kullanıcı, fonksiyonun değerini doğru bir şekilde algılamış ve f(5) olarak ifade etmiştir."
-    },
-    {
-     "soru": "Kıstlı bir cebirsel denklemin, katsayıların en azından bir tanesinin 0'dan küçük veya 0'dan büyük olduğu durumlarda nasıl çözülür?",
-     "secenekler": [
-      "Dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözüyoruz.",
-      "Dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözüyoruz.",
-      "Dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözüyoruz.",
-      "Dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözüyoruz.",
-      "Dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözüyoruz."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen kullanıcı, cebirsel denklemin nasıl çözülmesi gerektiğini doğru bir şekilde algılamış ve dikdörtgen matrisinin tersini bulup denklemin katsayılarını bu matrise koyarak çözmenin doğru yöntem olduğunu bilmelidir."
     },
     {
      "soru": "Bir x^3 + 2x^2 - 7x - 12 = 0 denkleminin katsayıları a, b, c, d, e için x^3 + 2x^2 + kx + l = 0 denkleminin katsayılarını bulunuz.",
@@ -36697,7 +36169,7 @@
       "0"
      ],
      "dogruIndex": 1,
-     "aciklama": "Verilen kural cercevesinde, negatif usu olan bir sayi 1. kok olarak ifade edilir; bu nedenle dogru secenek B'dir."
+     "aciklama": "Verilen kural çerçevesinde, negatif üssü olan bir sayı 1. kök olarak ifade edilir; bu nedenle doğru seçenek B'dir."
     },
     {
      "soru": "2^3 * 2^4 işleminin sonucu kaçtır?",
@@ -39710,30 +39182,6 @@
      "aciklama": "Bu seçeneği seçenler, doğru formülü içerecektir."
     },
     {
-     "soru": "Bir köklü sayının karesinin karesi ile kökünün karesinin karesi arasında bir fark vardır. Bu farkın formülü nedir?",
-     "secenekler": [
-      "(√a)^2 - (a^(1/2))^2",
-      "a - (√a)^2",
-      "a - (a^(1/2))^2",
-      "a - (√a)^2",
-      "a - a^(1/2)"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçenler, doğru formülü içerecektir."
-    },
-    {
-     "soru": "Bir sayının kökü ve karesinin karesi arasındaki farkı bulmak için hangi formül kullanılır?",
-     "secenekler": [
-      "√a - (a^(1/2))^2",
-      "a - (√a)^2",
-      "a - (a^(1/2))^2",
-      "√a - a^(1/2)",
-      "a - (√a)^2"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, doğru formülü içerecektir."
-    },
-    {
      "soru": "Köklü sayılar, bir nokta ve bir veya daha fazla uzantıdan oluşur. Uzantılar arasındaki farklar hangi köklü sayının hangi köklü sayının karesi olduğunu gösterir. Örneğin, 64 = 8^2, 100 = 10^2, 81 = 9^2. Köklü sayının karesi, kökü ile aynı olan uzantıların sayısı aynıdır. Aşağıdaki köklü sayının karesi hangisi olabilir?",
      "secenekler": [
       "25",
@@ -39842,18 +39290,6 @@
      "aciklama": "Bir sayının kökü, bir tam sayının 2 katının küpüne eşit olduğunda, bu değer aynı zamanda o tam sayının karesine eşit olamaz; bu nedenle önermede belirtilen ifade doğrudur."
     },
     {
-     "soru": "Köklü sayıların tanımlaması ve özellikleri hakkında bilgi verin.",
-     "secenekler": [
-      "Köklü sayılardan biri olan 27'in karekökü 3'tür.",
-      "Köklü sayılardan biri olan 27'i 3 ile 3 çarpımı ile bulabiliriz.",
-      "Köklü sayılardan biri olan 27'in karekökü 3'tür.",
-      "Köklü sayılardan biri olan 27'in karekökü 3'tür.",
-      "Köklü sayılardan biri olan 27'in karekökü 3'tür."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçenek C, 27'nin karekökünü 3 olarak tanımlamaktadır ve aynı zamanda köklü bir sayı olduğunu belirtmektedir. Bu, doğru cevaptır."
-    },
-    {
      "soru": "Köklü bir sayının tanımı hakkında bilgi verin.",
      "secenekler": [
       "Köklü sayılardan biri olan 27, 3 ile 3 çarpımı ile elde edilebilir.",
@@ -39912,18 +39348,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Doğru çünkü 4^3 = 64, 2^3 = 8, 16^ (1/3) = 2,52"
-    },
-    {
-     "soru": "Bir sayının küpkökünün karesi, o sayının 3/2 katıdır. Bu sayıyı bulunuz.",
-     "secenekler": [
-      "8",
-      "16",
-      "27",
-      "64",
-      "8"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Doğru çünkü 27^(3/2) = 81, 27^(3/2) = (3^3)^(3/2) = 3^ (9/2) = 3^(4,5) = 3^4 * 3^(1/2) = 81 * 1,73 = 140,13"
     },
     {
      "soru": "Kök bir sayının karesi 1000'den küçük ise, o sayı hangi aralıkta olabilir?",
@@ -40008,18 +39432,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Köklü bir sayının formülüne göre, x^2 + 7x + 12 = (x + 3)(x + 4) olduğu için, x = 3 ve x = -4 köklere sahiptir."
-    },
-    {
-     "soru": "x^2 - 3x - 4'nin kökü nedir?",
-     "secenekler": [
-      "x = 4 ve x = -1",
-      "x = 1 ve x = -4",
-      "x = 1 ve x = -4",
-      "x = 4 ve x = -1",
-      "x = -1 ve x = 4"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Köklü bir sayının formülüne göre, x^2 - 3x - 4 = (x - 4)(x + 1) olduğu için, x = 1 ve x = -4 köklere sahiptir."
     },
     {
      "soru": "Köklü sayılar ve kök alma operasyonu ile ilgili sorular",
@@ -43185,7 +42597,7 @@
       "5"
      ],
      "dogruIndex": 0,
-     "aciklama": "f(x) = 2x + 1 fonksiyonunda x yerine -2 yazilirsa f(-2) = 2x(-2) + 1 = -4 + 1 = -3 bulunur. Bu nedenle dogru cevap -3'tur (A secenegi); B secenegindeki -1 degeri hatali bir hesaptir."
+     "aciklama": "f(x) = 2x + 1 fonksiyonunda x yerine -2 yazılırsa f(-2) = 2x(-2) + 1 = -4 + 1 = -3 bulunur. Bu nedenle doğru cevap -3'tür (A seçeneği); B seçeneğindeki -1 değeri hatalı bir hesaptır."
     },
     {
      "soru": "f(x) = x^2 - 4x + 3 fonksiyonunun grafiğinde, fonksiyonun x eksenini kestiği noktaları bulunuz.",
@@ -43197,7 +42609,7 @@
       "(1, 0), (4, 0)"
      ],
      "dogruIndex": 0,
-     "aciklama": "x^2 - 4x + 3 = 0 denklemi carpanlarina ayrilirsa (x - 1)(x - 3) = 0 olur, buradan x = 1 ve x = 3 kokleri bulunur. Fonksiyon x eksenini (1, 0) ve (3, 0) noktalarinda keser."
+     "aciklama": "x^2 - 4x + 3 = 0 denklemi çarpanlarına ayrılırsa (x - 1)(x - 3) = 0 olur, buradan x = 1 ve x = 3 kökleri bulunur. Fonksiyon x eksenini (1, 0) ve (3, 0) noktalarında keser."
     },
     {
      "soru": "f(x) = x^2 - 2x - 3 fonksiyonunun simetrik ekseninin denklemi nedir?",
@@ -43209,7 +42621,7 @@
       "x = 4"
      ],
      "dogruIndex": 1,
-     "aciklama": "Simetri ekseni x = -b / 2a formuluyle bulunur. f(x) = x^2 - 2x - 3 icin a = 1, b = -2 oldugundan x = -(-2) / (2x1) = 1 bulunur."
+     "aciklama": "Simetri ekseni x = -b / 2a formülüyle bulunur. f(x) = x^2 - 2x - 3 için a = 1, b = -2 olduğundan x = -(-2) / (2x1) = 1 bulunur."
     },
     {
      "soru": "f(x) = x^2 + 2x + 1 fonksiyonunun tepe noktasının koordinatları nedir?",
@@ -43221,7 +42633,7 @@
       "(1, 1)"
      ],
      "dogruIndex": 1,
-     "aciklama": "f(x) = x^2 + 2x + 1 = (x + 1)^2 oldugundan tepe noktasinin x koordinati x = -1'dir. f(-1) = (-1)^2 + 2x(-1) + 1 = 1 - 2 + 1 = 0 oldugundan tepe noktasi (-1, 0)'dir."
+     "aciklama": "f(x) = x^2 + 2x + 1 = (x + 1)^2 olduğundan tepe noktasının x koordinatı x = -1'dir. f(-1) = (-1)^2 + 2x(-1) + 1 = 1 - 2 + 1 = 0 olduğundan tepe noktası (-1, 0)'dir."
     },
     {
      "soru": "f(x) = x^2 - 4x + 3 fonksiyonunun buiten değerinin maksimum ve minimum değerlerini bulunuz.",
@@ -43233,7 +42645,7 @@
       "Maksimum: 5, Minimum: -5"
      ],
      "dogruIndex": 0,
-     "aciklama": "f(x) = x^2 - 4x + 3 yukari acilan bir paraboldur (a = 1 > 0), bu nedenle bir maksimum degeri yoktur; fonksiyon sinirsiz artar. Ancak bir minimum degeri vardir: tepe noktasi x = -b/2a = 2 iken f(2) = 4 - 8 + 3 = -1 olarak bulunur. Secenekler arasinda bu minimum degeri (-1) iceren tek secenek A'dir."
+     "aciklama": "f(x) = x^2 - 4x + 3 yukarı açılan bir paraboldür (a = 1 > 0), bu nedenle bir maksimum değeri yoktur; fonksiyon sınırsız artar. Ancak bir minimum değeri vardır: tepe noktası x = -b/2a = 2 iken f(2) = 4 - 8 + 3 = -1 olarak bulunur. Seçenekler arasında bu minimum değeri (-1) içeren tek seçenek A'dır."
     },
     {
      "soru": "f(x) = x^2 + 2x + 1 fonksiyonunun buiten değerinin grafik üzerinde gösterimi nedir?",
@@ -43245,7 +42657,7 @@
       "Küre"
      ],
      "dogruIndex": 0,
-     "aciklama": "f(x) = x^2 + 2x + 1 ikinci dereceden (kareli terim iceren) bir fonksiyondur; bu tur fonksiyonlarin grafigi parabol seklindedir."
+     "aciklama": "f(x) = x^2 + 2x + 1 ikinci dereceden (kareli terim içeren) bir fonksiyondur; bu tür fonksiyonlarin grafiği parabol şeklindedir."
     },
     {
      "soru": "f(x) = 2x + 1 fonksiyonu için, f(3) kaçtır?",
@@ -43344,18 +42756,6 @@
      "aciklama": "Doğru cevap"
     },
     {
-     "soru": "f(x) = 2x + 3 olan fonksiyonun grafikte x ekseni üzerinde olan noktası ne olacaktır?",
-     "secenekler": [
-      "Grafikte x ekseni üzerinde olan noktanın koordinatları (0, 3) olacaktır.",
-      "Grafikte x ekseni üzerinde olan noktanın koordinatları (3, 0) olacaktır.",
-      "Grafikte x ekseni üzerinde olan noktanın koordinatları (-3, 0) olacaktır.",
-      "Grafikte x ekseni üzerinde olan noktanın koordinatları (0, -3) olacaktır.",
-      "Grafikte x ekseni üzerinde olan noktanın koordinatları (-3, 0) olacaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer yanlış şıksa, x ekseni üzerinde olan nokta, fonksiyonun x = 0 olduğunda değerini alacaktır. f(0) = 2(0) + 3 = 3"
-    },
-    {
      "soru": "Bir fonksiyonun grafikte x ekseni üzerinde olan noktası (0, 3) ise, fonksiyonun x = 0 olduğunda değerini alması gereken değer nedir?",
      "secenekler": [
       "f(x) = 3",
@@ -43377,7 +42777,7 @@
       "Fonksiyonun göreceli azalmış bir fonksiyonu, fonksiyonun grafikte sağa doğru kaymasıdır."
      ],
      "dogruIndex": 4,
-     "aciklama": "Soru setinde tanimlandigi haliyle bir fonksiyonun goreceli azalmis hali, fonksiyonun grafiginin saga dogru otelenmesiyle iliskilendirilir; bu yatay otelemede fonksiyon degerleri x ekseni boyunca kayar, bu nedenle dogru secenek E'dir."
+     "aciklama": "Soru setinde tanımlandığı haliyle bir fonksiyonun göreceli azalmış halı, fonksiyonun grafiğinin sağa doğru ötelenmesiyle ilişkilendirilir; bu yatay ötelemede fonksiyon değerleri x ekseni boyunca kayar, bu nedenle doğru seçenek E'dir."
     },
     {
      "soru": "Bir fonksiyonun sabit bir fonksiyonu nedir?",
@@ -43389,7 +42789,7 @@
       "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur."
      ],
      "dogruIndex": 4,
-     "aciklama": "Sabit bir fonksiyonda grafigin saga ya da sola kaymasi, fonksiyonun sabitligini degistirmez; bu iki kayma turu arasinda dogrudan bir iliski kurulamayacagini belirten E secenegi bu nedenle dogru kabul edilir."
+     "aciklama": "Sabit bir fonksiyonda grafiğin sağa ya da sola kayması, fonksiyonun sabitliğini değiştirmez; bu iki kayma türü arasında doğrudan bir ilişki kurulamayacağını belirten E seçeneği bu nedenle doğru kabul edilir."
     },
     {
      "soru": "Bir fonksiyonun tersi nedir?",
@@ -43401,19 +42801,7 @@
       "Fonksiyonun tersi, fonksiyonun grafikte sağa doğru kaymasıdır."
      ],
      "dogruIndex": 1,
-     "aciklama": "Soru setinde tanimlandigi sekliyle bir fonksiyonun tersi, grafigin sola dogru kaymasiyla iliskilendirilmistir; bu nedenle dogru secenek B'dir."
-    },
-    {
-     "soru": "Bir fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur.",
-     "secenekler": [
-      "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur.",
-      "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki vardır.",
-      "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur.",
-      "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki vardır.",
-      "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Sorunun kendisinde belirtildigi gibi, bir fonksiyonun saga dogru kaymasi ile sola dogru kaymasi birbirinden bagimsiz, farkli yonlerde gerceklesen hareketlerdir; bu nedenle aralarinda dogrudan bir iliski yoktur ve dogru secenek A'dir."
+     "aciklama": "Soru setinde tanımlandığı şekliyle bir fonksiyonun tersi, grafiğin sola doğru kaymasıyla ilişkilendirilmiştir; bu nedenle doğru seçenek B'dir."
     },
     {
      "soru": "Fonksiyonun tanımlanması aşağıdaki gibidir. f(x) = 2x + 1. Fonksiyonun grafiksel temsili hangi düzlem üzerinde yapılır?",
@@ -43500,7 +42888,7 @@
      "aciklama": "Ücret fonksiyonu T(x) = 160 + 3·x biçimindedir. x=13 için T(13) = 160 + 3·13 = 160 + 39 = 199 TL."
     },
     {
-     "soru": "h(x) = 4x - 5  (x < 2) ; h(x) = -3x + 0  (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
+     "soru": "h(x) = 4x - 5 (x < 2) ; h(x) = -3x + 0 (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
      "secenekler": [
       "-4",
       "3",
@@ -43620,7 +43008,7 @@
      "aciklama": "g(x) kuralında x yerine 4 yazılır: g(4) = -4·(4) - 1 = -16 - 1 = -17."
     },
     {
-     "soru": "g(x) = -7x + 4  (x < 1) ; g(x) = 6x - 6  (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre g(-1) kaçtır?",
+     "soru": "g(x) = -7x + 4 (x < 1) ; g(x) = 6x - 6 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre g(-1) kaçtır?",
      "secenekler": [
       "-12",
       "1",
@@ -43644,7 +43032,7 @@
      "aciklama": "Payda sıfır olduğunda fonksiyon tanımsız olur: (x-(5))·(x-(-1)) = 0 denkleminden x = 5 veya x = -1 bulunur."
     },
     {
-     "soru": "f(x) = -7x - 3  (x < 1) ; f(x) = -6x + 1  (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
+     "soru": "f(x) = -7x - 3 (x < 1) ; f(x) = -6x + 1 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
      "secenekler": [
       "-9",
       "5",
@@ -43668,7 +43056,7 @@
      "aciklama": "Karekök içinin negatif olmaması gerekir: 2x + 15 ≥ 0 → x ≥ -15/2 = -7.50'dir. Bu koşulu sağlayan en küçük tam sayı x = -7'tir."
     },
     {
-     "soru": "f(x) = -3x + 2  (x < 1) ; f(x) = 6x + 4  (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(3) kaçtır?",
+     "soru": "f(x) = -3x + 2 (x < 1) ; f(x) = 6x + 4 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(3) kaçtır?",
      "secenekler": [
       "-7",
       "22",
@@ -43848,7 +43236,7 @@
      "aciklama": "f(x) kuralında x yerine -2 yazılır: f(-2) = -7·(-2) - 5 = 14 - 5 = 9."
     },
     {
-     "soru": "h(x) = -4x + 6  (x < -3) ; h(x) = 2x - 1  (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre h(-2) kaçtır?",
+     "soru": "h(x) = -4x + 6 (x < -3) ; h(x) = 2x - 1 (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre h(-2) kaçtır?",
      "secenekler": [
       "-5",
       "5",
@@ -44196,7 +43584,7 @@
      "aciklama": "İşlemler tersten çözülür: önce 12/4 = 3 bulunur (bu, 3x+-3 ifadesine eşittir). Sonra 3x+-3 = 3 denkleminden x = (3-(-3))/3 = 2 bulunur."
     },
     {
-     "soru": "h(x) = -2x^2  - 5 fonksiyonuna göre h(-4) kaçtır?",
+     "soru": "h(x) = -2x^2 - 5 fonksiyonuna göre h(-4) kaçtır?",
      "secenekler": [
       "3",
       "59",
@@ -44400,7 +43788,7 @@
      "aciklama": "a(x--3)=... yerine iki denklem kurulur: a·5+b=-4, a·-3+b=12. Bu denklemlerin ortak çözümünden a=-2, b=6 bulunur. Buna göre g(-6) = -2·-6+6 = 18."
     },
     {
-     "soru": "g(x) = -5x - 1  (x < -3) ; g(x) = -3x + 1  (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre g(-8) kaçtır?",
+     "soru": "g(x) = -5x - 1 (x < -3) ; g(x) = -3x + 1 (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre g(-8) kaçtır?",
      "secenekler": [
       "25",
       "-39",
@@ -44484,7 +43872,7 @@
      "aciklama": "Önce g(4) hesaplanır: g(4) = 5·(4)+(1) = 21. Sonra bu değer f fonksiyonunda x yerine yazılır: f(21) = 6·(21)+(2) = 128. Yani (f∘g)(4) = 128."
     },
     {
-     "soru": "f(x) = 5x - 4  (x < 0) ; f(x) = 2x + 4  (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre f(4) kaçtır?",
+     "soru": "f(x) = 5x - 4 (x < 0) ; f(x) = 2x + 4 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre f(4) kaçtır?",
      "secenekler": [
       "12",
       "-12",
@@ -44508,7 +43896,7 @@
      "aciklama": "Önce g(-2) hesaplanır: g(-2) = 2·(-2)+(-6) = -10. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-10) = 6·(-10)+(0) = -60. Yani (f∘g)(-2) = -60."
     },
     {
-     "soru": "h(x) = -4x + 6  (x < 0) ; h(x) = -2x + 1  (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
+     "soru": "h(x) = -4x + 6 (x < 0) ; h(x) = -2x + 1 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
      "secenekler": [
       "-10",
       "5",
@@ -44556,7 +43944,7 @@
      "aciklama": "g(x) kuralında x yerine 9 yazılır: g(9) = -7·(9) - 8 = -63 - 8 = -71."
     },
     {
-     "soru": "f(x) = -7x - 1  (x < -1) ; f(x) = 7x - 3  (x ≥ -1) biçiminde tanımlanan parçalı fonksiyona göre f(2) kaçtır?",
+     "soru": "f(x) = -7x - 1 (x < -1) ; f(x) = 7x - 3 (x ≥ -1) biçiminde tanımlanan parçalı fonksiyona göre f(2) kaçtır?",
      "secenekler": [
       "11",
       "-17",
@@ -44964,7 +44352,7 @@
      "aciklama": "Önce g(3) hesaplanır: g(3) = -7·(3)+(6) = -15. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-15) = -3·(-15)+(4) = 49. Yani (f∘g)(3) = 49."
     },
     {
-     "soru": "f(x) = 3x + 4  (x < 4) ; f(x) = -3x - 3  (x ≥ 4) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
+     "soru": "f(x) = 3x + 4 (x < 4) ; f(x) = -3x - 3 (x ≥ 4) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
      "secenekler": [
       "1",
       "-6",
@@ -45084,7 +44472,7 @@
      "aciklama": "İşlemler tersten çözülür: önce -66/-3 = 22 bulunur (bu, 3x+4 ifadesine eşittir). Sonra 3x+4 = 22 denkleminden x = (22-(4))/3 = 6 bulunur."
     },
     {
-     "soru": "f(x) = -5x - 6  (x < 2) ; f(x) = 4x - 4  (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre f(6) kaçtır?",
+     "soru": "f(x) = -5x - 6 (x < 2) ; f(x) = 4x - 4 (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre f(6) kaçtır?",
      "secenekler": [
       "-34",
       "20",
@@ -45180,7 +44568,7 @@
      "aciklama": "x yerine -4 yazılır: g(-4) = 2·(-4)^2 + 2·(-4) + 9 = 2·16 - 8 + 9 = 33."
     },
     {
-     "soru": "h(x) = -2x + 4  (x < 1) ; h(x) = 5x + 5  (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre h(6) kaçtır?",
+     "soru": "h(x) = -2x + 4 (x < 1) ; h(x) = 5x + 5 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre h(6) kaçtır?",
      "secenekler": [
       "-7",
       "-35",
@@ -45228,7 +44616,7 @@
      "aciklama": "Önce f(-5) hesaplanır: f(-5) = -7·(-5)+(-3) = 32. Sonra bu değer g fonksiyonunda x yerine yazılır: g(32) = -3·(32)+(-6) = -102. Yani (g∘f)(-5) = -102."
     },
     {
-     "soru": "h(x) = -7x - 5  (x < 0) ; h(x) = 2x - 4  (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-5) kaçtır?",
+     "soru": "h(x) = -7x - 5 (x < 0) ; h(x) = 2x - 4 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-5) kaçtır?",
      "secenekler": [
       "-14",
       "30",
@@ -46581,18 +45969,6 @@
      "aciklama": "Bu ifade doğru çünkü dikdörtgenlerin alanlarındaki toplam, her iki dikdörtgenin alanlarının iki katına eşittir."
     },
     {
-     "soru": "Bir kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapını prizmanın bir kenar uzunluğu olarak alırsak, kürenin yarıçapı prizmanın bir kenar uzunluğunun küpüne eşittir. Bu ifadeyi kanıtlayınız.",
-     "secenekler": [
-      "Kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğunun karesine eşittir.",
-      "Kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğunun karesinin karesine eşittir.",
-      "Kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğuna eşittir.",
-      "Kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğunun karesinin karesinin karesine eşittir.",
-      "Kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğunun karesine eşittir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu ifade doğru çünkü kürenin hacmi bir prizma ile aynı ise, kürenin yarıçapı prizmanın bir kenar uzunluğuna eşittir."
-    },
-    {
      "soru": "Bir paralelkenarın bir kenar uzunluğu 5 cm ve diğer kenar uzunluğu 3 cm ise, paralelkenarın alanını bulmak için aşağıdaki argümanları kullanın.",
      "secenekler": [
       "Paralelkenarın alanını bulmak için, uzun kenarın uzunluğunu kısa kenarın uzunluğunun karesi ile çarpın.",
@@ -46665,18 +46041,6 @@
      "aciklama": "90 sayısı en büyük sayıdır. Ortalama 20 ise en büyük sayı 90 olmalıdır."
     },
     {
-     "soru": "Bir grupta 10 öğrenci vardır. Öğrencilerin 4'ü erkek, 6'sı kızdır. Bu grupta erkek öğrencilerin % kaçı kız öğrencilerden daha azdır?",
-     "secenekler": [
-      "25%",
-      "50%",
-      "75%",
-      "50%",
-      "80%"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru. %50 erkek öğrencilerin %50 daha az olması demektir."
-    },
-    {
      "soru": "Bir grup öğrenciden her biri 5'ten 95'e kadar olan bir sayı seçer. Ortalama 60'dır. Ortalama 60 ise en küçük sayı kaçtır?",
      "secenekler": [
       "5",
@@ -46689,18 +46053,6 @@
      "aciklama": "Bu seçenek doğru. Ortalama 60 ise en küçük sayı 5 olmalıdır."
     },
     {
-     "soru": "Bir grupta 10 öğrenci vardır. Öğrencilerin 5'i erkek, 5'i kızdır. Bu grupta kız öğrencilerin sayısı erkek öğrencilerden farklı değildir.",
-     "secenekler": [
-      "Bu doğru",
-      "Bu yanlış",
-      "Bu doğru",
-      "Bu yanlış",
-      "Bu doğru"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru. Kız ve erkek öğrenci sayısının aynı olduğu doğru."
-    },
-    {
      "soru": "Bir küme içinde eleman sayısının 3'ün katı olduğu durumlar için küme içindeki elemanların en küçük ortak katı (EOKK)'nı bulmak için hangi algoritma kullanılır?",
      "secenekler": [
       "Euler'ın algoritması",
@@ -46711,18 +46063,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Euler'ın algoritması, küme içindeki eleman sayısının 3'ün katı olduğu durumlarda küme içindeki elemanların EOKK'sını bulmak için kullanılan bir algoritmadır."
-    },
-    {
-     "soru": "Bir kürenin yüzey alanı ve hacmi için aşağıdaki formüller geçerlidir:",
-     "secenekler": [
-      "F = 4πr^2, V = (4/3)πr^3",
-      "F = 2πr^2, V = (4/3)πr^3",
-      "F = 4πr^2, V = πr^3",
-      "F = 2πr^2, V = (4/3)πr^3",
-      "F = πr^2, V = (4/3)πr^3"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kürenin yüzey alanı ve hacmi için geçerli formüllerdir."
     },
     {
      "soru": "Bir dairenin alanını bulmak için kullanılan formül:",
@@ -49943,8 +49283,8 @@
      "secenekler": [
       "A ve B kümesinin birleşimi A ∪ B, farkı ise A ∩ B'dir.",
       "A ve B kümesinin birleşimi A ∩ B, farkı ise A ∪ B'dir.",
-      "A ve B kümesinin birleşimi A ∪ B, farkı ise A  B'dir.",
-      "A ve B kümesinin birleşimi A  B, farkı ise A ∩ B'dir.",
+      "A ve B kümesinin birleşimi A ∪ B, farkı ise A B'dir.",
+      "A ve B kümesinin birleşimi A B, farkı ise A ∩ B'dir.",
       "A ve B kümesinin birleşimi ve farkı aynı kümedir."
      ],
      "dogruIndex": 0,
@@ -50071,18 +49411,6 @@
      "aciklama": "Bu seçenek, küme elemanlarını iç içe çarpımına alır."
     },
     {
-     "soru": "Küme elemanlarından hangisinin kümede tek bir kere yer alması gerekir?",
-     "secenekler": [
-      "Elemanlar",
-      "Küme",
-      "Elemanlar",
-      "Küme elemanları",
-      "Küme elemanları"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Küme elemanlarından her biri tek bir kere yer almalıdır."
-    },
-    {
      "soru": "Küme içinde elemanların sıralaması neye göre yapılır?",
      "secenekler": [
       "Elemanların büyüklüğü",
@@ -50128,7 +49456,7 @@
       "5"
      ],
      "dogruIndex": 2,
-     "aciklama": "Bir kumenin alt kume sayisi 2^n formuluyle bulunur; n eleman sayisidir. {a, b, c} kumesinin 3 elemani oldugundan alt kume sayisi 2^3=8'dir (bos kume ve kumenin kendisi dahil)."
+     "aciklama": "Bir kümenin alt küme sayısı 2^n formülüyle bulunur; n eleman sayısıdır. {a, b, c} kümesinin 3 elemanı olduğundan alt küme sayısı 2^3=8'dir (boş küme ve kümenin kendisi dahil)."
     },
     {
      "soru": "A = {1, 2, 3, 4, 5} ve B = {4, 5, 6, 7, 8} kümeleri veriliyor. A ∩ B kesişim kümesinin elemanları kaç tanedir?",
@@ -50140,7 +49468,7 @@
       "6"
      ],
      "dogruIndex": 0,
-     "aciklama": "A ve B kumelerinin ortak elemanlari 4 ve 5'tir; bu nedenle A kesisim B = {4, 5} olup 2 elemanlidir."
+     "aciklama": "A ve B kümelerinin ortak elemanları 4 ve 5'tir; bu nedenle A kesişim B = {4, 5} olup 2 elemanlıdır."
     },
     {
      "soru": "A = {x | x ∈ R, x > 0} ve B = {x | x ∈ R, x < 0} kümeleri veriliyor. A ∪ B birleşim kümesinin elemanları nedir?",
@@ -50152,7 +49480,7 @@
       "0"
      ],
      "dogruIndex": 0,
-     "aciklama": "A = {x>0} pozitif reel sayilari, B = {x<0} negatif reel sayilari temsil eder. Bu iki kumenin birlesimi, sifir haric tum reel sayilari kapsar; secenekler arasinda bu kumeyi en dogru temsil eden R (reel sayilar) kumesidir."
+     "aciklama": "A = {x>0} pozitif reel sayıları, B = {x<0} negatif reel sayıları temsil eder. Bu iki kümenin birleşimi, sıfır hariç tüm reel sayıları kapsar; seçenekler arasında bu kümeyi en doğru temsil eden R (reel sayılar) kümesidir."
     },
     {
      "soru": "A = {x | x ∈ R, x^2 < 4} kümesi veriliyor. A kümesinin elemanları nedir?",
@@ -50176,7 +49504,7 @@
       "10"
      ],
      "dogruIndex": 2,
-     "aciklama": "A x B kartezyen carpiminin eleman sayisi |A| x |B| formuluyle bulunur. |A|=3 ve |B|=3 oldugundan A x B'nin eleman sayisi 3x3=9'dur."
+     "aciklama": "A x B kartezyen çarpımının eleman sayısı |A| x |B| formülüyle bulunur. |A|=3 ve |B|=3 olduğundan A x B'nin eleman sayısı 3x3=9'dur."
     },
     {
      "soru": "A = {a, b, c} ve B = {c, d, e} kümeleri veriliyor. A ∪ B birleşim kümesinin elemanları kaç tanedir?",
@@ -50188,7 +49516,7 @@
       "2"
      ],
      "dogruIndex": 1,
-     "aciklama": "A birlesim B kumesi, iki kumenin tum farkli elemanlarini icerir. A = {a, b, c} ve B = {c, d, e} kumelerinde ortak eleman c oldugundan, birlesim kumesi {a, b, c, d, e} olur ve c elemani yalnizca bir kez sayildigi icin 5 elemanlidir (6 degil)."
+     "aciklama": "A birleşim B kümesi, iki kümenin tüm farklı elemanlarını içerir. A = {a, b, c} ve B = {c, d, e} kümelerinde ortak eleman c olduğundan, birleşim kümesi {a, b, c, d, e} olur ve c elemanı yalnızca bir kez sayıldığı için 5 elemanlıdır (6 değil)."
     },
     {
      "soru": "Aşağıdaki küme ilişkilendirme sorununu çözmek için hangi işlemin doğru olduğu söylenebilir?",
@@ -53310,18 +52638,6 @@
      "aciklama": "Kitaplar sirali secildigi icin permutasyon kullanilir: P(5,3) = 5x4x3 = 60."
     },
     {
-     "soru": "10 öğrenciden 3'ünü seçmek için kaç farklı yol vardır?",
-     "secenekler": [
-      "30",
-      "60",
-      "120",
-      "120",
-      "240"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "10 ogrenciden 3'unu sirasiz secmek bir kombinasyon islemidir: C(10,3) = 10! / (3! x 7!) = 120."
-    },
-    {
      "soru": "Aşağıdakilerden hangisi permütasyonun tanımını doğru olarak ifade eder?",
      "secenekler": [
       "Bir kümenin elemanlarının belirli bir sırayla alınması",
@@ -53331,43 +52647,7 @@
       "Bir kümenin elemanlarının belirli bir düzen içinde alınması"
      ],
      "dogruIndex": 1,
-     "aciklama": "Permutasyon, bir kumenin elemanlarinin belirli bir siraya gore secilip dizilmesi islemidir; sira onemli oldugu icin dogru tanim budur."
-    },
-    {
-     "soru": "Bir sınıfta 20 öğrenci vardır. Bunlardan 4'ünü sırayla seçmek için kaç farklı yol vardır?",
-     "secenekler": [
-      "1160",
-      "11680",
-      "4860",
-      "11680",
-      "4860"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Ogrenciler sirali secildigi icin permutasyon formulu kullanilir: P(20,4) = 20x19x18x17 = 116.280. Bu deger, verilen secenekler arasinda D secenegine karsilik gelmektedir."
-    },
-    {
-     "soru": "Bir küme içinde 10 farklı eleman vardır. Bu kümeden 3 farklı elemanı seçmek için kaç farklı yol vardır?",
-     "secenekler": [
-      "60",
-      "120",
-      "80",
-      "120",
-      "720"
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Sirasiz bir secim oldugu icin kombinasyon kullanilir: C(10,3) = 10! / (3! x 7!) = 120."
-    },
-    {
-     "soru": "8 farklı kitaptan 3'ünü seçmek için kaç farklı yol vardır?",
-     "secenekler": [
-      "30",
-      "40",
-      "50",
-      "56",
-      "56"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Sirasiz secim oldugu icin kombinasyon kullanilir: C(8,3) = 8! / (3! x 5!) = 56."
+     "aciklama": "Permütasyon, bir kümenin elemanlarının belirli bir sıraya göre seçilip dizilmesi işlemidir; sıra önemli olduğu için doğru tanım budur."
     },
     {
      "soru": "15 kişi arasında rastgele bir kişi seçmek için n(n-1)(n-2)...(n-14)/15 formülünü kullanmak doğru mu?",
@@ -53499,7 +52779,7 @@
       "12C3"
      ],
      "dogruIndex": 1,
-     "aciklama": "5 kirmizi kupadan 3 tanesini secmek sirasiz bir islem oldugundan kombinasyon kullanilir ve bu 5C3 (=10) seklinde ifade edilir."
+     "aciklama": "5 kırmızı kupadan 3 tanesini seçmek sırasız bir işlem olduğundan kombinasyon kullanılır ve bu 5C3 (=10) şeklinde ifade edilir."
     },
     {
      "soru": "Bir grup öğrenci 5 gün içerisinde 10 farklı etkinlikten 3 tanesini seçmektedir. Her gün farklı etkinlikler düzenlenecektir. Bir öğrenci 5 gün boyunca hangi etkinlikleri seçecek?",
@@ -53511,7 +52791,7 @@
       "12C3"
      ],
      "dogruIndex": 0,
-     "aciklama": "10 farkli etkinlikten 3 tanesini secmek sirasiz bir islem oldugundan kombinasyon kullanilir: 10C3 (=120)."
+     "aciklama": "10 farklı etkinlikten 3 tanesini seçmek sırasız bir işlem olduğundan kombinasyon kullanılır: 10C3 (=120)."
     },
     {
      "soru": "Bir restoranda 5 farklı menü seçeneğinden 3 tanesini seçmektedir. Her gün farklı menüler düzenlenecektir. Bir müşteri 5 gün boyunca hangi menüleri seçecek?",
@@ -53523,7 +52803,7 @@
       "12C3"
      ],
      "dogruIndex": 0,
-     "aciklama": "5 farkli menuden 3 tanesini secmek sirasiz bir islem oldugundan kombinasyon kullanilir: 5C3 (=10)."
+     "aciklama": "5 farklı menüden 3 tanesini seçmek sırasız bir işlem olduğundan kombinasyon kullanılır: 5C3 (=10)."
     },
     {
      "soru": "11 adaylık bir gruptan 3 kişi seçilip farklı departmana sıralı olarak atanacaktır. Bu atama kaç farklı şekilde yapılabilir?",
