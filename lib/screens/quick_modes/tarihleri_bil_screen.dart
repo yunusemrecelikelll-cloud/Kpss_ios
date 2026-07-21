@@ -208,14 +208,24 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
       );
     }
     if (_finished) {
+      final colors = context.watch<ThemeProvider>().colors;
       final basari = _correctCount >= (_order.length * 0.7);
       final record = context.watch<StorageService>().getHighScore(kTarihleriBilGameId);
-      return QuickModeResultCard(
+      final isabet = _order.isEmpty ? 0 : (_correctCount * 100 / _order.length).round();
+      return GameResultScreen(
         title: '📅 Tarihleri Bil',
-        emoji: _yeniRekor ? '🏆' : (basari ? '🎉' : '📚'),
-        message: '$_correctCount/${_order.length} tarihi doğru bildin!',
-        subMessage: '✓ $_correctCount doğru   •   ✗ $_wrongCount yanlış\n'
-            '${quickModeRecordLine(record: record, yeniRekor: _yeniRekor)}',
+        emoji: _yeniRekor ? '🏆' : (basari ? '🎉' : (isabet >= 40 ? '💪' : '📚')),
+        headline: _yeniRekor
+            ? 'Yeni rekor kırdın!'
+            : (basari ? 'Tarihlere hâkimsin!' : 'Tur bitti'),
+        message: '${_order.length} tarihten $_correctCount tanesini doğru bildin.',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_correctCount', label: 'Doğru', color: colors.success),
+          GameResultStat(emoji: '❌', value: '$_wrongCount', label: 'Yanlış', color: colors.danger),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
+        highScore: record,
+        newRecord: _yeniRekor,
         onRetry: _retry,
       );
     }

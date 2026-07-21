@@ -5,6 +5,7 @@ import '../games/card_game_engine.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
+import 'quick_modes/quick_modes_shared.dart';
 import 'tools_hub_screen.dart';
 
 /// JS: FREE_CARDGAME_DAILY
@@ -21,9 +22,20 @@ class CardGameScreen extends StatefulWidget {
 }
 
 class _CardGameScreenState extends State<CardGameScreen> {
+  /// Bu turdaki çift sayısı — sonuç ekranındaki "Çift" istatistiği ve hamle
+  /// verimliliği yorumu bu değerden hesaplanır.
+  static const int _ciftSayisi = 6;
+
   final _engine = CardGameEngine();
   bool _started = false;
   bool _locked = false;
+
+  /// Tüm çiftler bulunduğunda sonuç ekranına geçilir.
+  bool _finished = false;
+
+  /// İçinde bulunulan TURUN başlangıcı — sonuç ekranındaki "Süre" istatistiği
+  /// için (toplam oynama süresi ayrıca [_sessionStart] ile takip edilir).
+  DateTime? _turBaslangici;
 
   /// Yanlış eşleşmede KIRMIZI gösterilecek iki kartın indisleri; ~600 ms sonra
   /// boşaltılır ve kartlar eski rengine (animasyonlu) döner.
@@ -71,19 +83,22 @@ class _CardGameScreenState extends State<CardGameScreen> {
       }
       await storage.useCardGamePlay();
     }
-    _engine.start(widget.subjects, pairCount: 6);
+    _engine.start(widget.subjects, pairCount: _ciftSayisi);
     if (!mounted) return;
     setState(() {
       _started = true;
       _locked = false;
+      _finished = false;
     });
     _sessionStart ??= DateTime.now();
+    _turBaslangici = DateTime.now();
   }
 
   void _newGame() {
     setState(() {
       _started = false;
       _locked = false;
+      _finished = false;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
@@ -103,13 +118,57 @@ class _CardGameScreenState extends State<CardGameScreen> {
       });
     }
     if (_engine.isComplete) {
-      Future.delayed(const Duration(milliseconds: 300), () {
+      // Son eşleşen çift kısa süre görünsün, sonra ortak sonuç ekranına geç.
+      Future.delayed(const Duration(milliseconds: 600), () {
         if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('🎉 Tebrikler, tüm kartları eşleştirdin!')),
-        );
+        setState(() => _finished = true);
       });
     }
+  }
+
+  /// Tüm çiftler bulunduğunda gösterilen sonuç ekranı — Hızlı Modlar ve Harita
+  /// Oyunu ile AYNI ortak iskeleti ([GameResultScreen]) kullanır.
+  Widget _buildResult(BuildContext context) {
+    final colors = context.watch<ThemeProvider>().colors;
+    final hamle = _engine.moves;
+    // En az [_ciftSayisi] hamlede bitirilebilir; fazlalık hamle "fire" sayılır.
+    final fire = (hamle - _ciftSayisi).clamp(0, hamle);
+    final start = _turBaslangici;
+    final turSaniye = start == null ? 0 : DateTime.now().difference(start).inSeconds;
+
+    final String emoji;
+    final String baslik;
+    if (fire == 0) {
+      emoji = '🏆';
+      baslik = 'Kusursuz hafıza!';
+    } else if (hamle <= _ciftSayisi * 2) {
+      emoji = '🎉';
+      baslik = 'Harika iş!';
+    } else if (hamle <= _ciftSayisi * 3) {
+      emoji = '💪';
+      baslik = 'İyi gidiyorsun!';
+    } else {
+      emoji = '📚';
+      baslik = 'Tamamladın!';
+    }
+
+    return GameResultScreen(
+      title: '🃏 Kart Eşleştirme Oyunu',
+      emoji: emoji,
+      headline: baslik,
+      message: '$_ciftSayisi terim-tanım çiftinin tamamını eşleştirdin.',
+      stats: [
+        GameResultStat(emoji: '🃏', value: '$_ciftSayisi', label: 'Çift', color: colors.success),
+        GameResultStat(emoji: '🖐️', value: '$hamle', label: 'Hamle'),
+        GameResultStat(emoji: '⏱️', value: formatPlayDuration(turSaniye), label: 'Süre'),
+      ],
+      note: fire == 0
+          ? 'Hiç fazladan hamle yapmadın — en az hamleyle bitirdin!'
+          : 'En az $_ciftSayisi hamlede bitirilebilirdi; $fire fazladan hamle yaptın. '
+              'Açtığın kartların yerini aklında tutmaya çalış.',
+      onRetry: _newGame,
+      retryLabel: 'Yeni Oyun',
+    );
   }
 
   @override
@@ -123,6 +182,9 @@ class _CardGameScreenState extends State<CardGameScreen> {
     }
     if (!_started) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+    if (_finished) {
+      return _buildResult(context);
     }
 
     final storage = context.watch<StorageService>();

@@ -9,6 +9,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/theme_provider.dart';
+import '../quick_modes/quick_modes_shared.dart' show GameResultStat;
 import 'map_shared.dart';
 
 /// Çoktan seçmeli seçenek harfleri (A, B, C, D, E).
@@ -349,52 +350,31 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
       return const _FatihCelebrationScreen();
     }
     final colors = context.watch<ThemeProvider>().colors;
-    return Scaffold(
-      appBar: AppBar(title: Text('👑 ${widget.province.ad}')),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(passedNow ? '🎉' : '📚', style: const TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                Text(
-                  passedNow
-                      ? '${widget.province.ad} ilini fethettin! ${_questions.length} sorudan $_correct tanesini doğru bildin.'
-                      : '${widget.province.ad} ilini fethedemedin (${_questions.length} sorudan $_correct doğru). Fetih için soruların TAMAMINI (${_questions.length}/${_questions.length}) doğru bilmen gerekiyor. Tekrar dene!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: colors.textFaint, height: 1.5),
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        _retry();
-                      },
-                      child: const Text('🔄 Tekrar Dene'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: const Text('Haritaya Dön'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+    final toplam = _questions.length;
+    return MapSessionResult(
+      title: '👑 ${widget.province.ad}',
+      emoji: passedNow ? '🏆' : (_correct >= toplam * 0.6 ? '💪' : '📚'),
+      headline: passedNow
+          ? '${widget.province.ad} fethedildi!'
+          : '${widget.province.ad} henüz senin değil',
+      message: passedNow
+          ? '$toplam sorunun tamamını doğru bildin — bu il artık haritanda senin rengin.'
+          : 'Fetih için soruların TAMAMINI ($toplam/$toplam) doğru bilmen gerekiyor. Tekrar dene!',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$_correct', label: 'Doğru', color: colors.success),
+        GameResultStat(
+          emoji: '❌',
+          value: '${(toplam - _correct).clamp(0, toplam)}',
+          label: 'Yanlış',
+          color: colors.danger,
         ),
-      ),
+        GameResultStat(emoji: '🎯', value: '$_correct/$toplam', label: 'Fetih Barajı'),
+      ],
+      onRetry: _retry,
+      retryLabel: 'Tekrar Dene',
+      backLabel: 'Haritaya Dön',
+      onBack: () => Navigator.of(context).pop(true),
+      palette: mapModePaletteFor(kIlFethiTimeGameId),
     );
   }
 }

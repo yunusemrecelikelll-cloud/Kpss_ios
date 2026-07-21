@@ -27,7 +27,10 @@ import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
 import 'placement_exam_screen.dart';
 
-const int kFreeMaxFullTestAttempts = 3;
+/// Ücretsiz pakette 120 soruluk TAM DENEME sınavı hakkı (toplam, günlük değil).
+/// Deneme sınavı uygulamanın en ağır içeriği olduğu için ücretsiz tarafta
+/// tek denemeyle sınırlı.
+const int kFreeMaxFullTestAttempts = 1;
 
 /// Cinsiyete göre hitap eden anasayfa karşılama mesajı.
 /// JS karşılığı: src/js/app.js içindeki _heroGreeting(gender, name).

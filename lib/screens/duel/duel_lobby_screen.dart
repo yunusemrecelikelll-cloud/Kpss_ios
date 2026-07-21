@@ -11,13 +11,18 @@ import '../../services/storage_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../premium_screen.dart';
-import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration, kFreeGameDailyLimit;
+import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration;
 import 'duel_play_screen.dart';
 import 'duel_waiting_room_screen.dart';
 
 /// Düello/Royale günlük ücretsiz maç sayacı için oyun kimliği
 /// (StorageService.getGamePlayState/useGamePlay).
 const String kDuelloGameId = 'duello';
+
+/// Düello/Royale için ücretsiz GÜNLÜK maç hakkı. Diğer oyunlar
+/// [kFreeGameDailyLimit] (5) kullanır; düello canlı/çok oyunculu olduğu ve
+/// sunucu kaynağı tükettiği için ücretsiz tarafta daha kısıtlı.
+const int kFreeDuelloDaily = 3;
 
 /// KPSS Düello & Royale giriş/lobi ekranı — oyuncu adı, mod seçimi, oda kur /
 /// özel odaya katıl / tek başına yarış butonları ve canlı açık odalar listesi.
@@ -71,12 +76,12 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
     final storage = context.read<StorageService>();
     if (storage.isPremiumUser()) return true;
     final state = storage.getGamePlayState(kDuelloGameId);
-    final left = (kFreeGameDailyLimit - (state['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+    final left = (kFreeDuelloDaily - (state['plays'] as int)).clamp(0, kFreeDuelloDaily);
     if (left <= 0) {
       if (!mounted) return false;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Bugünkü ücretsiz Düello hakkın bitti '
-            '($kFreeGameDailyLimit/gün). Sınırsız için Premium\'a geç.'),
+            '($kFreeDuelloDaily/gün). Sınırsız için Premium\'a geç.'),
       ));
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
       return false;
@@ -191,7 +196,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
     final storage = context.watch<StorageService>();
     final premium = storage.isPremiumUser();
     final state = storage.getGamePlayState(kDuelloGameId);
-    final left = (kFreeGameDailyLimit - (state['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+    final left = (kFreeDuelloDaily - (state['plays'] as int)).clamp(0, kFreeDuelloDaily);
     final totalSeconds = storage.getGameTimeSpent(kDuelloGameId);
 
     return Scaffold(

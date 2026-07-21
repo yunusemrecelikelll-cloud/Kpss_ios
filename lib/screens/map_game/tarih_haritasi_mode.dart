@@ -176,12 +176,12 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      return MapSessionResult(
+      return MapQuizResult(
         title: '🕰️ Tarih Haritası',
-        emoji: _score >= (_queue.length * 0.7) ? '🎉' : '📚',
-        message: '${_queue.length} sorudan $_score tanesini doğru bildin.',
+        modeId: kTarihHaritasiGameId,
+        score: _score,
+        total: _queue.length,
         onRetry: _retry,
-        palette: mapModePaletteFor(kTarihHaritasiGameId),
       );
     }
     return _buildRound(context);

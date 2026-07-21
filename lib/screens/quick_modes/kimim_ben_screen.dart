@@ -9,6 +9,7 @@ import '../../services/storage_service.dart';
 import '../../theme/theme_provider.dart';
 import '../../theme/app_theme.dart';
 import '../tools_hub_screen.dart';
+import 'quick_modes_shared.dart';
 
 /// Mini oyun — Kimim Ben: ipuçları sırayla açılır (genelden özele), ilk
 /// ipucunda bilen daha fazla puan alır (100 → 70 → 45 → 25, azalan puan
@@ -191,63 +192,24 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
   Widget _buildResult(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
     final record = context.watch<StorageService>().getHighScore(kKimimBenGameId);
-    return Scaffold(
-      appBar: AppBar(title: const Text('🕵️ Kimim Ben')),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(_yeniRekor ? '🏆' : '🕵️', style: const TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                const Text('Oturum Bitti!', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                const SizedBox(height: 8),
-                Text(
-                  '✓ $_correctCount doğru   •   ✗ ${_order.length - _correctCount} yanlış',
-                  style: TextStyle(color: colors.textFaint),
-                ),
-                const SizedBox(height: 6),
-                Text('⭐ Toplam puan: $_totalScore', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                const SizedBox(height: 4),
-                Text(
-                  _yeniRekor ? '🏆 YENİ REKOR! En Yüksek Skor: $record' : '🏆 En Yüksek Skor: $record',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 13,
-                    color: _yeniRekor ? colors.success : colors.textFaint,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        _retry();
-                      },
-                      child: const Text('🔄 Tekrar Oyna'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Menüye Dön'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    final toplam = _order.length;
+    final yanlis = (toplam - _correctCount).clamp(0, toplam);
+    final basari = _correctCount >= toplam * 0.7;
+    return GameResultScreen(
+      title: '🕵️ Kimim Ben',
+      emoji: _yeniRekor ? '🏆' : (basari ? '🎉' : (_correctCount >= toplam * 0.4 ? '💪' : '📚')),
+      headline: _yeniRekor
+          ? 'Yeni rekor kırdın!'
+          : (basari ? 'Usta dedektifsin!' : 'Oturum bitti'),
+      message: '$toplam kişilikten $_correctCount tanesini doğru tahmin ettin.',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$_correctCount', label: 'Doğru', color: colors.success),
+        GameResultStat(emoji: '❌', value: '$yanlis', label: 'Yanlış', color: colors.danger),
+        GameResultStat(emoji: '⭐', value: '$_totalScore', label: 'Puan', color: colors.gold),
+      ],
+      highScore: record,
+      newRecord: _yeniRekor,
+      onRetry: _retry,
     );
   }
 

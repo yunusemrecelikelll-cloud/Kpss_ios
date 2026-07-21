@@ -158,12 +158,12 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      return MapSessionResult(
+      return MapQuizResult(
         title: '🧭 Bölgeyi Bul',
-        emoji: _score >= (_queue.length * 0.7) ? '🎉' : '📚',
-        message: '${_queue.length} sorudan $_score tanesini doğru bildin.',
+        modeId: kBolgeBulGameId,
+        score: _score,
+        total: _queue.length,
         onRetry: _retry,
-        palette: mapModePaletteFor(kBolgeBulGameId),
       );
     }
     return _buildRound(context);

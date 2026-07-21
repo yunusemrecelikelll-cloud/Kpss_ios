@@ -7,6 +7,9 @@ import '../../services/storage_service.dart';
 import '../../theme/subject_colors.dart';
 import '../../theme/theme_provider.dart';
 import '../../widgets/turkey_map_painter.dart';
+// Sonuç ekranı TÜM oyunlarda ortak olsun diye Hızlı Modlar'daki
+// [GameResultScreen] burada da kullanılır (tek tasarım dili, tek yer).
+import '../quick_modes/quick_modes_shared.dart';
 import '../tools_hub_screen.dart';
 
 /// Harita Oyunu — JS karşılığı yok (yeni Flutter-özel oyun), diğer oyunlarla
@@ -442,66 +445,142 @@ class MapQuizScaffold extends StatelessWidget {
   }
 }
 
-/// Genel bir "oturum bitti" sonuç kartı (skor + tekrar oyna / menüye dön).
+/// Soru-cevap tipli harita modlarının (İli Bul, Bölgeyi Bul, Komşu İl, Ürün
+/// Haritası, Tarih Haritası, İklim Avı) ORTAK sonuç ekranı.
+///
+/// Hepsi "N sorudan M tanesini doğru bildin" biçiminde bittiği için başarı
+/// emojisi, başlık, doğru/yanlış/isabet şeridi ve arka plan tek yerden üretilir
+/// — böylece bir modda yapılan iyileştirme hepsine birden yansır.
+class MapQuizResult extends StatelessWidget {
+  final String title;
+
+  /// Modun kimliği — rengi ([kMapModePalettes]) buradan gelir.
+  final String modeId;
+  final int score;
+  final int total;
+  final VoidCallback onRetry;
+
+  const MapQuizResult({
+    super.key,
+    required this.title,
+    required this.modeId,
+    required this.score,
+    required this.total,
+    required this.onRetry,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.watch<ThemeProvider>().colors;
+    final yanlis = (total - score).clamp(0, total);
+    final oran = total <= 0 ? 0 : (score * 100 / total).round();
+    // Başarıya göre illüstrasyon: kusursuz tur 🏆, iyi tur 🎉, orta 💪, düşük 📚.
+    final String emoji;
+    final String baslik;
+    if (total > 0 && score == total) {
+      emoji = '🏆';
+      baslik = 'Kusursuz tur!';
+    } else if (oran >= 70) {
+      emoji = '🎉';
+      baslik = 'Harika iş!';
+    } else if (oran >= 40) {
+      emoji = '💪';
+      baslik = 'Fena değil!';
+    } else {
+      emoji = '📚';
+      baslik = 'Biraz daha çalışmalısın';
+    }
+
+    return MapSessionResult(
+      title: title,
+      emoji: emoji,
+      headline: baslik,
+      message: '$total sorudan $score tanesini doğru bildin.',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$score', label: 'Doğru', color: colors.success),
+        GameResultStat(emoji: '❌', value: '$yanlis', label: 'Yanlış', color: colors.danger),
+        GameResultStat(emoji: '🎯', value: '%$oran', label: 'İsabet'),
+      ],
+      onRetry: onRetry,
+      palette: mapModePaletteFor(modeId),
+    );
+  }
+}
+
+/// Genel bir "oturum bitti" sonuç kartı — TÜM harita modlarının (İli Bul,
+/// Bölgeyi Bul, Komşu İl, Ürün/Tarih Haritası, İklim Avı, 60 Saniyede Türkiye)
+/// ortak sonuç ekranı.
+///
+/// Artık kendi düzenini çizmez; Hızlı Modlar ve Kart Oyunu ile AYNI tasarım
+/// dilini kullanan ortak [GameResultScreen]'i sarmalar (bkz.
+/// quick_modes/quick_modes_shared.dart). Modun kendi rengi ([palette]) hem
+/// arka plan gradyanına hem butonlara vurgu olarak geçer.
 class MapSessionResult extends StatelessWidget {
   final String title;
   final String emoji;
+
+  /// Kısa değerlendirme cümlesi ("5 sorudan 4 tanesini doğru bildin." gibi).
   final String message;
+
+  /// Büyük başlık — verilmezse "Oturum Bitti!".
+  final String? headline;
+
+  /// [DsStatStrip] ile gösterilecek sayısal özet.
+  final List<GameResultStat> stats;
+
+  /// Kalıcı rekor (yalnızca rekor tutan modlarda verilir — ör. 60 Saniyede
+  /// Türkiye). null ise rekor satırı çizilmez.
+  final int? highScore;
+  final bool newRecord;
+
+  /// Uzun "neye çalışmalısın" yorumu.
+  final String? note;
+
   final VoidCallback onRetry;
   final SubjectPalette? palette;
+
+  /// Butonların etiketleri ve geri dönüş davranışı — 81 İl Fethi gibi haritaya
+  /// sonuç döndüren modlar bunları özelleştirir.
+  final String retryLabel;
+  final String backLabel;
+  final VoidCallback? onBack;
+
   const MapSessionResult({
     super.key,
     required this.title,
     required this.emoji,
     required this.message,
     required this.onRetry,
+    this.headline,
+    this.stats = const [],
+    this.highScore,
+    this.newRecord = false,
+    this.note,
     this.palette,
+    this.retryLabel = 'Tekrar Oyna',
+    this.backLabel = 'Oyunlara Dön',
+    this.onBack,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Container(
-        decoration: palette != null ? mapModeBackgroundDecoration(palette!, colors.isLight) : null,
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(emoji, style: const TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                Text(message, textAlign: TextAlign.center, style: TextStyle(color: colors.textFaint, height: 1.5)),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        onRetry();
-                      },
-                      child: const Text('🔄 Tekrar Oyna'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Menüye Dön'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return GameResultScreen(
+      title: title,
+      emoji: emoji,
+      headline: headline ?? 'Oturum Bitti!',
+      message: message,
+      stats: stats,
+      highScore: highScore,
+      newRecord: newRecord,
+      note: note,
+      accent: palette?.a,
+      backgroundDecoration:
+          palette != null ? mapModeBackgroundDecoration(palette!, colors.isLight) : null,
+      onRetry: onRetry,
+      retryLabel: retryLabel,
+      backLabel: backLabel,
+      onBack: onBack,
     );
   }
 }

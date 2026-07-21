@@ -271,12 +271,24 @@ class _Hiz60ScreenState extends State<Hiz60Screen> {
       return const Scaffold(body: Center(child: Text('Yeterli soru bulunamadı.')));
     }
     if (_finished) {
+      final colors = context.watch<ThemeProvider>().colors;
       final record = context.watch<StorageService>().getHighScore(kHiz60GameId);
-      return QuickModeResultCard(
+      final isabet = _attempts == 0 ? 0 : (_score * 100 / _attempts).round();
+      return GameResultScreen(
         title: '⏱️ 60 Saniye Challenge',
-        emoji: _yeniRekor ? '🏆' : (_score >= 15 ? '🎉' : '📚'),
-        message: '✅ $_score doğru   •   ❌ $_wrong yanlış\n($_attempts soru cevapladın)',
-        subMessage: '${quickModeRecordLine(record: record, yeniRekor: _yeniRekor)}\n\n${_sonucYorumu()}',
+        emoji: _yeniRekor ? '🏆' : (_score >= 15 ? '🎉' : (_score >= 8 ? '💪' : '📚')),
+        headline: _yeniRekor
+            ? 'Yeni rekor kırdın!'
+            : (_score >= 15 ? 'Süre doldu — harika skor!' : 'Süre doldu!'),
+        message: '60 saniyede $_attempts soru cevapladın.',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_score', label: 'Doğru', color: colors.success),
+          GameResultStat(emoji: '❌', value: '$_wrong', label: 'Yanlış', color: colors.danger),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
+        highScore: record,
+        newRecord: _yeniRekor,
+        note: _sonucYorumu(),
         onRetry: _retry,
       );
     }

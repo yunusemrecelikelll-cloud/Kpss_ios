@@ -169,6 +169,14 @@ class KategoriEslestirmeEngine {
   /// Çekme destesi — terim ve hedef kartları karışık.
   List<DesteKarti> deste = [];
 
+  /// Bu turda çekilip OYNANMADAN geri bırakılan kartlar. Eskiden bu kartlar
+  /// doğrudan [deste]'nin altına ekleniyordu; o yüzden her çekişte deste
+  /// uzunluğu aynı kalıyor ve ekrandaki sayaç HİÇ AZALMIYORDU. Artık ayrı bir
+  /// havuzda bekliyorlar ve deste bitince tek seferde geri dağıtılıyorlar
+  /// (klasik "yeniden dağıt"). Böylece sayaç her çekişte 1 azalır, kilitlenme
+  /// de olmaz.
+  List<DesteKarti> geriDonenler = [];
+
   /// Desteden çekilmiş, oynanmayı bekleyen kart ("waste" yuvası). Kendi
   /// yerinde durur; başka kartların üstüne binmez.
   DesteKarti? cekilen;
@@ -205,6 +213,7 @@ class KategoriEslestirmeEngine {
     tamamlananlar = [];
     slotlar = List<KategoriHedef?>.filled(kHedefSlotSayisi, null);
     deste = [];
+    geriDonenler = [];
     cekilen = null;
 
     final cokKategori = gruplar.length >= kCokKategoriEsigi;
@@ -416,15 +425,25 @@ class KategoriEslestirmeEngine {
 
   // ── Çekme destesi ve çekilen kart ──────────────────────────────────────
 
-  /// Desteden bir sonraki kartı çeker. Elde oynanmamış bir kart varsa o kart
-  /// destenin ALTINA gider (klasik "waste" davranışı; kilitlenme olmaz).
+  /// Şu an desteden yeni bir kart çekilebilir mi? (Deste boşsa ama geri dönen
+  /// kartlar varsa YENİDEN DAĞITIM yapılabileceği için yine true.)
+  bool get cekilebilir => deste.isNotEmpty || geriDonenler.isNotEmpty;
+
+  /// Desteden bir sonraki kartı çeker.
+  ///
+  /// Elde oynanmamış bir kart varsa o kart [geriDonenler] havuzuna gider —
+  /// destenin altına DEĞİL. Böylece [bekleyenSayisi] her çekişte tam olarak 1
+  /// azalır. Deste bittiğinde geri dönenler tek seferde desteye tazelenir
+  /// (yeniden dağıtım), yani kilitlenme yaşanmaz.
   bool cekDeste() {
-    if (deste.isEmpty) return false; // çekilecek yeni kart yok
-    if (cekilen != null) {
-      deste.add(cekilen!);
-      cekilen = null;
+    if (deste.isEmpty) {
+      if (geriDonenler.isEmpty) return false; // gerçekten çekilecek kart yok
+      deste = geriDonenler;
+      geriDonenler = [];
     }
+    final eski = cekilen;
     cekilen = deste.removeAt(0);
+    if (eski != null) geriDonenler.add(eski);
     return true;
   }
 
@@ -629,11 +648,23 @@ class KategoriEslestirmeEngine {
     return tumHedefler.every((h) => h.ders == ilk) ? ilk : 'Karışık';
   }
 
-  /// Çekme destesinde bekleyen kart sayısı.
+  /// Çekme destesinde ŞU AN bekleyen kart sayısı — her çekişte 1 azalır.
   int get bekleyenSayisi => deste.length;
 
-  /// Destede bekleyen HEDEF KATEGORİ kartı sayısı (üstte rozet olarak gösterilir).
-  int get bekleyenHedefSayisi => deste.where((d) => d.hedefMi).length;
+  /// Deste + geri dönen havuz + eldeki kart: henüz oynanmamış TÜM deste
+  /// kartları. Deste sayacı sıfırlanınca "yeniden dağıtım" olacağını anlatmak
+  /// için kullanılır.
+  int get oynanmamisDesteKarti =>
+      deste.length + geriDonenler.length + (cekilen != null ? 1 : 0);
+
+  /// Henüz oynanmamış HEDEF KATEGORİ kartı sayısı (destede, geri dönenlerde ya
+  /// da elde). Boş slot metni bunu kullanır.
+  int get bekleyenHedefSayisi {
+    var n = deste.where((d) => d.hedefMi).length +
+        geriDonenler.where((d) => d.hedefMi).length;
+    if (cekilen != null && cekilen!.hedefMi) n++;
+    return n;
+  }
 
   /// Seviyedeki toplam terim (kart) sayısı — hamle bütçesinin dayanağı.
   int get toplamTerim => toplamKart;

@@ -5,13 +5,18 @@ import '../services/account_deletion_service.dart';
 import '../services/auth_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
-import '../services/data_service.dart';
 import '../services/remote_question_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'premium_screen.dart';
-import 'quiz_screen.dart' show kAutoSecsPerQ, kSureOnayarlariSn, kMinTestDakika, kMaxTestDakika;
+import 'quiz_screen.dart'
+    show
+        kAutoSecsPerQ,
+        kSureOnayarlariSn,
+        kMinTestDakika,
+        kMaxTestDakika,
+        kVarsayilanSoruCevapModu;
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
 
@@ -31,7 +36,8 @@ const int _kOrnekSoruSayisi = 120;
 
 // ── Soru cevap modu ──
 // Konu testlerinde bir şık işaretlendikten sonraki davranışı belirler.
-// Ayar anahtarı: 'soruCevapModu' (varsayılan: 'testSonunda').
+// Ayar anahtarı: 'soruCevapModu'. Varsayılan (ilk kurulumda) 'herZamanDur' —
+// tek kaynak quiz_screen.dart'taki kVarsayilanSoruCevapModu sabitidir.
 class _SoruCevapSecenegi {
   final String deger;
   final String baslik;
@@ -76,10 +82,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _downloading = false;
-  int _downloadDone = 0;
-  int _downloadTotal = 0;
-  int? _cachedCount;
+  /// "Soruları Güncelle" o an kontrol/indirme yapıyor mu.
+  bool _checkingUpdate = false;
 
   /// "Hesabımı Sil" akışı.
   ///
@@ -163,59 +167,66 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  List<String> _allTopicIds(BuildContext context) {
-    final subjects = context.read<DataService>().cachedSubjects;
-    return [for (final s in subjects) for (final t in s.konular) t.id];
+  // ── Soruları Güncelle ────────────────────────────────────────────────
+  // Sorular artık uygulamayla birlikte geliyor (assets/data/*.json), açılışta
+  // hiçbir indirme yapılmıyor. Bu bölüm SADECE kullanıcı isterse GitHub'daki
+  // sürüm dosyasına bakıp yeni soru olup olmadığını kontrol eder.
+
+  /// Son kontrol tarihinin saklandığı ayar anahtarı (ISO 8601 metin).
+  static const String _kSonKontrolKey = 'sonSoruGuncellemeKontrolu';
+
+  static const List<String> _kAyKisa = [
+    'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+    'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
+  ];
+
+  /// 2026-07-21 → "21 Tem 2026"
+  String _tarihMetni(DateTime d) => '${d.day} ${_kAyKisa[d.month - 1]} ${d.year}';
+
+  /// Ayarlardan son kontrol tarihini okur (yoksa null).
+  DateTime? _sonKontrol(StorageService storage) {
+    final raw = storage.getSettings()[_kSonKontrolKey];
+    if (raw is! String) return null;
+    return DateTime.tryParse(raw);
   }
 
-  Future<void> _refreshCachedCount() async {
-    final ids = _allTopicIds(context);
+  Future<void> _soruGuncelle() async {
+    // Tüm context bağımlılıklarını await'lerden ÖNCE yakala.
     final remote = context.read<RemoteQuestionService>();
-    final n = await remote.countCached(ids);
-    if (!mounted) return;
-    setState(() => _cachedCount = n);
-  }
+    final storage = context.read<StorageService>();
+    final messenger = ScaffoldMessenger.of(context);
 
-  Future<void> _downloadAll() async {
-    final ids = _allTopicIds(context);
-    final remote = context.read<RemoteQuestionService>();
-    setState(() {
-      _downloading = true;
-      _downloadDone = 0;
-      _downloadTotal = ids.length;
-    });
-    final succeeded = await remote.downloadAll(ids, onProgress: (done, total) {
-      if (!mounted) return;
-      setState(() {
-        _downloadDone = done;
-        _downloadTotal = total;
-      });
-    });
-    if (!mounted) return;
-    final n = await remote.countCached(ids);
-    if (!mounted) return;
-    // Başarılıysa "Yeni sorular eklendi" bildirimini de temizle — kullanıcı
-    // artık en güncel içeriği indirmiş oldu.
-    if (succeeded >= ids.length) {
-      final serverUpdatedAt = await remote.getServerContentUpdatedAt();
-      if (serverUpdatedAt != null) {
-        await context.read<StorageService>().setLastSeenContentVersionMs(serverUpdatedAt.millisecondsSinceEpoch);
-      }
+    setState(() => _checkingUpdate = true);
+    final sonuc = await remote.checkAndUpdate();
+
+    // Kontrol tarihi: sonuç ne olursa olsun DEĞİL, sadece sunucuya gerçekten
+    // ulaşılabildiyse anlamlıdır — hata durumunda eski tarih korunur.
+    if (sonuc.sonuc != UpdateOutcome.hata) {
+      await storage.saveSettings({_kSonKontrolKey: DateTime.now().toIso8601String()});
     }
+
+    // Güncelleme uygulandıysa anasayfadaki "Yeni sorular eklendi" banner'ını
+    // da temizle — kullanıcı artık en güncel içeriğe sahip.
+    if (sonuc.sonuc == UpdateOutcome.guncellendi) {
+      final tarih = sonuc.guncellemeTarihi ?? DateTime.now();
+      await storage.setLastSeenContentVersionMs(tarih.millisecondsSinceEpoch);
+    }
+
     if (!mounted) return;
-    setState(() {
-      _downloading = false;
-      _cachedCount = n;
-    });
-    // DÜRÜST sonuç: her konu gerçekten indirilebildiyse başarı mesajı,
-    // aksi halde (internet yok / sunucuya erişilemedi) bunu AÇIKÇA söyle —
-    // "tamamlandı" diye yanlış bir izlenim verme.
-    final allOk = succeeded >= ids.length;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(allOk
-          ? 'Tüm sorular indirildi — artık internetsiz de çalışır.'
-          : '$succeeded / ${ids.length} konu indirilebildi. İnternet bağlantını kontrol edip tekrar dene.'),
-    ));
+    setState(() => _checkingUpdate = false);
+
+    final String mesaj;
+    switch (sonuc.sonuc) {
+      case UpdateOutcome.guncellendi:
+        mesaj = sonuc.yeniSoruSayisi > 0
+            ? '${sonuc.yeniSoruSayisi} yeni soru eklendi.'
+            : 'Sorular güncellendi.';
+      case UpdateOutcome.zatenGuncel:
+        mesaj = 'Sorular zaten güncel.';
+      case UpdateOutcome.hata:
+        mesaj = 'Güncelleme kontrol edilemedi, internetini kontrol et.';
+    }
+    messenger.showSnackBar(SnackBar(content: Text(mesaj)));
   }
 
   // ── Test süresi tercihi ──────────────────────────────────────────────
@@ -268,12 +279,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _refreshCachedCount());
-  }
-
-  @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
     final themeProvider = context.watch<ThemeProvider>();
@@ -282,7 +287,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final soundOn = settings['soundEnabled'] != false;
     final timerMode = (settings['timerMode'] as String?) ?? 'auto';
     final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
-    final soruCevapModu = (settings['soruCevapModu'] as String?) ?? 'testSonunda';
+    final soruCevapModu = (settings['soruCevapModu'] as String?) ?? kVarsayilanSoruCevapModu;
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
     final adaptationSounds = storage.getAdaptationSoundsEnabled();
@@ -689,9 +694,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
 
-            // ── VERİ VE İNDİRME ─────────────────────────────────────────
+            // ── SORULAR ─────────────────────────────────────────────────
+            // Sorular uygulamanın içinde gelir; burada sadece "yeni soru var
+            // mı" kontrolü yapılır (bkz. RemoteQuestionService.checkAndUpdate).
             const SizedBox(height: 20),
-            const DsSectionHeader(title: '📥 Veri ve İndirme'),
+            const DsSectionHeader(title: '📚 Sorular'),
             const SizedBox(height: 8),
             DsCard(
               padding: const EdgeInsets.all(16),
@@ -702,7 +709,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DsIconBadge(
-                          icon: Icons.download_rounded,
+                          icon: Icons.refresh_rounded,
                           color: c.violetL,
                           size: 42,
                           circle: false,
@@ -712,14 +719,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Tüm Soruları İndir',
+                            Text('Soruları Güncelle',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
                             const SizedBox(height: 2),
-                            Text(
-                              'Yaklaşık ${formatEstimatedSize(kQuestionBankEstimatedBytes)}',
-                              style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                            ),
+                            Builder(builder: (_) {
+                              final son = _sonKontrol(storage);
+                              return Text(
+                                son == null
+                                    ? 'Henüz kontrol edilmedi'
+                                    : 'Son kontrol: ${_tarihMetni(son)}',
+                                style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                              );
+                            }),
                           ],
                         ),
                       ),
@@ -727,42 +739,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Her konunun tüm soru havuzunu cihazına indirir; internetin olmadığı '
-                    'yerlerde bile testlere sınırsız girebilirsin.',
+                    'Sorular uygulamayla birlikte geliyor, internet olmadan da çalışır. '
+                    'Zaman zaman yeni sorular ekliyoruz — kontrol etmek için dokun.',
                     style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
                   ),
                   const SizedBox(height: 12),
-                  if (_downloading) ...[
-                    DsProgressBar(
-                      value: _downloadTotal == 0 ? 0 : _downloadDone / _downloadTotal,
-                      color: c.violetL,
-                      height: 8,
-                    ),
-                    const SizedBox(height: 8),
-                    Text('$_downloadDone / $_downloadTotal konu indirildi...',
-                        style: TextStyle(fontSize: 12, color: c.textFaint)),
-                  ] else ...[
-                    if (_cachedCount != null)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          '$_cachedCount konu şu an cihazda hazır (internetsiz kullanılabilir).',
-                          style: TextStyle(fontSize: 12, color: c.textFaint),
+                  if (_checkingUpdate)
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: c.violetL),
                         ),
-                      ),
+                        const SizedBox(width: 10),
+                        Text('Kontrol ediliyor…',
+                            style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      ],
+                    )
+                  else
                     Align(
                       alignment: Alignment.centerLeft,
                       child: DsPillButton(
-                        label: 'Tüm Soruları İndir',
+                        label: 'Soruları Güncelle',
                         color: c.violetL,
-                        leadingIcon: Icons.download,
+                        leadingIcon: Icons.refresh,
                         onPressed: () {
                           context.read<SoundService>().click();
-                          _downloadAll();
+                          _soruGuncelle();
                         },
                       ),
                     ),
-                  ],
                 ],
               ),
             ),

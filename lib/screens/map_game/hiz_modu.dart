@@ -6,6 +6,7 @@ import '../../data/turkey_map_data.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/theme_provider.dart';
+import '../quick_modes/quick_modes_shared.dart' show GameResultStat;
 import '../tools_hub_screen.dart';
 import 'iklim_avi_mode.dart' show IklimSorusu, kIklimSorulari;
 import 'map_shared.dart';
@@ -13,8 +14,10 @@ import 'urun_haritasi_mode.dart' show UrunEsleme, kUrunEslemeleri;
 
 const String _kHowToPlay =
     '60 saniye boyunca İli Bul, Bölgeyi Bul, Komşu İl, Ürün Haritası ve İklim '
-    'Avı modlarının soru havuzundan karışık, art arda sorular gelir. Doğru '
-    'cevaplayınca hemen sıradaki soruya geçilir; süre bitince toplam skorun görünür.';
+    'Avı modlarının soru havuzundan karışık, art arda sorular gelir. Dokunduğun '
+    'il 1 saniye boyunca renklenir (doğruysa yeşil, yanlışsa kırmızı — yanlışta '
+    'doğru cevap da yeşil yanar), sonra sıradaki soru gelir. Bu 1 saniye boyunca '
+    'geri sayım DURUR, yani tam 60 saniye oynarsın; süre bitince toplam skorun görünür.';
 
 /// Mod 8 — "60 Saniyede Türkiye": diğer mini oyun modlarının (İli Bul,
 /// Bölgeyi Bul, Komşu İl, Ürün Haritası, İklim Avı) soru havuzundan karışık,
@@ -133,9 +136,27 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
   final List<_HizPrompt> _queue = [];
   _HizPrompt? _current;
 
-  /// Son cevabın doğru mu yanlış mı olduğu — akışı durdurmayan ✓/✗ geri
-  /// bildirim satırı için. null ise henüz cevap verilmemiştir.
+  /// Son cevabın doğru mu yanlış mı olduğu — ✓/✗ geri bildirim satırı ve
+  /// haritanın renklenmesi için. null ise henüz cevap verilmemiştir.
   bool? _sonCevapDogruMu;
+
+  // ── Cevap geri bildirimi (1 saniye) ───────────────────────────────────────
+  // Kullanıcı bir ile dokunduğunda seçtiği il 1 saniye boyunca renklenir
+  // (doğruysa yeşil, yanlışsa kırmızı; yanlışta DOĞRU cevap da yeşil gösterilir
+  // ki öğretici olsun). Bu 1 saniye boyunca GERİ SAYIM DURUR — kullanıcı gerçek
+  // 60 saniyeyi oynar, geri bildirim süreden yemez.
+  static const Duration _kGeriBildirimSuresi = Duration(seconds: 1);
+
+  /// Geri bildirim gösterilirken true — bu sırada yeni dokunuşlar yok sayılır.
+  bool _geriBildirimAktif = false;
+
+  /// Kullanıcının DOKUNDUĞU ilin kimliği.
+  String? _secilenIlId;
+
+  /// Yanlış cevapta yeşil gösterilecek doğru il(ler).
+  Set<String> _dogruIlIdleri = {};
+
+  Timer? _geriBildirimTimer;
 
   /// Yanlış yapılan soruların konu başlığına göre sayımı — oyun sonundaki
   /// "neye çalışmalısın" yorumunu üretir.
@@ -158,6 +179,7 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
   @override
   void dispose() {
     _ticker?.cancel();
+    _geriBildirimTimer?.cancel();
     final start = _sessionStart;
     if (start != null) {
       context.read<StorageService>().addGameTimeSpent(kHizliTurkiyeGameId, DateTime.now().difference(start));
@@ -183,12 +205,16 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
       _wrong = 0;
       _attempts = 0;
       _sonCevapDogruMu = null;
+      _geriBildirimAktif = false;
+      _secilenIlId = null;
+      _dogruIlIdleri = {};
       _yanlisKategoriler.clear();
       _yeniRekor = false;
       _oncekiRekor = context.read<StorageService>().getHighScore(kHizliTurkiyeGameId);
       _current = _popNext();
     });
     context.read<SoundService>().resetTickPhase();
+    _geriBildirimTimer?.cancel();
     _ticker?.cancel();
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
@@ -213,6 +239,8 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
   /// Süre bittiğinde skoru kalıcı olarak kaydeder (rekor + son tur dağılımı)
   /// ve sonuç ekranına geçer.
   Future<void> _turuBitir() async {
+    _ticker?.cancel();
+    _geriBildirimTimer?.cancel();
     final storage = context.read<StorageService>();
     final rekorKirildi = await storage.submitHighScore(kHizliTurkiyeGameId, _score);
     await storage.setLastRoundStats(kHizliTurkiyeGameId, correct: _score, wrong: _wrong);
@@ -223,21 +251,27 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
     });
   }
 
-  /// Dokunulduğu ANDA cevabı işler ve sıradaki soruya geçer.
+  /// Dokunulduğu ANDA cevabı işler; ardından 1 saniyelik geri bildirim gösterip
+  /// sıradaki soruya geçer.
   ///
-  /// ÖNCEDEN burada 260 ms'lik bir `Future.delayed` vardı; doğru/yanlış
-  /// yanıp sönme animasyonu bitene kadar sonraki soru gelmiyordu ve oyun
-  /// "tıklayınca hemen seçmiyor" hissi veriyordu. 60 saniyelik bir modda bu
-  /// gecikme toplamda onlarca saniye kaybettiriyordu. Artık geri bildirim
-  /// akışı DURDURMAYAN kısa bir ✓/✗ satırıyla veriliyor.
+  /// GECİKME YOK: skor/doğruluk hesabı ve seçilen ilin renklenmesi dokunuşla
+  /// AYNI karede olur (eskiden burada 260 ms'lik bir `Future.delayed` vardı ve
+  /// "tıklayınca hemen seçmiyor" hissi veriyordu — geri getirilmedi). Gecikme
+  /// yalnızca seçimden SONRA, geri bildirimi görebilmek için vardır ve bu süre
+  /// boyunca GERİ SAYIM DURUR: kullanıcı gerçekten 60 saniye oynar.
   void _onTapProvince(TurkeyProvince p) {
-    if (_finished || _current == null) return;
+    if (_finished || _current == null || _geriBildirimAktif) return;
     context.read<SoundService>().click();
-    final correct = _current!.dogruMu(p);
+    final soru = _current!;
+    final correct = soru.dogruMu(p);
     if (!correct) {
-      _yanlisKategoriler[_current!.kategori] =
-          (_yanlisKategoriler[_current!.kategori] ?? 0) + 1;
+      _yanlisKategoriler[soru.kategori] = (_yanlisKategoriler[soru.kategori] ?? 0) + 1;
     }
+
+    // Geri sayımı duraklat — geri bildirim süresi oyundan çalmasın.
+    _ticker?.cancel();
+    _ticker = null;
+
     setState(() {
       _attempts++;
       if (correct) {
@@ -246,24 +280,48 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
         _wrong++;
       }
       _sonCevapDogruMu = correct;
-      _current = _popNext();
+      _geriBildirimAktif = true;
+      _secilenIlId = p.id;
+      // Yanlışta doğru cevap(lar) da yeşil gösterilir — öğretici olsun diye.
+      // (Bölge/ürün/iklim sorularında birden fazla il doğru olabilir.)
+      _dogruIlIdleri = correct
+          ? {p.id}
+          : kTurkeyProvinces.where(soru.dogruMu).map((e) => e.id).toSet();
     });
+
+    _geriBildirimTimer?.cancel();
+    _geriBildirimTimer = Timer(_kGeriBildirimSuresi, () {
+      if (!mounted || _finished) return;
+      setState(() {
+        _geriBildirimAktif = false;
+        _secilenIlId = null;
+        _dogruIlIdleri = {};
+        _current = _popNext();
+      });
+      _basaSarmadanTickerBaslat();
+    });
+  }
+
+  /// Geri bildirim bittikten sonra geri sayımı KALDIĞI yerden sürdürür
+  /// (`_secondsLeft` sıfırlanmaz, sadece saniye darbeleri yeniden başlar).
+  void _basaSarmadanTickerBaslat() {
+    _ticker?.cancel();
+    if (!mounted || _finished || _secondsLeft <= 0) return;
+    _ticker = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
   /// Oyun sonunda doğru/yanlış dağılımına ve yanlışların hangi konuda
   /// yoğunlaştığına göre kişiye özel bir değerlendirme metni üretir.
   String _sonucYorumu() {
     final b = StringBuffer();
-    b.writeln('✅ Doğru: $_score    ❌ Yanlış: $_wrong');
-
+    // NOT: Doğru/yanlış/isabet sayıları artık sonuç ekranının [DsStatStrip]
+    // şeridinde gösteriliyor; burada TEKRAR yazılmaz, sadece yorum üretilir.
     if (_attempts == 0) {
-      b.writeln('\nHiç cevap vermedin — haritaya dokunarak başlayabilirsin.');
+      b.writeln('Hiç cevap vermedin — haritaya dokunarak başlayabilirsin.');
       return b.toString().trim();
     }
 
     final oran = (_score * 100 / _attempts).round();
-    b.writeln('İsabet oranın: %$oran');
-    b.writeln();
 
     if (oran >= 85) {
       b.writeln('Harika! Türkiye haritasına gerçekten hâkimsin.');
@@ -309,14 +367,24 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      final rekor = context.read<StorageService>().getHighScore(kHizliTurkiyeGameId);
-      final rekorSatiri = _yeniRekor
-          ? '\n\n🏆 YENİ REKOR! (önceki: $_oncekiRekor)'
-          : '\n\n🏆 En Yüksek Skor: $rekor';
+      final sonucColors = context.watch<ThemeProvider>().colors;
+      final rekor = context.watch<StorageService>().getHighScore(kHizliTurkiyeGameId);
+      final isabet = _attempts == 0 ? 0 : (_score * 100 / _attempts).round();
       return MapSessionResult(
         title: '⏱️ 60 Saniyede Türkiye',
-        emoji: _yeniRekor ? '🏆' : (_score >= 15 ? '🎉' : '📚'),
-        message: '${_sonucYorumu()}$rekorSatiri',
+        emoji: _yeniRekor ? '🏆' : (_score >= 15 ? '🎉' : (_score >= 8 ? '💪' : '📚')),
+        headline: _yeniRekor
+            ? 'Yeni rekor kırdın!'
+            : (_score >= 15 ? 'Süre doldu — harika skor!' : 'Süre doldu!'),
+        message: '60 saniyede $_attempts soru cevapladın.',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_score', label: 'Doğru', color: sonucColors.success),
+          GameResultStat(emoji: '❌', value: '$_wrong', label: 'Yanlış', color: sonucColors.danger),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
+        highScore: rekor,
+        newRecord: _yeniRekor,
+        note: _sonucYorumu(),
         onRetry: _retry,
         palette: mapModePaletteFor(kHizliTurkiyeGameId),
       );
@@ -370,7 +438,20 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
               Expanded(
                 child: TurkeyMapCanvas(
                   provinces: kTurkeyProvinces,
-                  colorFor: (p) => colors.violet.withValues(alpha: 0.32),
+                  // 1 saniyelik geri bildirim: seçilen il doğruysa yeşil,
+                  // yanlışsa kırmızı; yanlışta doğru cevap(lar) da yeşil yanar.
+                  colorFor: (p) {
+                    if (_geriBildirimAktif) {
+                      if (p.id == _secilenIlId) {
+                        return (_sonCevapDogruMu == true ? colors.success : colors.danger)
+                            .withValues(alpha: 0.85);
+                      }
+                      if (_dogruIlIdleri.contains(p.id)) {
+                        return colors.success.withValues(alpha: 0.55);
+                      }
+                    }
+                    return colors.violet.withValues(alpha: 0.32);
+                  },
                   onTap: _onTapProvince,
                 ),
               ),

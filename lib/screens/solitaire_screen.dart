@@ -10,8 +10,10 @@ import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'tools_hub_screen.dart';
 
-/// Günlük ücretsiz oynama hakkı (mevcut oyunlarla aynı desen).
-const int kFreeSolitaireDaily = 10;
+/// Günlük ücretsiz oynama hakkı, DİĞER TÜM OYUNLARLA ORTAK sabitten gelir
+/// ([kFreeGameDailyLimit], bkz. tools_hub_screen.dart). Solitaire'e özel ayrı
+/// bir sabit YOKTUR — aksi hâlde oyunlar listesindeki "Bugün N hak" ile oyun
+/// içindeki "Bugünkü hak" birbirini tutmuyordu.
 const String kSolitaireGameId = 'solitaire';
 
 // ── Oyun-içi coin ekonomisi (kozmetik; gerçek para DEĞİL) ──
@@ -102,7 +104,7 @@ class SolitaireScreen extends StatelessWidget {
     final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
     final gp = storage.getGamePlayState(kSolitaireGameId);
-    final left = (kFreeSolitaireDaily - (gp['plays'] as int)).clamp(0, kFreeSolitaireDaily);
+    final left = (kFreeGameDailyLimit - (gp['plays'] as int)).clamp(0, kFreeGameDailyLimit);
     final coins = storage.getSolitaireCoins();
 
     return Scaffold(
@@ -158,7 +160,7 @@ class SolitaireScreen extends StatelessWidget {
                   visual: DsIconBadge(emoji: '🎟️', color: c.mint, size: 44),
                   value: premium ? '∞' : '$left',
                   label: 'Bugünkü hak',
-                  sublabel: premium ? 'Premium' : 'Günlük $kFreeSolitaireDaily',
+                  sublabel: premium ? 'Premium' : 'Günlük $kFreeGameDailyLimit',
                 ),
                 DsStatItem(
                   visual: DsIconBadge(emoji: '🛒', color: c.rose, size: 44),
@@ -273,6 +275,22 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   /// Sürüklenen HEDEF kartının üzerinde olduğu boş slot.
   int? _hoverSlot;
 
+  /// ŞU AN sürüklenen tableau yığınının kaynağı. Sürükleme TEK bir kartın
+  /// değil, o karttan itibaren ÜSTÜNDEKİ TÜM kartların işidir; bu yüzden
+  /// durum kartın kendi widget'ında değil, EKRAN düzeyinde tutulur — yoksa
+  /// yalnızca basılan kart soluklaşır, üstündekiler yerinde durur ve yığın
+  /// taşınmıyormuş gibi görünür.
+  int? _dragSutun;
+  int? _dragIndex;
+
+  /// [sutun]/[index] kartı, o an sürüklenen yığının parçası mı?
+  bool _surukleniyor(int sutun, int index) =>
+      _dragSutun == sutun && _dragIndex != null && index >= _dragIndex!;
+
+  /// Yığındaki alt kartların görünen şerit yüksekliği. Hem tableau yerleşimi
+  /// hem de sürükleme feedback'i AYNI adımı kullanır.
+  double get _grupAdim => _cardHeight * 0.24;
+
   /// Kart ölçüleri — hedef kategori kartları, tableau terim kartları VE sağ
   /// üstteki deste/çekilen kart bu AYNI ölçüyü kullanır. [_buildBoard]
   /// içindeki [LayoutBuilder] her build'de kullanılabilir genişlik VE
@@ -313,7 +331,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kSolitaireGameId);
-      if ((gp['plays'] as int) >= kFreeSolitaireDaily) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -342,6 +360,8 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
       _hoverKategori = null;
       _hoverSutun = null;
       _hoverSlot = null;
+      _dragSutun = null;
+      _dragIndex = null;
     });
   }
 
@@ -381,7 +401,13 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
 
   /// Bir kartın/yığının HEDEF KATEGORİ kartına bırakılması.
   Future<void> _onKategoriDrop(_Suruklenen d, KategoriHedef h) async {
-    setState(() => _hoverKategori = null);
+    // Sürükleme durumu HEMEN temizlenir: tahta değiştiği an eski sütun/indeks
+    // bilgisiyle yanlış kartlar soluk görünmesin.
+    setState(() {
+      _hoverKategori = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
     if (d.destedenMi && d.hedefKarti) {
       // Hedef kategori kartı bir kategoriye bırakılamaz.
       _flashWrong(h.kategoriAdi);
@@ -405,7 +431,11 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   /// Bir kartın/yığının TABLEAU sütununa bırakılması (yığma ya da boş sütuna
   /// taşıma).
   void _onSutunDrop(_Suruklenen d, int hedefSutun) {
-    setState(() => _hoverSutun = null);
+    setState(() {
+      _hoverSutun = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
     if (d.destedenMi && d.hedefKarti) {
       _flashWrongSutun(hedefSutun);
       return;
@@ -426,7 +456,11 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
 
   /// Desteden çekilen HEDEF KATEGORİ kartının BOŞ slota bırakılması.
   void _onSlotDrop(_Suruklenen d, int slotIndex) {
-    setState(() => _hoverSlot = null);
+    setState(() {
+      _hoverSlot = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
     if (!d.destedenMi || !d.hedefKarti) {
       // Boş slota normal kart konamaz — yalnızca yeni hedef kategori.
       _flashWrongSlot(slotIndex);
@@ -463,7 +497,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   }
 
   void _onCekDeste() {
-    if (_engine.bekleyenSayisi == 0) return;
+    if (!_engine.cekilebilir) return;
     context.read<SoundService>().click();
     setState(() => _engine.cekDeste());
   }
@@ -614,9 +648,10 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
         title: 'Eşleştirme Solitaire',
-        desc: "Bugünkü $kFreeSolitaireDaily ücretsiz oyun hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
+        desc: "Bugünkü $kFreeGameDailyLimit ücretsiz oyun hakkını kullandın. "
+            "Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
     }
     if (!_booted) {
@@ -861,7 +896,19 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Center(
-                                  child: FittedBox(fit: BoxFit.scaleDown, child: _hamleBayragi()),
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        _hamleBayragi(),
+                                        const SizedBox(height: 4),
+                                        // ANA KART SAYACI: her doğru eşleştirmede
+                                        // düşen "kalan toplam kart".
+                                        _kalanKartRozet(),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -1013,6 +1060,31 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     );
   }
 
+  /// ANA KART SAYACI — henüz eşleşmemiş toplam kart. Her DOĞRU eşleştirmede
+  /// (tek kart ya da yığın) anında düşer; sıfırlandığında seviye biter.
+  Widget _kalanKartRozet() {
+    final kalan = _engine.kalanTerim;
+    final toplam = _engine.toplamTerim;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(9),
+        border: Border.all(color: Colors.white38, width: 1),
+      ),
+      child: Text(
+        '🎴 Kalan kart: $kalan/$toplam',
+        maxLines: 1,
+        overflow: TextOverflow.clip,
+        style: const TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
   /// Üstteki 🪙 coin göstergesi (krem rozet, altın kenarlık).
   Widget _coinRozet(int coins) {
     return Container(
@@ -1098,8 +1170,11 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   }
 
   Widget _buildCekDeste() {
+    // Destede DURAN kart sayısı — her çekişte 1 azalır. Sıfırlandığında, henüz
+    // oynanmamış kartlar varsa deste yeniden dağıtılabilir ("Yeniden").
     final kalan = _engine.bekleyenSayisi;
-    final aktif = kalan > 0;
+    final aktif = _engine.cekilebilir;
+    final etiket = kalan > 0 ? 'Çek' : (aktif ? 'Yeniden' : 'Bitti');
 
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -1136,11 +1211,16 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
                                 fontSize: (_cardHeight * 0.17).clamp(10.0, 15.0),
                                 fontWeight: FontWeight.w900,
                                 color: Colors.white)),
-                        Text(aktif ? 'Çek' : 'Bitti',
-                            style: TextStyle(
-                                fontSize: (_cardHeight * 0.11).clamp(7.0, 10.0),
-                                fontWeight: FontWeight.w800,
-                                color: Colors.white)),
+                        // "Yeniden" gibi uzun etiket dar kartta taşmasın.
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(etiket,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: (_cardHeight * 0.11).clamp(7.0, 10.0),
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white)),
+                        ),
                       ],
                     ),
                   ),
@@ -1241,18 +1321,14 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
                   fontWeight: FontWeight.w900,
                   color: _hedefKartMor)),
           Expanded(
-            child: Center(
-              child: Text(
-                h.kategoriAdi,
-                textAlign: TextAlign.center,
-                maxLines: 4,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: adFont,
-                  fontWeight: FontWeight.w900,
-                  height: 1.12,
-                  color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
-                ),
+            child: _KayanMetin(
+              metin: h.kategoriAdi,
+              hizalama: TextAlign.center,
+              stil: TextStyle(
+                fontSize: adFont,
+                fontWeight: FontWeight.w900,
+                height: 1.12,
+                color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
               ),
             ),
           ),
@@ -1444,18 +1520,15 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
                 ],
               ),
               Expanded(
-                child: Center(
-                  child: Text(
-                    h.kategoriAdi,
-                    textAlign: TextAlign.center,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: adFont,
-                        fontWeight: FontWeight.w800,
-                        height: 1.12,
-                        color: _cardInk),
-                  ),
+                // Uzun kategori adı karta sığmazsa dikey olarak kayar.
+                child: _KayanMetin(
+                  metin: h.kategoriAdi,
+                  hizalama: TextAlign.center,
+                  stil: TextStyle(
+                      fontSize: adFont,
+                      fontWeight: FontWeight.w800,
+                      height: 1.12,
+                      color: _cardInk),
                 ),
               ),
               Text(h.ders,
@@ -1521,7 +1594,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     final kapaliKartY = _cardHeight * 0.26; // kapalı kart sırtının görünen payı
     // Açık yığındaki alt kartların görünen payı — bu şerit, o karta (ve
     // üstündekilere) dokunup birlikte taşımak için kullanılır.
-    final grupOffset = _cardHeight * 0.24;
+    final grupOffset = _grupAdim;
     final base = kapaliGorunur * kapaliOffset;
     final grupYuksek = acikAdet <= 1 ? 0.0 : (acikAdet - 1) * grupOffset;
     final toplamYukseklik =
@@ -1597,11 +1670,20 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
               // Açık kartların HEPSİ ayrı ayrı sürüklenebilir: bir yığının
               // ortasındaki karta basılınca o kart VE üstündeki tüm kartlar
               // birlikte taşınır (klasik solitaire davranışı).
+              //
+              // DOKUNMA KUTULARI ÖRTÜŞMEZ: en üstteki kart tam kart yüksekliği
+              // (+ dokunma payı) kadar, alttakiler ise YALNIZCA görünen şeritleri
+              // kadar yer kaplar. Kart görseli [OverflowBox] ile şeridin dışına
+              // taşarak çizilir. Böylece hangi karta basıldığı Stack'in çizim/
+              // hit-test sırasından bağımsız olarak KESİNDİR.
               for (var g = 0; g < acikAdet; g++)
                 Positioned(
                   top: base + g * grupOffset,
                   left: 0,
                   right: 0,
+                  height: g == acikAdet - 1
+                      ? _cardHeight + kDokunmaPayi
+                      : grupOffset,
                   child: _buildAcikKart(
                     sutunIndex: i,
                     kartIndex: acikBas + g,
@@ -1647,10 +1729,15 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   ///
   /// ── Dokunma hassasiyeti (korunan davranış) ──
   /// 1) Gecikme 25 ms: kart neredeyse dokunur dokunmaz yakalanır.
-  /// 2) [hitTestBehavior] = opaque: kartın TAMAMI dokunulabilir.
+  /// 2) [hitTestBehavior] = opaque: kartın dokunma kutusunun TAMAMI aktiftir.
   /// 3) EN ÜSTTEKİ kart [kDokunmaPayi] kadar büyütülmüş şeffaf alanla sarılır.
   /// 4) Tableau kendi kaydırma bölmesinde durduğu için kaydırma jesti dokunuşu
   ///    çalmaz.
+  ///
+  /// ── Yığın taşıma ──
+  /// Sürükleme başlayınca ([onDragStarted]) kaynak sütun/indeks EKRAN durumuna
+  /// yazılır; böylece üstteki tüm kartlar da solar ve feedback'te grubun
+  /// TAMAMI görünür.
   Widget _buildAcikKart({
     required int sutunIndex,
     required int kartIndex,
@@ -1660,9 +1747,28 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     required bool flashing,
     required bool hovering,
   }) {
+    // Bu kart, hâlihazırda sürüklenen yığının bir parçası mı?
+    final grupta = _surukleniyor(sutunIndex, kartIndex);
+    // Sürüklenecek grubun kartları (sıralama korunur: alttan üste).
+    final grup = _engine.altGrup(sutunIndex, kartIndex);
+
+    // Kart görselini, kendisine ayrılan (dar) dokunma şeridinin dışına taşarak
+    // çizmesi için sarmalar.
+    Widget kutu(Widget icerik) => OverflowBox(
+          alignment: Alignment.topCenter,
+          minHeight: 0,
+          maxHeight: _cardHeight + (enUstte ? kDokunmaPayi : 0),
+          child: Padding(
+            // Şeffaf dokunma payı yalnızca en üstteki karta uygulanır; alttaki
+            // kartlarda pay verilirse üsttekinin şeridini kapatırdı.
+            padding: EdgeInsets.symmetric(vertical: enUstte ? kDokunmaPayi / 2 : 0),
+            child: icerik,
+          ),
+        );
+
     final gorsel = _terimKarti(
       kart,
-      faded: false,
+      faded: grupta,
       flash: flashing && enUstte,
       hover: hovering && enUstte,
       grupAdet: grupAdet,
@@ -1681,25 +1787,57 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
         color: Colors.transparent,
         child: Transform.scale(
           scale: 1.06,
-          child: SizedBox(
-            width: _cardWidth,
-            child: _terimKarti(kart, faded: false, dragging: true, grupAdet: grupAdet),
-          ),
+          alignment: Alignment.topCenter,
+          child: _grupFeedback(grup.isEmpty ? [kart] : grup),
         ),
       ),
-      childWhenDragging: Padding(
-        padding: EdgeInsets.symmetric(vertical: enUstte ? kDokunmaPayi / 2 : 0),
-        child: _terimKarti(kart, faded: true, grupAdet: grupAdet),
-      ),
-      onDragStarted: () => context.read<SoundService>().click(),
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        child: Padding(
-          // Şeffaf dokunma payı yalnızca en üstteki karta uygulanır; alttaki
-          // kartlarda pay verilirse üsttekinin şeridini kapatırdı.
-          padding: EdgeInsets.symmetric(vertical: enUstte ? kDokunmaPayi / 2 : 0),
-          child: gorsel,
-        ),
+      childWhenDragging: kutu(_terimKarti(kart, faded: true, grupAdet: grupAdet)),
+      onDragStarted: () {
+        context.read<SoundService>().click();
+        setState(() {
+          _dragSutun = sutunIndex;
+          _dragIndex = kartIndex;
+        });
+      },
+      onDragEnd: (_) => _dragBitti(),
+      onDraggableCanceled: (hiz, konum) => _dragBitti(),
+      child: kutu(gorsel),
+    );
+  }
+
+  void _dragBitti() {
+    if (!mounted) return;
+    if (_dragSutun == null && _dragIndex == null) return;
+    setState(() {
+      _dragSutun = null;
+      _dragIndex = null;
+    });
+  }
+
+  /// Sürükleme feedback'i: grubun TAMAMI, tableau'daki ile aynı basamaklı
+  /// dizilişte. En alttaki (tutulan) kart ×N rozetini taşır.
+  Widget _grupFeedback(List<TerimKart> grup) {
+    final adet = grup.length;
+    final adim = _grupAdim;
+    return SizedBox(
+      width: _cardWidth,
+      height: _cardHeight + (adet - 1) * adim,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          for (var i = 0; i < adet; i++)
+            Positioned(
+              top: i * adim,
+              left: 0,
+              right: 0,
+              child: _terimKarti(
+                grup[i],
+                faded: false,
+                dragging: true,
+                grupAdet: i == 0 ? adet : 1,
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -1743,19 +1881,16 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
               )
             ],
           ),
-          child: Center(
-            child: Text(
-              kart.terim,
-              textAlign: TextAlign.center,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                // Yazı boyu da kart yüksekliğinden türetilir (sabit piksel yok).
-                fontSize: (_cardHeight * 0.115).clamp(7.0, 13.0),
-                height: 1.12,
-                fontWeight: FontWeight.w900,
-                color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
-              ),
+          // Terim karta sığmıyorsa kart içinde yavaşça aşağı-yukarı kayar.
+          child: _KayanMetin(
+            metin: kart.terim,
+            hizalama: TextAlign.center,
+            stil: TextStyle(
+              // Yazı boyu da kart yüksekliğinden türetilir (sabit piksel yok).
+              fontSize: (_cardHeight * 0.115).clamp(7.0, 13.0),
+              height: 1.12,
+              fontWeight: FontWeight.w900,
+              color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
             ),
           ),
         ),
@@ -1780,6 +1915,154 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
             ),
           ),
       ],
+    );
+  }
+}
+
+/// Karta SIĞMAYAN metni kart içinde sürekli aşağı-yukarı kaydıran (dikey
+/// marquee) yazı.
+///
+/// Davranış:
+///  * Metin verilen kutuya SIĞIYORSA hiç animasyon başlatılmaz; yazı dikeyde
+///    ortalanmış ve SABİT durur (çok sayıda kart olduğu için bu performans
+///    açısından kritiktir).
+///  * Sığmıyorsa yazı yavaşça yukarı kayar, sonda kısa duraklar, geri iner ve
+///    başta yine kısa durur; döngü kesintisiz sürer.
+///  * Sığıp sığmadığı her yerleşimde [TextPainter] ile GERÇEKTEN ölçülür
+///    (tahmin yok); ölçüm sonucu önbelleğe alınır.
+///  * [AnimationController] [dispose] içinde MUTLAKA kapatılır.
+class _KayanMetin extends StatefulWidget {
+  final String metin;
+  final TextStyle stil;
+  final TextAlign hizalama;
+
+  const _KayanMetin({
+    required this.metin,
+    required this.stil,
+    this.hizalama = TextAlign.center,
+  });
+
+  @override
+  State<_KayanMetin> createState() => _KayanMetinState();
+}
+
+class _KayanMetinState extends State<_KayanMetin> with SingleTickerProviderStateMixin {
+  /// Sığma/taşma kararında kullanılan tolerans (yuvarlama hatalarına karşı).
+  static const double _esik = 0.5;
+
+  late final AnimationController _ctrl = AnimationController(vsync: this);
+
+  // Ölçüm önbelleği — aynı metin/genişlik/punto için tekrar layout yapılmaz.
+  String? _olcumMetin;
+  double? _olcumGenislik;
+  double? _olcumPunto;
+  double _metinYukseklik = 0;
+
+  @override
+  void dispose() {
+    // Kart sayısı fazla olduğundan sızıntı kritik: controller HER durumda kapanır.
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  double _olc(BuildContext context, double maxGenislik) {
+    final punto = widget.stil.fontSize ?? 12.0;
+    if (_olcumMetin == widget.metin &&
+        _olcumGenislik == maxGenislik &&
+        _olcumPunto == punto) {
+      return _metinYukseklik;
+    }
+    final tp = TextPainter(
+      text: TextSpan(text: widget.metin, style: widget.stil),
+      textAlign: widget.hizalama,
+      textDirection: Directionality.of(context),
+      textScaler: MediaQuery.textScalerOf(context),
+    )..layout(maxWidth: maxGenislik);
+    _metinYukseklik = tp.height;
+    tp.dispose();
+    _olcumMetin = widget.metin;
+    _olcumGenislik = maxGenislik;
+    _olcumPunto = punto;
+    return _metinYukseklik;
+  }
+
+  /// Animasyonu build DIŞINDA (kare sonunda) kurar/durdurur — build sırasında
+  /// controller'a dokunmak "setState during build" hatasına yol açardı.
+  double? _sonAyarTasma;
+
+  void _animasyonAyarla(double tasma) {
+    // Tahta çok sık yeniden çizilir (hover/flash); taşma değişmediyse yeni bir
+    // kare-sonu işi kuyruğa alma.
+    if (_sonAyarTasma != null && (_sonAyarTasma! - tasma).abs() < 0.01) return;
+    _sonAyarTasma = tasma;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (tasma <= _esik) {
+        if (_ctrl.isAnimating) _ctrl.stop();
+        if (_ctrl.value != 0) _ctrl.value = 0;
+        return;
+      }
+      // Taşma ne kadar büyükse kayma o kadar uzun sürer → hız sabit ve YAVAŞ.
+      final sure = Duration(
+        milliseconds: (3400 + tasma * 90).clamp(3400.0, 14000.0).round(),
+      );
+      if (_ctrl.duration != sure) {
+        _ctrl.duration = sure;
+        _ctrl.repeat();
+      } else if (!_ctrl.isAnimating) {
+        _ctrl.repeat();
+      }
+    });
+  }
+
+  /// 0→1 ilerlemeyi kayma oranına çevirir: başta bekle, yavaşça in, sonda
+  /// bekle, yavaşça geri dön.
+  double _kaymaOrani(double t) {
+    const bekle = 0.18; // uçlardaki duraklama payı
+    const orta = 0.5; // gidişin bittiği nokta
+    if (t <= bekle) return 0;
+    if (t < orta) return Curves.easeInOut.transform((t - bekle) / (orta - bekle));
+    if (t <= orta + bekle) return 1;
+    return 1 - Curves.easeInOut.transform((t - orta - bekle) / (1 - orta - bekle));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, cons) {
+        final yazi = Text(
+          widget.metin,
+          textAlign: widget.hizalama,
+          style: widget.stil,
+        );
+        if (!cons.hasBoundedHeight || cons.maxWidth <= 0 || cons.maxHeight <= 0) {
+          return yazi;
+        }
+
+        final yukseklik = _olc(context, cons.maxWidth);
+        final tasma = yukseklik - cons.maxHeight;
+        _animasyonAyarla(tasma);
+
+        // Sığıyor → sabit, ortalanmış yazı (animasyon YOK).
+        if (tasma <= _esik) return Center(child: yazi);
+
+        // Sığmıyor → kutu içinde dikey marquee.
+        return ClipRect(
+          child: OverflowBox(
+            alignment: Alignment.topCenter,
+            minHeight: 0,
+            maxHeight: yukseklik,
+            child: AnimatedBuilder(
+              animation: _ctrl,
+              child: yazi,
+              builder: (context, icerik) => Transform.translate(
+                offset: Offset(0, -tasma * _kaymaOrani(_ctrl.value)),
+                child: icerik,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
