@@ -680,13 +680,24 @@ class _TtsListenButton extends StatelessWidget {
         leadingIcon: speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded,
         onPressed: text.isEmpty
             ? null
-            : () {
+            : () async {
                 context.read<SoundService>().click();
                 if (speaking) {
                   context.read<TtsService>().stop();
-                } else {
-                  context.read<TtsService>().speak(text);
+                  return;
                 }
+                // Seslendirme başlatılamazsa SESSİZ kalmıyoruz: TtsService
+                // sebebi Türkçe olarak bildiriyor, biz de kullanıcıya
+                // gösteriyoruz. (Eskiden hata yutuluyordu ve düğmeye basınca
+                // hiçbir şey olmuyordu.)
+                final tts = context.read<TtsService>();
+                final messenger = ScaffoldMessenger.of(context);
+                final ok = await tts.speak(text);
+                if (ok) return;
+                messenger.showSnackBar(SnackBar(
+                  content: Text(tts.lastError ?? 'Sesli anlatım başlatılamadı.'),
+                  duration: const Duration(seconds: 6),
+                ));
               },
       ),
     );

@@ -150,13 +150,15 @@ class NotificationService {
             AndroidFlutterLocalNotificationsPlugin>();
         // Android 13+ çalışma zamanı bildirim izni.
         final bildirim = await android?.requestNotificationsPermission();
-        // Tam zamanlı alarm izni (Android 12+). Reddedilse bile bildirim
-        // "inexact" modda kurulur — bu yüzden sonucu bloklayıcı saymıyoruz.
-        try {
-          await android?.requestExactAlarmsPermission();
-        } catch (e) {
-          debugPrint('NotificationService: tam alarm izni istenemedi: $e');
-        }
+
+        // ALARM İZNİ BİLEREK İSTENMİYOR.
+        // Eskiden burada requestExactAlarmsPermission() çağrılıyordu ve bu,
+        // kullanıcıya "Alarmlara ve hatırlatıcılara izin ver" sistem ekranını
+        // açıyordu. Çalışma planı bir alarm değil, bir hatırlatmadır: dakikası
+        // dakikasına çalması gerekmez. Zaten bildirimleri
+        // AndroidScheduleMode.inexactAllowWhileIdle ile kuruyoruz (bkz.
+        // schedulePlan) — yani izin verilse bile tam zamanlı alarm
+        // kullanılmıyordu, izin ekranı tamamen gereksiz bir rahatsızlıktı.
         return bildirim ?? false;
       }
     } catch (e) {
@@ -355,25 +357,38 @@ class NotificationService {
     'KPSS yolculuğun devam ediyor {ad} 🚀',
   ];
 
-  static const List<String> _govdeler = [
+  /// Bir SEANSA bağlı bildirim gövdeleri. `{aralik}` yer tutucusu seansın saat
+  /// aralığıyla (ör. "14:00 - 15:30") doldurulur.
+  ///
+  /// Metinler kullanıcının KENDİ kurduğu plana atıfta bulunur ("çalışacaktık"):
+  /// hatırlatma, dışarıdan gelen bir emir gibi değil, kişinin kendi verdiği
+  /// sözün hatırlatılması gibi okunuyor — bu ton, genel "hadi çalış"
+  /// mesajlarından daha çok işe yarıyor.
+  static const List<String> _seansGovdeleri = [
+    '{ad}, {aralik} arasında çalışacaktık. Hadi gel, başlayalım! 💪',
+    'Hatırlatma {ad}: {aralik} çalışma saatin. Hadi gel! ⏰',
+    '{ad}, {aralik} için söz vermiştin 🎯 Şimdi tam zamanı, hadi gel!',
+    'Planında {aralik} yazıyor {ad} 📚 Hadi gel, seriyi bozmayalım.',
+    '{ad}, {aralik} arası senin çalışma vaktin 🚀 Hadi gel, başlıyoruz!',
+    'Vakit geldi {ad}! {aralik} arasında çalışacaktık ✨ Hadi gel.',
+  ];
+
+  /// Seansa bağlı OLMAYAN (ör. ayarlardaki "Dene" butonu) genel gövdeler.
+  static const List<String> _genelGovdeler = [
     '{ad}, çalışma vaktin geldi! 💪 Bugünkü 20 dakika, sınavda 2 net demek.',
-    'Hadi {ad}! ⏰ Planladığın saat geldi. Kısa bir test bile seriyi bozmaz.',
+    'Hadi {ad}! ⏰ Kısa bir test bile seriyi bozmaz.',
     '{ad}, bugün dünden daha güçlü ol 🚀 Seni 15 dakikalık bir tur bekliyor.',
-    '{ad}, bugünü boş geçme! 📈 Bir konu testi bile sıralamanı yukarı taşır.',
     'Küçük adımlar büyük netler {ad} ✨ Şimdi başla, 20 dakika yeter.',
-    '{ad}, hedefin seni bekliyor 🎯 Planladığın saat geldi, tek tıkla başla.',
     'Seri bozulmasın {ad}! 🔥 Bugünkü çalışmanı tamamla.',
-    '{ad}, sınav yaklaşıyor ama sen hazırsın 💫 Şimdi bir tur çözelim.',
-    'Bugün de kendine yatırım yap {ad} 🌱 15 dakikalık bir test iyi gelir.',
   ];
 
   String _baslikSec(String ad) => _doldur(_secRastgele(_basliklar), ad);
 
   String _govdeSec(String ad, StudyPlanEntry? entry) {
-    final metin = _doldur(_secRastgele(_govdeler), ad);
-    if (entry == null) return metin;
-    // Seansın saat aralığını da ekleyerek hatırlatmayı somutlaştır.
-    return '$metin (${entry.araliqMetni})';
+    // Seans yoksa (test bildirimi) saat aralığından söz edemeyiz.
+    if (entry == null) return _doldur(_secRastgele(_genelGovdeler), ad);
+    return _doldur(_secRastgele(_seansGovdeleri), ad)
+        .replaceAll('{aralik}', entry.araliqMetni);
   }
 
   String _secRastgele(List<String> liste) =>

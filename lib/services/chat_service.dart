@@ -83,6 +83,53 @@ class DirectMessage {
   }
 }
 
+/// Gelen/giden bir arkadaşlık isteği.
+class FriendRequest {
+  final String id;
+  final String fromUid;
+  final String fromName;
+  final String toUid;
+  final DateTime? createdAt;
+
+  const FriendRequest({
+    required this.id,
+    required this.fromUid,
+    required this.fromName,
+    required this.toUid,
+    required this.createdAt,
+  });
+
+  factory FriendRequest.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data() ?? const <String, dynamic>{};
+    final ts = data['createdAt'];
+    return FriendRequest(
+      id: doc.id,
+      fromUid: data['fromUid'] as String? ?? '',
+      fromName: data['fromName'] as String? ?? 'Kullanıcı',
+      toUid: data['toUid'] as String? ?? '',
+      createdAt: ts is Timestamp ? ts.toDate() : null,
+    );
+  }
+}
+
+/// Arkadaş listesindeki bir kişi.
+class Friend {
+  final String uid;
+  final String name;
+  final DateTime? since;
+  const Friend({required this.uid, required this.name, required this.since});
+
+  factory Friend.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data() ?? const <String, dynamic>{};
+    final ts = data['since'];
+    return Friend(
+      uid: doc.id,
+      name: data['name'] as String? ?? 'Kullanıcı',
+      since: ts is Timestamp ? ts.toDate() : null,
+    );
+  }
+}
+
 /// 'Mesajlarım' gelen kutusunda gösterilen bir DM thread'inin özeti.
 class DmThreadSummary {
   final String threadId;
@@ -349,23 +396,44 @@ class ChatService {
   /// dinler — 'Mesajlarım' gelen kutusu listesi için. Karşı tarafın uid'ini
   /// taşır; görünen ismi çözmek çağıran tarafın işidir (bkz.
   /// StorageService.getDmPeerNames — yerel önbellek).
+  ///
+  /// DÜZELTİLEN HATA — "Mesajlarım hiç açılmıyordu":
+  /// Bu sorgu eskiden `.orderBy('updatedAt', descending: true)` de içeriyordu.
+  /// Firestore'da `arrayContains` filtresi ile BAŞKA bir alana göre `orderBy`
+  /// birleştirildiğinde BİLEŞİK İNDEKS (composite index) zorunludur. İndeks
+  /// oluşturulmadığı için sorgu her seferinde `failed-precondition` ile
+  /// düşüyor, stream veri yayınlamıyor ve ekran sonsuza dek dönen halkada
+  /// kalıyordu.
+  ///
+  /// Çözüm olarak sıralamayı İSTEMCİYE aldık: bir kullanıcının DM thread'i
+  /// sayısı küçüktür (onlarca), bellekte sıralamak bedava sayılır ve
+  /// kurulumda unutulabilecek bir indekse bağımlılık ortadan kalkar.
   Stream<List<DmThreadSummary>> streamMyThreads(String myUid) {
     if (!isConfigured) return Stream<List<DmThreadSummary>>.value(const []);
     return _db
         .collection(dmCollection)
         .where('participants', arrayContains: myUid)
-        .orderBy('updatedAt', descending: true)
         .snapshots()
-        .map((snap) => snap.docs.map((d) {
-              final participants = List<String>.from(d.data()['participants'] as List? ?? const []);
-              final peer = participants.firstWhere((p) => p != myUid, orElse: () => '');
-              final ts = d.data()['updatedAt'];
-              return DmThreadSummary(
-                threadId: d.id,
-                peerUid: peer,
-                updatedAt: ts is Timestamp ? ts.toDate() : null,
-              );
-            }).toList());
+        .map((snap) {
+      final list = snap.docs.map((d) {
+        final participants = List<String>.from(d.data()['participants'] as List? ?? const []);
+        final peer = participants.firstWhere((p) => p != myUid, orElse: () => '');
+        final ts = d.data()['updatedAt'];
+        return DmThreadSummary(
+          threadId: d.id,
+          peerUid: peer,
+          updatedAt: ts is Timestamp ? ts.toDate() : null,
+        );
+      }).toList();
+      // En son güncellenen üstte. Zamanı olmayan (henüz sunucu damgası
+      // işlenmemiş) thread'ler en sona düşer.
+      list.sort((a, b) {
+        final ax = a.updatedAt?.millisecondsSinceEpoch ?? 0;
+        final bx = b.updatedAt?.millisecondsSinceEpoch ?? 0;
+        return bx.compareTo(ax);
+      });
+      return list;
+    });
   }
 
   Stream<List<DirectMessage>> streamDirectMessages({
@@ -383,6 +451,183 @@ class ChatService {
         .limit(limit)
         .snapshots()
         .map((snap) => snap.docs.map(DirectMessage.fromDoc).toList());
+  }
+
+  // ── Arkadaşlık ─────────────────────────────────────────────────────────
+  //
+  // VERİ MODELİ
+  //   friend_requests/{gonderenUid_alanUid}
+  //       fromUid, fromName, toUid, createdAt
+  //       Doküman kimliği İKİ uid'den türetilir; böylece aynı kişiye ikinci bir
+  //       istek göndermek yeni kayıt OLUŞTURMAZ, mevcudun üzerine yazar. İstek
+  //       spam'i bu sayede veri modelinin kendisiyle engellenmiş olur.
+  //
+  //   friends/{uid}/list/{arkadasUid}
+  //       name, since
+  //       Arkadaşlık ÇİFT YÖNLÜ saklanır: kabul edildiğinde HER İKİ kullanıcının
+  //       listesine de birer kayıt yazılır. Tek yönlü saklayıp "beni arkadaş
+  //       ekleyenler" diye sorgulamak, koleksiyon-grubu sorgusu ve ek indeks
+  //       gerektirirdi; iki küçük doküman yazmak çok daha basit.
+
+  static const String friendRequestsCollection = 'friend_requests';
+  static const String friendsCollection = 'friends';
+
+  /// İki kullanıcı için istek dokümanının kimliği. Yön ÖNEMLİDİR:
+  /// "A'dan B'ye" ile "B'den A'ya" farklı kayıtlardır (ikisi de aynı anda
+  /// varsa iki taraf da birbirine istek atmış demektir).
+  String friendRequestId(String fromUid, String toUid) => '${fromUid}_$toUid';
+
+  /// Arkadaşlık isteği gönderir.
+  ///
+  /// Kendine istek göndermeyi ve ZATEN arkadaş olunan kişiye tekrar istek
+  /// göndermeyi engeller. Karşı taraf bize daha önce istek göndermişse istek
+  /// oluşturmak yerine arkadaşlığı DOĞRUDAN KURAR — "iki kişi aynı anda
+  /// birbirine istek attı ama ikisi de bekliyor" gibi bir çıkmaz oluşmasın.
+  ///
+  /// Dönen değer kullanıcıya gösterilecek Türkçe sonuç mesajıdır.
+  Future<String> sendFriendRequest({
+    required String fromUid,
+    required String fromName,
+    required String toUid,
+    required String toName,
+  }) async {
+    _requireConfigured();
+    if (fromUid == toUid) return 'Kendine arkadaşlık isteği gönderemezsin.';
+
+    // Zaten arkadaş mıyız?
+    final mevcut = await _db
+        .collection(friendsCollection)
+        .doc(fromUid)
+        .collection('list')
+        .doc(toUid)
+        .get();
+    if (mevcut.exists) return '$toName zaten arkadaşın.';
+
+    // Karşı taraf bana istek göndermiş mi? Göndermişse bu "kabul" demektir.
+    final tersIstek = await _db
+        .collection(friendRequestsCollection)
+        .doc(friendRequestId(toUid, fromUid))
+        .get();
+    if (tersIstek.exists) {
+      await acceptFriendRequest(
+        myUid: fromUid,
+        myName: fromName,
+        fromUid: toUid,
+        fromName: toName,
+      );
+      return '$toName ile artık arkadaşsınız!';
+    }
+
+    await _db
+        .collection(friendRequestsCollection)
+        .doc(friendRequestId(fromUid, toUid))
+        .set({
+      'fromUid': fromUid,
+      'fromName': fromName,
+      'toUid': toUid,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+
+    // Karşı tarafa hafif bildirim bırak (best-effort, hata yutulur).
+    await _notifyUser(toUid, '$fromName sana arkadaşlık isteği gönderdi.');
+    return '$toName kişisine arkadaşlık isteği gönderildi.';
+  }
+
+  /// Gelen bir isteği kabul eder: iki tarafın listesine de kayıt yazar, sonra
+  /// isteği siler.
+  ///
+  /// SIRALAMA ÖNEMLİ — istek dokümanı EN SONDA silinir. Güvenlik kuralı,
+  /// "karşı tarafın listesine kendimi ekleme" iznini tam olarak o isteğin
+  /// VARLIĞINA bakarak veriyor; önce silseydik ikinci yazma reddedilir ve
+  /// arkadaşlık tek taraflı kalırdı.
+  Future<void> acceptFriendRequest({
+    required String myUid,
+    required String myName,
+    required String fromUid,
+    required String fromName,
+  }) async {
+    _requireConfigured();
+    final now = FieldValue.serverTimestamp();
+
+    // 1) Kendi listeme karşı tarafı ekle.
+    await _db
+        .collection(friendsCollection)
+        .doc(myUid)
+        .collection('list')
+        .doc(fromUid)
+        .set({'name': fromName, 'since': now});
+
+    // 2) Karşı tarafın listesine KENDİMİ ekle.
+    await _db
+        .collection(friendsCollection)
+        .doc(fromUid)
+        .collection('list')
+        .doc(myUid)
+        .set({'name': myName, 'since': now});
+
+    // 3) İsteği kaldır.
+    await _db
+        .collection(friendRequestsCollection)
+        .doc(friendRequestId(fromUid, myUid))
+        .delete();
+
+    await _notifyUser(fromUid, '$myName arkadaşlık isteğini kabul etti.');
+  }
+
+  /// Gelen bir isteği reddeder (yalnızca istek dokümanını siler; karşı tarafa
+  /// bildirim GÖNDERİLMEZ — reddedildiğini bildirmek gereksiz bir kırgınlık
+  /// kaynağı ve tekrar istek göndermeye davet olurdu).
+  Future<void> rejectFriendRequest({required String myUid, required String fromUid}) async {
+    _requireConfigured();
+    await _db
+        .collection(friendRequestsCollection)
+        .doc(friendRequestId(fromUid, myUid))
+        .delete();
+  }
+
+  /// Arkadaşlıktan çıkarır — İKİ taraftaki kaydı da siler, yoksa karşı tarafta
+  /// "arkadaş" görünmeye devam ederdi.
+  Future<void> removeFriend({required String myUid, required String friendUid}) async {
+    _requireConfigured();
+    await _db.collection(friendsCollection).doc(myUid).collection('list').doc(friendUid).delete();
+    await _db.collection(friendsCollection).doc(friendUid).collection('list').doc(myUid).delete();
+  }
+
+  /// Bana gelen bekleyen istekler.
+  ///
+  /// `orderBy` BİLEREK KULLANILMADI: eşitlik filtresi + farklı alana göre
+  /// sıralama bileşik indeks ister (bkz. streamMyThreads'teki aynı tuzak).
+  /// Sıralamayı istemcide yapıyoruz.
+  Stream<List<FriendRequest>> streamIncomingRequests(String myUid) {
+    if (!isConfigured) return Stream<List<FriendRequest>>.value(const []);
+    return _db
+        .collection(friendRequestsCollection)
+        .where('toUid', isEqualTo: myUid)
+        .snapshots()
+        .map((snap) {
+      final list = snap.docs.map(FriendRequest.fromDoc).toList();
+      list.sort((a, b) {
+        final ax = a.createdAt?.millisecondsSinceEpoch ?? 0;
+        final bx = b.createdAt?.millisecondsSinceEpoch ?? 0;
+        return bx.compareTo(ax);
+      });
+      return list;
+    });
+  }
+
+  /// Arkadaş listem (ada göre sıralı).
+  Stream<List<Friend>> streamFriends(String myUid) {
+    if (!isConfigured) return Stream<List<Friend>>.value(const []);
+    return _db
+        .collection(friendsCollection)
+        .doc(myUid)
+        .collection('list')
+        .snapshots()
+        .map((snap) {
+      final list = snap.docs.map(Friend.fromDoc).toList();
+      list.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+      return list;
+    });
   }
 
   /// Bir DM mesajını rapor eder — genel sohbet raporlarıyla aynı

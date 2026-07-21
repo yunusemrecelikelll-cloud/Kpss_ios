@@ -37,16 +37,14 @@ class SubjectPlacementStat {
   bool get isWeak => total > 0 && rate < kWeakSubjectThreshold;
 }
 
-/// Cinsiyete göre teşhis sınavı sonrası genel karşılama başlığı.
-/// home_screen.dart _heroGreetingFor / result_screen.dart motivationMessageFor
-/// ile AYNI hitap deseni (Prensesim/Aslanım), ama burada tek bir konu değil
-/// TÜM sınavın genel sonucu için — bu yüzden ayrı bir fonksiyon.
-String placementHeadlineFor(String gender, String name, int overallRate) {
-  final hitap = gender == 'k' ? 'Prensesim' : (gender == 'e' ? 'Aslanım' : '');
-  final selam = hitap.isEmpty ? name : '$hitap $name';
-  if (overallRate >= 80) return '$selam, harika başlangıç! 🌟 Genel olarak çok iyi durumdasın.';
-  if (overallRate >= 60) return '$selam, gayet iyi gidiyorsun! 💪 Birkaç konuya odaklanman yeterli.';
-  return '$selam, bu senin başlangıç noktan! 🌱 Aşağıdaki dersler senin için harika bir yol haritası.';
+/// Teşhis sınavı sonrası genel karşılama başlığı. Tek bir konu değil TÜM
+/// sınavın genel sonucu için — bu yüzden ayrı bir fonksiyon.
+///
+/// CİNSİYETE GÖRE HİTAP KALDIRILDI (bkz. home_screen.dart'taki aynı not).
+String placementHeadlineFor(String name, int overallRate) {
+  if (overallRate >= 80) return '$name, harika başlangıç! 🌟 Genel olarak çok iyi durumdasın.';
+  if (overallRate >= 60) return '$name, gayet iyi gidiyorsun! 💪 Birkaç konuya odaklanman yeterli.';
+  return '$name, bu senin başlangıç noktan! 🌱 Aşağıdaki dersler senin için harika bir yol haritası.';
 }
 
 /// "Beni Sına" teşhis sınavı bitince gösterilen ders bazlı zayıf/güçlü analiz
@@ -122,8 +120,7 @@ class _PlacementResultScreenState extends State<PlacementResultScreen> {
     final name = storage.getActiveUser().isNotEmpty
         ? storage.getActiveUser()
         : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Aday');
-    final gender = storage.getUserGender();
-    final headline = placementHeadlineFor(gender, name, result.skor);
+    final headline = placementHeadlineFor(name, result.skor);
     final headlineColor = motivationColorFor(result.skor, c);
 
     return Scaffold(

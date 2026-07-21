@@ -8,21 +8,12 @@ import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/theme_provider.dart';
 
-/// Cinsiyete ve skora göre değişen motivasyon mesajı.
-/// JS karşılığı: src/js/app.js içindeki renderResult()'taki msg(skor) fonksiyonu.
-String motivationMessageFor(String gender, String name, int skor) {
-  if (gender == 'k') {
-    if (skor >= 85) return 'Prenses $name, muhteşemsin! 👸✨ Bu konuyu tamamen kavramışsın, canım!';
-    if (skor >= 70) return 'Aferin güzelim! 💜 Küçük eksiklerini gider, bu konu senin prenses!';
-    if (skor >= 50) return 'Fena değil, kraliçem! 🌸 Biraz daha çalışırsan harika olacaksın.';
-    return 'Üzülme canım, bu konu biraz zorluyordu! 🤗 Anlatımı tekrar oku, sen yaparsın prenses!';
-  }
-  if (gender == 'e') {
-    if (skor >= 85) return 'Aslanım $name, muhteşemsin! 🦁💥 Bu konuyu tamamen kavramışsın!';
-    if (skor >= 70) return 'Aferin $name! 💪 Harika iş çıkardın, küçük eksiklerini tamamla!';
-    if (skor >= 50) return 'Fena değil $name! 🔥 Biraz daha çalışırsan harika olacaksın.';
-    return 'Üzülme $name, bu konu biraz zorluyordu! 💪 Anlatımı tekrar oku ve yeniden dene — sen yaparsın!';
-  }
+/// Skora göre değişen motivasyon mesajı.
+///
+/// CİNSİYETE GÖRE HİTAP KALDIRILDI (bkz. home_screen.dart'taki aynı not):
+/// mesajlar eskiden kullanıcının cinsiyetine göre "Prenses"/"Aslanım" diye
+/// sesleniyordu. Artık herkes aynı, adıyla hitap eden nötr mesajı görüyor.
+String motivationMessageFor(String name, int skor) {
   if (skor >= 85) return '$name, muhteşem! 🌟 Bu konuyu tamamen kavramışsın!';
   if (skor >= 70) return '$name, çok iyi! 💪 Küçük eksiklerini gider, bu konu sende!';
   if (skor >= 50) return '$name, fena değil! 🌱 Biraz daha çalışırsan harika olacaksın.';
@@ -76,8 +67,7 @@ class _ResultScreenState extends State<ResultScreen> {
     final name = storage.getActiveUser().isNotEmpty
         ? storage.getActiveUser()
         : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Aday');
-    final gender = storage.getUserGender();
-    final motivation = motivationMessageFor(gender, name, result.skor);
+    final motivation = motivationMessageFor(name, result.skor);
     final motivationColor = motivationColorFor(result.skor, c);
 
     return Scaffold(

@@ -7,9 +7,10 @@ import 'package:flutter_tts/flutter_tts.dart';
 /// sarmalayıcısı.
 ///
 /// TTS motoru bazı cihazlarda/emülatörlerde kurulu ya da erişilebilir
-/// olmayabilir; bu yüzden başlatma ve konuşma çağrıları etrafındaki tüm
-/// hatalar sessizce yutulur — sesli anlatım tamamen opsiyonel bir özelliktir
-/// ve asla uygulamayı çökertmemelidir.
+/// olmayabilir; bu yüzden başlatma ve konuşma çağrıları asla uygulamayı
+/// çökertmez. Ancak başarısızlık SESSİZ değildir: [speak] `false` döner ve
+/// [lastError] içinde kullanıcıya gösterilecek TÜRKÇE bir açıklama bulunur
+/// (bkz. topic_screen.dart içindeki "Sesli Dinle" düğmesi).
 class TtsService extends ChangeNotifier {
   TtsService() {
     _initFuture = _init();
@@ -18,6 +19,11 @@ class TtsService extends ChangeNotifier {
   final FlutterTts _tts = FlutterTts();
   late final Future<void> _initFuture;
   bool _initOk = false;
+
+  /// Sesli anlatım başlatılamadıysa kullanıcıya gösterilecek TÜRKÇE mesaj;
+  /// her şey yolundaysa null.
+  String? _lastError;
+  String? get lastError => _lastError;
 
   bool _isSpeaking = false;
   bool get isSpeaking => _isSpeaking;
@@ -37,6 +43,18 @@ class TtsService extends ChangeNotifier {
       _tts.setPauseHandler(() => _setSpeaking(false));
       _tts.setContinueHandler(() => _setSpeaking(true));
 
+      // Türkçe dil verisi cihazda YÜKLÜ OLMAYABİLİR. Android'de bu durumda
+      // setLanguage sessizce başarısız olur ve speak() hiç ses çıkarmaz —
+      // kullanıcı için "özellik bozuk" demektir. Önceden sorup net bir mesaj
+      // veriyoruz.
+      final trVar = await _tts.isLanguageAvailable('tr-TR');
+      if (trVar != true) {
+        _initOk = false;
+        _lastError = 'Cihazında Türkçe seslendirme verisi yüklü değil. '
+            'Ayarlar > Erişilebilirlik > Metin okuma bölümünden Türkçe dilini '
+            'indirdikten sonra tekrar dene.';
+        return;
+      }
       await _tts.setLanguage('tr-TR');
       // Daha doğal ve akıcı bir tempo — çok hızlı olunca motor takılıp
       // duraksayabiliyor, bu değer daha pürüzsüz bir okuma sağlıyor.
@@ -46,9 +64,15 @@ class TtsService extends ChangeNotifier {
       await _tts.awaitSpeakCompletion(true);
       await _selectBestTurkishVoice();
       _initOk = true;
-    } catch (_) {
-      // TTS motoru bu cihazda kurulu/erişilebilir değil — sessizce yut.
+      _lastError = null;
+    } catch (e) {
+      // Motor kurulu değil ya da erişilemiyor. Uygulamayı çökertmiyoruz ama
+      // sessiz de kalmıyoruz — sebebi speak() çağıranın gösterebilmesi için
+      // saklıyoruz.
       _initOk = false;
+      _lastError = 'Sesli anlatım bu cihazda başlatılamadı. Cihazında bir '
+          'metin okuma (TTS) motoru kurulu olmayabilir.';
+      debugPrint('TtsService._init başarısız: $e');
     }
   }
 
@@ -110,18 +134,27 @@ class TtsService extends ChangeNotifier {
     return t.trim();
   }
 
-  /// Verilen metni Türkçe olarak seslendirir. Motor başlatılamadıysa ya da
-  /// konuşma sırasında bir hata oluşursa sessizce hiçbir şey yapmaz.
-  Future<void> speak(String text) async {
+  /// Verilen metni Türkçe olarak seslendirir.
+  ///
+  /// Başarılıysa `true`, seslendirilemediyse `false` döner; `false` durumunda
+  /// [lastError] kullanıcıya gösterilebilecek TÜRKÇE bir açıklama içerir.
+  /// Çağıran tarafın bu değeri kontrol edip kullanıcıyı bilgilendirmesi
+  /// beklenir — eskiden burada her şey sessizce yutuluyordu ve özellik
+  /// çalışmadığında kullanıcı hiçbir geri bildirim almıyordu.
+  Future<bool> speak(String text) async {
     final cleaned = _cleanForSpeech(text);
-    if (cleaned.isEmpty) return;
+    if (cleaned.isEmpty) return false;
     try {
       await _initFuture;
-      if (!_initOk) return;
+      if (!_initOk) return false;
       await _tts.stop();
       await _tts.speak(cleaned);
-    } catch (_) {
+      return true;
+    } catch (e) {
       _setSpeaking(false);
+      _lastError = 'Sesli anlatım başlatılamadı. Lütfen tekrar dene.';
+      debugPrint('TtsService.speak başarısız: $e');
+      return false;
     }
   }
 

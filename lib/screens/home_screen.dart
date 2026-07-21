@@ -32,12 +32,14 @@ import 'placement_exam_screen.dart';
 /// tek denemeyle sınırlı.
 const int kFreeMaxFullTestAttempts = 1;
 
-/// Cinsiyete göre hitap eden anasayfa karşılama mesajı.
-/// JS karşılığı: src/js/app.js içindeki _heroGreeting(gender, name).
-String _heroGreetingFor(String gender, String name) {
-  if (gender == 'k') return 'Merhaba Prensesim $name! Hazır mısın? 👸';
-  if (gender == 'e') return 'Merhaba Aslanım $name! Hazır mısın? 🦁';
-  return 'Merhaba, $name! Hazır mısın? 🌸';
+/// Anasayfa karşılama mesajı.
+///
+/// CİNSİYETE GÖRE HİTAP KALDIRILDI: "Prensesim"/"Aslanım" gibi seslenişler
+/// kullanıcının cinsiyetine göre seçiliyordu. Bir sınav hazırlık uygulamasında
+/// bu hem gereksiz bir samimiyet varsayımı hem de yanlış cinsiyetlendirme
+/// riski taşıyor. Artık herkese aynı, adıyla hitap eden nötr mesaj gösteriliyor.
+String _heroGreetingFor(String name) {
+  return 'Merhaba, $name! Hazır mısın? ✨';
 }
 
 class HomeScreen extends StatefulWidget {
@@ -162,7 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // güncellenen GERÇEK isim getUserName()'de tutulur (bkz. profile_screen.dart
     // ile aynı öncelik: profil_screen.dart'ın kullandığı desenin AYNISI).
     final name = storage.getUserName().isNotEmpty ? storage.getUserName() : storage.getActiveUser();
-    final gender = storage.getUserGender();
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();
     final completed = storage.getCompletedTopics();
@@ -215,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(_heroGreetingFor(gender, name),
+                  Text(_heroGreetingFor(name),
                       style: TextStyle(
                           fontSize: 19, fontWeight: FontWeight.w900, color: c.text)),
                   const SizedBox(height: 6),

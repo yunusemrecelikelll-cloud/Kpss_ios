@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
@@ -13,8 +15,14 @@ import '../theme/theme_provider.dart';
 /// değil — sadece hesabın getirdiği ekstraları (sohbet kimliği, bulut
 /// yedekleme, satın alma eşleşmesi) anlatır.
 ///
-/// Giriş yolları: e-posta + şifre (kayıt/giriş), Google (her platform) ve
-/// Apple (sadece iOS).
+/// Giriş yolları: e-posta VEYA kullanıcı adı + şifre (kayıt/giriş), Google
+/// (her platform) ve Apple (sadece iOS).
+///
+/// KULLANICI ADI: Kayıtta hem e-posta hem kullanıcı adı istenir. E-posta
+/// ZORUNLUDUR — "şifremi unuttum" akışı Firebase Auth'un e-posta sıfırlama
+/// mekanizmasına dayanır ve kullanıcı adıyla çalışmaz. Girişte ise kullanıcı
+/// ikisinden birini yazabilir; '@' içeriyorsa e-posta, içermiyorsa kullanıcı
+/// adı kabul edilir.
 class AccountLoginScreen extends StatefulWidget {
   const AccountLoginScreen({super.key});
 
@@ -29,18 +37,39 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
   bool _kayitModu = false;
   bool _sifreGizli = true;
 
-  final _adCtrl = TextEditingController();
+  // KARAR: Eski "Ad" alanı kaldırılmadı, KULLANICI ADINA DÖNÜŞTÜRÜLDÜ. İki ayrı
+  // alan (ad + kullanıcı adı) tutmak kullanıcıya iki kimlik sorup ikisini de
+  // aynı yere (displayName) yazmak anlamına gelirdi. Uygulama zaten her yerde
+  // `displayName`'i gösteriyor (sohbet, lig, anasayfa), bu yüzden tek bir
+  // kullanıcı adı hem daha temiz hem de sohbetteki kimlikle tutarlı.
+  final _kullaniciAdiCtrl = TextEditingController();
   final _epostaCtrl = TextEditingController();
   final _sifreCtrl = TextEditingController();
 
   // Alan altında gösterilen istemci tarafı doğrulama hataları.
-  String? _adHata;
+  String? _kullaniciAdiHata;
   String? _epostaHata;
   String? _sifreHata;
 
+  // Kullanıcı adı canlı müsaitlik kontrolü (yazma durduktan ~600ms sonra).
+  Timer? _usernameDebounce;
+  bool _usernameKontrolEdiliyor = false;
+  UsernameDurumu? _usernameDurumu;
+  // Sonucun HANGİ metne ait olduğunu tutar: kullanıcı yazmaya devam ederse
+  // eski sonucu göstermeyelim.
+  String _usernameKontrolEdilenMetin = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _kullaniciAdiCtrl.addListener(_kullaniciAdiDegisti);
+  }
+
   @override
   void dispose() {
-    _adCtrl.dispose();
+    _usernameDebounce?.cancel();
+    _kullaniciAdiCtrl.removeListener(_kullaniciAdiDegisti);
+    _kullaniciAdiCtrl.dispose();
     _epostaCtrl.dispose();
     _sifreCtrl.dispose();
     super.dispose();
@@ -50,24 +79,82 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
 
   bool get _epostaGecerli => _epostaDeseni.hasMatch(_epostaCtrl.text.trim());
 
+  /// Kullanıcı yazdıkça çalışır: 600ms sessizlik sonrası müsaitliği sorar.
+  void _kullaniciAdiDegisti() {
+    _usernameDebounce?.cancel();
+    final metin = _kullaniciAdiCtrl.text.trim();
+
+    // Yazmaya başlar başlamaz eski sonucu temizle — yanlış bir "✓ Kullanılabilir"
+    // ekranda asılı kalmasın.
+    if (_usernameDurumu != null || _usernameKontrolEdiliyor) {
+      setState(() {
+        _usernameDurumu = null;
+        _usernameKontrolEdiliyor = false;
+      });
+    }
+    if (metin.isEmpty) return;
+
+    // Biçim hatalıysa sunucuya hiç gitme, anında yerel hatayı göster.
+    if (AuthService.usernameHatasi(metin) != null) return;
+
+    setState(() => _usernameKontrolEdiliyor = true);
+    _usernameDebounce = Timer(const Duration(milliseconds: 600), () async {
+      final auth = context.read<AuthService>();
+      final durum = await auth.usernameDurumu(metin);
+      if (!mounted) return;
+      // Kullanıcı bu arada metni değiştirdiyse sonucu at.
+      if (_kullaniciAdiCtrl.text.trim() != metin) return;
+      setState(() {
+        _usernameKontrolEdiliyor = false;
+        _usernameDurumu = durum;
+        _usernameKontrolEdilenMetin = metin;
+      });
+    });
+  }
+
   /// Formu doğrular; hatalıysa alan altı mesajları yazıp false döner.
   bool _formGecerliMi() {
-    final ad = _adCtrl.text.trim();
-    final eposta = _epostaCtrl.text.trim();
+    final kullaniciAdi = _kullaniciAdiCtrl.text.trim();
+    final kimlik = _epostaCtrl.text.trim();
     final sifre = _sifreCtrl.text;
 
-    String? adHata;
+    String? kullaniciAdiHata;
     String? epostaHata;
     String? sifreHata;
 
-    if (_kayitModu && ad.isEmpty) {
-      adHata = 'Adını yazman gerekiyor.';
+    if (_kayitModu) {
+      // Kayıtta kullanıcı adı ZORUNLU ve biçim kuralları AuthService'ten gelir
+      // (tek kaynak — ekran ile servis kuralları ayrışmasın).
+      kullaniciAdiHata = kullaniciAdi.isEmpty
+          ? 'Kullanıcı adı boş bırakılamaz.'
+          : AuthService.usernameHatasi(kullaniciAdi);
+      // Canlı kontrol "alınmış" dediyse gönderime hiç izin verme.
+      if (kullaniciAdiHata == null &&
+          _usernameDurumu == UsernameDurumu.alinmis &&
+          _usernameKontrolEdilenMetin == kullaniciAdi) {
+        kullaniciAdiHata = 'Bu kullanıcı adı alınmış. Başka bir tane dene.';
+      }
     }
-    if (eposta.isEmpty) {
-      epostaHata = 'E-posta boş bırakılamaz.';
-    } else if (!_epostaDeseni.hasMatch(eposta)) {
-      epostaHata = 'Geçersiz e-posta adresi.';
+
+    if (kimlik.isEmpty) {
+      // Etiket moda göre değiştiği için hata mesajı da değişiyor.
+      epostaHata = _kayitModu
+          ? 'E-posta boş bırakılamaz.'
+          : 'E-posta veya kullanıcı adı boş bırakılamaz.';
+    } else if (_kayitModu) {
+      // KAYIT: e-posta ZORUNLU ve gerçekten e-posta olmalı (şifre sıfırlama
+      // akışının çalışabilmesi için şart).
+      if (!_epostaDeseni.hasMatch(kimlik)) {
+        epostaHata = 'Geçersiz e-posta adresi.';
+      }
+    } else {
+      // GİRİŞ: '@' varsa e-posta kabul edip biçimini doğrula; yoksa kullanıcı
+      // adıdır — e-posta biçim doğrulaması YAPMA.
+      if (kimlik.contains('@') && !_epostaDeseni.hasMatch(kimlik)) {
+        epostaHata = 'Geçersiz e-posta adresi.';
+      }
     }
+
     if (sifre.isEmpty) {
       sifreHata = 'Şifre boş bırakılamaz.';
     } else if (sifre.length < 6) {
@@ -75,11 +162,11 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     }
 
     setState(() {
-      _adHata = adHata;
+      _kullaniciAdiHata = kullaniciAdiHata;
       _epostaHata = epostaHata;
       _sifreHata = sifreHata;
     });
-    return adHata == null && epostaHata == null && sifreHata == null;
+    return kullaniciAdiHata == null && epostaHata == null && sifreHata == null;
   }
 
   Future<void> _signIn(Future<AuthResult> Function() method) async {
@@ -131,31 +218,55 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     }
   }
 
-  /// E-posta sekmesindeki ana butonun işi: moda göre kayıt ya da giriş.
+  /// Ana butonun işi: moda göre kayıt ya da giriş.
   Future<void> _epostaIleDevam(AuthService auth) async {
     if (!_formGecerliMi()) return;
-    final eposta = _epostaCtrl.text.trim();
+    final kimlik = _epostaCtrl.text.trim();
     final sifre = _sifreCtrl.text;
-    final ad = _adCtrl.text.trim();
+    final kullaniciAdi = _kullaniciAdiCtrl.text.trim();
     if (_kayitModu) {
       await _signIn(() => auth.registerWithEmail(
-            email: eposta,
+            email: kimlik,
             password: sifre,
-            displayName: ad.isEmpty ? null : ad,
+            username: kullaniciAdi.isEmpty ? null : kullaniciAdi,
           ));
     } else {
-      await _signIn(() => auth.signInWithEmail(email: eposta, password: sifre));
+      // Giriş alanı e-posta da olabilir kullanıcı adı da — ayrımı servis yapar.
+      await _signIn(() =>
+          auth.signInWithEmailOrUsername(kimlik: kimlik, password: sifre));
     }
   }
 
-  /// "Şifremi unuttum": e-posta alanı doluysa doğrudan, değilse küçük bir
-  /// diyalogla adres isteyip sıfırlama bağlantısı gönderir.
+  /// "Şifremi unuttum": Firebase sıfırlama bağlantısı yalnızca E-POSTA ile
+  /// çalışır. Alanda kullanıcı adı yazılıysa önce e-postaya çeviririz;
+  /// çözülemezse kullanıcıdan doğrudan e-posta isteriz.
   Future<void> _sifremiUnuttum(AuthService auth) async {
     context.read<SoundService>().click();
     String hedef = _epostaCtrl.text.trim();
 
-    if (hedef.isEmpty || !_epostaGecerli) {
-      final girilen = await _epostaSorDialog(hedef);
+    // Alanda '@' yoksa kullanıcı adı yazılmış demektir → e-postaya çevir.
+    if (hedef.isNotEmpty && !hedef.contains('@')) {
+      setState(() => _busy = true);
+      final cozulen = await auth.emailForUsername(hedef);
+      if (!mounted) return;
+      setState(() => _busy = false);
+      if (cozulen == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+                'Bu kullanıcı adına ait hesap bulunamadı, e-posta adresini yaz.'),
+          ),
+        );
+        final girilen = await _epostaSorDialog('');
+        if (girilen == null) return;
+        hedef = girilen;
+      } else {
+        hedef = cozulen;
+      }
+    }
+
+    if (hedef.isEmpty || !_epostaDeseni.hasMatch(hedef)) {
+      final girilen = await _epostaSorDialog(_epostaGecerli ? hedef : '');
       if (girilen == null) return;
       hedef = girilen;
     }
@@ -308,7 +419,7 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
                           context.read<SoundService>().click();
                           setState(() {
                             _kayitModu = deger;
-                            _adHata = null;
+                            _kullaniciAdiHata = null;
                             _epostaHata = null;
                             _sifreHata = null;
                           });
@@ -321,25 +432,47 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
                     children: [
                       if (_kayitModu) ...[
                         _Alan(
-                          controller: _adCtrl,
-                          label: 'Ad',
-                          hint: 'Adın nasıl görünsün?',
+                          controller: _kullaniciAdiCtrl,
+                          label: 'Kullanıcı adı',
+                          hint: 'kullanici_adi',
                           icon: Icons.person_outline,
-                          hata: _adHata,
+                          hata: _kullaniciAdiHata,
                           enabled: !_busy,
                           textInputAction: TextInputAction.next,
+                          // Kullanıcı adı büyük/küçük harf duyarsız eşlenir ama
+                          // otomatik büyütme kafa karıştırır — kapalı.
+                          autocorrect: false,
+                          textCapitalization: TextCapitalization.none,
+                        ),
+                        _KullaniciAdiDurumu(
+                          metin: _kullaniciAdiCtrl.text.trim(),
+                          kontrolEdiliyor: _usernameKontrolEdiliyor,
+                          durum: _usernameDurumu,
+                          // Alan altı hata zaten gösteriliyorsa iki mesaj
+                          // üst üste binmesin.
+                          gizle: _kullaniciAdiHata != null,
                         ),
                         const SizedBox(height: 12),
                       ],
                       _Alan(
                         controller: _epostaCtrl,
-                        label: 'E-posta',
-                        hint: 'ornek@eposta.com',
+                        label: _kayitModu
+                            ? 'E-posta'
+                            : 'E-posta veya kullanıcı adı',
+                        hint: _kayitModu
+                            ? 'ornek@eposta.com'
+                            : 'ornek@eposta.com veya kullanici_adi',
                         icon: Icons.alternate_email,
                         hata: _epostaHata,
                         enabled: !_busy,
-                        keyboardType: TextInputType.emailAddress,
+                        // Girişte kullanıcı adı da yazılabildiği için e-posta
+                        // klavyesini yalnızca kayıt modunda zorluyoruz.
+                        keyboardType: _kayitModu
+                            ? TextInputType.emailAddress
+                            : TextInputType.text,
                         textInputAction: TextInputAction.next,
+                        autocorrect: false,
+                        textCapitalization: TextCapitalization.none,
                       ),
                       const SizedBox(height: 12),
                       _Alan(
@@ -535,6 +668,8 @@ class _Alan extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
+  final bool autocorrect;
+  final TextCapitalization textCapitalization;
 
   const _Alan({
     required this.controller,
@@ -548,6 +683,8 @@ class _Alan extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.onSubmitted,
+    this.autocorrect = true,
+    this.textCapitalization = TextCapitalization.none,
   });
 
   @override
@@ -570,6 +707,8 @@ class _Alan extends StatelessWidget {
           keyboardType: keyboardType,
           textInputAction: textInputAction,
           onSubmitted: onSubmitted,
+          autocorrect: autocorrect,
+          textCapitalization: textCapitalization,
           style: TextStyle(fontSize: 14.5, color: c.text),
           decoration: InputDecoration(
             isDense: true,
@@ -615,6 +754,73 @@ class _Alan extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+}
+
+/// Kullanıcı adı alanının HEMEN ALTINDA görünen canlı müsaitlik göstergesi.
+///
+/// Dört hâli var: kontrol ediliyor (küçük spinner), kullanılabilir, alınmış ve
+/// kontrol edilemedi (ağ/izin sorunu). Boş ya da biçimi geçersiz bir metinde
+/// hiçbir şey göstermez — o durumda zaten alan altı hata mesajı çıkar.
+class _KullaniciAdiDurumu extends StatelessWidget {
+  final String metin;
+  final bool kontrolEdiliyor;
+  final UsernameDurumu? durum;
+  final bool gizle;
+
+  const _KullaniciAdiDurumu({
+    required this.metin,
+    required this.kontrolEdiliyor,
+    required this.durum,
+    this.gizle = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    if (gizle || metin.isEmpty) return const SizedBox.shrink();
+
+    if (kontrolEdiliyor) {
+      return _satir(
+        c.textFaint,
+        'Kontrol ediliyor…',
+        gosterge: SizedBox(
+          width: 11,
+          height: 11,
+          child: CircularProgressIndicator(strokeWidth: 1.8, color: c.textFaint),
+        ),
+      );
+    }
+
+    switch (durum) {
+      case UsernameDurumu.musait:
+        return _satir(c.success, '✓ Kullanılabilir');
+      case UsernameDurumu.alinmis:
+        return _satir(c.danger, '✗ Bu kullanıcı adı alınmış');
+      case UsernameDurumu.kontrolEdilemedi:
+        return _satir(c.warn, 'Kontrol edilemedi, bağlantını kontrol et');
+      case UsernameDurumu.gecersiz:
+      case null:
+        return const SizedBox.shrink();
+    }
+  }
+
+  Widget _satir(Color renk, String yazi, {Widget? gosterge}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, left: 2),
+      child: Row(
+        children: [
+          if (gosterge != null) ...[gosterge, const SizedBox(width: 6)],
+          Expanded(
+            child: Text(
+              yazi,
+              style: TextStyle(
+                  fontSize: 12, color: renk, fontWeight: FontWeight.w700),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

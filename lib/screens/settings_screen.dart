@@ -85,6 +85,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// "Soruları Güncelle" o an kontrol/indirme yapıyor mu.
   bool _checkingUpdate = false;
 
+  /// "Çıkış Yap" akışı.
+  ///
+  /// Tek adımlık bir onay yetiyor: çıkmak GERİ ALINABİLİR bir işlem, kullanıcı
+  /// istediği zaman tekrar giriş yapar. Bu yüzden "Hesabımı Sil"deki gibi
+  /// yazarak teyit istemiyoruz.
+  ///
+  /// Onay metninde yerel ilerlemenin SİLİNMEDİĞİNİ açıkça söylüyoruz — asıl
+  /// korku bu ve söylenmezse kullanıcı çıkmaya çekinir.
+  Future<void> _cikisYap() async {
+    // Context'e bağlı her şeyi await'ten ÖNCE al (bkz. _hesabiSil'deki not).
+    context.read<SoundService>().click();
+    final auth = context.read<AuthService>();
+    final messenger = ScaffoldMessenger.of(context);
+
+    final onay = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Çıkış yap?'),
+        content: const Text(
+          'Hesabından çıkacaksın. Cihazdaki testlerin, istatistiklerin ve '
+          'rozetlerin SİLİNMEZ. İstediğin zaman tekrar giriş yapabilirsin.',
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Vazgeç')),
+          TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Çıkış Yap')),
+        ],
+      ),
+    );
+    if (onay != true) return;
+
+    await auth.signOut();
+    messenger.showSnackBar(const SnackBar(content: Text('Çıkış yapıldı.')));
+  }
+
   /// "Hesabımı Sil" akışı.
   ///
   /// İki aşamalı onay: önce ne silineceğini açıkça anlatan bir uyarı, sonra
@@ -684,6 +718,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   // yalnızca kafa karıştırır. (Yerel ilerlemeyi temizlemek
                   // isteyen kullanıcı için uygulamayı kaldırmak yeterli.)
                   if (girisYapildi) ...[
+                    Divider(height: 1, color: c.border),
+                    // "Çıkış Yap", "Hesabımı Sil"in ÜSTÜNDE duruyor: ikisi de
+                    // hesapla ilgili ama biri geri alınabilir, diğeri değil.
+                    // Yıkıcı olanı en alta koymak yanlışlıkla dokunma riskini
+                    // azaltır.
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.logout_rounded,
+                          color: c.violetL,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Çıkış Yap',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                      subtitle: Text(
+                          'Hesabından çıkarsın. Cihazdaki ilerlemen silinmez.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () => _cikisYap(),
+                    ),
                     Divider(height: 1, color: c.border),
                     ListTile(
                       leading: DsIconBadge(

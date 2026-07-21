@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 import '../firebase_bootstrap.dart';
+import 'auth_service.dart';
 import 'chat_service.dart';
 import 'cloud_sync_service.dart';
 import 'duel_service.dart';
@@ -186,6 +187,69 @@ class AccountDeletionService {
         }
         await batch.commit();
       }
+    });
+
+    // 9) Arkadaşlıklar — ÇİFT YÖNLÜ temizlik.
+    //    Arkadaşlık iki dokümanda birden saklanır (bkz. ChatService). Yalnızca
+    //    kendi listemizi silmek yetmez: karşı tarafın listesinde silinmiş
+    //    hesabın adı "arkadaşın" olarak durmaya devam ederdi.
+    await _adim('friends', () async {
+      final benim = await _db
+          .collection(ChatService.friendsCollection)
+          .doc(uid)
+          .collection('list')
+          .get();
+      // Önce karşı tarafların listesinden KENDİMİZİ sil (kural buna izin
+      // veriyor: friendUid == kendi uid'im).
+      final karsiTaraf = benim.docs
+          .map((d) => _db
+              .collection(ChatService.friendsCollection)
+              .doc(d.id)
+              .collection('list')
+              .doc(uid))
+          .toList();
+      await _deleteDocs(karsiTaraf);
+      // Sonra kendi listemizi tamamen kaldır.
+      await _deleteDocs(benim.docs.map((d) => d.reference).toList());
+    });
+
+    // 10) Bekleyen arkadaşlık istekleri — hem gönderdiklerimiz hem aldıklarımız.
+    //     Silinmezse karşı tarafın "İstekler" bölümünde artık var olmayan bir
+    //     hesaptan gelen istek asılı kalırdı.
+    await _adim('friend_requests (giden)', () async {
+      final snap = await _db
+          .collection(ChatService.friendRequestsCollection)
+          .where('fromUid', isEqualTo: uid)
+          .get();
+      await _deleteDocs(snap.docs.map((d) => d.reference).toList());
+    });
+
+    await _adim('friend_requests (gelen)', () async {
+      final snap = await _db
+          .collection(ChatService.friendRequestsCollection)
+          .where('toUid', isEqualTo: uid)
+          .get();
+      await _deleteDocs(snap.docs.map((d) => d.reference).toList());
+    });
+
+    // 11) Kullanıcı adı rezervasyonu — 'usernames/{kullaniciAdiKucukHarf}'
+    //
+    //    Bu adım ATLANIRSA kullanıcı adı SONSUZA DEK rezerve kalır: hesap
+    //    silinmiş olmasına rağmen o adı bir daha kimse alamaz ve kullanıcının
+    //    kendisi bile aynı adla tekrar kayıt olamaz.
+    //
+    //    Doküman kimliğini `displayName`'den TÜRETMİYORUZ. Kullanıcı görünen
+    //    adını sonradan değiştirmiş olabilir; o durumda türetilen anahtar
+    //    yanlış (ya da var olmayan) bir dokümanı hedefler ve silme sessizce
+    //    boşa giderdi. Bunun yerine sahipliğin TEK doğru kaynağı olan `uid`
+    //    alanı üzerinden sorguluyoruz — kurallar da silmeyi tam olarak buna
+    //    (resource.data.uid == request.auth.uid) göre veriyor.
+    await _adim('usernames', () async {
+      final snap = await _db
+          .collection(kUsernamesCollection)
+          .where('uid', isEqualTo: uid)
+          .get();
+      await _deleteDocs(snap.docs.map((d) => d.reference).toList());
     });
   }
 

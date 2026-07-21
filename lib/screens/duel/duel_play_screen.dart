@@ -54,6 +54,14 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   bool _isRoyale = false;
   Map<String, DuelPlayer> _players = const {};
 
+  // Tüm oyuncular cevapladığında kalan sürenin atlanmasıyla "kazanılan" toplam
+  // süre; odadan okunur, tüm cihazlarda aynıdır (bkz. DuelRoom.timeShiftMs).
+  int _timeShiftMs = 0;
+  // Bu cihazın erken geçiş isteği gönderdiği son soru. Aynı soru için ağa
+  // saniyede dört kez (ticker hızında) istek gitmesini engeller; asıl
+  // tekrar koruması yine sunucudaki `lastSkippedIndex` koşuludur.
+  int _skipRequestedForIndex = -1;
+
   bool _soloLoading = true;
 
   // ── SOLO akışı ────────────────────────────────────────────────────────────
@@ -143,10 +151,20 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     // Solo: kendi sayacı (cevap verince / süre dolunca ilerler).
     if (widget.isSolo) return _soloIndex;
     // Online: senkron için indeks TAMAMEN zamandan hesaplanır — DOKUNMA.
+    // Erken geçiş de buraya `_timeShiftMs` olarak dahildir: odaya yazılan tek
+    // bir kaydırma değeri sayesinde tüm cihazlar aynı indeksi bulur.
     if (_startedAt == null) return 0;
-    final elapsedMs = _now.difference(_startedAt!).inMilliseconds;
+    final elapsedMs = _effectiveElapsedMs;
     if (elapsedMs < 0) return 0;
     return elapsedMs ~/ (_perQ * 1000);
+  }
+
+  /// Maçın başından bu yana geçmiş SAYILAN süre (gerçek süre + erken geçişler).
+  int get _effectiveElapsedMs {
+    if (_startedAt == null) return 0;
+    final gercek = _now.difference(_startedAt!).inMilliseconds;
+    if (gercek < 0) return _timeShiftMs;
+    return gercek + _timeShiftMs;
   }
 
   int _remainingMs(int index) {
@@ -157,8 +175,7 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
       return start.add(Duration(seconds: _perQ)).difference(_now).inMilliseconds;
     }
     if (_startedAt == null) return _perQ * 1000;
-    final deadline = _startedAt!.add(Duration(milliseconds: (index + 1) * _perQ * 1000));
-    return deadline.difference(_now).inMilliseconds;
+    return (index + 1) * _perQ * 1000 - _effectiveElapsedMs;
   }
 
   bool get _amEliminated {
@@ -193,7 +210,33 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
         _duel.checkAndEliminate(widget.roomId!, idx - 1);
       }
     }
+
+    // Herkes cevapladıysa kalan süreyi bekleme.
+    _maybeSkipAhead(idx);
+
     setState(() {});
+  }
+
+  /// İçinde bulunulan soruyu TÜM (elenmemiş) oyuncular cevapladıysa, kalan
+  /// sürenin atlanmasını ister.
+  ///
+  /// Kaydırmayı burada YEREL olarak uygulamıyoruz: öyle yapılsaydı isteği ilk
+  /// fark eden cihaz sonraki soruya geçer, diğerleri geçmez ve oyuncular farklı
+  /// sorularda kalırdı. Bunun yerine odaya yazdırıyoruz; kaydırma oda akışıyla
+  /// (`watchRoom`) herkese aynı anda dönüyor.
+  void _maybeSkipAhead(int idx) {
+    if (widget.isSolo) return; // Solo'da geçiş zaten anında.
+    if (_startedAt == null || idx >= _total) return;
+    if (_skipRequestedForIndex >= idx) return; // Bu soru için zaten istendi.
+    if (_players.isEmpty) return;
+
+    // Elenen oyuncular cevap veremez; onları beklemek oyunu kilitlerdi.
+    final aktif = _players.values.where((p) => !p.eliminated);
+    if (aktif.isEmpty) return;
+    if (!aktif.every((p) => p.answers.containsKey(idx))) return;
+
+    _skipRequestedForIndex = idx;
+    _duel.skipToNextIfAllAnswered(widget.roomId!, idx);
   }
 
   /// Solo tick: indeks zamandan ilerlemez, ama SÜRE SINIRI aynen geçerlidir —
@@ -332,6 +375,9 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
         _total = room.totalQuestions;
         _isRoyale = room.isRoyale;
         _players = room.players;
+        // Erken geçiş kaydırması: soru indeksi ve geri sayım BUNU da hesaba
+        // katar, yoksa "herkes cevapladı" atlaması bu cihazda görünmezdi.
+        _timeShiftMs = room.timeShiftMs;
 
         if (room.status == 'finished') {
           _handleFinish();
@@ -721,7 +767,7 @@ class _WaitingForNextPanel extends StatelessWidget {
             color: progress < 0.3 ? c.danger : c.violetL,
           ),
           const SizedBox(height: 6),
-          Text('Tüm oyuncular aynı anda ilerler — rakipler bekleniyor.',
+          Text('Herkes cevaplayınca sonraki soruya hemen geçilir.',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 11, height: 1.4, color: c.textFaint)),

@@ -171,6 +171,95 @@ service cloud.firestore {
       allow update: if false;
     }
 
+    // ── Kullanıcı adı → e-posta eşlemesi ───────────────────────────────────
+    // Doküman kimliği = kullanıcı adının KÜÇÜK HARFE çevrilmiş hâli. Benzersizlik
+    // böyle garanti edilir: Firestore'da aynı kimlikte iki doküman olamaz.
+    // Alanlar: email (string), uid (string), username (string — orijinal yazım).
+    //
+    // GÜVENLİK NOTU — BİLEREK HERKESE AÇIK OKUMA:
+    // Bu koleksiyon giriş YAPMAMIŞ kullanıcılar tarafından da okunabilir olmak
+    // ZORUNDA. Sebebi: kullanıcı adıyla giriş akışında istemci, şifreyi Firebase
+    // Auth'a göndermeden ÖNCE kullanıcı adını e-postaya çevirmek durumundadır ve
+    // o anda henüz kimliği doğrulanmamıştır. Okumayı `girisli()` ile kısıtlamak
+    // kullanıcı adıyla girişi tamamen bozar.
+    //
+    // BUNUN BEDELİ: kullanıcı adı ↔ e-posta ilişkisi herkese görünür olur; bir
+    // kullanıcı adını bilen, o hesabın e-posta adresini de öğrenebilir. Bu,
+    // kullanıcı adı tabanlı girişin DOĞASINDA olan bir ödünleşmedir. Kullanıcı
+    // e-postalarının gizli kalması gerekiyorsa kullanıcı adıyla giriş
+    // kaldırılmalı ve yalnızca e-posta ile giriş tercih edilmelidir.
+    match /usernames/{usernameKey} {
+      allow read: if true;
+
+      // Yalnızca kendi adına rezervasyon yapılabilir: yazılan uid, isteği yapan
+      // kullanıcının uid'i olmak zorunda. Böylece başkasının adına kullanıcı adı
+      // kapatılamaz.
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+
+      // Güncelleme/silme yalnızca kaydın sahibine açık. "Hesabımı Sil" akışının
+      // bu dokümanı da silmesi gerekir — yoksa kullanıcı adı kalıcı olarak
+      // rezerve kalır ve bir daha kimse alamaz.
+      allow update, delete: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+    }
+
+    // ── Arkadaşlık istekleri ───────────────────────────────────────────────
+    // Doküman kimliği "{gonderenUid}_{alanUid}" biçimindedir.
+    match /friend_requests/{requestId} {
+      // İsteği yalnızca tarafları görebilir.
+      allow read: if girisli()
+                  && (resource.data.fromUid == request.auth.uid
+                      || resource.data.toUid == request.auth.uid);
+
+      // İsteği yalnızca GÖNDEREN oluşturabilir ve kendi adına göndermek
+      // zorundadır — başkasının adına istek gönderilemez. Kendine istek
+      // göndermek de engellenir.
+      allow create: if girisli()
+                    && request.resource.data.fromUid == request.auth.uid
+                    && request.resource.data.toUid is string
+                    && request.resource.data.toUid != request.auth.uid;
+
+      // Silme iki tarafa da açık: gönderen isteğini geri çeker, alan ise
+      // kabul ya da reddeder.
+      allow delete: if girisli()
+                    && (resource.data.fromUid == request.auth.uid
+                        || resource.data.toUid == request.auth.uid);
+
+      // Gönderilmiş bir istek sonradan DEĞİŞTİRİLEMEZ (ör. gönderen kendini
+      // başkası gibi göstermek için fromName'i değiştiremez). Yeniden
+      // göndermek isteyen silip yeniden oluşturur.
+      allow update: if false;
+    }
+
+    // ── Arkadaş listesi ────────────────────────────────────────────────────
+    // Arkadaşlık ÇİFT YÖNLÜ saklanır: kabul anında hem kabul edenin hem
+    // gönderenin listesine birer kayıt yazılır.
+    match /friends/{uid}/list/{friendUid} {
+      // Listemi yalnızca ben okurum.
+      allow read: if sahip(uid);
+
+      // Kendi listemi serbestçe yönetirim.
+      allow create, update, delete: if sahip(uid);
+
+      // BAŞKASININ listesine yazma — arkadaşlığın çift yönlü kurulabilmesi
+      // için ŞART. İki kısıtla sınırlandırılmıştır:
+      //   1. Yazılan kayıt BEN olmak zorundayım (friendUid == kendi uid'im);
+      //      yani başkasının listesine üçüncü bir kişiyi ekleyemem.
+      //   2. Aramızda GERÇEKTEN bekleyen bir istek olmak zorunda. Bu koşul
+      //      olmasaydı herkes kendini istediği kişinin arkadaş listesine
+      //      zorla ekleyebilirdi.
+      allow create: if girisli()
+                    && friendUid == request.auth.uid
+                    && exists(/databases/$(database)/documents/friend_requests/$(uid + '_' + request.auth.uid));
+
+      // Arkadaşlıktan çıkarma da çift yönlü olmalı: kendimi karşı tarafın
+      // listesinden çıkarabilirim. Burada istek şartı ARANMAZ — ayrılmayı
+      // zorlaştırmak, ilişki kurmayı zorlaştırmaktan farklı olarak kullanıcının
+      // aleyhinedir.
+      allow delete: if girisli() && friendUid == request.auth.uid;
+    }
+
     // ── Varsayılan: her şey kapalı ─────────────────────────────────────────
     // Yukarıda açıkça izin verilmeyen hiçbir yola erişilemez.
     match /{document=**} {
