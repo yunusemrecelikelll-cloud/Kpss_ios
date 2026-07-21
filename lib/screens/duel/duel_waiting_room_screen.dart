@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../services/duel_service.dart';
 import '../../services/sound_service.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import 'duel_play_screen.dart';
 
@@ -110,10 +111,22 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
             }
             final room = snap.data;
             if (room == null) {
-              return const Center(child: Padding(
-                padding: EdgeInsets.all(24),
-                child: Text('Oda bulunamadı ya da kapatıldı.'),
-              ));
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DsIllustration(emoji: '🚪', glowColor: c.danger),
+                      const SizedBox(height: 10),
+                      Text('Oda bulunamadı ya da kapatıldı.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w800, color: c.text)),
+                    ],
+                  ),
+                ),
+              );
             }
             _room = room;
             _maybeNavigateToPlay(room);
@@ -122,94 +135,134 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
               ..sort((a, b) => (a.joinedAt?.millisecondsSinceEpoch ?? 0)
                   .compareTo(b.joinedAt?.millisecondsSinceEpoch ?? 0));
 
+            final vurgu = room.isRoyale ? c.gold : c.violetL;
+
             return ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(18),
-                    child: Column(
-                      children: [
-                        Text(room.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                        const SizedBox(height: 4),
-                        Text(room.isRoyale ? '👑 KPSS Royale' : '⚔️ KPSS Düello',
-                            style: TextStyle(color: c.textFaint, fontSize: 12.5)),
-                        const SizedBox(height: 6),
-                        Text(
-                          room.configLabel,
+                // ── Oda başlığı + kod + geri sayım ──
+                DsCard(
+                  accent: vurgu,
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    children: [
+                      DsIllustration(
+                        emoji: room.isRoyale ? '👑' : '⚔️',
+                        glowColor: vurgu,
+                        size: 72,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(room.name,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: c.textDim, fontSize: 12, fontWeight: FontWeight.w700),
-                        ),
-                        const SizedBox(height: 14),
-                        // Oda kodu (kopyalanabilir)
-                        InkWell(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w900, color: c.text)),
+                      const SizedBox(height: 8),
+                      DsChip(
+                        label: room.isRoyale ? 'KPSS ROYALE' : 'KPSS DÜELLO',
+                        color: vurgu,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        room.configLabel,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: c.textDim, fontSize: 12, fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 14),
+                      // Oda kodu (kopyalanabilir)
+                      Material(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(kDsRadiusSm),
+                        child: InkWell(
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: room.code));
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Oda kodu kopyalandı')),
                             );
                           },
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
+                          borderRadius: BorderRadius.circular(kDsRadiusSm),
+                          child: Ink(
                             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
                             decoration: BoxDecoration(
                               color: c.glass2,
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(kDsRadiusSm),
                               border: Border.all(color: c.border),
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(room.code,
-                                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, letterSpacing: 3)),
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w900,
+                                        letterSpacing: 3,
+                                        color: c.text)),
                                 const SizedBox(width: 8),
                                 Icon(Icons.copy, size: 16, color: c.textFaint),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        Text('En geç başlangıç: ${_countdownLabel(room)}',
-                            style: TextStyle(fontSize: 13, color: c.warn, fontWeight: FontWeight.w700)),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text('En geç başlangıç: ${_countdownLabel(room)}',
+                          style: TextStyle(
+                              fontSize: 13, color: c.warn, fontWeight: FontWeight.w800)),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Text('Oyuncular', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
-                    const SizedBox(width: 8),
-                    Text('${players.length}/${room.maxPlayers}',
-                        style: TextStyle(fontSize: 13, color: c.textFaint)),
-                  ],
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: kDsGap + 4),
+                DsSectionHeader(title: 'Oyuncular  ${players.length}/${room.maxPlayers}'),
+                const SizedBox(height: kDsGap - 4),
                 for (final p in players)
-                  Card(
-                    child: ListTile(
-                      leading: CircleAvatar(child: Text(p.name.isNotEmpty ? p.name[0].toUpperCase() : '?')),
-                      title: Text(p.name, style: const TextStyle(fontWeight: FontWeight.w700)),
-                      trailing: p.uid == room.hostUid
-                          ? const Chip(label: Text('Kurucu', style: TextStyle(fontSize: 11)))
-                          : (p.uid == myUid ? const Text('Sen') : null),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: kDsGap - 4),
+                    child: DsCard(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      child: Row(
+                        children: [
+                          DsIconBadge(
+                            emoji: p.name.isNotEmpty ? p.name[0].toUpperCase() : '?',
+                            color: p.uid == room.hostUid ? c.gold : c.violetL,
+                            size: 40,
+                            glow: false,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              p.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 14, color: c.text),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          if (p.uid == room.hostUid)
+                            DsChip(label: 'KURUCU', color: c.gold)
+                          else if (p.uid == myUid)
+                            DsChip(label: 'SEN', color: c.mint),
+                        ],
+                      ),
                     ),
                   ),
-                const SizedBox(height: 20),
+                const SizedBox(height: kDsGap + 8),
                 if (isHost)
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
+                  Center(
+                    child: DsPillButton(
+                      label: room.isRoyale && players.length < 2
+                          ? 'Şimdi Başlat (tek başına)'
+                          : 'Şimdi Başlat',
+                      leadingIcon: Icons.play_arrow,
+                      color: vurgu,
                       onPressed: players.isEmpty
                           ? null
                           : () {
                               context.read<SoundService>().click();
                               _duel.startRoom(widget.roomId);
                             },
-                      icon: const Icon(Icons.play_arrow),
-                      label: Text(room.isRoyale && players.length < 2
-                          ? 'Şimdi Başlat (tek başına)'
-                          : 'Şimdi Başlat'),
                     ),
                   )
                 else
@@ -217,9 +270,10 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                     child: Text('Kurucunun başlatması bekleniyor...',
                         style: TextStyle(color: c.textFaint, fontSize: 12.5)),
                   ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
                 Center(
                   child: Text('Oda dolunca ya da süre bitince otomatik başlar.',
+                      textAlign: TextAlign.center,
                       style: TextStyle(color: c.textFaint, fontSize: 11.5)),
                 ),
               ],

@@ -23,6 +23,24 @@ import 'premium_screen.dart';
 
 const int kFreeMaxAttemptsPerTopic = 2;
 
+/// Türkçe kısa ay adları — "12 Tem 2026" biçimi için.
+const List<String> _kAylarKisa = [
+  'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
+  'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
+];
+
+/// Geçmiş test satırlarında gösterilen kısa tarih.
+/// Bugünse "Bugün", dünse "Dün", değilse "12 Tem 2026".
+String _kisaTarih(DateTime t) {
+  final now = DateTime.now();
+  final bugun = DateTime(now.year, now.month, now.day);
+  final gun = DateTime(t.year, t.month, t.day);
+  final fark = bugun.difference(gun).inDays;
+  if (fark == 0) return 'Bugün';
+  if (fark == 1) return 'Dün';
+  return '${t.day} ${_kAylarKisa[t.month - 1]} ${t.year}';
+}
+
 /// Paragraf kutucuklarında sırayla dönen rozet emojileri.
 const _kParagraphEmojis = ['📖', '✏️', '🔍', '🎯', '💭', '📝', '🧭', '🧩'];
 
@@ -195,10 +213,10 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     final picker = QuestionPicker(storage);
     final qs = picker.pickForTopic(pool, 10, topic.id, premium: premium);
 
-    // Madde 1: test süresini kullanıcı kendisi belirler (elle dakika yazar ya
-    // da "soru başına saniye" preset'lerinden seçer). Vazgeçerse test açılmaz.
-    final sureSn = await showTestSuresiDialog(context, qs.length);
-    if (sureSn == null || !context.mounted) return;
+    // Konu testlerinde SÜRE SINIRI YOKTUR: ne süre sorulur ne de geri sayım
+    // kurulur (durationSec verilmez). Ayarlar'daki süre tercihi yalnızca
+    // deneme/tam sınav için geçerlidir. Not: aşağıdaki çalışma süresi sayacı
+    // bir sınır değil, istatistik olduğu için çalışmaya devam eder.
 
     // Madde 4: test ekranı kendi süresini saydığı için buradaki sayaç
     // duraklatılır — aynı süre iki kez kaydedilmesin.
@@ -212,7 +230,6 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
         topicBaslik: topic.baslik,
         questions: qs,
         isFullTest: false,
-        durationSec: sureSn,
       ),
     ));
     _quizAcik = false;
@@ -362,12 +379,27 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                       children: [
                         DsChip(label: '${i + 1}. TEST', color: colors.violetL),
                         const SizedBox(width: 10),
+                        // Sonuç + testin çözüldüğü tarih. Dar ekranda tarih
+                        // alt satıra iner, taşma olmaz.
                         Expanded(
-                          child: Text(
-                            '${attempts[i].dogru} doğru / ${attempts[i].yanlis} yanlış',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 13, color: colors.textDim),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '${attempts[i].dogru} doğru / ${attempts[i].yanlis} yanlış',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 13, color: colors.textDim),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                '🗓️ ${_kisaTarih(attempts[i].tarih)}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontSize: 11.5, color: colors.textFaint),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(width: 8),

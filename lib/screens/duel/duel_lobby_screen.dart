@@ -8,6 +8,7 @@ import '../../services/duel_service.dart';
 import '../../services/remote_question_service.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../premium_screen.dart';
 import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration, kFreeGameDailyLimit;
@@ -98,6 +99,9 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
     final cfg = await showModalBottomSheet<_RoomConfig>(
       context: context,
       isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(kDsRadius)),
+      ),
       builder: (_) => _CreateRoomSheet(mode: _mode, subjects: _subjects),
     );
     if (cfg == null || !mounted) return;
@@ -209,18 +213,47 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
           : ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                Text(
-                  premium
-                      ? 'Sınırsız maç hakkın var. Rakiplerinle aynı soruları çöz, hızlı+doğru cevap ver, kazan!'
-                      : 'Bugün $left ücretsiz maç hakkın kaldı.',
-                  style: TextStyle(fontSize: 13, color: c.textFaint),
+                // ── Üst bilgi şeridi: günlük hak + toplam oynama süresi ──
+                DsCard(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  child: Row(
+                    children: [
+                      DsIconBadge(
+                        emoji: premium ? '💎' : '🎟️',
+                        color: premium ? c.gold : c.violetL,
+                        size: 42,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              premium
+                                  ? 'Sınırsız maç hakkın var. Hızlı ve doğru cevap ver, kazan!'
+                                  : 'Bugün $left ücretsiz maç hakkın kaldı.',
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                height: 1.35,
+                                fontWeight: FontWeight.w700,
+                                color: c.text,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              'Toplam: ${formatPlayDuration(totalSeconds)} oynadın',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  'Toplam: ${formatPlayDuration(totalSeconds)} oynadın',
-                  style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                ),
-                const SizedBox(height: 16),
+                const SizedBox(height: kDsGap + 4),
                 _ModeToggle(
                   mode: _mode,
                   onChanged: (m) {
@@ -228,79 +261,128 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                     setState(() => _mode = m);
                   },
                 ),
-                const SizedBox(height: 16),
-                // Oyuncu adı
-                Text('Oyuncu adın', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-                const SizedBox(height: 6),
+                const SizedBox(height: kDsGap + 4),
+                // ── Oyuncu adı ──
+                Text('Oyuncu adın',
+                    style: TextStyle(
+                        fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w800)),
+                const SizedBox(height: 8),
                 Row(
                   children: [
                     Expanded(
                       child: TextField(
                         controller: _nameCtrl,
                         maxLength: 24,
-                        decoration: const InputDecoration(
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w700, color: c.text),
+                        decoration: InputDecoration(
                           counterText: '',
-                          border: OutlineInputBorder(),
                           isDense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                          filled: true,
+                          fillColor: c.glass,
+                          hintText: 'Oyuncu',
+                          hintStyle: TextStyle(color: c.textFaint, fontWeight: FontWeight.w600),
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(kDsRadiusSm),
+                            borderSide: BorderSide(color: c.border),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(kDsRadiusSm),
+                            borderSide: BorderSide(color: c.violetL, width: 1.4),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(kDsRadiusSm),
+                            borderSide: BorderSide(color: c.border),
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    IconButton.filledTonal(
-                      tooltip: 'Rastgele isim üret',
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        setState(() => _nameCtrl.text = _duel.generateRandomPlayerName());
-                      },
-                      icon: const Icon(Icons.shuffle),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                // Aksiyon butonları
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _busy ? null : _createRoom,
-                        icon: const Icon(Icons.add_circle_outline, size: 18),
-                        label: const Text('ODA KUR'),
-                      ),
-                    ),
                     const SizedBox(width: 10),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        onPressed: _busy ? null : _joinByCode,
-                        icon: const Icon(Icons.vpn_key_outlined, size: 18),
-                        label: const Text('ÖZEL ODA'),
+                    // Rastgele ad üretme — ikon rozeti görünümünde dokunulabilir buton
+                    Tooltip(
+                      message: 'Rastgele isim üret',
+                      child: Material(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.circular(kDsRadiusSm),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(kDsRadiusSm),
+                          onTap: () {
+                            context.read<SoundService>().click();
+                            setState(
+                                () => _nameCtrl.text = _duel.generateRandomPlayerName());
+                          },
+                          child: DsIconBadge(
+                            icon: Icons.shuffle,
+                            color: c.violetL,
+                            size: 48,
+                            circle: false,
+                            glow: false,
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    onPressed: _busy ? null : _playSolo,
-                    icon: const Icon(Icons.person_outline, size: 18),
-                    label: const Text('TEK BAŞINA YARIŞ (pratik)'),
+                const SizedBox(height: kDsGap + 4),
+                // ── Oda kur / özel oda ──
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: _ActionCard(
+                          emoji: '🏗️',
+                          title: 'ODA KUR',
+                          subtitle: 'Kendi odanı oluştur',
+                          accent: c.violetL,
+                          onTap: _busy ? null : _createRoom,
+                        ),
+                      ),
+                      const SizedBox(width: kDsGap),
+                      Expanded(
+                        child: _ActionCard(
+                          emoji: '🔑',
+                          title: 'ÖZEL ODA',
+                          subtitle: 'Odaya katıl',
+                          accent: c.roseL,
+                          onTap: _busy ? null : _joinByCode,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 22),
+                const SizedBox(height: kDsGap),
+                // ── Tek başına yarış (pratik) ──
+                DsHeroCard(
+                  emoji: '🎯',
+                  overline: 'ÇEVRİMDIŞI DA ÇALIŞIR',
+                  title: 'Tek Başına Yarış',
+                  subtitle: 'Kendini test et, gelişimini ölç. Pratik modda '
+                      'rakip beklemeden hemen başla.',
+                  accent: c.mint,
+                  accent2: c.violetL,
+                  actionLabel: 'PRATİĞE BAŞLA',
+                  onAction: _busy ? null : _playSolo,
+                  illustrationEmoji: '🚀',
+                ),
+                const SizedBox(height: kDsGap + 8),
+                // ── Odalar ──
                 Row(
                   children: [
-                    const Text('📋 Odalar', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
-                    const Spacer(),
-                    if (_busy) const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)),
+                    const Expanded(child: DsSectionHeader(title: '📋 Odalar')),
+                    if (_busy)
+                      const SizedBox(
+                          width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)),
                   ],
                 ),
-                const SizedBox(height: 4),
                 Text('Açık odalara katıl ya da kendi odanı kur.',
                     style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-                const SizedBox(height: 10),
+                const SizedBox(height: kDsGap),
                 if (!_duel.isConfigured)
                   _InfoCard(
+                    emoji: '📡',
                     color: c.warn,
                     text: 'Çevrimdışısın veya bağlantı yok — canlı odalar '
                         'görünmüyor. "Tek Başına Yarış" ile pratik yapabilirsin.',
@@ -318,6 +400,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                       final rooms = snap.data ?? const [];
                       if (rooms.isEmpty) {
                         return _InfoCard(
+                          emoji: '🕳️',
                           color: c.textFaint,
                           text: 'Şu an açık ${_mode == DuelService.modeRoyale ? "Royale" : "Düello"} '
                               'odası yok. İlk odayı sen kur!',
@@ -326,9 +409,12 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                       return Column(
                         children: [
                           for (final r in rooms)
-                            _RoomCard(
-                              room: r,
-                              onJoin: _busy ? null : () => _joinRoom(r),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: kDsGap),
+                              child: _RoomCard(
+                                room: r,
+                                onJoin: _busy ? null : () => _joinRoom(r),
+                              ),
                             ),
                         ],
                       );
@@ -340,6 +426,8 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
   }
 }
 
+/// Düello / Royale mod seçici — tek bir [DsCard] içinde iki seçenekli segment.
+/// Seçili olan degrade zeminli ve onay ikonludur.
 class _ModeToggle extends StatelessWidget {
   final String mode;
   final ValueChanged<String> onChanged;
@@ -347,29 +435,211 @@ class _ModeToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<String>(
-      segments: const [
-        ButtonSegment(value: DuelService.modeDuello, label: Text('⚔️ Düello'), icon: null),
-        ButtonSegment(value: DuelService.modeRoyale, label: Text('👑 Royale'), icon: null),
-      ],
-      selected: {mode},
-      onSelectionChanged: (s) => onChanged(s.first),
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      padding: const EdgeInsets.all(6),
+      child: Row(
+        children: [
+          Expanded(
+            child: _ModeOption(
+              emoji: '⚔️',
+              title: 'Düello',
+              subtitle: '1v1 rekabet',
+              accent: c.violetL,
+              accent2: c.violet,
+              selected: mode == DuelService.modeDuello,
+              onTap: () => onChanged(DuelService.modeDuello),
+            ),
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: _ModeOption(
+              emoji: '👑',
+              title: 'Royale',
+              subtitle: 'Herkese karşı',
+              accent: c.gold,
+              accent2: c.roseL,
+              selected: mode == DuelService.modeRoyale,
+              onTap: () => onChanged(DuelService.modeRoyale),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _InfoCard extends StatelessWidget {
-  final Color color;
-  final String text;
-  const _InfoCard({required this.color, required this.text});
+class _ModeOption extends StatelessWidget {
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final Color accent;
+  final Color accent2;
+  final bool selected;
+  final VoidCallback onTap;
+
+  const _ModeOption({
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    required this.accent,
+    required this.accent2,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: color.withValues(alpha: 0.08),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Text(text, style: const TextStyle(fontSize: 12.5, height: 1.5)),
+    final c = context.watch<ThemeProvider>().colors;
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(kDsRadiusSm),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(kDsRadiusSm),
+        onTap: onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(kDsRadiusSm),
+            gradient: selected
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      accent.withValues(alpha: c.isLight ? 0.22 : 0.32),
+                      accent2.withValues(alpha: c.isLight ? 0.10 : 0.16),
+                    ],
+                  )
+                : null,
+            border: Border.all(
+              color: selected ? accent.withValues(alpha: 0.55) : Colors.transparent,
+              width: 1.3,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 11),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(emoji, style: const TextStyle(fontSize: 15)),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w900,
+                          color: selected ? c.text : c.textDim,
+                        ),
+                      ),
+                    ),
+                    if (selected) ...[
+                      const SizedBox(width: 5),
+                      Icon(Icons.check_circle, size: 15, color: accent),
+                    ],
+                  ],
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  subtitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: selected ? c.textDim : c.textFaint,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// "ODA KUR" / "ÖZEL ODA" kartları — [DsCard] + [DsIconBadge], her biri farklı
+/// vurgu rengiyle.
+class _ActionCard extends StatelessWidget {
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final Color accent;
+  final VoidCallback? onTap;
+
+  const _ActionCard({
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    required this.accent,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final pasif = onTap == null;
+    return Opacity(
+      opacity: pasif ? 0.5 : 1,
+      child: DsCard(
+        accent: accent,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        onTap: onTap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DsIconBadge(emoji: emoji, color: accent, size: 44),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: c.text),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              subtitle,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 11.5, height: 1.3, color: c.textFaint),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Bilgi kutusu — bağlantı yok / açık oda yok durumları.
+class _InfoCard extends StatelessWidget {
+  final Color color;
+  final String text;
+  final String emoji;
+  const _InfoCard({required this.color, required this.text, required this.emoji});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      accent: color,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DsIconBadge(emoji: emoji, color: color, size: 40, glow: false),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -386,62 +656,79 @@ class _RoomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final ratio = room.maxPlayers == 0 ? 0.0 : (room.playerCount / room.maxPlayers).clamp(0.0, 1.0);
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(room.mode == DuelService.modeRoyale ? '👑' : '⚔️', style: const TextStyle(fontSize: 18)),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(room.name,
-                      style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5),
-                      maxLines: 1, overflow: TextOverflow.ellipsis),
+    final royale = room.mode == DuelService.modeRoyale;
+    final vurgu = royale ? c.gold : c.violetL;
+    final dolu = room.playerCount >= room.maxPlayers;
+
+    return DsCard(
+      accent: vurgu,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(
+                emoji: royale ? '👑' : '⚔️',
+                color: vurgu,
+                size: 40,
+                circle: false,
+                glow: false,
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(room.name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 14.5, color: c.text),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis),
+                    const SizedBox(height: 3),
+                    Text(room.configLabel,
+                        style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis),
+                  ],
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(
-                    color: c.glass2,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  child: Text(room.code, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12, letterSpacing: 1)),
+              ),
+              const SizedBox(width: 8),
+              DsChip(label: room.code, color: vurgu),
+            ],
+          ),
+          const SizedBox(height: 12),
+          DsProgressBar(value: ratio, color: vurgu),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: Wrap(
+                  spacing: 10,
+                  runSpacing: 4,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text('${room.playerCount}/${room.maxPlayers} oyuncu',
+                        style: TextStyle(
+                            fontSize: 11.5, fontWeight: FontWeight.w800, color: c.text)),
+                    Text('${room.totalQuestions} soru',
+                        style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                    Text('${room.perQuestionSeconds} sn',
+                        style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                  ],
                 ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Text(room.configLabel,
-                style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                maxLines: 1, overflow: TextOverflow.ellipsis),
-            const SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: LinearProgressIndicator(value: ratio, minHeight: 6),
-            ),
-            const SizedBox(height: 6),
-            Row(
-              children: [
-                Text('${room.playerCount}/${room.maxPlayers} oyuncu',
-                    style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w700)),
-                const SizedBox(width: 12),
-                Text('${room.totalQuestions} soru', style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-                const SizedBox(width: 12),
-                Text('${room.perQuestionSeconds} sn', style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-                const Spacer(),
-                ElevatedButton(
-                  onPressed: room.playerCount >= room.maxPlayers ? null : onJoin,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                    minimumSize: const Size(0, 32),
-                  ),
-                  child: Text(room.playerCount >= room.maxPlayers ? 'DOLU' : 'KATIL'),
-                ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              const SizedBox(width: 8),
+              DsPillButton(
+                label: dolu ? 'DOLU' : 'KATIL',
+                onPressed: dolu ? null : onJoin,
+                color: dolu ? c.textFaint : vurgu,
+                filled: !dolu,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -525,8 +812,19 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                margin: const EdgeInsets.only(bottom: 14),
+                decoration: BoxDecoration(
+                  color: c.border,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+              ),
+            ),
             Text('${_isRoyale ? "👑 Royale" : "⚔️ Düello"} Odası Kur',
-                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800)),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
             const SizedBox(height: 4),
             Text('Ders seçmezsen tüm derslerden karışık sorular gelir.',
                 style: TextStyle(fontSize: 12, color: c.textFaint)),
@@ -628,9 +926,11 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   style: TextStyle(fontSize: 11, color: c.textFaint)),
             ),
             const SizedBox(height: 8),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
+            Center(
+              child: DsPillButton(
+                label: 'Odayı Oluştur',
+                trailingIcon: Icons.arrow_forward,
+                color: _isRoyale ? c.gold : c.violetL,
                 onPressed: () => Navigator.of(context).pop(_RoomConfig(
                   subjectIds: _selectedSubjectId == null ? const [] : [_selectedSubjectId!],
                   topicId: _selectedSubjectId == null ? null : _selectedTopicId,
@@ -639,7 +939,6 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   secondsPerQuestion: _secondsPerQuestion,
                   questionCount: _questionCount,
                 )),
-                child: const Text('Odayı Oluştur →'),
               ),
             ),
           ],

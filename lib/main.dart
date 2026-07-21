@@ -8,6 +8,7 @@ import 'services/sound_service.dart';
 import 'services/auth_service.dart';
 import 'services/remote_question_service.dart';
 import 'services/tts_service.dart';
+import 'services/notification_service.dart';
 import 'theme/theme_provider.dart';
 import 'screens/splash_screen.dart';
 import 'firebase_bootstrap.dart';
@@ -17,6 +18,10 @@ Future<void> main() async {
   await initFirebaseIfConfigured();
   final storage = StorageService();
   await storage.init();
+  // Günlük Çalışma Planı hatırlatmaları için yerel bildirim altyapısını
+  // hazırla. Desteklenmeyen platformlarda (web/masaüstü) ya da izin
+  // verilmediğinde sessizce no-op olur — asla istisna fırlatmaz.
+  await NotificationService.instance.initialize();
 
   runApp(
     MultiProvider(

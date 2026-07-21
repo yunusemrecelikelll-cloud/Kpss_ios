@@ -77,6 +77,13 @@ dependencies:
   # Hoca konu-anlatım videoları için YouTube arama bağlantısını açma
   url_launcher: ^6.3.0
 
+  # "Günlük Çalışma Planı" hatırlatmaları — kullanıcının seçtiği gün/saatte
+  # cihazda YEREL bildirim planlanır (sunucu/push gerekmez, internetsiz de
+  # çalışır). timezone paketi, yaz saati değişimlerinde bildirimin doğru
+  # saatte çıkması için zorunludur.
+  flutter_local_notifications: ^19.0.0
+  timezone: ^0.10.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

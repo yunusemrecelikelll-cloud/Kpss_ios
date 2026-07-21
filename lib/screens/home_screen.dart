@@ -20,10 +20,8 @@ import 'subject_screen.dart';
 import 'quiz_screen.dart';
 import 'profile_screen.dart';
 import 'premium_screen.dart';
-import 'score_distribution_screen.dart';
-import 'mnemonics_screen.dart';
-import 'mentor_screen.dart';
-import 'stopwatch_screen.dart';
+import '../widgets/ana_menu.dart';
+import '../widgets/study_plan_card.dart';
 import 'account_login_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
@@ -186,66 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 12),
         ],
       ),
-      drawer: Drawer(
-        child: SafeArea(
-          child: ListView(
-            children: [
-              DrawerHeader(
-                child: Text('🌙 KPSS Hazırlık',
-                    style: GoogleFonts.baloo2(fontSize: 20, fontWeight: FontWeight.w700)),
-              ),
-              ListTile(
-                leading: const Text('💎'),
-                title: const Text('Premium'),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                },
-              ),
-              ListTile(
-                leading: const Text('📊'),
-                title: const Text('Soru Dağılımı'),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const ScoreDistributionScreen()));
-                },
-              ),
-              const Divider(height: 24),
-              // Aşağıdaki üç araç ÖNCEDEN "Oyunlar" sekmesindeki "Diğer
-              // Araçlar" bölümündeydi. Bunlar oyun değil çalışma aracı
-              // oldukları için buraya, Premium/Soru Dağılımı ile aynı
-              // çekmeceye taşındı (bkz. tools_hub_screen.dart).
-              ListTile(
-                leading: const Text('🧠'),
-                title: const Text('Akılda Kalıcı Kodlama'),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => MnemonicsScreen(subjects: widget.subjects)));
-                },
-              ),
-              ListTile(
-                leading: const Text('🎓'),
-                title: const Text('Mentörlük Seansları'),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => const MentorScreen()));
-                },
-              ),
-              ListTile(
-                leading: const Text('⏱️'),
-                title: const Text('Çalışma Kronometresi'),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => const StopwatchScreen()));
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      drawer: AnaMenu(subjects: subjects, premium: premium, name: name),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
@@ -288,9 +227,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: kDsGap),
-            // 3) Hedef/motivasyon banner'ı — "hedef mesleğin" alanı profil
-            // ekranındaki profil düzenleme akışında yaşıyor.
-            const _GoalBanner(),
+            // 3) Günlük Çalışma Planı kartı — bugünkü/sıradaki çalışma
+            // seansını ve teste dayalı ders önerisini gösterir. Plan yoksa
+            // plan oluşturmaya çağırır. ("Hedef Belirle" banner'ı buradaydı,
+            // yerini bu kart aldı.)
+            const StudyPlanCard(),
             const SizedBox(height: kDsGap),
             // 4) İstatistik şeridi.
             _HomeStatsStrip(
@@ -557,31 +498,6 @@ class _LoginBanner extends StatelessWidget {
         context.read<SoundService>().click();
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
-      },
-    );
-  }
-}
-
-/// Motivasyon banner'ı — "hedef belirleme" akışı olarak profil ekranına
-/// götürür; hedef meslek seçimi orada, profil düzenleme bölümünde yaşıyor
-/// (bkz. profile_screen.dart, "Hedef mesleğin").
-class _GoalBanner extends StatelessWidget {
-  const _GoalBanner();
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    return DsBannerCard(
-      emoji: '👑',
-      accent: c.gold,
-      title: 'Bugün, dünden daha güçlü ol! 🚀',
-      subtitle: 'Hedeflerine bir adım daha yaklaşmak senin elinde.',
-      actionLabel: '🎯 Hedef Belirle',
-      filledAction: false,
-      onAction: () {
-        context.read<SoundService>().click();
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => const ProfileScreen()));
       },
     );
   }

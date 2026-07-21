@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../services/account_deletion_service.dart';
 import '../services/auth_service.dart';
@@ -10,11 +11,61 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'premium_screen.dart';
+import 'quiz_screen.dart' show kAutoSecsPerQ, kSureOnayarlariSn, kMinTestDakika, kMaxTestDakika;
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
 
 const List<String> _kCharacterOpts = ['🦉', '🦁', '🐯', '🦄', '🐼', '🚀', '🏆', '📚'];
-const List<int> _kSecsOpts = [30, 45, 60, 90, 120];
+
+// ── Test süresi ──
+// Süre artık test öncesi sorulmuyor; buradaki tercih doğrudan uygulanıyor
+// (bkz. quiz_screen.dart → testSuresiHesapla).
+/// Kullanıcının elle girebileceği "soru başına saniye" alt/üst sınırı.
+/// Üst sınır, 120 soruluk denemede toplam sürenin [kMaxTestDakika] içinde
+/// kalmasını garanti eder (toplam süre ayrıca orada da kırpılır).
+const int _kMinSnPerQ = 5;
+const int _kMaxSnPerQ = 150;
+
+/// Örnek süre metinlerinin hesaplandığı deneme sınavı uzunluğu.
+const int _kOrnekSoruSayisi = 120;
+
+// ── Soru cevap modu ──
+// Konu testlerinde bir şık işaretlendikten sonraki davranışı belirler.
+// Ayar anahtarı: 'soruCevapModu' (varsayılan: 'testSonunda').
+class _SoruCevapSecenegi {
+  final String deger;
+  final String baslik;
+  final String aciklama;
+  const _SoruCevapSecenegi(this.deger, this.baslik, this.aciklama);
+}
+
+const List<_SoruCevapSecenegi> _kSoruCevapSecenekleri = [
+  _SoruCevapSecenegi(
+    'testSonunda',
+    'Soru cevapladıktan sonra geç',
+    'Soru ve cevap açıklaması test sonunda görünür.',
+  ),
+  _SoruCevapSecenegi(
+    'yanlistaDur',
+    'Sadece doğruysa geç',
+    'Doğruysa açıklama yapmaz. Yanlışsa açıklamayı ve muhtemelen neden o '
+        'şıkkı seçtiğini gösterir.',
+  ),
+  _SoruCevapSecenegi(
+    'herZamanDur',
+    'Soruyu geç butonuyla geç',
+    'Doğru ve yanlış için açıklama yapar, Sonraki butonuyla geçilir.',
+  ),
+];
+
+/// 400 → "6 dk 40 sn" gibi kısa Türkçe süre metni.
+String _sureMetni(int sn) {
+  final dk = sn ~/ 60;
+  final kalan = sn % 60;
+  if (dk == 0) return '$kalan sn';
+  if (kalan == 0) return '$dk dk';
+  return '$dk dk $kalan sn';
+}
 
 /// JS karşılığı: renderSettings() (src/js/app.js).
 class SettingsScreen extends StatefulWidget {
@@ -167,6 +218,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ));
   }
 
+  // ── Test süresi tercihi ──────────────────────────────────────────────
+
+  /// Süre modunu kaydeder (`auto` | `perq` | `off`).
+  void _setTimerMode(StorageService storage, String mod, String mesaj) {
+    context.read<SoundService>().click();
+    storage.saveSettings({'timerMode': mod});
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(mesaj)));
+  }
+
+  /// Soru başına saniyeyi kaydeder.
+  void _setSecsPerQ(StorageService storage, int sn) {
+    context.read<SoundService>().click();
+    storage.saveSettings({'secsPerQ': sn});
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Soru başına $sn saniye seçildi.')),
+    );
+  }
+
+  /// Preset'ler yetmezse kullanıcı kendi "soru başına saniye" değerini yazar.
+  Future<void> _ozelSureGir(StorageService storage, int mevcut) async {
+    context.read<SoundService>().click();
+    final sn = await showDialog<int>(
+      context: context,
+      builder: (_) => _OzelSureDialog(mevcut: mevcut),
+    );
+    if (sn == null || !mounted) return;
+    storage.saveSettings({'secsPerQ': sn});
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Soru başına $sn saniye ayarlandı.')),
+    );
+  }
+
+  /// Seçili ayarın pratikte ne anlama geldiğini anlatan açıklama metni.
+  String _sureAciklamasi(String mod, int secsPerQ) {
+    if (mod == 'off') {
+      return '♾️ Süresiz: denemede de geri sayım olmaz, istediğin kadar '
+          'düşünebilirsin.';
+    }
+    final soruBasina = mod == 'perq' ? secsPerQ : kAutoSecsPerQ;
+    final toplam = _sureMetni(_kOrnekSoruSayisi * soruBasina);
+    final yirmi = _sureMetni(20 * soruBasina);
+    final bas = mod == 'auto'
+        ? '🤖 Otomatik: KPSS oranına göre soru başına $kAutoSecsPerQ sn.'
+        : '✏️ Soru başına $soruBasina sn.';
+    return '$bas\n'
+        '• $_kOrnekSoruSayisi soruluk denemede ≈ $toplam\n'
+        '• 20 soruluk denemede ≈ $yirmi';
+  }
+
   @override
   void initState() {
     super.initState();
@@ -182,6 +282,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final soundOn = settings['soundEnabled'] != false;
     final timerMode = (settings['timerMode'] as String?) ?? 'auto';
     final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
+    final soruCevapModu = (settings['soruCevapModu'] as String?) ?? 'testSonunda';
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
     final adaptationSounds = storage.getAdaptationSoundsEnabled();
@@ -339,82 +440,135 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             // ── TEST SÜRESİ ─────────────────────────────────────────────
             const SizedBox(height: 20),
-            const DsSectionHeader(title: '⏱️ Test Süresi'),
+            const DsSectionHeader(title: '⏱️ Deneme Sınavı Süresi'),
             const SizedBox(height: 8),
             DsCard(
               padding: const EdgeInsets.all(16),
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Süre hesaplama modu', style: TextStyle(fontWeight: FontWeight.w700)),
-                    const SizedBox(height: 10),
-                    Wrap(
-                      spacing: 10,
-                      runSpacing: 8,
-                      children: [
-                        _ChoiceButton(
-                          label: '🤖 Otomatik (KPSS oranı — 65sn/soru)',
-                          selected: timerMode == 'auto',
-                          onTap: () {
-                            context.read<SoundService>().click();
-                            storage.saveSettings({'timerMode': 'auto'});
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Otomatik süre modu seçildi.')),
-                            );
-                          },
-                        ),
-                        _ChoiceButton(
-                          label: '✏️ Soru başına süre — Sen belirle',
-                          selected: timerMode == 'perq',
-                          onTap: () {
-                            context.read<SoundService>().click();
-                            storage.saveSettings({'timerMode': 'perq'});
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Soru başına süre modu seçildi.')),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    Opacity(
-                      opacity: timerMode == 'perq' ? 1 : 0.4,
-                      child: IgnorePointer(
-                        ignoring: timerMode != 'perq',
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Her soru için süre:', style: TextStyle(fontSize: 12.5, color: c.textFaint)),
-                            const SizedBox(height: 10),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: [
-                                for (final n in _kSecsOpts)
-                                  _ChoiceButton(
-                                    label: '${n}s',
-                                    selected: secsPerQ == n,
-                                    onTap: () {
-                                      context.read<SoundService>().click();
-                                      storage.saveSettings({'secsPerQ': n});
-                                      ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text('Soru başına $n saniye seçildi.')),
-                                      );
-                                    },
-                                  ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Örnek: 10 soru × ${secsPerQ}sn = ${(10 * secsPerQ / 60).round()} dakika',
-                              style: TextStyle(fontSize: 12, color: c.textFaint),
-                            ),
-                          ],
-                        ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Bu ayar 120 soruluk KPSS genel deneme sınavı için geçerlidir. '
+                    'Konu testlerinde süre sınırı yoktur — istediğin kadar '
+                    'düşünebilirsin. Sınava girerken süre artık sorulmaz.',
+                    style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textFaint),
+                  ),
+                  const SizedBox(height: 12),
+                  const Text('Süre hesaplama modu', style: TextStyle(fontWeight: FontWeight.w700)),
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 10,
+                    runSpacing: 8,
+                    children: [
+                      _ChoiceButton(
+                        label: '🤖 Otomatik',
+                        selected: timerMode == 'auto',
+                        onTap: () => _setTimerMode(storage, 'auto', 'Otomatik süre modu seçildi.'),
+                      ),
+                      _ChoiceButton(
+                        label: '✏️ Soru başına saniye',
+                        selected: timerMode == 'perq',
+                        onTap: () => _setTimerMode(storage, 'perq', 'Soru başına süre modu seçildi.'),
+                      ),
+                      _ChoiceButton(
+                        label: '♾️ Süresiz',
+                        selected: timerMode == 'off',
+                        onTap: () => _setTimerMode(storage, 'off', 'Süresiz mod seçildi.'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  // "Soru başına saniye" bölümü — sadece o mod seçiliyken aktif.
+                  Opacity(
+                    opacity: timerMode == 'perq' ? 1 : 0.4,
+                    child: IgnorePointer(
+                      ignoring: timerMode != 'perq',
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Her soru için süre:',
+                              style: TextStyle(fontSize: 12.5, color: c.textFaint)),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              for (final n in kSureOnayarlariSn)
+                                _ChoiceButton(
+                                  label: '$n sn',
+                                  selected: secsPerQ == n,
+                                  onTap: () => _setSecsPerQ(storage, n),
+                                ),
+                              _ChoiceButton(
+                                label: kSureOnayarlariSn.contains(secsPerQ)
+                                    ? '⌨️ Kendim gireyim'
+                                    : '⌨️ $secsPerQ sn',
+                                selected: !kSureOnayarlariSn.contains(secsPerQ),
+                                onTap: () => _ozelSureGir(storage, secsPerQ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 14),
+                  // Seçilen ayarın pratikte ne anlama geldiğini açıkla.
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: c.violetL.withValues(alpha: 0.12),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: c.border),
+                    ),
+                    child: Text(
+                      _sureAciklamasi(timerMode, secsPerQ),
+                      style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textDim),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // ── SORU CEVAP ──────────────────────────────────────────────
+            const SizedBox(height: 20),
+            const DsSectionHeader(title: '❓ Soru Cevap'),
+            const SizedBox(height: 8),
+            DsCard(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Konu testlerinde bir şıkkı işaretledikten sonra ne olsun?',
+                    style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textFaint),
+                  ),
+                  const SizedBox(height: 12),
+                  for (final secenek in _kSoruCevapSecenekleri) ...[
+                    _RadioSecenek(
+                      baslik: secenek.baslik,
+                      aciklama: secenek.aciklama,
+                      selected: soruCevapModu == secenek.deger,
+                      onTap: () {
+                        context.read<SoundService>().click();
+                        storage.saveSettings({'soruCevapModu': secenek.deger});
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('${secenek.baslik} seçildi.')),
+                        );
+                      },
+                    ),
+                    if (secenek != _kSoruCevapSecenekleri.last)
+                      const SizedBox(height: 10),
                   ],
-                ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Not: Deneme / tam sınav modunda şıkkı işaretleyince her zaman '
+                    'sonraki soruya geçilir; açıklamalar sınav sonunda görünür.',
+                    style: TextStyle(fontSize: 11.5, height: 1.35, color: c.textFaint),
+                  ),
+                ],
+              ),
             ),
 
             // ── HESAP ───────────────────────────────────────────────────
@@ -749,6 +903,187 @@ class _ChoiceButton extends StatelessWidget {
             onPressed: onTap,
             child: Text(label, style: TextStyle(fontSize: fontSize)),
           );
+  }
+}
+
+/// Başlık + altında soluk açıklama içeren, seçili durumu belirgin radyo satırı.
+/// Uzun açıklamalar satır satır sarar; taşma olmaz.
+class _RadioSecenek extends StatelessWidget {
+  final String baslik;
+  final String aciklama;
+  final bool selected;
+  final VoidCallback onTap;
+
+  const _RadioSecenek({
+    required this.baslik,
+    required this.aciklama,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final vurgu = Theme.of(context).colorScheme.primary;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: selected ? vurgu.withValues(alpha: 0.12) : null,
+          border: Border.all(
+            color: selected ? vurgu : c.border,
+            width: selected ? 1.6 : 1,
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              selected ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+              size: 20,
+              color: selected ? vurgu : c.textFaint,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    baslik,
+                    style: TextStyle(
+                      fontSize: 13.5,
+                      fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                      color: c.text,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    '($aciklama)',
+                    style: TextStyle(fontSize: 11.5, height: 1.35, color: c.textFaint),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Kullanıcının kendi "soru başına saniye" değerini yazdığı küçük pencere.
+///
+/// Preset'ler ([kSureOnayarlariSn]) çoğu kullanıcıya yeter; daha uzun/kısa
+/// süre isteyenler buradan [_kMinSnPerQ]–[_kMaxSnPerQ] aralığında değer girer.
+class _OzelSureDialog extends StatefulWidget {
+  final int mevcut;
+  const _OzelSureDialog({required this.mevcut});
+
+  @override
+  State<_OzelSureDialog> createState() => _OzelSureDialogState();
+}
+
+class _OzelSureDialogState extends State<_OzelSureDialog> {
+  late final TextEditingController _ctrl;
+  String? _hata;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = TextEditingController(text: '${widget.mevcut}');
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  /// Girilen değeri doğrular; geçersizse `null` döner ve hatayı gösterir.
+  int? _dogrula() {
+    final ham = _ctrl.text.trim();
+    if (ham.isEmpty) {
+      setState(() => _hata = 'Lütfen bir süre gir.');
+      return null;
+    }
+    final sn = int.tryParse(ham);
+    if (sn == null) {
+      setState(() => _hata = 'Sadece rakam gir.');
+      return null;
+    }
+    if (sn < _kMinSnPerQ) {
+      setState(() => _hata = 'En az $_kMinSnPerQ saniye olmalı.');
+      return null;
+    }
+    if (sn > _kMaxSnPerQ) {
+      setState(() => _hata = 'En fazla $_kMaxSnPerQ saniye girebilirsin.');
+      return null;
+    }
+    return sn;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final sn = int.tryParse(_ctrl.text.trim());
+    return AlertDialog(
+      title: const Text('⌨️ Soru başına süre'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Her soru için kaç saniye ayrılsın? ($_kMinSnPerQ–$_kMaxSnPerQ sn)',
+              style: TextStyle(fontSize: 12.5, color: c.textDim),
+            ),
+            const SizedBox(height: 14),
+            TextField(
+              controller: _ctrl,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(3),
+              ],
+              autofocus: true,
+              decoration: InputDecoration(
+                labelText: 'Soru başına süre',
+                border: const OutlineInputBorder(),
+                errorText: _hata,
+                suffixText: 'sn',
+              ),
+              onChanged: (_) => setState(() => _hata = null),
+            ),
+            if (sn != null && sn >= _kMinSnPerQ && sn <= _kMaxSnPerQ) ...[
+              const SizedBox(height: 10),
+              Text(
+                '$_kOrnekSoruSayisi soruluk denemede ≈ ${_sureMetni(_kOrnekSoruSayisi * sn)}\n'
+                'Toplam süre $kMinTestDakika–$kMaxTestDakika dk aralığında tutulur.',
+                style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
+              ),
+            ],
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Vazgeç'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final d = _dogrula();
+            if (d == null) return;
+            Navigator.pop(context, d);
+          },
+          child: const Text('Kaydet'),
+        ),
+      ],
+    );
   }
 }
 

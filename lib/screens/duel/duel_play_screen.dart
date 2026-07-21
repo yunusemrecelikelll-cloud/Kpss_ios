@@ -10,6 +10,7 @@ import '../../services/remote_question_service.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../quick_modes/quick_modes_shared.dart' show kQuickModeOptionLetters;
 import '../tools_hub_screen.dart' show HowToPlayButton;
@@ -214,7 +215,9 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
       }
       if (_questions.isEmpty) {
         return const Scaffold(
-          body: Center(child: Padding(padding: EdgeInsets.all(24), child: Text('Soru yüklenemedi.'))),
+          body: Center(
+            child: Padding(padding: EdgeInsets.all(24), child: _EmptyNote(emoji: '📭', text: 'Soru yüklenemedi.')),
+          ),
         );
       }
       return _buildScaffold(context);
@@ -230,7 +233,9 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
             return const Scaffold(body: Center(child: CircularProgressIndicator()));
           }
           return const Scaffold(
-            body: Center(child: Padding(padding: EdgeInsets.all(24), child: Text('Oda bulunamadı.'))),
+            body: Center(
+              child: Padding(padding: EdgeInsets.all(24), child: _EmptyNote(emoji: '🚪', text: 'Oda bulunamadı.')),
+            ),
           );
         }
         // Room verilerini state alanlarına aktar (ticker bunları kullanır).
@@ -259,11 +264,16 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('Maç başlatılamadı. Bağlantını kontrol edip tekrar dene.'),
-                      const SizedBox(height: 14),
-                      ElevatedButton(
+                      const _EmptyNote(
+                        emoji: '📡',
+                        text: 'Maç başlatılamadı. Bağlantını kontrol edip tekrar dene.',
+                      ),
+                      const SizedBox(height: 16),
+                      DsPillButton(
+                        label: 'Çık',
+                        color: context.watch<ThemeProvider>().colors.danger,
+                        filled: false,
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Çık'),
                       ),
                     ],
                   ),
@@ -330,14 +340,17 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
                 child: Row(
                   children: [
-                    Text('Soru ${idx + 1}/$_total',
-                        style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
+                    DsChip(
+                      label: 'SORU ${idx + 1}/$_total',
+                      color: widget.isSolo ? c.mint : (_isRoyale ? c.gold : c.violetL),
+                    ),
                     const Spacer(),
                     Icon(Icons.timer_outlined, size: 16, color: remainingSec <= 5 ? c.danger : c.textFaint),
                     const SizedBox(width: 4),
                     Text('$remainingSec sn',
                         style: TextStyle(
-                          fontWeight: FontWeight.w800,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13.5,
                           color: remainingSec <= 5 ? c.danger : c.text,
                         )),
                   ],
@@ -347,14 +360,16 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
                   children: [
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(18),
-                        child: Text(q.soru,
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, height: 1.4)),
-                      ),
+                    DsCard(
+                      padding: const EdgeInsets.all(18),
+                      child: Text(q.soru,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              height: 1.4,
+                              color: c.text)),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: kDsGap),
                     for (var i = 0; i < q.secenekler.length; i++)
                       _OptionTile(
                         letter: i < kQuickModeOptionLetters.length ? kQuickModeOptionLetters[i] : '${i + 1}',
@@ -419,54 +434,80 @@ class _OptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    Color? bg;
-    Color border = c.border;
+    // Şık durumuna göre vurgu rengi — sabit renk YOK, hepsi tema token'ı.
+    Color? vurgu;
     switch (state) {
       case _OptState.correct:
-        bg = c.success.withValues(alpha: 0.18);
-        border = c.success;
+        vurgu = c.success;
         break;
       case _OptState.wrong:
-        bg = c.danger.withValues(alpha: 0.18);
-        border = c.danger;
+        vurgu = c.danger;
         break;
       case _OptState.dim:
-        bg = null;
-        break;
       case _OptState.idle:
-        bg = c.glass;
+        vurgu = null;
         break;
     }
+    final harfRengi = vurgu ?? c.textDim;
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: Material(
-        color: bg ?? Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: border),
+      child: DsCard(
+        accent: vurgu,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
+        onTap: onTap,
+        child: Row(
+          children: [
+            Container(
+              width: 28,
+              height: 28,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: (vurgu ?? c.glass2).withValues(alpha: vurgu == null ? 1 : 0.18),
+                border: Border.all(color: vurgu?.withValues(alpha: 0.6) ?? c.border),
+              ),
+              child: Text(letter,
+                  style: TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w900, color: harfRengi)),
             ),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 14,
-                  backgroundColor: c.glass2,
-                  child: Text(letter, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 14,
+                  height: 1.3,
+                  color: state == _OptState.dim ? c.textFaint : c.text,
                 ),
-                const SizedBox(width: 12),
-                Expanded(child: Text(text, style: const TextStyle(fontSize: 14, height: 1.3))),
-                if (state == _OptState.correct) Icon(Icons.check_circle, color: c.success, size: 20),
-                if (state == _OptState.wrong) Icon(Icons.cancel, color: c.danger, size: 20),
-              ],
+              ),
             ),
-          ),
+            if (state == _OptState.correct) Icon(Icons.check_circle, color: c.success, size: 20),
+            if (state == _OptState.wrong) Icon(Icons.cancel, color: c.danger, size: 20),
+          ],
         ),
       ),
+    );
+  }
+}
+
+/// Boş/hata durumlarında gösterilen küçük illüstrasyonlu not.
+class _EmptyNote extends StatelessWidget {
+  final String emoji;
+  final String text;
+  const _EmptyNote({required this.emoji, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DsIllustration(emoji: emoji, glowColor: c.violetL),
+        const SizedBox(height: 8),
+        Text(text,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: c.text)),
+      ],
     );
   }
 }
@@ -484,23 +525,24 @@ class _AnswerFeedback extends StatelessWidget {
     final aciklama = correct
         ? question.aciklama
         : (question.distractorAciklama ?? question.aciklama);
-    return Card(
-      color: (correct ? c.success : c.danger).withValues(alpha: 0.08),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(correct ? '✅ Doğru!' : '❌ Yanlış',
-                style: TextStyle(fontWeight: FontWeight.w800, color: correct ? c.success : c.danger)),
-            if (aciklama.isNotEmpty) ...[
-              const SizedBox(height: 6),
-              Text(aciklama, style: const TextStyle(fontSize: 12.5, height: 1.5)),
-            ],
+    final vurgu = correct ? c.success : c.danger;
+    return DsCard(
+      accent: vurgu,
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(correct ? '✅ Doğru!' : '❌ Yanlış',
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: vurgu)),
+          if (aciklama.isNotEmpty) ...[
             const SizedBox(height: 6),
-            Text('Sonraki soru bekleniyor...', style: TextStyle(fontSize: 11, color: c.textFaint)),
+            Text(aciklama,
+                style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim)),
           ],
-        ),
+          const SizedBox(height: 6),
+          Text('Sonraki soru bekleniyor...',
+              style: TextStyle(fontSize: 11, color: c.textFaint)),
+        ],
       ),
     );
   }
@@ -522,22 +564,21 @@ class _LiveLeaderboard extends StatelessWidget {
     final top = list.take(3).toList();
     final myRank = myUid == null ? -1 : list.indexWhere((p) => p.uid == myUid);
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('📊 Canlı Sıralama', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 13, color: c.textDim)),
-            const SizedBox(height: 8),
-            for (var i = 0; i < top.length; i++)
-              _rankRow(i + 1, top[i], top[i].uid == myUid, c),
-            if (myRank >= 3 && myUid != null) ...[
-              Divider(color: c.border, height: 16),
-              _rankRow(myRank + 1, list[myRank], true, c),
-            ],
+    return DsCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('📊 Canlı Sıralama',
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 13, color: c.textDim)),
+          const SizedBox(height: 8),
+          for (var i = 0; i < top.length; i++)
+            _rankRow(i + 1, top[i], top[i].uid == myUid, c),
+          if (myRank >= 3 && myUid != null) ...[
+            Divider(color: c.border, height: 16),
+            _rankRow(myRank + 1, list[myRank], true, c),
           ],
-        ),
+        ],
       ),
     );
   }
@@ -553,16 +594,18 @@ class _LiveLeaderboard extends StatelessWidget {
             child: Text(
               isMe ? '${p.name} (sen)' : p.name,
               style: TextStyle(
-                fontWeight: isMe ? FontWeight.w800 : FontWeight.w600,
+                fontWeight: isMe ? FontWeight.w900 : FontWeight.w600,
                 fontSize: 12.5,
-                color: p.eliminated ? c.textFaint : null,
+                color: p.eliminated ? c.textFaint : c.text,
                 decoration: p.eliminated ? TextDecoration.lineThrough : null,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          Text('${p.score}', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12.5)),
+          const SizedBox(width: 8),
+          Text('${p.score}',
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12.5, color: c.text)),
         ],
       ),
     );
@@ -578,26 +621,27 @@ class _SoloScoreStrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _stat('Puan', '$score'),
-            _stat('Doğru', '$correct'),
-          ],
+    final c = colors;
+    return DsStatStrip(
+      items: [
+        DsStatItem(
+          visual: DsIconBadge(emoji: '⭐', color: c.gold, size: 38, glow: false),
+          value: '$score',
+          label: 'Puan',
         ),
-      ),
+        DsStatItem(
+          visual: DsIconBadge(emoji: '✅', color: c.success, size: 38, glow: false),
+          value: '$correct',
+          label: 'Doğru',
+        ),
+        DsStatItem(
+          visual: DsIconBadge(emoji: '📝', color: c.violetL, size: 38, glow: false),
+          value: '$answered',
+          label: 'Geçilen soru',
+        ),
+      ],
     );
   }
-
-  Widget _stat(String label, String value) => Column(
-        children: [
-          Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
-          Text(label, style: TextStyle(fontSize: 11, color: colors.textFaint)),
-        ],
-      );
 }
 
 class _SpectatorBanner extends StatelessWidget {
@@ -610,7 +654,9 @@ class _SpectatorBanner extends StatelessWidget {
       color: color.withValues(alpha: 0.15),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Text('👀 Elendin — kalan oyuncuları izleyici olarak izliyorsun.',
-          style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: color)),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: color)),
     );
   }
 }

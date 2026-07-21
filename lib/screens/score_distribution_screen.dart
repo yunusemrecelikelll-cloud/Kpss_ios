@@ -26,6 +26,20 @@ const List<_DistRow> _kGenelKultur = [
   _DistRow('📰', 'Güncel Bilgiler', 6, Color(0xFFE11D48)),
 ];
 
+/// Ders kimlik renkleri KASITLI olarak sabittir (yığılmış çubuk ile kartlar
+/// arasında aynı ders hep aynı renkle eşleşsin diye). Ancak bazıları tek başına
+/// zemine karışıyordu — Tarih'in kahvesi ve Vatandaşlık'ın kurşun grisi koyu
+/// temalarda, canlı tonlar ise açık temalarda okunmuyordu. Bu yüzden rengin
+/// KİMLİĞİ korunup yalnızca parlaklığı zemine göre ayarlanır; sadece METİN ve
+/// çubuk dolgusu için kullanılır, tint/zemin tonları ham renkten türemeye
+/// devam eder.
+Color _okunurTon(Color renk, KpssColors c) {
+  final parlaklik = renk.computeLuminance();
+  if (!c.isLight && parlaklik < 0.22) return Color.lerp(renk, Colors.white, 0.45)!;
+  if (c.isLight && parlaklik > 0.55) return Color.lerp(renk, Colors.black, 0.28)!;
+  return renk;
+}
+
 class ScoreDistributionScreen extends StatelessWidget {
   const ScoreDistributionScreen({super.key});
 
@@ -98,11 +112,12 @@ class _DistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pct = row.soru / total;
+    final vurgu = _okunurTon(row.renk, c);
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: row.renk.withValues(alpha: 0.35)),
+        side: BorderSide(color: vurgu.withValues(alpha: 0.35)),
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
@@ -116,7 +131,7 @@ class _DistCard extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: row.renk.withValues(alpha: 0.16),
+                    color: vurgu.withValues(alpha: 0.16),
                   ),
                   child: Center(child: Text(row.icon, style: const TextStyle(fontSize: 18))),
                 ),
@@ -125,7 +140,7 @@ class _DistCard extends StatelessWidget {
                   child: Text(row.ad, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
                 ),
                 Text('${row.soru} soru',
-                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: row.renk)),
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, color: vurgu)),
               ],
             ),
             const SizedBox(height: 10),
@@ -134,8 +149,8 @@ class _DistCard extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: pct,
                 minHeight: 8,
-                backgroundColor: row.renk.withValues(alpha: 0.12),
-                color: row.renk,
+                backgroundColor: row.renk.withValues(alpha: c.isLight ? 0.16 : 0.12),
+                color: vurgu,
               ),
             ),
           ],

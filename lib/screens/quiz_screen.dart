@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/question.dart';
 import '../services/storage_service.dart';
@@ -11,171 +10,40 @@ import '../services/sound_service.dart';
 import '../services/tts_service.dart';
 import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
+import '../theme/theme_provider.dart';
 import 'result_screen.dart';
 import 'placement_result_screen.dart';
 
 const int kAutoSecsPerQ = 65; // KPSS GY-GK oranı
 
-// ── Test süresi seçimi ──
-// Kullanıcı toplam süreyi ELLE (dakika olarak) yazar; hızlı seçim için
-// "soru başına saniye" preset'leri de sunulur (bkz. showTestSuresiDialog).
+// ── Test süresi ──
+// Süre artık test öncesi sorulmaz; kullanıcının Ayarlar > "⏱️ Test Süresi"
+// tercihinden hesaplanır (bkz. testSuresiHesapla). Preset'ler ayarlar
+// ekranındaki hızlı seçim çipleri için kullanılır.
 const List<int> kSureOnayarlariSn = [5, 10, 15, 20, 25, 30];
 const int kMinTestDakika = 1;
 const int kMaxTestDakika = 300; // 5 saat — absürt değerlere karşı üst sınır
 
-/// Test başlamadan önce toplam süreyi sorar.
+/// Bir konunun "tamamlandı" sayılması için testinden alınması gereken en
+/// düşük yüzde. Anasayfadaki ders kartlarında görünen "0/5 konu" sayacı ve
+/// Profil'deki "Konu Tamamlanan" istatistiği bu eşiğe göre hesaplanır.
+const int kTopicCompletionThreshold = 80;
+
+/// Ayarlardaki süre tercihine göre bir testin TOPLAM süresini (SANİYE) verir.
 ///
+/// [settings] → StorageService.getSettings() çıktısı.
 /// Dönüş değeri:
-/// * `null` → kullanıcı vazgeçti, test BAŞLATILMAMALI
-/// * `0`    → "Süresiz" seçildi (sayaç geri sayım yapmaz)
-/// * `> 0`  → toplam test süresi (SANİYE)
-Future<int?> showTestSuresiDialog(BuildContext context, int soruSayisi) {
-  return showDialog<int>(
-    context: context,
-    barrierDismissible: false,
-    builder: (ctx) => _TestSuresiDialog(soruSayisi: soruSayisi),
-  );
-}
-
-class _TestSuresiDialog extends StatefulWidget {
-  final int soruSayisi;
-  const _TestSuresiDialog({required this.soruSayisi});
-
-  @override
-  State<_TestSuresiDialog> createState() => _TestSuresiDialogState();
-}
-
-class _TestSuresiDialogState extends State<_TestSuresiDialog> {
-  late final TextEditingController _ctrl;
-  int? _seciliOnayar; // seçili "soru başına saniye" preset'i (varsa)
-  String? _hata;
-
-  @override
-  void initState() {
-    super.initState();
-    // Varsayılan: soru başına 60 saniye → soru sayısı kadar dakika.
-    _ctrl = TextEditingController(text: '${widget.soruSayisi.clamp(kMinTestDakika, kMaxTestDakika)}');
-  }
-
-  @override
-  void dispose() {
-    _ctrl.dispose();
-    super.dispose();
-  }
-
-  /// Preset seçilince toplam süre = soru sayısı × saniye (dakikaya yuvarlanır).
-  void _onayarSec(int saniye) {
-    final dakika = (widget.soruSayisi * saniye / 60).ceil().clamp(kMinTestDakika, kMaxTestDakika);
-    setState(() {
-      _seciliOnayar = saniye;
-      _hata = null;
-      _ctrl.text = '$dakika';
-    });
-  }
-
-  /// Girilen dakikayı doğrular; geçersizse `null` döner ve hatayı gösterir.
-  int? _dogrula() {
-    final ham = _ctrl.text.trim();
-    if (ham.isEmpty) {
-      setState(() => _hata = 'Lütfen bir süre gir.');
-      return null;
-    }
-    final dakika = int.tryParse(ham);
-    if (dakika == null) {
-      setState(() => _hata = 'Sadece rakam gir.');
-      return null;
-    }
-    if (dakika < kMinTestDakika) {
-      setState(() => _hata = 'En az $kMinTestDakika dakika olmalı.');
-      return null;
-    }
-    if (dakika > kMaxTestDakika) {
-      setState(() => _hata = 'En fazla $kMaxTestDakika dakika girebilirsin.');
-      return null;
-    }
-    return dakika;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final dakika = int.tryParse(_ctrl.text.trim());
-    final soruBasina = (dakika != null && widget.soruSayisi > 0)
-        ? (dakika * 60 / widget.soruSayisi).round()
-        : null;
-
-    return AlertDialog(
-      title: const Text('⏱️ Test Süresi'),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('${widget.soruSayisi} soruluk test. Toplam süreyi kendin belirle:',
-                style: const TextStyle(fontSize: 13)),
-            const SizedBox(height: 14),
-            TextField(
-              controller: _ctrl,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(3),
-              ],
-              autofocus: true,
-              decoration: InputDecoration(
-                labelText: 'Toplam süre (dakika)',
-                border: const OutlineInputBorder(),
-                errorText: _hata,
-                suffixText: 'dk',
-              ),
-              onChanged: (_) => setState(() {
-                _seciliOnayar = null;
-                _hata = null;
-              }),
-            ),
-            const SizedBox(height: 14),
-            const Text('Hızlı seçim — soru başına süre',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: [
-                for (final sn in kSureOnayarlariSn)
-                  ChoiceChip(
-                    label: Text('$sn sn'),
-                    selected: _seciliOnayar == sn,
-                    onSelected: (_) => _onayarSec(sn),
-                  ),
-              ],
-            ),
-            if (soruBasina != null) ...[
-              const SizedBox(height: 10),
-              Text('≈ soru başına $soruBasina saniye',
-                  style: const TextStyle(fontSize: 12, color: Colors.grey)),
-            ],
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Vazgeç'),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context, 0),
-          child: const Text('Süresiz'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            final d = _dogrula();
-            if (d == null) return;
-            Navigator.pop(context, d * 60);
-          },
-          child: const Text('Başla'),
-        ),
-      ],
-    );
-  }
+/// * `0`   → "Süresiz" (geri sayım yok)
+/// * `> 0` → toplam test süresi (saniye)
+int testSuresiHesapla(Map<String, dynamic> settings, int soruSayisi) {
+  final mod = (settings['timerMode'] as String?) ?? 'auto';
+  if (mod == 'off' || soruSayisi <= 0) return 0;
+  final soruBasina = mod == 'perq'
+      ? ((settings['secsPerQ'] as int?) ?? kAutoSecsPerQ)
+      : kAutoSecsPerQ;
+  final toplam = soruSayisi * soruBasina;
+  // Absürt değerlere karşı makul aralıkta tut.
+  return toplam.clamp(kMinTestDakika * 60, kMaxTestDakika * 60);
 }
 
 class QuizScreen extends StatefulWidget {
@@ -192,8 +60,8 @@ class QuizScreen extends StatefulWidget {
   /// ders bazlı zayıf/güçlü analiz ekranı (PlacementResultScreen) açılır
   /// (bkz. _finish()).
   final bool isPlacementExam;
-  /// Kullanıcının test başlamadan seçtiği TOPLAM süre (saniye) — bkz.
-  /// [showTestSuresiDialog]. `null` ya da `0` ise geri sayım yoktur
+  /// Ayarlardaki tercihten hesaplanan TOPLAM süre (saniye) — bkz.
+  /// [testSuresiHesapla]. `null` ya da `0` ise geri sayım yoktur
   /// (deneme/tam sınav modu kendi süresini Ayarlar'dan hesaplamaya devam eder).
   final int? durationSec;
 
@@ -290,6 +158,19 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     final order = List<int>.generate(len, (i) => i)..shuffle(_rng);
     _optionOrderCache[qIndex] = order;
     return order;
+  }
+
+  /// Yanlış cevapta gösterilen "hangi şıkkı seçtin" notu.
+  ///
+  /// Yapay zeka YOK: sadece kullanıcının işaretlediği şıkkın ve doğru şıkkın
+  /// METNİ kullanılarak kısa bir çerçeve cümlesi kurulur; sorunun kendi
+  /// `aciklama` alanı panelde ayrıca gösterilir. Veri uydurulmaz.
+  String? _secimNotu(List<String> secenekler, int? verilenIndex, int dogruIndex) {
+    if (verilenIndex == null) return null;
+    if (verilenIndex < 0 || verilenIndex >= secenekler.length) return null;
+    if (dogruIndex < 0 || dogruIndex >= secenekler.length) return null;
+    return '"${secenekler[verilenIndex]}" şıkkını işaretledin. '
+        'Doğrusu "${secenekler[dogruIndex]}".';
   }
 
   String _motivationFor(int qIndex, bool correct) {
@@ -406,6 +287,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         return;
       }
       final elapsedSoFar = elapsedSoFar0;
+      // "Süresiz" denemede (durationSec == 0) geri sayım yeniden kurulmaz.
+      if (quiz.durationSec <= 0) return;
       final remaining = (quiz.durationSec - elapsedSoFar).clamp(0, quiz.durationSec);
       if (timerMode != 'perq') {
         context.read<TimerService>().start(remaining, onExpire: _finish);
@@ -419,17 +302,15 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 
     _studySubjectId = widget.subjectId;
 
-    // Madde 1: kullanıcı test öncesi kendi süresini yazdıysa (ya da preset
-    // seçtiyse) o süre esas alınır; yoksa eski davranış korunur — deneme/tam
-    // sınavda Ayarlar'dan hesaplanan süre, normal testte ise süre yok (0).
+    // SÜRE KURALI: geri sayım YALNIZCA deneme/tam sınavda (isFullTest) vardır
+    // ve süresi Ayarlar > "⏱️ Deneme Sınavı Süresi" tercihinden hesaplanır
+    // ("Süresiz" seçiliyse 0 döner → geri sayım kurulmaz). Konu testlerinde
+    // süre sınırı yoktur; oradan durationSec de gelmez.
     final userDuration = widget.durationSec ?? 0;
-    final otoDuration = timerMode == 'perq'
-        ? widget.questions!.length * secsPerQ
-        : widget.questions!.length * kAutoSecsPerQ;
     final duration = userDuration > 0
         ? userDuration
         : widget.isFullTest
-            ? otoDuration
+            ? testSuresiHesapla(settings, widget.questions!.length)
             : 0;
 
     quiz.start(
@@ -456,6 +337,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     // Fix 4: normal testlerde (deneme dışı) zamanlayıcı tamamen kaldırıldı —
     // sadece deneme/tam sınav (isFullTest) modunda zamanlayıcı çalışır.
     if (!widget.isFullTest) return;
+
+    // "Süresiz" tercihinde (duration == 0) denemede de geri sayım kurulmaz.
+    if (duration <= 0) return;
 
     if (timerMode != 'perq') {
       context.read<TimerService>().start(duration, onExpire: _finish);
@@ -488,7 +372,13 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     final storage = context.read<StorageService>();
     if (!wrongBankMode) {
       await storage.addAttempt(result);
-      if (result.skor == 100 || result.skor >= 60) {
+      // Bir konu "tamamlandı" sayılmak için testinden en az %80 alınmalı.
+      // Anasayfadaki "0/5 konu" sayacı bu işarete bakar.
+      //
+      // Eşik ÖNCEDEN %60'tı; konuyu gerçekten öğrenmeden tamamlanmış
+      // göstermemesi için %80'e çıkarıldı. (`skor == 100` kontrolü de
+      // gereksizdi — 100 zaten eşiğin üstünde.)
+      if (result.skor >= kTopicCompletionThreshold) {
         await storage.markTopicCompleted(result.topicId);
       }
       if (!widget.isFullTest && !result.topicId.endsWith('-sinav')) {
@@ -530,10 +420,11 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
     final q = quiz.questions[quiz.currentIndex];
 
-    // Madde 1 + 4: geri sayım ya deneme modundan ya da kullanıcının seçtiği
-    // süreden gelir. Geri sayım yoksa üstte İLERİ sayan çalışma süresi
-    // sayacı gösterilir (konu/test ekranlarında sayaç artık hep işler).
-    final hasCountdown = _userCountdown || isDeneme;
+    // Geri sayım SADECE deneme/tam sınavda ve orada da süre "Süresiz"
+    // değilse (quiz.durationSec > 0) çalışır. Konu testlerinde geri sayım
+    // yoktur; üstte İLERİ sayan çalışma süresi sayacı gösterilir (istatistik
+    // amaçlı, bir sınır değil).
+    final hasCountdown = _userCountdown || (isDeneme && quiz.durationSec > 0);
     int displaySecs = 0;
     var isExpiredQuestion = false;
     // "Soru başına süre" modu SADECE deneme modunda ve kullanıcı kendi toplam
@@ -565,10 +456,18 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     }
 
     final answeredIdx = quiz.answers[quiz.currentIndex];
-    // Fix 4: normal testte (deneme dışı) cevap verilince açıklama + motivasyon
-    // mesajı gösterilir; deneme modunda hiç durmadan sonraki soruya geçildiği
-    // için burada bir geri bildirim paneli yok.
-    final showFeedback = !isDeneme && answeredIdx != null;
+    final isDogru = answeredIdx != null && answeredIdx == q.dogruIndex;
+    // Ayarlar > "❓ Soru Cevap" tercihi (konu testleri için):
+    //   'testSonunda'  → şık seçilince anında sonraki soruya geç, açıklama yok
+    //   'yanlistaDur'  → doğruysa geç, yanlışsa soruda kal ve açıklamayı göster
+    //   'herZamanDur'  → her hâlükârda soruda kal ve açıklamayı göster
+    // Deneme/tam sınavda mod ne olursa olsun anında geçilir, açıklama sınav
+    // sonunda görünür.
+    final soruCevapModu = (settings['soruCevapModu'] as String?) ?? 'testSonunda';
+    final showFeedback = !isDeneme &&
+        answeredIdx != null &&
+        (soruCevapModu == 'herZamanDur' ||
+            (soruCevapModu == 'yanlistaDur' && !isDogru));
     final order = _orderFor(quiz.currentIndex, q.secenekler.length);
 
     return Scaffold(
@@ -677,21 +576,34 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                               quiz.next();
                             }
                           } else {
-                            // Normal test: bir kez cevaplanınca kilitlenir,
-                            // açıklama gösterilir; ilerlemek için Sonraki/
-                            // Önceki butonları kullanılır.
+                            // Konu testi: bir kez cevaplanınca kilitlenir.
+                            // Sonrasında ne olacağını "Soru Cevap" modu
+                            // belirler — ya anında sonraki soruya geçilir ya
+                            // da açıklama gösterilip Sonraki beklenir.
                             if (answeredIdx != null) return;
                             quiz.answer(realIdx);
+                            final dogruMu = realIdx == q.dogruIndex;
+                            final anindaGec = soruCevapModu == 'testSonunda' ||
+                                (soruCevapModu == 'yanlistaDur' && dogruMu);
+                            if (anindaGec &&
+                                quiz.currentIndex < quiz.questions.length - 1) {
+                              quiz.next();
+                            }
                           }
                         },
                       ),
                     if (showFeedback) ...[
                       const SizedBox(height: 12),
                       _FeedbackPanel(
-                        correct: answeredIdx == q.dogruIndex,
-                        motivation: _motivationFor(quiz.currentIndex, answeredIdx == q.dogruIndex),
+                        correct: isDogru,
+                        motivation: _motivationFor(quiz.currentIndex, isDogru),
                         aciklama: q.aciklama,
                         distractorAciklama: q.distractorAciklama,
+                        // Yanlış cevapta hangi şıkkı işaretlediğini ve
+                        // doğrusunun ne olduğunu adıyla anan kısa not.
+                        secimNotu: isDogru
+                            ? null
+                            : _secimNotu(q.secenekler, answeredIdx, q.dogruIndex),
                       ),
                     ],
                   ],
@@ -709,6 +621,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
       bottomNavigationBar: _QuizBottomBar(
         isFirst: quiz.currentIndex == 0,
         isLast: quiz.currentIndex >= quiz.questions.length - 1,
+        // Açıklama gösterilirken ilerlemenin tek yolu "Sonraki" — vurgulanır.
+        highlightNext: showFeedback,
         onPrev: () {
           context.read<SoundService>().click();
           quiz.prev();
@@ -762,7 +676,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 
 /// Madde 5: test ekranının altında SABİT duran gezinme çubuğu.
 ///
-/// Üç buton (Önceki / Sonraki / Testi Bitir) eşit genişlikte dağıtılır, her
+/// Üç buton (Önceki / Testi Bitir / Sonraki) eşit genişlikte dağıtılır, her
 /// biri kendi rengiyle ayrışır ve devre dışı durumlar (ilk soruda "Önceki",
 /// son soruda "Sonraki") soluk gri gösterilir. SafeArea alt çentiği korur.
 class _QuizBottomBar extends StatelessWidget {
@@ -771,6 +685,9 @@ class _QuizBottomBar extends StatelessWidget {
   final VoidCallback onPrev;
   final VoidCallback onNext;
   final VoidCallback onFinish;
+  /// Açıklama panelinin açık olduğu (Soru Cevap modu 2/3) durumlarda
+  /// "Sonraki" butonu vurgulanır — ilerlemenin tek yolu odur.
+  final bool highlightNext;
 
   const _QuizBottomBar({
     required this.isFirst,
@@ -778,6 +695,7 @@ class _QuizBottomBar extends StatelessWidget {
     required this.onPrev,
     required this.onNext,
     required this.onFinish,
+    this.highlightNext = false,
   });
 
   // Koyu ve açık temada da yeterli kontrast veren, birbirinden ayrışan tonlar.
@@ -793,7 +711,7 @@ class _QuizBottomBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: Row(
             children: [
               Expanded(
@@ -807,20 +725,21 @@ class _QuizBottomBar extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: _BarButton(
-                  label: 'Sonraki',
-                  icon: Icons.chevron_right,
-                  color: _sonrakiRenk,
-                  iconAtEnd: true,
-                  onPressed: isLast ? null : onNext,
+                  label: 'Testi Bitir',
+                  icon: Icons.flag_rounded,
+                  color: _bitirRenk,
+                  onPressed: onFinish,
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: _BarButton(
-                  label: 'Testi Bitir',
-                  icon: Icons.flag_rounded,
-                  color: _bitirRenk,
-                  onPressed: onFinish,
+                  label: 'Sonraki',
+                  icon: Icons.chevron_right,
+                  color: _sonrakiRenk,
+                  iconAtEnd: true,
+                  highlight: highlightNext,
+                  onPressed: isLast ? null : onNext,
                 ),
               ),
             ],
@@ -839,6 +758,9 @@ class _BarButton extends StatelessWidget {
   final Color color;
   final bool iconAtEnd;
   final VoidCallback? onPressed;
+  /// Dikkat çekmesi gereken buton (açıklama açıkken "Sonraki") — daha kalın
+  /// gölge ve beyaz kenarlıkla öne çıkar.
+  final bool highlight;
 
   const _BarButton({
     required this.label,
@@ -846,19 +768,20 @@ class _BarButton extends StatelessWidget {
     required this.color,
     required this.onPressed,
     this.iconAtEnd = false,
+    this.highlight = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final disabled = onPressed == null;
-    final ikon = Icon(icon, size: 18);
+    final ikon = Icon(icon, size: 21);
     final metin = Flexible(
       child: Text(
         label,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+        style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5),
       ),
     );
 
@@ -870,9 +793,15 @@ class _BarButton extends StatelessWidget {
         // Devre dışı durum görsel olarak belirgin: soluk gri zemin + soluk yazı.
         disabledBackgroundColor: Colors.grey.withValues(alpha: 0.28),
         disabledForegroundColor: Colors.grey.withValues(alpha: 0.85),
-        elevation: disabled ? 0 : 2,
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: disabled ? 0 : (highlight ? 8 : 2),
+        side: highlight && !disabled
+            ? BorderSide(color: Colors.white.withValues(alpha: 0.85), width: 2)
+            : null,
+        // Dokunma alanı rahat olsun diye dikey padding ve minimum yükseklik
+        // artırıldı; üç buton hâlâ eşit genişlikte kalır.
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 16),
+        minimumSize: const Size(0, 56),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -954,16 +883,22 @@ class _FeedbackPanel extends StatelessWidget {
   final String motivation;
   final String aciklama;
   final String? distractorAciklama;
+  /// Yanlış cevapta, seçilen şıkkı adıyla anan kısa çerçeve notu (bkz.
+  /// _QuizScreenState._secimNotu). Doğru cevapta `null`.
+  final String? secimNotu;
   const _FeedbackPanel({
     required this.correct,
     required this.motivation,
     required this.aciklama,
     this.distractorAciklama,
+    this.secimNotu,
   });
 
   @override
   Widget build(BuildContext context) {
-    final color = correct ? Colors.green : Colors.orange;
+    // Sabit renk yok: doğru/yanlış vurgusu tema token'larından gelir.
+    final c = context.watch<ThemeProvider>().colors;
+    final color = correct ? c.success : c.danger;
     // Yanlış cevaplandığında, varsa "muhtemelen bunu neden seçtin" açıklamasını
     // (distractorAciklama) da göster — doğru cevaplandığında sadece aciklama.
     final showDistractor = !correct && (distractorAciklama?.trim().isNotEmpty ?? false);
@@ -978,6 +913,13 @@ class _FeedbackPanel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(motivation, style: TextStyle(fontWeight: FontWeight.w800, color: color)),
+          if (!correct && (secimNotu?.trim().isNotEmpty ?? false)) ...[
+            const SizedBox(height: 8),
+            Text(
+              secimNotu!.trim(),
+              style: TextStyle(height: 1.4, fontWeight: FontWeight.w600, color: c.text),
+            ),
+          ],
           if (showDistractor) ...[
             const SizedBox(height: 8),
             Text('🤔 Muhtemelen bunu düşündün:', style: TextStyle(fontWeight: FontWeight.w700, color: color.withValues(alpha: 0.9), fontSize: 12.5)),

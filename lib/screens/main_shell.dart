@@ -4,6 +4,7 @@ import '../models/subject.dart';
 import '../services/league_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../theme/theme_provider.dart';
 import 'home_screen.dart';
 import 'chat_screen.dart';
 import 'wrong_bank_screen.dart';
@@ -120,16 +121,135 @@ class _MainShellState extends State<MainShell> {
           index: _index,
           children: [for (final id in ids) _tabNavigator(id, tabWidgets[id]!)],
         ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _index,
-          onDestinationSelected: (i) => _onDestinationSelected(i, ids),
-          destinations: [
-            for (final id in ids)
-              NavigationDestination(
-                icon: Icon(_labels[id]!.$2),
-                selectedIcon: Icon(_labels[id]!.$3),
-                label: _labels[id]!.$1,
+        bottomNavigationBar: _AltMenu(
+          ids: ids,
+          labels: _labels,
+          index: _index,
+          onSelect: (i) => _onDestinationSelected(i, ids),
+        ),
+      ),
+    );
+  }
+}
+
+/// Alt navigasyon çubuğu — Material `NavigationBar` yerine elle çizilmiş
+/// sürüm.
+///
+/// Neden özel: `NavigationBar`, seçili sekmenin ikonunun arkasına kendi
+/// "indicator" hapını koyar, ikon boyutunu ve seçili rengi tema üzerinden
+/// dolaylı belirler. İstenen davranış ise net:
+///   • ikonlar SABİT dursun (seçilince yer değiştirmesin/zıplamasın)
+///   • ikonlar biraz daha BÜYÜK olsun
+///   • seçili sekme ALTIN renkte olsun
+/// Bunları elle çizmek, tema hilelerine boğulmaktan daha okunur.
+class _AltMenu extends StatelessWidget {
+  final List<String> ids;
+  final Map<String, (String, IconData, IconData)> labels;
+  final int index;
+  final ValueChanged<int> onSelect;
+
+  const _AltMenu({
+    required this.ids,
+    required this.labels,
+    required this.index,
+    required this.onSelect,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: c.headerBg,
+        border: Border(top: BorderSide(color: c.border)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: c.isLight ? 0.06 : 0.35),
+            blurRadius: 16,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          height: 68,
+          child: Row(
+            children: [
+              for (var i = 0; i < ids.length; i++)
+                Expanded(
+                  child: _AltMenuOgesi(
+                    label: labels[ids[i]]!.$1,
+                    icon: labels[ids[i]]!.$2,
+                    selectedIcon: labels[ids[i]]!.$3,
+                    secili: i == index,
+                    onTap: () => onSelect(i),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _AltMenuOgesi extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final IconData selectedIcon;
+  final bool secili;
+  final VoidCallback onTap;
+
+  const _AltMenuOgesi({
+    required this.label,
+    required this.icon,
+    required this.selectedIcon,
+    required this.secili,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    // Seçili sekme altın; seçili olmayanlar soluk. Altın her iki temada da
+    // KpssColors.gold üzerinden geldiği için açık temada da okunur kalıyor.
+    final renk = secili ? c.gold : c.textFaint;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // İkon boyutu seçili/seçili değil fark etmeksizin AYNI (28) —
+            // böylece sekmeler arası geçişte ikonlar yerinde sabit kalıyor.
+            Icon(secili ? selectedIcon : icon, size: 28, color: renk),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: secili ? FontWeight.w800 : FontWeight.w600,
+                color: renk,
               ),
+            ),
+            // Seçili sekmenin altındaki ince altın çizgi. Yüksekliği her
+            // durumda 3 px yer kaplar (seçili değilken şeffaf) ki metin
+            // aşağı yukarı oynamasın.
+            const SizedBox(height: 3),
+            Container(
+              height: 3,
+              width: 22,
+              decoration: BoxDecoration(
+                color: secili ? c.gold : Colors.transparent,
+                borderRadius: BorderRadius.circular(999),
+              ),
+            ),
           ],
         ),
       ),

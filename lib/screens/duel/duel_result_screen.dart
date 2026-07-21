@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../services/duel_service.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
+import '../../theme/app_theme.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 
 /// Maç sonu ekranı — final sıralama, kazanan kutlaması, Royale'de "Şampiyon"
@@ -76,32 +78,49 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
         title: const Text('Sonuç'),
         automaticallyImplyLeading: false,
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
+        children: [
+          DsCard(
+            accent: c.mint,
+            padding: const EdgeInsets.all(24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('🏁', style: TextStyle(fontSize: 48)),
-                const SizedBox(height: 10),
-                const Text('Pratik Tamamlandı', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _stat('Puan', '${widget.soloScore}', c),
-                    _stat('Doğru', '${widget.soloCorrect}/${widget.soloTotal}', c),
-                    _stat('Başarı', '%$rate', c),
-                  ],
-                ),
-                const SizedBox(height: 22),
-                _doneButton(context),
+                DsIllustration(emoji: '🏁', glowColor: c.mint, size: 88),
+                const SizedBox(height: 8),
+                Text('Pratik Tamamlandı',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w900, color: c.text)),
+                const SizedBox(height: 6),
+                DsChip(label: 'TEK BAŞINA YARIŞ', color: c.mint),
               ],
             ),
           ),
-        ),
+          const SizedBox(height: kDsGap),
+          DsStatStrip(
+            items: [
+              DsStatItem(
+                visual: DsIconBadge(emoji: '⭐', color: c.gold, size: 40, glow: false),
+                value: '${widget.soloScore}',
+                label: 'Puan',
+              ),
+              DsStatItem(
+                visual: DsIconBadge(emoji: '✅', color: c.success, size: 40, glow: false),
+                value: '${widget.soloCorrect}/${widget.soloTotal}',
+                label: 'Doğru',
+              ),
+              DsStatItem(
+                visual: DsIconBadge(emoji: '📈', color: c.violetL, size: 40, glow: false),
+                value: '%$rate',
+                label: 'Başarı',
+              ),
+            ],
+          ),
+          const SizedBox(height: kDsGap + 8),
+          _doneButton(context),
+        ],
       ),
     );
   }
@@ -137,63 +156,63 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
           final winner = ranked.isNotEmpty ? ranked.first : null;
           final iAmWinner = winner != null && winner.uid == myUid;
 
+          final vurgu = iAmWinner ? c.gold : (room.isRoyale ? c.roseL : c.violetL);
+
           return ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              Card(
-                color: (iAmWinner ? c.gold : c.violet).withValues(alpha: 0.1),
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      Text(iAmWinner ? '🏆' : (room.isRoyale ? '👑' : '🎉'),
-                          style: const TextStyle(fontSize: 52)),
+              // ── Kazanan kutlaması ──
+              DsCard(
+                accent: vurgu,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    DsIllustration(
+                      emoji: iAmWinner ? '🏆' : (room.isRoyale ? '👑' : '🎉'),
+                      glowColor: vurgu,
+                      size: 96,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      winner == null
+                          ? 'Maç Bitti'
+                          : (room.isRoyale
+                              ? '${winner.name} Şampiyon!'
+                              : '${winner.name} Kazandı!'),
+                      textAlign: TextAlign.center,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 19, fontWeight: FontWeight.w900, color: c.text),
+                    ),
+                    if (iAmWinner) ...[
                       const SizedBox(height: 8),
-                      Text(
-                        winner == null
-                            ? 'Maç Bitti'
-                            : (room.isRoyale
-                                ? '${winner.name} Şampiyon!'
-                                : '${winner.name} Kazandı!'),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
-                      ),
-                      if (me != null) ...[
-                        const SizedBox(height: 6),
-                        Text('Senin skorun: ${me.score}',
-                            style: TextStyle(fontSize: 13, color: c.textDim, fontWeight: FontWeight.w700)),
-                      ],
+                      DsChip(label: 'TEBRİKLER, KAZANAN SENSİN', color: c.gold),
                     ],
-                  ),
+                    if (me != null) ...[
+                      const SizedBox(height: 8),
+                      Text('Senin skorun: ${me.score}',
+                          style: TextStyle(
+                              fontSize: 13, color: c.textDim, fontWeight: FontWeight.w800)),
+                    ],
+                  ],
                 ),
               ),
-              const SizedBox(height: 18),
-              const Text('Final Sıralama', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
-              const SizedBox(height: 10),
+              const SizedBox(height: kDsGap + 6),
+              const DsSectionHeader(title: 'Final Sıralama'),
+              const SizedBox(height: kDsGap - 4),
               for (var i = 0; i < ranked.length; i++)
-                Card(
-                  child: ListTile(
-                    leading: Text(
-                      i == 0 ? '🥇' : i == 1 ? '🥈' : i == 2 ? '🥉' : '${i + 1}.',
-                      style: const TextStyle(fontSize: 18),
-                    ),
-                    title: Text(
-                      ranked[i].uid == myUid ? '${ranked[i].name} (sen)' : ranked[i].name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        decoration: ranked[i].eliminated ? TextDecoration.lineThrough : null,
-                        color: ranked[i].eliminated ? c.textFaint : null,
-                      ),
-                    ),
-                    subtitle: room.isRoyale && ranked[i].eliminated
-                        ? Text('${ranked[i].eliminatedAtRound ?? "-"}. turda elendi',
-                            style: TextStyle(fontSize: 11, color: c.textFaint))
-                        : null,
-                    trailing: Text('${ranked[i].score}',
-                        style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15)),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: kDsGap - 4),
+                  child: _StandingRow(
+                    rank: i + 1,
+                    player: ranked[i],
+                    isMe: ranked[i].uid == myUid,
+                    showEliminationNote: room.isRoyale,
+                    colors: c,
                   ),
                 ),
-              const SizedBox(height: 20),
+              const SizedBox(height: kDsGap + 8),
               _doneButton(context),
             ],
           );
@@ -202,23 +221,93 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
     );
   }
 
-  Widget _stat(String label, String value, dynamic c) => Column(
-        children: [
-          Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
-          Text(label, style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-        ],
-      );
+  Widget _doneButton(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Center(
+      child: DsPillButton(
+        label: 'Lobiye Dön',
+        color: c.violetL,
+        trailingIcon: Icons.arrow_forward,
+        onPressed: () {
+          context.read<SoundService>().click();
+          // Play/Waiting ekranları pushReplacement ile geldiği için tek pop
+          // doğrudan lobiye döner.
+          Navigator.of(context).pop();
+        },
+      ),
+    );
+  }
+}
 
-  Widget _doneButton(BuildContext context) => SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {
-            context.read<SoundService>().click();
-            // Play/Waiting ekranları pushReplacement ile geldiği için tek pop
-            // doğrudan lobiye döner.
-            Navigator.of(context).pop();
-          },
-          child: const Text('Lobiye Dön'),
-        ),
-      );
+/// Final sıralamadaki tek satır — madalya/sıra, oyuncu adı, elenme notu, skor.
+class _StandingRow extends StatelessWidget {
+  final int rank;
+  final DuelPlayer player;
+  final bool isMe;
+  final bool showEliminationNote;
+  final KpssColors colors;
+
+  const _StandingRow({
+    required this.rank,
+    required this.player,
+    required this.isMe,
+    required this.showEliminationNote,
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    final madalya = rank == 1 ? '🥇' : rank == 2 ? '🥈' : rank == 3 ? '🥉' : null;
+    // İlk üçe altın/gümüş hissi veren vurgu; kendi satırın her zaman belirgin.
+    final vurgu = rank == 1 ? c.gold : (isMe ? c.violetL : null);
+
+    return DsCard(
+      accent: vurgu,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 34,
+            child: madalya != null
+                ? Text(madalya, style: const TextStyle(fontSize: 20))
+                : Text('$rank.',
+                    style: TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w900, color: c.textFaint)),
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  isMe ? '${player.name} (sen)' : player.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                    decoration: player.eliminated ? TextDecoration.lineThrough : null,
+                    color: player.eliminated ? c.textFaint : c.text,
+                  ),
+                ),
+                if (showEliminationNote && player.eliminated) ...[
+                  const SizedBox(height: 2),
+                  Text('${player.eliminatedAtRound ?? "-"}. turda elendi',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 11, color: c.textFaint)),
+                ],
+              ],
+            ),
+          ),
+          const SizedBox(width: 8),
+          Text('${player.score}',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900, fontSize: 15, color: vurgu ?? c.text)),
+        ],
+      ),
+    );
+  }
 }

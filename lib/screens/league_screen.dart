@@ -26,6 +26,8 @@ String _esikMetni(LeagueTier t) => switch (t) {
     };
 
 /// Podyum renkleri — ilk üç sıra için altın / gümüş / bronz aksan.
+/// KASITLI SABİT: madalya sıralaması evrensel bir kimliktir (1. altın, 2. gümüş,
+/// 3. bronz); temaya göre değişirse "kaçıncı sıradayım" bilgisi kaybolur.
 const _kAltin = Color(0xFFD4AF37);
 const _kGumus = Color(0xFFB8C0C8);
 const _kBronz = Color(0xFFC08457);
@@ -203,18 +205,32 @@ class _VitrinKarti extends StatelessWidget {
     required this.loading,
   });
 
+  /// Vitrin zemini her temada KOYU kalır (kupa/ödül töreni hissi) ama tonu
+  /// artık sabit değil: temanın vurgu renginden siyaha doğru karıştırılarak
+  /// üretilir. Böylece 9 temanın hepsinde kart farklı görünür, üzerindeki
+  /// beyaz yazı ise her zaman okunur kalır.
+  static Color _koyult(Color renk, double oran) => Color.lerp(Colors.black, renk, oran)!;
+
   @override
   Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    // Vitrinin altın aksanı artık temanın kendi altın tonundan gelir.
+    final vurgu = c.gold;
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF15122B), Color(0xFF241A44), Color(0xFF3B2A1A)],
-          stops: [0.0, 0.55, 1.0],
+          colors: [
+            _koyult(c.violet, 0.20),
+            _koyult(c.violet, 0.34),
+            _koyult(vurgu, 0.26),
+          ],
+          stops: const [0.0, 0.55, 1.0],
         ),
-        border: Border.all(color: _kAltin.withValues(alpha: 0.35)),
+        border: Border.all(color: vurgu.withValues(alpha: 0.35)),
         boxShadow: [
           BoxShadow(color: Colors.black.withValues(alpha: 0.35), blurRadius: 24, offset: const Offset(0, 10)),
         ],
@@ -227,13 +243,13 @@ class _VitrinKarti extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
-                color: _kAltin.withValues(alpha: 0.14),
+                color: vurgu.withValues(alpha: 0.14),
                 borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: _kAltin.withValues(alpha: 0.45)),
+                border: Border.all(color: vurgu.withValues(alpha: 0.45)),
               ),
-              child: const Text(
+              child: Text(
                 'HAFTALIK TURNUVA',
-                style: TextStyle(fontSize: 9.5, fontWeight: FontWeight.w900, letterSpacing: 1.6, color: _kAltin),
+                style: TextStyle(fontSize: 9.5, fontWeight: FontWeight.w900, letterSpacing: 1.6, color: vurgu),
               ),
             ),
             const SizedBox(height: 16),
@@ -243,9 +259,9 @@ class _VitrinKarti extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  colors: [_kAltin.withValues(alpha: 0.28), Colors.transparent],
+                  colors: [vurgu.withValues(alpha: 0.28), Colors.transparent],
                 ),
-                border: Border.all(color: _kAltin.withValues(alpha: 0.5), width: 1.5),
+                border: Border.all(color: vurgu.withValues(alpha: 0.5), width: 1.5),
               ),
               alignment: Alignment.center,
               child: Text(tier.icon, style: const TextStyle(fontSize: 44)),
@@ -254,7 +270,14 @@ class _VitrinKarti extends StatelessWidget {
             Text(
               '${tier.label} Lig',
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFFFFF3D6), letterSpacing: 0.3),
+              // Koyu vitrin zemini üzerinde başlık: temanın altın tonuna hafifçe
+              // çalan kırık beyaz (eski sabit krem yerine).
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w900,
+                color: Color.lerp(Colors.white, vurgu, 0.16),
+                letterSpacing: 0.3,
+              ),
             ),
             const SizedBox(height: 4),
             Text(
@@ -268,13 +291,14 @@ class _VitrinKarti extends StatelessWidget {
             // Puan / katılımcı / dilim rozetleri
             Row(
               children: [
-                Expanded(child: _rozet('Puanın', '$weeklyPoints', Icons.bolt_rounded)),
+                Expanded(child: _rozet('Puanın', '$weeklyPoints', Icons.bolt_rounded, vurgu)),
                 const SizedBox(width: 10),
                 Expanded(
                   child: _rozet(
                     'Yarışan',
                     result == null ? '—' : '${result!.totalParticipants}',
                     Icons.groups_rounded,
+                    vurgu,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -283,16 +307,17 @@ class _VitrinKarti extends StatelessWidget {
                     'Dilim',
                     result == null ? '—' : '%${result!.percentile.round()}',
                     Icons.trending_up_rounded,
+                    vurgu,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
             if (loading)
-              const SizedBox(
+              SizedBox(
                 width: 18,
                 height: 18,
-                child: CircularProgressIndicator(strokeWidth: 2, color: _kAltin),
+                child: CircularProgressIndicator(strokeWidth: 2, color: vurgu),
               )
             else if (result != null)
               Text(
@@ -316,7 +341,7 @@ class _VitrinKarti extends StatelessWidget {
                   value: (result!.percentile / 100).clamp(0.0, 1.0),
                   minHeight: 7,
                   backgroundColor: Colors.white.withValues(alpha: 0.10),
-                  valueColor: const AlwaysStoppedAnimation<Color>(_kAltin),
+                  valueColor: AlwaysStoppedAnimation<Color>(vurgu),
                 ),
               ),
             ],
@@ -326,7 +351,9 @@ class _VitrinKarti extends StatelessWidget {
     );
   }
 
-  Widget _rozet(String etiket, String deger, IconData ikon) {
+  /// NOT: Buradaki beyaz tonlar KASITLI — rozetler her temada KOYU kalan vitrin
+  /// zemininin üstünde duruyor, dolayısıyla beyaz yazı/çizgi her temada okunur.
+  Widget _rozet(String etiket, String deger, IconData ikon, Color vurgu) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
       decoration: BoxDecoration(
@@ -336,7 +363,7 @@ class _VitrinKarti extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(ikon, size: 15, color: _kAltin.withValues(alpha: 0.9)),
+          Icon(ikon, size: 15, color: vurgu.withValues(alpha: 0.9)),
           const SizedBox(height: 5),
           FittedBox(
             fit: BoxFit.scaleDown,

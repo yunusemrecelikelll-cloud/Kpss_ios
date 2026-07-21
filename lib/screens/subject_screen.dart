@@ -72,11 +72,9 @@ class _SubjectScreenState extends State<SubjectScreen> with WidgetsBindingObserv
       return;
     }
 
-    // Madde 1: sınav süresini kullanıcı kendisi belirler (elle dakika ya da
-    // "soru başına saniye" preset'i). Vazgeçerse sınav açılmaz.
-    final sureSn = await showTestSuresiDialog(context, allQs.length);
-    if (sureSn == null || !mounted) return;
-
+    // Ders sınavı da bir konu testi sayılır (isFullTest == false): SÜRE
+    // SINIRI YOKTUR — süre sorulmaz, geri sayım kurulmaz. Ayarlar'daki süre
+    // tercihi yalnızca 120 soruluk KPSS genel denemesi için geçerlidir.
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
       builder: (_) => QuizScreen(
         subjectId: subject.id,
@@ -85,7 +83,6 @@ class _SubjectScreenState extends State<SubjectScreen> with WidgetsBindingObserv
         topicBaslik: '${subject.ad} Sınavı',
         questions: allQs,
         isFullTest: false,
-        durationSec: sureSn,
       ),
     ));
   }

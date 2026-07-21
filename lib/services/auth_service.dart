@@ -69,6 +69,100 @@ class AuthService extends ChangeNotifier {
     _googleInitialized = true;
   }
 
+  /// FirebaseAuthException kodlarını kullanıcıya gösterilebilir TÜRKÇE
+  /// mesajlara çevirir. Bilinmeyen kodlarda genel bir mesaj + kod döner ki
+  /// destek tarafında ne olduğu anlaşılabilsin.
+  String _turkceHataMesaji(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'email-already-in-use':
+        return 'Bu e-posta zaten kayıtlı. Giriş yapmayı dene.';
+      case 'invalid-email':
+        return 'Geçersiz e-posta adresi.';
+      case 'weak-password':
+        return 'Şifre çok zayıf. En az 6 karakter kullan.';
+      case 'user-not-found':
+      case 'wrong-password':
+      case 'invalid-credential':
+      case 'invalid-login-credentials':
+        return 'E-posta veya şifre hatalı.';
+      case 'user-disabled':
+        return 'Bu hesap devre dışı bırakılmış.';
+      case 'too-many-requests':
+        return 'Çok fazla deneme yapıldı. Biraz sonra tekrar dene.';
+      case 'network-request-failed':
+        return 'İnternet bağlantısı yok.';
+      case 'operation-not-allowed':
+        return 'E-posta/şifre ile giriş bu projede kapalı görünüyor.';
+      case 'requires-recent-login':
+        return 'Güvenlik için tekrar giriş yapman gerekiyor.';
+      default:
+        return 'Bir hata oluştu, tekrar dene. (kod: ${e.code})';
+    }
+  }
+
+  /// E-posta + şifre ile YENİ hesap oluşturur. [displayName] verilirse
+  /// oluşturulan kullanıcının görünen adı da güncellenir.
+  Future<AuthResult> registerWithEmail({
+    required String email,
+    required String password,
+    String? displayName,
+  }) async {
+    if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
+    try {
+      final userCred = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
+      final ad = displayName?.trim();
+      if (ad != null && ad.isNotEmpty) {
+        await userCred.user?.updateDisplayName(ad);
+        // updateDisplayName sonrası yerel User nesnesi eski adı taşır;
+        // tazeleyip güncel hâlini döndürüyoruz.
+        await userCred.user?.reload();
+      }
+      notifyListeners();
+      return AuthResult.success(FirebaseAuth.instance.currentUser ?? userCred.user);
+    } on FirebaseAuthException catch (e) {
+      return AuthResult.failure(_turkceHataMesaji(e));
+    } catch (e) {
+      return AuthResult.failure('Kayıt başarısız: $e');
+    }
+  }
+
+  /// E-posta + şifre ile giriş yapar.
+  Future<AuthResult> signInWithEmail({
+    required String email,
+    required String password,
+  }) async {
+    if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
+    try {
+      final userCred = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password,
+      );
+      notifyListeners();
+      return AuthResult.success(userCred.user);
+    } on FirebaseAuthException catch (e) {
+      return AuthResult.failure(_turkceHataMesaji(e));
+    } catch (e) {
+      return AuthResult.failure('Giriş başarısız: $e');
+    }
+  }
+
+  /// "Şifremi unuttum" akışı: verilen adrese sıfırlama bağlantısı gönderir.
+  /// Başarılıysa `user` null olan bir [AuthResult.success] döner.
+  Future<AuthResult> sendPasswordResetEmail(String email) async {
+    if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
+      return const AuthResult.success(null);
+    } on FirebaseAuthException catch (e) {
+      return AuthResult.failure(_turkceHataMesaji(e));
+    } catch (e) {
+      return AuthResult.failure('Sıfırlama e-postası gönderilemedi: $e');
+    }
+  }
+
   Future<AuthResult> signInWithGoogle() async {
     if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
     try {
@@ -140,7 +234,10 @@ class AuthService extends ChangeNotifier {
   ///
   /// Anonim kullanıcılarda yeniden doğrulama diye bir şey yoktur — bu durumda
   /// başarılı sayılır (Auth kaydı zaten doğrudan silinebilir).
-  Future<AuthResult> reauthenticate() async {
+  /// E-posta/şifre ('password') sağlayıcısıyla girmiş kullanıcılarda yeniden
+  /// doğrulama şifre gerektirir; bu durumda [password] verilmelidir. Parametre
+  /// opsiyoneldir — Google/Apple hesaplarında eski çağrı biçimi aynen çalışır.
+  Future<AuthResult> reauthenticate({String? password}) async {
     if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return const AuthResult.failure('Oturum açık değil.');
@@ -179,6 +276,26 @@ class AuthService extends ChangeNotifier {
           );
         }
         final credential = GoogleAuthProvider.credential(idToken: idToken);
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      if (saglayicilar.contains('password')) {
+        final eposta = user.email;
+        if (eposta == null || eposta.isEmpty) {
+          return const AuthResult.failure(
+            'Hesaba bağlı e-posta bulunamadı, yeniden doğrulama yapılamıyor.',
+          );
+        }
+        if (password == null || password.isEmpty) {
+          return const AuthResult.failure(
+            'Devam etmek için hesabının şifresini girmen gerekiyor.',
+          );
+        }
+        final credential = EmailAuthProvider.credential(
+          email: eposta,
+          password: password,
+        );
         await user.reauthenticateWithCredential(credential);
         return AuthResult.success(FirebaseAuth.instance.currentUser);
       }
