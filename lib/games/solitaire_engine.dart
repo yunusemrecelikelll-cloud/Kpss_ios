@@ -19,9 +19,12 @@
 ///  * Boşalan bir tableau sütununa (kategori şartı olmadan) herhangi bir açık
 ///    kart/yığın taşınabilir.
 ///  * Çekme destesinden HEM terim kartı HEM hedef kategori kartı çıkar
-///    ([cekDeste]); çekilen kart [cekilen] yuvasında bekler ve oradan
-///    sürüklenerek oynanır. Yeniden çekilince eldeki kart destenin ALTINA gider
-///    (kilitlenme olmaz).
+///    ([cekDeste]); çekilen kartlar gerçek solitaire'deki gibi bir AÇILAN YIĞIN
+///    ([acilanlar]) üzerinde birikir. Yığının EN ÜSTTEKİ kartı ([cekilen])
+///    oynanabilir; o kart oynanınca altındaki kart yeni üst kart olur.
+///  * Deste tükenince açılan yığının tamamı desteye geri döner ve KARIŞTIRILIR
+///    ([cekDeste] içindeki geri dönüşüm). Bu sayede o an oynanamayan kartlar
+///    ilerideki turlarda tekrar önüne gelir; kilitlenme olmaz.
 ///  * TÜM terimler eşleşince ([seviyeTamamlandi]) seviye biter.
 library;
 
@@ -169,17 +172,17 @@ class KategoriEslestirmeEngine {
   /// Çekme destesi — terim ve hedef kartları karışık.
   List<DesteKarti> deste = [];
 
-  /// Bu turda çekilip OYNANMADAN geri bırakılan kartlar. Eskiden bu kartlar
-  /// doğrudan [deste]'nin altına ekleniyordu; o yüzden her çekişte deste
-  /// uzunluğu aynı kalıyor ve ekrandaki sayaç HİÇ AZALMIYORDU. Artık ayrı bir
-  /// havuzda bekliyorlar ve deste bitince tek seferde geri dağıtılıyorlar
-  /// (klasik "yeniden dağıt"). Böylece sayaç her çekişte 1 azalır, kilitlenme
-  /// de olmaz.
-  List<DesteKarti> geriDonenler = [];
+  /// AÇILAN YIĞIN ("waste pile"): desteden çekilmiş ama henüz oynanmamış
+  /// kartlar. Listenin SONU ([last]) yığının en üstteki, tek oynanabilir
+  /// kartıdır. Yeni çekilen kart bu yığının üstüne biner; eldeki kart artık
+  /// kaybolmaz, altta bekler. Deste tükenince bu yığının tamamı karıştırılıp
+  /// desteye geri döner.
+  List<DesteKarti> acilanlar = [];
 
-  /// Desteden çekilmiş, oynanmayı bekleyen kart ("waste" yuvası). Kendi
-  /// yerinde durur; başka kartların üstüne binmez.
-  DesteKarti? cekilen;
+  /// Açılan yığının en üstteki (oynanabilir) kartı — yığın boşsa null.
+  /// Geriye dönük uyumluluk: ekran kodu tek kartlık "çekilen" kavramını bu
+  /// getter üzerinden kullanmaya devam eder.
+  DesteKarti? get cekilen => acilanlar.isEmpty ? null : acilanlar.last;
 
   /// Seviyedeki toplam terim kartı sayısı.
   int toplamKart = 0;
@@ -213,8 +216,7 @@ class KategoriEslestirmeEngine {
     tamamlananlar = [];
     slotlar = List<KategoriHedef?>.filled(kHedefSlotSayisi, null);
     deste = [];
-    geriDonenler = [];
-    cekilen = null;
+    acilanlar = [];
 
     final cokKategori = gruplar.length >= kCokKategoriEsigi;
     final altSinir = cokKategori ? kCokKategoriAltSinir : kKartAltSinir;
@@ -259,14 +261,20 @@ class KategoriEslestirmeEngine {
       if (c.isNotEmpty) c.last.faceUp = true;
     }
 
-    // Bekleyen kategoriler: önce HEDEF kartı, ardından o kategorinin terimleri.
-    // (Sıra bilinçli: bir terim tahtada karşılığı olmayan bir kategoriye ait
-    // kalmasın diye hedef kartı hep kendi terimlerinden ÖNCE gelir.)
+    // Bekleyen kategorilerin HEDEF kartı ve terimleri desteye eklenir.
     for (var i = aktifAdet; i < tumHedefler.length; i++) {
       deste.add(DesteKarti.hedefKarti(tumHedefler[i]));
-      final t = List<TerimKart>.from(kategoriKartlari[i])..shuffle(_rnd);
-      deste.addAll(t.map(DesteKarti.terimKarti));
+      deste.addAll(kategoriKartlari[i].map(DesteKarti.terimKarti));
     }
+
+    // Deste TAMAMEN karıştırılır: hedef kartları ve terim kartları ayrı ayrı
+    // değil, hepsi birlikte. Eskiden "önce hedef, hemen ardından o kategorinin
+    // terimleri" sırası korunuyordu; bu deste'yi tahmin edilebilir kılıyordu.
+    // Artık karıştırmak GÜVENLİ: karşılığı henüz tahtada olmayan bir terim
+    // kartı açılan yığında bekler ve deste tükenip geri dönüşüm olunca tekrar
+    // önüne gelir. Yani hedefinden önce çıkan terim kaybolmaz, kilitlenme
+    // yaratmaz — sadece bir tur sonra tekrar denenir.
+    deste.shuffle(_rnd);
 
     hamle = 0;
     hamleButcesi = (toplamKart * kHamleButceCarpani).ceil();
@@ -425,29 +433,38 @@ class KategoriEslestirmeEngine {
 
   // ── Çekme destesi ve çekilen kart ──────────────────────────────────────
 
-  /// Şu an desteden yeni bir kart çekilebilir mi? (Deste boşsa ama geri dönen
-  /// kartlar varsa YENİDEN DAĞITIM yapılabileceği için yine true.)
-  bool get cekilebilir => deste.isNotEmpty || geriDonenler.isNotEmpty;
+  /// Şu an desteden yeni bir kart çekilebilir mi? Deste boşsa bile açılan
+  /// yığında kart varsa GERİ DÖNÜŞÜM yapılabileceği için true; ikisi de boşsa
+  /// oynanacak deste kartı kalmamıştır (ekranda "Bitti").
+  bool get cekilebilir => deste.isNotEmpty || acilanlar.isNotEmpty;
 
-  /// Desteden bir sonraki kartı çeker.
+  /// Desteden bir sonraki kartı çekip AÇILAN YIĞININ ÜSTÜNE koyar.
   ///
-  /// Elde oynanmamış bir kart varsa o kart [geriDonenler] havuzuna gider —
-  /// destenin altına DEĞİL. Böylece [bekleyenSayisi] her çekişte tam olarak 1
-  /// azalır. Deste bittiğinde geri dönenler tek seferde desteye tazelenir
-  /// (yeniden dağıtım), yani kilitlenme yaşanmaz.
+  /// Eldeki (üstteki) kart artık hiçbir yere atılmaz — yığında, yeni kartın
+  /// altında kalır ve üstündeki oynandığında tekrar görünür hâle gelir.
+  ///
+  /// Deste tükenmişse önce GERİ DÖNÜŞÜM yapılır: açılan yığının tamamı desteye
+  /// döner ve KARIŞTIRILIR. Karıştırmak bilinçli — klasik solitaire sırayı
+  /// korur, ama burada aynı oynanamaz kartların her turda aynı sırayla gelip
+  /// oyuncuyu kilitlemesini engellemek daha önemli.
   bool cekDeste() {
     if (deste.isEmpty) {
-      if (geriDonenler.isEmpty) return false; // gerçekten çekilecek kart yok
-      deste = geriDonenler;
-      geriDonenler = [];
+      if (acilanlar.isEmpty) return false; // gerçekten çekilecek kart yok
+      deste = acilanlar;
+      acilanlar = [];
+      deste.shuffle(_rnd);
     }
-    final eski = cekilen;
-    cekilen = deste.removeAt(0);
-    if (eski != null) geriDonenler.add(eski);
+    acilanlar.add(deste.removeAt(0));
     return true;
   }
 
-  /// Çekilen TERİM kartını doğrudan bir hedef kategoriye eşleştirir.
+  /// Açılan yığının en üstteki kartını yığından çıkarır (oynandı).
+  void _cekileniCikar() {
+    if (acilanlar.isNotEmpty) acilanlar.removeLast();
+  }
+
+  /// Çekilen (yığının üstteki) TERİM kartını doğrudan bir hedef kategoriye
+  /// eşleştirir. Kart yığından kalkar, altındaki kart yeni üst kart olur.
   bool cekilenEslestir(String kategoriAdi) {
     final ck = cekilen;
     hamle++;
@@ -459,7 +476,7 @@ class KategoriEslestirmeEngine {
     hedef.eslesen++;
     eslesenKart++;
     sonEslesenAdet = 1;
-    cekilen = null;
+    _cekileniCikar();
     final slotIndex = _slotIndexOf(hedef);
     _undoStack.add(_UndoKayit(
       sutunIndex: null,
@@ -473,8 +490,8 @@ class KategoriEslestirmeEngine {
     return true;
   }
 
-  /// Çekilen TERİM kartını bir tableau sütununa koyar (boş sütun ya da aynı
-  /// kategoriden açık kartın üstü).
+  /// Çekilen (yığının üstteki) TERİM kartını bir tableau sütununa koyar (boş
+  /// sütun ya da aynı kategoriden açık kartın üstü). Kart yığından kalkar.
   bool cekilenSutunaKoy(int sutunIndex) {
     final ck = cekilen;
     hamle++;
@@ -487,11 +504,12 @@ class KategoriEslestirmeEngine {
     }
     kart.faceUp = true;
     c.add(kart);
-    cekilen = null;
+    _cekileniCikar();
     return true;
   }
 
-  /// Çekilen HEDEF KATEGORİ kartını tahtadaki BOŞ slota yerleştirir. Bu bir
+  /// Çekilen (yığının üstteki) HEDEF KATEGORİ kartını tahtadaki BOŞ slota
+  /// yerleştirir; kart yığından kalkar, altındaki kart görünür olur. Bu bir
   /// eşleştirme denemesi olmadığı için hamle HARCAMAZ.
   bool cekilenHedefiYerlestir(int slotIndex) {
     final ck = cekilen;
@@ -499,7 +517,7 @@ class KategoriEslestirmeEngine {
     if (slotIndex < 0 || slotIndex >= slotlar.length) return false;
     if (slotlar[slotIndex] != null) return false;
     slotlar[slotIndex] = ck.hedef;
-    cekilen = null;
+    _cekileniCikar();
     return true;
   }
 
@@ -618,13 +636,11 @@ class KategoriEslestirmeEngine {
         c.add(k);
       }
     } else {
-      // Kart desteden oynanmıştı: elde yer varsa oraya, yoksa destenin başına.
+      // Kart açılan yığından oynanmıştı: yığının ÜSTÜNE geri konur; böylece
+      // geri alındığı anda yine oynanabilir üst kart olur ve altındakiler
+      // olduğu gibi korunur.
       final kart = kayit.grup.first..faceUp = true;
-      if (cekilen == null) {
-        cekilen = DesteKarti.terimKarti(kart);
-      } else {
-        deste.insert(0, DesteKarti.terimKarti(kart));
-      }
+      acilanlar.add(DesteKarti.terimKarti(kart));
     }
 
     kayit.hedef.eslesen =
@@ -651,20 +667,18 @@ class KategoriEslestirmeEngine {
   /// Çekme destesinde ŞU AN bekleyen kart sayısı — her çekişte 1 azalır.
   int get bekleyenSayisi => deste.length;
 
-  /// Deste + geri dönen havuz + eldeki kart: henüz oynanmamış TÜM deste
-  /// kartları. Deste sayacı sıfırlanınca "yeniden dağıtım" olacağını anlatmak
-  /// için kullanılır.
-  int get oynanmamisDesteKarti =>
-      deste.length + geriDonenler.length + (cekilen != null ? 1 : 0);
+  /// Açılan yığında bekleyen kart sayısı (yığın rozeti "×N" bunu gösterir).
+  int get acilanSayisi => acilanlar.length;
 
-  /// Henüz oynanmamış HEDEF KATEGORİ kartı sayısı (destede, geri dönenlerde ya
-  /// da elde). Boş slot metni bunu kullanır.
-  int get bekleyenHedefSayisi {
-    var n = deste.where((d) => d.hedefMi).length +
-        geriDonenler.where((d) => d.hedefMi).length;
-    if (cekilen != null && cekilen!.hedefMi) n++;
-    return n;
-  }
+  /// Deste + açılan yığın: henüz oynanmamış TÜM deste kartları. Deste sayacı
+  /// sıfırlanınca "yeniden dağıtım" olacağını anlatmak için kullanılır.
+  int get oynanmamisDesteKarti => deste.length + acilanlar.length;
+
+  /// Henüz oynanmamış HEDEF KATEGORİ kartı sayısı (destede ya da açılan
+  /// yığında). Boş slot metni bunu kullanır.
+  int get bekleyenHedefSayisi =>
+      deste.where((d) => d.hedefMi).length +
+      acilanlar.where((d) => d.hedefMi).length;
 
   /// Seviyedeki toplam terim (kart) sayısı — hamle bütçesinin dayanağı.
   int get toplamTerim => toplamKart;

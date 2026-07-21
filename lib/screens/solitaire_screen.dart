@@ -1233,10 +1233,18 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     );
   }
 
-  /// Çekilen kartın yuvası — boşsa soluk bir çerçeve, doluysa SÜRÜKLENEBİLİR
-  /// kart (terim ya da yeni hedef kategori).
+  /// Açılan yığının yuvası — boşsa soluk bir çerçeve, doluysa yığının EN
+  /// ÜSTTEKİ kartı SÜRÜKLENEBİLİR olarak çizilir. Altındaki 1-2 kart birkaç
+  /// piksel kaydırılmış kenarlarıyla görünür (yığın olduğu anlaşılsın) ama
+  /// dokunmayı yakalamaz — sürükleme yalnızca üstteki karttan başlar.
   Widget _buildCekilenYuva() {
     final ck = _engine.cekilen;
+    final yiginAdet = _engine.acilanSayisi;
+    // Altta gösterilecek dekoratif kart sayısı (en fazla 2).
+    final altAdet = (yiginAdet - 1).clamp(0, 2);
+    // Kaydırma payı: kart yüksekliğine göre küçük bir offset.
+    final kaydirma = (_cardHeight * 0.035).clamp(2.0, 5.0);
+
     if (ck == null) {
       return Container(
         width: _cardWidth,
@@ -1258,7 +1266,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
         ? _yeniHedefKarti(ck.hedef!)
         : _terimKarti(ck.terim!, faded: false);
 
-    return LongPressDraggable<_Suruklenen>(
+    final ustKart = LongPressDraggable<_Suruklenen>(
       data: _Suruklenen.deste(hedefKarti: hedefMi),
       delay: const Duration(milliseconds: 25),
       hitTestBehavior: HitTestBehavior.opaque,
@@ -1285,6 +1293,75 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
       ),
       onDragStarted: () => context.read<SoundService>().click(),
       child: SizedBox(width: _cardWidth, child: gorsel),
+    );
+
+    // Yığında tek kart varsa eski görünüm aynen korunur.
+    if (altAdet == 0) {
+      return SizedBox(width: _cardWidth, height: _cardHeight, child: ustKart);
+    }
+
+    // Yığın görünümü: alttaki kartlar sola-yukarı doğru birkaç piksel kaydırılmış
+    // sırtlarıyla görünür, üstteki kart tam boyutta ve yuvanın TAM yerinde durur.
+    // Yuvanın ölçüsü (_cardWidth × _cardHeight) DEĞİŞMEZ; kaydırılan sırtlar
+    // Clip.none ile dışarı taşar ama yer kaplamaz, böylece üst çubuk kaymaz.
+    return SizedBox(
+      width: _cardWidth,
+      height: _cardHeight,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // Dekoratif alt kartlar — en alttaki en çok kaydırılmış olsun.
+          for (var i = altAdet; i >= 1; i--)
+            Positioned(
+              left: -kaydirma * i,
+              top: -kaydirma * i,
+              child: IgnorePointer(
+                child: Opacity(
+                  opacity: 0.85,
+                  child: SizedBox(
+                    width: _cardWidth,
+                    height: _cardHeight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(9),
+                        border: Border.all(color: Colors.white54, width: 1),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: CustomPaint(painter: _CardBackPainter()),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          // Oynanabilir ÜST kart.
+          Positioned.fill(child: ustKart),
+          // Yığındaki kart sayısı rozeti ("×3").
+          Positioned(
+            right: 2,
+            top: 2,
+            child: IgnorePointer(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.62),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  '×$yiginAdet',
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: (_cardHeight * 0.11).clamp(7.0, 11.0),
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
