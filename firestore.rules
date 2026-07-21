@@ -40,11 +40,42 @@ service cloud.firestore {
     }
 
     // ── Düello / Royale odaları ────────────────────────────────────────────
-    // Odalar kısa ömürlü maç oturumlarıdır. Giriş yapmış (anonim dahil) her
-    // kullanıcı okuyup yazabilir — oyun akışı istemci tarafında yürüdüğü için
-    // katılımcıların birbirinin skor/cevap alanlarını güncellemesi gerekir.
+    // Odalar kısa ömürlü maç oturumlarıdır ve oyun akışı TAMAMEN istemci
+    // tarafında yürür (proje Spark planında, Cloud Functions yok). Bu yüzden
+    // katılımcıların birbirinin skor/cevap alanlarını yazabilmesi gerekir —
+    // mükemmel bir anti-cheat hedeflenmiyor, makul bir seviye hedefleniyor.
     match /duel_rooms/{roomId} {
-      allow read, write: if girisli();
+
+      // OKUMA giriş yapmış herkese açık: kod ile katılırken kullanıcı henüz
+      // odanın oyuncusu DEĞİLDİR, önce odayı okuyup var olduğunu görmesi
+      // gerekir. Okumayı "sadece oyuncular" diye kısıtlamak katılmayı
+      // tamamen bozar.
+      allow read: if girisli();
+
+      // Oluştururken kendini host yazmak zorunda — başkasının adına oda
+      // açılamaz.
+      allow create: if girisli()
+                    && request.resource.data.hostUid == request.auth.uid;
+
+      // Güncellemede DEĞİŞMEZ alanlar korunur. Böylece bir katılımcı odanın
+      // kodunu, sahibini, modunu veya kapasitesini değiştiremez; sadece kendi
+      // oyun durumunu (players, status, startedAt vb.) yazabilir.
+      //
+      // NOT: `questions` alanı bilerek bu listede DEĞİL — büyük bir dizinin
+      // kural içinde alan-alan karşılaştırılması kırılgandır ve zaten her
+      // oyuncu soruları oynayabilmek için okumak zorunda, yani gizlilik
+      // kazancı yok.
+      allow update: if girisli()
+                    && request.resource.data.code == resource.data.code
+                    && request.resource.data.hostUid == resource.data.hostUid
+                    && request.resource.data.mode == resource.data.mode
+                    && request.resource.data.maxPlayers == resource.data.maxPlayers;
+
+      // Odayı yalnızca sahibi silebilir. "Hesabımı Sil" akışı da tam olarak
+      // bunu yapar (hostUid == kendi uid'i olan odaları siler).
+      allow delete: if girisli()
+                    && request.auth.uid == resource.data.hostUid;
+
       match /{sub=**} {
         allow read, write: if girisli();
       }
@@ -73,7 +104,19 @@ service cloud.firestore {
 
       match /items/{itemId} {
         allow read, update, delete: if sahip(uid);
-        allow create: if girisli();
+
+        // Oluşturma bilerek GENİŞ: bildirimi yazan (şikayet eden) ile kutunun
+        // sahibi (şikayet edilen) FARKLI kişilerdir, dolayısıyla "sadece
+        // kendi belgeni yaz" deseni burada işlemez.
+        //
+        // Kötüye kullanımı sınırlamak için iki kısıt var: `type` sabit bir
+        // kümeyle sınırlı ve `message` en fazla 200 karakter. İstemci
+        // tarafında bu yazmayı yalnızca ChatService._notifyUser tetikliyor ve
+        // metni kullanıcıdan almıyor (bkz. chat_service.dart).
+        allow create: if girisli()
+                      && request.resource.data.type in ['info', 'report_notice']
+                      && request.resource.data.message is string
+                      && request.resource.data.message.size() <= 200;
       }
     }
 
