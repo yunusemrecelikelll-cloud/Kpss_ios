@@ -889,31 +889,10 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: kDsGap),
-                      DsCard(
-                        padding: const EdgeInsets.all(14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const _AlanBasligi(text: 'Hangi sınava gireceksin?'),
-                            const SizedBox(height: 10),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: [
-                                for (final e in kExamTypes)
-                                  _SecimPili(
-                                    label: e.label,
-                                    selected: _examType == e.id,
-                                    onTap: () =>
-                                        setState(() => _examType = e.id),
-                                  ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      // NOT: "Hangi sınava gireceksin?" seçimi buradan KALDIRILDI
+                      // ve Ayarlar > "Gireceğin KPSS Sınavı" bölümüne taşındı.
+                      // Sınav türü artık tek yerden yönetiliyor; burada yalnızca
+                      // ad/cinsiyet düzenleniyor.
                     ],
                   ),
                 ),

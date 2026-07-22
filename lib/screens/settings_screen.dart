@@ -64,29 +64,26 @@ const List<_SoruCevapSecenegi> _kSoruCevapSecenekleri = [
   ),
 ];
 
-/// Eğitim seviyesi (= sınav türü) seçenekleri. `deger`, StorageService'in
-/// examType anahtarıyla aynı sözlüğü kullanır: '' | 'ortaogretim' | 'onlisans'
-/// | 'lisans'. '' seçilirse hiçbir filtre uygulanmaz (tüm seviyeler karışık).
-const List<_SoruCevapSecenegi> _kSeviyeSecenekleri = [
+/// Gireceğin KPSS sınav türü seçenekleri. `deger`, StorageService'in examType
+/// anahtarıyla aynı sözlüğü kullanır: 'ortaogretim' | 'onlisans' | 'lisans'.
+/// Seçilen sınav türü, sorulara ve oyunlara uygulanan zorluğu da belirler
+/// (Ortaöğretim=kolay, Önlisans=normal, Lisans=zor). Bu seçim eskiden Profil'de
+/// "Hangi sınava gireceksin?" olarak duruyordu; buraya taşındı.
+const List<_SoruCevapSecenegi> _kSinavTuruSecenekleri = [
   _SoruCevapSecenegi(
     'ortaogretim',
-    'Ortaöğretim (Kolay)',
-    'Temel, herkesin bilmesi beklenen sorular.',
+    'Ortaöğretim',
+    'Temel, herkesin bilmesi beklenen sorular (kolay).',
   ),
   _SoruCevapSecenegi(
     'onlisans',
-    'Önlisans (Normal)',
-    'Orta düzey, biraz detay isteyen sorular.',
+    'Önlisans',
+    'Orta düzey, biraz detay isteyen sorular (normal).',
   ),
   _SoruCevapSecenegi(
     'lisans',
-    'Lisans (Zor)',
-    'İleri düzey, ayrıntı ve uzmanlık isteyen sorular.',
-  ),
-  _SoruCevapSecenegi(
-    '',
-    'Farketmez',
-    'Tüm seviyelerden karışık sorular gelsin.',
+    'Lisans',
+    'İleri düzey, ayrıntı ve uzmanlık isteyen sorular (zor).',
   ),
 ];
 
@@ -602,12 +599,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
             // ── SORU CEVAP ──────────────────────────────────────────────
             const SizedBox(height: 20),
-            // ── EĞİTİM SEVİYESİ ─────────────────────────────────────────
-            // Seçilen seviye tüm uygulamada geçerli (Question.examType ve
-            // Doğru/Yanlış oyunu buna göre süzülür). Ortaöğretim=kolay,
-            // Önlisans=normal, Lisans=zor. "Farketmez" tüm seviyeleri karışık
-            // getirir. Kullanıcı isteği: seviye Ayarlar'da tek yerden seçilsin.
-            const DsSectionHeader(title: '🎓 Eğitim Seviyen'),
+            // ── SINAV TÜRÜ ──────────────────────────────────────────────
+            // Gireceğin KPSS sınavı. Seçim tüm uygulamada geçerli
+            // (Question.examType ve Doğru/Yanlış oyunu buna göre süzülür) ve
+            // aynı zamanda zorluğu belirler: Ortaöğretim=kolay, Önlisans=normal,
+            // Lisans=zor. Bu seçim eskiden Profil'deydi, buraya taşındı.
+            const DsSectionHeader(title: '🎓 Gireceğin KPSS Sınavı'),
             const SizedBox(height: 8),
             DsCard(
               padding: const EdgeInsets.all(16),
@@ -615,12 +612,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Sorular ve oyunlar seçtiğin seviyeye göre gelsin. Seçtiğin '
-                    'seviyede yeterli soru yoksa havuz otomatik genişler.',
+                    'Gireceğin sınavı seç; sorular ve oyunlar bu sınavın düzeyine '
+                    'göre gelsin. Yeterli soru yoksa havuz otomatik genişler.',
                     style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textFaint),
                   ),
                   const SizedBox(height: 12),
-                  for (final sv in _kSeviyeSecenekleri) ...[
+                  for (final sv in _kSinavTuruSecenekleri) ...[
                     _RadioSecenek(
                       baslik: sv.baslik,
                       aciklama: sv.aciklama,
@@ -633,7 +630,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         );
                       },
                     ),
-                    if (sv != _kSeviyeSecenekleri.last) const SizedBox(height: 10),
+                    if (sv != _kSinavTuruSecenekleri.last) const SizedBox(height: 10),
                   ],
                 ],
               ),
