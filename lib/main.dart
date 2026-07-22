@@ -11,6 +11,7 @@ import 'services/tts_service.dart';
 import 'services/notification_service.dart';
 import 'theme/theme_provider.dart';
 import 'screens/splash_screen.dart';
+import 'widgets/in_app_notice_overlay.dart';
 import 'firebase_bootstrap.dart';
 
 Future<void> main() async {
@@ -51,6 +52,12 @@ class KpssApp extends StatelessWidget {
       title: 'KPSS Hazırlık',
       debugShowCheckedModeBanner: false,
       theme: themeProvider.themeData,
+      // TÜM ekranların üstünde yaşayan bildirim katmanı: yeni mesaj /
+      // arkadaşlık isteği geldiğinde üstten kayan afiş gösterir (test
+      // sırasında erteler, uygulama arka plandaysa yerel bildirime düşer).
+      // builder kullanıldığı için hangi ekran açık olursa olsun çalışır.
+      builder: (context, child) =>
+          InAppNoticeOverlay(child: child ?? const SizedBox.shrink()),
       home: const SplashScreen(),
     );
   }

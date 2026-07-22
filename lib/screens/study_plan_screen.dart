@@ -73,7 +73,21 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
     try {
       if (!_izinIstendi && servis.getActivePlan().isNotEmpty) {
         _izinIstendi = true;
-        await bildirim.requestPermission();
+        final izinVar = await bildirim.requestPermission();
+        // SESSİZ BAŞARISIZLIK ENGELİ: izin reddedilmişse bildirimler hiç
+        // gösterilmez ama kullanıcı bunu bilmiyordu ("bildirim gelmiyor").
+        // Artık açıkça söylüyoruz ve nereden açacağını tarif ediyoruz.
+        if (!izinVar && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(seconds: 7),
+              content: Text(
+                  'Bildirim izni verilmemiş — hatırlatmalar gelmeyecek. '
+                  'Telefon Ayarları > Uygulamalar > KPSS Hazırlık > '
+                  'Bildirimler bölümünden izin verebilirsin.'),
+            ),
+          );
+        }
       }
       await bildirim.schedulePlan(servis.getActivePlan(), storage: storage);
     } catch (_) {

@@ -41,6 +41,106 @@ const List<MentorTip> kMentorTips = [
     'Sınavdan önceki gece erken yat, ağır yemekten kaçın. Dinlenmiş beyin, ezberden çok daha iyi '
         'çıkarım yapar.',
   ),
+  MentorTip(
+    '🍅 Pomodoro ile Odaklan',
+    '25 dakika kesintisiz çalış, 5 dakika mola ver. 4 turda bir 20-30 dakikalık uzun mola yap. '
+        'Mola sırasında telefona bakmak yerine ayağa kalkıp yürü; dikkat kası böyle dinlenir.',
+  ),
+  MentorTip(
+    '📆 Aralıklı Tekrar Takvimi',
+    'Yeni öğrendiğin konuyu 1. gün, 3. gün, 7. gün ve 21. gün tekrar et. Bu aralıklı tekrar '
+        'düzeni, bilgiyi kısa süreli hafızadan kalıcı hafızaya taşımanın en kanıtlanmış yolu.',
+  ),
+  MentorTip(
+    '🧠 Aktif Hatırlama',
+    'Konuyu tekrar okumak yerine kitabı kapat ve hatırladıklarını boş kağıda yaz. Hatırlayamadığın '
+        'yerler gerçek eksiklerin; sadece o kısımlara geri dön. Okumak tanıdıklık, yazmak öğrenme sağlar.',
+  ),
+  MentorTip(
+    '👨‍🏫 Feynman Tekniği',
+    'Çalıştığın konuyu hiç bilmeyen birine anlatır gibi kendi cümlelerinle sesli anlat. '
+        'Takıldığın yerde durup kaynağa dön. Anlatamıyorsan öğrenmemişsindir; bu en hızlı eksik tespitidir.',
+  ),
+  MentorTip(
+    '🔄 Turlama Tekniği',
+    'Sınavda 3 tur yap: ilk turda anında çözdüklerini işaretle, ikinci turda düşünmeni gerektirenleri, '
+        'son turda kalanları dene. Böylece kolay sorulardan alacağın netleri zora takılıp yakma.',
+  ),
+  MentorTip(
+    '🚫 Boş Bırakma Kararı',
+    "4 yanlış 1 doğruyu götürür; ama 2 şık eleyebildiysen işaretlemek istatistiksel olarak kârlıdır. "
+        'Hiç fikrin yoksa ve şık eleyemiyorsan boş bırak, tahmine net yatırma.',
+  ),
+  MentorTip(
+    '🧮 Net Hedefi Belirle',
+    'Hedef puanını belirle ve geçen yılın taban puanlarına bakarak ders ders net hedefine çevir. '
+        '"Çok net yapmalıyım" yerine "GY 45, GK 40 net" gibi ölçülebilir bir hedefle çalış.',
+  ),
+  MentorTip(
+    '📓 Yanlış Defteri Tut',
+    'Her yanlış soruyu deftere yaz: sorunun konusu, senin cevabın, doğru cevap ve yanılma sebebin. '
+        'Deneme öncesi sadece bu defteri tekrar et; en verimli tekrar kaynağın kendi hatalarındır.',
+  ),
+  MentorTip(
+    '🔍 Hata Tipini Teşhis Et',
+    'Yanlışlarını üçe ayır: bilgi eksiği, dikkat hatası, süre yetmedi. Bilgi eksiğine konu tekrarı, '
+        'dikkat hatasına soru okuma disiplini, süre sorununa bol deneme çözümü reçetedir. Tedavi teşhise göre değişir.',
+  ),
+  MentorTip(
+    '🎯 Gerçekçi Günlük Hedef',
+    'Günlük hedefini en kötü gününe göre koy: 300 soru değil, her gün mutlaka yapabileceğin 80-100 soru. '
+        'Küçük ama kesintisiz ilerleme, ara ara yapılan maratonlardan her zaman daha çok net getirir.',
+  ),
+  MentorTip(
+    '🔥 Seriyi Koru',
+    "Zincirini kırma: her gün en az 20 dakika çalışarak seriyi sürdür. Kötü günlerde hedef 'mükemmel "
+        "çalışmak' değil 'sıfır çekmemek'tir; alışkanlık motivasyondan daha güvenilirdir.",
+  ),
+  MentorTip(
+    '🪫 Tükenmişlik Sinyali',
+    'Üst üste birkaç gün verim düştüyse suçluluk duymadan yarım gün tam mola ver: yürüyüş, film, arkadaş. '
+        'Planlı mola tembellik değil bakım onarımdır; molasız devam etmek haftalar kaybettirir.',
+  ),
+  MentorTip(
+    '🌅 Sınav Sabahı Rutini',
+    'Sınav günü alışık olduğun kahvaltıyı yap; ilk kez deneyeceğin yiyecek ve içeceklerden uzak dur. '
+        'Aşırı kafein el titremesi ve tuvalet ihtiyacı demektir, ölçülü ol.',
+  ),
+  MentorTip(
+    '🧘 Kaygıyı Nefesle Yönet',
+    '4 saniye nefes al, 4 saniye tut, 6 saniyede ver. Sınav başlamadan ve zorlandığın anlarda 3-4 kez '
+        'uygula; uzun nefes verme, kalp atışını fizyolojik olarak yavaşlatır ve paniği keser.',
+  ),
+  MentorTip(
+    '🏫 Salon Stratejisi',
+    'Sınava optik kodlamayı 10 soruda bir yaparak git; tek tek kodlamak süre yer, en sona bırakmak '
+        'kaydırma riskini büyütür. Saatini kontrol etmeyi ilk 40. dakikaya kadar erteleme.',
+  ),
+  MentorTip(
+    '📖 Paragrafta Hız Tekniği',
+    'Paragraf sorusunda önce soru kökünü oku, sonra metne geç. Ne arayacağını bilerek okumak hem hızı '
+        'hem isabeti artırır. Metni kendi görüşünle değil sadece yazarın söyledikleriyle değerlendir.',
+  ),
+  MentorTip(
+    '➗ Matematikte İşlem Disiplini',
+    'İşlem hatalarının çoğu zihinden atlanan adımlardan çıkar. Adımları kısa da olsa yaz, dağınık '
+        'karalama yerine düzenli sütun kullan. Sonucu şıklara bakıp mantık süzgecinden geçir: negatif yaş, küsuratlı kişi sayısı olamaz.',
+  ),
+  MentorTip(
+    '📜 Tarihte Kronoloji Haritası',
+    'Tarihi konu konu değil zaman şeridi üzerinde çalış: her döneme padişah, savaş ve ıslahatı aynı '
+        'şeride yerleştir. KPSS tarih sorularının çoğu "hangisi önce/sonra" mantığıyla çözülür.',
+  ),
+  MentorTip(
+    '🗞️ Vatandaşlıkta Güncel Takip',
+    'Güncel bilgi soruları için son 1 yılın önemli gelişmelerini aylık özetlerden takip et; '
+        'anayasa değişikliklerini ve yeni kurulan kurumları ayrı bir sayfada listele. Bu 2-3 soru sıralamada binlerce kişi fark ettirir.',
+  ),
+  MentorTip(
+    '🌙 Uyku Düzenini Sınava Ayarla',
+    'Son 2 hafta uyku saatini sınav gününe göre sabitle: sınav sabah 10.15\'teyse beynin en geç '
+        '8.00\'de uyanmaya alışmış olmalı. Gece çalışıp gündüz uyuyan beyin, sınav saatinde pik performans veremez.',
+  ),
 ];
 
 /// Mentörlük Seansları — JS: renderMentor.

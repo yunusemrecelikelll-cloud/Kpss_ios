@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
+import '../services/in_app_notice_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/app_theme.dart';
@@ -754,11 +755,26 @@ class _DmInboxTab extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           children: [
             for (final t in threads)
+              // İSİM ÖNCELİĞİ: önce thread dokümanındaki `names` (arkadaş
+              // olmayan yabancılar için de dolu — gönderen her mesajda kendi
+              // adını yazar), sonra yerel önbellek, en son "Kullanıcı".
               _KisiSatiri(
-                ad: peerNames[t.peerUid] ?? 'Kullanıcı',
+                ad: t.peerName.isNotEmpty
+                    ? t.peerName
+                    : (peerNames[t.peerUid] ?? 'Kullanıcı'),
                 emoji: '💬',
                 colors: c,
-                altBilgi: _sonMesajZamani(t.updatedAt),
+                // İsmin altında SON MESAJ önizlemesi; ben yazdıysam "Sen:"
+                // önekiyle. Mesaj yoksa (eski thread) zaman etiketi kalır.
+                altBilgi: t.lastMessage.isNotEmpty
+                    ? (t.lastSenderUid == uid
+                        ? 'Sen: ${t.lastMessage}'
+                        : t.lastMessage)
+                    : _sonMesajZamani(t.updatedAt),
+                // Okunmamış mesaj varsa isim kalın + sayı rozeti; sohbeti
+                // açınca markThreadRead sayacı sıfırlar, ikisi de kalkar.
+                kalin: t.unreadCount > 0,
+                rozet: t.unreadCount,
                 onTap: () {
                   context.read<SoundService>().click();
                   Navigator.of(context).push(MaterialPageRoute(
@@ -766,14 +782,18 @@ class _DmInboxTab extends StatelessWidget {
                       chat: chat,
                       myUid: uid,
                       peerUid: t.peerUid,
-                      peerName: peerNames[t.peerUid] ?? 'Kullanıcı',
+                      peerName: t.peerName.isNotEmpty
+                          ? t.peerName
+                          : (peerNames[t.peerUid] ?? 'Kullanıcı'),
                     ),
                   ));
                 },
                 onProfil: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => PublicProfileScreen(
                       uid: t.peerUid,
-                      fallbackName: peerNames[t.peerUid] ?? 'Kullanıcı'),
+                      fallbackName: t.peerName.isNotEmpty
+                          ? t.peerName
+                          : (peerNames[t.peerUid] ?? 'Kullanıcı')),
                 )),
               ),
           ],
@@ -1229,6 +1249,13 @@ class _KisiSatiri extends StatelessWidget {
   final KpssColors colors;
   final VoidCallback onTap;
   final VoidCallback onProfil;
+
+  /// Okunmamış mesaj varsa isim KALIN gösterilir (okununca normale döner).
+  final bool kalin;
+
+  /// Okunmamış mesaj adedi — 0 ise rozet çizilmez.
+  final int rozet;
+
   const _KisiSatiri({
     required this.ad,
     required this.emoji,
@@ -1236,6 +1263,8 @@ class _KisiSatiri extends StatelessWidget {
     required this.colors,
     required this.onTap,
     required this.onProfil,
+    this.kalin = false,
+    this.rozet = 0,
   });
 
   @override
@@ -1262,16 +1291,40 @@ class _KisiSatiri extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                          fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
+                          // Okunmamış mesaj varken isim belirgin (w900),
+                          // okununca normal ağırlığa döner.
+                          fontWeight: kalin ? FontWeight.w900 : FontWeight.w700,
+                          fontSize: 14,
+                          color: c.text)),
                   if (altBilgi.isNotEmpty) ...[
                     const SizedBox(height: 2),
                     Text(altBilgi,
-                        style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 11.5,
+                            fontWeight: kalin ? FontWeight.w700 : FontWeight.w400,
+                            color: kalin ? c.textDim : c.textFaint)),
                   ],
                 ],
               ),
             ),
-            Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+            if (rozet > 0)
+              Container(
+                margin: const EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(
+                  color: c.danger,
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(rozet > 99 ? '99+' : '$rozet',
+                    style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white)),
+              )
+            else
+              Icon(Icons.chevron_right, size: 18, color: c.textFaint),
           ],
         ),
       ),
@@ -1320,8 +1373,25 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
   final _controller = TextEditingController();
   bool _sending = false;
 
+  // Gelen mesajlar okundukça sayacı sıfırlamak için son görülen mesaj adedi.
+  int _sonGorulenMesajSayisi = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    // Bu sohbete bakıldığını gözcüye bildir: bu sohbetin afişi gösterilmesin
+    // (mesaj zaten ekranda) — bkz. InAppNoticeOverlay.
+    InAppNoticeService.instance.aktifDmPeerUid = widget.peerUid;
+    // Sohbet açılır açılmaz okunmamış sayacımı sıfırla (rozet + kalın yazı
+    // gelen kutusunda anında kalksın).
+    widget.chat.markThreadRead(myUid: widget.myUid, peerUid: widget.peerUid);
+  }
+
   @override
   void dispose() {
+    if (InAppNoticeService.instance.aktifDmPeerUid == widget.peerUid) {
+      InAppNoticeService.instance.aktifDmPeerUid = null;
+    }
     _controller.dispose();
     super.dispose();
   }
@@ -1330,6 +1400,7 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
     final storage = context.read<StorageService>();
+    final auth = context.read<AuthService>();
     context.read<SoundService>().click();
 
     // DM artık ücretsiz kullanıcılar için de açık, ama genel sohbetle AYNI
@@ -1343,15 +1414,33 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
       return;
     }
 
+    // Kendi adımı thread'e yazıyorum ki karşı taraf beni hiç kaydetmemiş olsa
+    // bile gelen kutusunda adım görünsün (bkz. sendDirectMessage.names).
+    final authName = auth.currentUser?.displayName;
+    final benimAdim = (authName != null && authName.trim().isNotEmpty)
+        ? authName.trim()
+        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Kullanıcı');
+
     setState(() => _sending = true);
     try {
-      await widget.chat.sendDirectMessage(fromUid: widget.myUid, toUid: widget.peerUid, message: text);
+      await widget.chat.sendDirectMessage(
+        fromUid: widget.myUid,
+        toUid: widget.peerUid,
+        message: text,
+        fromName: benimAdim,
+      );
       if (!storage.isPremiumUser()) await storage.incrementChatMessagesSentToday();
       _controller.clear();
     } on ProfanityDetectedException catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Mesajın uygunsuz bir kelime içeriyor: "${e.matchedWord}"')),
+      );
+    } on MesajIstegiSiniriException catch (e) {
+      // Arkadaş olmayan birine, o yanıt verene kadar en fazla 3 mesaj.
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$e'), duration: const Duration(seconds: 5)),
       );
     } catch (e) {
       if (!mounted) return;
@@ -1388,6 +1477,16 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
                 if (messages.isEmpty) {
                   return Center(child: Text('Henüz mesaj yok.', style: TextStyle(color: c.textFaint)));
                 }
+                // Sohbet AÇIKKEN yeni mesaj gelirse (liste ters sıralı: [0] en
+                // yeni) sunucudaki okunmamış sayacımı hemen sıfırla — gelen
+                // kutusundaki rozet/kalınlık bu ekranda bakarken birikmesin.
+                if (messages.length != _sonGorulenMesajSayisi) {
+                  _sonGorulenMesajSayisi = messages.length;
+                  if (messages.first.senderUid != widget.myUid) {
+                    widget.chat.markThreadRead(
+                        myUid: widget.myUid, peerUid: widget.peerUid);
+                  }
+                }
                 return ListView.builder(
                   reverse: true,
                   padding: const EdgeInsets.all(12),
@@ -1405,7 +1504,8 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
                           color: mine ? c.violet.withValues(alpha: 0.18) : c.border.withValues(alpha: 0.4),
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Text(m.message, style: const TextStyle(fontSize: 14)),
+                        child: Text(m.message,
+                            style: TextStyle(fontSize: 14, color: c.text)),
                       ),
                     );
                   },

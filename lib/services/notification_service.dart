@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart' show PlatformException;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
@@ -225,16 +226,41 @@ class NotificationService {
 
       try {
         final zaman = _sonrakiHaftalikAn(entry.gun, entry.baslangicSaat, entry.baslangicDakika);
-        await _plugin.zonedSchedule(
-          _planBildirimId(entry.gun, sira),
-          _baslikSec(ad),
-          _govdeSec(ad, entry),
-          zaman,
-          detaylar,
-          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-          matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
-          payload: 'study_plan_${entry.gun}_${entry.id}',
-        );
+        // ANDROID GÜVENİLİRLİK DÜZELTMESİ ("bildirim gelmiyor"):
+        // `inexact` mod, Doze + üretici pil optimizasyonları (Xiaomi/Samsung
+        // vb.) altında Android'de FİİLEN HİÇ TETİKLENMEYEBİLİYOR — iOS'ta aynı
+        // kod sistem takvim tetikleyicisine çevrildiği için sorunsuz çalışıyor
+        // ve kullanıcı "iOS'ta geliyor, Android'de gelmiyor" görüyordu.
+        //
+        // Çözüm: önce EXACT (tam zamanlı) modu dene. SCHEDULE_EXACT_ALARM izni
+        // Android 12-13'te kurulumda kendiliğinden verilir (kullanıcıya HİÇBİR
+        // izin ekranı açılmaz); Android 14+'ta varsayılan kapalı olduğundan
+        // exact reddedilirse eski inexact moda düşülür — yani hiçbir cihazda
+        // durum bugünkünden kötüye gitmez, çoğunda kesin çalışır hâle gelir.
+        try {
+          await _plugin.zonedSchedule(
+            _planBildirimId(entry.gun, sira),
+            _baslikSec(ad),
+            _govdeSec(ad, entry),
+            zaman,
+            detaylar,
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+            payload: 'study_plan_${entry.gun}_${entry.id}',
+          );
+        } on PlatformException catch (e) {
+          if (e.code != 'exact_alarms_not_permitted') rethrow;
+          await _plugin.zonedSchedule(
+            _planBildirimId(entry.gun, sira),
+            _baslikSec(ad),
+            _govdeSec(ad, entry),
+            zaman,
+            detaylar,
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+            payload: 'study_plan_${entry.gun}_${entry.id}',
+          );
+        }
         debugPrint('NotificationService: ${StudyPlanService.gunAdi(entry.gun)} '
             '${entry.araliqMetni} için bildirim kuruldu.');
       } catch (e) {
@@ -287,6 +313,25 @@ class NotificationService {
       );
     } catch (e) {
       debugPrint('NotificationService.showTestNotification hatası: $e');
+    }
+  }
+
+  /// Genel amaçlı ANLIK bildirim (planlı değil): yeni mesaj / arkadaşlık
+  /// isteği gibi olaylar için, uygulama arka plandayken telefon bildirimi
+  /// göstermekte kullanılır (bkz. InAppNoticeOverlay).
+  ///
+  /// Kimlikler 9300-9389 aralığında döndürülür — çalışma planı bildirimleriyle
+  /// (9101..9184) ÇAKIŞMAZ, art arda gelen mesajlar birbirini ezmez.
+  static int _basitBildirimSira = 0;
+  Future<void> showBasit({required String baslik, required String govde}) async {
+    if (!destekleniyorMu) return;
+    if (!_hazir) await initialize();
+    if (!_hazir) return;
+    try {
+      _basitBildirimSira = (_basitBildirimSira + 1) % 90;
+      await _plugin.show(9300 + _basitBildirimSira, baslik, govde, _detaylar());
+    } catch (e) {
+      debugPrint('NotificationService.showBasit hatası: $e');
     }
   }
 

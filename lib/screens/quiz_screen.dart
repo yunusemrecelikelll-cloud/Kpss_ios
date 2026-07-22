@@ -10,6 +10,7 @@ import '../services/sound_service.dart';
 import '../services/tts_service.dart';
 import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
+import '../services/in_app_notice_service.dart';
 import '../theme/theme_provider.dart';
 import 'result_screen.dart';
 import 'placement_result_screen.dart';
@@ -200,6 +201,12 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     // Ayarlar'daki kalıcı ses tercihi DEĞİŞMEZ, sadece geçici susturma).
     _soundService.setSuppressed(true);
 
+    // Test sürerken uygulama içi bildirim afişleri (yeni mesaj / arkadaşlık
+    // isteği) ERTELENİR; test bitince birikenler sırayla gösterilir
+    // (kullanıcı isteği — dikkat dağılmasın). Bekletme sayaçlıdır, dispose'ta
+    // mutlaka geri açılır.
+    InAppNoticeService.instance.beklet();
+
     // Madde 4: testte geçen süre de çalışma süresi olarak kaydedilir.
     _studySw.start();
     _studyTicker = Timer.periodic(const Duration(seconds: 1), (_) {
@@ -212,6 +219,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    // Test bitti/terk edildi: ertelenen bildirim afişleri artık gösterilebilir.
+    InAppNoticeService.instance.devamEt();
     _studyTicker?.cancel();
     _saveStudyTime();
     // Madde 3: geçici bastırma kaldırılır — uygulamanın geri kalanında

@@ -137,7 +137,43 @@ class DmThreadSummary {
   final String threadId;
   final String peerUid;
   final DateTime? updatedAt;
-  const DmThreadSummary({required this.threadId, required this.peerUid, required this.updatedAt});
+
+  /// Karşı tarafın adı — thread dokümanındaki `names` haritasından gelir.
+  /// Böylece arkadaş OLMAYAN biri yazdığında da isim görünür (eskiden yalnızca
+  /// yerel önbellekteki adlar biliniyordu ve yabancılar "Kullanıcı" çıkıyordu).
+  final String peerName;
+
+  /// Son mesajın metni — gelen kutusunda ismin altında önizleme olarak gösterilir.
+  final String lastMessage;
+
+  /// Son mesajı kimin yazdığı (önizlemeye "Sen: " öneki koymak için).
+  final String lastSenderUid;
+
+  /// BENİM okumadığım mesaj sayısı. Karşı taraf her mesaj gönderdiğinde
+  /// sunucuda artar, ben sohbeti açınca sıfırlanır (bkz. markThreadRead).
+  final int unreadCount;
+
+  const DmThreadSummary({
+    required this.threadId,
+    required this.peerUid,
+    required this.updatedAt,
+    this.peerName = '',
+    this.lastMessage = '',
+    this.lastSenderUid = '',
+    this.unreadCount = 0,
+  });
+}
+
+/// Arkadaş olmayan birine, karşı taraf yanıt verene (isteği kabul edene) kadar
+/// en fazla [ChatService.kMesajIstegiSiniri] mesaj gönderilebilir. Sınır
+/// aşılırsa bu istisna fırlatılır; ekran mesajı kullanıcıya gösterir.
+class MesajIstegiSiniriException implements Exception {
+  const MesajIstegiSiniriException();
+  @override
+  String toString() =>
+      'Karşı taraf sana yanıt verene kadar en fazla '
+      '${ChatService.kMesajIstegiSiniri} mesaj gönderebilirsin. '
+      'Yanıt gelince sınır kalkar.';
 }
 
 /// Genel sohbet + DM + basit moderasyon (kötü-söz filtresi, rapor, engelleme)
@@ -374,10 +410,34 @@ class ChatService {
     return '${sorted[0]}_${sorted[1]}';
   }
 
+  /// Arkadaş olmayan birine, o yanıt verene kadar gönderilebilecek en fazla
+  /// mesaj sayısı ("mesaj isteği" sınırı). Karşı taraf tek bir yanıt verdiği
+  /// anda istek kabul edilmiş sayılır ve sınır kalkar. Arkadaşlar için sınır
+  /// hiç uygulanmaz.
+  static const int kMesajIstegiSiniri = 3;
+
+  /// Özel mesaj gönderir ve thread META verisini günceller.
+  ///
+  /// THREAD DOKÜMANI ARTIK ŞUNLARI DA TAŞIYOR:
+  ///  • names.{uid}      → görünen adlar. Karşı taraf beni hiç kaydetmemiş
+  ///                       olsa da gelen kutusunda adım görünsün diye.
+  ///  • lastMessage      → gelen kutusundaki son mesaj önizlemesi.
+  ///  • lastSenderUid    → önizlemeye "Sen:" öneki için.
+  ///  • unread.{uid}     → alıcının okunmamış sayacı (ben gönderince karşı
+  ///                       tarafınki artar; o açınca sıfırlar).
+  ///  • requestFrom      → sohbeti başlatan (ilk mesajı atan) kişi.
+  ///  • accepted         → mesaj isteği kabul edildi mi? Alıcı YANIT VERDİĞİ
+  ///                       anda true olur; taraflar arkadaşsa baştan true.
+  ///
+  /// MESAJ İSTEĞİ SINIRI: Taraflar arkadaş değilse ve accepted=false ise,
+  /// sohbeti başlatan kişi en fazla [kMesajIstegiSiniri] mesaj gönderebilir —
+  /// aşarsa [MesajIstegiSiniriException] fırlatılır. Bu, tanımadık kişilere
+  /// mesaj spam'ini engeller (kullanıcı isteği).
   Future<void> sendDirectMessage({
     required String fromUid,
     required String toUid,
     required String message,
+    String fromName = '',
   }) async {
     _requireConfigured();
     final trimmed = message.trim();
@@ -387,15 +447,77 @@ class ChatService {
 
     final threadId = threadIdFor(fromUid, toUid);
     final threadRef = _db.collection(dmCollection).doc(threadId);
+
+    // Mevcut thread durumunu oku (yoksa null alanlarla devam edilir).
+    final threadDoc = await threadRef.get();
+    final data = threadDoc.data() ?? const <String, dynamic>{};
+    final accepted = data['accepted'] == true;
+    final requestFrom = data['requestFrom'] as String?;
+
+    var yeniAccepted = accepted;
+    var yeniRequestFrom = requestFrom;
+
+    if (!accepted) {
+      // Arkadaşlarsa istek/sınır hiç işlemez.
+      final arkadasMi = await _db
+          .collection(friendsCollection)
+          .doc(fromUid)
+          .collection('list')
+          .doc(toUid)
+          .get()
+          .then((d) => d.exists)
+          .catchError((_) => false);
+
+      if (arkadasMi) {
+        yeniAccepted = true;
+      } else if (!threadDoc.exists || requestFrom == null) {
+        // İlk mesaj: sohbeti ben başlatıyorum.
+        yeniRequestFrom = fromUid;
+      } else if (requestFrom != fromUid) {
+        // Alıcı yanıt veriyor → istek KABUL edilmiş sayılır, sınır kalkar.
+        yeniAccepted = true;
+      } else {
+        // Başlatan, kabul gelmeden mesaj atmaya devam ediyor → sınırı uygula.
+        final benimkiler = (data['requestCount'] as num?)?.toInt() ?? 0;
+        if (benimkiler >= kMesajIstegiSiniri) {
+          throw const MesajIstegiSiniriException();
+        }
+      }
+    }
+
     await threadRef.set({
       'participants': [fromUid, toUid]..sort(),
       'updatedAt': FieldValue.serverTimestamp(),
+      if (fromName.isNotEmpty) 'names': {fromUid: fromName},
+      'lastMessage': trimmed.length > 80 ? trimmed.substring(0, 80) : trimmed,
+      'lastSenderUid': fromUid,
+      // Alıcının okunmamış sayacını artır (kendi sayacıma dokunma).
+      'unread': {toUid: FieldValue.increment(1)},
+      'accepted': yeniAccepted,
+      'requestFrom': ?yeniRequestFrom,
+      // Kabul edilmemiş istekte başlatanın mesaj adedini say.
+      if (!yeniAccepted && yeniRequestFrom == fromUid)
+        'requestCount': FieldValue.increment(1),
     }, SetOptions(merge: true));
+
     await threadRef.collection('messages').add({
       'senderUid': fromUid,
       'message': trimmed,
       'createdAt': FieldValue.serverTimestamp(),
     });
+  }
+
+  /// Sohbet açıldığında BENİM okunmamış sayacımı sıfırlar (rozet ve kalın
+  /// yazı kalksın). Best-effort: hata olursa sessizce geçer.
+  Future<void> markThreadRead({required String myUid, required String peerUid}) async {
+    if (!isConfigured) return;
+    try {
+      await _db.collection(dmCollection).doc(threadIdFor(myUid, peerUid)).set({
+        'unread': {myUid: 0},
+      }, SetOptions(merge: true));
+    } catch (e) {
+      debugPrint('ChatService.markThreadRead başarısız: $e');
+    }
   }
 
   /// Kullanıcının katıldığı tüm DM thread'lerini (en son güncellenen önce)
@@ -422,13 +544,20 @@ class ChatService {
         .snapshots()
         .map((snap) {
       final list = snap.docs.map((d) {
-        final participants = List<String>.from(d.data()['participants'] as List? ?? const []);
+        final data = d.data();
+        final participants = List<String>.from(data['participants'] as List? ?? const []);
         final peer = participants.firstWhere((p) => p != myUid, orElse: () => '');
-        final ts = d.data()['updatedAt'];
+        final ts = data['updatedAt'];
+        final names = Map<String, dynamic>.from(data['names'] as Map? ?? const {});
+        final unread = Map<String, dynamic>.from(data['unread'] as Map? ?? const {});
         return DmThreadSummary(
           threadId: d.id,
           peerUid: peer,
           updatedAt: ts is Timestamp ? ts.toDate() : null,
+          peerName: (names[peer] as String?) ?? '',
+          lastMessage: (data['lastMessage'] as String?) ?? '',
+          lastSenderUid: (data['lastSenderUid'] as String?) ?? '',
+          unreadCount: (unread[myUid] as num?)?.toInt() ?? 0,
         );
       }).toList();
       // En son güncellenen üstte. Zamanı olmayan (henüz sunucu damgası
