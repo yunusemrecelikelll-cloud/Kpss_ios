@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
@@ -7,6 +8,7 @@ import '../services/storage_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import 'account_login_screen.dart';
 import 'premium_screen.dart';
 import 'public_profile_screen.dart';
 
@@ -42,10 +44,25 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
   late final TabController _tabController;
   bool _notifChecked = false;
 
+  // Kullanıcının 6 haneli ID'si (arkadaş eklemede paylaşılır). Bir kez üretilip
+  // saklanır; ekran açıldığında garantiye alınır.
+  bool _kodChecked = false;
+  String? _myKod;
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+  }
+
+  /// Kullanıcının 6 haneli kodunu BİR KEZ garantiye alır (yoksa üretir).
+  void _ensureKod(String uid, String name) {
+    if (_kodChecked) return;
+    _kodChecked = true;
+    _chat.ensureMyKod(uid: uid, name: name).then((kod) {
+      if (!mounted || kod == null) return;
+      setState(() => _myKod = kod);
+    });
   }
 
   @override
@@ -89,7 +106,7 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
     }
 
     if (!auth.isSignedIn) {
-      return _ChatLoginPrompt(auth: auth);
+      return const _ChatLoginPrompt();
     }
 
     final premium = storage.isPremiumUser();
@@ -100,6 +117,7 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
         : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Kullanıcı');
 
     _checkNotifications(uid);
+    _ensureKod(uid, displayName);
 
     return Scaffold(
       appBar: AppBar(
@@ -146,36 +164,21 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
           // Arkadaşlar sekmesi: gelen istekler + arkadaş listesi. İstekler
           // buraya alındı çünkü bir isteği kabul etmek = arkadaş edinmek;
           // ikisi aynı yerde durunca akış daha anlaşılır.
-          _FriendsTab(chat: _chat, uid: uid, myName: displayName),
+          _FriendsTab(chat: _chat, uid: uid, myName: displayName, myKod: _myKod),
         ],
       ),
     );
   }
 }
 
-class _ChatLoginPrompt extends StatefulWidget {
-  final AuthService auth;
-  const _ChatLoginPrompt({required this.auth});
-
-  @override
-  State<_ChatLoginPrompt> createState() => _ChatLoginPromptState();
-}
-
-class _ChatLoginPromptState extends State<_ChatLoginPrompt> {
-  bool _busy = false;
-
-  Future<void> _signIn(Future<AuthResult> Function() method) async {
-    context.read<SoundService>().click();
-    setState(() => _busy = true);
-    final result = await method();
-    if (!mounted) return;
-    setState(() => _busy = false);
-    if (!result.success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result.errorMessage ?? 'Giriş başarısız oldu.')),
-      );
-    }
-  }
+/// Sohbete giriş yapılmadan bakıldığında gösterilen yönlendirme ekranı.
+///
+/// DEĞİŞTİRİLDİ (kullanıcı isteği): Sohbet içinde ARTIK giriş yap butonları
+/// (Google/Apple) YOK. Bunun yerine kullanıcı, tüm giriş yollarını (e-posta,
+/// kullanıcı adı, Google, Apple) barındıran asıl giriş ekranına yönlendiriliyor.
+/// Böylece giriş tek bir yerden (Ayarlar > Giriş Yap ile aynı ekran) yapılıyor.
+class _ChatLoginPrompt extends StatelessWidget {
+  const _ChatLoginPrompt();
 
   @override
   Widget build(BuildContext context) {
@@ -191,33 +194,30 @@ class _ChatLoginPromptState extends State<_ChatLoginPrompt> {
               children: [
                 const Text('💬', style: TextStyle(fontSize: 48)),
                 const SizedBox(height: 12),
-                const Text('Sohbete katıl!', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+                const Text('Sohbete katıl!',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
                 const SizedBox(height: 8),
                 Text(
-                  'Diğer KPSS adaylarıyla sohbet edebilmek ve mesajlaşabilmek için giriş yapman gerekiyor.',
+                  'Diğer KPSS adaylarıyla sohbet edip mesajlaşmak için giriş yapman '
+                  'gerekiyor. Giriş yaptıktan sonra otomatik olarak sohbete dönersin.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: c.textFaint),
                 ),
                 const SizedBox(height: 24),
                 SizedBox(
-                  width: 280,
-                  child: OutlinedButton.icon(
-                    onPressed: _busy ? null : () => _signIn(widget.auth.signInWithGoogle),
-                    icon: const Text('🇬', style: TextStyle(fontSize: 16)),
-                    label: const Text('Google ile Giriş Yap'),
+                  width: 260,
+                  child: DsPillButton(
+                    label: 'Giriş Yap',
+                    color: c.violet,
+                    leadingIcon: Icons.login_rounded,
+                    onPressed: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const AccountLoginScreen(),
+                      ));
+                    },
                   ),
                 ),
-                if (widget.auth.isAppleSignInAvailable) ...[
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: 280,
-                    child: OutlinedButton.icon(
-                      onPressed: _busy ? null : () => _signIn(widget.auth.signInWithApple),
-                      icon: const Icon(Icons.apple, size: 18),
-                      label: const Text('Apple ile Giriş Yap'),
-                    ),
-                  ),
-                ],
               ],
             ),
           ),
@@ -793,11 +793,116 @@ class _FriendsTab extends StatelessWidget {
   final ChatService chat;
   final String uid;
   final String myName;
-  const _FriendsTab({required this.chat, required this.uid, required this.myName});
+  final String? myKod;
+  const _FriendsTab({
+    required this.chat,
+    required this.uid,
+    required this.myName,
+    required this.myKod,
+  });
+
+  /// Bir arkadaşa dokunulunca açılan işlem menüsü: mesaj gönder, profili gör,
+  /// engelle, şikayet et, arkadaşlıktan çıkar.
+  void _arkadasMenu(BuildContext context, Friend a) {
+    final c = context.read<ThemeProvider>().colors;
+    final storage = context.read<StorageService>();
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      builder: (ctx) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: DsIconBadge(emoji: '👤', color: c.violetL, size: 40, glow: false),
+              title: Text(a.name, style: const TextStyle(fontWeight: FontWeight.w900)),
+              subtitle: const Text('Arkadaşın'),
+            ),
+            Divider(height: 1, color: c.border),
+            ListTile(
+              leading: Icon(Icons.mail_outline, color: c.mint),
+              title: const Text('Mesaj Gönder'),
+              onTap: () async {
+                Navigator.pop(ctx);
+                await storage.saveDmPeerName(a.uid, a.name);
+                if (!context.mounted) return;
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => _DmThreadScreen(
+                      chat: chat, myUid: uid, peerUid: a.uid, peerName: a.name),
+                ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person_outline, color: c.violetL),
+              title: const Text('Profili Gör'),
+              onTap: () {
+                Navigator.pop(ctx);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => PublicProfileScreen(uid: a.uid, fallbackName: a.name),
+                ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.block, color: c.danger),
+              title: const Text('Engelle'),
+              onTap: () async {
+                Navigator.pop(ctx);
+                final messenger = ScaffoldMessenger.of(context);
+                try {
+                  await chat.blockUser(myUid: uid, blockedUid: a.uid);
+                  messenger.showSnackBar(
+                      SnackBar(content: Text('${a.name} engellendi.')));
+                } catch (e) {
+                  messenger.showSnackBar(SnackBar(content: Text('İşlem başarısız: $e')));
+                }
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.flag_outlined, color: c.warn),
+              title: const Text('Şikayet Et'),
+              onTap: () async {
+                Navigator.pop(ctx);
+                final messenger = ScaffoldMessenger.of(context);
+                try {
+                  await chat.reportUser(reporterUid: uid, reportedUid: a.uid);
+                  messenger.showSnackBar(const SnackBar(
+                      content: Text('Şikayet alındı, teşekkürler.')));
+                } catch (e) {
+                  messenger.showSnackBar(SnackBar(content: Text('Şikayet gönderilemedi: $e')));
+                }
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person_remove_outlined, color: c.textDim),
+              title: const Text('Arkadaşlıktan Çıkar'),
+              onTap: () async {
+                Navigator.pop(ctx);
+                final messenger = ScaffoldMessenger.of(context);
+                final onay = await showDialog<bool>(
+                  context: context,
+                  builder: (dCtx) => AlertDialog(
+                    title: const Text('Arkadaşlıktan çıkar?'),
+                    content: Text('${a.name} arkadaş listenden kaldırılacak.'),
+                    actions: [
+                      TextButton(onPressed: () => Navigator.pop(dCtx, false), child: const Text('Vazgeç')),
+                      TextButton(onPressed: () => Navigator.pop(dCtx, true), child: const Text('Çıkar')),
+                    ],
+                  ),
+                );
+                if (onay != true) return;
+                await chat.removeFriend(myUid: uid, friendUid: a.uid);
+                messenger.showSnackBar(
+                    SnackBar(content: Text('${a.name} arkadaşlıktan çıkarıldı.')));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
 
     return StreamBuilder<List<FriendRequest>>(
@@ -811,35 +916,16 @@ class _FriendsTab extends StatelessWidget {
             if (arkadasSnap.hasError) {
               return _HataNotu(mesaj: 'Arkadaşların yüklenemedi.\n${arkadasSnap.error}');
             }
-            if (!arkadasSnap.hasData && istekler.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
             final arkadaslar = arkadasSnap.data ?? const <Friend>[];
-
-            if (istekler.isEmpty && arkadaslar.isEmpty) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Text('👥', style: TextStyle(fontSize: 40)),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Henüz arkadaşın yok.\n\nGenel sohbette birinin mesajına dokunup '
-                        '"Arkadaş Ekle" diyerek istek gönderebilirsin.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: c.textFaint, height: 1.5),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }
 
             return ListView(
               padding: const EdgeInsets.all(12),
               children: [
+                // ID kartı + ID ile arkadaş ekleme (her zaman en üstte).
+                _ArkadasEkleKarti(
+                    chat: chat, myUid: uid, myName: myName, myKod: myKod),
+                const SizedBox(height: 18),
+
                 if (istekler.isNotEmpty) ...[
                   DsSectionHeader(title: '🤝 Gelen İstekler (${istekler.length})'),
                   const SizedBox(height: 8),
@@ -848,6 +934,7 @@ class _FriendsTab extends StatelessWidget {
                       istek: istek,
                       colors: c,
                       onKabul: () async {
+                        final storage = context.read<StorageService>();
                         final messenger = ScaffoldMessenger.of(context);
                         try {
                           await chat.acceptFriendRequest(
@@ -885,43 +972,177 @@ class _FriendsTab extends StatelessWidget {
                         ? '👥 Arkadaşlarım'
                         : '👥 Arkadaşlarım (${arkadaslar.length})'),
                 const SizedBox(height: 8),
-                if (arkadaslar.isEmpty)
+                if (!arkadasSnap.hasData)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Center(child: CircularProgressIndicator()),
+                  )
+                else if (arkadaslar.isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text('Henüz arkadaşın yok.',
-                        style: TextStyle(color: c.textFaint)),
+                    child: Text(
+                        'Henüz arkadaşın yok. Yukarıdan ID ile arkadaş ekleyebilir '
+                        'ya da genel sohbette birine "Arkadaş Ekle" diyebilirsin.',
+                        style: TextStyle(color: c.textFaint, height: 1.4)),
                   ),
                 for (final a in arkadaslar)
                   _KisiSatiri(
                     ad: a.name,
                     emoji: '👤',
                     colors: c,
-                    altBilgi: 'Mesaj göndermek için dokun',
-                    onTap: () async {
+                    altBilgi: 'İşlemler için dokun',
+                    onTap: () {
                       context.read<SoundService>().click();
-                      await storage.saveDmPeerName(a.uid, a.name);
-                      if (!context.mounted) return;
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => _DmThreadScreen(
-                            chat: chat, myUid: uid, peerUid: a.uid, peerName: a.name),
-                      ));
+                      _arkadasMenu(context, a);
                     },
                     onProfil: () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) =>
                           PublicProfileScreen(uid: a.uid, fallbackName: a.name),
                     )),
-                    onCikar: () async {
-                      final messenger = ScaffoldMessenger.of(context);
-                      await chat.removeFriend(myUid: uid, friendUid: a.uid);
-                      messenger.showSnackBar(SnackBar(
-                          content: Text('${a.name} arkadaşlıktan çıkarıldı.')));
-                    },
                   ),
               ],
             );
           },
         );
       },
+    );
+  }
+}
+
+/// "Arkadaşlar" sekmesinin üstündeki kart: kullanıcının kendi 6 haneli ID'sini
+/// gösterir (paylaşabilsin diye) ve bir ID girip arkadaş eklemeyi sağlar.
+class _ArkadasEkleKarti extends StatefulWidget {
+  final ChatService chat;
+  final String myUid;
+  final String myName;
+  final String? myKod;
+  const _ArkadasEkleKarti({
+    required this.chat,
+    required this.myUid,
+    required this.myName,
+    required this.myKod,
+  });
+
+  @override
+  State<_ArkadasEkleKarti> createState() => _ArkadasEkleKartiState();
+}
+
+class _ArkadasEkleKartiState extends State<_ArkadasEkleKarti> {
+  final _controller = TextEditingController();
+  bool _gonderiliyor = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _ekle() async {
+    final kod = _controller.text.trim();
+    if (kod.length != 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('6 haneli bir ID gir.')),
+      );
+      return;
+    }
+    context.read<SoundService>().click();
+    setState(() => _gonderiliyor = true);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      final sonuc = await widget.chat.sendFriendRequestByKod(
+        myUid: widget.myUid,
+        myName: widget.myName,
+        kod: kod,
+      );
+      _controller.clear();
+      messenger.showSnackBar(SnackBar(content: Text(sonuc)));
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text('İstek gönderilemedi: $e')));
+    } finally {
+      if (mounted) setState(() => _gonderiliyor = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Kendi ID'in.
+          Row(
+            children: [
+              DsIconBadge(emoji: '🆔', color: c.gold, size: 40, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Senin ID\'in',
+                        style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                    const SizedBox(height: 2),
+                    Text(
+                      widget.myKod ?? '— — — — — —',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 3,
+                          color: c.text),
+                    ),
+                  ],
+                ),
+              ),
+              if (widget.myKod != null)
+                IconButton(
+                  tooltip: 'Kopyala',
+                  icon: Icon(Icons.copy_rounded, size: 20, color: c.textFaint),
+                  onPressed: () {
+                    Clipboard.setData(ClipboardData(text: widget.myKod!));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('ID kopyalandı.')),
+                    );
+                  },
+                ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text('Bu ID\'yi paylaş; arkadaşların seni bu numarayla ekleyebilir.',
+              style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+          Divider(height: 20, color: c.border),
+          // ID ile arkadaş ekle.
+          Text('ID ile arkadaş ekle',
+              style: TextStyle(
+                  fontSize: 12.5, fontWeight: FontWeight.w800, color: c.textDim)),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _controller,
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: const InputDecoration(
+                    hintText: '6 haneli ID',
+                    counterText: '',
+                    prefixIcon: Icon(Icons.tag),
+                  ),
+                  onSubmitted: (_) => _ekle(),
+                ),
+              ),
+              const SizedBox(width: 8),
+              DsPillButton(
+                label: 'Ekle',
+                color: c.violet,
+                leadingIcon: Icons.person_add_alt_1,
+                onPressed: _gonderiliyor ? null : _ekle,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1008,7 +1229,6 @@ class _KisiSatiri extends StatelessWidget {
   final KpssColors colors;
   final VoidCallback onTap;
   final VoidCallback onProfil;
-  final Future<void> Function()? onCikar;
   const _KisiSatiri({
     required this.ad,
     required this.emoji,
@@ -1016,7 +1236,6 @@ class _KisiSatiri extends StatelessWidget {
     required this.colors,
     required this.onTap,
     required this.onProfil,
-    this.onCikar,
   });
 
   @override
@@ -1052,31 +1271,7 @@ class _KisiSatiri extends StatelessWidget {
                 ],
               ),
             ),
-            if (onCikar != null)
-              IconButton(
-                tooltip: 'Arkadaşlıktan çıkar',
-                icon: Icon(Icons.person_remove_outlined, size: 20, color: c.textFaint),
-                onPressed: () async {
-                  final onay = await showDialog<bool>(
-                    context: context,
-                    builder: (dCtx) => AlertDialog(
-                      title: const Text('Arkadaşlıktan çıkar?'),
-                      content: Text('$ad arkadaş listenden kaldırılacak.'),
-                      actions: [
-                        TextButton(
-                            onPressed: () => Navigator.pop(dCtx, false),
-                            child: const Text('Vazgeç')),
-                        TextButton(
-                            onPressed: () => Navigator.pop(dCtx, true),
-                            child: const Text('Çıkar')),
-                      ],
-                    ),
-                  );
-                  if (onay == true) await onCikar!();
-                },
-              )
-            else
-              Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+            Icon(Icons.chevron_right, size: 18, color: c.textFaint),
           ],
         ),
       ),

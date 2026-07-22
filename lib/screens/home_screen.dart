@@ -159,11 +159,17 @@ class _HomeScreenState extends State<HomeScreen> {
     final subjects = widget.subjects;
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
-    // getActiveUser() sadece profil oluşturulurken bir kere set edilen ham
-    // kullanıcı kaydı adı ("Misafir") — Google/Apple girişinden sonra
-    // güncellenen GERÇEK isim getUserName()'de tutulur (bkz. profile_screen.dart
-    // ile aynı öncelik: profil_screen.dart'ın kullandığı desenin AYNISI).
-    final name = storage.getUserName().isNotEmpty ? storage.getUserName() : storage.getActiveUser();
+    final auth = context.watch<AuthService>();
+    // İsim önceliği (DÜZELTİLDİ — "Hoş geldin Misafir" hatası):
+    // Sohbetten Google/Apple/e-posta ile giriş yapınca isim Firebase Auth'un
+    // displayName'inde tutulur ama storage.getUserName() boş kalabiliyordu; bu
+    // yüzden anasayfa "Misafir" (getActiveUser) gösteriyordu. Artık chat_screen
+    // ile AYNI öncelik uygulanıyor: önce Auth displayName, sonra getUserName,
+    // en son yerel kayıt adı.
+    final authName = auth.currentUser?.displayName;
+    final name = (authName != null && authName.trim().isNotEmpty)
+        ? authName.trim()
+        : (storage.getUserName().isNotEmpty ? storage.getUserName() : storage.getActiveUser());
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();
     final completed = storage.getCompletedTopics();
@@ -171,7 +177,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final doneTopics = subjects.fold(0, (s, x) => s + x.konular.where((t) => completed[t.id] == true).length);
     final fullTestDone = storage.getAttempts().where((a) => a.topicId == 'full-test').length;
     final examInfo = examInfoFor(storage.getExamType());
-    final auth = context.watch<AuthService>();
     final drafts = storage.getAllDrafts();
 
     return Scaffold(

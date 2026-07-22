@@ -279,24 +279,36 @@ class DsPillButton extends StatelessWidget {
       ],
     );
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
+    // DÜZELTİLDİ — "oval butonun arkasında silik köşeler":
+    // Gölge, DIŞ Container'da (kırpılmıyor) — hap gölgesi olduğu gibi kalır.
+    // Zemin/kenarlık ve dokunma dalgası (splash) ise StadiumBorder şekilli,
+    // antiAlias kırpmalı Material'ın İÇİNDE — böylece splash ve Ink zemini hap
+    // dışına taşmaz. Eskiden InkWell'in dalgası dikdörtgen sınıra sızıp temaya
+    // göre köşelerde silik bir dörtgen bırakıyordu.
+    return Container(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(999),
-        onTap: onPressed,
-        child: Ink(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            gradient: filled ? (gradient ?? LinearGradient(colors: [color, color])) : null,
-            color: filled ? null : color.withValues(alpha: c.isLight ? 0.06 : 0.10),
-            border: filled ? null : Border.all(color: color.withValues(alpha: 0.55), width: 1.2),
-            boxShadow: filled
-                ? [BoxShadow(color: color.withValues(alpha: 0.32), blurRadius: 14, offset: const Offset(0, 4))]
-                : null,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
-            child: icerik,
+        boxShadow: filled
+            ? [BoxShadow(color: color.withValues(alpha: 0.32), blurRadius: 14, offset: const Offset(0, 4))]
+            : null,
+      ),
+      child: Material(
+        color: Colors.transparent,
+        shape: const StadiumBorder(),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onPressed,
+          child: Ink(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(999),
+              gradient: filled ? (gradient ?? LinearGradient(colors: [color, color])) : null,
+              color: filled ? null : color.withValues(alpha: c.isLight ? 0.06 : 0.10),
+              border: filled ? null : Border.all(color: color.withValues(alpha: 0.55), width: 1.2),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
+              child: icerik,
+            ),
           ),
         ),
       ),

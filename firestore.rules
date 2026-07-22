@@ -204,6 +204,18 @@ service cloud.firestore {
                     && resource.data.uid == request.auth.uid;
     }
 
+    // ── Kullanıcı ID'si (6 haneli kod → uid) ───────────────────────────────
+    // Doküman kimliği = 6 haneli kod. Kullanıcılar birbirini bu kodla arayıp
+    // arkadaş ekler; bu yüzden giriş yapan herkes OKUYABİLİR. Kaydı yalnızca
+    // sahibi (uid == kendi uid'i) oluşturur/günceller/siler.
+    match /user_ids/{kod} {
+      allow read: if girisli();
+      allow create: if girisli()
+                    && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if girisli()
+                    && resource.data.uid == request.auth.uid;
+    }
+
     // ── Arkadaşlık istekleri ───────────────────────────────────────────────
     // Doküman kimliği "{gonderenUid}_{alanUid}" biçimindedir.
     match /friend_requests/{requestId} {

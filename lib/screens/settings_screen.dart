@@ -9,6 +9,7 @@ import '../services/remote_question_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import 'account_login_screen.dart';
 import 'premium_screen.dart';
 import 'quiz_screen.dart'
     show
@@ -779,6 +780,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   // yapılmamışken ortada silinecek bir hesap yoktur, seçenek
                   // yalnızca kafa karıştırır. (Yerel ilerlemeyi temizlemek
                   // isteyen kullanıcı için uygulamayı kaldırmak yeterli.)
+                  // Giriş YAPILMAMIŞSA: giriş ekranına yönlendiren tek giriş
+                  // noktası. Sohbet ekranından giriş butonları KALDIRILDI;
+                  // giriş artık yalnızca buradan (ve buranın açtığı ekrandan)
+                  // yapılıyor.
+                  if (!girisYapildi)
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.login_rounded,
+                          color: c.violet,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Giriş Yap',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                      subtitle: Text(
+                          'Hesabınla giriş yap; ilerlemeni taşı, sohbet ve düelloya katıl.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () {
+                        context.read<SoundService>().click();
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const AccountLoginScreen(),
+                        ));
+                      },
+                    ),
                   if (girisYapildi) ...[
                     Divider(height: 1, color: c.border),
                     // "Çıkış Yap", "Hesabımı Sil"in ÜSTÜNDE duruyor: ikisi de

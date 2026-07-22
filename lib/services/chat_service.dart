@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
@@ -248,7 +250,11 @@ class ChatService {
 
   /// Genel sohbet akışını en yeniden en eskiye dinler. Firebase
   /// yapılandırılmamışsa boş bir liste yayınlayan sabit bir stream döner.
-  Stream<List<ChatMessage>> streamMessages({int limit = 200}) {
+  // OKUMA MALİYETİ: Ekran her açıldığında en fazla [limit] mesaj çekilir.
+  // Eskiden 200'dü; her açılışta 200 okuma demekti. En son 30 mesaj çoğu
+  // kullanıcı için yeterli; daha eskiyi görmek gerekirse ileride "daha fazla
+  // yükle" ile artırılabilir (Firestore startAfter ile sayfalama).
+  Stream<List<ChatMessage>> streamMessages({int limit = 30}) {
     if (!isConfigured) return Stream<List<ChatMessage>>.value(const []);
     return _db
         .collection(chatCollection)
@@ -436,10 +442,12 @@ class ChatService {
     });
   }
 
+  // Okuma maliyeti: DM açılışında en fazla [limit] mesaj çekilir (bkz.
+  // streamMessages'taki aynı gerekçe). 200 → 30.
   Stream<List<DirectMessage>> streamDirectMessages({
     required String uidA,
     required String uidB,
-    int limit = 200,
+    int limit = 30,
   }) {
     if (!isConfigured) return Stream<List<DirectMessage>>.value(const []);
     final threadId = threadIdFor(uidA, uidB);
@@ -472,10 +480,116 @@ class ChatService {
   static const String friendRequestsCollection = 'friend_requests';
   static const String friendsCollection = 'friends';
 
+  /// Kullanıcı ID'si (6 haneli) → uid eşlemesi. Doküman kimliği = 6 haneli kod.
+  /// Alanlar: uid, name. Kullanıcılar birbirini bu kodla arayıp ekleyebilir.
+  static const String userIdsCollection = 'user_ids';
+
+  final Random _rnd = Random();
+
   /// İki kullanıcı için istek dokümanının kimliği. Yön ÖNEMLİDİR:
   /// "A'dan B'ye" ile "B'den A'ya" farklı kayıtlardır (ikisi de aynı anda
   /// varsa iki taraf da birbirine istek atmış demektir).
   String friendRequestId(String fromUid, String toUid) => '${fromUid}_$toUid';
+
+  // ── 6 haneli kullanıcı ID'si ───────────────────────────────────────────
+  //
+  // Her kullanıcının paylaşabileceği, arkadaş eklemede kullanılan 6 haneli
+  // benzersiz bir kodu vardır. Kod İKİ yerde tutulur:
+  //   • user_ids/{kod}          → { uid, name }  (koddan kullanıcıya arama için)
+  //   • league_scores/{uid}.kod → kod            (kullanıcının kendi kodunu
+  //                                                okuyup gösterebilmesi için)
+  // Kod bir kez üretilir ve league_scores'ta saklandığı için cihaz değişse de
+  // aynı kalır (yeniden üretilip eski user_ids dokümanı yetim kalmaz).
+
+  /// Kullanıcının 6 haneli kodunu döndürür; yoksa benzersiz bir tane üretip
+  /// kaydeder. Hata durumunda null döner (özellik bozulmaz, sadece kod görünmez).
+  Future<String?> ensureMyKod({required String uid, required String name}) async {
+    if (!isConfigured) return null;
+    try {
+      // 1) league_scores'ta kayıtlı kod var mı?
+      final profil = await _db.collection('league_scores').doc(uid).get();
+      final mevcut = profil.data()?['kod'];
+      if (mevcut is String && mevcut.length == 6) {
+        // user_ids kaydını (ad değişmiş olabilir) tazele, best-effort.
+        // ignore: unawaited_futures
+        _db.collection(userIdsCollection).doc(mevcut).set(
+            {'uid': uid, 'name': name}, SetOptions(merge: true));
+        return mevcut;
+      }
+
+      // 2) Benzersiz 6 haneli kod üret (birkaç deneme).
+      for (var deneme = 0; deneme < 8; deneme++) {
+        final kod = (100000 + _rnd.nextInt(900000)).toString(); // 100000-999999
+        final varMi = await _db.collection(userIdsCollection).doc(kod).get();
+        if (varMi.exists) continue;
+        await _db.collection(userIdsCollection).doc(kod).set({'uid': uid, 'name': name});
+        await _db
+            .collection('league_scores')
+            .doc(uid)
+            .set({'kod': kod, 'displayName': name}, SetOptions(merge: true));
+        return kod;
+      }
+      return null;
+    } catch (e) {
+      debugPrint('ChatService.ensureMyKod başarısız: $e');
+      return null;
+    }
+  }
+
+  /// 6 haneli koda sahip kullanıcıyı bulur. Bulamazsa null döner.
+  Future<({String uid, String name})?> findUserByKod(String kod) async {
+    if (!isConfigured) return null;
+    final temiz = kod.trim();
+    if (temiz.length != 6) return null;
+    try {
+      final doc = await _db.collection(userIdsCollection).doc(temiz).get();
+      if (!doc.exists) return null;
+      final data = doc.data()!;
+      final uid = data['uid'] as String?;
+      if (uid == null || uid.isEmpty) return null;
+      return (uid: uid, name: (data['name'] as String?) ?? 'Kullanıcı');
+    } catch (e) {
+      debugPrint('ChatService.findUserByKod başarısız: $e');
+      return null;
+    }
+  }
+
+  /// 6 haneli kodla arkadaşlık isteği gönderir. Kullanıcıya gösterilecek
+  /// Türkçe sonucu döndürür. Kod bulunamazsa uyarır.
+  Future<String> sendFriendRequestByKod({
+    required String myUid,
+    required String myName,
+    required String kod,
+  }) async {
+    _requireConfigured();
+    final hedef = await findUserByKod(kod);
+    if (hedef == null) {
+      return 'Bu ID\'ye sahip bir kullanıcı bulunamadı. Kodu kontrol et.';
+    }
+    return sendFriendRequest(
+      fromUid: myUid,
+      fromName: myName,
+      toUid: hedef.uid,
+      toName: hedef.name,
+    );
+  }
+
+  /// Bir KULLANICIYI (belirli bir mesajı değil) rapor eder — arkadaş/sohbet
+  /// menüsündeki "Şikayet Et" için. chat_reports koleksiyonuna yazar.
+  Future<void> reportUser({
+    required String reporterUid,
+    required String reportedUid,
+    String reason = 'kullanici_sikayet',
+  }) async {
+    _requireConfigured();
+    await _db.collection(reportsCollection).add({
+      'reportedUid': reportedUid,
+      'reporterUid': reporterUid,
+      'reason': reason,
+      'createdAt': FieldValue.serverTimestamp(),
+      'status': 'open',
+    });
+  }
 
   /// Arkadaşlık isteği gönderir.
   ///

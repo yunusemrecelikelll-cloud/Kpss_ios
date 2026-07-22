@@ -232,6 +232,17 @@ class AccountDeletionService {
       await _deleteDocs(snap.docs.map((d) => d.reference).toList());
     });
 
+    // 10.5) 6 haneli kullanıcı ID kaydı — 'user_ids/{kod}'
+    //       Silinmezse kod kalıcı olarak rezerve kalır ve başka biri o kodu
+    //       arayınca artık var olmayan bir hesaba istek göndermeye çalışır.
+    await _adim('user_ids', () async {
+      final snap = await _db
+          .collection(ChatService.userIdsCollection)
+          .where('uid', isEqualTo: uid)
+          .get();
+      await _deleteDocs(snap.docs.map((d) => d.reference).toList());
+    });
+
     // 11) Kullanıcı adı rezervasyonu — 'usernames/{kullaniciAdiKucukHarf}'
     //
     //    Bu adım ATLANIRSA kullanıcı adı SONSUZA DEK rezerve kalır: hesap
