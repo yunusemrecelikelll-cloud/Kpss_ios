@@ -115,7 +115,11 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
     }
     if (!mounted) return;
 
-    final karisik = List<DogruYanlisOnerme>.from(kDogruYanlisOnermeler)..shuffle(_rnd);
+    // Kullanıcının Ayarlar'da seçtiği eğitim seviyesine göre havuzu süz.
+    // seviyeyeGoreOnermeler, seçilen seviyeye + tüm seviyelere uygun önermeleri
+    // döndürür; o seviyede içerik azsa otomatik olarak tüm havuza genişler.
+    final havuz = seviyeyeGoreOnermeler(storage.getExamType(), enAz: _adet);
+    final karisik = List<DogruYanlisOnerme>.from(havuz)..shuffle(_rnd);
     final sayi = min(_adet, karisik.length);
     setState(() {
       _deste

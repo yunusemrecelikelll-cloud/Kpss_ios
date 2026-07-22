@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/turkey_map_data.dart';
 import '../../data/turkey_map_quiz_data.dart';
+import '../../data/turkey_map_quiz_extra_data.dart';
 import '../../models/badge.dart';
 import '../../models/question.dart';
 import '../../models/subject.dart';
@@ -172,16 +173,33 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
   bool _finished = false;
   bool _justUnlockedFatih = false;
 
-  /// Fetih eşiği: quizdeki TÜM soruların doğru cevaplanması gerekir (5 soruluk
-  /// standart quizde 5/5). Sabit bir sayı yerine soru sayısına bağlanmıştır ki
-  /// bir il için havuzda 5'ten az soru varsa da "hepsi doğru" kuralı geçerli
-  /// kalsın.
+  /// Bir fetih denemesinde sorulacak soru sayısı. İl havuzu bundan büyükse
+  /// her denemede rastgele bu kadarı seçilir — böylece havuz genişledikçe
+  /// (bkz. kTurkeyProvinceQuiz) fetih zorluğu SABİT kalır ama sorular denemeden
+  /// denemeye değişir (tekrar oynanabilirlik).
+  static const int _quizSoruSayisi = 5;
+
+  /// Fetih eşiği: o denemede sorulan TÜM soruların doğru cevaplanması gerekir.
   int get _passThreshold => _questions.length;
+
+  /// İl havuzundan bu deneme için rastgele soru seti hazırlar.
+  ///
+  /// Havuz İKİ kaynağın birleşimidir: temel quiz (kTurkeyProvinceQuiz, il başına
+  /// 5 soru) + ek sorular (kTurkeyProvinceQuizEk, il başına 2 soru — iklim ve
+  /// ikinci ilginç bilgi). Böylece il başına ~7 soruluk havuzdan her denemede
+  /// rastgele 5'i seçilir; sorular tekrar oynayışta değişir, fetih zorluğu sabit.
+  List<Question> _seciliSorular() {
+    final havuz = <Question>[
+      ...?kTurkeyProvinceQuiz[widget.province.id],
+      ...?kTurkeyProvinceQuizEk[widget.province.id],
+    ]..shuffle();
+    return havuz.length <= _quizSoruSayisi ? havuz : havuz.take(_quizSoruSayisi).toList();
+  }
 
   @override
   void initState() {
     super.initState();
-    _questions = List<Question>.from(kTurkeyProvinceQuiz[widget.province.id] ?? const []);
+    _questions = _seciliSorular();
   }
 
   void _select(int i) {
@@ -222,7 +240,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
 
   void _retry() {
     setState(() {
-      _questions = List<Question>.from(kTurkeyProvinceQuiz[widget.province.id] ?? const [])..shuffle();
+      _questions = _seciliSorular();
       _index = 0;
       _correct = 0;
       _given = null;

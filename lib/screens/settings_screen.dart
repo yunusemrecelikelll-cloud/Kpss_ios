@@ -64,6 +64,32 @@ const List<_SoruCevapSecenegi> _kSoruCevapSecenekleri = [
   ),
 ];
 
+/// Eğitim seviyesi (= sınav türü) seçenekleri. `deger`, StorageService'in
+/// examType anahtarıyla aynı sözlüğü kullanır: '' | 'ortaogretim' | 'onlisans'
+/// | 'lisans'. '' seçilirse hiçbir filtre uygulanmaz (tüm seviyeler karışık).
+const List<_SoruCevapSecenegi> _kSeviyeSecenekleri = [
+  _SoruCevapSecenegi(
+    'ortaogretim',
+    'Ortaöğretim (Kolay)',
+    'Temel, herkesin bilmesi beklenen sorular.',
+  ),
+  _SoruCevapSecenegi(
+    'onlisans',
+    'Önlisans (Normal)',
+    'Orta düzey, biraz detay isteyen sorular.',
+  ),
+  _SoruCevapSecenegi(
+    'lisans',
+    'Lisans (Zor)',
+    'İleri düzey, ayrıntı ve uzmanlık isteyen sorular.',
+  ),
+  _SoruCevapSecenegi(
+    '',
+    'Farketmez',
+    'Tüm seviyelerden karışık sorular gelsin.',
+  ),
+];
+
 /// 400 → "6 dk 40 sn" gibi kısa Türkçe süre metni.
 String _sureMetni(int sn) {
   final dk = sn ~/ 60;
@@ -570,6 +596,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textDim),
                     ),
                   ),
+                ],
+              ),
+            ),
+
+            // ── SORU CEVAP ──────────────────────────────────────────────
+            const SizedBox(height: 20),
+            // ── EĞİTİM SEVİYESİ ─────────────────────────────────────────
+            // Seçilen seviye tüm uygulamada geçerli (Question.examType ve
+            // Doğru/Yanlış oyunu buna göre süzülür). Ortaöğretim=kolay,
+            // Önlisans=normal, Lisans=zor. "Farketmez" tüm seviyeleri karışık
+            // getirir. Kullanıcı isteği: seviye Ayarlar'da tek yerden seçilsin.
+            const DsSectionHeader(title: '🎓 Eğitim Seviyen'),
+            const SizedBox(height: 8),
+            DsCard(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Sorular ve oyunlar seçtiğin seviyeye göre gelsin. Seçtiğin '
+                    'seviyede yeterli soru yoksa havuz otomatik genişler.',
+                    style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textFaint),
+                  ),
+                  const SizedBox(height: 12),
+                  for (final sv in _kSeviyeSecenekleri) ...[
+                    _RadioSecenek(
+                      baslik: sv.baslik,
+                      aciklama: sv.aciklama,
+                      selected: storage.getExamType() == sv.deger,
+                      onTap: () {
+                        context.read<SoundService>().click();
+                        storage.setExamType(sv.deger);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('${sv.baslik} seçildi.')),
+                        );
+                      },
+                    ),
+                    if (sv != _kSeviyeSecenekleri.last) const SizedBox(height: 10),
+                  ],
                 ],
               ),
             ),
