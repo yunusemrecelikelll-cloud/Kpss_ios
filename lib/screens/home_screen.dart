@@ -7,6 +7,7 @@ import '../models/subject.dart';
 import '../models/question.dart';
 import '../models/badge.dart';
 import '../services/auth_service.dart';
+import '../services/in_app_notice_service.dart';
 import '../services/quiz_engine.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
@@ -26,6 +27,8 @@ import 'account_login_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
 import 'placement_exam_screen.dart';
+import 'mentor_screen.dart';
+import 'mnemonics_screen.dart';
 
 /// Ücretsiz pakette 120 soruluk TAM DENEME sınavı hakkı (toplam, günlük değil).
 /// Deneme sınavı uygulamanın en ağır içeriği olduğu için ücretsiz tarafta
@@ -81,9 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final storage = context.read<StorageService>();
     final newlyUnlocked = await checkAndUnlockBadges(storage, widget.subjects);
     if (newlyUnlocked.isEmpty || !mounted) return;
+    // Rozet bildirimi artık ALTTAN SnackBar değil, ÜSTTEN kayan temalı afiş
+    // (kullanıcı isteği). Kuyruk sıralı çalışır: birden çok rozet varsa
+    // sırayla gösterilir; test sırasında otomatik ertelenir.
     for (final b in newlyUnlocked) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('🏅 Yeni rozet: ${b.name}!'), duration: const Duration(seconds: 4)),
+      InAppNoticeService.instance.goster(
+        InAppNotice(baslik: 'Yeni rozet kazandın!', govde: b.name, emoji: '🏅'),
       );
     }
   }
@@ -95,10 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final storage = context.read<StorageService>();
     final claimed = await storage.claimDailyLoginRewardIfNeeded();
     if (!claimed || !mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('🎁 Günlük giriş ödülün: +${StorageService.kDailyLoginRewardXp} XP!'),
-        duration: const Duration(seconds: 4),
+    // Üstten kayan temalı afiş (SnackBar yerine — kullanıcı isteği).
+    InAppNoticeService.instance.goster(
+      InAppNotice(
+        baslik: 'Günlük giriş ödülün!',
+        govde: '+${StorageService.kDailyLoginRewardXp} XP kazandın',
+        emoji: '🎁',
       ),
     );
   }
@@ -160,16 +168,24 @@ class _HomeScreenState extends State<HomeScreen> {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
     final auth = context.watch<AuthService>();
-    // İsim önceliği (DÜZELTİLDİ — "Hoş geldin Misafir" hatası):
-    // Sohbetten Google/Apple/e-posta ile giriş yapınca isim Firebase Auth'un
-    // displayName'inde tutulur ama storage.getUserName() boş kalabiliyordu; bu
-    // yüzden anasayfa "Misafir" (getActiveUser) gösteriyordu. Artık chat_screen
-    // ile AYNI öncelik uygulanıyor: önce Auth displayName, sonra getUserName,
-    // en son yerel kayıt adı.
-    final authName = auth.currentUser?.displayName;
-    final name = (authName != null && authName.trim().isNotEmpty)
-        ? authName.trim()
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : storage.getActiveUser());
+    // İsim önceliği (DÜZELTİLDİ — "Hoş geldin Misafir" hatası, 2. tur):
+    //  1. GERÇEK girişin displayName'i (anonim oturum SAYILMAZ — düello/sohbet
+    //     altyapısı sessizce anonim açabiliyor ve displayName'i yoktur;
+    //     "Ayarlarda girişliyim ama anasayfa Misafir diyor" bundandı),
+    //  2. yerel kayıtlı isim,
+    //  3. gerçek giriş varsa e-posta öneki (silme sonrası yeniden kayıt gibi
+    //     displayName'in henüz oluşmadığı durumlar — ASLA "Misafir" deme),
+    //  4. en son yerel profil adı ("Misafir" yalnızca gerçekten girişsizken).
+    final gercekGiris = auth.isRealSignedIn;
+    final authName = gercekGiris ? auth.currentUser?.displayName?.trim() : null;
+    final epostaOnEki = gercekGiris
+        ? (auth.currentUser?.email?.split('@').first.trim() ?? '')
+        : '';
+    final name = (authName != null && authName.isNotEmpty)
+        ? authName
+        : (storage.getUserName().isNotEmpty
+            ? storage.getUserName()
+            : (epostaOnEki.isNotEmpty ? epostaOnEki : storage.getActiveUser()));
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();
     final completed = storage.getCompletedTopics();
@@ -201,8 +217,9 @@ class _HomeScreenState extends State<HomeScreen> {
             // 1) Sınav geri sayım kartı.
             if (examInfo != null) _ExamCountdownCard(examInfo: examInfo),
             if (examInfo != null) const SizedBox(height: kDsGap),
-            // 2) Giriş banner'ı.
-            if (!auth.isSignedIn) ...[
+            // 2) Giriş banner'ı — anonim oturum "girişli" SAYILMAZ; gerçek
+            // hesabı olmayan herkese giriş daveti gösterilmeye devam eder.
+            if (!auth.isRealSignedIn) ...[
               const _LoginBanner(),
               const SizedBox(height: kDsGap),
             ],
@@ -241,6 +258,39 @@ class _HomeScreenState extends State<HomeScreen> {
             // plan oluşturmaya çağırır. ("Hedef Belirle" banner'ı buradaydı,
             // yerini bu kart aldı.)
             const StudyPlanCard(),
+            const SizedBox(height: kDsGap),
+            // 3.5) Hızlı erişim: Akılda Kalıcı Kodlama + Mentörlük (kullanıcı
+            // isteği — anasayfadan tek dokunuşla ulaşılsın). Yan yana iki
+            // kompakt kart; dokununca ilgili sayfa açılır.
+            Row(
+              children: [
+                Expanded(
+                  child: _HizliErisimKarti(
+                    emoji: '🧠',
+                    baslik: 'Akılda Kalıcı\nKodlama',
+                    renk: c.mint,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => MnemonicsScreen(subjects: subjects)));
+                    },
+                  ),
+                ),
+                const SizedBox(width: kDsGap),
+                Expanded(
+                  child: _HizliErisimKarti(
+                    emoji: '🎓',
+                    baslik: 'Mentörlük\nSeansları',
+                    renk: c.gold,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const MentorScreen()));
+                    },
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: kDsGap),
             // 4) İstatistik şeridi.
             _HomeStatsStrip(
@@ -892,6 +942,50 @@ class _SubjectCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Anasayfadaki yan yana hızlı erişim kartı (Akılda Kalıcı Kodlama /
+/// Mentörlük). Dokununca ilgili sayfayı açar.
+class _HizliErisimKarti extends StatelessWidget {
+  final String emoji;
+  final String baslik;
+  final Color renk;
+  final VoidCallback onTap;
+  const _HizliErisimKarti({
+    required this.emoji,
+    required this.baslik,
+    required this.renk,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      accent: renk,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      onTap: onTap,
+      child: Row(
+        children: [
+          DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              baslik,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 12.5,
+                height: 1.25,
+                fontWeight: FontWeight.w800,
+                color: c.text,
+              ),
+            ),
+          ),
+          Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+        ],
       ),
     );
   }

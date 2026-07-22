@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../services/account_deletion_service.dart';
 import '../services/auth_service.dart';
+import '../services/in_app_notice_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../services/remote_question_service.dart';
@@ -187,15 +188,73 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     final servis = AccountDeletionService();
     String? hataMesaji;
+    var ilerlemeAcik = true;
 
     try {
       await servis.deleteAccount(storage);
     } on ReauthRequiredException {
-      // Oturum eski: aynı sağlayıcıyla yeniden doğrula, sonra TEK sefer daha
-      // dene. Bulut verisi ilk denemede zaten silindi; kalan yalnızca Auth
-      // kaydı.
+      // Oturum eski: Auth kaydını silmek için yeniden doğrulama şart.
+      //
+      // UX DÜZELTMESİ: Eskiden Google/Apple yeniden giriş penceresi, "Hesabın
+      // siliniyor…" ilerleme penceresi EKRANDA AÇIKKEN fırlıyordu — kullanıcı
+      // "silerken neden giriş istiyor?" diye haklı olarak şaşırıyordu. Artık
+      // önce ilerleme penceresi KAPANIR, NEDEN yeniden giriş gerektiği açıkça
+      // anlatılır, kullanıcı onaylarsa doğrulama yapılır ve silme ilerleme
+      // penceresi yeniden açılarak tamamlanır.
+      navigator.pop();
+      ilerlemeAcik = false;
+
+      if (!mounted) return;
+      final devamEt = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Güvenlik doğrulaması gerekiyor'),
+          content: const Text(
+              'Hesap silme geri alınamaz bir işlem olduğu için, son adımda '
+              'kimliğini bir kez daha doğrulamamız gerekiyor. Devam edersen '
+              'giriş ekranı açılacak; doğrulama biter bitmez silme işlemi '
+              'kaldığı yerden tamamlanacak.'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: const Text('Vazgeç')),
+            TextButton(
+                onPressed: () => Navigator.pop(ctx, true),
+                child: const Text('Doğrula ve Sil')),
+          ],
+        ),
+      );
+      if (devamEt != true) {
+        messenger.showSnackBar(const SnackBar(
+            content: Text(
+                'Silme tamamlanmadı. Hesabın duruyor; istersen daha sonra tekrar deneyebilirsin.')));
+        return;
+      }
+
       final sonuc = await auth.reauthenticate();
       if (sonuc.success) {
+        if (!mounted) return;
+        // İlerleme penceresini yeniden aç ve kalan silmeyi bitir.
+        showDialog<void>(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => const PopScope(
+            canPop: false,
+            child: AlertDialog(
+              content: Row(
+                children: [
+                  SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(strokeWidth: 2.5)),
+                  SizedBox(width: 16),
+                  Expanded(child: Text('Hesabın siliniyor…')),
+                ],
+              ),
+            ),
+          ),
+        );
+        ilerlemeAcik = true;
         try {
           await servis.deleteAccount(storage);
         } catch (e) {
@@ -208,7 +267,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       hataMesaji = e.toString();
     }
 
-    navigator.pop(); // ilerleme penceresini kapat
+    if (ilerlemeAcik) navigator.pop(); // ilerleme penceresini kapat
 
     if (hataMesaji != null) {
       messenger.showSnackBar(
@@ -352,7 +411,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // "Hesabımı Sil" yalnızca gerçekten bir hesap varken gösterilir.
     // watch (read değil) — kullanıcı giriş/çıkış yapınca ekran kendini
     // tazelesin ve seçenek anında görünsün/kaybolsun.
-    final girisYapildi = context.watch<AuthService>().isSignedIn;
+    // isRealSignedIn: anonim oturum (düello/sohbetin sessizce açtığı) "giriş
+    // yapılmış" SAYILMAZ — yoksa hesabı olmayan kullanıcıya "Çıkış Yap /
+    // Hesabımı Sil" gösterilip "Giriş Yap" gizleniyordu.
+    final girisYapildi = context.watch<AuthService>().isRealSignedIn;
 
     return Scaffold(
       appBar: AppBar(title: const Text('⚙️ Ayarlar')),
@@ -387,8 +449,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
                               return;
                             }
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Tema değiştirildi!')),
+                            // Üstten kayan temalı afiş (SnackBar yerine —
+                            // kullanıcı isteği: bildirimler üstten gelsin).
+                            InAppNoticeService.instance.goster(
+                              const InAppNotice(
+                                baslik: 'Tema değiştirildi!',
+                                govde: 'Yeni görünümün her ekranda geçerli.',
+                                emoji: '🎨',
+                              ),
                             );
                           },
                         ),

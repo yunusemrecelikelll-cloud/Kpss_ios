@@ -9,6 +9,7 @@ import 'services/auth_service.dart';
 import 'services/remote_question_service.dart';
 import 'services/tts_service.dart';
 import 'services/notification_service.dart';
+import 'services/study_plan_service.dart';
 import 'theme/theme_provider.dart';
 import 'screens/splash_screen.dart';
 import 'widgets/in_app_notice_overlay.dart';
@@ -23,6 +24,18 @@ Future<void> main() async {
   // hazırla. Desteklenmeyen platformlarda (web/masaüstü) ya da izin
   // verilmediğinde sessizce no-op olur — asla istisna fırlatmaz.
   await NotificationService.instance.initialize();
+
+  // KRİTİK — "izin verdim ama bildirim gelmiyor" düzeltmesi:
+  // Android, uygulama YENİDEN KURULDUĞUNDA (yeni APK) planlanmış tüm
+  // alarmları siler. Plan yerel kayıtta durduğu hâlde bildirimler bir daha
+  // KURULMUYORDU; kullanıcı ancak plan ekranını açıp bir şey değiştirirse
+  // yeniden kuruluyordu. Artık HER açılışta plan yeniden kaydediliyor
+  // (schedulePlan önce eskileri iptal eder, çift bildirim oluşmaz).
+  // Beklenmez (unawaited): açılışı yavaşlatmasın.
+  // ignore: unawaited_futures
+  NotificationService.instance
+      .schedulePlan(StudyPlanService(storage).getActivePlan(), storage: storage)
+      .catchError((e) => debugPrint('Açılışta bildirim kurulumu: $e'));
 
   runApp(
     MultiProvider(

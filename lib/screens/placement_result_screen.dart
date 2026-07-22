@@ -229,9 +229,12 @@ class _SubjectStatCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
+              // DERS ADI METNİN İÇİNDE: "bu derse çalışman gerekiyor" derken
+              // hangi ders olduğu açıkça yazsın (kullanıcı isteği — başlıktaki
+              // ada bakmak gerekmesin).
               stat.isWeak
-                  ? '📌 Bu konuda çalışman gerekiyor — ama endişelenme, biraz pratikle hızla toparlarsın!'
-                  : '✅ Bu derste gayet iyisin, böyle devam!',
+                  ? '📌 ${stat.subjectAd} dersine çalışman gerekiyor — ama endişelenme, biraz pratikle hızla toparlarsın!'
+                  : '✅ ${stat.subjectAd} dersinde gayet iyisin, böyle devam!',
               style: TextStyle(fontSize: 12.5, color: colors.textDim),
             ),
             if (stat.isWeak) ...[

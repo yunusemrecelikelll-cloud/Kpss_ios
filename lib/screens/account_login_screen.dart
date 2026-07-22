@@ -185,6 +185,14 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       final storage = context.read<StorageService>();
       if (displayName != null && displayName.isNotEmpty) {
         await storage.setUserName(displayName);
+      } else {
+        // displayName henüz oluşmamış olabilir (ör. hesap silindikten sonra
+        // yeniden kayıt). "Misafir" olarak kalmasın — e-posta öneki her zaman
+        // vardır ve anlamlı bir hitap sağlar.
+        final epostaOnEki = result.user?.email?.split('@').first.trim();
+        if (epostaOnEki != null && epostaOnEki.isNotEmpty) {
+          await storage.setUserName(epostaOnEki);
+        }
       }
       // ÖNEMLİ: Bulut yedeklemeyi giriş BAŞARILI olur olmaz aç. Bu satır
       // syncDown/syncUp'tan ÖNCE olmalı: CloudSyncService.syncUp bu ayarı

@@ -82,6 +82,19 @@ class AuthService extends ChangeNotifier {
 
   bool get isSignedIn => currentUser != null;
 
+  /// GERÇEK (anonim olmayan) bir hesapla giriş var mı?
+  ///
+  /// ÖNEMLİ AYRIM: Düello/sohbet altyapısı gerektiğinde SESSİZCE anonim oturum
+  /// açar (bkz. DuelService.ensureSignedIn). Anonim oturum `isSignedIn`'i true
+  /// yapar ama ortada isim/e-posta yoktur — bu yüzden Ayarlar "giriş yapılmış"
+  /// gösterirken anasayfa "Misafir" diyordu. Kullanıcıya dönük TÜM "giriş
+  /// yaptın mı?" kontrolleri (Ayarlar'daki Giriş Yap/Çıkış Yap, anasayfa
+  /// karşılama ve giriş banner'ı) BUNU kullanmalı.
+  bool get isRealSignedIn {
+    final u = currentUser;
+    return u != null && !u.isAnonymous;
+  }
+
   /// Apple ile giriş sadece iOS'ta gösterilmeli (App Store kuralları gereği
   /// diğer platformlarda zorunlu değildir).
   bool get isAppleSignInAvailable => !kIsWeb && Platform.isIOS;
@@ -113,7 +126,11 @@ class AuthService extends ChangeNotifier {
       case 'wrong-password':
       case 'invalid-credential':
       case 'invalid-login-credentials':
-        return 'E-posta veya şifre hatalı.';
+        // "Hesabımı Sil" sonrası eski e-postayla GİRİŞ denenirse hesap artık
+        // yoktur ve Firebase aynı hatayı döner — kullanıcı "tekrar hesap
+        // oluşturmuyor" sanıyordu. Yeniden kayıt yolunu açıkça söylüyoruz.
+        return 'E-posta veya şifre hatalı. Hesabını daha önce sildiysen bu '
+            'hesap artık yok — "Kayıt Ol" ile yeni hesap oluşturabilirsin.';
       case 'user-disabled':
         return 'Bu hesap devre dışı bırakılmış.';
       case 'too-many-requests':
