@@ -25,6 +25,14 @@ service cloud.firestore {
     function sahip(uid) {
       return request.auth != null && request.auth.uid == uid;
     }
+    // YÖNETİCİ KİMLİĞİ — yönetici web paneli (admin_panel.html) bu uid ile
+    // giriş yapan hesaba: tüm kullanıcı durumlarını okuma ve premium
+    // verme/geri alma yetkisi tanır. 'ADMIN_UID_BURAYA' değerini Firebase
+    // Console > Authentication > Users listesinden KENDİ hesabının UID'siyle
+    // değiştir (panel, giriş yapınca UID'ini gösterir — oradan kopyala).
+    function yonetici() {
+      return request.auth != null && request.auth.uid == 'ADMIN_UID_BURAYA';
+    }
 
     // ── Soru bankaları: herkes okur, kimse yazamaz ─────────────────────────
     // İçerik yalnızca Firebase Console / Admin SDK üzerinden güncellenir.
@@ -288,6 +296,25 @@ service cloud.firestore {
       // zorlaştırmak, ilişki kurmayı zorlaştırmaktan farklı olarak kullanıcının
       // aleyhinedir.
       allow delete: if girisli() && friendUid == request.auth.uid;
+    }
+
+    // ── Kullanıcı canlılık kaydı (yönetici paneli verisi) ──────────────────
+    // Uygulama açılış/öne gelişte kullanıcı KENDİ dokümanını yazar (ad,
+    // e-posta, premium, lastSeen). Yalnızca YÖNETİCİ tümünü okuyabilir —
+    // sıradan kullanıcılar birbirinin e-postasını/son görülmesini GÖREMEZ.
+    match /user_status/{uid} {
+      allow read: if yonetici() || sahip(uid);
+      allow create, update: if sahip(uid);
+      allow delete: if sahip(uid) || yonetici();
+    }
+
+    // ── Panelden premium verme ─────────────────────────────────────────────
+    // Yalnızca yönetici yazar; kullanıcı KENDİ kaydını okur (uygulama girişte
+    // kontrol edip premium'u uygular) ve hesap silmede silebilir.
+    match /premium_grants/{uid} {
+      allow read: if sahip(uid) || yonetici();
+      allow create, update: if yonetici();
+      allow delete: if sahip(uid) || yonetici();
     }
 
     // ── Varsayılan: her şey kapalı ─────────────────────────────────────────

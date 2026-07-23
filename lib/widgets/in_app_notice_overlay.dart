@@ -7,6 +7,8 @@ import '../services/auth_service.dart';
 import '../services/chat_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/notification_service.dart';
+import '../services/presence_service.dart';
+import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
 
 /// Uygulamanın TAMAMINI saran bildirim katmanı (main.dart → MaterialApp.builder).
@@ -72,6 +74,15 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _yasamDurumu = state;
+    // Uygulama öne geldiğinde canlılık kaydını tazele (yönetici panelindeki
+    // "online" sayısı bundan beslenir) ve panelden premium verildiyse uygula.
+    if (state == AppLifecycleState.resumed && mounted) {
+      final storage = context.read<StorageService>();
+      // ignore: unawaited_futures
+      PresenceService.instance.bildir(storage);
+      // ignore: unawaited_futures
+      PresenceService.instance.premiumKontrol(storage);
+    }
   }
 
   @override
@@ -88,6 +99,13 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
     _sonOkunmamis.clear();
     _bilinenIstekler.clear();
     if (uid == null) return;
+
+    // Giriş algılandı: canlılık kaydı + panelden verilen premium kontrolü.
+    final storage = context.read<StorageService>();
+    // ignore: unawaited_futures
+    PresenceService.instance.bildir(storage);
+    // ignore: unawaited_futures
+    PresenceService.instance.premiumKontrol(storage);
 
     _threadAboneligi = _chat.streamMyThreads(uid).listen((threadler) {
       if (!_threadTabanAlindi) {

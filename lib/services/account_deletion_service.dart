@@ -232,6 +232,16 @@ class AccountDeletionService {
       await _deleteDocs(snap.docs.map((d) => d.reference).toList());
     });
 
+    // 10.3) Canlılık kaydı — 'user_status/{uid}' (yönetici paneli verisi).
+    await _adim('user_status', () async {
+      await _db.collection('user_status').doc(uid).delete();
+    });
+
+    // 10.4) Panelden verilmiş premium kaydı — 'premium_grants/{uid}'.
+    await _adim('premium_grants', () async {
+      await _db.collection('premium_grants').doc(uid).delete();
+    });
+
     // 10.5) 6 haneli kullanıcı ID kaydı — 'user_ids/{kod}'
     //       Silinmezse kod kalıcı olarak rezerve kalır ve başka biri o kodu
     //       arayınca artık var olmayan bir hesaba istek göndermeye çalışır.
