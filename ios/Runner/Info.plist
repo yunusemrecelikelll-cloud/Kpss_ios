@@ -99,6 +99,6 @@
 	     çökmesin diye zorunlu. Gerçek yayında AdMob konsolundan aldığın iOS
 	     App ID ile değiştir. Reklam BİRİM kimlikleri ad_service.dart'ta. -->
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<string>ca-app-pub-2208830315848722~5684578652</string>
 </dict>
 </plist>

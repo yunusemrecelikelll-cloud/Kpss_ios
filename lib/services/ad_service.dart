@@ -14,11 +14,10 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 ///    çağrılırsa gösterir, o yüzden çağrı yerlerinde premium kontrolü ŞART).
 ///  • Ödül: kullanıcı reklamı SONUNA KADAR izlerse [odulKrediSayisi] kredi.
 ///
-/// REKLAM KİMLİKLERİ ŞU AN GOOGLE'IN RESMÎ TEST KİMLİKLERİDİR — reklam "Test
-/// Ad" olarak çıkar, akış uçtan uca çalışır. Gerçek yayında [_androidRewarded]
-/// / [_iosRewarded] değerlerini AdMob konsolundaki gerçek ödüllü reklam birim
-/// kimliğinle değiştir (ayrıca native App ID: AndroidManifest.xml +
-/// Info.plist).
+/// REKLAM KİMLİKLERİ GERÇEK AdMob birim kimlikleridir. NOT: AdMob uygulaması
+/// henüz mağazaya bağlanıp incelenmediği için "sınırlı reklam sunumu"
+/// durumunda olabilir; geliştirme sırasında geçersiz trafik riskine karşı
+/// AdMob konsolundan cihazını "test cihazı" olarak eklemen önerilir.
 class AdService {
   AdService._();
   static final AdService instance = AdService._();
@@ -26,9 +25,10 @@ class AdService {
   /// Bir ödüllü reklam izleme başına verilen kredi.
   static const int odulKrediSayisi = 2;
 
-  // Google resmî TEST ödüllü reklam birim kimlikleri.
-  static const String _androidRewarded = 'ca-app-pub-3940256099942544/5224354917';
-  static const String _iosRewarded = 'ca-app-pub-3940256099942544/1712485313';
+  // GERÇEK AdMob ödüllü reklam birim kimlikleri (birim adı: kpss_rewarded).
+  // Native App ID'ler: AndroidManifest.xml + ios/Runner/Info.plist.
+  static const String _androidRewarded = 'ca-app-pub-2208830315848722/6997660328';
+  static const String _iosRewarded = 'ca-app-pub-2208830315848722/3832561079';
 
   bool _baslatildi = false;
   RewardedAd? _reklam;
