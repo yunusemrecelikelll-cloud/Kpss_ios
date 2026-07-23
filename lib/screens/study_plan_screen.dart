@@ -393,6 +393,14 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
             const SizedBox(height: 4),
             _OneriKarti(servis: servis),
             const SizedBox(height: kDsGap),
+            // Bildirim sağlığı: kurulu bildirim sayısı + anında test + tam
+            // alarm izni durumu. "Bildirim gelmiyor" şikayetinde sorunun
+            // KURULUMDA mı (sayı 0) yoksa TESLİMATTA mı (sayı >0 ama
+            // gelmiyor → izin/pil optimizasyonu) olduğunu telefonda gösterir.
+            const DsSectionHeader(title: 'Bildirim Durumu'),
+            const SizedBox(height: 4),
+            const _BildirimDurumKarti(),
+            const SizedBox(height: kDsGap),
             _BilgiNotu(colors: c),
             const SizedBox(height: 24),
           ],
@@ -825,6 +833,144 @@ class _BilgiNotu extends StatelessWidget {
               'Ayarlar\'dan tamamen kapatabilirsin.',
               style: TextStyle(fontSize: 11.5, height: 1.45, color: colors.textFaint),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Bildirim sağlığı kartı: kurulu bildirim sayısı, anında test butonu ve
+/// (Android'de) tam alarm izni durumu + ayara gitme kısayolu.
+///
+/// "Bildirim gelmiyor" şikayetini teşhis edilebilir yapar:
+///  • Kurulu sayı 0        → planlama tarafında sorun var.
+///  • Sayı > 0 ama gelmiyor → teslimat engelleniyor: tam alarm izni kapalı
+///    (Android 14+ varsayılanı) ya da üretici pil optimizasyonu öldürüyor.
+class _BildirimDurumKarti extends StatefulWidget {
+  const _BildirimDurumKarti();
+
+  @override
+  State<_BildirimDurumKarti> createState() => _BildirimDurumKartiState();
+}
+
+class _BildirimDurumKartiState extends State<_BildirimDurumKarti> {
+  int _kurulu = 0;
+  bool _exactVar = true;
+  bool _yuklendi = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _tazele();
+  }
+
+  Future<void> _tazele() async {
+    final servis = NotificationService.instance;
+    final kurulu = await servis.pendingPlanCount();
+    final exact = await servis.exactIzinVarMi();
+    if (!mounted) return;
+    setState(() {
+      _kurulu = kurulu;
+      _exactVar = exact;
+      _yuklendi = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    if (!_yuklendi) return const SizedBox.shrink();
+
+    return DsCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                _kurulu > 0 ? Icons.notifications_active : Icons.notifications_off,
+                size: 18,
+                color: _kurulu > 0 ? c.success : c.warn,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  _kurulu > 0
+                      ? 'Kurulu hatırlatma: $_kurulu bildirim'
+                      : 'Kurulu hatırlatma yok — plana seans ekleyince kurulur.',
+                  style: TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w700, color: c.text),
+                ),
+              ),
+            ],
+          ),
+          if (!_exactVar) ...[
+            const SizedBox(height: 10),
+            Text(
+              '⚠️ "Alarmlar ve hatırlatıcılar" izni kapalı. Bu izin kapalıyken '
+              'Android bildirimleri geciktirebilir ya da hiç göstermeyebilir. '
+              'Tam saatinde bildirim için izni aç:',
+              style: TextStyle(fontSize: 12, height: 1.4, color: c.textDim),
+            ),
+            const SizedBox(height: 8),
+            DsPillButton(
+              label: 'Alarm İznini Aç',
+              color: c.warn,
+              leadingIcon: Icons.alarm_on,
+              onPressed: () async {
+                context.read<SoundService>().click();
+                await NotificationService.instance.exactIzinAyariniAc();
+                // Ayardan dönünce durumu tazele.
+                await _tazele();
+                // Yeni izinle bildirimleri yeniden kur.
+                if (!mounted) return;
+                final storage = context.read<StorageService>();
+                await NotificationService.instance.schedulePlan(
+                  StudyPlanService(storage).getActivePlan(),
+                  storage: storage,
+                );
+                await _tazele();
+              },
+            ),
+          ],
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: DsPillButton(
+                  label: 'Test Bildirimi Gönder',
+                  color: c.violetL,
+                  filled: false,
+                  leadingIcon: Icons.notifications,
+                  onPressed: () async {
+                    context.read<SoundService>().click();
+                    final storage = context.read<StorageService>();
+                    await NotificationService.instance
+                        .showTestNotification(storage: storage);
+                  },
+                ),
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                tooltip: 'Durumu yenile',
+                icon: Icon(Icons.refresh, size: 20, color: c.textFaint),
+                onPressed: () {
+                  context.read<SoundService>().click();
+                  _tazele();
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Test bildirimi anında gelmelidir. Test geliyor ama planlı '
+            'hatırlatma gelmiyorsa: telefonun Ayarlar > Pil bölümünden bu '
+            'uygulama için pil optimizasyonunu "kısıtlamasız" yap (Xiaomi/'
+            'Samsung gibi cihazlar planlı bildirimleri arka planda '
+            'öldürebiliyor).',
+            style: TextStyle(fontSize: 11, height: 1.4, color: c.textFaint),
           ),
         ],
       ),

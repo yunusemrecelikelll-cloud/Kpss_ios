@@ -335,6 +335,39 @@ class NotificationService {
     }
   }
 
+  /// Android'de TAM ZAMANLI alarm izni var mı? (iOS'ta her zaman true —
+  /// oradaki bildirimler sistem takvim tetikleyicisiyle çalışır.)
+  /// Android 12-13'te kurulumda otomatik verilir; 14+'ta varsayılan kapalıdır
+  /// ve kapalıyken bildirimler "yaklaşık" moda düşer — Doze/pil optimizasyonu
+  /// altında FİİLEN HİÇ gelmeyebilir ("bildirim gelmiyor" şikayetinin en
+  /// yaygın sebebi).
+  Future<bool> exactIzinVarMi() async {
+    if (!destekleniyorMu) return false;
+    if (defaultTargetPlatform != TargetPlatform.android) return true;
+    try {
+      final android = _plugin.resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
+      return await android?.canScheduleExactNotifications() ?? false;
+    } catch (e) {
+      debugPrint('NotificationService.exactIzinVarMi: $e');
+      return false;
+    }
+  }
+
+  /// Android 14+'ta sistemin "Alarmlar ve hatırlatıcılar" ayar sayfasını açar
+  /// (kullanıcı İSTEDİĞİ İÇİN — kendiliğinden asla açılmaz). Dönüşte izni
+  /// tekrar kontrol etmek çağıranın işidir.
+  Future<void> exactIzinAyariniAc() async {
+    if (defaultTargetPlatform != TargetPlatform.android) return;
+    try {
+      final android = _plugin.resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
+      await android?.requestExactAlarmsPermission();
+    } catch (e) {
+      debugPrint('NotificationService.exactIzinAyariniAc: $e');
+    }
+  }
+
   /// Kurulmuş bekleyen plan bildirimlerinin sayısı (hata olursa 0).
   Future<int> pendingPlanCount() async {
     if (!destekleniyorMu || !_hazir) return 0;

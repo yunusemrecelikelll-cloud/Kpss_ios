@@ -89,6 +89,23 @@ class StorageService extends ChangeNotifier {
     return cap;
   }
 
+  /// TÜM uygulama verisini sıfırlar — bütün profiller, ayarlar, istatistikler,
+  /// rozetler ve PREMIUM dahil. Yalnızca "Hesabımı Sil" akışı kullanır
+  /// (kullanıcı isteği: silince premium ve istatistikler de gitsin; uygulama
+  /// ilk kurulmuş gibi başlasın).
+  ///
+  /// NOT: Mağazadan GERÇEKTEN satın alınmış bir abonelik, mağaza hesabında
+  /// yaşamaya devam eder — uygulama yeniden girişte satın alımı geri
+  /// yükleyebilir (Apple/Google kuralı; aboneliği ancak mağaza iptal eder).
+  Future<void> tumVerileriSil() async {
+    final keys = _prefs?.getKeys().toList() ?? [];
+    for (final k in keys) {
+      await _prefs?.remove(k);
+    }
+    _activeUser = '';
+    notifyListeners();
+  }
+
   Future<void> deleteUser(String name) async {
     final prefix = _prefix(name);
     final keys = _prefs?.getKeys().where((k) => k.startsWith(prefix)).toList() ?? [];

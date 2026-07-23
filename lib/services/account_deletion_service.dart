@@ -307,13 +307,14 @@ class AccountDeletionService {
     await _clearLocal(storage);
   }
 
-  /// Cihazdaki tüm yerel ilerlemeyi siler (testler, istatistikler, rozetler,
-  /// ayarlar, oyun rekorları). StorageService.deleteUser zaten o profile ait
-  /// TÜM anahtarları kaldırır.
+  /// Cihazdaki TÜM veriyi sıfırlar — profiller, istatistikler, rozetler,
+  /// ayarlar ve PREMIUM dahil (kullanıcı isteği: "hesabı sil yapınca bütün
+  /// premium ve istatistikler sıfırlansın").
+  ///
+  /// ESKİDEN yalnızca aktif profilin anahtarları siliniyordu; profil adı
+  /// boşsa ya da premium başka bir kapsamda kalmışsa artıklar kalabiliyordu.
+  /// Artık uygulama ilk kurulmuş gibi tertemiz başlar.
   Future<void> _clearLocal(StorageService storage) async {
-    final aktif = storage.getActiveUser();
-    if (aktif.isNotEmpty) {
-      await storage.deleteUser(aktif);
-    }
+    await storage.tumVerileriSil();
   }
 }

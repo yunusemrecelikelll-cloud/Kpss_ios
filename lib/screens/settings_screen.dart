@@ -124,6 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // Context'e bağlı her şeyi await'ten ÖNCE al (bkz. _hesabiSil'deki not).
     context.read<SoundService>().click();
     final auth = context.read<AuthService>();
+    final storage = context.read<StorageService>();
     final messenger = ScaffoldMessenger.of(context);
 
     final onay = await showDialog<bool>(
@@ -143,6 +144,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (onay != true) return;
 
     await auth.signOut();
+    // DÜZELTİLDİ ("çıkış yaptım ama anasayfa hâlâ adımı söylüyor"):
+    // Girişte hesabın adı yerel kayda senkronlanıyor (setUserName); çıkışta
+    // temizlenmeyince karşılama hâlâ o adı gösteriyordu. Ad hesaba ait bir
+    // bilgi olduğu için çıkışla birlikte temizlenir — karşılama "Misafir"e
+    // döner. İlerleme/istatistikler SİLİNMEZ (yalnızca isim).
+    await storage.setUserName('');
     messenger.showSnackBar(const SnackBar(content: Text('Çıkış yapıldı.')));
   }
 

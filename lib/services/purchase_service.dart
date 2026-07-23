@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
 import 'cloud_sync_service.dart';
+import 'presence_service.dart';
 import 'storage_service.dart';
 
 /// ============================================================================
@@ -213,6 +214,10 @@ class PurchaseService extends ChangeNotifier {
             // durumu kaybolmuş görünmez (bkz. CloudSyncService.syncDown).
             // ignore: unawaited_futures
             CloudSyncService().syncUp(_storage);
+            // Yönetici panelindeki premium/ücretsiz etiketi beklemeden
+            // tazelensin (2 dk'lık nabız gazını atla).
+            // ignore: unawaited_futures
+            PresenceService.instance.bildir(_storage, zorla: true);
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);

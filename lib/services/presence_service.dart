@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 import '../firebase_bootstrap.dart';
+import 'in_app_notice_service.dart';
 import 'storage_service.dart';
 
 /// Yönetici paneli için "canlılık" kaydı + uzaktan premium kontrolü.
@@ -29,15 +30,18 @@ class PresenceService {
 
   FirebaseFirestore get _db => FirebaseFirestore.instance;
 
-  /// Kullanıcının canlılık kaydını yazar (en fazla 2 dakikada bir).
+  /// Kullanıcının canlılık kaydını yazar (en fazla 2 dakikada bir; [zorla]
+  /// true ise gaz süresi atlanır — premium değişimi gibi panelin HEMEN
+  /// görmesi gereken durumlar için).
   /// Anonim oturumlar YAZILMAZ — panelde gerçek hesaplar görünsün.
-  Future<void> bildir(StorageService storage) async {
+  Future<void> bildir(StorageService storage, {bool zorla = false}) async {
     if (!isFirebaseConfigured) return;
     final user = FirebaseAuth.instance.currentUser;
     if (user == null || user.isAnonymous) return;
 
     final simdi = DateTime.now();
-    if (_sonBildirim != null &&
+    if (!zorla &&
+        _sonBildirim != null &&
         simdi.difference(_sonBildirim!) < const Duration(minutes: 2)) {
       return;
     }
@@ -76,12 +80,26 @@ class PresenceService {
         await storage.saveSettings({'premiumKaynak': 'grant'});
         await storage.setUserPlan('premium');
         debugPrint('PresenceService: panel üzerinden premium uygulandı.');
+        // Kullanıcıya haber ver (üstten temalı afiş) ve paneldeki etiketi
+        // beklemeden tazele — panel "ücretsiz" gösterip kafa karıştırmasın.
+        InAppNoticeService.instance.goster(const InAppNotice(
+          baslik: 'Yönetici tarafından Premium verildi!',
+          govde: '',
+          emoji: '👑',
+        ));
+        await bildir(storage, zorla: true);
       } else if (!grantPremium && storage.isPremiumUser() && kaynakGrant) {
         // Yalnızca PANELDEN verilmiş premium geri alınır; satın alınmışa
         // dokunulmaz (kaynak işareti 'grant' değilse buraya girilmez).
         await storage.saveSettings({'premiumKaynak': ''});
         await storage.setUserPlan('free');
         debugPrint('PresenceService: panel premium\'u geri alındı.');
+        InAppNoticeService.instance.goster(const InAppNotice(
+          baslik: 'Premium üyeliğin sona erdi',
+          govde: '',
+          emoji: 'ℹ️',
+        ));
+        await bildir(storage, zorla: true);
       }
     } catch (e) {
       debugPrint('PresenceService.premiumKontrol başarısız: $e');
