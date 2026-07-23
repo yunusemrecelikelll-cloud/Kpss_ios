@@ -532,6 +532,54 @@ class StorageService extends ChangeNotifier {
     return s['plays'] as int;
   }
 
+  // ── HAK CÜZDANI + reklam/satın alma ile ekstra haklar ──────────────────────
+  //
+  // Birleşik "hak" kredisi (kullanıcı kararı): ödüllü reklam +2, satın alma
+  // +10. 1 hak = 1 ekstra oyun hakkı YA DA 1 deneme sınavı tekrarı. Kredi
+  // istenen yerde harcanır (sohbet/DM HARİÇ — onlar reklamla açılmaz).
+  // Premium kullanıcıda tüm bu sistem GİZLİDİR (sınırsız).
+
+  int getHaklar() => (_get('haklar', 0) as num).toInt();
+  Future<void> hakEkle(int n) async => _set('haklar', getHaklar() + n);
+
+  /// [n] hak harcamayı dener. Yeterli bakiye yoksa false döner ve hiçbir şey
+  /// değişmez.
+  Future<bool> hakHarca(int n) async {
+    final mevcut = getHaklar();
+    if (mevcut < n) return false;
+    await _set('haklar', mevcut - n);
+    return true;
+  }
+
+  /// Bir oyunun BUGÜN için kazanılmış EKSTRA oynama hakları (reklam/hak ile).
+  /// Günlük ücretsiz limitin ÜSTÜNE eklenir; gün değişince sıfırlanır.
+  int getExtraPlays(String gameId) {
+    final today = DateTime.now().toString().split(' ')[0];
+    final s = Map<String, dynamic>.from(
+        _get('extraplays_$gameId', {'date': today, 'extra': 0}));
+    if (s['date'] != today) return 0;
+    return (s['extra'] as num).toInt();
+  }
+
+  Future<void> addExtraPlays(String gameId, int n) async {
+    final today = DateTime.now().toString().split(' ')[0];
+    final mevcut = getExtraPlays(gameId);
+    await _set('extraplays_$gameId', {'date': today, 'extra': mevcut + n});
+  }
+
+  /// Tam deneme sınavı için kazanılmış ekstra tekrar hakları (reklam/hak ile).
+  /// Deneme sınavı ömür boyu sayıldığından bu da ömür boyu birikir.
+  int getBonusFullTests() => (_get('bonus_full_tests', 0) as num).toInt();
+  Future<void> addBonusFullTests(int n) async =>
+      _set('bonus_full_tests', getBonusFullTests() + n);
+
+  // ── Onboarding (karşılama tanıtımı) — CİHAZA özel, GLOBAL ────────────────────
+  // Profil/hesaptan bağımsız: kaydırmalı tanıtım cihazda YALNIZCA İLK kurulumda
+  // bir kez gösterilir. Bu yüzden profil ön eki KULLANILMAZ, doğrudan _prefs.
+  bool onboardingGorulduMu() => _prefs?.getBool('onboarding_seen_v1') ?? false;
+  Future<void> onboardingGoruldu() async =>
+      _prefs?.setBool('onboarding_seen_v1', true);
+
   // ── Oyun ilerlemesi (Kart Oyunu V2 / Solitaire) — konu bazlı geçme takibi ──
   Map<String, bool> getGamePassedTopics(String gameId) =>
       Map<String, bool>.from(_get('game_passed_$gameId', <String, dynamic>{}));

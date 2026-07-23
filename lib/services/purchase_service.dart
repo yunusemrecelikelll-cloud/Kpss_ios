@@ -20,8 +20,20 @@ import 'storage_service.dart';
 const String kOgrenciPremiumId = 'premium_ogrenci_aylik';
 const String kTamPremiumId = 'premium_tam_aylik';
 
+/// TÜKETİLEBİLİR (consumable) "hak paketi": 10 hak, ~9,99 TL. Aboneliklerden
+/// farklı olarak tekrar tekrar satın alınabilir; her satın almada cüzdana
+/// [kHakPaketiMiktar] hak eklenir ve mağazada TÜKETİLİR (completePurchase +
+/// consume) ki kullanıcı yeniden alabilsin. Mağazada bu ID ile "consumable"
+/// ürün tanımlanmalı (Play: uygulama içi ürün / App Store: tüketilebilir).
+const String kHakPaketiId = 'hak_paketi_10';
+const int kHakPaketiMiktar = 10;
+
 /// Sorgulanacak / satın alınabilecek tüm ürün ID'lerinin kümesi.
-const Set<String> kPremiumProductIds = {kOgrenciPremiumId, kTamPremiumId};
+const Set<String> kPremiumProductIds = {
+  kOgrenciPremiumId,
+  kTamPremiumId,
+  kHakPaketiId,
+};
 
 /// Mağaza / satın alma akışının o anki durumu. UI bu duruma göre buton
 /// metnini, yükleniyor göstergesini ve hata mesajını belirler.
@@ -163,8 +175,14 @@ class PurchaseService extends ChangeNotifier {
       notifyListeners();
 
       final purchaseParam = PurchaseParam(productDetails: product);
-      // Abonelik = non-consumable akış (yukarıdaki nota bakın).
-      await _iap.buyNonConsumable(purchaseParam: purchaseParam);
+      if (productId == kHakPaketiId) {
+        // Hak paketi TÜKETİLEBİLİR: tekrar tekrar alınabilsin diye consumable
+        // akışıyla satın alınır.
+        await _iap.buyConsumable(purchaseParam: purchaseParam);
+      } else {
+        // Abonelik = non-consumable akış (yukarıdaki nota bakın).
+        await _iap.buyNonConsumable(purchaseParam: purchaseParam);
+      }
       // Sonuç purchaseStream üzerinden _onPurchaseUpdate'e gelecek.
     } catch (e) {
       status = PurchaseServiceStatus.error;
@@ -218,6 +236,12 @@ class PurchaseService extends ChangeNotifier {
             // tazelensin (2 dk'lık nabız gazını atla).
             // ignore: unawaited_futures
             PresenceService.instance.bildir(_storage, zorla: true);
+          } else if (purchase.productID == kHakPaketiId &&
+              purchase.status == PurchaseStatus.purchased) {
+            // TÜKETİLEBİLİR hak paketi: cüzdana ekle. "restored" durumunda
+            // EKLEME (tüketilebilir ürünler geri yüklenmez; yoksa çift sayım
+            // olurdu — yalnızca yeni 'purchased' olayında ekleriz).
+            await _storage.hakEkle(kHakPaketiMiktar);
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);

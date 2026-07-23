@@ -53,7 +53,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kBilgiMaratonuGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kBilgiMaratonuGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -138,7 +138,11 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kBilgiMaratonuGameId,
+        oyunAdi: 'Bilgi Maratonu',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Bilgi Maratonu',
         desc: "Bugünkü ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

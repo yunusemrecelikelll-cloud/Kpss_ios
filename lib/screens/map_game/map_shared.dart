@@ -168,7 +168,7 @@ Future<bool> consumeMapGameDailyPlay(BuildContext context) async {
   final storage = context.read<StorageService>();
   if (storage.isPremiumUser()) return true;
   final gp = storage.getGamePlayState(kMapGameId);
-  if ((gp['plays'] as int) >= kFreeGameDailyLimit) return false;
+  if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kMapGameId)) return false;
   await storage.useGamePlay(kMapGameId);
   return true;
 }

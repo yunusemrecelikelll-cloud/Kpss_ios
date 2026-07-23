@@ -84,6 +84,11 @@ dependencies:
   flutter_local_notifications: ^19.0.0
   timezone: ^0.10.0
 
+  # Ödüllü reklam (yalnızca kullanıcı butona basınca; banner/interstitial YOK).
+  # Premium kullanıcıya hiç gösterilmez. Test reklam kimlikleriyle kurulu;
+  # gerçek AdMob kimlikleri lib/services/ad_service.dart + native config.
+  google_mobile_ads: ^5.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

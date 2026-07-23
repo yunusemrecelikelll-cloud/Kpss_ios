@@ -92,7 +92,7 @@ class _Hiz60ScreenState extends State<Hiz60Screen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kHiz60GameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kHiz60GameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -259,7 +259,11 @@ class _Hiz60ScreenState extends State<Hiz60Screen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kHiz60GameId,
+        oyunAdi: '60 Saniyede Türkiye',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: '60 Saniye Challenge',
         desc: "Bugünkü ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

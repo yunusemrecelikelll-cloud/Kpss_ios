@@ -395,7 +395,7 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with TickerProviderStateMi
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kGame2Id);
-      if ((gp['plays'] as int) >= kFreeGameDaily) {
+      if ((gp['plays'] as int) >= kFreeGameDaily + storage.getExtraPlays(kGame2Id)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -519,7 +519,11 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with TickerProviderStateMi
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kGame2Id,
+        oyunAdi: 'Kart Eşleştirme',
+        onUnlocked: _retry,
+
         title: 'Kart Oyunu V2',
         desc: "Bugünkü $kFreeGameDaily ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

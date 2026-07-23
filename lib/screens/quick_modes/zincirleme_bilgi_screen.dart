@@ -104,7 +104,7 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kZincirlemeBilgiGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kZincirlemeBilgiGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -176,7 +176,11 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kZincirlemeBilgiGameId,
+        oyunAdi: 'Zincirleme Bilgi',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Zincirleme Bilgi',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz zincir hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

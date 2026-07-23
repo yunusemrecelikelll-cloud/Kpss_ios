@@ -9,6 +9,7 @@ import '../models/badge.dart';
 import '../services/auth_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/quiz_engine.dart';
+import '../widgets/hak_kazan_sheet.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../services/remote_question_service.dart';
@@ -118,15 +119,26 @@ class _HomeScreenState extends State<HomeScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final done = storage.getAttempts().where((a) => a.topicId == 'full-test').length;
-      if (done >= kFreeMaxFullTestAttempts) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Ücretsiz pakette $kFreeMaxFullTestAttempts deneme hakkın var. "
-              "Sınırsız deneme için Premium'a geç."),
-        ));
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-        return;
+      // Efektif hak = ücretsiz limit + reklam/hakla kazanılmış ekstra tekrarlar.
+      final izinli = kFreeMaxFullTestAttempts + storage.getBonusFullTests();
+      if (done >= izinli) {
+        // Hak dolduğunda "Hak Kazan" sayfası: reklam izle (+2 hak) ya da hak
+        // harcayarak bir deneme daha aç (kullanıcı isteği). Başarılıysa +1
+        // bonus deneme ekleyip sınavı başlat.
+        final oldu = await hakKazanSheet(
+          context,
+          baslik: 'Yeni deneme sınavı hakkı',
+          aciklama:
+              'Ücretsiz deneme sınavı hakkını kullandın. Reklam izleyerek '
+              '(+2 hak) ya da hakkından 1 harcayarak bir deneme sınavı daha '
+              'açabilirsin. Premium\'da sınırsızdır.',
+          maliyet: 1,
+        );
+        if (!oldu) return;
+        await storage.addBonusFullTests(1);
       }
     }
+    if (!mounted) return;
 
     setState(() => _startingFullTest = true);
     final remote = context.read<RemoteQuestionService>();

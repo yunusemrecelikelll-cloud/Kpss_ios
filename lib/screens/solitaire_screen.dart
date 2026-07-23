@@ -331,7 +331,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kSolitaireGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kSolitaireGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -649,6 +649,10 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   Widget build(BuildContext context) {
     if (_locked) {
       return LockedFeatureCard(
+        gameId: kSolitaireGameId,
+        oyunAdi: 'Eşleştirme Solitaire',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Eşleştirme Solitaire',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz oyun hakkını kullandın. "
             "Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",

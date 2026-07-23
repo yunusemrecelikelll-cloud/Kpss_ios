@@ -80,7 +80,7 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kTarihleriBilGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kTarihleriBilGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -196,7 +196,11 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kTarihleriBilGameId,
+        oyunAdi: 'Tarihleri Bil',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Tarihleri Bil',
         desc: "Bugünkü ücretsiz Tarihleri Bil hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

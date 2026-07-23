@@ -76,7 +76,8 @@ class _CardGameScreenState extends State<CardGameScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final cg = storage.getCardGameState();
-      if ((cg['plays'] as int) >= kFreeCardGameDaily) {
+      if ((cg['plays'] as int) >=
+          kFreeCardGameDaily + storage.getExtraPlays('cardgame1')) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -174,7 +175,10 @@ class _CardGameScreenState extends State<CardGameScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: 'cardgame1',
+        oyunAdi: 'Kart Eşleştirme',
+        onUnlocked: _newGame,
         title: 'Kart Eşleştirme Oyunu',
         desc: "Bugünkü $kFreeCardGameDaily ücretsiz hakkını kullandın. Yarın tekrar oynayabilir ya da Premium'a geçip "
             'sınırsız oynayabilirsin.',

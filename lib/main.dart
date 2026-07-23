@@ -9,6 +9,7 @@ import 'services/sound_service.dart';
 import 'services/auth_service.dart';
 import 'services/remote_question_service.dart';
 import 'services/tts_service.dart';
+import 'services/ad_service.dart';
 import 'services/notification_service.dart';
 import 'services/study_plan_service.dart';
 import 'theme/theme_provider.dart';
@@ -35,6 +36,12 @@ Future<void> main() async {
   // hazırla. Desteklenmeyen platformlarda (web/masaüstü) ya da izin
   // verilmediğinde sessizce no-op olur — asla istisna fırlatmaz.
   await NotificationService.instance.initialize();
+
+  // Ödüllü reklam SDK'sını başlat (yalnızca kullanıcı butona basınca reklam
+  // çıkar — banner/geçiş yok). Açılışı yavaşlatmasın diye beklenmez; premium
+  // kullanıcıya reklam hiç gösterilmez (çağrı yerlerinde kontrol edilir).
+  // ignore: unawaited_futures
+  AdService.instance.baslat();
 
   // KRİTİK — "izin verdim ama bildirim gelmiyor" düzeltmesi:
   // Android, uygulama YENİDEN KURULDUĞUNDA (yeni APK) planlanmış tüm

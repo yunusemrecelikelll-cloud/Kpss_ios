@@ -6,6 +6,7 @@ import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../widgets/hak_kazan_sheet.dart';
 import 'card_game_screen.dart';
 import 'card_game_v2_screen.dart';
 import 'map_game/map_game_screen.dart';
@@ -471,11 +472,50 @@ class ToolCard extends StatelessWidget {
 class LockedFeatureCard extends StatelessWidget {
   final String title;
   final String desc;
-  const LockedFeatureCard({super.key, required this.title, required this.desc});
+
+  /// Bir oyun ekranıysa, ücretsiz günlük hak dolunca "Reklam İzle / Hak Kullan"
+  /// akışını çalıştırabilmek için: oyunun günlük-hak kimliği + görünen adı +
+  /// kullanıcı hak kazanınca çağrılacak "kilidi aç" geri çağrımı. Üçü de
+  /// verilirse ekstra-hak butonu gösterilir; verilmezse yalnızca Premium yolu.
+  final String? gameId;
+  final String? oyunAdi;
+  final VoidCallback? onUnlocked;
+
+  const LockedFeatureCard({
+    super.key,
+    required this.title,
+    required this.desc,
+    this.gameId,
+    this.oyunAdi,
+    this.onUnlocked,
+  });
+
+  bool get _hakSunulabilir =>
+      gameId != null && oyunAdi != null && onUnlocked != null;
+
+  Future<void> _hakKazan(BuildContext context) async {
+    context.read<SoundService>().click();
+    final storage = context.read<StorageService>();
+    final oldu = await hakKazanSheet(
+      context,
+      baslik: 'Ekstra $oyunAdi hakkı',
+      aciklama:
+          'Bugünkü ücretsiz hakkın doldu. Reklam izleyerek (+2 hak) ya da '
+          'hakkından 1 harcayarak bir kez daha oynayabilirsin.',
+      maliyet: 1,
+    );
+    if (!oldu || !context.mounted) return;
+    await storage.addExtraPlays(gameId!, 1);
+    onUnlocked!();
+  }
 
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
+    // Premium kullanıcıya bu ekran zaten hiç gösterilmez; yine de hak butonu
+    // premium'da anlamsız olacağı için gizli tutulur.
+    final premium = context.watch<StorageService>().isPremiumUser();
+    final hakGoster = _hakSunulabilir && !premium;
     return Scaffold(
       appBar: AppBar(title: Text('🔒 $title')),
       body: SafeArea(
@@ -505,11 +545,21 @@ class LockedFeatureCard extends StatelessWidget {
                   const SizedBox(height: 14),
                   Text(desc, style: TextStyle(color: c.textFaint, height: 1.6, fontSize: 13)),
                   const SizedBox(height: 18),
+                  if (hakGoster) ...[
+                    DsPillButton(
+                      label: 'Reklam İzle / Hak Kullan',
+                      color: c.violet,
+                      leadingIcon: Icons.slideshow_rounded,
+                      onPressed: () => _hakKazan(context),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
                   Align(
                     alignment: Alignment.centerLeft,
                     child: DsPillButton(
                       label: "Premium'a Geç",
                       color: c.gold,
+                      filled: !hakGoster,
                       trailingIcon: Icons.arrow_forward,
                       onPressed: () {
                         context.read<SoundService>().click();

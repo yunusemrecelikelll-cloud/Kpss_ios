@@ -70,7 +70,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kKimimBenGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kKimimBenGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -172,7 +172,11 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kKimimBenGameId,
+        oyunAdi: 'Kimim Ben',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Kimim Ben',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz Kimim Ben hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

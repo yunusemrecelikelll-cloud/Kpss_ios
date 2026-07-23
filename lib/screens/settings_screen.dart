@@ -13,6 +13,7 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
+import 'hak_satin_al_screen.dart';
 import 'premium_screen.dart';
 import 'quiz_screen.dart'
     show
@@ -732,6 +733,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
+
+            // ── HAKLAR (yalnızca ücretsiz kullanıcıda) ──────────────────
+            // Premium'da hak/reklam sistemi tümüyle GİZLİ (sınırsız + reklamsız).
+            if (!premium) ...[
+              const SizedBox(height: 20),
+              const DsSectionHeader(title: '🎟️ Haklarım'),
+              const SizedBox(height: 8),
+              DsCard(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: ListTile(
+                  leading: DsIconBadge(
+                      emoji: '🎟️', color: c.gold, size: 42, glow: false),
+                  title: Text('${storage.getHaklar()} hak',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: c.text)),
+                  subtitle: Text(
+                      'Oyunlarda ekstra oynama ve deneme sınavı tekrarı için. '
+                      'Satın al ya da reklam izleyerek kazan.',
+                      style: TextStyle(fontSize: 12, color: c.textFaint)),
+                  trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                  onTap: () {
+                    context.read<SoundService>().click();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const HakSatinAlScreen()));
+                  },
+                ),
+              ),
+            ],
 
             // ── SORU CEVAP ──────────────────────────────────────────────
             const SizedBox(height: 20),

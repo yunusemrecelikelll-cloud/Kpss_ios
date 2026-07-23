@@ -86,7 +86,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
       // Ücretsiz pakette yalnızca en küçük deste açık — seçimi ona sabitle.
       _adet = kUcretsizAdet;
       final gp = storage.getGamePlayState(kDogruYanlisGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kDogruYanlisGameId)) {
         setState(() {
           _locked = true;
           _booted = true;
@@ -106,7 +106,7 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
       // boyutuyla oyuna başlayamasın.
       _adet = kUcretsizAdet;
       final gp = storage.getGamePlayState(kDogruYanlisGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kDogruYanlisGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -179,7 +179,11 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kDogruYanlisGameId,
+        oyunAdi: 'Doğru mu Yanlış mı',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Doğru mu Yanlış mı?',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz Doğru mu Yanlış mı hakkını kullandın. "
             "Yarın tekrar oynayabilir ya da Premium'a geçip sınırsız oynayabilirsin.",

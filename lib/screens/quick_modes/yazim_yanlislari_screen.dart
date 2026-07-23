@@ -83,7 +83,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kYazimYanlislariGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kYazimYanlislariGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -199,7 +199,11 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kYazimYanlislariGameId,
+        oyunAdi: 'Yazım Yanlışları',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Yazım Yanlışları',
         desc: "Bugünkü ücretsiz Yazım Yanlışları hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

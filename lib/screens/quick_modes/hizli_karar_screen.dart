@@ -99,7 +99,7 @@ class _HizliKararScreenState extends State<HizliKararScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kHizliKararGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kHizliKararGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -209,7 +209,11 @@ class _HizliKararScreenState extends State<HizliKararScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kHizliKararGameId,
+        oyunAdi: 'Hızlı Karar',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Hızlı Karar',
         desc: "Bugünkü ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );

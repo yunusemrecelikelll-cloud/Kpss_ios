@@ -4,7 +4,9 @@ import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
 import '../services/data_service.dart';
 import '../services/storage_service.dart';
+import '../theme/theme_provider.dart';
 import 'main_shell.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -53,21 +55,46 @@ class _SplashScreenState extends State<SplashScreen> {
     }
     if (!mounted) return;
 
+    // İLK KURULUM: kaydırmalı tanıtımı bir kez göster. Sonraki açılışlarda
+    // (bayrak set) doğrudan uygulamaya gir — bu splash zaten logo+slogan
+    // gösterip otomatik başladığı için ayrı bir "başla" adımı yok.
+    final onboardingBitti = storage.onboardingGorulduMu();
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => MainShell(subjects: subjects)),
+      MaterialPageRoute(
+        builder: (_) => onboardingBitti
+            ? MainShell(subjects: subjects)
+            : OnboardingScreen(subjects: subjects),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final c = context.watch<ThemeProvider>().colors;
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('🌙', style: TextStyle(fontSize: 48)),
-            SizedBox(height: 16),
-            CircularProgressIndicator(),
+            // Logo (masaüstündeki logo.jpeg'den üretilen ikon).
+            ClipRRect(
+              borderRadius: BorderRadius.circular(28),
+              child: Image.asset('assets/images/logo.png',
+                  width: 132, height: 132, fit: BoxFit.cover),
+            ),
+            const SizedBox(height: 20),
+            Text('KPSS Hazırlık',
+                style: TextStyle(
+                    fontSize: 24, fontWeight: FontWeight.w900, color: c.text)),
+            const SizedBox(height: 6),
+            Text('Sıkılmadan çalış, sınavı kazan',
+                style: TextStyle(fontSize: 13.5, color: c.textFaint)),
+            const SizedBox(height: 26),
+            SizedBox(
+              width: 26,
+              height: 26,
+              child: CircularProgressIndicator(strokeWidth: 2.6, color: c.violet),
+            ),
           ],
         ),
       ),
