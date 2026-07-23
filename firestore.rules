@@ -27,11 +27,11 @@ service cloud.firestore {
     }
     // YÖNETİCİ KİMLİĞİ — yönetici web paneli (admin_panel.html) bu uid ile
     // giriş yapan hesaba: tüm kullanıcı durumlarını okuma ve premium
-    // verme/geri alma yetkisi tanır. 'ADMIN_UID_BURAYA' değerini Firebase
+    // verme/geri alma yetkisi tanır. 'OdTRShrgauSH2EodN5L9NzXmSpZ2' değerini Firebase
     // Console > Authentication > Users listesinden KENDİ hesabının UID'siyle
     // değiştir (panel, giriş yapınca UID'ini gösterir — oradan kopyala).
     function yonetici() {
-      return request.auth != null && request.auth.uid == 'ADMIN_UID_BURAYA';
+      return request.auth != null && request.auth.uid == 'OdTRShrgauSH2EodN5L9NzXmSpZ2';
     }
 
     // ── Soru bankaları: herkes okur, kimse yazamaz ─────────────────────────
