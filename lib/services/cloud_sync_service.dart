@@ -54,6 +54,11 @@ class CloudSyncService {
         'wrongBank': storage.getWrongBank(),
         'userName': storage.getUserName(),
         'plan': storage.getUserPlan(),
+        // Hak cüzdanı: satın alınan/kazanılan haklar. TÜKETİLEBİLİR satın alma
+        // mağazadan geri yüklenmediği için bunu yedeklemezsek kullanıcı
+        // uygulamayı silince/cihaz değiştirince parasını verdiği hakları
+        // kaybederdi.
+        'haklar': storage.getHaklar(),
         'updatedAt': FieldValue.serverTimestamp(),
       };
       await doc.set(data, SetOptions(merge: true));
@@ -165,6 +170,17 @@ class CloudSyncService {
       final remoteName = data['userName'] as String?;
       if (storage.getUserName().isEmpty && remoteName != null && remoteName.isNotEmpty) {
         await storage.setUserName(remoteName);
+      }
+
+      // Hak cüzdanı: yalnızca buluttaki bakiye YERELDEN FAZLAYSA yereli ona
+      // yükselt (asla düşürme). Böylece yeniden kurulum/cihaz değişiminde
+      // satın alınan haklar geri gelir; yerelde harcanan haklar geri
+      // "yüklenmez" (tek cihazda syncUp her değişimde buluta yazdığından
+      // bulut zaten güncel kalır).
+      final remoteHaklar = (data['haklar'] as num?)?.toInt() ?? 0;
+      final yerelHaklar = storage.getHaklar();
+      if (remoteHaklar > yerelHaklar) {
+        await storage.hakEkle(remoteHaklar - yerelHaklar);
       }
 
       return true;

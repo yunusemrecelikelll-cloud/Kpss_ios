@@ -242,6 +242,10 @@ class PurchaseService extends ChangeNotifier {
             // EKLEME (tüketilebilir ürünler geri yüklenmez; yoksa çift sayım
             // olurdu — yalnızca yeni 'purchased' olayında ekleriz).
             await _storage.hakEkle(kHakPaketiMiktar);
+            // Girişliyse satın alınan hakları hemen buluta yaz — cihaz
+            // değişiminde/yeniden kurulumda kaybolmasın (bkz. CloudSyncService).
+            // ignore: unawaited_futures
+            CloudSyncService().syncUp(_storage);
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);
