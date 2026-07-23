@@ -129,9 +129,14 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
                     const SizedBox(height: 12),
                     SizedBox(
                       width: 300,
+                      // DÜZELTİLDİ: dolu (filled) buton koyu temada c.text
+                      // beyaza yakın olduğu için beyaz yazıyla birleşip
+                      // okunmuyordu. Dış çizgili stilde yazı/simge vurgu
+                      // renginin kendisi olur — her temada zeminle kontrastlı.
                       child: DsPillButton(
                         label: 'Apple ile Giriş Yap',
                         color: c.text,
+                        filled: false,
                         leadingIcon: Icons.apple,
                         onPressed: () => _signIn(auth.signInWithApple),
                       ),

@@ -87,9 +87,11 @@ class _HomeScreenState extends State<HomeScreen> {
     // Rozet bildirimi artık ALTTAN SnackBar değil, ÜSTTEN kayan temalı afiş
     // (kullanıcı isteği). Kuyruk sıralı çalışır: birden çok rozet varsa
     // sırayla gösterilir; test sırasında otomatik ertelenir.
+    // TEK SATIR: sistem bildirimleri alt açıklama taşımaz (kullanıcı isteği —
+    // sade, temaya uygun afiş).
     for (final b in newlyUnlocked) {
       InAppNoticeService.instance.goster(
-        InAppNotice(baslik: 'Yeni rozet kazandın!', govde: b.name, emoji: '🏅'),
+        InAppNotice(baslik: 'Yeni rozet: ${b.name}', govde: '', emoji: '🏅'),
       );
     }
   }
@@ -104,8 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
     // Üstten kayan temalı afiş (SnackBar yerine — kullanıcı isteği).
     InAppNoticeService.instance.goster(
       InAppNotice(
-        baslik: 'Günlük giriş ödülün!',
-        govde: '+${StorageService.kDailyLoginRewardXp} XP kazandın',
+        baslik: 'Günlük ödül: +${StorageService.kDailyLoginRewardXp} XP',
+        govde: '',
         emoji: '🎁',
       ),
     );

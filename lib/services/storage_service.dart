@@ -139,10 +139,29 @@ class StorageService extends ChangeNotifier {
   Future<void> markPlacementExamTaken() => _set('placement_exam_taken', true);
 
   String getUserName() => _get('name', '') as String;
+
+  /// İsimdeki HER kelimenin ilk harfini büyütür, kalanını küçültür — Türkçe
+  /// kurallarıyla ("ali veli" → "Ali Veli", "irem" → "İrem", "IŞIL" → "Işıl").
+  /// Dart'ın toUpperCase/toLowerCase'i Unicode varsayılanını uygular; 'i'→'İ'
+  /// ve 'I'→'ı' dönüşümleri elle yapılır (bkz. AuthService.usernameKey'deki
+  /// aynı tuzak).
+  static String _adiBicimle(String ad) {
+    return ad
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((k) => k.isNotEmpty)
+        .map((k) {
+      final ilk = k[0] == 'i' ? 'İ' : k[0].toUpperCase();
+      final kalan =
+          k.substring(1).replaceAll('İ', 'i').replaceAll('I', 'ı').toLowerCase();
+      return ilk + kalan;
+    }).join(' ');
+  }
+
   Future<void> setUserName(String n) {
     final c = n.trim();
     if (c.isEmpty) return _set('name', '');
-    return _set('name', c[0].toUpperCase() + c.substring(1).toLowerCase());
+    return _set('name', _adiBicimle(c));
   }
 
   // ── Tamamlanan konular ──

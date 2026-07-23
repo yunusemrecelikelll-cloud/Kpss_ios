@@ -205,48 +205,74 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                     onVerticalDragEnd: (d) {
                       if ((d.primaryVelocity ?? 0) < 0) _kapat();
                     },
+                    // Afiş, uygulamanın kart diliyle aynı: bg2 yüzey, ince
+                    // kenarlık, solda tema moru vurgu şeridi ve DsIconBadge
+                    // tarzı renk tonlu emoji rozeti. Sistem bildirimleri
+                    // (tema/rozet/ödül) TEK SATIRDIR (govde boş); yalnızca
+                    // mesaj/istek afişlerinde ikinci satır önizleme çıkar.
                     child: Container(
                       margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
                         color: c.bg2,
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: c.violetL.withValues(alpha: 0.45)),
+                        borderRadius: BorderRadius.circular(18),
+                        border: Border.all(color: c.border),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.25),
-                            blurRadius: 18,
+                            color: Colors.black.withValues(alpha: 0.28),
+                            blurRadius: 20,
                             offset: const Offset(0, 6),
                           ),
                         ],
                       ),
                       child: Row(
                         children: [
-                          Text(b.emoji, style: const TextStyle(fontSize: 22)),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(b.baslik,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 13.5,
-                                        color: c.text)),
-                                if (b.govde.isNotEmpty)
-                                  Text(b.govde,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          fontSize: 12.5,
-                                          height: 1.3,
-                                          color: c.textDim)),
-                              ],
+                          // Sol vurgu şeridi — DsCard.accent ile aynı dil.
+                          Container(width: 4, height: 52, color: c.violet),
+                          const SizedBox(width: 12),
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: c.violet.withValues(alpha: 0.16),
+                            ),
+                            child: Center(
+                              child: Text(b.emoji,
+                                  style: const TextStyle(fontSize: 18)),
                             ),
                           ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(b.baslik,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 13.5,
+                                          color: c.text)),
+                                  if (b.govde.isNotEmpty) ...[
+                                    const SizedBox(height: 2),
+                                    Text(b.govde,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            height: 1.3,
+                                            color: c.textDim)),
+                                  ],
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
                         ],
                       ),
                     ),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -190,8 +192,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
     String? hataMesaji;
     var ilerlemeAcik = true;
 
+    // TAKILMA KORUMASI ("hesabın siliniyor yazısında sürekli kalıyor"):
+    // Ağ koptuğunda/yavaşladığında Firestore çağrıları çok uzun bekleyebiliyor
+    // ve ilerleme penceresi sonsuza dek açık kalıyordu. Silmenin tamamına
+    // 45 saniyelik üst sınır koyuyoruz — süre aşılırsa pencere kapanır ve
+    // kullanıcıya net bir mesajla tekrar denemesi söylenir. (Silme adımları
+    // best-effort ve tekrarlanabilir: ikinci deneme kaldığı yerden temizler.)
     try {
-      await servis.deleteAccount(storage);
+      await servis
+          .deleteAccount(storage)
+          .timeout(const Duration(seconds: 45));
+    } on TimeoutException {
+      hataMesaji =
+          'Silme işlemi zaman aşımına uğradı. İnternet bağlantını kontrol '
+          'edip tekrar dene — şimdiye kadar silinenler silinmiş kalır, '
+          'ikinci deneme kaldığı yerden devam eder.';
     } on ReauthRequiredException {
       // Oturum eski: Auth kaydını silmek için yeniden doğrulama şart.
       //
@@ -256,7 +271,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
         );
         ilerlemeAcik = true;
         try {
-          await servis.deleteAccount(storage);
+          await servis
+              .deleteAccount(storage)
+              .timeout(const Duration(seconds: 45));
+        } on TimeoutException {
+          hataMesaji =
+              'Silme işlemi zaman aşımına uğradı. İnternet bağlantını '
+              'kontrol edip tekrar dene.';
         } catch (e) {
           hataMesaji = e.toString();
         }
@@ -453,8 +474,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             // kullanıcı isteği: bildirimler üstten gelsin).
                             InAppNoticeService.instance.goster(
                               const InAppNotice(
-                                baslik: 'Tema değiştirildi!',
-                                govde: 'Yeni görünümün her ekranda geçerli.',
+                                baslik: 'Tema değiştirildi',
+                                govde: '',
                                 emoji: '🎨',
                               ),
                             );
