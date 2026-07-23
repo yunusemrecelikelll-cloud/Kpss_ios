@@ -89,6 +89,42 @@ class StorageService extends ChangeNotifier {
     return cap;
   }
 
+  // ── Hesaba bağlı profiller ────────────────────────────────────────────────
+  //
+  // KÖK SORUN DÜZELTMESİ ("farklı Google hesapları aynı istatistikleri
+  // görüyor"): Yerel veriler eskiden cihazdaki TEK profile yazılıyordu; kim
+  // giriş yaparsa yapsın aynı istatistik/premium/yanlışlar görünüyordu ve
+  // hesap değiştirince veriler birbirine karışıyordu. Artık her Firebase
+  // hesabının KENDİ yerel profili var ('hesap_<uid>'); girişte ona geçilir,
+  // çıkışta tertemiz Misafir profiline dönülür.
+
+  /// Verilen Firebase uid'i için yerel profil adı.
+  static String hesapProfilAdi(String uid) => 'hesap_$uid';
+
+  /// Hesaba bağlı profile geçer (yoksa oluşturur). addUser KULLANILMAZ:
+  /// addUser adı 24 karaktere kırpıyor; uid'ler daha uzun olduğundan farklı
+  /// hesaplar aynı profile düşebilirdi.
+  Future<void> hesapProfilineGec(String uid) async {
+    final ad = hesapProfilAdi(uid);
+    final users = getUserList();
+    if (!users.contains(ad)) {
+      users.add(ad);
+      await _prefs?.setString(_usersKey, jsonEncode(users));
+    }
+    await setActiveUser(ad);
+  }
+
+  /// Çıkış sonrası TERTEMİZ Misafir profiline döner (kullanıcı isteği:
+  /// "çıkış yaptığında uygulama sıfırlansın" — yanlışlarım/premium/istatistik
+  /// görünmesin). Hesap profillerine DOKUNULMAZ: aynı hesapla tekrar girişte
+  /// o hesabın verileri olduğu gibi geri gelir.
+  Future<void> misafireDon() async {
+    await deleteUser('Misafir');
+    final ad = await addUser('Misafir');
+    await setActiveUser(ad);
+    await setUserName(ad);
+  }
+
   /// TÜM uygulama verisini sıfırlar — bütün profiller, ayarlar, istatistikler,
   /// rozetler ve PREMIUM dahil. Yalnızca "Hesabımı Sil" akışı kullanır
   /// (kullanıcı isteği: silince premium ve istatistikler de gitsin; uygulama

@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/foundation.dart'
+    show kDebugMode, defaultTargetPlatform, TargetPlatform;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -212,8 +213,14 @@ class _PremiumScreenState extends State<PremiumScreen> {
               // kullanıcıyı yanıltıyordu. Abonelik yönetimi tek yerden —
               // mağazadan — yapılır.
               Text(
-                'Aboneliğini yönetmek veya iptal etmek için '
-                'App Store > Abonelikler bölümünü kullanabilirsin.',
+                // Platforma göre doğru mağaza adı (Android'de "App Store"
+                // yazması kullanıcıyı yanıltıyordu).
+                defaultTargetPlatform == TargetPlatform.android
+                    ? 'Aboneliğini yönetmek veya iptal etmek için '
+                        'Google Play > Ödemeler ve abonelikler bölümünü '
+                        'kullanabilirsin.'
+                    : 'Aboneliğini yönetmek veya iptal etmek için '
+                        'App Store > Abonelikler bölümünü kullanabilirsin.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 11.5, color: c.textFaint, height: 1.45),
               ),
@@ -281,10 +288,19 @@ class _PremiumScreenState extends State<PremiumScreen> {
         ),
         const SizedBox(height: 16),
         Text(
-          'Abonelik aylıktır ve otomatik yenilenir; istediğin zaman iptal '
-          'edebilirsin. Ücret, satın alma onayında App Store hesabından '
-          'tahsil edilir. Yenilemeyi durdurmak için dönem bitmeden en az 24 '
-          'saat önce App Store > Abonelikler bölümünden iptal etmen yeterli.',
+          // Platforma göre doğru mağaza metni: Android'de Google Play,
+          // iOS'ta App Store (Android'de "App Store" yazıyordu — düzeltildi).
+          defaultTargetPlatform == TargetPlatform.android
+              ? 'Abonelik aylıktır ve otomatik yenilenir; istediğin zaman '
+                  'iptal edebilirsin. Ücret, satın alma onayında Google Play '
+                  'hesabından tahsil edilir. Yenilemeyi durdurmak için dönem '
+                  'bitmeden Google Play > Ödemeler ve abonelikler bölümünden '
+                  'iptal etmen yeterli.'
+              : 'Abonelik aylıktır ve otomatik yenilenir; istediğin zaman '
+                  'iptal edebilirsin. Ücret, satın alma onayında App Store '
+                  'hesabından tahsil edilir. Yenilemeyi durdurmak için dönem '
+                  'bitmeden en az 24 saat önce App Store > Abonelikler '
+                  'bölümünden iptal etmen yeterli.',
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 11, color: c.textFaint, height: 1.45),
         ),
@@ -313,15 +329,19 @@ class _PremiumScreenState extends State<PremiumScreen> {
                       .push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
                 },
               ),
-              // Guideline 3.1.2 gereği abonelik ekranında Kullanım Koşulları
-              // (EULA) bağlantısı zorunlu — Apple'ın standart EULA'sı açılır.
-              DsPillButton(
-                label: 'Kullanım Koşulları',
-                color: c.mint,
-                filled: false,
-                leadingIcon: Icons.description_outlined,
-                onPressed: () => _openTermsOfUse(context),
-              ),
+              // SADECE iOS: Guideline 3.1.2 gereği abonelik ekranında
+              // Kullanım Koşulları (EULA) bağlantısı zorunlu — Apple'ın
+              // standart EULA'sı açılır. Android'de Apple sayfası açmak
+              // yanlıştı; Play böyle bir bağlantı zorunlu tutmuyor
+              // (Gizlilik Politikası butonu yeterli).
+              if (defaultTargetPlatform == TargetPlatform.iOS)
+                DsPillButton(
+                  label: 'Kullanım Koşulları',
+                  color: c.mint,
+                  filled: false,
+                  leadingIcon: Icons.description_outlined,
+                  onPressed: () => _openTermsOfUse(context),
+                ),
             ],
           ),
         ),

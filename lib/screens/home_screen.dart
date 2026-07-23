@@ -179,14 +179,19 @@ class _HomeScreenState extends State<HomeScreen> {
     //     displayName'in henüz oluşmadığı durumlar — ASLA "Misafir" deme),
     //  4. en son yerel profil adı ("Misafir" yalnızca gerçekten girişsizken).
     final gercekGiris = auth.isRealSignedIn;
+    // İSİM ÖNCELİĞİ (kullanıcı isteği: "Profil'den değiştirdiğim isim her
+    // yerde geçerli olsun"): 1) Profil'de yazılan yerel isim, 2) hesap adı,
+    // 3) e-posta öneki, 4) yerel profil adı. Yerel isim, girişte yalnızca
+    // BOŞSA hesap adıyla doldurulur (account_login_screen) — kullanıcının
+    // seçtiği isim Google adıyla asla ezilmez.
     final authName = gercekGiris ? auth.currentUser?.displayName?.trim() : null;
     final epostaOnEki = gercekGiris
         ? (auth.currentUser?.email?.split('@').first.trim() ?? '')
         : '';
-    final name = (authName != null && authName.isNotEmpty)
-        ? authName
-        : (storage.getUserName().isNotEmpty
-            ? storage.getUserName()
+    final name = storage.getUserName().isNotEmpty
+        ? storage.getUserName()
+        : ((authName != null && authName.isNotEmpty)
+            ? authName
             : (epostaOnEki.isNotEmpty ? epostaOnEki : storage.getActiveUser()));
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();

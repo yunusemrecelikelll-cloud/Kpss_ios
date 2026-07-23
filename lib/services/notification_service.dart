@@ -226,17 +226,28 @@ class NotificationService {
 
       try {
         final zaman = _sonrakiHaftalikAn(entry.gun, entry.baslangicSaat, entry.baslangicDakika);
-        // ANDROID GÜVENİLİRLİK DÜZELTMESİ ("bildirim gelmiyor"):
-        // `inexact` mod, Doze + üretici pil optimizasyonları (Xiaomi/Samsung
-        // vb.) altında Android'de FİİLEN HİÇ TETİKLENMEYEBİLİYOR — iOS'ta aynı
-        // kod sistem takvim tetikleyicisine çevrildiği için sorunsuz çalışıyor
-        // ve kullanıcı "iOS'ta geliyor, Android'de gelmiyor" görüyordu.
+        // ANDROID GÜVENİLİRLİK — 2. TUR ("test bildirimi geliyor ama planlı
+        // gelmiyor, alarm izni açık"):
+        // Haftalık tekrar (matchDateTimeComponents) Android'de eklentinin
+        // kendi kendini yeniden kurmasına dayanır ve bazı üretici ROM'larında
+        // bu zincir sessizce kopuyor. Bu yüzden Android'de artık TEKRARSIZ,
+        // SOMUT tek alarm kuruluyor: her seansın YALNIZCA BİR SONRAKİ oluşu
+        // planlanır. Uygulama zaten HER AÇILIŞTA schedulePlan'i yeniden
+        // çalıştırdığı için (bkz. main.dart) bir sonraki hafta otomatik
+        // yeniden kurulur. Tek sınır: kullanıcı uygulamayı 1 haftadan uzun
+        // hiç açmazsa sonraki haftanın bildirimi kurulmaz — çalışma
+        // uygulaması için kabul edilebilir bir ödünleşme, güvenilir teslimat
+        // daha önemli.
         //
-        // Çözüm: önce EXACT (tam zamanlı) modu dene. SCHEDULE_EXACT_ALARM izni
-        // Android 12-13'te kurulumda kendiliğinden verilir (kullanıcıya HİÇBİR
-        // izin ekranı açılmaz); Android 14+'ta varsayılan kapalı olduğundan
-        // exact reddedilirse eski inexact moda düşülür — yani hiçbir cihazda
-        // durum bugünkünden kötüye gitmez, çoğunda kesin çalışır hâle gelir.
+        // iOS'ta haftalık eşleme sistem takviminde sorunsuz çalıştığı için
+        // aynen korunuyor.
+        //
+        // EXACT modu önce denenir (Android 12-13'te izin kurulumda otomatik;
+        // 14+'ta kapalıysa inexact'e düşülür — plan ekranındaki "Bildirim
+        // Durumu" kartı izni açtırabiliyor).
+        final androidMi = defaultTargetPlatform == TargetPlatform.android;
+        final esleme =
+            androidMi ? null : DateTimeComponents.dayOfWeekAndTime;
         try {
           await _plugin.zonedSchedule(
             _planBildirimId(entry.gun, sira),
@@ -245,7 +256,7 @@ class NotificationService {
             zaman,
             detaylar,
             androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+            matchDateTimeComponents: esleme,
             payload: 'study_plan_${entry.gun}_${entry.id}',
           );
         } on PlatformException catch (e) {
@@ -257,7 +268,7 @@ class NotificationService {
             zaman,
             detaylar,
             androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-            matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+            matchDateTimeComponents: esleme,
             payload: 'study_plan_${entry.gun}_${entry.id}',
           );
         }

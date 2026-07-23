@@ -42,33 +42,49 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       return;
     }
 
-    // ÖNEMLİ: Firebase Auth'ta oturum açmak yerel StorageService'teki
-    // isim/aktif kullanıcı alanlarını KENDİLİĞİNDEN güncellemez — bu yüzden
-    // giriş sonrası anasayfa "Misafir" gösteriyordu. Gerçek hesap adını
-    // burada senkronize ediyoruz; displayName yoksa e-posta önekine düşülür.
     final storage = context.read<StorageService>();
-    final displayName = result.user?.displayName?.trim();
-    if (displayName != null && displayName.isNotEmpty) {
-      await storage.setUserName(displayName);
-    } else {
-      final epostaOnEki = result.user?.email?.split('@').first.trim();
-      if (epostaOnEki != null && epostaOnEki.isNotEmpty) {
-        await storage.setUserName(epostaOnEki);
+
+    // 1) HESABA BAĞLI PROFİL: her hesabın KENDİ yerel verisi var. Girişte o
+    //    hesabın profiline geçilir — başka hesabın istatistiği/premium'u
+    //    asla görünmez, hesap değişiminde veri karışmaz (kök sorun buydu).
+    final uid = result.user?.uid;
+    if (uid != null) {
+      await storage.hesapProfilineGec(uid);
+    }
+
+    // 2) İSİM: yalnızca bu hesabın profili BOŞSA hesap adıyla doldurulur.
+    //    Kullanıcı Profil'den kendi ismini yazdıysa o isim KALICIDIR — her
+    //    girişte Google adıyla ezilmez (kullanıcı isteği: profildeki isim
+    //    her yerde geçerli olsun).
+    if (storage.getUserName().isEmpty) {
+      final displayName = result.user?.displayName?.trim();
+      if (displayName != null && displayName.isNotEmpty) {
+        await storage.setUserName(displayName);
+      } else {
+        final epostaOnEki = result.user?.email?.split('@').first.trim();
+        if (epostaOnEki != null && epostaOnEki.isNotEmpty) {
+          await storage.setUserName(epostaOnEki);
+        }
       }
     }
 
     // Bulut yedeklemeyi giriş başarılı olur olmaz aç (syncUp bu ayara bakar).
     await storage.setCloudBackupEnabled(true);
 
-    // Önce buluttaki ilerlemeyi indir, sonra yerel durumu yükle. Zaman aşımı:
-    // ağ kötüyse giriş akışı asılı kalmasın — senkron sonra tekrar denenir.
-    final cloud = CloudSyncService();
-    await cloud
-        .syncDown(storage)
-        .timeout(const Duration(seconds: 8), onTimeout: () => false);
-    await cloud
-        .syncUp(storage)
-        .timeout(const Duration(seconds: 8), onTimeout: () => false);
+    // Önce buluttaki ilerlemeyi indir, sonra yerel durumu yükle. Zaman aşımı
+    // + try/catch: ağ ya da bozuk veri GİRİŞİ ASLA çökertmesin ("hesap
+    // değişince anasayfa çöküyor" şikayetine karşı savunma hattı).
+    try {
+      final cloud = CloudSyncService();
+      await cloud
+          .syncDown(storage)
+          .timeout(const Duration(seconds: 8), onTimeout: () => false);
+      await cloud
+          .syncUp(storage)
+          .timeout(const Duration(seconds: 8), onTimeout: () => false);
+    } catch (e) {
+      debugPrint('Giriş sonrası senkron hatası (giriş yine de başarılı): $e');
+    }
 
     // Yönetici panelden bu hesaba premium verdiyse hemen uygula + canlılık
     // kaydını düş (bkz. PresenceService).

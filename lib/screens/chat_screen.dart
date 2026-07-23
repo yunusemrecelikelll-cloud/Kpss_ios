@@ -112,10 +112,12 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
 
     final premium = storage.isPremiumUser();
     final uid = auth.currentUser!.uid;
+    // İSİM ÖNCELİĞİ: Profil'de yazılan isim BİRİNCİL (kullanıcı isteği —
+    // sohbet dahil her yerde seçtiği isim görünsün); hesap adı yalnızca yedek.
     final authName = auth.currentUser!.displayName;
-    final displayName = (authName != null && authName.isNotEmpty)
-        ? authName
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Kullanıcı');
+    final displayName = storage.getUserName().isNotEmpty
+        ? storage.getUserName()
+        : ((authName != null && authName.isNotEmpty) ? authName : 'Kullanıcı');
 
     _checkNotifications(uid);
     _ensureKod(uid, displayName);
@@ -1416,10 +1418,13 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
 
     // Kendi adımı thread'e yazıyorum ki karşı taraf beni hiç kaydetmemiş olsa
     // bile gelen kutusunda adım görünsün (bkz. sendDirectMessage.names).
+    // Profil'deki isim birincil (bkz. ekran üstündeki displayName çözümü).
     final authName = auth.currentUser?.displayName;
-    final benimAdim = (authName != null && authName.trim().isNotEmpty)
-        ? authName.trim()
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Kullanıcı');
+    final benimAdim = storage.getUserName().isNotEmpty
+        ? storage.getUserName()
+        : ((authName != null && authName.trim().isNotEmpty)
+            ? authName.trim()
+            : 'Kullanıcı');
 
     setState(() => _sending = true);
     try {

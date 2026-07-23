@@ -48,10 +48,12 @@ class PresenceService {
     _sonBildirim = simdi;
 
     try {
-      final ad = (user.displayName?.trim().isNotEmpty ?? false)
-          ? user.displayName!.trim()
-          : (storage.getUserName().isNotEmpty
-              ? storage.getUserName()
+      // Profil'de yazılan isim BİRİNCİL (kullanıcı isteği): panelde ve her
+      // yerde kullanıcının seçtiği isim görünür; hesap adı yalnızca yedek.
+      final ad = storage.getUserName().isNotEmpty
+          ? storage.getUserName()
+          : ((user.displayName?.trim().isNotEmpty ?? false)
+              ? user.displayName!.trim()
               : (user.email?.split('@').first ?? 'Kullanıcı'));
       await _db.collection(statusCollection).doc(user.uid).set({
         'name': ad,

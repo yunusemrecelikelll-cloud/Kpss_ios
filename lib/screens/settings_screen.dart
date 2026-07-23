@@ -132,8 +132,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       builder: (ctx) => AlertDialog(
         title: const Text('Çıkış yap?'),
         content: const Text(
-          'Hesabından çıkacaksın. Cihazdaki testlerin, istatistiklerin ve '
-          'rozetlerin SİLİNMEZ. İstediğin zaman tekrar giriş yapabilirsin.',
+          'Hesabından çıkacaksın ve uygulama misafir görünümüne dönecek. '
+          'İlerlemen, istatistiklerin ve premium durumun HESABINDA saklı '
+          'kalır — aynı hesapla tekrar giriş yaptığında olduğu gibi geri gelir.',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Vazgeç')),
@@ -144,12 +145,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (onay != true) return;
 
     await auth.signOut();
-    // DÜZELTİLDİ ("çıkış yaptım ama anasayfa hâlâ adımı söylüyor"):
-    // Girişte hesabın adı yerel kayda senkronlanıyor (setUserName); çıkışta
-    // temizlenmeyince karşılama hâlâ o adı gösteriyordu. Ad hesaba ait bir
-    // bilgi olduğu için çıkışla birlikte temizlenir — karşılama "Misafir"e
-    // döner. İlerleme/istatistikler SİLİNMEZ (yalnızca isim).
-    await storage.setUserName('');
+    // ÇIKIŞTA TAM SIFIRLAMA (kullanıcı isteği: "çıkış yapınca premium ve
+    // yanlışlarım görünmesin, uygulama sıfırlansın"): tertemiz Misafir
+    // profiline dönülür. Hesabın verilerine DOKUNULMAZ — kendi profilinde
+    // durur, aynı hesapla girişte olduğu gibi geri gelir.
+    await storage.misafireDon();
     messenger.showSnackBar(const SnackBar(content: Text('Çıkış yapıldı.')));
   }
 

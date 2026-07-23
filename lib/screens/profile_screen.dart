@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/subject.dart';
 import '../models/badge.dart';
 import '../services/league_service.dart';
+import '../services/presence_service.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
@@ -723,6 +725,22 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
     await widget.storage.setUserName(name);
     await widget.storage.setUserGender(_gender);
     await widget.storage.setExamType(_examType);
+
+    // Seçilen isim HER YERDE geçerli olsun (kullanıcı isteği): Firebase
+    // hesabının görünen adına ve yönetici panelindeki kayda da yansıt.
+    // Best-effort — ağ yoksa yerel isim yine de kaydedilmiş olur; sunucu
+    // tarafı bir sonraki fırsatta (sohbet açılışı/nabız) yakalar.
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null && !user.isAnonymous) {
+        await user.updateDisplayName(widget.storage.getUserName());
+        // ignore: unawaited_futures
+        PresenceService.instance.bildir(widget.storage, zorla: true);
+      }
+    } catch (e) {
+      debugPrint('Profil adı sunucuya yansıtılamadı (yerel kayıt tamam): $e');
+    }
+
     if (!mounted) return;
     Navigator.of(context).pop();
   }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/storage_service.dart';
@@ -20,6 +21,16 @@ Future<void> main() async {
   await initFirebaseIfConfigured();
   final storage = StorageService();
   await storage.init();
+
+  // HESABA BAĞLI PROFİL: Önceki oturumdan kalıcı bir Google/Apple girişi
+  // varsa, daha ilk kare çizilmeden o hesabın YEREL profiline geç — böylece
+  // farklı hesaplar birbirinin istatistiklerini/premium'unu asla görmez
+  // (bkz. StorageService.hesapProfilineGec).
+  final aktifKullanici =
+      isFirebaseConfigured ? FirebaseAuth.instance.currentUser : null;
+  if (aktifKullanici != null && !aktifKullanici.isAnonymous) {
+    await storage.hesapProfilineGec(aktifKullanici.uid);
+  }
   // Günlük Çalışma Planı hatırlatmaları için yerel bildirim altyapısını
   // hazırla. Desteklenmeyen platformlarda (web/masaüstü) ya da izin
   // verilmediğinde sessizce no-op olur — asla istisna fırlatmaz.
