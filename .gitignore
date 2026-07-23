@@ -27,3 +27,5 @@ scratchpad/
 **/key.properties
 **/*.keystore
 **/*.jks
+android/
+**/local.properties
