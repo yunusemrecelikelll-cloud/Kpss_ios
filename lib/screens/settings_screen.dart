@@ -458,16 +458,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      for (final entry in kThemes.entries)
-                        _ThemeSwatch(
-                          colors: entry.value,
-                          active: themeProvider.themeId == entry.key,
-                          locked: !premium && !kFreeThemeIds.contains(entry.key),
-                          onTap: () async {
+                  // Tam 3 sütun (satırda 3 tema): kartın sabit genişliği yerine
+                  // kullanılabilir genişliği 3'e bölüp her kartı o genişliğe
+                  // sabitliyoruz — böylece 9 tema düzgün 3x3 dizilir.
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      const bosluk = 10.0;
+                      final kartGenislik =
+                          (constraints.maxWidth - bosluk * 2) / 3;
+                      return Wrap(
+                        spacing: bosluk,
+                        runSpacing: bosluk,
+                        children: [
+                          for (final entry in kThemes.entries)
+                            SizedBox(
+                              width: kartGenislik,
+                              child: _ThemeSwatch(
+                                colors: entry.value,
+                                active: themeProvider.themeId == entry.key,
+                                locked: !premium && !kFreeThemeIds.contains(entry.key),
+                                onTap: () async {
                             context.read<SoundService>().click();
                             final ok = await themeProvider.setTheme(entry.key);
                             if (!mounted) return;
@@ -485,10 +495,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 emoji: '🎨',
                               ),
                             );
-                          },
-                        ),
-                    ],
-                  ),
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                   if (!premium) ...[
                     const SizedBox(height: 12),
                     Text(
@@ -1039,7 +1052,9 @@ class _ThemeSwatch extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(kDsRadiusSm),
       child: Container(
-        width: 108,
+        // Genişlik dışarıdan (LayoutBuilder ile 3 sütun) verilir; sabit
+        // genişlik yok — böylece her satırda tam 3 tema dizilir.
+        width: double.infinity,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kDsRadiusSm),
