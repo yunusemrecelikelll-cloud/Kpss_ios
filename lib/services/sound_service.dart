@@ -31,9 +31,6 @@ class SoundService {
   // sadece bu oturum boyunca click() sesini susturur.
   bool _suppressed = false;
 
-  /// Tıklama seslerinin şu an geçici olarak bastırılıp bastırılmadığı.
-  bool get isSuppressed => _suppressed;
-
   /// Tıklama seslerini geçici olarak susturur/açar (bkz. [_suppressed]).
   void setSuppressed(bool value) {
     _suppressed = value;
@@ -91,8 +88,6 @@ class SoundService {
   void resetTickPhase() {
     _tickPhase = false;
   }
-
-  bool get isFocusPlaying => _ambiencePlaying;
 
   /// Sınav ortamı odaklanma seslerini başlatır: çok alçak sesle sürekli
   /// döngülü bir fon uğultusu + 15-40sn arası rastgele aralıklarla tetiklenen

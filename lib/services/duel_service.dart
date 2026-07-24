@@ -182,34 +182,6 @@ class DuelRoom {
     return '$subj · $totalQuestions soru · $perQuestionSeconds sn';
   }
 
-  /// Maçın başından bu yana geçmiş SAYILAN süre: gerçek geçen süre + erken
-  /// geçişlerle kısaltılan süre ([timeShiftMs]). Aşağıdaki iki hesabın da tek
-  /// dayanağı budur, böylece geri sayım ile soru indeksi ASLA ayrışmaz.
-  int effectiveElapsedMs(DateTime now) {
-    if (startedAt == null) return 0;
-    final gercek = now.difference(startedAt!).inMilliseconds;
-    if (gercek < 0) return timeShiftMs;
-    return gercek + timeShiftMs;
-  }
-
-  /// startedAt + geçen süreye göre "şu an kaçıncı soruda olmamız gerektiğini"
-  /// (0 tabanlı) hesaplar — sunucudan gelen zamana göre TAMAMEN istemci
-  /// tarafında. Süre bittiyse totalQuestions döner (oyun bitmiş demektir).
-  int currentQuestionIndex(DateTime now) {
-    if (startedAt == null) return 0;
-    final elapsedMs = effectiveElapsedMs(now);
-    if (elapsedMs < 0) return 0;
-    final idx = elapsedMs ~/ (perQuestionSeconds * 1000);
-    return idx;
-  }
-
-  /// startedAt'e göre içinde bulunulan sorunun bitişine kalan milisaniye.
-  int remainingMsForQuestion(int questionIndex, DateTime now) {
-    if (startedAt == null) return perQuestionSeconds * 1000;
-    final bitisMs = (questionIndex + 1) * perQuestionSeconds * 1000;
-    return bitisMs - effectiveElapsedMs(now);
-  }
-
   List<DuelPlayer> get playersByScore {
     final list = players.values.toList();
     list.sort((a, b) => b.score.compareTo(a.score));
@@ -721,13 +693,6 @@ class DuelService {
       if (!doc.exists) return null;
       return DuelRoom.fromDoc(doc);
     });
-  }
-
-  Future<DuelRoom?> getRoomOnce(String roomId) async {
-    if (!isConfigured) return null;
-    final doc = await _rooms.doc(roomId).get();
-    if (!doc.exists) return null;
-    return DuelRoom.fromDoc(doc);
   }
 
   // ── Başlatma ──

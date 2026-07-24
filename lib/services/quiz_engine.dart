@@ -210,10 +210,4 @@ class QuizEngine extends ChangeNotifier {
     return result;
   }
 
-  void abandon() {
-    storage.clearDraft(topicId ?? '');
-    questions = [];
-    answers = [];
-    notifyListeners();
-  }
 }

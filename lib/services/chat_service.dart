@@ -873,23 +873,4 @@ class ChatService {
     });
   }
 
-  /// Bir DM mesajını rapor eder — genel sohbet raporlarıyla aynı
-  /// 'chat_reports' koleksiyonuna, hangi thread'e ait olduğu bilgisiyle yazar.
-  Future<void> reportDirectMessage({
-    required String uidA,
-    required String uidB,
-    required String messageId,
-    required String reporterUid,
-    required String reason,
-  }) async {
-    _requireConfigured();
-    await _db.collection(reportsCollection).add({
-      'messageId': messageId,
-      'collection': '$dmCollection/${threadIdFor(uidA, uidB)}/messages',
-      'reporterUid': reporterUid,
-      'reason': reason,
-      'createdAt': FieldValue.serverTimestamp(),
-      'status': 'open',
-    });
-  }
 }

@@ -22,6 +22,7 @@ import 'quick_modes/kimim_ben_screen.dart';
 import 'quick_modes/yazim_yanlislari_screen.dart';
 import 'quick_modes/tarihleri_bil_screen.dart';
 import 'quick_modes/dogru_yanlis_screen.dart';
+import 'quick_modes/alfabe_oyunu_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import '../theme/subject_colors.dart';
 
@@ -135,6 +136,9 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
           final tbLeft = (kFreeGameDailyLimit - (tb['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final dy = storage.getGamePlayState(kDogruYanlisGameId);
           final dyLeft = (kFreeGameDailyLimit - (dy['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+          final ao = storage.getGamePlayState(kAlfabeOyunuGameId);
+          final aoLeft = (kFreeGameDailyLimit - (ao['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+          final alfabeRekor = storage.getBestTimeSeconds(kAlfabeOyunuGameId);
 
           final c = context.watch<ThemeProvider>().colors;
 
@@ -335,6 +339,17 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                     palette: const SubjectPalette(Color(0xFF8B5CF6), Color(0xFFD946EF)),
                     onTap: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (_) => const KimimBenScreen())),
+                  ),
+                  ToolCard(
+                    icon: '🔤',
+                    title: 'Alfabe Oyunu',
+                    desc: alfabeRekor != null
+                        ? "A'dan Z'ye tarih soruları. Rekor süren: ${alfabeSureMetni(alfabeRekor)}."
+                        : "A'dan Z'ye her harf için tarih sorusu. Süreyle yarış, rekor kır.",
+                    chipLabel: hakEtiketi(aoLeft),
+                    palette: const SubjectPalette(Color(0xFF14B8A6), Color(0xFF0D9488)),
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const AlfabeOyunuTanitimScreen())),
                   ),
                 ],
               ),

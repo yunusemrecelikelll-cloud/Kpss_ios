@@ -52,10 +52,10 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       await storage.hesapProfilineGec(uid);
     }
 
-    // 2) İSİM: yalnızca bu hesabın profili BOŞSA hesap adıyla doldurulur.
-    //    Kullanıcı Profil'den kendi ismini yazdıysa o isim KALICIDIR — her
-    //    girişte Google adıyla ezilmez (kullanıcı isteği: profildeki isim
-    //    her yerde geçerli olsun).
+    // 2) İSİM ÖN DOLGUSU: bu hesabın profili BOŞSA hesap adıyla (Google adı ya
+    //    da e-posta öneki) doldurulur — birazdan açılacak isim penceresine
+    //    hazır metin olsun diye. Kullanıcı Profil'den kendi ismini yazdıysa o
+    //    isim KALICIDIR, ezilmez.
     if (storage.getUserName().isEmpty) {
       final displayName = result.user?.displayName?.trim();
       if (displayName != null && displayName.isNotEmpty) {
@@ -71,19 +71,38 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     // Bulut yedeklemeyi giriş başarılı olur olmaz aç (syncUp bu ayara bakar).
     await storage.setCloudBackupEnabled(true);
 
-    // Önce buluttaki ilerlemeyi indir, sonra yerel durumu yükle. Zaman aşımı
-    // + try/catch: ağ ya da bozuk veri GİRİŞİ ASLA çökertmesin ("hesap
-    // değişince anasayfa çöküyor" şikayetine karşı savunma hattı).
+    final cloud = CloudSyncService();
+
+    // 3) Önce buluttaki ilerlemeyi indir (isim + isim-onayı da geri gelir; böylece
+    //    cihaz değiştiren dönüş kullanıcısına isim TEKRAR sorulmaz). Zaman aşımı +
+    //    try/catch: ağ/bozuk veri GİRİŞİ ASLA çökertmesin.
     try {
-      final cloud = CloudSyncService();
       await cloud
           .syncDown(storage)
           .timeout(const Duration(seconds: 8), onTimeout: () => false);
+    } catch (e) {
+      debugPrint('Giriş sonrası syncDown hatası (giriş yine de başarılı): $e');
+    }
+
+    // 4) İSMİ SOR: bu hesap ismini daha önce onaylamadıysa bir kez sor. Aktif
+    //    profil ARTIK bu hesabın profili olduğu için (adım 1) isim doğru yere
+    //    yazılır — hesaplar arası karışma olmaz. Onaylanınca bir daha sorulmaz.
+    if (mounted && !storage.getNameConfirmed()) {
+      final girilen = await _isimSor(storage.getUserName());
+      if (!mounted) return;
+      if (girilen != null && girilen.trim().isNotEmpty) {
+        await storage.setUserName(girilen);
+      }
+      await storage.setNameConfirmed(true);
+    }
+
+    // 5) Onaylanan ismi + ilerlemeyi buluta yükle.
+    try {
       await cloud
           .syncUp(storage)
           .timeout(const Duration(seconds: 8), onTimeout: () => false);
     } catch (e) {
-      debugPrint('Giriş sonrası senkron hatası (giriş yine de başarılı): $e');
+      debugPrint('Giriş sonrası syncUp hatası (giriş yine de başarılı): $e');
     }
 
     // Yönetici panelden bu hesaba premium verdiyse hemen uygula + canlılık
@@ -97,6 +116,64 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       const SnackBar(content: Text('Giriş başarılı! 🎉')),
     );
     Navigator.of(context).pop();
+  }
+
+  /// Giriş sonrası bir kez gösterilen isim penceresi. [onDolgu] ön-dolgu metni
+  /// (Google adı / e-posta öneki / buluttaki isim). Kullanıcının onayladığı adı
+  /// döner; boş bırakılamaz (Kaydet yalnızca dolu metinde aktif). Pencere
+  /// kapatılamaz (barrierDismissible: false) — isim uygulamada her yerde
+  /// göründüğü için mutlaka bir değer alınır.
+  Future<String?> _isimSor(String onDolgu) async {
+    final ctrl = TextEditingController(text: onDolgu);
+    final sonuc = await showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogCtx) {
+        final c = context.read<ThemeProvider>().colors;
+        return StatefulBuilder(
+          builder: (ctx, setDialogState) => AlertDialog(
+            title: const Text('Adın ne olsun?'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Uygulamada (ana sayfa, sohbet, düello, lig) bu isim görünecek. '
+                  'İstediğin zaman Profil’den değiştirebilirsin.',
+                  style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textFaint),
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: ctrl,
+                  autofocus: true,
+                  textCapitalization: TextCapitalization.words,
+                  maxLength: 24,
+                  decoration: const InputDecoration(
+                    labelText: 'İsim',
+                    hintText: 'Örn. Ahmet',
+                    border: OutlineInputBorder(),
+                  ),
+                  onChanged: (_) => setDialogState(() {}),
+                  onSubmitted: (v) {
+                    if (v.trim().isNotEmpty) Navigator.of(dialogCtx).pop(v.trim());
+                  },
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: ctrl.text.trim().isEmpty
+                    ? null
+                    : () => Navigator.of(dialogCtx).pop(ctrl.text.trim()),
+                child: const Text('Kaydet'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    ctrl.dispose();
+    return sonuc;
   }
 
   @override

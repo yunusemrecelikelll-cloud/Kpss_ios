@@ -38,23 +38,26 @@ class NotificationService {
   /// Plan bildirimleri için kimlik tabanı. Uygulamadaki başka bir bildirimle
   /// çakışmaması için yüksek ve ayrık bir aralık seçildi.
   ///
-  /// KİMLİK ŞEMASI (çoklu seans): Aynı güne birden fazla çalışma aralığı
-  /// eklenebildiği için gün başına tek id yetmiyor. Her gün için
-  /// [StudyPlanService.kMaxSeansPerGun] kadar bölme ayrılır:
+  /// KİMLİK ŞEMASI (çoklu seans): Premium'da aynı güne birden fazla çalışma
+  /// aralığı eklenebildiği için gün başına tek id yetmiyor. Her gün için SABİT
+  /// [StudyPlanService.kSeansIdKapasitesi] kadar bölme ayrılır (ekleme limiti
+  /// premium'a göre değişse de kimlik şeması hep bu kapasiteye göredir; yoksa
+  /// premium 2. seansı başka bir günün kimliğiyle çakışırdı):
   ///
-  ///   id = _kBaseId + 1 + (gun - 1) * kMaxSeansPerGun + seansSirasi
+  ///   id = _kBaseId + 1 + (gun - 1) * kSeansIdKapasitesi + seansSirasi
   ///
   /// Böylece 9101..9184 aralığı plan bildirimlerine ayrılmış olur ve hiçbir
   /// seansın kimliği bir diğeriyle çakışmaz. 9100 (taban) tek seferlik test
   /// bildirimi için ayrılmıştır, bu aralığın dışındadır.
   static const int _kBaseId = 9100;
 
-  /// Plan bildirimlerine ayrılmış kimlik sayısı (7 gün × gün başına seans).
-  static const int _kPlanIdAdedi = 7 * StudyPlanService.kMaxSeansPerGun;
+  /// İPTAL aralığı — kaç kimliği temizleyeceğimiz. Kimlik kapasitesiyle (7 gün ×
+  /// gün başına kapasite) aynıdır; eski/tüm plan bildirimlerini kapsar.
+  static const int _kPlanIdAdedi = 7 * StudyPlanService.kSeansIdKapasitesi;
 
   /// [gun] (1-7) gününün [sira]. seansı için bildirim kimliği.
   static int _planBildirimId(int gun, int sira) =>
-      _kBaseId + 1 + (gun - 1) * StudyPlanService.kMaxSeansPerGun + sira;
+      _kBaseId + 1 + (gun - 1) * StudyPlanService.kSeansIdKapasitesi + sira;
 
   static const String _kChannelId = 'kpss_calisma_plani';
   static const String _kChannelName = 'Çalışma Planı Hatırlatıcıları';
@@ -217,7 +220,7 @@ class NotificationService {
 
     for (final entry in sirali) {
       final sira = gunSayaci[entry.gun] ?? 0;
-      if (sira >= StudyPlanService.kMaxSeansPerGun) {
+      if (sira >= StudyPlanService.kSeansIdKapasitesi) {
         debugPrint('NotificationService: ${StudyPlanService.gunAdi(entry.gun)} '
             'için seans kimliği kalmadı, atlandı.');
         continue;

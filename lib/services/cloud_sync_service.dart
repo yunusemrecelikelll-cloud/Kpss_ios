@@ -53,6 +53,7 @@ class CloudSyncService {
         'studyTime': storage.getStudyTime(),
         'wrongBank': storage.getWrongBank(),
         'userName': storage.getUserName(),
+        'nameConfirmed': storage.getNameConfirmed(),
         'plan': storage.getUserPlan(),
         // Hak cüzdanı: satın alınan/kazanılan haklar. TÜKETİLEBİLİR satın alma
         // mağazadan geri yüklenmediği için bunu yedeklemezsek kullanıcı
@@ -170,6 +171,13 @@ class CloudSyncService {
       final remoteName = data['userName'] as String?;
       if (storage.getUserName().isEmpty && remoteName != null && remoteName.isNotEmpty) {
         await storage.setUserName(remoteName);
+      }
+
+      // İsim onayı: bu hesap başka bir cihazda ismini onayladıysa, yeni cihazda
+      // TEKRAR sorulmasın diye onay bayrağını da geri yükle (asla true'dan
+      // false'a düşürme — yerelde zaten onaylıysa dokunma).
+      if (data['nameConfirmed'] == true && !storage.getNameConfirmed()) {
+        await storage.setNameConfirmed(true);
       }
 
       // Hak cüzdanı: yalnızca buluttaki bakiye YERELDEN FAZLAYSA yereli ona

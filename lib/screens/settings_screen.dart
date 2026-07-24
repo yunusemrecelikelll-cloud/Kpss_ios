@@ -25,8 +25,6 @@ import 'quiz_screen.dart'
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
 
-const List<String> _kCharacterOpts = ['🦉', '🦁', '🐯', '🦄', '🐼', '🚀', '🏆', '📚'];
-
 // ── Test süresi ──
 // Süre artık test öncesi sorulmuyor; buradaki tercih doğrudan uygulanıyor
 // (bkz. quiz_screen.dart → testSuresiHesapla).
@@ -498,59 +496,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       style: TextStyle(fontSize: 12, color: c.textFaint),
                     ),
                   ],
-                ],
-              ),
-            ),
-            const SizedBox(height: kDsGap),
-            // Premium karakter de bir "görünüm" tercihi olduğu için bu grupta.
-            DsCard(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      DsIconBadge(
-                          emoji: '🦉', color: c.violetL, size: 42, circle: false, glow: false),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text('Premium Karakter',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-                  if (premium) ...[
-                    Text('Profilinde ve üst menüde görünecek karakteri seç.',
-                        style: TextStyle(fontSize: 12.5, color: c.textFaint)),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        for (final char in _kCharacterOpts)
-                          _ChoiceButton(
-                            label: char,
-                            fontSize: 20,
-                            selected: storage.getUserCharacter() == char,
-                            onTap: () async {
-                              context.read<SoundService>().click();
-                              await storage.setUserCharacter(char);
-                              if (!mounted) return;
-                              setState(() {});
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Karakter güncellendi!')),
-                              );
-                            },
-                          ),
-                      ],
-                    ),
-                  ] else
-                    Text(
-                      "Premium'a geçerek profilin için özel karakterler açabilirsin.",
-                      style: TextStyle(fontSize: 12.5, color: c.textFaint),
-                    ),
                 ],
               ),
             ),
@@ -1165,8 +1110,7 @@ class _ChoiceButton extends StatelessWidget {
   final String label;
   final bool selected;
   final VoidCallback onTap;
-  final double? fontSize;
-  const _ChoiceButton({required this.label, required this.selected, required this.onTap, this.fontSize});
+  const _ChoiceButton({required this.label, required this.selected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -1181,11 +1125,11 @@ class _ChoiceButton extends StatelessWidget {
         ? ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(backgroundColor: scheme.primary, foregroundColor: onPrimary),
-            child: Text(label, style: TextStyle(fontSize: fontSize)),
+            child: Text(label),
           )
         : OutlinedButton(
             onPressed: onTap,
-            child: Text(label, style: TextStyle(fontSize: fontSize)),
+            child: Text(label),
           );
   }
 }

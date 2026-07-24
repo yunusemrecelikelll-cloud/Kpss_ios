@@ -141,17 +141,6 @@ class RemoteQuestionService {
     }
   }
 
-  /// Bir konu için önbellek zaten var mı (daha önce indirilmiş mi).
-  Future<bool> isCached(String topicId) async {
-    try {
-      final file = await _cacheFileFor(topicId);
-      if (file == null) return false;
-      return await file.exists();
-    } catch (_) {
-      return false;
-    }
-  }
-
   // ── Soru havuzu (her zaman ANINDA, ağ YOK) ──────────────────────────
 
   /// Eskiden konu ekranı açılınca sessizce indirme başlatırdı. Sorular artık

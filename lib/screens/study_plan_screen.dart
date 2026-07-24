@@ -162,9 +162,11 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
     }
 
     final mevcutlar = servis.getGunSeanslari(gun);
-    if (mevcutlar.length >= StudyPlanService.kMaxSeansPerGun) {
-      _mesaj('Bir güne en fazla ${StudyPlanService.kMaxSeansPerGun} seans '
-          'ekleyebilirsin.');
+    if (mevcutlar.length >= servis.maxSeansPerGun) {
+      _mesaj(servis.maxSeansPerGun == 1
+          ? 'Bir güne yalnızca 1 alarm ekleyebilirsin. Premium ile aynı güne '
+              'birden fazla alarm kurabilirsin.'
+          : 'Bir güne en fazla ${servis.maxSeansPerGun} seans ekleyebilirsin.');
       return;
     }
 
@@ -238,8 +240,10 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
         _mesaj('Bu aralık aynı gündeki başka bir seansla çakışıyor. '
             'Farklı bir saat seç ⏰');
       case StudyPlanSaveResult.seansLimiti:
-        _mesaj('Bir güne en fazla ${StudyPlanService.kMaxSeansPerGun} seans '
-            'ekleyebilirsin.');
+        _mesaj(servis.maxSeansPerGun == 1
+            ? 'Bir güne yalnızca 1 alarm ekleyebilirsin. Premium ile aynı güne '
+                'birden fazla alarm kurabilirsin.'
+            : 'Bir güne en fazla ${servis.maxSeansPerGun} seans ekleyebilirsin.');
       case StudyPlanSaveResult.hata:
         _mesaj('Plan kaydedilemedi, tekrar dener misin?');
     }
@@ -377,6 +381,7 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
               _GunKarti(
                 gun: gun,
                 seanslar: plan.where((e) => e.gun == gun).toList(),
+                maxSeans: servis.maxSeansPerGun,
                 onEkle: () => _seansEkle(gun),
                 onGunuSil: () => _gunuSil(gun),
                 onSeansDuzenle: _seansDuzenle,
@@ -489,6 +494,10 @@ class _OzetKart extends StatelessWidget {
 class _GunKarti extends StatelessWidget {
   final int gun;
   final List<StudyPlanEntry> seanslar;
+
+  /// Bu kullanıcı için gün başına eklenebilecek en fazla seans (premium'a bağlı)
+  /// — "Seans ekle" butonunun görünürlüğünü belirler.
+  final int maxSeans;
   final VoidCallback onEkle;
   final VoidCallback onGunuSil;
   final ValueChanged<StudyPlanEntry> onSeansDuzenle;
@@ -498,6 +507,7 @@ class _GunKarti extends StatelessWidget {
   const _GunKarti({
     required this.gun,
     required this.seanslar,
+    required this.maxSeans,
     required this.onEkle,
     required this.onGunuSil,
     required this.onSeansDuzenle,
@@ -570,12 +580,15 @@ class _GunKarti extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 4),
-              IconButton(
-                tooltip: 'Seans ekle',
-                visualDensity: VisualDensity.compact,
-                icon: Icon(Icons.add_circle_outline, size: 22, color: c.violetL),
-                onPressed: onEkle,
-              ),
+              // Gün başına izinli seans sayısına ulaşıldıysa (ücretsizde 1,
+              // premium'da daha fazla) "ekle" butonu gizlenir.
+              if (seanslar.length < maxSeans)
+                IconButton(
+                  tooltip: 'Seans ekle',
+                  visualDensity: VisualDensity.compact,
+                  icon: Icon(Icons.add_circle_outline, size: 22, color: c.violetL),
+                  onPressed: onEkle,
+                ),
               if (planli)
                 IconButton(
                   tooltip: 'Günü plandan çıkar',

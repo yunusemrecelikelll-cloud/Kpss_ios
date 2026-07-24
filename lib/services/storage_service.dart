@@ -49,15 +49,6 @@ class StorageService extends ChangeNotifier {
     }
   }
 
-  dynamic _getFor(String user, String key, [dynamic fallback]) {
-    final raw = _prefs?.getString(_prefix(user) + key);
-    if (raw == null) return fallback;
-    try {
-      return jsonDecode(raw);
-    } catch (_) {
-      return fallback;
-    }
-  }
 
   Future<void> _set(String key, dynamic value) async {
     await _prefs?.setString(_prefix() + key, jsonEncode(value));
@@ -164,17 +155,9 @@ class StorageService extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ── Gender / karakter / isim ──
+  // ── Gender / isim ──
   String getUserGender() => _get('gender', '') as String;
   Future<void> setUserGender(String g) => _set('gender', g);
-  String getUserGenderFor(String name) => (_getFor(name, 'gender', '')) as String;
-
-  String getUserCharacter() => _get('character', '') as String;
-  Future<void> setUserCharacter(String c) => _set('character', c);
-
-  // ── Hedef meslek (ör. 'polis', 'ogretmen', 'memur', 'uzman-yardimcisi') ──
-  String getTargetProfession() => _get('targetProfession', '') as String;
-  Future<void> setTargetProfession(String p) => _set('targetProfession', p);
 
   // ── Sınav türü: 'lisans' | 'onlisans' | 'ortaogretim' ──
   String getExamType() => _get('examType', '') as String;
@@ -217,6 +200,14 @@ class StorageService extends ChangeNotifier {
     return _set('name', _adiBicimle(c));
   }
 
+  /// Kullanıcı ismini AÇIKÇA onayladı mı? Girişten sonra isim bir kez sorulur;
+  /// onaylanınca bu bayrak set edilir ve bir daha SORULMAZ. Hesaba/profile
+  /// bağlıdır (aktif profil öneki ile saklanır) — böylece farklı hesaplar
+  /// birbirinin ismini/onayını görmez. Bulut yedeğine de yazılır (bkz.
+  /// CloudSyncService) ki cihaz değiştiren dönüş kullanıcısı tekrar sorulmasın.
+  bool getNameConfirmed() => _get('name_confirmed', false) as bool;
+  Future<void> setNameConfirmed(bool v) => _set('name_confirmed', v);
+
   // ── Tamamlanan konular ──
   Map<String, bool> getCompletedTopics() => Map<String, bool>.from(_get('completed', <String, dynamic>{}));
   Future<void> markTopicCompleted(String id) async {
@@ -225,7 +216,6 @@ class StorageService extends ChangeNotifier {
     await _set('completed', c);
   }
 
-  bool isTopicCompleted(String id) => getCompletedTopics()[id] == true;
 
   // ── Testler (attempts) ──
   List<Attempt> getAttempts() {
@@ -257,12 +247,6 @@ class StorageService extends ChangeNotifier {
     final existing = Set<String>.from(all[topicId] as List? ?? const []);
     existing.addAll(keys);
     all[topicId] = existing.toList();
-    await _set('used_qs', all);
-  }
-
-  Future<void> resetUsedQuestions(String topicId) async {
-    final all = Map<String, dynamic>.from(_get('used_qs', <String, dynamic>{}));
-    all.remove(topicId);
     await _set('used_qs', all);
   }
 
@@ -452,10 +436,6 @@ class StorageService extends ChangeNotifier {
 
   Map<String, dynamic> getNotificationSettings() =>
       Map<String, dynamic>.from(getSettings()['notifications'] as Map);
-  Future<void> saveNotificationSettings(Map<String, dynamic> cfg) async {
-    final n = {...getNotificationSettings(), ...cfg};
-    await saveSettings({'notifications': n});
-  }
 
   bool getCloudBackupEnabled() => getSettings()['cloudBackupEnabled'] == true;
   Future<void> setCloudBackupEnabled(bool enabled) => saveSettings({'cloudBackupEnabled': enabled});
@@ -590,7 +570,6 @@ class StorageService extends ChangeNotifier {
     await _set('game_passed_$gameId', m);
   }
 
-  bool isGameTopicPassed(String gameId, String topicId) => getGamePassedTopics(gameId)[topicId] == true;
 
   // ── Çalışma kronometresi ──
   Map<String, int> getStudyTime() => Map<String, int>.from(_get('studytime', <String, dynamic>{}));
@@ -655,16 +634,6 @@ class StorageService extends ChangeNotifier {
     await _set('weekly_points', {'weekStart': thisWeek, 'points': current + points});
   }
 
-  // ── Konu testi sıfırlama ──
-  Future<void> resetTopicAttempts(String topicId) async {
-    final remaining = getAttempts().where((a) => a.topicId != topicId).toList();
-    await _set('attempts', remaining.map((x) => x.toJson()).toList());
-    final c = getCompletedTopics()..remove(topicId);
-    await _set('completed', c);
-    await resetUsedQuestions(topicId);
-    await clearDraft(topicId);
-  }
-
   // ── Bilgi Maratonu: en uzun seri (yerel rekor) ──
   int getBestMarathonStreak() => ((_get('best_marathon_streak', 0) as num?) ?? 0).toInt();
 
@@ -694,6 +663,34 @@ class StorageService extends ChangeNotifier {
     final all = _highScores();
     all[gameId] = score;
     await _set('game_high_scores', all);
+    return true;
+  }
+
+  // ── EN İYİ SÜRE rekoru (DÜŞÜK olan daha iyidir) ──────────────────────────
+  //
+  // getHighScore/submitHighScore (yüksek daha iyi) ile AYNI desen, ama süre
+  // ölçen oyunlar için TERS yönlü: yalnızca mevcut rekordan KÜÇÜK bir süre
+  // yeni rekor sayılır. Alfabe Oyunu (A'dan Z'ye) turunu ne kadar hızlı
+  // bitirdiğini saniye cinsinden tutar; her oyun kendi `gameId`'sini verir.
+  Map<String, dynamic> _bestTimes() =>
+      Map<String, dynamic>.from((_get('game_best_times', {}) as Map?) ?? {});
+
+  /// [gameId] için kaydedilmiş EN İYİ (en kısa) süre — saniye. Hiç
+  /// tamamlanmadıysa null döner (UI "—" gösterebilsin diye).
+  int? getBestTimeSeconds(String gameId) {
+    final v = _bestTimes()[gameId];
+    return v == null ? null : (v as num).toInt();
+  }
+
+  /// Süreyi kaydeder — SADECE önceki rekordan KÜÇÜKSE (ya da ilk kez).
+  /// Yeni rekor kırıldıysa `true` döner.
+  Future<bool> submitBestTime(String gameId, int seconds) async {
+    if (seconds <= 0) return false;
+    final cur = getBestTimeSeconds(gameId);
+    if (cur != null && seconds >= cur) return false;
+    final all = _bestTimes();
+    all[gameId] = seconds;
+    await _set('game_best_times', all);
     return true;
   }
 

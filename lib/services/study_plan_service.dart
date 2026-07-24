@@ -12,9 +12,11 @@ import 'storage_service.dart';
 /// Kullanıcı haftanın hangi GÜNLERİNDE hangi SAAT ARALIKLARINDA çalışacağını
 /// belirler; bu servis o planı [StorageService] üzerinden kalıcı olarak saklar.
 ///
-/// ÇOKLU SEANS: Aynı gün için BİRDEN FAZLA çalışma aralığı (seans) tanımlanır.
-/// Örn. Pazartesi 09:00–11:00 ve 19:00–21:00. Her seansın kendine ait bir [id]
-/// değeri vardır; düzenleme/silme/aç-kapa işlemleri bu id üzerinden yürür.
+/// TEK SEANS/GÜN: Her gün için YALNIZCA BİR çalışma aralığı (seans/alarm)
+/// tanımlanabilir (kullanıcı isteği: "1 güne sadece 1 alarm"). Seansın kendine
+/// ait bir [id] değeri vardır; düzenleme/silme/aç-kapa bu id üzerinden yürür.
+/// Veri modeli hâlâ gün başına birden fazla seansı TAŞIYABİLİR (eski kayıtlar
+/// bozulmasın diye), ama ekleme [kMaxSeansPerGun] ile 1'e sınırlanır.
 ///
 /// ÖNEMLİ: StorageService'in `_get`/`_set` yardımcıları private olduğu için
 /// burada PUBLIC olan `getSettings()` / `saveSettings(Map)` API'si kullanılıyor
@@ -22,8 +24,8 @@ import 'storage_service.dart';
 /// Böylece storage_service.dart'a hiç dokunulmadan yeni bir alan eklenmiş olur
 /// (aynı desen: cloudBackupEnabled, hideStats vb.).
 ///
-/// LİMİT: Ücretsiz kullanıcı EN FAZLA 1 GÜN planlayabilir (o güne istediği
-/// kadar seans ekleyebilir); premium sınırsız gün.
+/// LİMİT: Ücretsiz kullanıcı EN FAZLA 1 GÜN planlayabilir; premium sınırsız
+/// gün. Her iki durumda da bir güne yalnızca 1 seans/alarm eklenir.
 
 /// Haftalık plandaki tek bir çalışma seansı.
 class StudyPlanEntry {
@@ -205,12 +207,23 @@ class StudyPlanService {
   static const String kPlanKey = 'studyPlan';
 
   /// Ücretsiz kullanıcının planlayabileceği en fazla GÜN sayısı.
-  /// (O güne eklenebilecek seans sayısı sınırsızdır — bkz. [kMaxSeansPerGun].)
+  /// (Bir güne eklenebilecek seans sayısı için bkz. [maxSeansPerGun].)
   static const int kFreeMaxDays = 1;
 
-  /// Tek bir güne eklenebilecek en fazla seans sayısı. Bildirim kimlik şeması
-  /// bu sayıya göre bölmelendiği için (bkz. NotificationService) sabit tutulur.
-  static const int kMaxSeansPerGun = 12;
+  /// Gün başına MUTLAK üst sınır — bildirim kimlik şeması (bkz.
+  /// NotificationService._planBildirimId) bu sayıya göre bölmelendiği için
+  /// SABİTTİR. Premium kullanıcı bir güne bu kadar seans/alarm ekleyebilir.
+  static const int kSeansIdKapasitesi = 12;
+
+  /// ÜCRETSİZ kullanıcının bir güne ekleyebileceği en fazla seans/alarm.
+  /// Kullanıcı isteği: "1 güne sadece 1 alarm." Premium'da bu sınır kalkar
+  /// (bkz. [maxSeansPerGun]).
+  static const int kFreeMaxSeansPerGun = 1;
+
+  /// Bu kullanıcı için gün başına eklenebilecek en fazla seans: ücretsizde 1,
+  /// premium'da [kSeansIdKapasitesi]. (Kullanıcı isteği: "Premium'da gün
+  /// içinde birden fazla plan eklenebilsin.")
+  int get maxSeansPerGun => isPremium ? kSeansIdKapasitesi : kFreeMaxSeansPerGun;
 
   static const List<String> kGunAdlari = [
     'Pazartesi',
@@ -297,11 +310,6 @@ class StudyPlanService {
     return gunler.length < kFreeMaxDays;
   }
 
-  /// Ücretsiz kullanıcının hâlâ ekleyebileceği GÜN sayısı (premium'da -1 =
-  /// sınırsız).
-  int get kalanGunHakki => isPremium
-      ? -1
-      : (kFreeMaxDays - planlananGunler.length).clamp(0, kFreeMaxDays);
 
   // ── Yazma ────────────────────────────────────────────────────────────────
 
@@ -324,7 +332,7 @@ class StudyPlanService {
         (gunBazli[e.gun] ??= <StudyPlanEntry>[]).add(e);
       }
       for (final seanslar in gunBazli.values) {
-        if (seanslar.length > kMaxSeansPerGun) {
+        if (seanslar.length > maxSeansPerGun) {
           return StudyPlanSaveResult.seansLimiti;
         }
         for (var i = 0; i < seanslar.length; i++) {
@@ -362,7 +370,7 @@ class StudyPlanService {
       return StudyPlanSaveResult.cakisma;
     }
     final ayniGun = digerleri.where((e) => e.gun == entry.gun).length;
-    if (ayniGun + 1 > kMaxSeansPerGun) return StudyPlanSaveResult.seansLimiti;
+    if (ayniGun + 1 > maxSeansPerGun) return StudyPlanSaveResult.seansLimiti;
 
     return savePlan(digerleri..add(entry));
   }
@@ -385,14 +393,6 @@ class StudyPlanService {
     final idx = plan.indexWhere((e) => e.id == id);
     if (idx == -1) return StudyPlanSaveResult.hata;
     plan[idx] = plan[idx].copyWith(aktif: aktif);
-    return savePlan(plan);
-  }
-
-  /// Bir günün tüm seanslarını topluca açar/kapatır.
-  Future<StudyPlanSaveResult> toggleDay(int gun, bool aktif) async {
-    final plan = getPlan()
-        .map((e) => e.gun == gun ? e.copyWith(aktif: aktif) : e)
-        .toList();
     return savePlan(plan);
   }
 
@@ -499,14 +499,7 @@ class StudyPlanService {
     }
   }
 
-  /// Öneri cümlesi — veri yoksa kullanıcıyı test çözmeye davet eder.
-  String suggestionText() {
-    final z = weakestSubject();
-    if (z == null) return 'Önce birkaç test çöz, sana özel öneri hazırlayayım.';
-    return '${z.ders.ad} ortalaman %${z.ortalama} — en zayıf dersin. Planına bu dersi koy.';
-  }
-
-  /// Kart için tek satırlık kısa hâli.
+  /// Kart için tek satırlık kısa hâli — kullanıcıyı test çözmeye davet eder.
   String shortSuggestionText() {
     final z = weakestSubject();
     if (z == null) return 'Birkaç test çöz, sana özel ders önerisi çıkaralım.';

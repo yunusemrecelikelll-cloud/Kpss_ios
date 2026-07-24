@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -86,7 +85,6 @@ class PurchaseService extends ChangeNotifier {
   String? lastError;
   bool _initialized = false;
 
-  bool get isReady => status == PurchaseServiceStatus.ready;
   bool get isPurchasing => status == PurchaseServiceStatus.purchasing;
 
   ProductDetails? productFor(String id) {
@@ -278,10 +276,3 @@ class PurchaseService extends ChangeNotifier {
     super.dispose();
   }
 }
-
-/// iOS'ta App Store'un satın alma kuyruğunu StoreKit 2 ile uyumlu şekilde
-/// başlatmak için bazı kurulumlarda gerekli olabilecek yardımcı — bu proje
-/// varsayılan in_app_purchase davranışını kullanıyor, burada sadece
-/// platformun iOS olup olmadığını basitçe kontrol etmek için tutuluyor
-/// (ör. ileride StoreKit'e özgü bir ayar eklenmek istenirse).
-bool get isApplePlatform => Platform.isIOS || Platform.isMacOS;

@@ -55,10 +55,4 @@ class DataService {
     return null;
   }
 
-  Topic? topicById(Subject subject, String tid) {
-    for (final t in subject.konular) {
-      if (t.id == tid) return t;
-    }
-    return null;
-  }
 }
