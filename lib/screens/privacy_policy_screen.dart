@@ -139,7 +139,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               title: '9. İletişim',
               body:
                   'Gizlilikle ilgili sorular, veri erişim/silme talepleri için: '
-                  'yunusemrecelikellll@gmail.com\n\n'
+                  'yunusemrecelikelll@gmail.com\n\n'
                   'Bu politikanın web sürümü:\n$kPrivacyPolicyUrl',
             ),
           ],
