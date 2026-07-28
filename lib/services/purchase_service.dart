@@ -101,7 +101,22 @@ class PurchaseService extends ChangeNotifier {
   Future<void> init() async {
     if (_initialized) return;
     _initialized = true;
+    await _yukle();
+  }
 
+  /// Kullanıcı "Tekrar Dene"ye bastığında (ya da mağaza geç hazır olduğunda)
+  /// ürünleri yeniden yükler. init()'ten farkı: `_initialized` bayrağına
+  /// bakmaz, her çağrıda yeniden sorgular.
+  Future<void> yenidenDene() => _yukle();
+
+  /// Mağazayı hazırlar ve ürünleri çeker. Ürün sorgusu, iOS'ta App Review
+  /// ortamında sık görülen GEÇİCİ "StoreKit: Failed to get response from
+  /// platform" hatasına karşı BİRKAÇ KEZ denenir — tek seferlik geçici bir
+  /// hata artık kalıcı "kullanılamıyor" durumuna düşürmez (red sebebi buydu).
+  Future<void> _yukle() async {
+    status = PurchaseServiceStatus.idle;
+    lastError = null;
+    notifyListeners();
     try {
       final available = await _iap.isAvailable();
       if (!available) {
@@ -111,9 +126,9 @@ class PurchaseService extends ChangeNotifier {
         return;
       }
 
-      // Satın alma güncellemelerini dinlemeye başla (isAvailable true olsa da
-      // olmasa da güvenli — ama pratikte sadece mağaza varsa anlamlı).
-      _subscription = _iap.purchaseStream.listen(
+      // Satın alma güncellemelerini dinle — yalnızca BİR KEZ abone ol
+      // (yenidenDene defalarca çağrılabilir; çift abonelik olmasın).
+      _subscription ??= _iap.purchaseStream.listen(
         _onPurchaseUpdate,
         onDone: () => _subscription?.cancel(),
         onError: (Object e) {
@@ -123,18 +138,29 @@ class PurchaseService extends ChangeNotifier {
         },
       );
 
-      final response = await _iap.queryProductDetails(kPremiumProductIds);
+      // ÜRÜN SORGUSU — en fazla 3 deneme, artan bekleme ile. StoreKit ilk
+      // açılışta / zayıf ağda ilk sorguya bazen yanıt vermez; tekrar deneyince
+      // döner. (App Store denetçisinin gördüğü "Failed to get response from
+      // platform" tam olarak bu geçici durumdu.)
+      ProductDetailsResponse? response;
+      for (var deneme = 1; deneme <= 3; deneme++) {
+        response = await _iap.queryProductDetails(kPremiumProductIds);
+        final basarili =
+            response.error == null && response.productDetails.isNotEmpty;
+        if (basarili || deneme == 3) break;
+        await Future.delayed(Duration(milliseconds: 700 * deneme));
+      }
 
-      if (response.error != null) {
+      if (response == null || response.error != null) {
         status = PurchaseServiceStatus.unavailable;
-        lastError = response.error!.message;
+        lastError = response?.error?.message ?? 'Mağaza yanıt vermedi.';
         notifyListeners();
         return;
       }
 
       if (response.productDetails.isEmpty) {
-        // TODO: App Store Connect / Play Console'da ürünler henüz
-        // tanımlanmadıysa ya da onay bekliyorsa buraya düşülür.
+        // App Store Connect / Play Console'da ürünler henüz onaylı/eklenmemişse
+        // ya da Paid Apps sözleşmesi aktif değilse buraya düşülür.
         status = PurchaseServiceStatus.unavailable;
         lastError = 'Ürünler mağazada bulunamadı (henüz tanımlanmamış olabilir).';
         notifyListeners();

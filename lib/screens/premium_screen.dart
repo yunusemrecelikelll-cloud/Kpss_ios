@@ -241,14 +241,35 @@ class _PremiumScreenState extends State<PremiumScreen> {
           DsCard(
             accent: c.danger,
             padding: const EdgeInsets.all(14),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                DsIconBadge(icon: Icons.store_mall_directory_outlined, color: c.danger, size: 38, circle: false, glow: false),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    'Mağaza şu an kullanılamıyor: ${_purchases.lastError ?? "bilinmeyen sebep"}',
-                    style: TextStyle(fontSize: 12, height: 1.4, color: c.text),
+                Row(
+                  children: [
+                    DsIconBadge(icon: Icons.store_mall_directory_outlined, color: c.danger, size: 38, circle: false, glow: false),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        'Mağaza şu an kullanılamıyor: ${_purchases.lastError ?? "bilinmeyen sebep"}',
+                        style: TextStyle(fontSize: 12, height: 1.4, color: c.text),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                // Geçici StoreKit hatalarında kullanıcı (ve App Review denetçisi)
+                // ürünleri yeniden yükleyebilsin diye.
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton.icon(
+                    onPressed: () {
+                      context.read<SoundService>().click();
+                      _purchases.yenidenDene();
+                    },
+                    icon: Icon(Icons.refresh, size: 18, color: c.violetL),
+                    label: Text('Tekrar Dene',
+                        style: TextStyle(color: c.violetL, fontWeight: FontWeight.w800)),
                   ),
                 ),
               ],
