@@ -83,9 +83,13 @@ class _PremiumScreenState extends State<PremiumScreen> {
               const SizedBox(height: 8),
               Text(
                 _purchases.lastError ??
-                    'Gerçek satın alma için App Store Connect / Play Console\'da '
-                        'ürünlerin tanımlanmış olması ve cihazda bir mağaza '
-                        'hesabının oturum açmış olması gerekir.',
+                    (defaultTargetPlatform == TargetPlatform.android
+                        ? 'Gerçek satın alma için cihazında bir Google hesabının '
+                            'oturum açmış ve ürünlerin Google Play\'de yayında '
+                            'olması gerekir.'
+                        : 'Gerçek satın alma için cihazında bir App Store '
+                            'hesabının oturum açmış ve ürünlerin App Store\'da '
+                            'yayında olması gerekir.'),
               ),
               const SizedBox(height: 8),
               TextButton(
@@ -389,7 +393,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
                 const SizedBox(height: 6),
                 Text(
                   'Yalnızca geliştirme derlemesinde görünür. '
-                  'TestFlight ve App Store sürümlerinde yer almaz.',
+                  'Yayın (release) sürümlerinde yer almaz.',
                   style: TextStyle(fontSize: 11.5, height: 1.45, color: c.textFaint),
                 ),
                 const SizedBox(height: 12),

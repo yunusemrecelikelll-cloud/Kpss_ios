@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -1393,8 +1394,13 @@ class _DeleteAccountDialogState extends State<_DeleteAccountDialog> {
             _madde(c, 'Bulut yedeğin ve giriş hesabın'),
             const SizedBox(height: 12),
             Text(
-              'Satın aldığın bir abonelik varsa App Store üzerinden ayrıca '
-              'iptal etmen gerekir — hesap silmek aboneliği durdurmaz.',
+              // Platforma göre doğru mağaza adı (Android'de "App Store"
+              // yazması yanıltıcıydı).
+              defaultTargetPlatform == TargetPlatform.android
+                  ? 'Satın aldığın bir abonelik varsa Google Play üzerinden ayrıca '
+                      'iptal etmen gerekir — hesap silmek aboneliği durdurmaz.'
+                  : 'Satın aldığın bir abonelik varsa App Store üzerinden ayrıca '
+                      'iptal etmen gerekir — hesap silmek aboneliği durdurmaz.',
               style: TextStyle(fontSize: 12, color: c.textFaint, height: 1.4),
             ),
             const SizedBox(height: 16),
