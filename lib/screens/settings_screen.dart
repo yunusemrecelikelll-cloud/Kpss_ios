@@ -25,6 +25,7 @@ import 'quiz_screen.dart'
         kVarsayilanSoruCevapModu;
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
+import '../widgets/resmi_kurum_feragati.dart';
 
 // ── Test süresi ──
 // Süre artık test öncesi sorulmuyor; buradaki tercih doğrudan uygulanıyor
@@ -1024,6 +1025,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrivacyPolicyScreen()));
               },
             ),
+            const SizedBox(height: 10),
+            // Resmî kurum feragatı + tıklanabilir ÖSYM bağlantısı — uygulamanın
+            // bağımsız olduğunu açıkça beyan eder (Play/App Store "resmî devlet
+            // uygulaması" izlenimi kaygısına karşı). Görünür bir yer: Hakkında.
+            const ResmiKurumFeragati(),
             const SizedBox(height: 20),
           ],
         ),

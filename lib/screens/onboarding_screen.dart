@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../widgets/resmi_kurum_feragati.dart';
 import 'main_shell.dart';
 
 /// İLK KURULUMDA bir kez gösterilen kaydırmalı tanıtım ekranı.
@@ -48,6 +50,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
+  /// İlk açılışta bir kez gösterilen resmî kurum feragatı sayfası.
+  Widget _feragatSayfasi(KpssColors c) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            DsIllustration(emoji: 'ℹ️', glowColor: c.violetL),
+            const SizedBox(height: 22),
+            Text('Başlamadan önce',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 22, fontWeight: FontWeight.w900, color: c.text)),
+            const SizedBox(height: 16),
+            const ResmiKurumFeragati(kompakt: true),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<void> _basla() async {
     context.read<SoundService>().click();
     await context.read<StorageService>().onboardingGoruldu();
@@ -60,7 +84,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final sonSayfa = _sayfa == _kSayfalar.length - 1;
+    // Son sayfa artık FERAGAT sayfası (tanıtım sayfalarının bir fazlası).
+    final sonSayfa = _sayfa == _kSayfalar.length;
 
     return Scaffold(
       body: SafeArea(
@@ -77,9 +102,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: _controller,
-                itemCount: _kSayfalar.length,
+                itemCount: _kSayfalar.length + 1,
                 onPageChanged: (i) => setState(() => _sayfa = i),
                 itemBuilder: (_, i) {
+                  // Son sayfa: resmî kurum feragatı + ÖSYM bağlantısı.
+                  if (i == _kSayfalar.length) return _feragatSayfasi(c);
                   final s = _kSayfalar[i];
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -109,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < _kSayfalar.length; i++)
+                for (var i = 0; i < _kSayfalar.length + 1; i++)
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),
