@@ -1,9 +1,19 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../theme/theme_provider.dart';
 
 /// Son güncelleme tarihi — politika metni değiştikçe elle güncellenmeli.
 const String kPrivacyPolicyUpdatedAt = '21 Temmuz 2026';
+
+/// Gizlilik politikasının web sürümü — her platform KENDİ GitHub Pages
+/// reposunu gösterir (iOS: Kpss_ios, Android: Kpss_Android). Sayfa içeriği
+/// aynıdır; yalnızca URL platforma göre değişir ki iOS'ta "Kpss_Android"
+/// yazması gibi bir tutarsızlık olmasın.
+String get kPrivacyPolicyUrl =>
+    defaultTargetPlatform == TargetPlatform.android
+        ? 'https://yunusemrecelikelll-cloud.github.io/Kpss_Android/gizlilik.html'
+        : 'https://yunusemrecelikelll-cloud.github.io/Kpss_ios/gizlilik.html';
 
 /// Gizlilik Politikası — uygulamanın GERÇEK veri toplama/kullanma
 /// davranışını yansıtır (bkz. StorageService, AuthService, ChatService,
@@ -127,8 +137,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               body:
                   'Gizlilikle ilgili sorular, veri erişim/silme talepleri için: '
                   'yunusemrecelikellll@gmail.com\n\n'
-                  'Bu politikanın web sürümü:\n'
-                  'https://yunusemrecelikelll-cloud.github.io/Kpss_Android/gizlilik.html',
+                  'Bu politikanın web sürümü:\n$kPrivacyPolicyUrl',
             ),
           ],
         ),

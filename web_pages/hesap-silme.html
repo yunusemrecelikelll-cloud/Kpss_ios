@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hesap ve Veri Silme — KPSS Hazırlık</title>
+<meta name="description" content="KPSS Hazırlık uygulamasında hesabını ve verilerini nasıl silersin.">
+<style>
+  :root{
+    --bg:#0A0612; --card:#150C24; --line:#2A1D3F;
+    --text:#F1EEFF; --dim:#C4B5FD; --faint:#8B7AA8; --accent:#A78BFA; --danger:#FB7185;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#FAF7FF; --card:#FFFFFF; --line:#E4DAF7;
+           --text:#1E1633; --dim:#4C3A73; --faint:#6B5C8A; --accent:#6D28D9; --danger:#BE123C; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       padding:24px 16px 64px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px;font-weight:800}
+  .sub{color:var(--faint);font-size:.92rem;margin-bottom:28px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+          padding:20px 22px;margin-bottom:14px}
+  h2{font-size:1.06rem;margin:0 0 10px;font-weight:800;color:var(--accent)}
+  p{margin:0 0 12px;color:var(--dim)} p:last-child{margin-bottom:0}
+  ol,ul{margin:0 0 12px;padding-left:20px;color:var(--dim)}
+  li{margin-bottom:8px}
+  strong{color:var(--text)}
+  a{color:var(--accent);word-break:break-word}
+  .warn{border-left:3px solid var(--danger);padding-left:14px}
+  .warn strong{color:var(--danger)}
+  .steps{counter-reset:s;list-style:none;padding-left:0}
+  .steps li{position:relative;padding-left:38px;margin-bottom:14px}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;
+    width:26px;height:26px;border-radius:50%;border:1.5px solid var(--accent);
+    color:var(--accent);font-weight:800;font-size:.82rem;display:flex;
+    align-items:center;justify-content:center}
+  footer{margin-top:28px;text-align:center;color:var(--faint);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Hesap ve Veri Silme</h1>
+<div class="sub">KPSS Hazırlık · Son güncelleme: 21 Temmuz 2026</div>
+
+<section>
+  <h2>Uygulama içinden silme (önerilen)</h2>
+  <p>Hesabını kendin, anında ve tamamen silebilirsin:</p>
+  <ol class="steps">
+    <li>KPSS Hazırlık uygulamasını aç</li>
+    <li>Alt menüden <strong>Ayarlar</strong> sekmesine git</li>
+    <li><strong>Hesap</strong> bölümüne in</li>
+    <li><strong>"Hesabımı Sil"</strong> seçeneğine dokun</li>
+    <li>Uyarıyı okuduktan sonra kutuya <strong>SİL</strong> yazıp onayla</li>
+  </ol>
+  <p>İşlem birkaç saniye sürer ve tamamlandığında uygulama sıfırdan başlar.</p>
+</section>
+
+<section>
+  <h2>Silinen veriler</h2>
+  <ul>
+    <li>Giriş hesabın (Apple / Google kimliği)</li>
+    <li>Bulut yedeğin</li>
+    <li>Test sonuçların, istatistiklerin ve yanlışlar bankan</li>
+    <li>Rozetlerin, XP'in ve lig kaydın</li>
+    <li>Genel sohbetteki mesajların ve özel konuşmaların</li>
+    <li>Engellediğin kullanıcı listesi ve gönderdiğin şikayet kayıtları</li>
+    <li>Açtığın düello odaları ve katıldığın odalardaki kayıtların</li>
+    <li>Cihazındaki tüm yerel ilerleme</li>
+  </ul>
+  <p>Silme işlemi <strong>anında</strong> uygulanır; herhangi bir bekleme süresi
+  yoktur ve saklanan yedek bırakılmaz.</p>
+</section>
+
+<section>
+  <h2>Uygulamaya erişemiyorsan</h2>
+  <p>Telefonunu kaybettiysen ya da uygulamayı kaldırdıysan, silme talebini
+  e-posta ile iletebilirsin:</p>
+  <p><a href="mailto:yunusemrecelikellll@gmail.com?subject=Hesap%20Silme%20Talebi">
+  yunusemrecelikellll@gmail.com</a></p>
+  <p>E-postanda hesabına bağlı <strong>Apple ya da Google e-posta adresini</strong>
+  belirt. Talebini aldıktan sonra kimliğini doğrulayıp en geç <strong>30 gün
+  içinde</strong> tüm verilerini sileriz ve sana bilgi veririz.</p>
+</section>
+
+<section class="warn">
+  <h2>Aboneliğin varsa</h2>
+  <p><strong>Hesabını silmek aboneliğini durdurmaz.</strong> Ücretlendirmenin
+  durması için aboneliği mağaza hesabından ayrıca iptal etmelisin:</p>
+  <ul>
+    <li><strong>iPhone:</strong> Ayarlar &gt; Apple Kimliğin &gt; Abonelikler</li>
+    <li><strong>Android:</strong> Google Play &gt; Profil &gt; Ödemeler ve abonelikler</li>
+  </ul>
+</section>
+
+<footer>
+  <a href="gizlilik.html">Gizlilik Politikası</a> · KPSS Hazırlık
+</footer>
+
+</div>
+</body>
+</html>
