@@ -117,9 +117,7 @@ class _PlacementResultScreenState extends State<PlacementResultScreen> {
     final c = context.watch<ThemeProvider>().colors;
     final result = widget.result;
     final stats = _computeStats(subjects, data);
-    final name = storage.getActiveUser().isNotEmpty
-        ? storage.getActiveUser()
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Aday');
+    final name = storage.getDisplayName();
     final headline = placementHeadlineFor(name, result.skor);
     final headlineColor = motivationColorFor(result.skor, c);
 

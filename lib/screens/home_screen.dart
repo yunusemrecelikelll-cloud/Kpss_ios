@@ -204,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ? storage.getUserName()
         : ((authName != null && authName.isNotEmpty)
             ? authName
-            : (epostaOnEki.isNotEmpty ? epostaOnEki : storage.getActiveUser()));
+            : (epostaOnEki.isNotEmpty ? epostaOnEki : 'Aday'));
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();
     final completed = storage.getCompletedTopics();

@@ -311,25 +311,6 @@ class NotificationService {
     }
   }
 
-  /// Kullanıcının bildirimlerin nasıl göründüğünü hemen görebilmesi için tek
-  /// seferlik örnek bildirim (ayar ekranındaki "Dene" butonu gibi yerler için).
-  Future<void> showTestNotification({required StorageService storage}) async {
-    if (!destekleniyorMu) return;
-    if (!_hazir) await initialize();
-    if (!_hazir) return;
-    try {
-      final ad = _hitap(storage);
-      await _plugin.show(
-        _kBaseId,
-        _baslikSec(ad),
-        _govdeSec(ad, null),
-        _detaylar(),
-      );
-    } catch (e) {
-      debugPrint('NotificationService.showTestNotification hatası: $e');
-    }
-  }
-
   /// Genel amaçlı ANLIK bildirim (planlı değil): yeni mesaj / arkadaşlık
   /// isteği gibi olaylar için, uygulama arka plandayken telefon bildirimi
   /// göstermekte kullanılır (bkz. InAppNoticeOverlay).
@@ -346,53 +327,6 @@ class NotificationService {
       await _plugin.show(9300 + _basitBildirimSira, baslik, govde, _detaylar());
     } catch (e) {
       debugPrint('NotificationService.showBasit hatası: $e');
-    }
-  }
-
-  /// Android'de TAM ZAMANLI alarm izni var mı? (iOS'ta her zaman true —
-  /// oradaki bildirimler sistem takvim tetikleyicisiyle çalışır.)
-  /// Android 12-13'te kurulumda otomatik verilir; 14+'ta varsayılan kapalıdır
-  /// ve kapalıyken bildirimler "yaklaşık" moda düşer — Doze/pil optimizasyonu
-  /// altında FİİLEN HİÇ gelmeyebilir ("bildirim gelmiyor" şikayetinin en
-  /// yaygın sebebi).
-  Future<bool> exactIzinVarMi() async {
-    if (!destekleniyorMu) return false;
-    if (defaultTargetPlatform != TargetPlatform.android) return true;
-    try {
-      final android = _plugin.resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>();
-      return await android?.canScheduleExactNotifications() ?? false;
-    } catch (e) {
-      debugPrint('NotificationService.exactIzinVarMi: $e');
-      return false;
-    }
-  }
-
-  /// Android 14+'ta sistemin "Alarmlar ve hatırlatıcılar" ayar sayfasını açar
-  /// (kullanıcı İSTEDİĞİ İÇİN — kendiliğinden asla açılmaz). Dönüşte izni
-  /// tekrar kontrol etmek çağıranın işidir.
-  Future<void> exactIzinAyariniAc() async {
-    if (defaultTargetPlatform != TargetPlatform.android) return;
-    try {
-      final android = _plugin.resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>();
-      await android?.requestExactAlarmsPermission();
-    } catch (e) {
-      debugPrint('NotificationService.exactIzinAyariniAc: $e');
-    }
-  }
-
-  /// Kurulmuş bekleyen plan bildirimlerinin sayısı (hata olursa 0).
-  Future<int> pendingPlanCount() async {
-    if (!destekleniyorMu || !_hazir) return 0;
-    try {
-      final hepsi = await _plugin.pendingNotificationRequests();
-      return hepsi
-          .where((r) => r.id > _kBaseId && r.id <= _kBaseId + _kPlanIdAdedi)
-          .length;
-    } catch (e) {
-      debugPrint('NotificationService.pendingPlanCount hatası: $e');
-      return 0;
     }
   }
 

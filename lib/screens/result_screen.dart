@@ -63,10 +63,9 @@ class _ResultScreenState extends State<ResultScreen> {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
-    final k = KpssPoints.compute(dogru: result.dogru, yanlis: result.yanlis);
-    final name = storage.getActiveUser().isNotEmpty
-        ? storage.getActiveUser()
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Aday');
+    final k = KpssPoints.compute(
+        dogru: result.dogru, yanlis: result.yanlis, toplam: result.toplam);
+    final name = storage.getDisplayName();
     final motivation = motivationMessageFor(name, result.skor);
     final motivationColor = motivationColorFor(result.skor, c);
 

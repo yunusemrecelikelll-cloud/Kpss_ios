@@ -43,7 +43,7 @@ class PredictorScreen extends StatelessWidget {
       dogru += d;
       yanlis += (n - d);
     });
-    final k = KpssPoints.compute(dogru: dogru, yanlis: yanlis);
+    final k = KpssPoints.compute(dogru: dogru, yanlis: yanlis, toplam: dogru + yanlis);
     final c = context.watch<ThemeProvider>().colors;
 
     return Scaffold(

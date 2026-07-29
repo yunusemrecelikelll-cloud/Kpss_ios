@@ -200,6 +200,15 @@ class StorageService extends ChangeNotifier {
     return _set('name', _adiBicimle(c));
   }
 
+  /// Ekranlarda gösterilecek KULLANICI ADI. [getUserName] birincildir; boşsa
+  /// 'Aday' döner. [getActiveUser] (profil kimliği; giriş yapan hesapta
+  /// `hesap_<uid>` biçiminde) ASLA isim olarak gösterilmez — test sonucunda
+  /// "hesap_Bwdd..." çıkmasının sebebi buydu.
+  String getDisplayName() {
+    final n = getUserName().trim();
+    return n.isNotEmpty ? n : 'Aday';
+  }
+
   /// Kullanıcı ismini AÇIKÇA onayladı mı? Girişten sonra isim bir kez sorulur;
   /// onaylanınca bu bayrak set edilir ve bir daha SORULMAZ. Hesaba/profile
   /// bağlıdır (aktif profil öneki ile saklanır) — böylece farklı hesaplar

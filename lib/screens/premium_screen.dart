@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../services/auth_service.dart';
 import '../services/purchase_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import 'account_login_screen.dart';
 import 'privacy_policy_screen.dart';
 
 class PremiumScreen extends StatefulWidget {
@@ -50,6 +52,31 @@ class _PremiumScreenState extends State<PremiumScreen> {
 
   Future<void> _buy(BuildContext context, String productId) async {
     context.read<SoundService>().click();
+    // GİRİŞ ZORUNLU: premium satın alma hesaba bağlı olmalı ki cihaz
+    // değişiminde/yeniden kurulumda geri yüklenebilsin ve doğru hesaba yazılsın.
+    // Anonim oturum yeterli değil (isRealSignedIn anonimi dışlar).
+    if (!context.read<AuthService>().isRealSignedIn) {
+      final gir = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Önce giriş yap'),
+          content: const Text(
+              'Premium satın almak için Google ya da Apple hesabınla giriş '
+              'yapmalısın. Böylece aboneliğin hesabına bağlanır; cihaz '
+              'değiştirsen ya da uygulamayı yeniden kursan bile korunur.'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Vazgeç')),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Giriş Yap')),
+          ],
+        ),
+      );
+      if (!mounted) return;
+      if (gir == true) {
+        await Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
+      }
+      return;
+    }
     if (_purchases.status == PurchaseServiceStatus.unavailable) {
       _showStoreUnavailableSheet(context, productId);
       return;

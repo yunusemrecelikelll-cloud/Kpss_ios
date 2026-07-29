@@ -19,7 +19,7 @@ const String kHizliKararGameId = 'hizli-karar';
 const int kHizliKararSoruSayisi = 15;
 
 /// Her soru için verilen süre (saniye) — "3-5 saniye" isteğine göre 4 sn.
-const int kHizliKararSureSn = 4;
+const int kHizliKararSureSn = 10;
 
 /// Normal 5 şıklı [Question]'dan türetilmiş, 2 şıklı (A/B) hızlı karar
 /// sorusu: doğru şık ile rastgele bir yanlış şık alınır, hangisinin A/B

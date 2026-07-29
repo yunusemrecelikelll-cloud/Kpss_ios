@@ -29,9 +29,7 @@ class ProfileScreen extends StatelessWidget {
     final c = context.watch<ThemeProvider>().colors;
     // İsim önceliği getUserName()'e verildi: profil düzenleme diyaloğu
     // StorageService.setUserName() ile kaydediyor, güncel değer hemen görünsün diye.
-    final name = storage.getUserName().isNotEmpty
-        ? storage.getUserName()
-        : (storage.getActiveUser().isNotEmpty ? storage.getActiveUser() : 'Aday');
+    final name = storage.getDisplayName();
     final gender = storage.getUserGender();
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();

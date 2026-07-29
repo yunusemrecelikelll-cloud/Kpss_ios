@@ -32,30 +32,20 @@ DateTime nextExamDate(ExamInfo info, {DateTime? now}) {
   return date;
 }
 
-/// "2 Ay 5 Gün 3 Saat 20 Dk" gibi, dakika hassasiyetinde bir geri sayım
-/// metni üretir (sadece tarih değil, saat:dakika de hesaba katılır).
+/// "2 Ay 5 Gün" gibi, YALNIZCA ay + gün hassasiyetinde bir geri sayım metni
+/// üretir (kullanıcı isteği: saat/dakika gösterme). Saat:dakika hesaba
+/// katılmaz; kalan süre bugünün gününden sınav gününe kadar hesaplanır.
 String formatCountdown(DateTime target, {DateTime? now}) {
   final today = now ?? DateTime.now();
-  // Sınav günü, günün başlangıcı (00:00) olarak kabul edilir; kalan süre
-  // "şu an"dan sınav gününün başlangıcına kadar hesaplanır.
   final examDayStart = DateTime(target.year, target.month, target.day);
-  if (!examDayStart.isAfter(DateTime(today.year, today.month, today.day))) {
+  final todayStart = DateTime(today.year, today.month, today.day);
+  if (!examDayStart.isAfter(todayStart)) {
     return 'Sınav bugün! 🎯';
   }
 
-  var months = (examDayStart.year - today.year) * 12 + (examDayStart.month - today.month);
-  var days = examDayStart.day - today.day;
-  var hours = 23 - today.hour;
-  var minutes = 60 - today.minute;
-  if (minutes == 60) {
-    minutes = 0;
-  } else {
-    hours -= 1;
-  }
-  if (hours < 0) {
-    hours += 24;
-    days -= 1;
-  }
+  var months =
+      (examDayStart.year - todayStart.year) * 12 + (examDayStart.month - todayStart.month);
+  var days = examDayStart.day - todayStart.day;
   if (days < 0) {
     months -= 1;
     final prevMonth = DateTime(examDayStart.year, examDayStart.month, 0); // önceki ayın son günü
@@ -65,8 +55,6 @@ String formatCountdown(DateTime target, {DateTime? now}) {
   final parts = <String>[];
   if (months > 0) parts.add('$months Ay');
   if (days > 0) parts.add('$days Gün');
-  if (hours > 0) parts.add('$hours Saat');
-  if (minutes > 0) parts.add('$minutes Dk');
   if (parts.isEmpty) return 'Sınav bugün! 🎯';
   return parts.join(' ');
 }
