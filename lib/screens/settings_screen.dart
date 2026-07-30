@@ -495,6 +495,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 baslik: 'Tema değiştirildi',
                                 govde: '',
                                 emoji: '🎨',
+                                // Peş peşe tema değişiminde tek (son) afiş.
+                                etiket: 'tema',
                               ),
                             );
                                   },

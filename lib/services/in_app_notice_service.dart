@@ -20,7 +20,20 @@ class InAppNotice {
   final String baslik;
   final String govde;
   final String emoji;
-  const InAppNotice({required this.baslik, required this.govde, this.emoji = '🔔'});
+
+  /// Aynı etikete sahip PEŞ PEŞE bildirimler tek bir (en son) bildirime
+  /// indirgenir — kuyrukta o etiketten yalnızca en yenisi kalır. Örneğin
+  /// hızlıca tema değiştirince "Tema değiştirildi" afişleri üst üste yığılmaz;
+  /// yalnızca son değişikliğin bildirimi görünür (kullanıcı isteği). Etiket
+  /// null ise bu birleştirme yapılmaz (her bildirim ayrı gösterilir).
+  final String? etiket;
+
+  const InAppNotice({
+    required this.baslik,
+    required this.govde,
+    this.emoji = '🔔',
+    this.etiket,
+  });
 }
 
 class InAppNoticeService extends ChangeNotifier {
@@ -44,6 +57,12 @@ class InAppNoticeService extends ChangeNotifier {
   /// Yeni bir afiş talep eder. Bekletme aktifse ya da halihazırda bir afiş
   /// gösteriliyorsa kuyruğa girer.
   void goster(InAppNotice bildirim) {
+    // PEŞ PEŞE BİRLEŞTİRME: aynı etiketli bekleyen bildirimleri düşür — böylece
+    // hızlı tekrar eden eylemlerde (ör. üst üste tema değiştirme) yalnızca EN
+    // SON bildirim görünür, öncekiler iptal olur.
+    if (bildirim.etiket != null) {
+      _kuyruk.removeWhere((b) => b.etiket == bildirim.etiket);
+    }
     _kuyruk.add(bildirim);
     _iletmeyiDene();
   }

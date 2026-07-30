@@ -28,6 +28,7 @@ import 'account_login_screen.dart';
 import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
 import 'placement_exam_screen.dart';
+import 'hak_satin_al_screen.dart';
 import 'mentor_screen.dart';
 import 'mnemonics_screen.dart';
 
@@ -218,6 +219,17 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('KPSS Hazırlık', style: GoogleFonts.baloo2(fontWeight: FontWeight.w700, fontSize: 22)),
         actions: [
+          // Üstte hak sayısı + "＋" (Hak Satın Al'a yönlendirir). Premium'da
+          // hak sistemi tümüyle gizli (sınırsız) — bu çip de gösterilmez.
+          if (!premium)
+            _HakChip(
+              haklar: storage.getHaklar(),
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const HakSatinAlScreen()));
+              },
+            ),
           _ProfileAvatarButton(
             name: name,
             onTap: () {
@@ -783,6 +795,53 @@ class _DraftResumeCard extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Üst bardaki HAK göstergesi: mevcut hak sayısı + "＋" düğmesi. Dokununca
+/// Hak Satın Al ekranına gider. YALNIZCA ücretsiz kullanıcıda gösterilir
+/// (premium'da hak sistemi tümüyle gizlidir — çağıran yer `if (!premium)` ile
+/// sarar).
+class _HakChip extends StatelessWidget {
+  final int haklar;
+  final VoidCallback onTap;
+  const _HakChip({required this.haklar, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Material(
+        color: c.violet.withValues(alpha: 0.16),
+        borderRadius: BorderRadius.circular(999),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 6, 6, 6),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('🎟️', style: TextStyle(fontSize: 13)),
+                const SizedBox(width: 4),
+                Text('$haklar',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 14, color: c.text)),
+                const SizedBox(width: 5),
+                Container(
+                  width: 19,
+                  height: 19,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(color: c.violet, shape: BoxShape.circle),
+                  child: const Icon(Icons.add, size: 14, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
