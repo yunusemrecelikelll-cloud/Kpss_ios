@@ -17,6 +17,14 @@ import 'placement_result_screen.dart';
 
 const int kAutoSecsPerQ = 65; // KPSS GY-GK oranı
 
+/// Şık metninin BAŞINDAKİ eski harf önekini ("A) ", "B)", "C." gibi) temizler.
+/// Bazı soru verilerinde şıklar "A) ...", "B) ..." biçiminde GÖMÜLÜ harfle
+/// kaydedilmiş; şıklar karıştırılınca (shuffle) soldaki KONUM etiketi (A-E) ile
+/// metindeki gömülü harf uyuşmuyordu ("A" etiketli şıkta metin "E)" ile
+/// başlıyordu). Etiketi konumdan üretiyoruz, metindeki gömülü harfi atıyoruz.
+final RegExp _kSikOnekRegex = RegExp(r'^\s*[A-Ea-e]\s*[\)\.]\s+');
+String sikMetni(String s) => s.replaceFirst(_kSikOnekRegex, '').trimLeft();
+
 // ── Test süresi ──
 // Süre artık test öncesi sorulmaz; kullanıcının Ayarlar > "⏱️ Test Süresi"
 // tercihinden hesaplanır (bkz. testSuresiHesapla). Preset'ler ayarlar
@@ -175,8 +183,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     if (verilenIndex == null) return null;
     if (verilenIndex < 0 || verilenIndex >= secenekler.length) return null;
     if (dogruIndex < 0 || dogruIndex >= secenekler.length) return null;
-    return '"${secenekler[verilenIndex]}" şıkkını işaretledin. '
-        'Doğrusu "${secenekler[dogruIndex]}".';
+    return '"${sikMetni(secenekler[verilenIndex])}" şıkkını işaretledin. '
+        'Doğrusu "${sikMetni(secenekler[dogruIndex])}".';
   }
 
   String _motivationFor(int qIndex, bool correct) {
@@ -571,7 +579,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                     for (var pos = 0; pos < order.length; pos++)
                       _OptionTile(
                         letter: String.fromCharCode(65 + pos),
-                        text: q.secenekler[order[pos]],
+                        text: sikMetni(q.secenekler[order[pos]]),
                         selected: answeredIdx == order[pos],
                         // Deneme: sadece süre dolunca kilitlenir. Normal test:
                         // cevap verilince (açıklama gösterilirken) kilitlenir.

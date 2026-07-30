@@ -373,6 +373,11 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // Ders önerisi kullanıcı isteğiyle en başta.
+            const DsSectionHeader(title: 'Ders Önerisi'),
+            const SizedBox(height: 4),
+            _OneriKarti(servis: servis),
+            const SizedBox(height: kDsGap),
             _OzetKart(servis: servis),
             const SizedBox(height: kDsGap),
             const DsSectionHeader(title: 'Haftalık Plan'),
@@ -394,10 +399,6 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
               _UcretsizLimitKarti(onPremium: _premiumBilgisiGoster),
               const SizedBox(height: kDsGap),
             ],
-            const DsSectionHeader(title: 'Ders Önerisi'),
-            const SizedBox(height: 4),
-            _OneriKarti(servis: servis),
-            const SizedBox(height: kDsGap),
             _BilgiNotu(colors: c),
             const SizedBox(height: 24),
           ],
