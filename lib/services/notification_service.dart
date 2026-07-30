@@ -330,6 +330,138 @@ class NotificationService {
     }
   }
 
+  // ── Günlük motivasyon bildirimi ──────────────────────────────────────────
+
+  /// Motivasyon bildirimleri için kimlik tabanı. Plan (9101..9184), test (9100)
+  /// ve anlık (9300..9389) aralıklarıyla ÇAKIŞMAZ.
+  static const int _kMotivasyonBaseId = 9200;
+
+  /// Kaç gün ileriye motivasyon kurulacağı. Her açılışta yeniden kurulduğu için
+  /// (bkz. main.dart) 7 gün ileriyi doldurmak fazlasıyla yeterli.
+  static const int _kMotivasyonGunSayisi = 7;
+
+  static const String _kMotivChannelId = 'kpss_motivasyon';
+  static const String _kMotivChannelName = 'Günlük Motivasyon';
+  static const String _kMotivChannelDesc =
+      'Her akşam kısa bir motivasyon ve çalışma hatırlatması gönderir.';
+
+  /// SADECE motivasyon bildirimlerini (9200..9206) iptal eder.
+  Future<void> cancelMotivation() async {
+    if (!destekleniyorMu || !_hazir) return;
+    for (var i = 0; i < _kMotivasyonGunSayisi; i++) {
+      try {
+        await _plugin.cancel(_kMotivasyonBaseId + i);
+      } catch (e) {
+        debugPrint('NotificationService: motivasyon ${_kMotivasyonBaseId + i} '
+            'iptal edilemedi: $e');
+      }
+    }
+  }
+
+  /// Önümüzdeki [_kMotivasyonGunSayisi] gün için HER GÜN akşam 18:00–20:00
+  /// arasında RASTGELE bir saatte bir motivasyon bildirimi kurar (kullanıcı
+  /// isteği: "günlük 18:00–20:00 motivasyon bildirimleri").
+  ///
+  /// Her güne AYRI rastgele saat verilir (aynı saatte tekrarlayan tek bildirim
+  /// yerine) — böylece bildirim mekanik hissettirmez. Uygulama her açılışta
+  /// yeniden kurduğu için pencere sürekli ileriye kayar.
+  ///
+  /// Hatırlatmalar ayarlardan kapalıysa hiç kurulmaz (plan bildirimiyle aynı
+  /// anahtar). Platform desteklemiyorsa / izin yoksa sessizce no-op.
+  Future<void> scheduleDailyMotivation({required StorageService storage}) async {
+    if (!destekleniyorMu) {
+      debugPrint('NotificationService.scheduleDailyMotivation: platform yok, atlandı.');
+      return;
+    }
+    if (!_hazir) await initialize();
+    if (!_hazir) return;
+
+    await cancelMotivation();
+
+    try {
+      final ayarlar = storage.getNotificationSettings();
+      if (ayarlar['reminders'] == false) {
+        debugPrint('NotificationService: hatırlatmalar kapalı, motivasyon kurulmadı.');
+        return;
+      }
+    } catch (e) {
+      debugPrint('NotificationService: motivasyon ayarı okunamadı: $e');
+    }
+
+    final ad = _hitap(storage);
+    final detaylar = _motivasyonDetaylar();
+    final simdi = tz.TZDateTime.now(tz.local);
+
+    for (var i = 0; i < _kMotivasyonGunSayisi; i++) {
+      // 18:00 (=1080 dk) ile 20:00 (=1200 dk) arası rastgele dakika.
+      final toplamDk = 18 * 60 + _rastgele.nextInt(120); // 1080..1199
+      final saat = toplamDk ~/ 60;
+      final dakika = toplamDk % 60;
+      var an = tz.TZDateTime(
+        tz.local,
+        simdi.year,
+        simdi.month,
+        simdi.day,
+        saat,
+        dakika,
+      ).add(Duration(days: i));
+      // Bugünün penceresi çoktan geçtiyse (ör. saat 21:00) bugünü atla.
+      if (!an.isAfter(simdi)) continue;
+
+      try {
+        await _plugin.zonedSchedule(
+          _kMotivasyonBaseId + i,
+          _doldur(_secRastgele(_motivBasliklar), ad),
+          _doldur(_secRastgele(_motivGovdeler), ad),
+          an,
+          detaylar,
+          // Motivasyon dakikası dakikasına gelmek zorunda değil; alarm izni
+          // istememek için inexact yeterli (plan mantığıyla aynı yaklaşım).
+          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+          payload: 'motivasyon',
+        );
+      } catch (e) {
+        debugPrint('NotificationService: motivasyon (gün +$i) kurulamadı: $e');
+      }
+    }
+    debugPrint('NotificationService: günlük motivasyon bildirimleri kuruldu.');
+  }
+
+  NotificationDetails _motivasyonDetaylar() {
+    const android = AndroidNotificationDetails(
+      _kMotivChannelId,
+      _kMotivChannelName,
+      channelDescription: _kMotivChannelDesc,
+      importance: Importance.high,
+      priority: Priority.high,
+      styleInformation: BigTextStyleInformation(''),
+    );
+    const darwin = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+    return const NotificationDetails(android: android, iOS: darwin, macOS: darwin);
+  }
+
+  static const List<String> _motivBasliklar = [
+    'Akşam motivasyonu 🌙',
+    '{ad}, günü tamamla ✨',
+    'Bugün ne yaptın {ad}? 📚',
+    'Küçük bir adım daha {ad} 🚀',
+    'KPSS seni bekliyor {ad} 🎯',
+    'Seri bozulmasın {ad} 🔥',
+  ];
+
+  static const List<String> _motivGovdeler = [
+    '{ad}, bugün 20 dakika çalışsan yarın bir adım öndesin. Hadi başla! 💪',
+    'Akşamın en verimli saati {ad} 🌙 Kısa bir test çözmeye ne dersin?',
+    'Seri bozulmasın {ad}! 🔥 Bugünkü çalışmanı tamamladın mı?',
+    '{ad}, bugünkü net sayın yarınki hedefin. Hadi biraz çalışalım ✨',
+    'Unutma {ad}: düzenli 30 dakika, ayda koca bir konu demek 📈',
+    '{ad}, telefonu bırakıp 15 dakika soru çözsek mi? 🎯',
+  ];
+
   // ── Yardımcılar ──────────────────────────────────────────────────────────
 
   NotificationDetails _detaylar() {

@@ -55,6 +55,13 @@ Future<void> main() async {
       .schedulePlan(StudyPlanService(storage).getActivePlan(), storage: storage)
       .catchError((e) => debugPrint('Açılışta bildirim kurulumu: $e'));
 
+  // Günlük motivasyon: her akşam 18:00–20:00 arası rastgele bir saatte kısa bir
+  // hatırlatma. Her açılışta yeniden kurulur (pencere ileriye kayar).
+  // ignore: unawaited_futures
+  NotificationService.instance
+      .scheduleDailyMotivation(storage: storage)
+      .catchError((e) => debugPrint('Açılışta motivasyon kurulumu: $e'));
+
   runApp(
     MultiProvider(
       providers: [
