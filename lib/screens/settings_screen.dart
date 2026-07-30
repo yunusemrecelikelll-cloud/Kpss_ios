@@ -26,6 +26,7 @@ import 'quiz_screen.dart'
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
 import '../widgets/resmi_kurum_feragati.dart';
+import '../utils/ust_bildirim.dart';
 
 // ── Test süresi ──
 // Süre artık test öncesi sorulmuyor; buradaki tercih doğrudan uygulanıyor
@@ -126,7 +127,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     context.read<SoundService>().click();
     final auth = context.read<AuthService>();
     final storage = context.read<StorageService>();
-    final messenger = ScaffoldMessenger.of(context);
 
     final onay = await showDialog<bool>(
       context: context,
@@ -151,7 +151,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // profiline dönülür. Hesabın verilerine DOKUNULMAZ — kendi profilinde
     // durur, aynı hesapla girişte olduğu gibi geri gelir.
     await storage.misafireDon();
-    messenger.showSnackBar(const SnackBar(content: Text('Çıkış yapıldı.')));
+    ustBildirim('Çıkış yapıldı.');
   }
 
   /// "Hesabımı Sil" akışı.
@@ -168,7 +168,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // olabilir).
     context.read<SoundService>().click();
     final auth = context.read<AuthService>();
-    final messenger = ScaffoldMessenger.of(context);
     final navigator = Navigator.of(context, rootNavigator: true);
 
     final onay = await showDialog<bool>(
@@ -248,9 +247,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       );
       if (devamEt != true) {
-        messenger.showSnackBar(const SnackBar(
-            content: Text(
-                'Silme tamamlanmadı. Hesabın duruyor; istersen daha sonra tekrar deneyebilirsin.')));
+        ustBildirim('Silme tamamlanmadı. Hesabın duruyor; istersen daha sonra tekrar deneyebilirsin.', tur: UstBildirimTuru.basari);
         return;
       }
 
@@ -299,9 +296,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (ilerlemeAcik) navigator.pop(); // ilerleme penceresini kapat
 
     if (hataMesaji != null) {
-      messenger.showSnackBar(
-        SnackBar(content: Text(hataMesaji), duration: const Duration(seconds: 5)),
-      );
+      ustBildirim(hataMesaji, tur: UstBildirimTuru.hata);
       return;
     }
 
@@ -340,7 +335,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     // Tüm context bağımlılıklarını await'lerden ÖNCE yakala.
     final remote = context.read<RemoteQuestionService>();
     final storage = context.read<StorageService>();
-    final messenger = ScaffoldMessenger.of(context);
 
     setState(() => _checkingUpdate = true);
     final sonuc = await remote.checkAndUpdate();
@@ -372,7 +366,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       case UpdateOutcome.hata:
         mesaj = 'Güncelleme kontrol edilemedi, internetini kontrol et.';
     }
-    messenger.showSnackBar(SnackBar(content: Text(mesaj)));
+    ustBildirim(mesaj);
   }
 
   // ── Test süresi tercihi ──────────────────────────────────────────────
@@ -381,16 +375,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void _setTimerMode(StorageService storage, String mod, String mesaj) {
     context.read<SoundService>().click();
     storage.saveSettings({'timerMode': mod});
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(mesaj)));
+    ustBildirim(mesaj);
   }
 
   /// Soru başına saniyeyi kaydeder.
   void _setSecsPerQ(StorageService storage, int sn) {
     context.read<SoundService>().click();
     storage.saveSettings({'secsPerQ': sn});
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Soru başına $sn saniye seçildi.')),
-    );
+    ustBildirim('Soru başına $sn saniye seçildi.');
   }
 
   /// Preset'ler yetmezse kullanıcı kendi "soru başına saniye" değerini yazar.
@@ -402,9 +394,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
     if (sn == null || !mounted) return;
     storage.saveSettings({'secsPerQ': sn});
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Soru başına $sn saniye ayarlandı.')),
-    );
+    ustBildirim('Soru başına $sn saniye ayarlandı.');
   }
 
   /// Seçili ayarın pratikte ne anlama geldiğini anlatan açıklama metni.
@@ -685,9 +675,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: () {
                         context.read<SoundService>().click();
                         storage.setExamType(sv.deger);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${sv.baslik} seçildi.')),
-                        );
+                        ustBildirim('${sv.baslik} seçildi.');
                       },
                     ),
                     if (sv != _kSinavTuruSecenekleri.last) const SizedBox(height: 10),
@@ -745,9 +733,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onTap: () {
                         context.read<SoundService>().click();
                         storage.saveSettings({'soruCevapModu': secenek.deger});
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${secenek.baslik} seçildi.')),
-                        );
+                        ustBildirim('${secenek.baslik} seçildi.');
                       },
                     ),
                     if (secenek != _kSoruCevapSecenekleri.last)
@@ -849,13 +835,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       // (Eskiden bu kontrol yoktu ve ayar kapalı olsa bile veri
                       // buluta gidiyordu.)
                       storage.setCloudBackupEnabled(v);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(v
+                      ustBildirim(v
                               ? 'Bulut yedekleme açıldı — ilerlemen bundan sonra hesabına yedeklenecek.'
-                              : 'Bulut yedekleme kapatıldı — yeni veri yüklenmeyecek.'),
-                        ),
-                      );
+                              : 'Bulut yedekleme kapatıldı — yeni veri yüklenmeyecek.');
                     },
                   ),
                   // App Store İnceleme Kuralı 5.1.1(v): hesap oluşturmayı

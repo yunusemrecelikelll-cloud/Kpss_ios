@@ -9,6 +9,7 @@ import '../../services/sound_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import 'duel_play_screen.dart';
+import '../../utils/ust_bildirim.dart';
 
 /// Katılan oyuncuların canlı beklendiği oda — oyuncu listesi (StreamBuilder),
 /// host için "Başlat" butonu, autoStartAt geri sayımı ve oda kodu paylaşımı.
@@ -178,9 +179,7 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                         child: InkWell(
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: room.code));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Oda kodu kopyalandı')),
-                            );
+                            ustBildirim('Oda kodu kopyalandı', tur: UstBildirimTuru.basari);
                           },
                           borderRadius: BorderRadius.circular(kDsRadiusSm),
                           child: Ink(

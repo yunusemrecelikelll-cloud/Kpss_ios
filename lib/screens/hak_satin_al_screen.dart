@@ -7,6 +7,7 @@ import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// "Hak Satın Al" ekranı — Ayarlar'dan açılır.
 ///
@@ -78,7 +79,7 @@ class _HakSatinAlScreenState extends State<HakSatinAlScreen> {
   }
 
   void _mesaj(String m) =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(m)));
+      ustBildirim(m);
 
   @override
   Widget build(BuildContext context) {

@@ -9,6 +9,7 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'premium_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 /// ─────────────────────────────────────────────────────────────────────────
 /// Günlük Çalışma Planı ekranı
@@ -78,15 +79,9 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
         // gösterilmez ama kullanıcı bunu bilmiyordu ("bildirim gelmiyor").
         // Artık açıkça söylüyoruz ve nereden açacağını tarif ediyoruz.
         if (!izinVar && mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              duration: Duration(seconds: 7),
-              content: Text(
-                  'Bildirim izni verilmemiş — hatırlatmalar gelmeyecek. '
+          ustBildirim('Bildirim izni verilmemiş — hatırlatmalar gelmeyecek. '
                   'Telefon Ayarları > Uygulamalar > KPSS Hazırlık > '
-                  'Bildirimler bölümünden izin verebilirsin.'),
-            ),
-          );
+                  'Bildirimler bölümünden izin verebilirsin.');
         }
       }
       await bildirim.schedulePlan(servis.getActivePlan(), storage: storage);
@@ -284,9 +279,7 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
 
   void _mesaj(String metin) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(metin)));
+    ustBildirim(metin);
   }
 
   /// Ücretsiz kullanıcı GÜN limitini aştığında gösterilen bilgi kutusu.

@@ -18,6 +18,7 @@ import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
 import '../theme/theme_provider.dart';
 import '../utils/exam_dates.dart';
+import '../utils/ust_bildirim.dart';
 import 'subject_screen.dart';
 import 'quiz_screen.dart';
 import 'profile_screen.dart';
@@ -161,8 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted) return;
     setState(() => _startingFullTest = false);
     if (allQs.length < 10) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Yeterli soru yüklenemedi.')));
+      ustBildirim('Yeterli soru yüklenemedi.', tur: UstBildirimTuru.hata);
       return;
     }
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(

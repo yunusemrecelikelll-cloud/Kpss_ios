@@ -7,6 +7,7 @@ import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// Skora göre değişen motivasyon mesajı.
 ///
@@ -50,9 +51,7 @@ class _ResultScreenState extends State<ResultScreen> {
     final newlyUnlocked = await checkAndUnlockBadges(storage, subjects);
     if (newlyUnlocked.isEmpty || !mounted) return;
     for (final b in newlyUnlocked) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('🏅 Yeni rozet: ${b.name}!'), duration: const Duration(seconds: 4)),
-      );
+      ustBildirim('🏅 Yeni rozet: ${b.name}!');
     }
   }
 

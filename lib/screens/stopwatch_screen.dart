@@ -6,6 +6,7 @@ import '../models/subject.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import 'tools_hub_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 String _fmtDuration(int sec) {
   final h = sec ~/ 3600, m = (sec % 3600) ~/ 60, s = sec % 60;
@@ -71,13 +72,8 @@ class _StopwatchScreenState extends State<StopwatchScreen> with WidgetsBindingOb
       // kalsın. Sadece ne olduğunu bir kez bildiriyoruz.
       setState(() => _autoPaused = false);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Uygulamadan çıktığın için kronometre duraklatıldı. '
-                'Devam etmek için "Başlat"a bas.'),
-            duration: Duration(seconds: 3),
-          ),
-        );
+        ustBildirim('Uygulamadan çıktığın için kronometre duraklatıldı. '
+                'Devam etmek için "Başlat"a bas.');
       }
     }
   }
@@ -104,8 +100,8 @@ class _StopwatchScreenState extends State<StopwatchScreen> with WidgetsBindingOb
       final storage = context.read<StorageService>();
       await storage.addStudyTime(_subjectId, had);
       if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('${_fmtDuration(had)} kaydedildi!')));
+      ustBildirim('${_fmtDuration(had)} kaydedildi!',
+          tur: UstBildirimTuru.basari);
     }
     setState(() => _seconds = 0);
   }

@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../services/sound_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// ÖSYM'nin resmî sitesi — sınav takvimi/başvuru/duyurular için.
 const String kOsymUrl = 'https://www.osym.gov.tr';
@@ -34,21 +35,17 @@ class ResmiKurumFeragati extends StatelessWidget {
 
   Future<void> _osymAc(BuildContext context) async {
     context.read<SoundService>().click();
-    final messenger = ScaffoldMessenger.maybeOf(context);
     try {
       final acildi = await launchUrl(
         Uri.parse(kOsymUrl),
         mode: LaunchMode.externalApplication,
       );
       if (!acildi) {
-        messenger?.showSnackBar(
-          const SnackBar(content: Text('Bağlantı açılamadı: $kOsymUrl')),
-        );
+        ustBildirim('Bağlantı açılamadı: $kOsymUrl',
+            tur: UstBildirimTuru.hata);
       }
     } catch (_) {
-      messenger?.showSnackBar(
-        const SnackBar(content: Text('Bağlantı açılamadı: $kOsymUrl')),
-      );
+      ustBildirim('Bağlantı açılamadı: $kOsymUrl', tur: UstBildirimTuru.hata);
     }
   }
 

@@ -7,6 +7,7 @@ import '../services/storage_service.dart';
 import '../screens/premium_screen.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// "Hakkın doldu" alt sayfası — ücretsiz limit bittiğinde gösterilir.
 ///
@@ -59,7 +60,6 @@ class _HakKazanSheetState extends State<_HakKazanSheet> {
 
   Future<void> _reklamIzle() async {
     final storage = context.read<StorageService>();
-    final messenger = ScaffoldMessenger.of(context);
     context.read<SoundService>().click();
     setState(() => _reklamOynatiliyor = true);
     final kazandi = await AdService.instance.odulluReklamGoster();
@@ -69,13 +69,9 @@ class _HakKazanSheetState extends State<_HakKazanSheet> {
     if (!mounted) return;
     setState(() => _reklamOynatiliyor = false);
     if (!kazandi) {
-      messenger.showSnackBar(const SnackBar(
-        content: Text('Reklam şu an gösterilemedi. Birazdan tekrar dene.'),
-      ));
+      ustBildirim('Reklam şu an gösterilemedi. Birazdan tekrar dene.');
     } else {
-      messenger.showSnackBar(SnackBar(
-        content: Text('+${AdService.odulKrediSayisi} hak kazandın! 🎉'),
-      ));
+      ustBildirim('+${AdService.odulKrediSayisi} hak kazandın! 🎉');
     }
   }
 

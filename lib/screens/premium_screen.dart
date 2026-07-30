@@ -12,6 +12,7 @@ import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
 import 'privacy_policy_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 class PremiumScreen extends StatefulWidget {
   const PremiumScreen({super.key});
@@ -84,9 +85,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
     await _purchases.buy(productId);
     if (!mounted) return;
     if (_purchases.status == PurchaseServiceStatus.error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(_purchases.lastError ?? 'Satın alma başarısız oldu.')),
-      );
+      ustBildirim(_purchases.lastError ?? 'Satın alma başarısız oldu.', tur: UstBildirimTuru.hata);
     }
   }
 
@@ -137,9 +136,7 @@ class _PremiumScreenState extends State<PremiumScreen> {
     context.read<SoundService>().click();
     await _purchases.restorePurchases();
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Önceki satın alımlar kontrol ediliyor…')),
-    );
+    ustBildirim('Önceki satın alımlar kontrol ediliyor…');
   }
 
   /// Apple'ın standart Kullanım Koşulları (EULA) sayfasını tarayıcıda açar.
@@ -148,21 +145,16 @@ class _PremiumScreenState extends State<PremiumScreen> {
   /// kullanıcıya kısa bir bilgi mesajı gösterilir.
   Future<void> _openTermsOfUse(BuildContext context) async {
     context.read<SoundService>().click();
-    final messenger = ScaffoldMessenger.of(context);
     try {
       final acildi = await launchUrl(
         Uri.parse('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'),
         mode: LaunchMode.externalApplication,
       );
       if (!acildi) {
-        messenger.showSnackBar(
-          const SnackBar(content: Text('Kullanım Koşulları açılamadı.')),
-        );
+        ustBildirim('Kullanım Koşulları açılamadı.', tur: UstBildirimTuru.hata);
       }
     } catch (_) {
-      messenger.showSnackBar(
-        const SnackBar(content: Text('Kullanım Koşulları açılamadı.')),
-      );
+      ustBildirim('Kullanım Koşulları açılamadı.', tur: UstBildirimTuru.hata);
     }
   }
 

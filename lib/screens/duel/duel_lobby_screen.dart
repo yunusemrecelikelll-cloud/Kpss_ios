@@ -14,6 +14,7 @@ import '../premium_screen.dart';
 import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration;
 import 'duel_play_screen.dart';
 import 'duel_waiting_room_screen.dart';
+import '../../utils/ust_bildirim.dart';
 
 /// Düello/Royale günlük ücretsiz maç sayacı için oyun kimliği
 /// (StorageService.getGamePlayState/useGamePlay).
@@ -79,10 +80,8 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
     final left = (kFreeDuelloDaily - (state['plays'] as int)).clamp(0, kFreeDuelloDaily);
     if (left <= 0) {
       if (!mounted) return false;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Bugünkü ücretsiz Düello hakkın bitti '
-            '($kFreeDuelloDaily/gün). Sınırsız için Premium\'a geç.'),
-      ));
+      ustBildirim('Bugünkü ücretsiz Düello hakkın bitti '
+            '($kFreeDuelloDaily/gün). Sınırsız için Premium\'a geç.', tur: UstBildirimTuru.hata);
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
       return false;
     }
@@ -92,7 +91,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
 
   void _snack(String msg) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+    ustBildirim(msg);
   }
 
   Future<void> _createRoom() async {

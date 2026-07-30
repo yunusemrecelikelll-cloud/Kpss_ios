@@ -11,6 +11,7 @@ import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
 import 'topic_screen.dart';
 import 'quiz_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 class SubjectScreen extends StatefulWidget {
   final Subject subject;
@@ -68,7 +69,7 @@ class _SubjectScreenState extends State<SubjectScreen> with WidgetsBindingObserv
     if (!mounted) return;
     setState(() => _startingExam = false);
     if (allQs.length < 3) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Yeterli soru yüklenemedi.')));
+      ustBildirim('Yeterli soru yüklenemedi.', tur: UstBildirimTuru.hata);
       return;
     }
 

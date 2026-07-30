@@ -8,6 +8,7 @@ import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// Hesap giriş ekranı — YALNIZCA Google ve Apple ile giriş.
 ///
@@ -36,9 +37,7 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     setState(() => _busy = false);
 
     if (!result.success) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result.errorMessage ?? 'Giriş başarısız oldu.')),
-      );
+      ustBildirim(result.errorMessage ?? 'Giriş başarısız oldu.', tur: UstBildirimTuru.hata);
       return;
     }
 
@@ -112,9 +111,7 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     PresenceService.instance.bildir(storage);
 
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Giriş başarılı! 🎉')),
-    );
+    ustBildirim('Giriş başarılı! 🎉', tur: UstBildirimTuru.basari);
     Navigator.of(context).pop();
   }
 

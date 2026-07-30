@@ -12,6 +12,7 @@ import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
 import 'premium_screen.dart';
 import 'public_profile_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 const int kFreeMaxChatMessagesPerDay = 10;
 
@@ -82,9 +83,7 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
     _notifChecked = true;
     _chat.fetchAndClearNotifications(uid).then((messages) {
       if (!mounted || messages.isEmpty) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(messages.first), duration: const Duration(seconds: 5)),
-      );
+      ustBildirim(messages.first);
     });
   }
 
@@ -273,12 +272,10 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
       _controller.clear();
     } on ProfanityDetectedException catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Mesajın uygunsuz bir kelime içeriyor: "${e.matchedWord}"')),
-      );
+      ustBildirim('Mesajın uygunsuz bir kelime içeriyor: "${e.matchedWord}"', tur: UstBildirimTuru.hata);
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Mesaj gönderilemedi: $e')));
+      ustBildirim('Mesaj gönderilemedi: $e', tur: UstBildirimTuru.hata);
     } finally {
       if (mounted) setState(() => _sending = false);
     }
@@ -382,7 +379,6 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                 title: const Text('Arkadaş Ekle'),
                 onTap: () async {
                   Navigator.pop(ctx);
-                  final messenger = ScaffoldMessenger.of(context);
                   try {
                     final sonuc = await widget.chat.sendFriendRequest(
                       fromUid: myUid,
@@ -390,10 +386,9 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                       toUid: msg.senderUid,
                       toName: msg.senderName,
                     );
-                    messenger.showSnackBar(SnackBar(content: Text(sonuc)));
+                    ustBildirim(sonuc);
                   } catch (e) {
-                    messenger.showSnackBar(SnackBar(
-                        content: Text('Arkadaşlık isteği gönderilemedi: $e')));
+                    ustBildirim('Arkadaşlık isteği gönderilemedi: $e', tur: UstBildirimTuru.hata);
                   }
                 },
               ),
@@ -413,23 +408,18 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                 title: Text(isBlocked ? 'Engeli Kaldır' : 'Kullanıcıyı Engelle'),
                 onTap: () async {
                   Navigator.pop(ctx);
-                  final messenger = ScaffoldMessenger.of(context);
                   try {
                     if (isBlocked) {
                       await widget.chat
                           .unblockUser(myUid: myUid, blockedUid: msg.senderUid);
-                      messenger.showSnackBar(SnackBar(
-                          content: Text(
-                              '${msg.senderName} kişisinin engeli kaldırıldı.')));
+                      ustBildirim('${msg.senderName} kişisinin engeli kaldırıldı.', tur: UstBildirimTuru.basari);
                     } else {
                       await widget.chat
                           .blockUser(myUid: myUid, blockedUid: msg.senderUid);
-                      messenger.showSnackBar(SnackBar(
-                          content: Text('${msg.senderName} engellendi.')));
+                      ustBildirim('${msg.senderName} engellendi.', tur: UstBildirimTuru.basari);
                     }
                   } catch (e) {
-                    messenger.showSnackBar(
-                        SnackBar(content: Text('İşlem başarısız: $e')));
+                    ustBildirim('İşlem başarısız: $e', tur: UstBildirimTuru.hata);
                   }
                 },
               ),
@@ -439,7 +429,6 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                 subtitle: const Text('Spam veya uygunsuz içerik'),
                 onTap: () async {
                   Navigator.pop(ctx);
-                  final messenger = ScaffoldMessenger.of(context);
                   try {
                     await widget.chat.reportMessage(
                       messageId: msg.id,
@@ -447,11 +436,9 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                       reportedUid: msg.senderUid,
                       reason: 'spam_or_uygunsuz',
                     );
-                    messenger.showSnackBar(const SnackBar(
-                        content: Text('Mesaj şikayet edildi, teşekkürler.')));
+                    ustBildirim('Mesaj şikayet edildi, teşekkürler.', tur: UstBildirimTuru.basari);
                   } catch (e) {
-                    messenger.showSnackBar(
-                        SnackBar(content: Text('Şikayet gönderilemedi: $e')));
+                    ustBildirim('Şikayet gönderilemedi: $e', tur: UstBildirimTuru.hata);
                   }
                 },
               ),
@@ -686,9 +673,7 @@ class _BlockedUsersScreen extends StatelessWidget {
                       context.read<SoundService>().click();
                       await chat.unblockUser(myUid: uid, blockedUid: peerUid);
                       if (!context.mounted) return;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('$name kişisinin engeli kaldırıldı.')),
-                      );
+                      ustBildirim('$name kişisinin engeli kaldırıldı.', tur: UstBildirimTuru.basari);
                     },
                     child: const Text('Engeli Kaldır'),
                   ),
@@ -869,13 +854,11 @@ class _FriendsTab extends StatelessWidget {
               title: const Text('Engelle'),
               onTap: () async {
                 Navigator.pop(ctx);
-                final messenger = ScaffoldMessenger.of(context);
                 try {
                   await chat.blockUser(myUid: uid, blockedUid: a.uid);
-                  messenger.showSnackBar(
-                      SnackBar(content: Text('${a.name} engellendi.')));
+                  ustBildirim('${a.name} engellendi.', tur: UstBildirimTuru.basari);
                 } catch (e) {
-                  messenger.showSnackBar(SnackBar(content: Text('İşlem başarısız: $e')));
+                  ustBildirim('İşlem başarısız: $e', tur: UstBildirimTuru.hata);
                 }
               },
             ),
@@ -884,13 +867,11 @@ class _FriendsTab extends StatelessWidget {
               title: const Text('Şikayet Et'),
               onTap: () async {
                 Navigator.pop(ctx);
-                final messenger = ScaffoldMessenger.of(context);
                 try {
                   await chat.reportUser(reporterUid: uid, reportedUid: a.uid);
-                  messenger.showSnackBar(const SnackBar(
-                      content: Text('Şikayet alındı, teşekkürler.')));
+                  ustBildirim('Şikayet alındı, teşekkürler.', tur: UstBildirimTuru.basari);
                 } catch (e) {
-                  messenger.showSnackBar(SnackBar(content: Text('Şikayet gönderilemedi: $e')));
+                  ustBildirim('Şikayet gönderilemedi: $e', tur: UstBildirimTuru.hata);
                 }
               },
             ),
@@ -899,7 +880,6 @@ class _FriendsTab extends StatelessWidget {
               title: const Text('Arkadaşlıktan Çıkar'),
               onTap: () async {
                 Navigator.pop(ctx);
-                final messenger = ScaffoldMessenger.of(context);
                 final onay = await showDialog<bool>(
                   context: context,
                   builder: (dCtx) => AlertDialog(
@@ -913,8 +893,7 @@ class _FriendsTab extends StatelessWidget {
                 );
                 if (onay != true) return;
                 await chat.removeFriend(myUid: uid, friendUid: a.uid);
-                messenger.showSnackBar(
-                    SnackBar(content: Text('${a.name} arkadaşlıktan çıkarıldı.')));
+                ustBildirim('${a.name} arkadaşlıktan çıkarıldı.', tur: UstBildirimTuru.basari);
               },
             ),
           ],
@@ -957,7 +936,6 @@ class _FriendsTab extends StatelessWidget {
                       colors: c,
                       onKabul: () async {
                         final storage = context.read<StorageService>();
-                        final messenger = ScaffoldMessenger.of(context);
                         try {
                           await chat.acceptFriendRequest(
                             myUid: uid,
@@ -966,23 +944,18 @@ class _FriendsTab extends StatelessWidget {
                             fromName: istek.fromName,
                           );
                           await storage.saveDmPeerName(istek.fromUid, istek.fromName);
-                          messenger.showSnackBar(SnackBar(
-                              content: Text('${istek.fromName} artık arkadaşın!')));
+                          ustBildirim('${istek.fromName} artık arkadaşın!', tur: UstBildirimTuru.basari);
                         } catch (e) {
-                          messenger.showSnackBar(
-                              SnackBar(content: Text('Kabul edilemedi: $e')));
+                          ustBildirim('Kabul edilemedi: $e', tur: UstBildirimTuru.hata);
                         }
                       },
                       onRed: () async {
-                        final messenger = ScaffoldMessenger.of(context);
                         try {
                           await chat.rejectFriendRequest(
                               myUid: uid, fromUid: istek.fromUid);
-                          messenger.showSnackBar(
-                              const SnackBar(content: Text('İstek reddedildi.')));
+                          ustBildirim('İstek reddedildi.');
                         } catch (e) {
-                          messenger.showSnackBar(
-                              SnackBar(content: Text('İşlem başarısız: $e')));
+                          ustBildirim('İşlem başarısız: $e', tur: UstBildirimTuru.hata);
                         }
                       },
                     ),
@@ -1062,14 +1035,11 @@ class _ArkadasEkleKartiState extends State<_ArkadasEkleKarti> {
   Future<void> _ekle() async {
     final kod = _controller.text.trim();
     if (kod.length != 6) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('6 haneli bir ID gir.')),
-      );
+      ustBildirim('6 haneli bir ID gir.');
       return;
     }
     context.read<SoundService>().click();
     setState(() => _gonderiliyor = true);
-    final messenger = ScaffoldMessenger.of(context);
     try {
       final sonuc = await widget.chat.sendFriendRequestByKod(
         myUid: widget.myUid,
@@ -1077,9 +1047,9 @@ class _ArkadasEkleKartiState extends State<_ArkadasEkleKarti> {
         kod: kod,
       );
       _controller.clear();
-      messenger.showSnackBar(SnackBar(content: Text(sonuc)));
+      ustBildirim(sonuc);
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text('İstek gönderilemedi: $e')));
+      ustBildirim('İstek gönderilemedi: $e', tur: UstBildirimTuru.hata);
     } finally {
       if (mounted) setState(() => _gonderiliyor = false);
     }
@@ -1122,9 +1092,7 @@ class _ArkadasEkleKartiState extends State<_ArkadasEkleKarti> {
                   icon: Icon(Icons.copy_rounded, size: 20, color: c.textFaint),
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: widget.myKod!));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('ID kopyalandı.')),
-                    );
+                    ustBildirim('ID kopyalandı.', tur: UstBildirimTuru.basari);
                   },
                 ),
             ],
@@ -1409,10 +1377,7 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
     // paylaşılan günlük mesaj hakkına (bkz. kFreeMaxChatMessagesPerDay) tabi —
     // yeni bir sınır icat etmek yerine mevcut deseni yeniden kullanıyoruz.
     if (!storage.isPremiumUser() && storage.getChatMessagesSentToday() >= kFreeMaxChatMessagesPerDay) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(
-            'Bugünkü ücretsiz mesaj hakkın ($kFreeMaxChatMessagesPerDay) doldu. Sınırsız mesajlaşmak için Premium\'a geç.')),
-      );
+      ustBildirim('Bugünkü ücretsiz mesaj hakkın ($kFreeMaxChatMessagesPerDay) doldu. Sınırsız mesajlaşmak için Premium\'a geç.', tur: UstBildirimTuru.hata);
       return;
     }
 
@@ -1438,18 +1403,14 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
       _controller.clear();
     } on ProfanityDetectedException catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Mesajın uygunsuz bir kelime içeriyor: "${e.matchedWord}"')),
-      );
+      ustBildirim('Mesajın uygunsuz bir kelime içeriyor: "${e.matchedWord}"', tur: UstBildirimTuru.hata);
     } on MesajIstegiSiniriException catch (e) {
       // Arkadaş olmayan birine, o yanıt verene kadar en fazla 3 mesaj.
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$e'), duration: const Duration(seconds: 5)),
-      );
+      ustBildirim('$e');
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Mesaj gönderilemedi: $e')));
+      ustBildirim('Mesaj gönderilemedi: $e', tur: UstBildirimTuru.hata);
     } finally {
       if (mounted) setState(() => _sending = false);
     }

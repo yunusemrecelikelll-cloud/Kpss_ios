@@ -21,6 +21,7 @@ import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
 import 'premium_screen.dart';
+import '../utils/ust_bildirim.dart';
 
 const int kFreeMaxAttemptsPerTopic = 2;
 
@@ -170,9 +171,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     // İlk indirişte (count == 0) konu anlatımı dahil; sonrakilerde sadece
     // farklı sorular.
     final includeLecture = count == 0;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('PDF oluşturuluyor…'), duration: Duration(seconds: 2)),
-    );
+    ustBildirim('PDF oluşturuluyor…');
     try {
       final pool = await context
           .read<RemoteQuestionService>()
@@ -187,9 +186,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
       await storage.incrementPdfExportCount(topic.id);
     } catch (e) {
       if (!context.mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('PDF oluşturulamadı: $e')),
-      );
+      ustBildirim('PDF oluşturulamadı: $e');
     }
   }
 
@@ -691,13 +688,9 @@ class _TtsListenButton extends StatelessWidget {
                 // gösteriyoruz. (Eskiden hata yutuluyordu ve düğmeye basınca
                 // hiçbir şey olmuyordu.)
                 final tts = context.read<TtsService>();
-                final messenger = ScaffoldMessenger.of(context);
                 final ok = await tts.speak(text);
                 if (ok) return;
-                messenger.showSnackBar(SnackBar(
-                  content: Text(tts.lastError ?? 'Sesli anlatım başlatılamadı.'),
-                  duration: const Duration(seconds: 6),
-                ));
+                ustBildirim(tts.lastError ?? 'Sesli anlatım başlatılamadı.');
               },
       ),
     );
