@@ -317,6 +317,15 @@ service cloud.firestore {
       allow delete: if sahip(uid) || yonetici();
     }
 
+    // ── Yönetici duyurusu (sunucusuz broadcast) ────────────────────────────
+    // Panel `duyurular/aktif` dokümanını yazar; uygulama açılışta okuyup üstten
+    // afişle bir kez gösterir (bkz. DuyuruService). İçerik herkese açık bir
+    // duyuru olduğu için okuma serbest; yazma YALNIZCA yöneticiye açık.
+    match /duyurular/{doc} {
+      allow read: if true;
+      allow create, update, delete: if yonetici();
+    }
+
     // ── Varsayılan: her şey kapalı ─────────────────────────────────────────
     // Yukarıda açıkça izin verilmeyen hiçbir yola erişilemez.
     match /{document=**} {
