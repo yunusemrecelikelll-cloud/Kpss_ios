@@ -158,151 +158,199 @@ class MentorScreen extends StatelessWidget {
     }
 
     final c = context.watch<ThemeProvider>().colors;
+    final acikTema = c.isLight;
     return Scaffold(
       appBar: AppBar(title: const Text('🎓 Mentörlük Seansları')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Text(
-            'Sınavda işine yarayacak, denenmiş çalışma stratejileri — not defterinden sayfalar.',
-            style: TextStyle(fontSize: 13, height: 1.4, color: c.textFaint),
-          ),
-          const SizedBox(height: 16),
-          for (final t in kMentorTips) ...[
-            _NotDefteriKarti(baslik: t.title, metin: t.text),
-            const SizedBox(height: 14),
-          ],
-        ],
+      body: LayoutBuilder(
+        builder: (context, cons) {
+          final sutun = cons.maxWidth > 760 ? 3 : 2;
+          return ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Text(
+                'Sınavda işine yarayacak, denenmiş çalışma stratejileri.',
+                style: TextStyle(fontSize: 13, color: c.textFaint),
+              ),
+              const SizedBox(height: 16),
+              _masonry(sutun, acikTema),
+            ],
+          );
+        },
       ),
+    );
+  }
+
+  /// Yapışkan notları (Akılda Kalıcı Kodlama ekranıyla AYNI dil — kullanıcı
+  /// isteği) en kısa sütuna ekleyen basit masonry.
+  Widget _masonry(int sutun, bool acikTema) {
+    final sutunlar = List.generate(sutun, (_) => <Widget>[]);
+    final yuk = List.filled(sutun, 0.0);
+    for (var i = 0; i < kMentorTips.length; i++) {
+      var enKisa = 0;
+      for (var k = 1; k < sutun; k++) {
+        if (yuk[k] < yuk[enKisa]) enKisa = k;
+      }
+      final t = kMentorTips[i];
+      sutunlar[enKisa].add(Padding(
+        padding: const EdgeInsets.only(bottom: 14),
+        child: _MentorNotu(
+            baslik: t.title, metin: t.text, index: i, acikTema: acikTema),
+      ));
+      yuk[enKisa] += 120 + t.text.length * 0.32;
+    }
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (var k = 0; k < sutun; k++) ...[
+          if (k > 0) const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: sutunlar[k]),
+          ),
+        ],
+      ],
     );
   }
 }
 
-/// Bir mentörlük ipucunu NOT DEFTERİ SAYFASI gibi gösteren kart (kullanıcı
-/// isteği): kağıt yüzey, üstte spiral delikleri, solda kırmızı marj çizgisi ve
-/// arka planda soluk çizgili satırlar. Renkler temaya uyarlanır (açık temada
-/// krem kağıt, koyu temada koyu yüzey; çizgiler her iki temada da soluk).
-class _NotDefteriKarti extends StatelessWidget {
+// Yapışkan not paleti — mnemonics_screen ile aynı ton dizisi.
+const _kMentorTonlari = <double>[48, 96, 168, 200, 256, 320, 12];
+Color _mentorKagit(int i, bool acikTema) {
+  final h = _kMentorTonlari[i % _kMentorTonlari.length];
+  return HSLColor.fromAHSL(
+          1, h, acikTema ? 0.82 : 0.30, acikTema ? 0.90 : 0.17)
+      .toColor();
+}
+
+Color _mentorMurekkep(bool acikTema) =>
+    acikTema ? const Color(0xFF241C33) : const Color(0xFFEFE9F7);
+
+/// Bir mentörlük ipucunu YAPIŞKAN NOT gibi gösteren kart (Akılda Kalıcı
+/// Kodlama ekranıyla aynı tasarım): hafif eğik kağıt, üstte yapışkan bant,
+/// sağ altta kıvrık köşe, dönen kağıt tonları.
+class _MentorNotu extends StatelessWidget {
   final String baslik;
   final String metin;
-  const _NotDefteriKarti({required this.baslik, required this.metin});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    // Kağıt tonu: açık temada sıcak krem, koyu temada tema yüzeyi.
-    final kagit = c.isLight ? const Color(0xFFFFFDF4) : c.bg2;
-    final cizgi = c.isLight
-        ? const Color(0xFF9AB4D4).withValues(alpha: 0.30) // soluk mavi çizgi
-        : c.border.withValues(alpha: 0.6);
-    final marj = const Color(0xFFEF6C6C).withValues(alpha: 0.55); // kırmızı marj
-
-    return Container(
-      decoration: BoxDecoration(
-        color: kagit,
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: c.border),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: c.isLight ? 0.10 : 0.30),
-            blurRadius: 12,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Spiral cilt: üstte küçük delikler.
-          Container(
-            height: 18,
-            color: c.isLight
-                ? const Color(0xFFF0ECDC)
-                : Colors.white.withValues(alpha: 0.04),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                for (var i = 0; i < 10; i++)
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: c.bg.withValues(alpha: 0.9),
-                      border: Border.all(color: c.border),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          // Kağıt gövdesi: çizgili satırlar + kırmızı marj + içerik.
-          CustomPaint(
-            painter: _DefterCizgileriPainter(cizgi: cizgi, marj: marj, marjX: 34),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(44, 12, 14, 14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    baslik,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 15,
-                      height: 1.6,
-                      color: c.isLight ? const Color(0xFF2B3A55) : c.text,
-                    ),
-                  ),
-                  Text(
-                    metin,
-                    style: TextStyle(
-                      fontSize: 13.5,
-                      height: 1.6,
-                      color: c.isLight
-                          ? const Color(0xFF3A4A66)
-                          : c.text.withValues(alpha: 0.9),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Not defteri kağıdının arka planı: soluk yatay satır çizgileri + solda
-/// dikey kırmızı marj çizgisi.
-class _DefterCizgileriPainter extends CustomPainter {
-  final Color cizgi;
-  final Color marj;
-  final double marjX;
-  const _DefterCizgileriPainter({
-    required this.cizgi,
-    required this.marj,
-    required this.marjX,
+  final int index;
+  final bool acikTema;
+  const _MentorNotu({
+    required this.baslik,
+    required this.metin,
+    required this.index,
+    required this.acikTema,
   });
 
   @override
-  void paint(Canvas canvas, Size size) {
-    final p = Paint()
-      ..color = cizgi
-      ..strokeWidth = 1;
-    // Metin satır yüksekliğiyle (≈21.6) uyumlu yatay çizgiler.
-    const arolik = 21.6;
-    for (var y = arolik; y < size.height; y += arolik) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
-    }
-    // Sol kırmızı marj çizgisi.
-    final mp = Paint()
-      ..color = marj
-      ..strokeWidth = 1.4;
-    canvas.drawLine(Offset(marjX, 0), Offset(marjX, size.height), mp);
-  }
+  Widget build(BuildContext context) {
+    final kagit = _mentorKagit(index, acikTema);
+    final ink = _mentorMurekkep(acikTema);
+    final egim = ((index % 5) - 2) * 0.008;
 
-  @override
-  bool shouldRepaint(covariant _DefterCizgileriPainter old) =>
-      old.cizgi != cizgi || old.marj != marj || old.marjX != marjX;
+    return Transform.rotate(
+      angle: egim,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: acikTema ? 0.16 : 0.42),
+              blurRadius: 12,
+              offset: const Offset(2, 6),
+            ),
+          ],
+        ),
+        child: Material(
+          color: kagit,
+          borderRadius: BorderRadius.circular(10),
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: ink.withValues(alpha: 0.10)),
+            ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 18, 12, 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        baslik,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            height: 1.2,
+                            color: ink),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        metin,
+                        style: TextStyle(
+                            fontSize: 12,
+                            height: 1.5,
+                            fontWeight: FontWeight.w500,
+                            color: ink.withValues(alpha: 0.85)),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Icon(Icons.push_pin_rounded,
+                              size: 11, color: ink.withValues(alpha: 0.35)),
+                          const SizedBox(width: 4),
+                          Text('mentör notu',
+                              style: TextStyle(
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: ink.withValues(alpha: 0.45))),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                // Üstteki yapışkan bant.
+                Positioned(
+                  top: 4,
+                  left: 16,
+                  child: Transform.rotate(
+                    angle: -0.10,
+                    child: Container(
+                      width: 46,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: Colors.white
+                            .withValues(alpha: acikTema ? 0.65 : 0.16),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                ),
+                // Sağ alt kıvrık köşe.
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(10)),
+                    child: SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: Transform.rotate(
+                        angle: 0.785,
+                        origin: const Offset(6, 6),
+                        child: Container(
+                            color: ink.withValues(alpha: acikTema ? 0.10 : 0.18)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
