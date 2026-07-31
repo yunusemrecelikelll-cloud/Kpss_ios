@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../models/question.dart';
 import '../models/badge.dart';
+import '../models/attempt.dart';
 import '../services/auth_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/quiz_engine.dart';
@@ -209,6 +210,18 @@ class _HomeScreenState extends State<HomeScreen> {
     final examInfo = examInfoFor(storage.getExamType());
     final drafts = storage.getAllDrafts();
 
+    // "Bugün girsen kaç alırsın?" — tüm çözülen testlerin toplam doğru/yanlışından
+    // tahmini KPSS puanı (P3). Hiç test yoksa null → "—" gösterilir.
+    int td = 0, ty = 0, tt = 0;
+    for (final a in attempts) {
+      td += a.dogru;
+      ty += a.yanlis;
+      tt += a.toplam;
+    }
+    final tahmin = tt > 0
+        ? KpssPoints.compute(dogru: td, yanlis: ty, toplam: tt)
+        : null;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('KPSS Hazırlık', style: GoogleFonts.baloo2(fontWeight: FontWeight.w700, fontSize: 22)),
@@ -320,7 +333,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: _MiniAksiyonKarti(
                     emoji: '🎯',
-                    baslik: 'Bugün Girsen',
+                    baslik: 'Bugün Girsen Kaç Alırsın',
+                    altBilgi: tahmin != null ? '${tahmin.p3} puan' : '— puan',
                     renk: c.violet,
                     onTap: () {
                       context.read<SoundService>().click();
@@ -333,7 +347,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: _MiniAksiyonKarti(
                     emoji: '🧮',
-                    baslik: 'Net - Puan',
+                    baslik: 'Puan Hesaplama',
                     renk: c.mint,
                     onTap: () {
                       context.read<SoundService>().click();
@@ -1249,11 +1263,15 @@ class _PremiumOzetKarti extends StatelessWidget {
 class _MiniAksiyonKarti extends StatelessWidget {
   final String emoji;
   final String baslik;
+
+  /// İsteğe bağlı alt bilgi (ör. "72 puan") — başlığın ALTINDA gösterilir.
+  final String? altBilgi;
   final Color renk;
   final VoidCallback onTap;
   const _MiniAksiyonKarti({
     required this.emoji,
     required this.baslik,
+    this.altBilgi,
     required this.renk,
     required this.onTap,
   });
@@ -1271,16 +1289,36 @@ class _MiniAksiyonKarti extends StatelessWidget {
           DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
           const SizedBox(width: 10),
           Flexible(
-            child: Text(
-              baslik,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12.5,
-                height: 1.2,
-                fontWeight: FontWeight.w800,
-                color: c.text,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  baslik,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    height: 1.2,
+                    fontWeight: FontWeight.w800,
+                    color: c.text,
+                  ),
+                ),
+                if (altBilgi != null) ...[
+                  const SizedBox(height: 3),
+                  Text(
+                    altBilgi!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w900,
+                      color: renk,
+                    ),
+                  ),
+                ],
+              ],
             ),
           ),
         ],

@@ -24,6 +24,17 @@ String _esikMetni(LeagueTier t) => switch (t) {
       LeagueTier.bronz => 'Başlangıç kademesi',
     };
 
+/// Her kademenin HAFTALIK PUAN aralığı (kullanıcı isteği: "hangi puan hangi
+/// lig" — kademelerin üzerinde yazılır). Eşikler _localTierFallback ile aynıdır.
+String _puanAraligi(LeagueTier t) => switch (t) {
+      LeagueTier.efsane => '500+ puan',
+      LeagueTier.elmas => '300–499 puan',
+      LeagueTier.platin => '150–299 puan',
+      LeagueTier.altin => '60–149 puan',
+      LeagueTier.gumus => '20–59 puan',
+      LeagueTier.bronz => '0–19 puan',
+    };
+
 /// Podyum renkleri — ilk üç sıra için altın / gümüş / bronz aksan.
 /// KASITLI SABİT: madalya sıralaması evrensel bir kimliktir (1. altın, 2. gümüş,
 /// 3. bronz); temaya göre değişirse "kaçıncı sıradayım" bilgisi kaybolur.
@@ -473,6 +484,20 @@ class _KademeSatiri extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Kademenin PUAN ARALIĞI — adının ÜZERİNDE (kullanıcı isteği:
+                // "hangi puan hangi lig, liglerin üzerinde yazsın").
+                Text(
+                  _puanAraligi(tier),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.2,
+                    color: benimKademem ? c.gold : madalya,
+                  ),
+                ),
+                const SizedBox(height: 1),
                 Text(
                   '${tier.label} Lig',
                   maxLines: 1,
