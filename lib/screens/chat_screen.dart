@@ -502,26 +502,74 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                   style: TextStyle(fontSize: 11, color: c.textFaint)),
             ),
           ),
+        // Giriş çubuğu yeniden tasarım: yuvarlak dolgulu alan + gradyan gönder.
         SafeArea(
           top: false,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+            decoration: BoxDecoration(
+              color: c.bg2,
+              border: Border(top: BorderSide(color: c.border)),
+            ),
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    maxLength: 300,
-                    decoration: const InputDecoration(hintText: 'Bir şeyler yaz…', counterText: ''),
-                    onSubmitted: (_) => _send(storage),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: c.glass2,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: c.border),
+                    ),
+                    child: TextField(
+                      controller: _controller,
+                      maxLength: 300,
+                      minLines: 1,
+                      maxLines: 4,
+                      style: TextStyle(fontSize: 14, color: c.text),
+                      decoration: InputDecoration(
+                        hintText: 'Bir şeyler yaz…',
+                        hintStyle: TextStyle(color: c.textFaint),
+                        counterText: '',
+                        border: InputBorder.none,
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      ),
+                      onSubmitted: (_) => _send(storage),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
-                IconButton.filled(
-                  onPressed: _sending ? null : () => _send(storage),
-                  icon: _sending
-                      ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                      : const Icon(Icons.send),
+                // Gradyan gönder butonu
+                Material(
+                  color: Colors.transparent,
+                  shape: const CircleBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: _sending ? null : () => _send(storage),
+                    child: Container(
+                      width: 46,
+                      height: 46,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(colors: [c.violet, c.rose]),
+                        boxShadow: [
+                          BoxShadow(
+                            color: c.violet.withValues(alpha: 0.35),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: _sending
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(
+                                  strokeWidth: 2, color: Colors.white))
+                          : const Icon(Icons.send, size: 20, color: Colors.white),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -554,6 +602,25 @@ class _MessageBubble extends StatelessWidget {
     // IconButton'ı tetikler, ListTile.onTap'ı DEĞİL). Böylece avatara dokunmak
     // sadece profili açar, balonun herhangi bir yerine dokunmak ise sadece
     // mesaj menüsünü açar.
+    // YENİDEN TASARIM (kullanıcı isteği): asimetrik köşeli balonlar, kendi
+    // mesajların mor→pembe gradyan + beyaz metin; karşı taraf cam yüzey. Köşe
+    // yarıçapı gönderen tarafta sivri (WhatsApp benzeri) — konuşma yönü belli olur.
+    final radius = mine
+        ? const BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomLeft: Radius.circular(18),
+            bottomRight: Radius.circular(5),
+          )
+        : const BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomRight: Radius.circular(18),
+            bottomLeft: Radius.circular(5),
+          );
+    final metinRengi = mine ? Colors.white : colors.text;
+    final saatRengi = mine ? Colors.white.withValues(alpha: 0.75) : colors.textFaint;
+
     return Align(
       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
@@ -563,10 +630,17 @@ class _MessageBubble extends StatelessWidget {
           if (!mine) ...[
             GestureDetector(
               onTap: () => _openProfile(context),
-              child: CircleAvatar(
-                radius: 14,
-                backgroundColor: colors.violet.withValues(alpha: 0.18),
-                child: Text(message.character.isNotEmpty ? message.character : '🙂',
+              child: Container(
+                width: 30,
+                height: 30,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(colors: [colors.violet, colors.rose]),
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+                ),
+                child: Text(
+                    message.character.isNotEmpty ? message.character : '🙂',
                     style: const TextStyle(fontSize: 14)),
               ),
             ),
@@ -580,19 +654,27 @@ class _MessageBubble extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                 constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.72),
                 decoration: BoxDecoration(
-                  // Karşı tarafın balonu ARTIK `border` renginden türetilmiyor.
-                  // `border` bazı temalarda metin rengine çok yakın olduğu için
-                  // mesajlar zemine karışıyordu; `glass2` bu iş için var olan,
-                  // her temada zeminden ayrışan yüzey rengi.
-                  color: mine
-                      ? colors.violet.withValues(alpha: 0.22)
-                      : colors.glass2,
-                  borderRadius: BorderRadius.circular(16),
+                  color: mine ? null : colors.glass2,
+                  gradient: mine
+                      ? LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [colors.violet, colors.rose],
+                        )
+                      : null,
+                  borderRadius: radius,
                   border: Border.all(
                     color: mine
-                        ? colors.violetL.withValues(alpha: 0.35)
+                        ? Colors.white.withValues(alpha: 0.18)
                         : colors.border,
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.10),
+                      blurRadius: 6,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -604,23 +686,18 @@ class _MessageBubble extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 11.5,
                               fontWeight: FontWeight.w900,
-                              // violet yerine violetL: koyu temalarda `violet`
-                              // balon zeminine çok yakın kalıp adı okunmaz
-                              // hale getiriyordu.
                               color: colors.violetL)),
                       const SizedBox(height: 3),
                     ],
-                    // KRİTİK: metne AÇIKÇA tema rengi veriliyor. Eskiden renk
-                    // hiç belirtilmiyordu ve Material'ın varsayılan gövde rengi
-                    // devreye giriyordu; bu renk uygulamanın 9 temasının
-                    // çoğunda balon zeminiyle yeterli kontrast oluşturmuyor,
-                    // mesaj "silik/yarı görünmez" görünüyordu.
                     Text(message.message,
                         style: TextStyle(
-                            fontSize: 14.5, height: 1.35, color: colors.text)),
+                            fontSize: 14.5, height: 1.35, color: metinRengi)),
                     const SizedBox(height: 4),
-                    Text(_saat(message.createdAt),
-                        style: TextStyle(fontSize: 10, color: colors.textFaint)),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(_saat(message.createdAt),
+                          style: TextStyle(fontSize: 10, color: saatRengi)),
+                    ),
                   ],
                 ),
               ),
@@ -1460,6 +1537,19 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
                   itemBuilder: (context, i) {
                     final m = messages[i];
                     final mine = m.senderUid == widget.myUid;
+                    final radius = mine
+                        ? const BorderRadius.only(
+                            topLeft: Radius.circular(18),
+                            topRight: Radius.circular(18),
+                            bottomLeft: Radius.circular(18),
+                            bottomRight: Radius.circular(5),
+                          )
+                        : const BorderRadius.only(
+                            topLeft: Radius.circular(18),
+                            topRight: Radius.circular(18),
+                            bottomRight: Radius.circular(18),
+                            bottomLeft: Radius.circular(5),
+                          );
                     return Align(
                       alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
                       child: Container(
@@ -1467,11 +1557,26 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
                         decoration: BoxDecoration(
-                          color: mine ? c.violet.withValues(alpha: 0.18) : c.border.withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(14),
+                          color: mine ? null : c.glass2,
+                          gradient: mine
+                              ? LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [c.violet, c.rose],
+                                )
+                              : null,
+                          borderRadius: radius,
+                          border: Border.all(
+                            color: mine
+                                ? Colors.white.withValues(alpha: 0.18)
+                                : c.border,
+                          ),
                         ),
                         child: Text(m.message,
-                            style: TextStyle(fontSize: 14, color: c.text)),
+                            style: TextStyle(
+                                fontSize: 14.5,
+                                height: 1.35,
+                                color: mine ? Colors.white : c.text)),
                       ),
                     );
                   },
@@ -1490,24 +1595,70 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
             ),
           SafeArea(
             top: false,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
+              decoration: BoxDecoration(
+                color: c.bg2,
+                border: Border(top: BorderSide(color: c.border)),
+              ),
               child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _controller,
-                      maxLength: 300,
-                      decoration: const InputDecoration(hintText: 'Bir şeyler yaz…', counterText: ''),
-                      onSubmitted: (_) => _send(),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: c.glass2,
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: c.border),
+                      ),
+                      child: TextField(
+                        controller: _controller,
+                        maxLength: 300,
+                        minLines: 1,
+                        maxLines: 4,
+                        style: TextStyle(fontSize: 14, color: c.text),
+                        decoration: InputDecoration(
+                          hintText: 'Bir şeyler yaz…',
+                          hintStyle: TextStyle(color: c.textFaint),
+                          counterText: '',
+                          border: InputBorder.none,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        ),
+                        onSubmitted: (_) => _send(),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
-                  IconButton.filled(
-                    onPressed: _sending ? null : _send,
-                    icon: _sending
-                        ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                        : const Icon(Icons.send),
+                  Material(
+                    color: Colors.transparent,
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      onTap: _sending ? null : _send,
+                      child: Container(
+                        width: 46,
+                        height: 46,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(colors: [c.violet, c.rose]),
+                          boxShadow: [
+                            BoxShadow(
+                              color: c.violet.withValues(alpha: 0.35),
+                              blurRadius: 10,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: _sending
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 2, color: Colors.white))
+                            : const Icon(Icons.send, size: 20, color: Colors.white),
+                      ),
+                    ),
                   ),
                 ],
               ),
