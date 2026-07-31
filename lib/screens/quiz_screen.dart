@@ -531,7 +531,14 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
             _SoruNavPaneli(
               total: quiz.questions.length,
               current: quiz.currentIndex,
-              answers: quiz.answers,
+              // Her soru için durum: null = cevaplanmadı, true = doğru, false = yanlış
+              // (cevaplananların üzerinde yeşil/kırmızı gösterilir — kullanıcı isteği).
+              dogruMu: [
+                for (var i = 0; i < quiz.questions.length; i++)
+                  quiz.answers[i] == null
+                      ? null
+                      : quiz.answers[i] == quiz.questions[i].dogruIndex,
+              ],
               onTap: (i) {
                 context.read<SoundService>().click();
                 quiz.goTo(i);
@@ -715,12 +722,14 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
 class _SoruNavPaneli extends StatefulWidget {
   final int total;
   final int current;
-  final List<int?> answers;
+
+  /// Her soru için: null = cevaplanmadı, true = doğru, false = yanlış.
+  final List<bool?> dogruMu;
   final ValueChanged<int> onTap;
   const _SoruNavPaneli({
     required this.total,
     required this.current,
-    required this.answers,
+    required this.dogruMu,
     required this.onTap,
   });
 
@@ -730,7 +739,7 @@ class _SoruNavPaneli extends StatefulWidget {
 
 class _SoruNavPaneliState extends State<_SoruNavPaneli> {
   final ScrollController _ctrl = ScrollController();
-  static const double _oge = 44; // her numaranın kapladığı yatay genişlik
+  static const double _oge = 46; // her numara slotunun yatay genişliği
 
   @override
   void initState() {
@@ -752,7 +761,7 @@ class _SoruNavPaneliState extends State<_SoruNavPaneli> {
     super.dispose();
   }
 
-  /// Aktif numarayı görünür alanın ORTASINA getirir.
+  /// Aktif numarayı görünür alanın ORTASINA getirir (animasyonlu).
   void _ortala(bool animate) {
     if (!_ctrl.hasClients) return;
     final vp = _ctrl.position.viewportDimension;
@@ -760,11 +769,17 @@ class _SoruNavPaneliState extends State<_SoruNavPaneli> {
     final k = hedef.clamp(0.0, _ctrl.position.maxScrollExtent);
     if (animate) {
       _ctrl.animateTo(k,
-          duration: const Duration(milliseconds: 320), curve: Curves.easeOutCubic);
+          duration: const Duration(milliseconds: 340), curve: Curves.easeOutCubic);
     } else {
       _ctrl.jumpTo(k);
     }
   }
+
+  // Merkeze olan uzaklığa göre boyut/opaklık: aktif büyük ve net, iki yana
+  // gittikçe küçük ve saydam (kullanıcı isteği: coverflow etkisi).
+  static double _boyut(int d) => switch (d) { 0 => 42, 1 => 34, 2 => 29, 3 => 25, _ => 22 };
+  static double _opak(int d) => switch (d) { 0 => 1.0, 1 => 0.7, 2 => 0.45, 3 => 0.28, _ => 0.16 };
+  static double _yazi(int d) => switch (d) { 0 => 16, 1 => 13, 2 => 11.5, _ => 10.5 };
 
   @override
   Widget build(BuildContext context) {
@@ -798,58 +813,77 @@ class _SoruNavPaneliState extends State<_SoruNavPaneli> {
             ),
           ),
           const SizedBox(width: 10),
-          // Orta/sağ: numara şeridi (aktif ortaya kayar)
+          // Orta/sağ: coverflow numara şeridi (aktif ortada, iki yan silik/küçük)
           Expanded(
             child: SizedBox(
-              height: 40,
+              height: 46,
               child: ListView.builder(
                 controller: _ctrl,
                 scrollDirection: Axis.horizontal,
                 itemExtent: _oge,
                 itemCount: widget.total,
                 itemBuilder: (context, i) {
-                  final answered = widget.answers[i] != null;
-                  final current = i == widget.current;
+                  final d = (i - widget.current).abs();
+                  final current = d == 0;
+                  final dogru = widget.dogruMu[i]; // null / true / false
+
+                  // Renk: doğru → yeşil, yanlış → kırmızı, cevapsız → cam.
+                  final Color dolgu;
+                  final Color kenar;
+                  final Color yaziRengi;
+                  if (dogru == true) {
+                    dolgu = c.success;
+                    kenar = c.success;
+                    yaziRengi = Colors.white;
+                  } else if (dogru == false) {
+                    dolgu = c.danger;
+                    kenar = c.danger;
+                    yaziRengi = Colors.white;
+                  } else {
+                    dolgu = c.glass2;
+                    kenar = c.border;
+                    yaziRengi = c.textDim;
+                  }
+
+                  final boyut = _boyut(d);
+
                   return Center(
-                    child: GestureDetector(
-                      onTap: () => widget.onTap(i),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 280),
-                        curve: Curves.easeOutCubic,
-                        width: 34,
-                        height: 34,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: current
-                              ? c.violet
-                              : (answered
-                                  ? c.success.withValues(alpha: 0.22)
-                                  : c.glass2),
-                          border: Border.all(
-                            color: current
-                                ? c.violet
-                                : (answered
-                                    ? c.success.withValues(alpha: 0.5)
-                                    : c.border),
+                    child: AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutCubic,
+                      opacity: _opak(d),
+                      child: GestureDetector(
+                        onTap: () => widget.onTap(i),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOutCubic,
+                          width: boyut,
+                          height: boyut,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: dolgu,
+                            // Aktif soru: mor halka + gölge ile "buradasın" vurgusu.
+                            border: Border.all(
+                              color: current ? c.violet : kenar,
+                              width: current ? 2.2 : 1,
+                            ),
+                            boxShadow: current
+                                ? [
+                                    BoxShadow(
+                                        color: c.violet.withValues(alpha: 0.5),
+                                        blurRadius: 10,
+                                        offset: const Offset(0, 3))
+                                  ]
+                                : null,
                           ),
-                          boxShadow: current
-                              ? [
-                                  BoxShadow(
-                                      color: c.violet.withValues(alpha: 0.45),
-                                      blurRadius: 8,
-                                      offset: const Offset(0, 2))
-                                ]
-                              : null,
-                        ),
-                        child: Text(
-                          '${i + 1}',
-                          style: TextStyle(
-                            fontSize: 12.5,
-                            fontWeight: FontWeight.w800,
-                            color: current
-                                ? Colors.white
-                                : (answered ? c.success : c.textDim),
+                          child: Text(
+                            '${i + 1}',
+                            style: TextStyle(
+                              fontSize: _yazi(d),
+                              fontWeight: FontWeight.w900,
+                              color: dogru == null && current ? c.text : yaziRengi,
+                            ),
                           ),
                         ),
                       ),
