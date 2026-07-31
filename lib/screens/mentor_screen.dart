@@ -164,30 +164,145 @@ class MentorScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            // NOT: Buradaki "yakında canlı mentörlük açılacak" vaadi kaldırıldı.
-            // Ekran premium'a kapalı; ücretli bir özellikte var olmayan bir
-            // şeyi vaat etmek hem App Store Guideline 2.1 hem Play'in
-            // yanıltıcı satın alma değerlendirmesi açısından risklidir.
-            'Sınavda işine yarayacak, denenmiş çalışma stratejileri.',
-            style: TextStyle(fontSize: 13, color: c.textFaint),
+            'Sınavda işine yarayacak, denenmiş çalışma stratejileri — not defterinden sayfalar.',
+            style: TextStyle(fontSize: 13, height: 1.4, color: c.textFaint),
           ),
           const SizedBox(height: 16),
-          for (final t in kMentorTips)
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(t.title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5)),
-                    const SizedBox(height: 6),
-                    Text(t.text, style: const TextStyle(fontSize: 13, height: 1.4)),
-                  ],
-                ),
-              ),
-            ),
+          for (final t in kMentorTips) ...[
+            _NotDefteriKarti(baslik: t.title, metin: t.text),
+            const SizedBox(height: 14),
+          ],
         ],
       ),
     );
   }
+}
+
+/// Bir mentörlük ipucunu NOT DEFTERİ SAYFASI gibi gösteren kart (kullanıcı
+/// isteği): kağıt yüzey, üstte spiral delikleri, solda kırmızı marj çizgisi ve
+/// arka planda soluk çizgili satırlar. Renkler temaya uyarlanır (açık temada
+/// krem kağıt, koyu temada koyu yüzey; çizgiler her iki temada da soluk).
+class _NotDefteriKarti extends StatelessWidget {
+  final String baslik;
+  final String metin;
+  const _NotDefteriKarti({required this.baslik, required this.metin});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    // Kağıt tonu: açık temada sıcak krem, koyu temada tema yüzeyi.
+    final kagit = c.isLight ? const Color(0xFFFFFDF4) : c.bg2;
+    final cizgi = c.isLight
+        ? const Color(0xFF9AB4D4).withValues(alpha: 0.30) // soluk mavi çizgi
+        : c.border.withValues(alpha: 0.6);
+    final marj = const Color(0xFFEF6C6C).withValues(alpha: 0.55); // kırmızı marj
+
+    return Container(
+      decoration: BoxDecoration(
+        color: kagit,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: c.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: c.isLight ? 0.10 : 0.30),
+            blurRadius: 12,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Spiral cilt: üstte küçük delikler.
+          Container(
+            height: 18,
+            color: c.isLight
+                ? const Color(0xFFF0ECDC)
+                : Colors.white.withValues(alpha: 0.04),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (var i = 0; i < 10; i++)
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: c.bg.withValues(alpha: 0.9),
+                      border: Border.all(color: c.border),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          // Kağıt gövdesi: çizgili satırlar + kırmızı marj + içerik.
+          CustomPaint(
+            painter: _DefterCizgileriPainter(cizgi: cizgi, marj: marj, marjX: 34),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(44, 12, 14, 14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    baslik,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                      height: 1.6,
+                      color: c.isLight ? const Color(0xFF2B3A55) : c.text,
+                    ),
+                  ),
+                  Text(
+                    metin,
+                    style: TextStyle(
+                      fontSize: 13.5,
+                      height: 1.6,
+                      color: c.isLight
+                          ? const Color(0xFF3A4A66)
+                          : c.text.withValues(alpha: 0.9),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Not defteri kağıdının arka planı: soluk yatay satır çizgileri + solda
+/// dikey kırmızı marj çizgisi.
+class _DefterCizgileriPainter extends CustomPainter {
+  final Color cizgi;
+  final Color marj;
+  final double marjX;
+  const _DefterCizgileriPainter({
+    required this.cizgi,
+    required this.marj,
+    required this.marjX,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Paint()
+      ..color = cizgi
+      ..strokeWidth = 1;
+    // Metin satır yüksekliğiyle (≈21.6) uyumlu yatay çizgiler.
+    const arolik = 21.6;
+    for (var y = arolik; y < size.height; y += arolik) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
+    }
+    // Sol kırmızı marj çizgisi.
+    final mp = Paint()
+      ..color = marj
+      ..strokeWidth = 1.4;
+    canvas.drawLine(Offset(marjX, 0), Offset(marjX, size.height), mp);
+  }
+
+  @override
+  bool shouldRepaint(covariant _DefterCizgileriPainter old) =>
+      old.cizgi != cizgi || old.marj != marj || old.marjX != marjX;
 }
