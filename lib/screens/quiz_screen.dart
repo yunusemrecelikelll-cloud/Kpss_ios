@@ -1055,23 +1055,44 @@ class _OptionTile extends StatelessWidget {
     this.isCorrectOption = false,
   });
 
+  /// Her şıkkın (A/B/C/D/E) kendine ait ayırt edici rengi (kullanıcı isteği:
+  /// "şıklar farklı renkli olsun"). Her iki temada da okunur, canlı sabit
+  /// renkler (madalya renkleri gibi bilerek sabit).
+  static const Map<String, Color> _sikRenkleri = {
+    'A': Color(0xFF8B7CF6), // mor
+    'B': Color(0xFF34D399), // yeşil-mint
+    'C': Color(0xFFF4B740), // altın
+    'D': Color(0xFFF472B6), // pembe
+    'E': Color(0xFF60A5FA), // mavi
+  };
+
   @override
   Widget build(BuildContext context) {
-    // Fix 4: cevap verildikten sonra (normal testte) doğru şık yeşil, yanlış
-    // seçilen şık kırmızı vurgulanır — açıklama panelinden önce görsel geri
-    // bildirim.
+    final c = context.watch<ThemeProvider>().colors;
+    final sikRenk = _sikRenkleri[letter] ?? c.violet;
+
+    // Cevap sonrası: doğru şık YEŞİL, yanlış seçilen şık KIRMIZI vurgulanır.
+    // Cevap öncesi/nötr: her şık KENDİ rengiyle görünür; seçilen daha belirgin.
     Color borderColor;
     Color? bgColor;
     if (showResult && isCorrectOption) {
-      borderColor = Colors.green;
-      bgColor = Colors.green.withValues(alpha: 0.14);
+      borderColor = c.success;
+      bgColor = c.success.withValues(alpha: 0.14);
     } else if (showResult && selected && !isCorrectOption) {
-      borderColor = Colors.red;
-      bgColor = Colors.red.withValues(alpha: 0.14);
+      borderColor = c.danger;
+      bgColor = c.danger.withValues(alpha: 0.14);
     } else {
-      borderColor = selected ? Theme.of(context).colorScheme.primary : Colors.grey.withValues(alpha: 0.3);
-      bgColor = selected ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.12) : null;
+      borderColor = sikRenk.withValues(alpha: selected ? 0.95 : 0.5);
+      bgColor = sikRenk.withValues(alpha: selected ? 0.16 : 0.06);
     }
+
+    // Rozet rengi: sonuç modunda doğru/yanlışa göre, aksi halde şık rengi.
+    final Color rozetRenk = (showResult && isCorrectOption)
+        ? c.success
+        : (showResult && selected && !isCorrectOption)
+            ? c.danger
+            : sikRenk;
+
     return Opacity(
       opacity: locked && !showResult ? 0.55 : 1,
       child: Padding(
@@ -1083,14 +1104,40 @@ class _OptionTile extends StatelessWidget {
             padding: const EdgeInsets.all(13),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: borderColor),
+              border: Border.all(color: borderColor, width: selected ? 1.6 : 1.2),
               color: bgColor,
             ),
             child: Row(
               children: [
-                CircleAvatar(radius: 13, child: Text(letter, style: const TextStyle(fontSize: 12))),
+                Container(
+                  width: 28,
+                  height: 28,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: rozetRenk,
+                    boxShadow: [
+                      BoxShadow(
+                          color: rozetRenk.withValues(alpha: 0.4),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2)),
+                    ],
+                  ),
+                  child: Text(letter,
+                      style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white)),
+                ),
                 const SizedBox(width: 12),
-                Expanded(child: Text(text)),
+                Expanded(
+                    child: Text(text,
+                        style: TextStyle(
+                            fontSize: 14.5, height: 1.3, color: c.text))),
+                if (showResult && isCorrectOption)
+                  Icon(Icons.check_circle, size: 18, color: c.success)
+                else if (showResult && selected && !isCorrectOption)
+                  Icon(Icons.cancel, size: 18, color: c.danger),
               ],
             ),
           ),
