@@ -532,6 +532,17 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                         progress: progress,
                         colors: c,
                       ),
+                      // Cevap verince rakiplerin bu sorudaki cevabını göster
+                      // (kullanıcı isteği): baş harfli avatar + seçtiği şık +
+                      // doğru/yanlış. Henüz cevaplamayan "düşünüyor".
+                      const SizedBox(height: 8),
+                      _RakipCevaplari(
+                        players: _players,
+                        myUid: _duel.currentUid,
+                        questionIdx: idx,
+                        correctIdx: q.dogruIndex,
+                        colors: c,
+                      ),
                     ],
                     // Solo: geri bildirimi beklemeden ilerleyebilmek için manuel
                     // geçiş. Cevap verilmemişse soru cevapsız sayılarak geçilir.
@@ -837,6 +848,116 @@ class _LiveLeaderboard extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12.5, color: c.text)),
         ],
       ),
+    );
+  }
+}
+
+/// Cevap verildikten sonra RAKİPLERİN bu sorudaki cevabını gösteren panel
+/// (kullanıcı isteği). Her rakip için: baş harfli daire avatar + adı + seçtiği
+/// şık (doğruysa yeşil, yanlışsa kırmızı) ya da henüz cevaplamadıysa "düşünüyor".
+class _RakipCevaplari extends StatelessWidget {
+  final Map<String, DuelPlayer> players;
+  final String? myUid;
+  final int questionIdx;
+  final int correctIdx;
+  final KpssColors colors;
+  const _RakipCevaplari({
+    required this.players,
+    required this.myUid,
+    required this.questionIdx,
+    required this.correctIdx,
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    final rakipler = players.values.where((p) => p.uid != myUid).toList()
+      ..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    if (rakipler.isEmpty) return const SizedBox.shrink();
+
+    return DsCard(
+      padding: const EdgeInsets.all(14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('🎭 Rakiplerin cevabı',
+              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 13, color: c.textDim)),
+          const SizedBox(height: 10),
+          for (var i = 0; i < rakipler.length; i++) ...[
+            if (i > 0) Divider(color: c.border, height: 16),
+            _satir(rakipler[i], c),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _satir(DuelPlayer p, KpssColors c) {
+    final bas = p.name.trim().isNotEmpty ? p.name.trim()[0].toUpperCase() : '?';
+    final ans = p.answers[questionIdx];
+    final cevapladi = ans != null;
+    final dogru = cevapladi && ans.idx == correctIdx;
+    final renk = !cevapladi ? c.textFaint : (dogru ? c.success : c.danger);
+    final sikHarfi = (cevapladi && ans.idx >= 0 && ans.idx < kQuickModeOptionLetters.length)
+        ? kQuickModeOptionLetters[ans.idx]
+        : '?';
+
+    return Row(
+      children: [
+        // Baş harfli daire avatar
+        Container(
+          width: 34,
+          height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(colors: [c.violet, c.rose]),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+          ),
+          child: Text(bas,
+              style: const TextStyle(
+                  fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white)),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            p.eliminated ? '${p.name} (elendi)' : p.name,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 13,
+                color: p.eliminated ? c.textFaint : c.text),
+          ),
+        ),
+        const SizedBox(width: 8),
+        if (!cevapladi)
+          Text('düşünüyor…',
+              style: TextStyle(
+                  fontSize: 11.5, fontStyle: FontStyle.italic, color: c.textFaint))
+        else
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 26,
+                height: 26,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: renk.withValues(alpha: 0.16),
+                  border: Border.all(color: renk.withValues(alpha: 0.5)),
+                ),
+                child: Text(sikHarfi,
+                    style: TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w900, color: renk)),
+              ),
+              const SizedBox(width: 6),
+              Icon(dogru ? Icons.check_circle : Icons.cancel, size: 16, color: renk),
+            ],
+          ),
+      ],
     );
   }
 }
