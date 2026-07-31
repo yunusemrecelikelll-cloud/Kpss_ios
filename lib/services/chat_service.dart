@@ -35,6 +35,11 @@ class ChatMessage {
   final String message;
   final DateTime? createdAt;
 
+  /// Gönderen mesajı attığı an premium miydi (kullanıcı isteği: sohbette
+  /// premium kullanıcıların adının yanında küçük altın "premium" yazsın).
+  /// Eski mesajlarda alan olmadığından varsayılan false.
+  final bool premium;
+
   const ChatMessage({
     required this.id,
     required this.senderUid,
@@ -42,6 +47,7 @@ class ChatMessage {
     required this.character,
     required this.message,
     required this.createdAt,
+    this.premium = false,
   });
 
   factory ChatMessage.fromDoc(DocumentSnapshot<Map<String, dynamic>> doc) {
@@ -54,6 +60,7 @@ class ChatMessage {
       character: data['character'] as String? ?? '',
       message: data['message'] as String? ?? '',
       createdAt: ts is Timestamp ? ts.toDate() : null,
+      premium: data['premium'] == true,
     );
   }
 }
@@ -268,6 +275,7 @@ class ChatService {
     required String senderName,
     required String character,
     required String message,
+    bool premium = false,
   }) async {
     _requireConfigured();
     final trimmed = message.trim();
@@ -280,6 +288,7 @@ class ChatService {
       'senderName': senderName,
       'character': character,
       'message': trimmed,
+      'premium': premium,
       'createdAt': FieldValue.serverTimestamp(),
     });
   }

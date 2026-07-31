@@ -267,6 +267,7 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
         senderName: widget.displayName,
         character: _genderEmoji(storage.getUserGender()),
         message: text,
+        premium: storage.isPremiumUser(),
       );
       await storage.incrementChatMessagesSentToday();
       _controller.clear();
@@ -680,13 +681,30 @@ class _MessageBubble extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (!mine) ...[
-                      Text(message.senderName,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.w900,
-                              color: colors.violetL)),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(message.senderName,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w900,
+                                    color: colors.violetL)),
+                          ),
+                          // Premium kullanıcı → küçük altın "premium" (kullanıcı isteği).
+                          if (message.premium) ...[
+                            const SizedBox(width: 4),
+                            Text('👑 premium',
+                                style: TextStyle(
+                                    fontSize: 8.5,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 0.2,
+                                    color: colors.gold)),
+                          ],
+                        ],
+                      ),
                       const SizedBox(height: 3),
                     ],
                     Text(message.message,
