@@ -412,16 +412,224 @@ const LearnMapCategory kEnerjiCategory = LearnMapCategory(
   ],
 );
 
+/// Sanayi ve el sanatları — kullanıcı küratörlü/TÜİK-OSB verisine göre her
+/// kolun MERKEZ ili. Öğretici amaçlıdır (puansız).
+const LearnMapCategory kSanayiCategory = LearnMapCategory(
+  id: 'sanayi',
+  icon: '🏭',
+  title: 'Sanayi ve El Sanatları',
+  description: 'Sanayi kollarının ve geleneksel el sanatlarının merkez illeri.',
+  items: [
+    LearnMapItem(
+      id: 'demir-celik',
+      title: 'Demir-Çelik Sanayii',
+      subtitle: 'Türkiye’nin en büyük entegre demir-çelik tesisleri Hatay/İskenderun’dadır '
+          '(İsdemir). Karabük ve Ereğli/Zonguldak da tarihsel demir-çelik merkezleridir.',
+      provinceIds: ['hatay'],
+      kaynak: 'Sektör verileri (İsdemir/Erdemir); kullanıcı küratörlü. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'otomotiv',
+      title: 'Otomotiv Sanayii',
+      subtitle: 'Bursa, Türkiye otomotiv üretiminin kalbidir (Oyak-Renault, Tofaş); '
+          'Kocaeli (Ford Otosan) ve Sakarya (Toyota) diğer büyük merkezlerdir.',
+      provinceIds: ['bursa'],
+      kaynak: 'OSD (Otomotiv Sanayii Derneği) üretim verileri. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'tekstil',
+      title: 'Tekstil ve Halı',
+      subtitle: 'Gaziantep, makine halıcılığı ve iplik/dokuma ihracatında Türkiye’nin '
+          'lider ilidir; Denizli (havlu/ev tekstili) ve Bursa da öne çıkar.',
+      provinceIds: ['gaziantep'],
+      kaynak: 'İhracatçı birlikleri verileri; kullanıcı küratörlü. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'beyaz-esya',
+      title: 'Beyaz Eşya',
+      subtitle: 'Manisa, büyük beyaz eşya fabrikalarıyla (Vestel Şehri) sektörün '
+          'üretim merkezlerindendir.',
+      provinceIds: ['manisa'],
+      kaynak: 'Sektör/OSB verileri; kullanıcı küratörlü. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'petrokimya',
+      title: 'Petrokimya',
+      subtitle: 'İzmir/Aliağa, rafineri (STAR, Tüpraş) ve petrokimya (Petkim) '
+          'tesisleriyle Türkiye’nin petrokimya merkezidir.',
+      provinceIds: ['izmir'],
+      kaynak: 'Petkim/Tüpraş tesis bilgileri. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'cini-seramik',
+      title: 'Çini ve Seramik',
+      subtitle: 'Kütahya, yüzyıllara dayanan çini geleneği ve seramik sanayisiyle '
+          'bu alanın simge ilidir.',
+      provinceIds: ['kutahya'],
+      kaynak: 'Coğrafi işaret (Kütahya çinisi) ve sektör verisi. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'sanayi-diger',
+      title: 'Diğer Sanayi Kolları',
+      subtitle: 'Çimento ve deri: İstanbul • Kâğıt: Giresun (Aksu) • Şeker fabrikaları: '
+          'Konya • Gübre: Kocaeli • Tersane/gemi inşa: Yalova (Altınova) • Cam: '
+          'Kırklareli • Savunma sanayii: Ankara.',
+      provinceIds: [
+        'istanbul', 'giresun', 'konya', 'kocaeli', 'yalova', 'kirklareli', 'ankara'
+      ],
+      kaynak: 'Kullanıcı küratörlü sektör/OSB verileri. Öğretici.',
+    ),
+  ],
+);
+
+/// Coğrafya ve doğa — yer şekilleri, su kaynakları ve doğal öğelerin illeri.
+const LearnMapCategory kCografyaCategory = LearnMapCategory(
+  id: 'cografya',
+  icon: '🏔️',
+  title: 'Coğrafya ve Doğa',
+  description: 'Yer şekilleri, akarsular, göller ve doğal oluşumların illeri.',
+  items: [
+    LearnMapItem(
+      id: 'en-yuksek-dag',
+      title: 'En Yüksek Dağ',
+      subtitle: 'Türkiye’nin en yüksek dağı Ağrı Dağı’dır (5137 m) ve Ağrı ilindedir. '
+          'Sönmüş bir volkandır.',
+      provinceIds: ['agri'],
+      kaynak: 'Fiziki coğrafya (Ağrı Dağı 5137 m). Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'volkanik-dag',
+      title: 'Volkanik Dağlar',
+      subtitle: 'Erciyes (Kayseri), İç Anadolu’nun en yüksek volkanik dağıdır; '
+          'Nemrut ve Süphan (Bitlis/Van) diğer önemli volkanlardır.',
+      provinceIds: ['kayseri'],
+      kaynak: 'Fiziki coğrafya. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'delta-ova',
+      title: 'Delta Ovaları',
+      subtitle: 'Çukurova (Adana), Seyhan ve Ceyhan’ın oluşturduğu Türkiye’nin en '
+          'büyük delta ovasıdır; Çarşamba ve Bafra (Samsun) diğer büyük deltalardır.',
+      provinceIds: ['adana'],
+      kaynak: 'Fiziki coğrafya. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'peribacalari',
+      title: 'Peribacaları (Kapadokya)',
+      subtitle: 'Nevşehir çevresinde (Kapadokya), volkanik tüflerin aşınmasıyla '
+          'oluşan peribacaları görülür.',
+      provinceIds: ['nevsehir'],
+      kaynak: 'Fiziki coğrafya / UNESCO Kapadokya. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'obruk-karst',
+      title: 'Obruk ve Karstik Şekiller',
+      subtitle: 'Obruklar özellikle Konya çevresinde yaygındır; traverten, mağara ve '
+          'düden gibi karstik şekiller Antalya çevresinde çoktur.',
+      provinceIds: ['konya', 'antalya'],
+      kaynak: 'Fiziki coğrafya. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'en-uzun-nehir',
+      title: 'En Uzun Nehir (Kızılırmak)',
+      subtitle: 'Türkiye’nin sınırları içindeki en uzun nehri Kızılırmak’tır; kaynağı '
+          'Sivas civarı, döküldüğü yer ise Samsun (Bafra Deltası) çevresidir.',
+      provinceIds: ['sivas', 'samsun'],
+      kaynak: 'Fiziki coğrafya (Kızılırmak ~1355 km). Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'en-buyuk-gol',
+      title: 'En Büyük Göl (Van Gölü)',
+      subtitle: 'Türkiye’nin en büyük gölü Van Gölü’dür (Van); sodalı bir kapalı '
+          'havza gölüdür.',
+      provinceIds: ['van'],
+      kaynak: 'Fiziki coğrafya. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'en-buyuk-baraj',
+      title: 'En Büyük Baraj (Atatürk Barajı)',
+      subtitle: 'Gövde hacmi ve enerji üretimiyle en büyük barajlardan olan Atatürk '
+          'Barajı, Şanlıurfa (Fırat üzerinde) yer alır; GAP’ın kalbidir.',
+      provinceIds: ['sanliurfa'],
+      kaynak: 'DSİ/GAP verileri. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'jeopark-kula',
+      title: 'Jeopark (Kula-Salihli)',
+      subtitle: 'Manisa’daki Kula-Salihli Jeoparkı, Türkiye’nin UNESCO Küresel '
+          'Jeopark ağındaki alanıdır (volkanik yer şekilleri).',
+      provinceIds: ['manisa'],
+      kaynak: 'UNESCO Global Geoparks. Öğretici.',
+    ),
+  ],
+);
+
+/// Ulaşım ve turizm — liman, antik kent, kayak/termal merkezlerinin illeri.
+const LearnMapCategory kUlasimTurizmCategory = LearnMapCategory(
+  id: 'ulasim-turizm',
+  icon: '🚢',
+  title: 'Ulaşım ve Turizm',
+  description: 'Limanlar, antik kentler ve turizm merkezlerinin illeri.',
+  items: [
+    LearnMapItem(
+      id: 'buyuk-liman',
+      title: 'Büyük Limanlar',
+      subtitle: 'Konteyner elleçlemede Kocaeli (Körfez limanları) ve Mersin Limanı '
+          'Türkiye’nin en büyük kapılarıdır; ihracat/ithalatın önemli kısmı buradan geçer.',
+      provinceIds: ['kocaeli', 'mersin'],
+      kaynak: 'Ulaştırma Bakanlığı/liman istatistikleri. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'antik-gobeklitepe',
+      title: 'Antik Kent (Göbeklitepe)',
+      subtitle: 'Şanlıurfa’daki Göbeklitepe, yaklaşık 12 bin yıllık dünyanın bilinen '
+          'en eski tapınağıdır (UNESCO Dünya Mirası).',
+      provinceIds: ['sanliurfa'],
+      kaynak: 'UNESCO Dünya Mirası / Kültür Bakanlığı. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'kayak-uludag',
+      title: 'Kayak Merkezi (Uludağ)',
+      subtitle: 'Bursa’daki Uludağ, Türkiye’nin en tanınan kayak merkezidir; '
+          'Palandöken (Erzurum) ve Erciyes (Kayseri) diğer büyük merkezlerdir.',
+      provinceIds: ['bursa'],
+      kaynak: 'Kültür ve Turizm Bakanlığı. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'termal',
+      title: 'Termal / Kaplıca Turizmi',
+      subtitle: 'Afyonkarahisar, jeotermal kaynakları ve termal otelleriyle '
+          '“termal turizm başkenti” olarak anılır.',
+      provinceIds: ['afyonkarahisar'],
+      kaynak: 'Kültür ve Turizm Bakanlığı. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'pamukkale',
+      title: 'Pamukkale Travertenleri',
+      subtitle: 'Denizli’deki Pamukkale, kalsiyumca zengin termal suların oluşturduğu '
+          'beyaz travertenleriyle UNESCO Dünya Mirası’dır (Hierapolis ile birlikte).',
+      provinceIds: ['denizli'],
+      kaynak: 'UNESCO Dünya Mirası. Öğretici.',
+    ),
+    LearnMapItem(
+      id: 'inanc-turizmi',
+      title: 'İnanç Turizmi',
+      subtitle: 'Şanlıurfa (Balıklıgöl ve peygamberler şehri kimliği) inanç turizminin '
+          'önde gelen merkezlerindendir.',
+      provinceIds: ['sanliurfa'],
+      kaynak: 'Kültür ve Turizm Bakanlığı. Öğretici.',
+    ),
+  ],
+);
+
 /// "Haritadan Öğren" kütüphanesindeki TÜM kategoriler (öncelik sırasına göre).
-///
-/// NOT: Ulaşım, Turizm ve Kültür, Su Kaynakları, Çevre ve Doğal Alanlar,
-/// Ekonomi ve Sanayi kategorileri bu sürümde YOKTUR — görev talimatındaki
-/// öncelik sırasına göre süre yetmediği için eklenmemiştir, veri
-/// doğrulanamadığından değil.
 List<LearnMapCategory> get kLearnMapCategories => [
       _buildBolgelerCategory(),
       kTarimCategory,
       kHayvancilikCategory,
       kMadenlerCategory,
       kEnerjiCategory,
+      kSanayiCategory,
+      kCografyaCategory,
+      kUlasimTurizmCategory,
     ];

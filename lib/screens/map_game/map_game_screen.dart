@@ -190,8 +190,8 @@ class _LearnBanner extends StatelessWidget {
                           fontSize: 16, fontWeight: FontWeight.w900, color: c.text)),
                   const SizedBox(height: 3),
                   Text(
-                    'Oyuna başlamadan önce: tarım, hayvancılık, maden ve enerji '
-                    'haritalarını puansız, öğretici modda incele.',
+                    'Oyuna başlamadan önce: tarım, hayvancılık, maden, enerji, '
+                    'sanayi, coğrafya ve turizm haritalarını puansız, öğretici modda incele.',
                     style: TextStyle(fontSize: 12, height: 1.35, color: c.textDim),
                   ),
                 ],
