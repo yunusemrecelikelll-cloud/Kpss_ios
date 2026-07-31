@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 
 /// KPSS Puan Hesaplama (tahmini) — Genel Kültür (Tarih/Coğrafya/Vatandaşlık/
@@ -134,9 +135,9 @@ class _ScoreCalculatorScreenState extends State<ScoreCalculatorScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _buildSectionCard('Genel Kültür', _kGenelKultur, colors),
-            const SizedBox(height: 14),
-            _buildSectionCard('Genel Yetenek', _kGenelYetenek, colors),
+            _buildSectionCard('Genel Kültür', '📚', colors.violet, _kGenelKultur, colors),
+            const SizedBox(height: kDsGap),
+            _buildSectionCard('Genel Yetenek', '🧠', colors.mint, _kGenelYetenek, colors),
             const SizedBox(height: 18),
             _buildResultCard(colors),
             const SizedBox(height: 14),
@@ -147,20 +148,23 @@ class _ScoreCalculatorScreenState extends State<ScoreCalculatorScreen> {
     );
   }
 
-  Widget _buildSectionCard(String title, List<_ScoreSubject> subjects, KpssColors colors) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: colors.glass2,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: colors.border),
-      ),
+  Widget _buildSectionCard(
+      String title, String emoji, Color accent, List<_ScoreSubject> subjects, KpssColors colors) {
+    return DsCard(
+      accent: accent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w800)),
-          const SizedBox(height: 12),
+          Row(
+            children: [
+              DsIconBadge(emoji: emoji, color: accent, size: 40, glow: false),
+              const SizedBox(width: 10),
+              Text(title,
+                  style: TextStyle(
+                      fontSize: 15.5, fontWeight: FontWeight.w900, color: colors.text)),
+            ],
+          ),
+          const SizedBox(height: 14),
           for (final s in subjects) _buildSubjectRow(s, colors),
         ],
       ),
@@ -233,19 +237,27 @@ class _ScoreCalculatorScreenState extends State<ScoreCalculatorScreen> {
   }
 
   Widget _buildNumField(String label, TextEditingController ctrl, KpssColors colors) {
+    OutlineInputBorder border(Color renk, double genislik) => OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: renk, width: genislik),
+        );
     return TextField(
       controller: ctrl,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       textAlign: TextAlign.center,
-      style: const TextStyle(fontWeight: FontWeight.w700),
+      style: TextStyle(fontWeight: FontWeight.w800, color: colors.text),
       onChanged: (_) => setState(() {}),
       decoration: InputDecoration(
         isDense: true,
+        filled: true,
+        fillColor: colors.glass2,
         labelText: label,
         labelStyle: TextStyle(fontSize: 11.5, color: colors.textFaint),
-        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        enabledBorder: border(colors.border, 1),
+        focusedBorder: border(colors.violetL, 1.5),
+        border: border(colors.border, 1),
       ),
     );
   }
