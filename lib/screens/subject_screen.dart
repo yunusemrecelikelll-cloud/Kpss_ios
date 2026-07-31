@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
+import '../models/topic.dart';
 import '../models/question.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
@@ -95,22 +96,35 @@ class _SubjectScreenState extends State<SubjectScreen> with WidgetsBindingObserv
     final examQCount = subject.konular.length * kSubjectExamQPerTopic;
     final subjectPalette = subjectPaletteFor(subject.id);
 
+    // GRUPLAMA (kullanıcı isteği): grup kimliği olan konular (ör. paragraf)
+    // ders listesinde TEK bir başlık altında toplanır; dokununca alt konuların
+    // olduğu bir sayfa açılır. Grupsuz konular doğrudan listelenir.
+    final gruplanmamis = <Topic>[];
+    final gruplar = <String, List<Topic>>{};
+    for (final t in subject.konular) {
+      if (t.grup == null) {
+        gruplanmamis.add(t);
+      } else {
+        (gruplar[t.grup!] ??= <Topic>[]).add(t);
+      }
+    }
+    final grupKeys = gruplar.keys.toList();
+    final satirSayisi = gruplanmamis.length + grupKeys.length;
+
     return Scaffold(
       appBar: AppBar(title: Text('${subject.icon} ${subject.ad}')),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
-        // 0: ders sınavı hero kartı, 1: "Konular" bölüm başlığı, sonrası konular.
-        itemCount: subject.konular.length + 2,
+        // 0: ders sınavı hero, 1: "Konular" başlığı, sonrası konu + grup satırları.
+        itemCount: satirSayisi + 2,
         separatorBuilder: (_, _) => const SizedBox(height: kDsGap),
         itemBuilder: (context, i) {
           if (i == 0) {
             return DsHeroCard(
               overline: '${subject.ad.toUpperCase()} SINAVI',
               emoji: subject.icon,
-              // Soru sayısı mevcut hesaplamadan gelir (konu sayısı × konu başına soru).
               title: '$examQCount soru (her konudan $kSubjectExamQPerTopic)',
               subtitle: 'Bilgini test et, eksiklerini tamamla!',
-              // Yükleme sürerken buton pasifleşsin ve etiket durumu bildirsin.
               actionLabel: _startingExam ? 'Hazırlanıyor…' : 'Sınava Gir',
               accent: subjectPalette.a,
               accent2: subjectPalette.b,
@@ -127,23 +141,100 @@ class _SubjectScreenState extends State<SubjectScreen> with WidgetsBindingObserv
             return const DsSectionHeader(title: 'Konular');
           }
           final index = i - 2;
-          final t = subject.konular[index];
+          final topicPalette = topicPaletteFor(subject.id, index);
+
+          // Önce grupsuz konular, sonra grup satırları.
+          if (index < gruplanmamis.length) {
+            final t = gruplanmamis[index];
+            final done = completed[t.id] == true;
+            final best = storage.getBestScore(t.id);
+            return DsListRow(
+              emoji: done ? '✅' : subject.icon,
+              index: index + 1,
+              title: t.baslik,
+              status: best != null ? '⭐ %$best en iyi' : '🔒 Henüz çözülmedi',
+              accent: topicPalette.a,
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => TopicScreen(subject: subject, topic: t)));
+              },
+            );
+          }
+
+          // Grup satırı (ör. Paragraf) → alt konular sayfasını açar.
+          final grup = grupKeys[index - gruplanmamis.length];
+          final grupKonulari = gruplar[grup]!;
+          return DsListRow(
+            emoji: _grupEmoji(grup),
+            index: index + 1,
+            title: _grupBaslik(grup),
+            status: '${grupKonulari.length} alt konu • anlatım + testler',
+            accent: topicPalette.a,
+            onTap: () {
+              context.read<SoundService>().click();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => _KonuGrupScreen(
+                        subject: subject,
+                        baslik: _grupBaslik(grup),
+                        emoji: _grupEmoji(grup),
+                        konular: grupKonulari,
+                      )));
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  static String _grupBaslik(String grup) =>
+      switch (grup) { 'paragraf' => 'Paragraf', _ => grup };
+  static String _grupEmoji(String grup) =>
+      switch (grup) { 'paragraf' => '📄', _ => '📚' };
+}
+
+/// Bir konu GRUBUNUN (ör. Paragraf) alt konularını listeleyen sayfa — ders
+/// ekranıyla aynı dilde (DsListRow → TopicScreen). Her alt konunun kendi
+/// anlatımı ve testleri vardır.
+class _KonuGrupScreen extends StatelessWidget {
+  final Subject subject;
+  final String baslik;
+  final String emoji;
+  final List<Topic> konular;
+  const _KonuGrupScreen({
+    required this.subject,
+    required this.baslik,
+    required this.emoji,
+    required this.konular,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final storage = context.watch<StorageService>();
+    final completed = storage.getCompletedTopics();
+    return Scaffold(
+      appBar: AppBar(title: Text('$emoji $baslik')),
+      body: ListView.separated(
+        padding: const EdgeInsets.all(16),
+        itemCount: konular.length + 1,
+        separatorBuilder: (_, _) => const SizedBox(height: kDsGap),
+        itemBuilder: (context, i) {
+          if (i == 0) return DsSectionHeader(title: '$baslik Konuları');
+          final index = i - 1;
+          final t = konular[index];
           final done = completed[t.id] == true;
           final best = storage.getBestScore(t.id);
-          // Her satır dersin paletinden türeyen, sıraya göre hafifçe kayan bir
-          // vurgu rengi alır — liste tekdüze görünmesin.
           final topicPalette = topicPaletteFor(subject.id, index);
           return DsListRow(
-            emoji: done ? '✅' : subject.icon,
+            emoji: done ? '✅' : emoji,
             index: index + 1,
             title: t.baslik,
             status: best != null ? '⭐ %$best en iyi' : '🔒 Henüz çözülmedi',
             accent: topicPalette.a,
             onTap: () {
               context.read<SoundService>().click();
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => TopicScreen(subject: subject, topic: t)),
-              );
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => TopicScreen(subject: subject, topic: t)));
             },
           );
         },

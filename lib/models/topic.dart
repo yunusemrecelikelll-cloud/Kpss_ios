@@ -23,17 +23,26 @@ class Topic {
   final Anlatim anlatim;
   final List<Question> sorular;
 
+  /// İsteğe bağlı GRUP kimliği. Aynı grup kimliğine sahip konular, ders
+  /// ekranında ayrı bir alt sayfada (ör. "Paragraf") toplanır — böylece Türkçe
+  /// altındaki tüm paragraf konuları tek bir "Paragraf" başlığının içine
+  /// taşınabilir (kullanıcı isteği). null ise konu, ders listesinde doğrudan
+  /// görünür.
+  final String? grup;
+
   const Topic({
     required this.id,
     required this.baslik,
     required this.anlatim,
     required this.sorular,
+    this.grup,
   });
 
   factory Topic.fromJson(Map<String, dynamic> json) {
     return Topic(
       id: json['id'] as String,
       baslik: json['baslik'] as String,
+      grup: json['grup'] as String?,
       anlatim: Anlatim.fromJson(json['anlatim'] as Map<String, dynamic>?),
       sorular: (json['sorular'] as List? ?? const [])
           .map((q) => Question.fromJson(q as Map<String, dynamic>))

@@ -12507,7 +12507,8 @@
      "dogruIndex": 2,
      "aciklama": "Paragraf öncelikli koltukların amacını ve bu amacın gerçekleşmesinin diğer yolcuların duyarlılığına bağlı olduğunu anlatır; bu bilgiye dayanan mantıklı devam cümlesi, farkındalık artırmanın önemini vurgulayan C'dir."
     }
-   ]
+   ],
+   "grup": "paragraf"
   },
   {
    "id": "turkce-sozcuk-yapisi",
@@ -27861,7 +27862,8 @@
      "dogruIndex": 3,
      "aciklama": "Parçada \"tren istasyonunda sabah seferleri zamanında kalktı\" ile somut, doğrulanabilir bilgiler yargı bildiren herhangi bir sözcük kullanılmadan verilmektedir; bu, nesnel anlatımın göstergesidir."
     }
-   ]
+   ],
+   "grup": "paragraf"
   },
   {
    "id": "turkce-paragraf-sorulari",
@@ -30235,6 +30237,175 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Parça, evde önceden tartmanın ek ücret ve zaman kaybını nasıl önlediğini anlatarak son cümlede bu önlemin gişedeki gerginliği azalttığını vurgular; bu bütünlük ana düşünceyi oluşturur."
+    }
+   ],
+   "grup": "paragraf"
+  },
+  {
+   "id": "turkce-paragraf-anlam-butunlugu",
+   "baslik": "Paragrafta Anlam Bütünlüğü ve Akış",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Paragrafta anlam bütünlüğü, cümlelerin tek bir ana düşünce çevresinde mantık ve dil akışıyla birbirine bağlanmasıdır. Bu başlıkta; akıştan kopan (bütünlüğü bozan) cümle, düşüncenin gelişimi, bağlaçların anlamı yönlendirmesi ve paragraf tamamlama incelenir.",
+    "icerik": [
+     "Bir paragraftaki bütün cümleler AYNI ana düşünceye hizmet eder; konudan kopan cümle paragrafın bütünlüğünü bozar ve genellikle 'anlam akışını bozan cümle' sorusunun cevabıdır.",
+     "Paragrafın giriş cümlesi konuyu tanıtır, gelişme cümleleri düşünceyi örnekler/açıklar, sonuç cümlesi düşünceyi bağlar. Bu sıralama bozulursa anlam akışı zedelenir.",
+     "'Ancak, oysa, bununla birlikte, çünkü, bu yüzden' gibi bağlayıcılar anlamın yönünü (karşıtlık, gerekçe, sonuç) belirler; yanlış bağlaç seçilirse iki cümle arasındaki mantık ilişkisi bozulur.",
+     "Bir cümlenin paragraftan çıkarılıp çıkarılamayacağı, o cümle olmadan anlamın ve akışın bozulup bozulmadığına bakılarak anlaşılır.",
+     "Paragraf tamamlama sorularında boşluğa gelecek cümle, hem kendinden önceki hem de sonraki cümleyle anlam ve dil yönünden uyumlu olmalıdır.",
+     "'Bu parçadan çıkarılamaz / söylenemez' tipi sorularda parçada AÇIKÇA yer almayan ya da parçayla çelişen bilgi aranır; parçada geçen bilgiler yanlış cevaptır."
+    ],
+    "anahtarNoktalar": [
+     "Ana düşünceye hizmet etmeyen cümle akışı bozar.",
+     "Bağlaçlar anlamın yönünü belirler (karşıtlık / gerekçe / sonuç).",
+     "'Çıkarılamaz/söylenemez' sorusunda parçada AÇIKÇA olmayan bilgi aranır.",
+     "Tamamlama sorularında boşluk, önü ve sonuyla uyumlu olmalıdır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Birkaç gün önce bir grup öğrenci, okulun bahçesinde köpeklerle oynarken içlerinden biri büyük bir köpek tarafından ısırıldı. Öğrenciler ilk anda paniğe kapıldı; ancak kısa sürede toparlanıp olay yerine gelen polis memurlarına yardımcı oldular. Şaşkınlık yaratan bu olayın ardından süreci soğukkanlılıkla yönetmeyi başardılar.\n\nBu parçadan hareketle aşağıdakilerden hangisine ULAŞILAMAZ?",
+     "secenekler": [
+      "Olay, okulun bahçesinde gerçekleşmiştir.",
+      "Öğrenciler, olayın ilk anında panik yaşamıştır.",
+      "Öğrenciler, olay yerine gelen polislere yardımcı olmuştur.",
+      "Olay, okul bahçesinin dışında bir yerde gerçekleşmiştir.",
+      "Öğrenciler, süreci soğukkanlılıkla yönetebilmiştir."
+     ],
+     "dogruIndex": 3,
+     "aciklama": "Parçada olayın 'okulun bahçesinde' gerçekleştiği açıkça belirtilmiştir; bu nedenle olayın bahçe dışında gerçekleştiği bilgisine ulaşılamaz. Diğer seçenekler parçada doğrudan yer alır."
+    },
+    {
+     "soru": "İyi bir okur, bir kitabı eline aldığında yalnızca olay örgüsünü takip etmez; satır aralarındaki imaları, yazarın sözcük seçimlerini ve anlatılanların ardındaki niyeti de sezmeye çalışır. Bu yüzden okumak, gözle yapılan pasif bir etkinlik değil; zihnin sürekli soru sorduğu, tahmin yürüttüğü ve yargıları sınadığı etkin bir süreçtir. Metinle kurulan bu diyalog derinleştikçe okurun kelime dağarcığı da düşünme biçimi de zenginleşir.\n\nBu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kitap seçiminde olay örgüsünün belirleyici olduğu",
+      "Okumanın, zihni etkin biçimde çalıştıran bir anlama süreci olduğu",
+      "İyi yazarların sözcükleri özenle seçtiği",
+      "Kelime dağarcığı geniş olanların daha hızlı okuduğu",
+      "Okumanın yalnızca boş zamanları değerlendirme yolu olduğu"
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Parça boyunca okumanın pasif değil, zihnin soru sorup tahmin yürüttüğü ETKİN bir anlama süreci olduğu vurgulanır. Ana düşünce bu yargıyı içeren B seçeneğidir."
+    },
+    {
+     "soru": "(I) Arı kovanındaki iş bölümü, doğanın en düzenli örgütlenmelerinden biridir. (II) İşçi arılar besin toplar, peteği onarır ve kovanı havalandırır. (III) Kraliçe arının tek görevi yumurta bırakarak kovanın nüfusunu sürdürmektir. (IV) Bal, kahvaltı sofralarının vazgeçilmez lezzetlerinden biridir. (V) Erkek arılar ise yalnızca üreme döneminde işlev görür.\n\nBu parçada numaralanmış cümlelerden hangisi anlam akışını BOZMAKTADIR?",
+     "secenekler": [
+      "I.",
+      "II.",
+      "III.",
+      "IV.",
+      "V."
+     ],
+     "dogruIndex": 3,
+     "aciklama": "Parçanın konusu arı kovanındaki İŞ BÖLÜMÜDÜR. IV. cümle balın bir lezzet oluşundan söz ederek konudan kopar ve anlam bütünlüğünü bozar."
+    },
+    {
+     "soru": "Teknolojinin gündelik yaşamı kolaylaştırdığı yadsınamaz. Bir tuşla dünyanın öbür ucundaki insanla konuşabiliyor, saatler sürecek işleri dakikalar içinde bitirebiliyoruz. ----  Sürekli bildirim alan bir zihin, tek bir işe uzun süre odaklanmakta zorlanıyor; dinginlik giderek lüks hâline geliyor.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Bu nedenle teknolojiyi hayatımızın merkezine almalıyız.",
+      "Ne var ki bu kolaylığın bedeli çoğu zaman dikkatimizin dağılması oluyor.",
+      "Üstelik yeni cihazlar her yıl daha ucuza satılıyor.",
+      "Böylece iletişim kurmak eskisinden çok daha pahalı hâle geldi.",
+      "Çünkü insanlar teknolojiyi öğrenmekte zorlanıyor."
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Boşluktan önce teknolojinin OLUMLU yanı anlatılır; boşluktan sonra dikkat dağınıklığı gibi OLUMSUZ bir sonuç gelir. Bu karşıtlığı 'Ne var ki ... dikkatimizin dağılması' cümlesi kurar."
+    },
+    {
+     "soru": "Usta bir çevirmen, yalnızca sözcükleri bir dilden diğerine aktarmaz; bir kültürü, bir sesi ve o metnin ritmini de taşır. Kimi zaman kaynak dildeki tek bir deyim, hedef dilde bütün bir cümlenin yeniden kurulmasını gerektirir. Bu yüzden çeviri, mekanik bir eşleştirme değil; iki dil arasında kurulan yaratıcı bir köprüdür. İyi çeviri, okura 'bu metin çeviridir' dedirtmeden aslının tadını duyurabilendir.\n\nBu parçaya göre iyi çevirinin temel özelliği aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kaynak metindeki her sözcüğü birebir karşılamak",
+      "Çeviri olduğunu belli etmeden aslının etkisini yeniden yaratmak",
+      "Hedef dilin dil bilgisi kurallarını esnetmek",
+      "Deyimleri olduğu gibi hedef dile aktarmak",
+      "Metni olabildiğince kısaltarak sadeleştirmek"
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Parçanın son cümlesi iyi çeviriyi tanımlar: okura çeviri olduğunu hissettirmeden aslının tadını/etkisini duyurmak. Doğru cevap bu yargıyı içeren B'dir."
+    },
+    {
+     "soru": "Bir şehri tanımak, onun caddelerini ezberlemekten çok daha fazlasını gerektirir. Sabahın erken saatinde açılan bir simit fırınının kokusu, akşamüstü meydanı dolduran güvercinler, yağmurdan sonra taş sokaklarda oluşan su birikintileri... Bütün bunlar bir kentin belleğini oluşturur. Haritalar bize yalnızca yolları gösterir; oysa bir kenti asıl anlatan, orada yaşanan sıradan anlardır.\n\nBu parçada kentle ilgili olarak vurgulanan düşünce aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kentleri tanımanın en iyi yolu haritaları incelemektir.",
+      "Kentlerin belleğini, orada yaşanan gündelik ayrıntılar oluşturur.",
+      "Büyük kentler küçük kentlerden daha çok ziyaretçi çeker.",
+      "Kentlerin caddelerini ezberlemek yön bulmayı kolaylaştırır.",
+      "Tarihî yapılar bir kentin kimliğini tek başına belirler."
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Parça, haritaların yalnızca yolları gösterdiğini; kenti asıl anlatanın 'orada yaşanan sıradan anlar' olduğunu söyler. Vurgulanan düşünce B seçeneğidir."
+    },
+    {
+     "soru": "(I) Deniz kaplumbağaları, yumurtadan çıktıkları kumsalı yıllar sonra bulup yeniden oraya dönebilir. (II) Bu şaşırtıcı yön bulma yeteneğinin, Dünya'nın manyetik alanını algılamalarıyla ilgili olduğu düşünülür. (III) Bilim insanları, bu canlıların adeta içsel bir pusula taşıdığını belirtir. (IV) Yavrular denize ulaşana kadar pek çok tehlikeyle karşılaşır. (V) Aynı içgüdü, binlerce kilometrelik göçlerinde onlara rehberlik eder.\n\nBu parçada numaralanmış cümlelerden hangisi düşüncenin akışını BOZMAKTADIR?",
+     "secenekler": [
+      "I.",
+      "II.",
+      "III.",
+      "IV.",
+      "V."
+     ],
+     "dogruIndex": 3,
+     "aciklama": "Parçada anlatılan konu kaplumbağaların YÖN BULMA yeteneğidir. IV. cümle yavruların karşılaştığı tehlikelerden söz ederek bu konudan kopar ve akışı bozar."
+    },
+    {
+     "soru": "Yazmaya yeni başlayanlar çoğu zaman büyük konular seçmenin iyi metnin ön koşulu olduğunu sanır. Oysa güçlü bir yazı, çoğu kez küçük ve somut bir ayrıntıdan doğar: yıllar önce içilen bir çayın buğusu, bir kapının gıcırtısı, unutulmuş bir mektup... Yazar, bu küçük ayrıntıyı büyütüp evrensel bir duyguya bağlayabildiğinde okuru içine alır. Demek ki mesele konunun büyüklüğü değil, ona bakıştaki derinliktir.\n\nBu parçadan aşağıdakilerden hangisi çıkarılabilir?",
+     "secenekler": [
+      "İyi yazı yazmanın tek koşulu büyük konular seçmektir.",
+      "Küçük bir ayrıntı, derinlikli bir bakışla güçlü bir yazıya dönüşebilir.",
+      "Somut ayrıntılar, okurun metinden uzaklaşmasına yol açar.",
+      "Deneyimli yazarlar küçük konulardan kaçınır.",
+      "Evrensel duygular yalnızca büyük olaylarla anlatılabilir."
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Parça, metnin gücünün konunun büyüklüğünden değil 'bakıştaki derinlikten' geldiğini söyler; küçük bir ayrıntının derinlikli bakışla güçlü bir yazıya dönüşebileceği çıkarılır (B)."
+    },
+    {
+     "soru": "Bir bilim insanı için 'bilmiyorum' demek, bir zayıflık değil; tam tersine dürüstlüğün ve merakın işaretidir. Çünkü bilim, kesin cevapların değil, doğru soruların peşinden gider. Bir sorunun yanıtı bulunduğunda çoğu zaman onun ardında yeni sorular belirir. ----  Bu yüzden bilimsel bilgi, hiçbir zaman tamamlanmış değil, sürekli kendini yenileyen bir yapıdır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Bilim, bu nedenle sanattan tümüyle farklıdır.",
+      "Böylece bilgi, adım adım genişleyen bir yolculuğa dönüşür.",
+      "Oysa bilim insanları soru sormaktan kaçınır.",
+      "Ne var ki eski bilgiler hiçbir zaman değişmez.",
+      "Çünkü deney yapmak çoğu zaman çok pahalıdır."
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Boşluktan önce her yanıtın yeni sorular doğurduğu; sonra ise bilginin sürekli yenilendiği söylenir. Bu akışı 'Böylece bilgi, adım adım genişleyen bir yolculuğa dönüşür.' cümlesi tamamlar."
+    },
+    {
+     "soru": "Doğadaki her canlı, içinde bulunduğu ortama uzun bir zaman içinde uyum sağlamıştır. Çöl bitkileri suyu depolamak için etli gövdeler geliştirmiş, kutup hayvanları ısı kaybını azaltan kalın bir yağ tabakası edinmiştir. Bu uyum, canlıların bilinçli bir tercihi değil; kuşaklar boyu süren doğal seçilimin sonucudur. Ortam değiştiğinde ise bu dengenin bozulması, türlerin yok oluşuna kadar gidebilir.\n\nBu parçadan aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Canlılar, yaşadıkları ortama zamanla uyum sağlar.",
+      "Çöl bitkileri suyu depolamaya yarayan yapılar geliştirmiştir.",
+      "Uyum, canlıların bilinçli olarak yaptığı bir seçimdir.",
+      "Ortamın değişmesi, türlerin yok olmasına yol açabilir.",
+      "Kutup hayvanlarının yağ tabakası ısı kaybını azaltır."
+     ],
+     "dogruIndex": 2,
+     "aciklama": "Parçada uyumun 'bilinçli bir tercih DEĞİL, doğal seçilimin sonucu' olduğu açıkça söylenir. Bu yüzden uyumun bilinçli bir seçim olduğu bilgisi parçadan çıkarılamaz (C)."
+    },
+    {
+     "soru": "Müzik, sözcüklerin yetersiz kaldığı yerde başlar. Bir melodinin insanın içini titreten yanı, onu mantıkla değil doğrudan duyguyla anlamamızdır. Bir şarkı, yıllar önce yaşadığımız bir anı saniyeler içinde geri getirebilir; bir başkasıysa hiç gitmediğimiz bir yeri özletebilir. İşte bu yüzden müzik, ortak bir dil sayılır: farklı dilleri konuşan insanlar aynı ezgide buluşabilir.\n\nBu parçada müzikle ilgili olarak asıl vurgulanan aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Müziğin, sözcüklerden daha eski bir iletişim aracı olduğu",
+      "Müziği anlamak için mantıklı bir çözümleme gerektiği",
+      "Müziğin, duyguya seslenen ortak bir dil olduğu",
+      "İyi bir şarkının mutlaka bir anıyı hatırlatması gerektiği",
+      "Farklı dilleri konuşanların müzikten hoşlanmadığı"
+     ],
+     "dogruIndex": 2,
+     "aciklama": "Parça, müziğin duyguyla anlaşıldığını ve farklı dilleri konuşanları buluşturan 'ortak bir dil' olduğunu vurgular. Asıl vurgu C seçeneğindedir."
+    },
+    {
+     "soru": "Bir usta ile çırak arasındaki ilişki, yalnızca bir mesleğin öğretilmesinden ibaret değildir. Çırak, ustanın ellerini izlerken sabrı, özeni ve işe duyulan saygıyı da öğrenir. Zamanla taklit yerini yoruma bırakır; çırak, öğrendiklerine kendi bakışını katarak bir gün başka birinin ustası olur. Böylece bilgi, kuşaktan kuşağa yalnızca aktarılmaz, her elde biraz daha zenginleşir.\n\nBu parçaya göre usta-çırak ilişkisinin sağladığı en önemli katkı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Mesleğin daha kısa sürede öğrenilmesini sağlaması",
+      "Bilginin her kuşakta zenginleşerek aktarılmasını sağlaması",
+      "Çırağın ustayı birebir taklit etmesini zorunlu kılması",
+      "Ustaların çıraklardan daha yetenekli olmasını sağlaması",
+      "El işçiliğinin makineleşmeye karşı korunmasını sağlaması"
+     ],
+     "dogruIndex": 1,
+     "aciklama": "Parçanın son cümlesi, bilginin yalnızca aktarılmadığını, 'her elde biraz daha zenginleştiğini' söyler. En önemli katkı bu yargıyı içeren B seçeneğidir."
     }
    ]
   }
