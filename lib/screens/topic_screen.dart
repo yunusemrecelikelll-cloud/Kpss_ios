@@ -67,6 +67,11 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
   int _soruSayisi = 10;
   static const List<int> _soruSecenekleri = [10, 20, 50];
 
+  /// Aktif bölüm (kullanıcı isteği: konuya girince Konu Anlatımı / Akılda
+  /// Kalıcı / YouTube / Test butonları; hangisine basılırsa o açılır).
+  /// 0=Anlatım, 1=Akılda Kalıcı, 2=YouTube, 3=Test.
+  int _bolum = 0;
+
   late final TtsService _ttsService;
   // dispose()'ta context.read güvenli olmadığından depolama referansı da
   // initState'te yakalanır.
@@ -295,130 +300,160 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
           ),
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
+      body: Column(
         children: [
-          if (a.ozet != null || a.icerik.isNotEmpty) ...[
-            _TtsListenButton(text: _speechText(a), colors: colors),
-            const SizedBox(height: 16),
-          ],
-          if (a.ozet != null) ...[
-            _SummaryBox(text: a.ozet!, colors: colors),
-            const SizedBox(height: 18),
-          ],
-          if (a.icerik.isNotEmpty) ...[
-            const DsSectionHeader(title: '📚 Konu Anlatımı'),
-            const SizedBox(height: 10),
-            for (var i = 0; i < a.icerik.length; i++) ...[
-              _ParagraphCard(
-                index: i,
-                text: a.icerik[i],
-                colors: colors,
-              ),
-              const SizedBox(height: 10),
-            ],
-            const SizedBox(height: 8),
-          ],
-          if (a.anahtarNoktalar.isNotEmpty) ...[
-            const DsSectionHeader(title: '🔑 Anahtar Noktalar'),
-            const SizedBox(height: 10),
-            for (var i = 0; i < a.anahtarNoktalar.length; i++) ...[
-              _KeyPointCard(
-                index: i,
-                text: a.anahtarNoktalar[i],
-                colors: colors,
-              ),
-              const SizedBox(height: 8),
-            ],
-          ],
-          FutureBuilder<Map<String, List<String>>>(
-            future: context.read<DataService>().loadMnemonics(),
-            builder: (context, snap) {
-              final tips = snap.data?[topic.id] ?? const [];
-              if (tips.isEmpty) return const SizedBox.shrink();
-              return Padding(
-                padding: const EdgeInsets.only(top: 4, bottom: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const DsSectionHeader(title: '🧠 Akılda Kalıcı'),
-                    const SizedBox(height: 10),
-                    if (!premium)
-                      DsCard(
-                        accent: colors.gold,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '🔒 Bu konu için akılda kalıcı kodlama teknikleri Premium\'a özel.',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 13, color: colors.text),
-                            ),
-                            const SizedBox(height: 12),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: DsPillButton(
-                                label: "Premium'a Geç",
-                                color: colors.gold,
-                                onPressed: () {
-                                  context.read<SoundService>().click();
-                                  Navigator.of(context)
-                                      .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    else
-                      for (final tip in tips) ...[
-                        DsCard(
-                          accent: colors.violet,
-                          padding: const EdgeInsets.all(14),
-                          child: Text(tip,
-                              style: TextStyle(fontSize: 13, height: 1.5, color: colors.text)),
-                        ),
-                        const SizedBox(height: kDsGap),
-                      ],
-                  ],
-                ),
-              );
+          // Konuya girince 4 bölüm butonu (kullanıcı isteği): hangisine
+          // basılırsa o bölüm açılır.
+          _BolumBar(
+            aktif: _bolum,
+            onSec: (i) {
+              context.read<SoundService>().click();
+              setState(() => _bolum = i);
             },
+            colors: colors,
           ),
-          const SizedBox(height: 12),
-          if (attempts.isNotEmpty) ...[
-            // Listede yalnızca SON 3 test görünür; hepsi detay ekranında.
-            // 3'ten az test varsa "tümünü gör" bağlantısı hiç çıkmaz.
-            DsSectionHeader(
-              title: '📋 Geçmiş Testlerin',
-              actionLabel: tumunuGor ? 'Tümünü Gör (${attempts.length})' : null,
-              onAction: tumunuGor ? () => _tumTestleriAc(attempts) : null,
-            ),
-            const SizedBox(height: 10),
-            DsCard(
-              // Karta dokunmak da tüm geçmişi açar (başlıktaki bağlantıyla aynı).
-              onTap: tumunuGor ? () => _tumTestleriAc(attempts) : null,
-              child: Column(
-                children: [
-                  for (var i = sonUcBaslangic; i < attempts.length; i++) ...[
-                    if (i > sonUcBaslangic)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Container(height: 1, color: colors.border),
-                      ),
-                    _GecmisTestSatiri(
-                      sira: i + 1,
-                      attempt: attempts[i],
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                // ══════════ 0) KONU ANLATIMI ══════════
+                if (_bolum == 0) ...[
+                  if (a.ozet != null || a.icerik.isNotEmpty) ...[
+                    _TtsListenButton(text: _speechText(a), colors: colors),
+                    const SizedBox(height: 16),
+                  ],
+                  if (a.ozet != null) ...[
+                    _SummaryBox(text: a.ozet!, colors: colors),
+                    const SizedBox(height: 18),
+                  ],
+                  if (a.icerik.isNotEmpty) ...[
+                    const DsSectionHeader(title: '📚 Konu Anlatımı'),
+                    const SizedBox(height: 10),
+                    for (var i = 0; i < a.icerik.length; i++) ...[
+                      _ParagraphCard(index: i, text: a.icerik[i], colors: colors),
+                      const SizedBox(height: 10),
+                    ],
+                    const SizedBox(height: 8),
+                  ],
+                  if (a.anahtarNoktalar.isNotEmpty) ...[
+                    const DsSectionHeader(title: '🔑 Anahtar Noktalar'),
+                    const SizedBox(height: 10),
+                    for (var i = 0; i < a.anahtarNoktalar.length; i++) ...[
+                      _KeyPointCard(index: i, text: a.anahtarNoktalar[i], colors: colors),
+                      const SizedBox(height: 8),
+                    ],
+                  ],
+                  if (a.ozet == null && a.icerik.isEmpty && a.anahtarNoktalar.isEmpty)
+                    _BosBolum(colors: colors, metin: 'Bu konu için anlatım henüz eklenmemiş.'),
+                  const SizedBox(height: 16),
+                  // PDF (konu anlatımı + sorular) bu bölümde.
+                  _buildPdfKarti(context, colors),
+                ],
+                // ══════════ 1) AKILDA KALICI ══════════
+                if (_bolum == 1)
+                  FutureBuilder<Map<String, List<String>>>(
+                    future: context.read<DataService>().loadMnemonics(),
+                    builder: (context, snap) {
+                      final tips = snap.data?[topic.id] ?? const [];
+                      if (snap.connectionState == ConnectionState.waiting) {
+                        return const Padding(
+                          padding: EdgeInsets.all(24),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      if (tips.isEmpty) {
+                        return _BosBolum(
+                            colors: colors,
+                            metin: 'Bu konu için akılda kalıcı kodlama tekniği henüz eklenmemiş.');
+                      }
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const DsSectionHeader(title: '🧠 Akılda Kalıcı Kodlama'),
+                          const SizedBox(height: 10),
+                          if (!premium)
+                            DsCard(
+                              accent: colors.gold,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '🔒 Bu konu için akılda kalıcı kodlama teknikleri Premium\'a özel.',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700, fontSize: 13, color: colors.text),
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: DsPillButton(
+                                      label: "Premium'a Geç",
+                                      color: colors.gold,
+                                      onPressed: () {
+                                        context.read<SoundService>().click();
+                                        Navigator.of(context).push(MaterialPageRoute(
+                                            builder: (_) => const PremiumScreen()));
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          else
+                            for (final tip in tips) ...[
+                              DsCard(
+                                accent: colors.violet,
+                                padding: const EdgeInsets.all(14),
+                                child: Text(tip,
+                                    style: TextStyle(fontSize: 13, height: 1.5, color: colors.text)),
+                              ),
+                              const SizedBox(height: kDsGap),
+                            ],
+                        ],
+                      );
+                    },
+                  ),
+                // ══════════ 2) YOUTUBE ══════════
+                if (_bolum == 2) ...[
+                  if (teachers.isNotEmpty) ...[
+                    _TeacherVideosCard(
+                      teachers: teachers,
+                      subjectAd: subject.ad,
+                      topicBaslik: topic.baslik,
                       colors: colors,
                     ),
-                  ],
+                    const SizedBox(height: 16),
+                    _TeacherTemperamentsSection(teachers: teachers, colors: colors),
+                  ] else
+                    _BosBolum(colors: colors, metin: 'Bu ders için hoca videosu henüz eklenmemiş.'),
                 ],
-              ),
-            ),
-            const SizedBox(height: kDsGap),
-          ],
-          if (maxed)
-            DsCard(
+                // ══════════ 3) TEST ══════════
+                if (_bolum == 3) ...[
+                  if (attempts.isNotEmpty) ...[
+                    DsSectionHeader(
+                      title: '📋 Geçmiş Testlerin',
+                      actionLabel: tumunuGor ? 'Tümünü Gör (${attempts.length})' : null,
+                      onAction: tumunuGor ? () => _tumTestleriAc(attempts) : null,
+                    ),
+                    const SizedBox(height: 10),
+                    DsCard(
+                      onTap: tumunuGor ? () => _tumTestleriAc(attempts) : null,
+                      child: Column(
+                        children: [
+                          for (var i = sonUcBaslangic; i < attempts.length; i++) ...[
+                            if (i > sonUcBaslangic)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: Container(height: 1, color: colors.border),
+                              ),
+                            _GecmisTestSatiri(sira: i + 1, attempt: attempts[i], colors: colors),
+                          ],
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: kDsGap),
+                  ],
+                  if (maxed)
+                    DsCard(
               accent: colors.gold,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -513,56 +548,169 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                 ],
               ),
             ),
-          if (teachers.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            _TeacherVideosCard(
-              teachers: teachers,
-              subjectAd: subject.ad,
-              topicBaslik: topic.baslik,
-              colors: colors,
-            ),
-            const SizedBox(height: 16),
-            _TeacherTemperamentsSection(teachers: teachers, colors: colors),
-          ],
-          const SizedBox(height: 16),
-          DsCard(
-            accent: colors.mint,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    DsIconBadge(emoji: '📄', color: colors.mint, size: 44, glow: false),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text('PDF Olarak İndir',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w800, fontSize: 15, color: colors.text)),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'İlk indirişinde konu anlatımı + 20 soru gelir; soruların '
-                  'cevapları en son sayfada (cevap anahtarı) yer alır. Tekrar '
-                  'indirdiğinde konu anlatımı olmadan, sadece farklı 20 soru hazırlanır.',
-                  style: TextStyle(fontSize: 12, height: 1.4, color: colors.textFaint),
-                ),
-                const SizedBox(height: 12),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: DsPillButton(
-                    label: 'PDF Oluştur',
-                    color: colors.mint,
-                    filled: false,
-                    leadingIcon: Icons.picture_as_pdf_outlined,
-                    onPressed: () => _exportPdf(context),
-                  ),
-                ),
-              ],
+                ], // if (_bolum == 3) ...[ kapanışı
+              ], // ListView children
+            ), // ListView
+          ), // Expanded
+        ], // Column children
+      ), // Column
+    );
+  }
+
+  /// PDF kartı — Konu Anlatımı bölümünde. Konu anlatımı + soruları PDF verir.
+  Widget _buildPdfKarti(BuildContext context, KpssColors colors) {
+    return DsCard(
+      accent: colors.mint,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(emoji: '📄', color: colors.mint, size: 44, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text('PDF Olarak İndir',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 15, color: colors.text)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'İlk indirişinde konu anlatımı + 20 soru gelir; soruların cevapları '
+            'en son sayfada (cevap anahtarı) yer alır. Tekrar indirdiğinde konu '
+            'anlatımı olmadan, sadece farklı 20 soru hazırlanır.',
+            style: TextStyle(fontSize: 12, height: 1.4, color: colors.textFaint),
+          ),
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: DsPillButton(
+              label: 'PDF Oluştur',
+              color: colors.mint,
+              filled: false,
+              leadingIcon: Icons.picture_as_pdf_outlined,
+              onPressed: () => _exportPdf(context),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Konu ekranının üstündeki 4 bölüm butonu (kullanıcı isteği): Konu Anlatımı /
+/// Akılda Kalıcı / YouTube / Test. Seçili olan vurgulanır.
+class _BolumBar extends StatelessWidget {
+  final int aktif;
+  final ValueChanged<int> onSec;
+  final KpssColors colors;
+  const _BolumBar({required this.aktif, required this.onSec, required this.colors});
+
+  static const _ogeler = [
+    ('📚', 'Anlatım'),
+    ('🧠', 'Akılda\nKalıcı'),
+    ('🎥', 'YouTube'),
+    ('📝', 'Test'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+      decoration: BoxDecoration(
+        color: colors.bg2,
+        border: Border(bottom: BorderSide(color: colors.border)),
+      ),
+      child: Row(
+        children: [
+          for (var i = 0; i < _ogeler.length; i++) ...[
+            if (i > 0) const SizedBox(width: 8),
+            Expanded(
+              child: _BolumButon(
+                emoji: _ogeler[i].$1,
+                etiket: _ogeler[i].$2,
+                secili: aktif == i,
+                colors: colors,
+                onTap: () => onSec(i),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _BolumButon extends StatelessWidget {
+  final String emoji, etiket;
+  final bool secili;
+  final KpssColors colors;
+  final VoidCallback onTap;
+  const _BolumButon({
+    required this.emoji,
+    required this.etiket,
+    required this.secili,
+    required this.colors,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    return Material(
+      color: secili ? c.violet.withValues(alpha: 0.16) : c.glass2,
+      borderRadius: BorderRadius.circular(kDsRadiusSm),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(kDsRadiusSm),
+            border: Border.all(
+              color: secili ? c.violet : c.border,
+              width: secili ? 1.6 : 1,
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 17)),
+              const SizedBox(height: 3),
+              Text(
+                etiket,
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 10.5,
+                  height: 1.1,
+                  fontWeight: FontWeight.w800,
+                  color: secili ? c.text : c.textDim,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Bir bölümün içeriği yoksa gösterilen sade boş durum.
+class _BosBolum extends StatelessWidget {
+  final KpssColors colors;
+  final String metin;
+  const _BosBolum({required this.colors, required this.metin});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 40),
+      child: Center(
+        child: Text(metin,
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 13, color: colors.textFaint)),
       ),
     );
   }
