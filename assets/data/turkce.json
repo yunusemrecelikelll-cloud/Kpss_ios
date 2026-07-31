@@ -30462,6 +30462,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parçada 'yoğun', bir sayfada çok şey barındırması yani AZ SÖZLE ÇOK ANLAM yüklü olması anlamındadır. Diğer seçenekler bağlamla örtüşmez."
+    },
+    {
+     "soru": "Genç yazar, ilk romanında öyle TAZE bir dil kullanmıştı ki eleştirmenler bile bu üslubu yıllardır aradıkları yeniliğin habercisi saydı.\n\nBu parçadaki “taze” sözcüğü aşağıdakilerden hangisinin yerine kullanılmıştır?",
+     "secenekler": [
+      "Özgün, yeni",
+      "Bozulmamış, körpe",
+      "Islak, nemli",
+      "Deneyimsiz, acemi",
+      "Yakın zamanlı"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'taze dil', daha önce görülmemiş ÖZGÜN/YENİ bir üslup anlamındadır; eleştirmenlerin 'yenilik habercisi' saymasından anlaşılır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde “geçmek” sözcüğü “bir olayın yaşanması” anlamında kullanılmıştır?",
+     "secenekler": [
+      "Aramızda tuhaf bir konuşma geçti.",
+      "Sınıfını başarıyla geçti.",
+      "Köprüden hızlıca geçtik.",
+      "Ağrısı bir süre sonra geçti.",
+      "Sözü bana geçmez."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Aramızda konuşma geçti' cümlesinde 'geçmek', bir olayın YAŞANMASI anlamındadır. Diğerlerinde başarı, hareket, dinme ve etki anlamları vardır."
+    },
+    {
+     "soru": "Dağların ardında kaybolan güneş, gökyüzüne öyle bir renk ÇALMIŞTI ki ufuk, bir ressamın paletine dönmüştü.\n\nBu cümledeki “çalmak” sözcüğü aşağıdaki cümlelerin hangisinde bu cümledekiyle aynı anlamda kullanılmıştır?",
+     "secenekler": [
+      "Yüzü hafiften sarıya çalıyordu.",
+      "Kapıyı üç kez çaldı.",
+      "Cebindeki parayı çalmışlar.",
+      "Güzel bir türkü çaldı.",
+      "Zil çalınca dışarı çıktık."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'renk çalmak', bir renge hafifçe dönmek/o rengi almak anlamındadır. Aynı kullanım 'yüzü sarıya çalıyordu' cümlesindedir."
+    },
+    {
+     "soru": "Yıllar sonra o küçük kasabaya döndüğünde, çocukluğunun bütün anıları bir anda İÇİNİ kapladı.\n\nBu parçadaki “içini kaplamak” sözüyle anlatılmak istenen aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Yoğun bir duyguya kapılmak",
+      "Bir yeri tümüyle doldurmak",
+      "Hastalanıp yatağa düşmek",
+      "Bir işi baştan sona bitirmek",
+      "Sessizce ortadan kaybolmak"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada anıların 'içini kaplaması', kişinin YOĞUN BİR DUYGUYA kapılması anlamındadır."
     }
    ]
   },
@@ -30518,6 +30566,54 @@
      ],
      "dogruIndex": 3,
      "aciklama": "İlk, ikinci, üçüncü ve beşinci cümlelerde 'yalın' sade/süssüz anlamındadır; dördüncü cümlede ise dil bilgisi TERİMİ (yalın hâl) olarak kullanılmıştır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ ANLAMLIDIR?",
+     "secenekler": [
+      "Bu konuda yeterli bilgi ve malumat topladık.",
+      "Sıcak yaz günleri, soğuk kış gecelerine yerini bıraktı.",
+      "Doğru sözlü mü yoksa yalancı mı, bilmiyorum.",
+      "Zayıf bir bedende güçlü bir ruh taşıyordu.",
+      "Erken kalkan yol alır, geç kalkan yorulur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Bilgi' ile 'malumat' aynı kavramı karşılayan EŞ ANLAMLI sözcüklerdir. Diğerlerinde karşıt anlam ilişkisi vardır."
+    },
+    {
+     "soru": "(I) Yaşlı adam, bastonuna dayanarak yürüyordu. (II) Sözlerine kimse dayanamadı. (III) Duvara bir merdiven dayadılar.\n\nNumaralanmış cümlelerdeki “dayanmak/dayamak” sözcükleriyle ilgili aşağıdakilerden hangisi doğrudur?",
+     "secenekler": [
+      "Üçünde de farklı anlamlarda kullanılmıştır.",
+      "Üçü de aynı anlamdadır.",
+      "Yalnız I ve III aynı anlamdadır.",
+      "Üçü de mecaz anlamlıdır.",
+      "İkisi eş sesli değildir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I'de destek almak, II'de katlanmak, III'te bir yere yaslamak anlamındadır; üçü de FARKLI anlamlarda kullanılmıştır."
+    },
+    {
+     "soru": "“Ağır” sözcüğü aşağıdaki cümlelerin hangisinde “ciddi, tehlikeli” anlamında kullanılmıştır?",
+     "secenekler": [
+      "Kaza sonrası ağır yaralı hastaneye kaldırıldı.",
+      "Çanta o kadar ağırdı ki taşıyamadım.",
+      "Ağır adımlarla merdiveni çıktı.",
+      "Bu yemek biraz ağır olmuş.",
+      "Ağır bir koku vardı odada."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Ağır yaralı' ifadesinde 'ağır', CİDDİ/TEHLİKELİ anlamındadır. Diğerlerinde tartı, yavaşlık, sindirim ve yoğunluk anlamları vardır."
+    },
+    {
+     "soru": "Aşağıdaki sözcük çiftlerinden hangisi anlamca KARŞIT (zıt) DEĞİLDİR?",
+     "secenekler": [
+      "ileri – geri",
+      "yaş – kuru",
+      "cömert – eli açık",
+      "aydınlık – karanlık",
+      "gizli – açık"
+     ],
+     "dogruIndex": 2,
+     "aciklama": "'Cömert' ile 'eli açık' aynı anlama gelir (eş/yakın anlamlı); karşıt değildir. Diğer çiftler zıt anlamlıdır."
     }
    ]
   },
@@ -30574,6 +30670,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Boşluktan sonra öğrencinin sorunları KENDİ BAŞINA çözecek donanımı kazandığı söylenir; bu, ünlü 'balık tutmayı öğretmek' özdeyişiyle örtüşür."
+    },
+    {
+     "soru": "Bir toplumu diri tutan, sahip olduğu kurallar değil, ----; çünkü yazılı en güzel yasa bile, insanların vicdanında karşılık bulmuyorsa kâğıt üstünde kalır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "o kuralları içtenlikle benimsemesidir",
+      "yasaların sayısının çokluğudur",
+      "cezaların ağırlığıdır",
+      "kuralların sık sık değişmesidir",
+      "kimsenin kural tanımamasıdır"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'vicdanında karşılık bulmayan yasa kâğıt üstünde kalır' denir; toplumu diri tutan, kuralları İÇTENLİKLE BENİMSEMEKTİR."
+    },
+    {
+     "soru": "Gerçek dostluk, ---- sınanır; iyi günde herkes yanınızdadır ama asıl kimin dost olduğunu, işler kötüye gittiğinde anlarsınız.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "zorluk anlarında",
+      "bol para varken",
+      "kalabalık ortamlarda",
+      "tatil günlerinde",
+      "başarı zamanlarında"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'asıl dostun işler kötüye gidince anlaşıldığı' söylenir; dostluğun ZORLUK ANLARINDA sınandığı vurgulanır."
+    },
+    {
+     "soru": "Yaratıcılık, yoktan var etmek değil, ----. Herkesin gördüğü şeye kimsenin bakmadığı bir açıdan bakabilen kişi, aslında yeni bir şey yaratmış olur.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "var olanı yeni bir gözle görmektir",
+      "eski bilgileri ezberlemektir",
+      "başkalarını taklit etmektir",
+      "kurallara harfiyen uymaktır",
+      "hiç düşünmeden davranmaktır"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'aynı şeye farklı açıdan bakmak' örneklenir; yaratıcılık, VAR OLANI YENİ BİR GÖZLE GÖRMEKTİR."
+    },
+    {
+     "soru": "İyi bir lider, ---- kişidir; kendi bildiğini dayatmak yerine, ekibindeki her sesi duyup ortak bir yol çizebilendir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "dinlemeyi bilen",
+      "her zaman haklı çıkan",
+      "kimseye söz hakkı vermeyen",
+      "yalnız kendi çıkarını düşünen",
+      "eleştiriden hoşlanmayan"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'her sesi duyup ortak yol çizen' denir; iyi lider DİNLEMEYİ BİLEN kişidir."
     }
    ]
   },
@@ -30630,6 +30774,54 @@
      ],
      "dogruIndex": 2,
      "aciklama": "'İçine kapanmak' suskunlaşmak/çekilmek demektir; oysa cümlede herkesle şakalaşıp kahkaha atmakla birlikte kullanılmış, deyim anlamına AYKIRI biçimde yer almıştır."
+    },
+    {
+     "soru": "“Küçük bir hatayı vaktinde düzeltmeyip büyümesine izin verenler, sonunda çok daha büyük bir zararla karşılaşır.” cümlesindeki durumu en iyi karşılayan atasözü aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Ucuz etin yahnisi tatsız olur.",
+      "Sakla samanı, gelir zamanı.",
+      "Bugünün işini yarına bırakma.",
+      "Zamanında dikilmeyen bir iğne, sonra çuvaldız ister.",
+      "Ağaç yaşken eğilir."
+     ],
+     "dogruIndex": 3,
+     "aciklama": "Küçük sorunu vaktinde çözmemenin büyük zarara yol açması, küçük bir eksikliğin (iğne) sonradan büyük bir sorunu (çuvaldız) doğurmasını anlatan atasözüyle örtüşür."
+    },
+    {
+     "soru": "“Ne yapacağını bilemeyip çaresizlik içinde bocalıyordu.” cümlesindeki durumu anlatan deyim aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "eli ayağına dolaşmak",
+      "eli yüzü düzgün olmak",
+      "eli açık olmak",
+      "eli kulağında olmak",
+      "el üstünde tutmak"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Çaresizlik içinde ne yapacağını şaşırmak 'eli ayağına dolaşmak' deyimiyle karşılanır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde bir deyim, anlamına UYGUN kullanılMAMIŞTIR?",
+     "secenekler": [
+      "Haberi duyunca ağzı kulaklarına vardı; çok sevindi.",
+      "Zor durumda kalınca aklı başından gitti.",
+      "Sınavı kazanamayınca burnu havada gezdi, herkese caka sattı.",
+      "Uzun uğraştan sonra pes etti, havlu attı.",
+      "Yalanı ortaya çıkınca yüzü kızardı."
+     ],
+     "dogruIndex": 2,
+     "aciklama": "'Burnu havada' kibirli/gururlu demektir; oysa cümlede sınav kazanılamamasıyla, olumsuz bir durumla birlikte kullanılmış, deyimin anlamına AYKIRIDIR."
+    },
+    {
+     "soru": "“Bir işe başlamadan önce her ihtimali düşünüp önlemini almak gerekir.” anlamını taşıyan atasözü aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Ayağını yorganına göre uzat.",
+      "Akıllı köprüyü arayıncaya kadar deli suyu geçer.",
+      "İşleyen demir ışıldar.",
+      "Kervan yolda düzülür.",
+      "Tedbirini alan, belaya uğramaz."
+     ],
+     "dogruIndex": 4,
+     "aciklama": "Önceden önlem almanın önemini 'Tedbirini alan, belaya uğramaz' atasözü anlatır."
     }
    ]
   },
@@ -30686,6 +30878,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Özgün cümledeki 'doğayı korumak = geleceği korumak' özdeşliği, 'insanlığın geleceğini güvence altına almak' ifadesinde korunmuştur."
+    },
+    {
+     "soru": "“Zaman, en derin acıları bile hafifleten görünmez bir ilaçtır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Acılar, zaman geçtikçe eski şiddetini yitirir.",
+      "Acılar asla unutulmaz.",
+      "Zaman hiçbir şeyi değiştirmez.",
+      "İlaçlar acıyı tümüyle yok eder.",
+      "Derin acılar insanı güçlendirir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümle 'zaman acıları hafifletir' der; bu yargı 'acılar zaman geçtikçe eski şiddetini yitirir' cümlesinde korunur."
+    },
+    {
+     "soru": "“Bir işi ne kadar severek yaparsan, o kadar az yorulursun.” cümlesiyle anlamca EN YAKIN olan hangisidir?",
+     "secenekler": [
+      "Sevilerek yapılan iş, insanı daha az yorar.",
+      "Yorucu işlerden kaçınmak gerekir.",
+      "Sevmediğin işi hiç yapma.",
+      "Her iş insanı eşit derecede yorar.",
+      "Çok çalışan çabuk yorulur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümledeki 'severek yapmak → az yorulmak' ilişkisi, 'sevilerek yapılan iş daha az yorar' cümlesinde birebir korunur."
+    },
+    {
+     "soru": "“Eleştiriye açık olmayan bir insan, kendini geliştirme fırsatını da kapatmış olur.” cümlesine anlamca EN YAKIN cümle hangisidir?",
+     "secenekler": [
+      "Eleştiriyi kabul etmeyen kişi, gelişme şansını yitirir.",
+      "Eleştiri her zaman haksızdır.",
+      "İnsanlar eleştiriden hoşlanmaz.",
+      "Gelişmek için eleştiriye gerek yoktur.",
+      "Eleştiren kişi her zaman haklıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümledeki 'eleştiriye kapalılık → gelişme fırsatını kaybetmek' yargısı, 'eleştiriyi kabul etmeyen gelişme şansını yitirir' cümlesinde korunur."
+    },
+    {
+     "soru": "“Bilgi paylaştıkça çoğalan tek hazinedir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Paylaşıldıkça azalmayan, tersine artan tek zenginlik bilgidir.",
+      "Bilgi, saklandıkça değer kazanır.",
+      "Hazineler paylaşılınca tükenir.",
+      "Bilgi herkese açık olmamalıdır.",
+      "En değerli hazine altındır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümledeki 'paylaştıkça çoğalan bilgi' yargısı, 'paylaşıldıkça azalmayan, artan tek zenginlik bilgidir' cümlesinde korunur."
     }
    ]
   },
@@ -30742,6 +30982,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "'Öteki kitaplarına göre daha akıcı' ifadesi, romanı diğer kitaplarla KARŞILAŞTIRIR; 'göre' burada karşılaştırma anlamı katar."
+    },
+    {
+     "soru": "“Otobüsü kaçırmamak için koşa koşa durağa gittim.” cümlesinde altı çizili sözün cümleye kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Amaç",
+      "Neden",
+      "Koşul",
+      "Karşılaştırma",
+      "Zaman"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Kaçırmamak için koşmak' bir AMAÇ ilişkisi kurar; kişi otobüse yetişmek amacıyla koşmaktadır."
+    },
+    {
+     "soru": "“Yağmur yağdığından maç iptal edildi.” cümlesinde “-dığından” ekinin cümleye kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Neden-sonuç",
+      "Amaç",
+      "Koşul",
+      "Karşılaştırma",
+      "Olasılık"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Yağmur yağdığından iptal edildi' ifadesi bir NEDEN-SONUÇ ilişkisi kurar; iptalin nedeni yağmurdur."
+    },
+    {
+     "soru": "“Sen de gelirsen yolculuk çok daha keyifli olur.” cümlesinde altı çizili bölümün kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Koşul",
+      "Amaç",
+      "Neden",
+      "Karşılaştırma",
+      "Kesinlik"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Sen de gelirsen ... keyifli olur' yapısı, keyfi bir KOŞULA (senin gelmene) bağlar."
+    },
+    {
+     "soru": "“Bu ürün, öncekine oranla çok daha dayanıklı.” cümlesinde “oranla” sözcüğünün kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Karşılaştırma",
+      "Neden",
+      "Amaç",
+      "Koşul",
+      "Zaman"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Öncekine oranla daha dayanıklı' ifadesi iki ürünü KARŞILAŞTIRIR."
     }
    ]
   },
@@ -30798,6 +31086,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Cümle bir olayı nesnel biçimde aktarır; kişisel beğeni/görüş (öznellik) İÇERMEZ. Bu yüzden 'öznel bir değerlendirme içerir' yargısı söylenemez."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisi ÖZNEL bir yargı bildirir?",
+     "secenekler": [
+      "Bu tablo, gördüğüm en etkileyici eser.",
+      "Tablo, 1889 yılında yapılmıştır.",
+      "Eser, bir müzede sergileniyor.",
+      "Tuval, 60x80 santim ölçülerindedir.",
+      "Ressam, eseri yağlı boyayla yapmıştır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'En etkileyici eser' kişisel beğeni içerdiğinden ÖZNELDİR. Diğerleri kanıtlanabilir (nesnel) bilgilerdir."
+    },
+    {
+     "soru": "“Film, görsel açıdan kusursuzdu ama senaryosu oldukça zayıftı.” cümlesiyle ilgili aşağıdakilerden hangisi söylenir?",
+     "secenekler": [
+      "Hem olumlu hem olumsuz değerlendirme içerir.",
+      "Yalnızca olumlu yargı vardır.",
+      "Tümüyle nesnel bir cümledir.",
+      "Karşılaştırma yapılmamıştır.",
+      "Hiçbir eleştiri içermez."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle, filmi 'görsel açıdan kusursuz' (olumlu) ama 'senaryosu zayıf' (olumsuz) bularak HEM OLUMLU HEM OLUMSUZ değerlendirme içerir."
+    },
+    {
+     "soru": "“Sabah erkenden kalkıp deniz kenarında uzun bir yürüyüş yaptı.” cümlesiyle ilgili aşağıdakilerden hangisi SÖYLENEMEZ?",
+     "secenekler": [
+      "Kişisel bir beğeni dile getirilmiştir.",
+      "Bir eylem anlatılmıştır.",
+      "Zaman bildiren bir öge vardır.",
+      "Yer bildiren bir öge vardır.",
+      "Nesnel bir anlatım vardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle bir eylemi nesnel biçimde aktarır; beğeni/görüş (öznellik) içermez. Bu yüzden 'kişisel beğeni dile getirilmiştir' söylenemez."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde bir KOŞUL ilişkisi vardır?",
+     "secenekler": [
+      "Erken yatarsan sabah dinç kalkarsın.",
+      "Çok yorulduğu için erken yattı.",
+      "Dün akşam çok geç yattı.",
+      "Uyku, sağlık için önemlidir.",
+      "Sabah erkenden uyandı."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Erken yatarsan ... kalkarsın' yapısı, dinç kalkmayı erken yatma KOŞULUNA bağlar."
     }
    ]
   },
@@ -30854,6 +31190,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "'Deneyebilirsin' ifadesi karşı tarafa bir yol/çözüm sunar; bu bir ÖNERİDİR. Diğerlerinde olasılık ve saptama vardır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde bir OLASILIK anlamı vardır?",
+     "secenekler": [
+      "Bu saatte yola çıkarsak trafiğe yakalanabiliriz.",
+      "Bu yol, en kısa güzergâhtır.",
+      "Dün bu yoldan geçtik.",
+      "Trafik, sabahları çok yoğun olur.",
+      "Arabayı garaja koydum."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Yakalanabiliriz' ifadesi kesin olmayan, gerçekleşme İHTİMALİ olan bir durumu; yani OLASILIĞI bildirir."
+    },
+    {
+     "soru": "“Bir sonraki sınavda daha iyi bir sonuç alacağına eminim.” cümlesinde ağır basan anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Tahmin",
+      "Saptama",
+      "Tanım",
+      "Karşılaştırma",
+      "Koşul"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Daha iyi sonuç alacağına eminim' ifadesi gelecekle ilgili bir öngörü/beklenti bildirir; bu bir TAHMİNDİR."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde TANIM yapılmıştır?",
+     "secenekler": [
+      "Deyim, kalıplaşmış, çoğu mecaz anlamlı söz öbeğidir.",
+      "Deyimleri çok kullanır.",
+      "Bu deyim çok yaygındır.",
+      "Deyimleri öğrenmek zordur.",
+      "Deyimler dile renk katar."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Deyim, ... söz öbeğidir' ifadesi 'deyim nedir?' sorusuna yanıt vererek bir TANIM yapar."
+    },
+    {
+     "soru": "“Yeni köprü, eski köprüye göre hem daha uzun hem daha dayanıklı.” cümlesinde ağır basan anlam ilişkisi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Karşılaştırma",
+      "Neden",
+      "Koşul",
+      "Olasılık",
+      "Öneri"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Eski köprüye göre daha uzun ve dayanıklı' ifadesi iki köprüyü KARŞILAŞTIRIR."
     }
    ]
   },
@@ -30910,6 +31294,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Anlamlı ve kurallı diziliş 'Yorgun yolcular ağacın gölgesinde dinlendi.' biçimindedir; özne 'yorgun yolcular', yüklem sonda 'dinlendi'dir."
+    },
+    {
+     "soru": "“sabır / her / anahtarı / kapının / değildir / ama / çoğunun / anahtarıdır”\n\nBu sözcüklerle anlamlı ve kurallı bir cümle kurulduğunda YÜKLEM hangisidir?",
+     "secenekler": [
+      "anahtarıdır",
+      "sabır",
+      "değildir",
+      "kapının",
+      "çoğunun"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'Sabır, her kapının anahtarı değildir ama çoğunun anahtarıdır.' biçiminde kurulur; yüklem sondaki 'anahtarıdır'dır."
+    },
+    {
+     "soru": "“(1) güzelliği (2) bilenler (3) sadeliğin (4) gösterişten (5) kaçınır”\n\nBu sözcükler anlamlı ve kurallı biçimde sıralandığında hangisi doğru olur?",
+     "secenekler": [
+      "Sadeliğin güzelliğini bilenler gösterişten kaçınır.",
+      "Gösterişten kaçınır sadeliğin güzelliğini bilenler.",
+      "Bilenler sadeliğin güzelliğini gösterişten kaçınır.",
+      "Güzelliği sadeliğin bilenler gösterişten kaçınır.",
+      "Kaçınır gösterişten sadeliğin güzelliğini bilenler."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Kurallı diziliş 'Sadeliğin güzelliğini bilenler gösterişten kaçınır.' biçimindedir; yüklem sonda 'kaçınır'dır."
+    },
+    {
+     "soru": "“emek / olmadan / hiçbir / gelmez / başarı / meydana”\n\nBu sözcüklerle kurulacak cümlenin BAŞINDA hangisi yer alır?",
+     "secenekler": [
+      "Emek",
+      "başarı",
+      "gelmez",
+      "meydana",
+      "hiçbir"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'Emek olmadan hiçbir başarı meydana gelmez.' biçiminde kurulur; başta 'Emek' yer alır."
+    },
+    {
+     "soru": "“(1) insanı (2) okumak (3) düşünmeye (4) iyi bir kitap (5) yöneltir”\n\nBu sözcükler anlamlı ve kurallı biçimde sıralandığında hangisi doğru olur?",
+     "secenekler": [
+      "İyi bir kitap okumak insanı düşünmeye yöneltir.",
+      "İnsanı düşünmeye iyi bir kitap okumak yöneltir.",
+      "Okumak iyi bir kitap insanı düşünmeye yöneltir.",
+      "Düşünmeye insanı iyi bir kitap okumak yöneltir.",
+      "Yöneltir insanı düşünmeye iyi bir kitap okumak."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Kurallı diziliş 'İyi bir kitap okumak insanı düşünmeye yöneltir.' biçimindedir; yüklem sonda 'yöneltir'dir."
     }
    ]
   },
@@ -30966,6 +31398,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Cümle, maçın oynanmasını 'yağmur yağması' koşuluna bağlar; buradan maçın havaya BAĞLI olduğu kesin çıkar. Diğerleri koşulu yok sayar ya da abartır."
+    },
+    {
+     "soru": "“Bu kitabı okuyan herkes, sonunu merakla bekledi.” cümlesinden aşağıdakilerden hangisi KESİN olarak çıkarılabilir?",
+     "secenekler": [
+      "Kitabın merak uyandıran bir kurgusu vardır.",
+      "Kitap, çok satan bir eserdir.",
+      "Kitabı herkes beğenmiştir.",
+      "Kitabın sonu mutlu bitmiştir.",
+      "Kitap birçok dile çevrilmiştir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Herkesin sonunu merakla beklemesi', kitabın MERAK UYANDIRAN bir kurgusu olduğunu kesin gösterir. Diğerleri cümlede yer almaz."
+    },
+    {
+     "soru": "“Toplantıya katılanların yarısı öneriyi desteklemedi.” cümlesinden aşağıdakilerden hangisi KESİN olarak çıkarılabilir?",
+     "secenekler": [
+      "Katılanların bir bölümü öneriyi desteklememiştir.",
+      "Öneri kesinlikle reddedilmiştir.",
+      "Toplantıya çok az kişi katılmıştır.",
+      "Öneriyi kimse desteklememiştir.",
+      "Öneri oy birliğiyle kabul edilmiştir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Yarısının desteklememesi', katılanların BİR BÖLÜMÜNÜN desteklemediğini kesin gösterir; önerinin kabul/ret sonucu ise bilinemez."
+    },
+    {
+     "soru": "“Ne zaman bu şarkıyı dinlesem, çocukluğum gözümde canlanır.” cümlesinden aşağıdakilerden hangisi çıkarılabilir?",
+     "secenekler": [
+      "Şarkı, kişide çocukluk anılarını çağrıştırmaktadır.",
+      "Şarkı yalnızca çocuklar için yazılmıştır.",
+      "Kişi bu şarkıyı hiç sevmemektedir.",
+      "Şarkı yakın zamanda çıkmıştır.",
+      "Kişi başka şarkı dinlememektedir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle, şarkının kişide ÇOCUKLUK ANILARINI canlandırdığını (çağrıştırdığını) söyler; doğru çıkarım A'dır."
+    },
+    {
+     "soru": "“Ödevini bitirmeden dışarı çıkamazsın.” cümlesinden aşağıdakilerden hangisi KESİN çıkarılabilir?",
+     "secenekler": [
+      "Dışarı çıkmak, ödevin bitirilmesine bağlıdır.",
+      "Ödev çok zordur.",
+      "Çocuk dışarı çıkmak istememektedir.",
+      "Ödev hiçbir zaman bitmeyecektir.",
+      "Dışarıda hava kötüdür."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle, dışarı çıkmayı 'ödevi bitirme' KOŞULUNA bağlar; doğru çıkarım A'dır."
     }
    ]
   },
@@ -31022,6 +31502,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Doğru cümle hem 'sade dil' hem 'derin konu' yargılarını birleştirmeli; A ikisini de kapsar, diğerleri en az biriyle çelişir."
+    },
+    {
+     "soru": "(I) Kitap, insana yeni dünyalar açar. (II) Kitap, insanın düşünme gücünü de geliştirir.\n\nBu iki cümleyi anlamca birleştiren cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kitap, hem insana yeni ufuklar açar hem de düşünme gücünü geliştirir.",
+      "Kitap yalnızca eğlence içindir.",
+      "Düşünme gücü kitapsız da gelişir.",
+      "Kitap okumak zaman kaybıdır.",
+      "Yeni dünyalar yalnızca gezerek keşfedilir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle iki yargıyı da (yeni ufuklar + düşünme gücü) kapsamalıdır; yalnızca A ikisini birlikte verir."
+    },
+    {
+     "soru": "(I) Bu yazarın kitapları çok satıyor. (II) Bu yazarın kitapları eleştirmenlerce de beğeniliyor.\n\nİki cümleyi anlamca birleştiren cümle hangisidir?",
+     "secenekler": [
+      "Bu yazarın kitapları hem çok satıyor hem de eleştirmenlerce beğeniliyor.",
+      "Çok satan kitaplar her zaman iyidir.",
+      "Eleştirmenler çok satan kitapları sevmez.",
+      "Bu yazarın kitapları hiç satmıyor.",
+      "Beğenilen kitaplar az satar."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle her iki yargıyı (çok satma + eleştirmen beğenisi) birleştiren A'dır."
+    },
+    {
+     "soru": "(I) Yürüyüş, bedeni dinç tutar. (II) Yürüyüş, zihni de rahatlatır.\n\nİki cümledeki yargıları birleştiren cümle hangisidir?",
+     "secenekler": [
+      "Yürüyüş, hem bedeni dinç tutar hem de zihni rahatlatır.",
+      "Yürüyüş yorucu bir etkinliktir.",
+      "Zihni rahatlatmanın tek yolu yürüyüştür.",
+      "Yürüyüş yalnızca kaslar için yararlıdır.",
+      "Yürümeyenler daha sağlıklıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle 'beden' ve 'zihin' yargılarını birlikte veren A'dır."
+    },
+    {
+     "soru": "(I) Bu şehir tarihî yapılarıyla ünlüdür. (II) Bu şehir doğal güzellikleriyle de dikkat çeker.\n\nİki cümleyi birleştiren cümle hangisidir?",
+     "secenekler": [
+      "Bu şehir, hem tarihî yapılarıyla hem de doğal güzellikleriyle öne çıkar.",
+      "Şehirde tarihî yapı yoktur.",
+      "Doğal güzellikler tarihten önemsizdir.",
+      "Bu şehir hiç ilgi çekmez.",
+      "Tarihî yapılar doğayı gölgede bırakır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle 'tarihî yapı' ve 'doğal güzellik' yargılarını birleştiren A'dır."
     }
    ]
   },
@@ -31078,6 +31606,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Cümlede finansmanın devlet bütçesinden geldiğine dair bilgi yoktur; aksine 'gönüllülerin desteği' vurgulanır. Bu yüzden A çıkarılamaz."
+    },
+    {
+     "soru": "“Küçük atölyesinde yıllarca emek veren usta, ürettiği her sazı kendi eliyle tek tek yapıyordu.” cümlesinden aşağıdakilerden hangisi ÇIKARILAMAZ?",
+     "secenekler": [
+      "Usta, ürünlerini fabrikada seri üretiyordu.",
+      "Usta uzun süredir bu işi yapıyordu.",
+      "Ürünler el emeğiyle yapılıyordu.",
+      "Usta küçük bir atölyede çalışıyordu.",
+      "Her ürün tek tek üretiliyordu."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'el emeğiyle tek tek yapıldığını' söyler; 'fabrikada seri üretim' bununla ÇELİŞİR, çıkarılamaz."
+    },
+    {
+     "soru": "“Yeni açılan bu kütüphane, sabahtan akşama kadar öğrencilerle doluyor.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Kütüphaneye yalnızca hafta sonu geliniyor.",
+      "Kütüphane yeni açılmıştır.",
+      "Kütüphane yoğun ilgi görüyor.",
+      "Kütüphaneyi öğrenciler kullanıyor.",
+      "Kütüphane gün boyu açık kalıyor."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'sabahtan akşama kadar' der; 'yalnızca hafta sonu' bununla çelişir, çıkarılamaz."
+    },
+    {
+     "soru": "“Emekli öğretmen, mahalledeki çocuklara ücretsiz olarak matematik dersi veriyordu.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Öğretmen bu dersler karşılığında yüksek ücret alıyordu.",
+      "Öğretmen emeklidir.",
+      "Dersler ücretsizdir.",
+      "Öğrenciler mahalledeki çocuklardır.",
+      "Verilen ders matematiktir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle dersin ÜCRETSİZ olduğunu söyler; 'yüksek ücret alıyordu' bununla çelişir, çıkarılamaz."
+    },
+    {
+     "soru": "“Sabah erkenden kalkan çiftçi, tarlasını sulayıp hayvanlarını otlağa götürdü.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Çiftçi bütün gün uyumuştur.",
+      "Çiftçi sabah erken kalkmıştır.",
+      "Tarla sulanmıştır.",
+      "Hayvanlar otlağa götürülmüştür.",
+      "Çiftçinin hayvanları vardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle çiftçinin erken kalkıp iş yaptığını anlatır; 'bütün gün uyudu' bununla çelişir, çıkarılamaz."
     }
    ]
   },
@@ -31134,6 +31710,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Soru 'NEDEN yok olur' der; yalnızca A yok oluşun nedenlerini (aktarılmama, kullanım alanının daralması) açıklayarak yanıt verir."
+    },
+    {
+     "soru": "“Stres nasıl azaltılabilir?” sorusuna cevap veren parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Düzenli uyku, spor ve nefes egzersizleri; ayrıca gün içinde kısa molalar vermek stresi belirgin biçimde azaltır.",
+      "Stres, modern çağın en yaygın sorunlarından biridir.",
+      "Stresli insanlar çevrelerine de gergin davranır.",
+      "Stres kelimesi dilimize yabancı dillerden geçmiştir.",
+      "Herkes zaman zaman stres yaşar."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NASIL azaltılabilir' der; yalnızca A çözüm yolları (uyku, spor, nefes, mola) sunarak yanıt verir."
+    },
+    {
+     "soru": "“İnsanlar neden göç eder?” sorusuna cevap veren parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "İş bulma umudu, savaş, kıtlık ve daha iyi yaşam arayışı insanları göçe iten başlıca nedenlerdir.",
+      "Göç, tarih boyunca hep var olmuştur.",
+      "Göçmenler yeni ülkelerinde zorluk yaşar.",
+      "Göç kelimesi birçok dilde farklı söylenir.",
+      "Büyük göçler dünyayı değiştirmiştir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NEDEN göç eder' der; yalnızca A göçün nedenlerini (iş, savaş, kıtlık) açıklayarak yanıt verir."
+    },
+    {
+     "soru": "“Bir sunum nasıl etkili hâle getirilir?” sorusuna cevap veren parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Sade görsellerle desteklemek, göz teması kurmak ve konuyu bir hikâyeyle anlatmak sunumu etkili kılar.",
+      "Sunumlar iş dünyasında sıkça kullanılır.",
+      "İyi bir sunum dinleyiciyi mutlu eder.",
+      "Sunum yapmaktan çekinen çok insan vardır.",
+      "Sunum kelimesi Türkçeye sonradan girmiştir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NASIL etkili hâle getirilir' der; yalnızca A yöntemleri (görsel, göz teması, hikâye) sunarak yanıt verir."
+    },
+    {
+     "soru": "“Bir dil nasıl daha iyi öğrenilir?” sorusuna cevap veren parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Her gün düzenli pratik yapmak, o dilde film izlemek ve hata yapmaktan korkmamak dil öğrenimini hızlandırır.",
+      "Dünyada binlerce dil konuşulmaktadır.",
+      "Dil öğrenmek sabır isteyen bir iştir.",
+      "Diller, kültürlerin aynasıdır.",
+      "Bazı diller diğerlerinden daha zordur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NASIL daha iyi öğrenilir' der; yalnızca A yöntemleri (düzenli pratik, film, hatadan korkmamak) sunar."
     }
    ]
   },
@@ -31190,6 +31814,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Deniz, hitap etmeyen kitapta ısrarın okuma sevgisini körelttiğini, bırakmanın değerli olabileceğini söyler; örtüşen yargı A'dır."
+    },
+    {
+     "soru": "Can: “Bir insanı tanımak istiyorsan, güçsüzlere nasıl davrandığına bak; asıl karakter orada ortaya çıkar.”\n\nCan'ın sözleriyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Bir insanın gerçek karakteri, zayıflara karşı tutumunda belli olur.",
+      "İnsanlar güçlülere saygı göstermelidir.",
+      "Karakter, kişinin başarılarında görülür.",
+      "Güçsüzlerle ilgilenmek zaman kaybıdır.",
+      "İnsanı tanımak imkânsızdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Can, gerçek karakterin 'güçsüzlere nasıl davranıldığında' ortaya çıktığını söyler; örtüşen yargı A'dır."
+    },
+    {
+     "soru": "Elif: “Hata yapmaktan korkan biri, yeni hiçbir şey deneyemez; çünkü her yeni denemenin içinde yanılma ihtimali vardır.”\n\nElif'in söylemiyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Yeni bir şey denemek, hata yapma olasılığını göze almayı gerektirir.",
+      "Hata yapmak her zaman kötüdür.",
+      "Deneyim yaşla birlikte kendiliğinden gelir.",
+      "Başarılı insanlar hiç hata yapmaz.",
+      "Korkmadan yaşamak imkânsızdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Elif, hata korkusunun yeni denemeleri engellediğini, denemenin yanılma ihtimalini göze almayı gerektirdiğini söyler; örtüşen yargı A'dır."
+    },
+    {
+     "soru": "Kaan: “Bir şehri gerçekten tanımak, onun turistik yerlerini gezmekle değil, sokaklarında kaybolup insanlarıyla konuşmakla olur.”\n\nKaan'ın sözleriyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Bir şehri tanımanın yolu, gündelik yaşamının içine girmekten geçer.",
+      "Turistik yerler bir şehrin en önemli parçasıdır.",
+      "Şehirleri haritadan tanımak yeterlidir.",
+      "İnsanlarla konuşmak vakit kaybıdır.",
+      "Her şehir birbirinin aynısıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Kaan, şehri tanımanın 'sokaklarında kaybolup insanlarıyla konuşmakla' yani gündelik yaşamına girmekle olduğunu söyler; örtüşen yargı A'dır."
+    },
+    {
+     "soru": "Zeynep: “Başkalarının onayını beklemeden kendi yolunu çizebilen insan, gerçekten özgürdür.”\n\nZeynep'in söylemiyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Gerçek özgürlük, başkalarının onayına bağımlı olmadan yaşayabilmektir.",
+      "Özgürlük, herkesin sizi onaylamasıyla mümkündür.",
+      "İnsan, toplumdan bağımsız yaşayamaz.",
+      "Kendi yolunu çizmek bencilliktir.",
+      "Onay almak, mutluluğun anahtarıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Zeynep, gerçek özgürlüğün 'başkalarının onayını beklemeden kendi yolunu çizmek' olduğunu söyler; örtüşen yargı A'dır."
     }
    ]
   },
@@ -31246,6 +31918,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parça UYKUNUN önemini anlatır; IV. cümle kahveden söz ederek konudan kopar ve akışı bozar."
+    },
+    {
+     "soru": "(I) Kütüphaneler, bilgiye ücretsiz ulaşmanın en eski yollarındandır. (II) Buralarda her yaştan insan kitaplara erişebilir. (III) Sessiz ortamları, ders çalışmak için idealdir. (IV) Kâğıt, ilk kez Çinliler tarafından üretilmiştir. (V) Bugün pek çok kütüphane, dijital kaynaklarla da hizmet vermektedir.\n\nBu parçada anlam akışını bozan cümle hangisidir?",
+     "secenekler": [
+      "IV.",
+      "I.",
+      "II.",
+      "III.",
+      "V."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça KÜTÜPHANELERİ anlatır; IV. cümle kâğıdın icadından söz ederek konudan kopar."
+    },
+    {
+     "soru": "(I) Kar tanesi, gökten yumuşacık süzülür. (II) Her birinin kendine özgü, benzersiz bir deseni vardır. (III) Bu desenler, suyun donma koşullarına göre şekillenir. (IV) Kışın çocuklar kardan adam yapmayı çok sever. (V) Bilim insanları, iki kar tanesinin bile birbirinin aynısı olmadığını söyler.\n\nAnlam akışını bozan cümle hangisidir?",
+     "secenekler": [
+      "IV.",
+      "I.",
+      "II.",
+      "III.",
+      "V."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, kar tanelerinin BENZERSİZ DESENİNİ anlatır; IV. cümle kardan adam yapmaktan söz ederek konudan kopar."
+    },
+    {
+     "soru": "(I) Bal, arıların çiçek özünü işlemesiyle oluşur. (II) Besleyici değeri yüksek doğal bir gıdadır. (III) Uzun süre bozulmadan saklanabilir. (IV) Arı sokması bazı insanlarda alerjiye yol açar. (V) Bu yüzden binlerce yıldır insanların vazgeçilmez besinlerindendir.\n\nAkışı bozan cümle hangisidir?",
+     "secenekler": [
+      "IV.",
+      "I.",
+      "II.",
+      "III.",
+      "V."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça BALIN özelliklerini anlatır; IV. cümle arı sokmasının alerjisinden söz ederek konudan kopar."
+    },
+    {
+     "soru": "(I) Tiyatro, insanlığın en eski sanatlarından biridir. (II) İzleyiciyle oyuncu aynı anda, aynı mekânda buluşur. (III) Bu canlı etkileşim, sinemada bulunmayan bir enerji yaratır. (IV) Perde her açıldığında bambaşka bir dünya kurulur. (V) Sinema salonları son yıllarda teknolojik olarak çok gelişti.\n\nAkışı bozan cümle hangisidir?",
+     "secenekler": [
+      "V.",
+      "I.",
+      "II.",
+      "III.",
+      "IV."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça TİYATRONUN canlı etkileşimini anlatır; V. cümle sinema salonlarının gelişiminden söz ederek konudan kopar."
     }
    ]
   },
@@ -31302,6 +32022,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "I-III KAHVEYİ anlatır; IV. cümle 'Çay ise' diyerek yeni konuya (çay) geçer. İkinci paragraf IV ile başlamalıdır."
+    },
+    {
+     "soru": "(I) Bal arıları, kovanda kusursuz bir düzen içinde yaşar. (II) Her arının belli bir görevi vardır. (III) İşçiler besin toplar, kraliçe yumurtlar. (IV) Karıncalar da toplumsal böceklerdendir. (V) Onların da kraliçesi ve işçileri kendi düzenlerini kurar.\n\nBu parça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlamalıdır?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III ARILARI anlatır; IV. cümle konuyu KARINCALARA çevirir. İkinci paragraf IV ile başlamalıdır."
+    },
+    {
+     "soru": "(I) Nehirler, doğdukları dağlardan denize doğru akar. (II) Yol boyunca toprağı sulayıp verimli kılar. (III) İnsanlar da binlerce yıldır nehir kıyılarına yerleşmiştir. (IV) Denizler ise dünyanın en büyük su kütleleridir. (V) İçlerinde sayısız canlı türünü barındırır.\n\nParça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlar?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III NEHİRLERİ anlatır; IV. cümle konuyu DENİZLERE çevirir. İkinci paragraf IV ile başlar."
+    },
+    {
+     "soru": "(I) Antik çağda insanlar zamanı güneşe göre ölçerdi. (II) Güneş saatleri, gölgenin yönüne göre saati gösterirdi. (III) Ama bulutlu havada işe yaramazdı. (IV) Zamanla mekanik saatler icat edildi. (V) Bu saatler, güneşten bağımsız olarak her koşulda çalışabiliyordu.\n\nBu parça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlamalıdır?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III GÜNEŞ saatlerini anlatır; IV. cümle MEKANİK saatlere geçer. İkinci paragraf IV ile başlar."
+    },
+    {
+     "soru": "(I) Kitap, bilgiyi kâğıda dökerek kalıcı kıldı. (II) Sayfalarında yüzyılların birikimi saklıdır. (III) Elden ele, kuşaktan kuşağa aktarıldı. (IV) İnternet ise bilgiyi anında ve sınırsız erişilebilir yaptı. (V) Artık bir arama, saniyeler içinde binlerce kaynağa ulaştırıyor.\n\nBu parça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlamalıdır?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III KİTABI anlatır; IV. cümle 'İnternet ise' diyerek yeni konuya geçer. İkinci paragraf IV ile başlar."
     }
    ]
   },
@@ -31358,6 +32126,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Mahallenin görünümü (dar sokaklar, ahşap evler, sardunyalar) ayrıntılı biçimde göz önünde canlandırılmış; bu BETİMLEMEDİR."
+    },
+    {
+     "soru": "“Kışın gelmesiyle göller donar, ağaçlar yapraklarını döker ve doğa derin bir uykuya dalar. Bu dönemde birçok hayvan kış uykusuna yatar.” parçasında ağır basan anlatım biçimi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Açıklama",
+      "Öyküleme",
+      "Tartışma",
+      "Betimleme",
+      "Tanık gösterme"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, kış mevsimindeki doğa olaylarını bilgi verir biçimde AÇIKLAR; öznellik ya da olay örgüsü yoktur."
+    },
+    {
+     "soru": "“İnsan, doğaya hükmetmeye kalktıkça aslında kendi sonunu hazırlar. Ormanları yok eden, kendi nefesini kesmiş olur.” parçasında ağır basan anlatım biçimi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Tartışma",
+      "Betimleme",
+      "Öyküleme",
+      "Açıklama",
+      "Örnekleme"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, bir görüşü savunup karşı bir düşünceye (doğaya hükmetme) itiraz eder; bu TARTIŞMA biçimidir."
+    },
+    {
+     "soru": "“Adam, yağmurun altında hızla yürüyordu. Bir köşeyi döndü, eski bir kapıyı itti ve loş bir odaya girdi.” parçasında ağır basan anlatım biçimi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Öyküleme",
+      "Betimleme",
+      "Açıklama",
+      "Tartışma",
+      "Tanımlama"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, birbirini izleyen olayları (yürüme, dönme, girme) bir akış içinde anlatır; bu ÖYKÜLEMEDİR."
+    },
+    {
+     "soru": "“Türkiye, üç tarafı denizlerle çevrili bir ülkedir. Bu durum, iklimini ve ekonomisini doğrudan etkiler. Örneğin kıyı bölgelerinde turizm gelişmiştir.” parçasında hangi düşünceyi geliştirme yolu kullanılmıştır?",
+     "secenekler": [
+      "Örnekleme",
+      "Tanık gösterme",
+      "Karşılaştırma",
+      "Benzetme",
+      "Sayısal veri"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Genel yargı (denizlerin ekonomiyi etkilemesi), 'kıyıda turizmin gelişmesi' somut ÖRNEĞİYLE desteklenmiştir."
     }
    ]
   },
@@ -31414,6 +32230,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parça, geleceğin yeraltı kaynaklarında değil İYİ YETİŞMİŞ İNSANDA olduğunu vurgular; ana düşünce A'dır."
+    },
+    {
+     "soru": "Bir ağacı büyüten, gösterişli dalları değil, toprağın altındaki görünmez kökleridir. İnsanı da ayakta tutan, dışa vurduğu başarılar değil, sessizce edindiği değerler ve emeklerdir.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "İnsanı asıl ayakta tutan, görünmeyen değerleri ve emekleridir.",
+      "Ağaçların dalları köklerinden önemlidir.",
+      "Başarı, insanın tek amacı olmalıdır.",
+      "Gösteriş, insanı güçlü kılar.",
+      "Kökler toprağın altında saklıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, kök benzetmesiyle insanı ayakta tutanın görünen başarılar değil GÖRÜNMEYEN DEĞERLER olduğunu söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "Bir toplumun uygarlık düzeyi, diktiği gökdelenlerle değil, yetiştirdiği insanlarla ölçülür. En görkemli yapılar bile, içinde yaşayan insanlar cahil ve mutsuzsa bir anlam taşımaz.\n\nBu parçada asıl anlatılmak istenen aşağıdakidir?",
+     "secenekler": [
+      "Uygarlık, yapıların görkemiyle değil, insanların niteliğiyle ölçülür.",
+      "Gökdelenler, uygarlığın simgesidir.",
+      "Görkemli yapılar her zaman gereklidir.",
+      "İnsanlar yapılardan önemsizdir denemez.",
+      "Mutlu insanlar daha çok çalışır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, uygarlığın yapılarla değil YETİŞTİRİLEN İNSANLARLA ölçüldüğünü söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "Bir sözün değeri, uzunluğunda değil, doğru zamanda söylenmesindedir. Yerinde söylenmiş kısacık bir cümle, saatlerce süren boş konuşmalardan çok daha etkilidir.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Sözün etkisi, uzunluğunda değil yerinde söylenmesindedir.",
+      "Uzun konuşmalar her zaman etkilidir.",
+      "Az konuşan insan çok düşünür.",
+      "Sözün hiçbir değeri yoktur.",
+      "İyi konuşmacı çok konuşur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, sözün değerinin uzunluğunda değil DOĞRU ZAMANDA söylenmesinde olduğunu vurgular; ana düşünce A'dır."
+    },
+    {
+     "soru": "Nehir, önüne çıkan engelleri yıkarak değil, kimi zaman etrafından dolanarak yoluna devam eder ve sonunda denize ulaşır. İnsan da hedefe her zaman düz bir çizgide değil, esneyerek, yol değiştirerek varabilir.\n\nBu parçanın ana düşüncesi aşağıdakidir?",
+     "secenekler": [
+      "Hedefe ulaşmak için gerektiğinde esnek olmak ve yol değiştirmek gerekir.",
+      "Engeller mutlaka yıkılmalıdır.",
+      "Nehirler her zaman düz akar.",
+      "İnsan hiçbir engeli aşamaz.",
+      "Denize ulaşmak imkânsızdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, nehir benzetmesiyle hedefe ulaşmak için ESNEK OLMAK ve yol değiştirmek gerektiğini söyler; ana düşünce A'dır."
     }
    ]
   },
@@ -31470,6 +32334,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parçada parklar, meydanlar, insan ilişkileri, kültür ve mutluluktan söz edilir; NÜFUS ARTIŞINA değinilmemiştir."
+    },
+    {
+     "soru": "Müzik; insanı rahatlatır, hafızayı güçlendirir, farklı kültürleri tanıtır ve insanları ortak bir duyguda buluşturur. Bu yönüyle evrensel bir dildir.\n\nBu parçada müziğin yararları arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "İnsanın işitme duyusunu geliştirmesi",
+      "İnsanı rahatlatması",
+      "Hafızayı güçlendirmesi",
+      "Farklı kültürleri tanıtması",
+      "İnsanları ortak duyguda buluşturması"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada rahatlama, hafıza, kültür ve ortak duygudan söz edilir; İŞİTME DUYUSUNU geliştirmeye değinilmemiştir."
+    },
+    {
+     "soru": "İyi bir öğretmen; sabırlıdır, öğrencisini dinler, ona güven verir ve öğrenmeyi sevdirir. Bu nitelikler, kalıcı bir eğitimin temelini oluşturur.\n\nBu parçada iyi öğretmenin nitelikleri arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "Sınavlarda kolay soru sorması",
+      "Sabırlı olması",
+      "Öğrencisini dinlemesi",
+      "Güven vermesi",
+      "Öğrenmeyi sevdirmesi"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada sabır, dinleme, güven ve öğrenmeyi sevdirmeden söz edilir; KOLAY SORU sormaya değinilmemiştir."
+    },
+    {
+     "soru": "Doğa yürüyüşü; bedeni dinç tutar, zihni tazeler, insanı doğayla barıştırır ve gündelik kaygılardan uzaklaştırır.\n\nBu parçada doğa yürüyüşünün yararları arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "İnsanın maddi durumunu düzeltmesi",
+      "Bedeni dinç tutması",
+      "Zihni tazelemesi",
+      "Doğayla barıştırması",
+      "Kaygılardan uzaklaştırması"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada beden, zihin, doğayla barışma ve kaygıdan söz edilir; MADDİ DURUMU düzeltmeye değinilmemiştir."
+    },
+    {
+     "soru": "Bir belgesel; bilgi verir, merak uyandırır, izleyiciyi uzak diyarlara götürür ve doğa sevgisini aşılar.\n\nBu parçada belgeselin yararları arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "İzleyeni güldürüp eğlendirmesi",
+      "Bilgi vermesi",
+      "Merak uyandırması",
+      "Uzak diyarları tanıtması",
+      "Doğa sevgisi aşılaması"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada bilgi, merak, uzak diyarlar ve doğa sevgisinden söz edilir; GÜLDÜRÜP EĞLENDİRMEYE değinilmemiştir."
     }
    ]
   },
@@ -31526,6 +32438,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Yazar, yeşil alanın yok edilmesini sorgulayıp 'kimin gelişmesi?' diye sorarak ELEŞTİREL bir tutum sergiler."
+    },
+    {
+     "soru": "Deniz, hiçbir zaman aynı deniz değildir; her dalga farklı bir yüz taşır. Ona her baktığımızda başka bir renk, başka bir ses buluruz. İşte bu yüzden denizi seyretmek, hiç bitmeyen bir yolculuktur.\n\nBu parçayla ilgili aşağıdakilerden hangisi SÖYLENEMEZ?",
+     "secenekler": [
+      "Denizin her zaman aynı kaldığı vurgulanmıştır.",
+      "Benzetmeye başvurulmuştur.",
+      "Öznel bir bakış vardır.",
+      "Şiirsel bir anlatım kullanılmıştır.",
+      "Denizin değişkenliği anlatılmıştır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça denizin sürekli DEĞİŞTİĞİNİ söyler; 'her zaman aynı kaldığı' yargısı bununla çelişir, söylenemez."
+    },
+    {
+     "soru": "Bu yazarın öykülerinde büyük olaylar olmaz; küçük bir bakış, yarım kalmış bir cümle, bir sessizlik anlatılır. Ama bu küçük anlar, okurun içinde koca bir dünya kurar.\n\nBu parçada yazarın öyküleriyle ilgili aşağıdakilerden hangisi söylenemez?",
+     "secenekler": [
+      "Büyük ve olaylı kurgular tercih ettiği",
+      "Küçük ayrıntılara yer verdiği",
+      "Sessizlikleri anlattığı",
+      "Okurda derin izler bıraktığı",
+      "Sade anlar üzerine kurulu olduğu"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, öykülerde 'büyük olaylar olmadığını', küçük anların anlatıldığını söyler; 'büyük ve olaylı kurgular tercih ettiği' söylenemez."
+    },
+    {
+     "soru": "Şair, doğayı bir dekor olarak değil, konuşan bir varlık olarak görür. Rüzgâr onun için haber taşır, ağaçlar sırdaştır. Böylece okur, satırlar arasında doğanın nefesini duyar.\n\nBu parçadan aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Şair, doğayı yalnızca bir arka plan olarak kullanır.",
+      "Doğa, şiirde canlı bir varlık gibidir.",
+      "Şiirde kişileştirmeden yararlanılmıştır.",
+      "Okur, şiirde doğayı yoğun biçimde hisseder.",
+      "Doğa, şairin anlatımında merkezî bir yerdedir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, şairin doğayı 'dekor olarak DEĞİL, konuşan bir varlık olarak' gördüğünü söyler; 'yalnızca arka plan olarak kullanır' bununla çelişir, çıkarılamaz."
+    },
+    {
+     "soru": "Yazar, uzun betimlemelerden kaçınır; birkaç sözcükle bir mekânı, bir ruh hâlini gözümüzde canlandırır. Onun kısalığı, eksiklik değil, ustalıktır.\n\nBu parçada yazarın anlatımıyla ilgili aşağıdakilerden hangisi söylenemez?",
+     "secenekler": [
+      "Uzun ve ayrıntılı betimlemeleri sevdiği",
+      "Az sözle çok şey anlattığı",
+      "Anlatımının yoğun olduğu",
+      "Kısalığı ustalıkla kullandığı",
+      "Okurun hayal gücüne alan bıraktığı"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, yazarın 'uzun betimlemelerden KAÇINDIĞINI' söyler; 'uzun ve ayrıntılı betimlemeleri sevdiği' bununla çelişir, söylenemez."
     }
    ]
   },
@@ -31582,6 +32542,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Giriş bağımsız II'dir; III 'Oysa' ile dinlemenin önemini açar; I 'Sonuçta' ile yargıyı bağlar. Sıralama II-III-I'dir."
+    },
+    {
+     "soru": "(I) Böylece küçük tohum, zamanla koca bir çınara dönüştü. (II) Bir bahçıvan, avucundaki tohumu özenle toprağa gömdü. (III) Her gün onu sulayıp güneşe kavuşturdu.\n\nBu cümlelerle anlamlı bir paragraf oluşturulduğunda doğru sıralama hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "I - II - III",
+      "III - II - I",
+      "II - I - III",
+      "III - I - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir (bahçıvan tohumu gömer); III bakımı anlatır; I 'Böylece' ile sonucu bağlar. Sıralama II-III-I'dir."
+    },
+    {
+     "soru": "(I) Ne var ki bu görkemli yapı, bir gecede yükselmedi. (II) Piramitler, binlerce yıldır ayakta duran devasa yapılardır. (III) Yüz binlerce işçinin yıllar süren emeğiyle yapıldı.\n\nDoğru sıralama hangisidir?",
+     "secenekler": [
+      "II - I - III",
+      "I - II - III",
+      "III - II - I",
+      "II - III - I",
+      "I - III - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir (piramitleri tanıtır); I 'Ne var ki' ile bir yön ekler; III bunu açıklar. Sıralama II-I-III'tür."
+    },
+    {
+     "soru": "(I) Bu yüzden onu her okuyuşumda yeni bir şey keşfederim. (II) Bazı kitaplar tek okumayla bitmez. (III) Her satırında, gözden kaçan bir anlam gizlidir.\n\nDoğru sıralama hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "I - II - III",
+      "III - I - II",
+      "II - I - III",
+      "I - III - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir; III onu açıklar; I 'Bu yüzden' ile sonucu bağlar. Sıralama II-III-I'dir."
+    },
+    {
+     "soru": "(I) Oysa gerçek cesaret, korkmamak değil, korkuya rağmen ilerleyebilmektir. (II) Çoğu insan cesareti, hiç korkmamak sanır. (III) Korkusu olmayan biri, aslında cesur da sayılmaz.\n\nDoğru sıralama hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "I - II - III",
+      "III - II - I",
+      "II - I - III",
+      "III - I - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir (yaygın sanıyı verir); III onu tartışır; I 'Oysa' ile doğru yargıyı bağlar. Sıralama II-III-I'dir."
     }
    ]
   },
@@ -31638,6 +32646,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "IV. cümle ('Bu durgunluk...') denizin sakinliğini (I) tamamlar ve balıkçıların açılmasından (II) ÖNCE gelmelidir. II ile IV yer değiştirince akış I-IV-II-III olur, düzelir."
+    },
+    {
+     "soru": "(I) Güneş yavaş yavaş yükseliyordu. (II) Bu ışıkla birlikte kuşlar da ötüşmeye başladı. (III) İlk ışıklar tepeleri altın rengine boyadı. (IV) Böylece yeni bir gün doğdu.\n\nAnlam akışının düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "II ve III",
+      "I ve II",
+      "III ve IV",
+      "I ve IV",
+      "II ve IV"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "III. cümle (ilk ışıkların tepeleri boyaması) güneşin yükselmesinden (I) hemen sonra gelmelidir; II ise ışığın ardından gelen sonuçtur. II ile III yer değiştirince akış düzelir."
+    },
+    {
+     "soru": "(I) Çocuk, denize ilk kez bakıyordu. (II) Dalgaların sesi kulaklarını doldurdu. (III) Bu sonsuz maviye hayran kalmıştı. (IV) Gözleri şaşkınlıkla iri iri açıldı.\n\nAkışın düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "III ve IV",
+      "I ve II",
+      "II ve III",
+      "I ve IV",
+      "II ve IV"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "IV. cümle (gözlerin şaşkınlıkla açılması) hayranlıktan (III) ÖNCE gelmelidir; önce şaşırır, sonra hayran kalır. III ile IV yer değiştirince akış düzelir."
+    },
+    {
+     "soru": "(I) Yağmur bütün gece yağmıştı. (II) Bu ıslaklık, toprağa can vermişti. (III) Sabah her yer pırıl pırıldı. (IV) Yapraklardan hâlâ su damlıyordu.\n\nAkışın düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "II ve IV",
+      "I ve II",
+      "III ve IV",
+      "I ve III",
+      "II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "IV. cümle (yapraklardan su damlaması) yağmurun hemen ardından (I sonrası) gelmeli; II ise sonucu (toprağa can vermesi) bildirir. II ile IV yer değiştirince akış I-IV-II-III düzenli olur."
+    },
+    {
+     "soru": "(I) Usta, kili tezgâha koydu. (II) Kısa sürede biçimsiz kil, zarif bir vazoya dönüştü. (III) Parmaklarıyla ona yavaş yavaş şekil verdi. (IV) Çarkı döndürmeye başladı.\n\nAkışın düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "II ve III",
+      "I ve II",
+      "III ve IV",
+      "I ve IV",
+      "II ve IV"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "III. cümle (parmaklarla şekil verme) çarkı döndürmeden (IV) sonra, vazoya dönüşmeden (II) önce gelmelidir. II ile III yer değiştirince akış I-IV-III-II düzenli olur."
     }
    ]
   },
@@ -31694,6 +32750,42 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parçada okumanın 'yük değil haz' olarak görülmesinden söz edilir; 'haz' sözcüğü ZEVK anlamındadır."
+    },
+    {
+     "soru": "Bir ustanın en büyük başarısı, kendisi gibi ustalar yetiştirmektir. Bilgisini kıskançlıkla saklayan değil, cömertçe paylaşan usta, ölümünden sonra bile öğrencilerinin elinde yaşamaya devam eder. Böylece bir zanaat, kuşaktan kuşağa aktarılarak sürer gider.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Bilgisini paylaşan usta, zanaatını gelecek kuşaklara taşır.",
+      "Ustalar bilgilerini saklamalıdır.",
+      "Zanaat öğrenmek çok zordur.",
+      "Öğrenciler ustalarını unutur.",
+      "Ustalık yalnızca yetenekle kazanılır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, bilgisini paylaşan ustanın zanaatı gelecek kuşaklara taşıdığını söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "(Aynı parçaya göre) Bu parçadan aşağıdakilerden hangisi ÇIKARILAMAZ?",
+     "secenekler": [
+      "Ustaların çoğu bilgisini paylaşmaktan kaçınır.",
+      "Bilgi paylaşımı zanaatı yaşatır.",
+      "Cömert usta öğrencilerinde yaşar.",
+      "Zanaat kuşaktan kuşağa aktarılabilir.",
+      "Usta yetiştirmek büyük bir başarıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada ustaların çoğunun bilgi paylaşmaktan kaçındığına dair bir yargı YOKTUR; bu çıkarılamaz. Diğerleri parçada yer alır."
+    },
+    {
+     "soru": "(Aynı parçaya göre) Parçada geçen “cömertçe” sözcüğü aşağıdakilerden hangisiyle anlamca en yakındır?",
+     "secenekler": [
+      "Esirgemeden",
+      "İsteksizce",
+      "Zorla",
+      "Gizlice",
+      "Kıskançlıkla"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'cömertçe paylaşmak', esirgemeden/gönüllüce vermek anlamındadır; anlamca en yakın 'esirgemeden'dir."
     }
    ]
   },
@@ -31750,6 +32842,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "I (üremeye katkı) ve II (tarımı tehdit) parçada yer alır. III metinle çelişir (arı hem bal yapar hem polen taşır). Doğru: I ve II."
+    },
+    {
+     "soru": "Ormanlar, havayı temizleyen doğal filtrelerdir. Karbondioksiti emip oksijen üretirler. Ayrıca sayısız canlı türüne yuva olurlar.\n\nBu parçadan,\nI. Ormanlar hava kalitesine katkı sağlar.\nII. Ormanlar oksijen üretir.\nIII. Ormanlar canlı çeşitliliğini azaltır.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I (hava temizleme) ve II (oksijen) parçada açıkça yer alır. III metinle çelişir (yuva olur, çeşitliliği ARTIRIR). Doğru: I ve II."
+    },
+    {
+     "soru": "Düzenli okumak, kelime dağarcığını genişletir ve dünyaya bakışı zenginleştirir. Ayrıca yazma becerisini de olumlu etkiler.\n\nBu parçadan,\nI. Okumak kelime hazinesini artırır.\nII. Okumak yazmayı olumlu etkiler.\nIII. Okumak bakış açısını daraltır.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I (kelime) ve II (yazma) parçada yer alır. III metinle çelişir (bakışı ZENGİNLEŞTİRİR). Doğru: I ve II."
+    },
+    {
+     "soru": "Erken teşhis, birçok hastalığın tedavisini kolaylaştırır. Düzenli kontroller, sorunları henüz küçükken fark etmeyi sağlar.\n\nBu parçadan,\nI. Erken teşhis tedaviyi kolaylaştırır.\nII. Düzenli kontrol erken teşhise yardımcı olur.\nIII. Kontroller hastalığı büyütür.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız II",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I ve II parçada yer alır. III metinle çelişir (sorunu küçükken fark ettirir). Doğru: I ve II."
+    },
+    {
+     "soru": "Toplu taşıma, trafiği azaltır ve yakıt tasarrufu sağlar. Böylece hava kirliliğinin önüne geçilmesine de yardımcı olur.\n\nBu parçadan,\nI. Toplu taşıma trafiği hafifletir.\nII. Toplu taşıma yakıt tasarrufu sağlar.\nIII. Toplu taşıma hava kirliliğini artırır.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I ve II parçada yer alır. III metinle çelişir (kirliliği AZALTIR). Doğru: I ve II."
     }
    ]
   },
@@ -31806,6 +32946,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Parça, sanat eserinin çağını (yaşam, inanç, acı) yansıttığını söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "İyi bir dinleyici olmak, konuşmaktan daha zordur. Çünkü dinlemek, kendi düşüncelerini bir kenara bırakıp karşındakini gerçekten anlamaya çalışmayı gerektirir. ---- Bu yüzden dinlemek, aslında bir saygı biçimidir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Oysa çoğu kişi, dinler gibi görünüp sırasını beklemekle yetinir.",
+      "Bu nedenle herkes çok konuşmalıdır.",
+      "Konuşmak, dinlemekten her zaman kolaydır.",
+      "İyi dinleyiciler az bulunur değildir.",
+      "Saygı, yalnızca konuşarak gösterilir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluğun önü dinlemenin zorluğunu, sonu 'saygı biçimi' olduğunu anlatır; araya 'çoğu kişi dinler gibi yapar' karşıtlığını kuran A gelmelidir."
+    },
+    {
+     "soru": "(I) Kelebekler, tırtıl olarak dünyaya gelir. (II) Bir süre sonra koza örüp içine kapanır. (III) Bu değişim, doğanın en büyülü dönüşümlerinden biridir. (IV) Kozadan çıktıklarında bambaşka bir canlıya dönüşmüşlerdir. (V) Arılar da çiçeklerden bal yapan çalışkan böceklerdir.\n\nBu parçada anlam akışını bozan cümle hangisidir?",
+     "secenekler": [
+      "V.",
+      "I.",
+      "II.",
+      "III.",
+      "IV."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça KELEBEĞİN dönüşümünü anlatır; V. cümle arılardan söz ederek konudan kopar."
+    },
+    {
+     "soru": "Zaman, herkese eşit dağıtılan tek zenginliktir. Zengin de fakir de günde aynı yirmi dört saate sahiptir. Fark, bu zamanı nasıl kullandığımızdadır.\n\nBu parçanın ana düşüncesi aşağıdakidir?",
+     "secenekler": [
+      "Önemli olan, herkese eşit verilen zamanı iyi değerlendirmektir.",
+      "Zengin insanların daha çok zamanı vardır.",
+      "Zaman, parayla satın alınabilir.",
+      "Herkes zamanını boşa harcar.",
+      "Fakirlerin zamanı daha kıymetlidir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, zamanın herkese eşit olduğunu, farkın onu KULLANMA biçiminde olduğunu söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerden hangisi kanıtlanabilir NESNEL bir yargıdır?",
+     "secenekler": [
+      "Dünya, Güneş'in çevresinde bir yılda bir tur atar.",
+      "Bu, izlediğim en güzel filmdi.",
+      "Sonbahar, en hüzünlü mevsimdir.",
+      "Bu şarkı insanın içini ürpertiyor.",
+      "Kırmızı, en çarpıcı renktir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Dünya'nın Güneş çevresinde bir yılda tur atması kanıtlanabilir/doğrulanabilir bir bilgidir; NESNELDİR. Diğerleri beğeni/görüş içerir."
     }
    ]
   },
@@ -31862,6 +33050,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "'Bu yüzden küçük bir tohum koca bir ormanın başlangıcı olabilir' cümlesi, döngünün anlatıldığı IV'ten sonra (V) SONUÇ olarak gelmelidir."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Ancak bu kolaylık, insanları düşünmekten alıkoyma tehlikesini de taşıyor.” cümlesi getirilmelidir?\n\n(I) Arama motorları, her sorunun yanıtını saniyeler içinde önümüze getiriyor. (II) Artık bir bilgiye ulaşmak için saatlerce araştırma yapmıyoruz. (III) Bir tık yeterli oluyor. (IV) Hazır yanıtlara alışan zihin, sorgulama alışkanlığını yavaş yavaş yitiriyor. (V)",
+     "secenekler": [
+      "III ile IV arasına",
+      "I. yere",
+      "II. yere",
+      "V. yere",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Getirilecek cümle 'Ancak bu kolaylık düşünmekten alıkoyar' der; kolaylığın anlatıldığı (III) ile zihnin sorgulamayı yitirdiği (IV) ARASINA gelmeli, karşıtlığı kurar."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Oysa başarı, tek bir sıçrayışla değil, üst üste konan küçük adımlarla gelir.” cümlesi getirilmelidir?\n\n(I) Birçok kişi bir anda büyük başarılar elde etmeyi hayal eder. (II) Bunun için de sabırsızlanır. (III) Hemen sonuç alamayınca umutsuzluğa kapılır. (IV) Her gün atılan küçük adımlar, zamanla büyük bir mesafeye dönüşür.",
+     "secenekler": [
+      "III ile IV arasına",
+      "I. yere",
+      "II ile III arasına",
+      "IV. yerin sonuna",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Oysa başarı küçük adımlarla gelir' cümlesi, umutsuzluğa kapılmanın (III) ardından, küçük adımların anlatıldığı (IV) ÖNÜNE gelerek karşıtlığı kurar."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Bu yüzden bir toplumu tanımak istiyorsanız, önce diline bakın.” cümlesi getirilmelidir?\n\n(I) Dil, yalnızca bir iletişim aracı değildir. (II) Bir toplumun düşünce biçimini, değerlerini ve tarihini de taşır. (III) Her sözcük, o toplumun yaşam deneyiminden izler taşır. (IV) Kısacası dil, bir milletin hafızasıdır. (V)",
+     "secenekler": [
+      "V. yere",
+      "I. yere",
+      "II. yere",
+      "III. yere",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Bu yüzden bir toplumu tanımak için diline bakın' cümlesi, dilin milletin hafızası olduğu SONUÇ cümlesinden (IV) sonra (V) yer almalıdır."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Çünkü gerçek bir gülüş, hiçbir sözün başaramadığı biçimde iki insanı birbirine yaklaştırır.” cümlesi getirilmelidir?\n\n(I) Bazen bir tebessüm, koca bir konuşmadan daha etkilidir. (II) Yabancı bir şehirde bile bir gülümseme, insanı yalnızlıktan kurtarır. (III) İnsanlar, kendilerine içtenlikle gülümseyeni kolay kolay unutmaz. (IV) Bu yüzden gülümsemeyi hiçbir zaman esirgememek gerekir. (V)",
+     "secenekler": [
+      "I. yerin sonuna (I ile II arasına)",
+      "V. yere",
+      "III. yere",
+      "IV. yere",
+      "II ile III arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Çünkü gerçek bir gülüş iki insanı yaklaştırır' cümlesi, tebessümün konuşmadan etkili olduğu (I) yargısının GEREKÇESİDİR; I'den hemen sonra (I ile II arasına) gelmelidir."
     }
    ]
   },
@@ -31918,6 +33154,54 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Boşluğun önünde 'korkmaz', sonunda 'her yanılgı yol gösterici' denir; bu akışa 'onu öğrenmenin parçası olarak görür' (A) uyar."
+    },
+    {
+     "soru": "----. Nasıl ki bir bahçe, bakılmadığında yabani otlarla kaplanırsa; zihin de beslenmediğinde tembelleşir. Bu yüzden her gün yeni bir şeyler öğrenmek, zihni diri tutmanın en iyi yoludur.\n\nBu parçanın başına düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Zihin, tıpkı bir bahçe gibi düzenli bakım ister",
+      "Bahçeler kendiliğinden güzelleşir",
+      "Öğrenmek, yalnızca gençlerin işidir",
+      "Zihin hiçbir zaman yorulmaz",
+      "Yabani otlar bahçeye güzellik katar"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, zihni bahçeye benzeterek 'bakım/beslenme' gerektiğini anlatır; giriş cümlesi bu benzetmeyi kuran A olmalıdır."
+    },
+    {
+     "soru": "Başarılı insanları sıradan insanlardan ayıran şey yetenek değil, ----. Yetenekli ama tembel nice insan sıradanlaşırken; ortalama yetenekli ama azimli biri, hedefine ulaşabilir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "yılmadan çalışma alışkanlığıdır",
+      "doğuştan gelen zekâlarıdır",
+      "sahip oldukları şanstır",
+      "ailelerinin zenginliğidir",
+      "fiziksel güçleridir"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'yetenekli ama tembel sıradanlaşır, azimli biri ulaşır' denir; ayıran şey YILMADAN ÇALIŞMA alışkanlığıdır."
+    },
+    {
+     "soru": "Bir ülkeyi güçlü kılan, ordusunun büyüklüğü değil ----. Halkı iyi eğitilmiş, üreten ve birbirine güvenen bir toplum, en sağlam kaledir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "toplumunun niteliğidir",
+      "silahlarının sayısıdır",
+      "sınırlarının uzunluğudur",
+      "yeraltı zenginlikleridir",
+      "coğrafi konumudur"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'eğitimli, üreten, güvenen toplum en sağlam kaledir' denir; ülkeyi güçlü kılan TOPLUMUN NİTELİĞİDİR."
+    },
+    {
+     "soru": "Mutluluk, sahip olduklarımızda değil, ---- gizlidir. Aynı imkânlara sahip iki insandan biri şükrederken, diğeri hep eksik olanı düşünüp mutsuz olabilir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "onlara bakış açımızda",
+      "ne kadar zengin olduğumuzda",
+      "başkalarının bizi onaylamasında",
+      "geleceğe dair planlarımızda",
+      "geçmişteki başarılarımızda"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra aynı imkândaki iki insanın farklı hissettiği örneklenir; mutluluk, ONLARA BAKIŞ AÇIMIZDA gizlidir."
     }
    ]
   }
