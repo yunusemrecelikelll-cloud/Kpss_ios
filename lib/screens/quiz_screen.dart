@@ -12,6 +12,7 @@ import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../theme/theme_provider.dart';
+import '../theme/design_system.dart';
 import 'result_screen.dart';
 import 'placement_result_screen.dart';
 
@@ -437,6 +438,7 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     // zamanlayıcı vardır VE şık seçince otomatik sonraki soruya geçilir;
     // normal testler (konu/ders sınavı, Yanlışlarım) bu ikisinden muaf.
     final isDeneme = quiz.isFullTest;
+    final c = context.watch<ThemeProvider>().colors;
     final settings = storage.getSettings();
     final timerMode = settings['timerMode'] as String? ?? 'auto';
     final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
@@ -522,60 +524,63 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         ],
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(16),
+        child: Column(
           children: [
-            Text('Soru ${quiz.currentIndex + 1} / ${quiz.questions.length}',
-                style: const TextStyle(color: Colors.grey)),
-            const SizedBox(height: 8),
-            SizedBox(
-              height: 36,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: quiz.questions.length,
-                separatorBuilder: (_, _) => const SizedBox(width: 6),
-                itemBuilder: (context, i) {
-                  final answered = quiz.answers[i] != null;
-                  final current = i == quiz.currentIndex;
-                  return InkWell(
-                    onTap: () {
-                      context.read<SoundService>().click();
-                      quiz.goTo(i);
-                    },
-                    child: CircleAvatar(
-                      radius: 16,
-                      backgroundColor: current
-                          ? Theme.of(context).colorScheme.primary
-                          : answered
-                              ? Colors.green.withValues(alpha: 0.3)
-                              : null,
-                      child: Text('${i + 1}', style: const TextStyle(fontSize: 12)),
-                    ),
-                  );
-                },
-              ),
+            // ── Sabit üst panel: solda toplam soru, ortada aktif soru
+            // (otomatik ortalanır), animasyonlu geçiş (kullanıcı isteği) ──
+            _SoruNavPaneli(
+              total: quiz.questions.length,
+              current: quiz.currentIndex,
+              answers: quiz.answers,
+              onTap: (i) {
+                context.read<SoundService>().click();
+                quiz.goTo(i);
+              },
             ),
-            const SizedBox(height: 12),
-            if (isExpiredQuestion)
-              Container(
-                margin: const EdgeInsets.only(bottom: 12),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.amber.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.amber.withValues(alpha: 0.4)),
+            // ── Soru içeriği: sorular arası geçiş animasyonlu (kayarak + solarak) ──
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 280),
+                switchInCurve: Curves.easeOutCubic,
+                switchOutCurve: Curves.easeIn,
+                transitionBuilder: (child, anim) => FadeTransition(
+                  opacity: anim,
+                  child: SlideTransition(
+                    position: Tween<Offset>(
+                            begin: const Offset(0.06, 0), end: Offset.zero)
+                        .animate(anim),
+                    child: child,
+                  ),
                 ),
-                child: const Text('⏱️ Bu sorunun süresi doldu — cevabını artık değiştiremezsin.',
-                    style: TextStyle(fontWeight: FontWeight.w700)),
-              ),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: ListView(
+                  key: ValueKey(quiz.currentIndex),
+                  padding: const EdgeInsets.all(16),
                   children: [
-                    Text(q.soru, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-                    const SizedBox(height: 16),
+                    if (isExpiredQuestion)
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: c.warn.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(kDsRadiusSm),
+                          border: Border.all(color: c.warn.withValues(alpha: 0.4)),
+                        ),
+                        child: Text(
+                            '⏱️ Bu sorunun süresi doldu — cevabını artık değiştiremezsin.',
+                            style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                      ),
+                    DsCard(
+                      padding: const EdgeInsets.all(18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(q.soru,
+                              style: TextStyle(
+                                  fontSize: 16.5,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.w700,
+                                  color: c.text)),
+                          const SizedBox(height: 16),
                     for (var pos = 0; pos < order.length; pos++)
                       _OptionTile(
                         letter: String.fromCharCode(65 + pos),
@@ -631,10 +636,12 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                   ],
                 ),
               ),
-            ),
-            // Alt butonlar artık bottomNavigationBar'da sabit duruyor; içeriğin
-            // son kartı butonların altında kalmasın diye boşluk bırakılıyor.
-            const SizedBox(height: 12),
+              // Alt butonlar bottomNavigationBar'da sabit; son kart altında kalmasın.
+              const SizedBox(height: 12),
+            ],
+          ),
+        ),
+      ),
           ],
         ),
       ),
@@ -693,6 +700,168 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         _finish();
       }
     });
+  }
+}
+
+/// Test ekranının üstünde SABİT duran soru-numarası paneli (kullanıcı isteği:
+/// "üzerindeki soru sayıları animasyonlu olsun, aynı boyutta; solda toplam
+/// soru sayısı; aktif soru panelde ortada").
+///
+/// • Solda toplam soru sayısı rozeti.
+/// • Ortada yatay numara şeridi; aktif soru numarası her değiştiğinde şerit
+///   otomatik olarak AKTİF numarayı ORTAYA getirecek şekilde animasyonlu kayar.
+/// • Numaralar aynı boyutta; aktif olan renk/gölge ile animasyonlu vurgulanır,
+///   cevaplananlar yeşil tonlanır.
+class _SoruNavPaneli extends StatefulWidget {
+  final int total;
+  final int current;
+  final List<int?> answers;
+  final ValueChanged<int> onTap;
+  const _SoruNavPaneli({
+    required this.total,
+    required this.current,
+    required this.answers,
+    required this.onTap,
+  });
+
+  @override
+  State<_SoruNavPaneli> createState() => _SoruNavPaneliState();
+}
+
+class _SoruNavPaneliState extends State<_SoruNavPaneli> {
+  final ScrollController _ctrl = ScrollController();
+  static const double _oge = 44; // her numaranın kapladığı yatay genişlik
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _ortala(false));
+  }
+
+  @override
+  void didUpdateWidget(covariant _SoruNavPaneli old) {
+    super.didUpdateWidget(old);
+    if (old.current != widget.current) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _ortala(true));
+    }
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  /// Aktif numarayı görünür alanın ORTASINA getirir.
+  void _ortala(bool animate) {
+    if (!_ctrl.hasClients) return;
+    final vp = _ctrl.position.viewportDimension;
+    final hedef = (widget.current * _oge) - (vp / 2) + (_oge / 2);
+    final k = hedef.clamp(0.0, _ctrl.position.maxScrollExtent);
+    if (animate) {
+      _ctrl.animateTo(k,
+          duration: const Duration(milliseconds: 320), curve: Curves.easeOutCubic);
+    } else {
+      _ctrl.jumpTo(k);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+      decoration: BoxDecoration(
+        color: c.bg2,
+        border: Border(bottom: BorderSide(color: c.border)),
+      ),
+      child: Row(
+        children: [
+          // Sol: toplam soru sayısı
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            decoration: BoxDecoration(
+              color: c.violet.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: c.violet.withValues(alpha: 0.35)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('${widget.total}',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 16, color: c.text)),
+                Text('soru',
+                    style: TextStyle(
+                        fontSize: 9.5, fontWeight: FontWeight.w700, color: c.textFaint)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          // Orta/sağ: numara şeridi (aktif ortaya kayar)
+          Expanded(
+            child: SizedBox(
+              height: 40,
+              child: ListView.builder(
+                controller: _ctrl,
+                scrollDirection: Axis.horizontal,
+                itemExtent: _oge,
+                itemCount: widget.total,
+                itemBuilder: (context, i) {
+                  final answered = widget.answers[i] != null;
+                  final current = i == widget.current;
+                  return Center(
+                    child: GestureDetector(
+                      onTap: () => widget.onTap(i),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 280),
+                        curve: Curves.easeOutCubic,
+                        width: 34,
+                        height: 34,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: current
+                              ? c.violet
+                              : (answered
+                                  ? c.success.withValues(alpha: 0.22)
+                                  : c.glass2),
+                          border: Border.all(
+                            color: current
+                                ? c.violet
+                                : (answered
+                                    ? c.success.withValues(alpha: 0.5)
+                                    : c.border),
+                          ),
+                          boxShadow: current
+                              ? [
+                                  BoxShadow(
+                                      color: c.violet.withValues(alpha: 0.45),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2))
+                                ]
+                              : null,
+                        ),
+                        child: Text(
+                          '${i + 1}',
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w800,
+                            color: current
+                                ? Colors.white
+                                : (answered ? c.success : c.textDim),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
