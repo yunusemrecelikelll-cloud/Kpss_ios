@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../models/question.dart';
 import '../models/badge.dart';
-import '../models/attempt.dart';
 import '../services/auth_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/quiz_engine.dart';
@@ -210,20 +209,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final examInfo = examInfoFor(storage.getExamType());
     final drafts = storage.getAllDrafts();
 
-    // "Bugün sınava girsen kaç alırsın?" — TÜM çözülen testlerin toplam
-    // doğru/yanlışından bir net-oranı çıkarıp KPSS puanına (P3) ölçekler.
-    // Hiç test yoksa null (kart "—" gösterir, dokununca tahmin ekranına gider).
-    int td = 0, ty = 0, tt = 0;
-    for (final a in attempts) {
-      td += a.dogru;
-      ty += a.yanlis;
-      tt += a.toplam;
-    }
-    final tahmin = tt > 0
-        ? KpssPoints.compute(dogru: td, yanlis: ty, toplam: tt)
-        : null;
-    final haftalikPuan = storage.getWeeklyPoints();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('KPSS Hazırlık', style: GoogleFonts.baloo2(fontWeight: FontWeight.w700, fontSize: 22)),
@@ -326,72 +311,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            // 6) "Durumun" — kompakt aksiyon kartları (2 sütun): bugünkü tahmini
-            // puan, puan hesaplayıcı, lig ve detaylı istatistik (kullanıcı
-            // isteği: bu widget'lar anasayfaya gelsin).
-            const DsSectionHeader(title: 'Durumun'),
-            const SizedBox(height: 8),
-            GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: kDsGap,
-                crossAxisSpacing: kDsGap,
-                mainAxisExtent: 132 *
-                    (MediaQuery.textScalerOf(context).scale(14) / 14)
-                        .clamp(1.0, 1.6),
-              ),
+            const SizedBox(height: kDsGap),
+            // 6) Kompakt aksiyon kartları — Akılda Kalıcı Kodlama kartlarıyla
+            // AYNI boy/stil, yazı ORTALI (kullanıcı isteği: "Durumun" başlığı
+            // yok; yazılar yan yana, ortalı, aynı boyutta). 2 satır × 2.
+            Row(
               children: [
-                // "Bugün sınava girsen kaç alırsın?" → tahmini P3 puanı.
-                _MiniAksiyonKarti(
-                  emoji: '🎯',
-                  baslik: 'Bugün girsen',
-                  deger: tahmin != null ? '${tahmin.p3}' : '—',
-                  altDeger: 'tahmini puan',
-                  renk: c.violet,
-                  onTap: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const PredictorScreen()));
-                  },
+                Expanded(
+                  child: _MiniAksiyonKarti(
+                    emoji: '🎯',
+                    baslik: 'Bugün Girsen',
+                    renk: c.violet,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const PredictorScreen()));
+                    },
+                  ),
                 ),
-                _MiniAksiyonKarti(
-                  emoji: '🧮',
-                  baslik: 'Puan Hesapla',
-                  deger: 'Net→Puan',
-                  altDeger: 'kendin dene',
-                  renk: c.mint,
-                  onTap: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const ScoreCalculatorScreen()));
-                  },
+                const SizedBox(width: kDsGap),
+                Expanded(
+                  child: _MiniAksiyonKarti(
+                    emoji: '🧮',
+                    baslik: 'Net - Puan',
+                    renk: c.mint,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const ScoreCalculatorScreen()));
+                    },
+                  ),
                 ),
-                _MiniAksiyonKarti(
-                  emoji: '🏆',
-                  baslik: 'Lig',
-                  deger: '$haftalikPuan',
-                  altDeger: 'bu hafta puan',
-                  renk: c.gold,
-                  onTap: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const LeagueScreen()));
-                  },
+              ],
+            ),
+            const SizedBox(height: kDsGap),
+            Row(
+              children: [
+                Expanded(
+                  child: _MiniAksiyonKarti(
+                    emoji: '🏆',
+                    baslik: 'Lig',
+                    renk: c.gold,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const LeagueScreen()));
+                    },
+                  ),
                 ),
-                _MiniAksiyonKarti(
-                  emoji: '📈',
-                  baslik: 'İstatistik',
-                  deger: '%${overall.rate}',
-                  altDeger: 'detaya git',
-                  renk: c.rose,
-                  onTap: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const DetailedStatsScreen()));
-                  },
+                const SizedBox(width: kDsGap),
+                Expanded(
+                  child: _MiniAksiyonKarti(
+                    emoji: '📈',
+                    baslik: 'İstatistik',
+                    renk: c.rose,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const DetailedStatsScreen()));
+                    },
+                  ),
                 ),
               ],
             ),
@@ -1265,20 +1244,16 @@ class _PremiumOzetKarti extends StatelessWidget {
   }
 }
 
-/// "Durumun" ızgarasındaki kompakt aksiyon kartı: büyük bir değer + kısa
-/// başlık/alt başlık ve renkli emoji rozeti. Dokununca ilgili ekrana gider.
+/// Kompakt aksiyon kartı — Akılda Kalıcı Kodlama kartlarıyla AYNI boy/stil
+/// (emoji rozeti + başlık yan yana), yazı ORTALI. Dokununca ilgili ekrana gider.
 class _MiniAksiyonKarti extends StatelessWidget {
   final String emoji;
   final String baslik;
-  final String deger;
-  final String altDeger;
   final Color renk;
   final VoidCallback onTap;
   const _MiniAksiyonKarti({
     required this.emoji,
     required this.baslik,
-    required this.deger,
-    required this.altDeger,
     required this.renk,
     required this.onTap,
   });
@@ -1288,41 +1263,24 @@ class _MiniAksiyonKarti extends StatelessWidget {
     final c = context.watch<ThemeProvider>().colors;
     return DsCard(
       accent: renk,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
       onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // Sabit yükseklikli ızgara hücresinde taşma olmasın diye içerik
-        // spaceBetween ile dağıtılır ve metinler Flexible içine alınır.
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              DsIconBadge(emoji: emoji, color: renk, size: 30, glow: false),
-              const Spacer(),
-              Icon(Icons.chevron_right, size: 16, color: c.textFaint),
-            ],
-          ),
+          DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
+          const SizedBox(width: 10),
           Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(deger,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w900, color: c.text)),
-                Text(baslik,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.w800, color: c.textDim)),
-                Text(altDeger,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 10.5, color: c.textFaint)),
-              ],
+            child: Text(
+              baslik,
+              maxLines: 2,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12.5,
+                height: 1.2,
+                fontWeight: FontWeight.w800,
+                color: c.text,
+              ),
             ),
           ),
         ],
