@@ -30408,6 +30408,1518 @@
      "aciklama": "Parçanın son cümlesi, bilginin yalnızca aktarılmadığını, 'her elde biraz daha zenginleştiğini' söyler. En önemli katkı bu yargıyı içeren B seçeneğidir."
     }
    ]
+  },
+  {
+   "id": "turkce-paragraf-sozcukte-anlam",
+   "baslik": "Paragrafta Sözcük Anlamı",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir sözcüğün asıl (gerçek) anlamı değil, geçtiği CÜMLE/PARAGRAF içinde kazandığı anlam sorulur. Aynı sözcük farklı bağlamda farklı anlama gelir.",
+    "icerik": [
+     "Bir sözcüğün anlamı sözlükten değil, GEÇTİĞİ BAĞLAMDAN çıkarılır; cümledeki diğer sözcüklerle kurduğu ilişki anlamı belirler.",
+     "Mecaz, terim ve yan anlam; sözcüğün gerçek anlamından uzaklaşarak bağlama göre kazandığı anlamlardır.",
+     "Soruda çoğu zaman 'altı çizili sözcük bu cümlede hangi anlamda kullanılmıştır?' diye sorulur; doğru şık, sözcüğü aynı anlamda kullanan başka bir cümledir."
+    ],
+    "anahtarNoktalar": [
+     "Anlam bağlamdan çıkarılır.",
+     "Aynı sözcük farklı bağlamda farklı anlam taşır.",
+     "Doğru şık çoğu zaman sözcüğü AYNI anlamda kullanan cümledir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Yıllardır aynı masada oturan bu iki dost, birbirlerinin en KURU sözünden bile alınmaz olmuştu; çünkü aralarındaki bağ, sözcüklerin ötesine geçmişti.\n\nBu parçada geçen “kuru” sözcüğü aşağıdakilerden hangisinin yerine kullanılmıştır?",
+     "secenekler": [
+      "Sevgisiz, içten olmayan",
+      "Susuz, nemsiz",
+      "Cılız, zayıf",
+      "Verimsiz, çorak",
+      "Yalın, süssüz"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'kuru söz', duygudan yoksun/içten olmayan söz anlamındadır; dostların böyle sözlerden bile alınmadığı anlatılır. Doğru karşılık 'sevgisiz, içten olmayan'dır."
+    },
+    {
+     "soru": "Usta yazar, romanın o uzun bölümünü öyle bir DÜŞÜRMÜŞTÜ ki okur, olayların gerçek zamanda aktığını sanıyordu.\n\nBu cümledeki “düşürmek” sözcüğü aşağıdaki cümlelerin hangisinde bu cümledekiyle aynı anlamda kullanılmıştır?",
+     "secenekler": [
+      "Anlatımın temposunu ustalıkla düşürmüştü.",
+      "Fiyatları rakiplerinden daha aşağı düşürmüştü.",
+      "Elindeki bardağı yere düşürmüştü.",
+      "Ateşi bir türlü düşürememişlerdi.",
+      "Onu gözünden büsbütün düşürmüştü."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'düşürmek', anlatımı/temposu ayarlamak-kurmak anlamındadır. Aynı kullanım 'anlatımın temposunu ustalıkla düşürmüştü' cümlesindedir; diğerleri gerçek anlam ya da farklı deyimlerdir."
+    },
+    {
+     "soru": "Şairin son kitabındaki dizeler öyle YOĞUN ki bir sayfada söylenenler, başka bir şairin koca bir kitapta anlatamayacağı kadar çok şey barındırıyor.\n\nBu parçadaki “yoğun” sözcüğüyle anlatılmak istenen aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Az sözle çok anlam yüklü",
+      "Anlaşılması güç, karmaşık",
+      "Sık aralıklarla yazılmış",
+      "Duygusal yönü ağır basan",
+      "Uzun ve ayrıntılı"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada 'yoğun', bir sayfada çok şey barındırması yani AZ SÖZLE ÇOK ANLAM yüklü olması anlamındadır. Diğer seçenekler bağlamla örtüşmez."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-sozcukler-arasi-iliski",
+   "baslik": "Sözcükler Arası Anlam İlişkileri",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Eş anlam, karşıt (zıt) anlam, eş sesli (sesteş), yakın anlam ve genel-özel ilişkisi gibi sözcükler arasındaki anlam bağları incelenir.",
+    "icerik": [
+     "Eş anlamlı sözcükler aynı kavramı karşılar (kelime-sözcük); karşıt anlamlılar zıt kavramları (aç-tok).",
+     "Sesteş (eş sesli) sözcükler yazılışı/okunuşu aynı, anlamı farklıdır (yüz: sayı / yüz: surat / yüz-mek).",
+     "Yakın anlamlılar birbirinin yerine her bağlamda kullanılamaz; ince ayrımlar vardır (yalnız-yalnızca)."
+    ],
+    "anahtarNoktalar": [
+     "Eş/karşıt/sesteş/yakın anlam ayrımı.",
+     "Sesteşlerde anlam bağlamdan çıkar.",
+     "Yakın anlamlılar her yerde birbirinin yerini tutmaz."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ARASINDA hem eş anlamlılık hem de karşıtlık kurulabilecek bir çift YOKTUR?",
+     "secenekler": [
+      "Zengin biriydi ama gönlü yoksuldu; parası çoktu, huzuru azdı.",
+      "Kimi zaman ak, kimi zaman kara günler gördük.",
+      "Sözcük ile kelime, bu metinde aynı şeyi anlatır.",
+      "Yaşlı çınar, genç fidanların gölgesinde kalmıştı.",
+      "Gündüzün aydınlığı, gecenin karanlığını unutturdu."
+     ],
+     "dogruIndex": 2,
+     "aciklama": "'Sözcük ile kelime' yalnızca EŞ anlamlıdır; aralarında karşıtlık kurulamaz. Diğer cümlelerde hem eş/yakın hem de karşıt (zengin-yoksul, ak-kara, yaşlı-genç, aydınlık-karanlık) ilişkileri birlikte bulunur."
+    },
+    {
+     "soru": "(I) Denizin yüzünde ay ışığı titriyordu. (II) Çocuğun yüzü mutlulukla parlıyordu. (III) Yarışta herkesten önce yüzüp karşıya geçti.\n\nNumaralanmış cümlelerdeki “yüz” sözcükleriyle ilgili olarak aşağıdakilerden hangisi söylenebilir?",
+     "secenekler": [
+      "Üçünün de yazılışı aynı, anlamları farklıdır; sesteştir.",
+      "Üçü de gerçek anlamda kullanılmıştır.",
+      "Yalnız I ve II aynı anlamdadır.",
+      "Üçü de mecaz anlamlıdır.",
+      "Üçü de eş anlamlıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I'de 'yüzey', II'de 'surat', III'te 'yüzmek' eylemi; yazılışları aynı, anlamları farklı olduğundan sesteş (eş sesli) sözcüklerdir."
+    },
+    {
+     "soru": "“Yalın” sözcüğü aşağıdaki cümlelerin hangisinde diğerlerinden FARKLI bir anlamda kullanılmıştır?",
+     "secenekler": [
+      "Anlatımı yalın olduğu için herkes kolayca anlıyordu.",
+      "Süssüz, yalın bir üslubu vardı.",
+      "Gösterişten uzak, yalın bir evde yaşıyordu.",
+      "Ad, yalın hâlde herhangi bir çekim eki almaz.",
+      "Sade ve yalın sözlerle derdini anlattı."
+     ],
+     "dogruIndex": 3,
+     "aciklama": "İlk, ikinci, üçüncü ve beşinci cümlelerde 'yalın' sade/süssüz anlamındadır; dördüncü cümlede ise dil bilgisi TERİMİ (yalın hâl) olarak kullanılmıştır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-bosluga-ifade",
+   "baslik": "Boşluğa Uygun İfadeyi Yerleştirme",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Cümle ya da paragrafta boş bırakılan yere, anlam ve dil akışına EN UYGUN sözcük/söz öbeğini yerleştirme becerisi ölçülür.",
+    "icerik": [
+     "Boşluğun ÖNÜ ve SONU okunur; getirilecek ifade her iki tarafla da anlamca ve dil bilgisi yönünden uyumlu olmalıdır.",
+     "Bağlaçlar (ama, çünkü, oysa, bu yüzden) boşluktaki mantık ilişkisini (karşıtlık, gerekçe, sonuç) belirler.",
+     "Birden çok boşlukta, seçeneği bir bütün olarak değerlendir; tek boşluğa uyup diğerine uymayan seçenek elenir."
+    ],
+    "anahtarNoktalar": [
+     "Boşluğun önü-sonu birlikte okunur.",
+     "Bağlaç, mantık ilişkisini belirler.",
+     "Çok boşlukta seçenek bütün olarak sınanır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Sanat, gerçeği olduğu gibi kopyalamaz; onu ----. Ressamın tuvaline aktardığı manzara, penceresinden gördüğünün aynısı değil, onun gözünden yeniden kurulmuş hâlidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "kendi bakışıyla yeniden yorumlar",
+      "en ince ayrıntısına kadar belgeler",
+      "olduğu gibi tekrar eder",
+      "bilimsel bir yöntemle ölçer",
+      "hiç değiştirmeden yansıtır"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra manzaranın 'yeniden kurulmuş hâli' olduğu söylenir; bu, sanatın gerçeği kendi bakışıyla YENİDEN YORUMLADIĞINI gösterir. Diğer seçenekler 'kopyalamaz' yargısıyla çelişir."
+    },
+    {
+     "soru": "Başarılı bir konuşmacı yalnızca ne söyleyeceğini değil, ---- de bilir; çünkü ----, en güçlü sözü bile etkisiz kılabilir.\n\nBu parçada boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "ne zaman susacağını – yanlış zamanlama",
+      "kaç kelime kuracağını – uzun cümleler",
+      "hangi kitabı okuyacağını – bilgisizlik",
+      "kiminle konuşacağını – kalabalık",
+      "nerede duracağını – sessizlik"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "İkinci boşluktaki 'en güçlü sözü etkisiz kılan' şey, birinci boşluktaki 'ne zaman susacağını bilmemek' yani YANLIŞ ZAMANLAMADIR. Yalnızca A seçeneği her iki boşluğa da uyar."
+    },
+    {
+     "soru": "İyi bir öğretmen öğrencisine balık vermez, ----. Böylece öğrenci, karşılaştığı her yeni sorunu kendi başına çözebilecek donanımı kazanır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "ona balık tutmayı öğretir",
+      "sınavda kolay sorular sorar",
+      "onun yerine ödevini yapar",
+      "sürekli not vererek ödüllendirir",
+      "yalnızca ezberlemesini ister"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra öğrencinin sorunları KENDİ BAŞINA çözecek donanımı kazandığı söylenir; bu, ünlü 'balık tutmayı öğretmek' özdeyişiyle örtüşür."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-deyim-atasozu",
+   "baslik": "Sözcük Grupları (Deyim - Atasözü)",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Deyim ve atasözlerinin anlamı, cümledeki işlevi ve verilen duruma uygun deyim/atasözünü bulma soruları incelenir.",
+    "icerik": [
+     "Deyim: kalıplaşmış, çoğu mecaz anlamlı söz öbeğidir; yargı bildirmez (etekleri zil çalmak).",
+     "Atasözü: bir yargı/öğüt/genel doğru bildiren kalıplaşmış sözdür (Damlaya damlaya göl olur).",
+     "Soruda çoğu kez bir DURUM verilir; o duruma en uygun deyim ya da atasözü istenir."
+    ],
+    "anahtarNoktalar": [
+     "Deyim yargı bildirmez, mecazdır.",
+     "Atasözü öğüt/genel yargı bildirir.",
+     "Duruma uygun deyim/atasözü eşleştirilir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Yıllarca biriktirdiği küçük tasarruflarla sonunda evini alan Selim'in durumu aşağıdaki atasözlerinden hangisiyle en iyi anlatılır?",
+     "secenekler": [
+      "Damlaya damlaya göl olur.",
+      "Sona kalan dona kalır.",
+      "Ateş olmayan yerden duman çıkmaz.",
+      "Bir elin nesi var, iki elin sesi var.",
+      "Ağaç yaşken eğilir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Küçük tasarrufların zamanla büyük bir sonuca (ev) ulaşması, azar azar birikenin büyüdüğünü anlatan 'Damlaya damlaya göl olur' atasözüyle örtüşür."
+    },
+    {
+     "soru": "“İşler kötüye gidince eski dostları teker teker ortadan kayboldu.” cümlesindeki durumu en iyi karşılayan deyim aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "gemisini kurtaran kaptan",
+      "kör ile yatan şaşı kalkar",
+      "dostluğu ayak üstünde bırakmak",
+      "gününü gün etmek",
+      "iğneyle kuyu kazmak"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Zor günde herkesin kendi çıkarını düşünüp uzaklaşmasını 'gemisini kurtaran kaptan' deyimi karşılar; herkesin kendini kurtarma telaşını anlatır."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde deyim, anlamına UYGUN kullanılmamıştır?",
+     "secenekler": [
+      "Sınavı kazanınca etekleri zil çaldı.",
+      "Bu kadar çalışınca eli yüzü düzgün bir iş çıkardı.",
+      "Çok yorulunca içine kapandı; herkesle şakalaşıp kahkahalar attı.",
+      "Haberi duyunca küplere bindi.",
+      "Yıllar sonra karşılaşınca gözleri doldu."
+     ],
+     "dogruIndex": 2,
+     "aciklama": "'İçine kapanmak' suskunlaşmak/çekilmek demektir; oysa cümlede herkesle şakalaşıp kahkaha atmakla birlikte kullanılmış, deyim anlamına AYKIRI biçimde yer almıştır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-cumlede-anlam-yakinligi",
+   "baslik": "Cümlede Anlam Yakınlığı",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Verilen bir cümleyle anlamca EN YAKIN (aynı yargıyı farklı sözcüklerle veren) cümleyi bulma becerisi ölçülür.",
+    "icerik": [
+     "İki cümlenin anlamca yakın olması, aynı yargıyı/aynı sonucu farklı sözcüklerle dile getirmesidir.",
+     "Sözcükler değişse de mantık ilişkisi (neden-sonuç, koşul, karşıtlık) korunmalıdır.",
+     "Kısmen benzeyen ama farklı bir yargı ekleyen/çıkaran seçenekler yakın anlamlı SAYILMAZ."
+    ],
+    "anahtarNoktalar": [
+     "Aynı yargı, farklı sözcüklerle.",
+     "Mantık ilişkisi korunmalı.",
+     "Fazladan/eksik yargı yakınlığı bozar."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“İnsan, ne kadar çok okursa dünyaya o kadar geniş bir pencereden bakar.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Okumak arttıkça insanın bakış açısı da genişler.",
+      "Çok okuyan insan mutlaka mutlu olur.",
+      "Pencereden bakmak okumaktan daha öğreticidir.",
+      "Az okuyan da dünyayı geniş görebilir.",
+      "Okumak, yalnızca bilgi edinmek içindir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümledeki 'çok okumak → geniş bakış açısı' ilişkisi, 'okumak arttıkça bakış açısı genişler' cümlesinde aynen korunur. Diğerleri farklı ya da çelişik yargılardır."
+    },
+    {
+     "soru": "“Başarı, yeteneğin değil, ısrarla sürdürülen çabanın ürünüdür.” cümlesiyle anlamca EN YAKIN olan aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "İnsanı başarıya götüren, yetenekten çok yılmadan çalışmaktır.",
+      "Yeteneksiz insan asla başarılı olamaz.",
+      "Çaba göstermeden de başarıya ulaşılabilir.",
+      "Başarı tümüyle şansa bağlıdır.",
+      "Yetenek olmadan çaba bir işe yaramaz."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümle 'başarı = yetenek değil, sürekli çaba' der; bu yargı 'başarıya götüren, yetenekten çok yılmadan çalışmaktır' cümlesinde birebir korunur."
+    },
+    {
+     "soru": "“Doğayı korumak, aslında kendi geleceğimizi korumaktır.” cümlesine anlamca EN YAKIN cümle hangisidir?",
+     "secenekler": [
+      "Doğayı korumak, insanlığın geleceğini güvence altına almaktır.",
+      "Doğa kendini zaten koruyabilir.",
+      "Gelecek nesiller doğayı umursamaz.",
+      "Doğa korunmasa da insanlık yaşar.",
+      "Doğayı korumak yalnızca devletin görevidir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Özgün cümledeki 'doğayı korumak = geleceği korumak' özdeşliği, 'insanlığın geleceğini güvence altına almak' ifadesinde korunmuştur."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-sozun-cumleye-anlami",
+   "baslik": "Sözün Cümleye Kattığı Anlam",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir söz/söz öbeğinin cümleye kattığı anlam (koşul, amaç, neden, karşılaştırma, olasılık vb.) belirlenir.",
+    "icerik": [
+     "Bir sözcük ya da ek, cümleye koşul (-sa/-se), amaç (için, diye), neden (-dan dolayı), karşılaştırma (göre, kadar) gibi anlamlar katar.",
+     "Aynı cümlede birden çok anlam ilişkisi bulunabilir; soruda hangisinin BASKIN olduğuna bakılır.",
+     "Sözün çıkarılması durumunda cümlenin anlamında ne değiştiği düşünülür."
+    ],
+    "anahtarNoktalar": [
+     "Söz/ek cümleye özel bir anlam katar.",
+     "Koşul/amaç/neden/karşılaştırma ayırt edilir.",
+     "Sözü çıkarınca anlam kaybına bakılır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“Sınavı kazanmak için gecesini gündüzüne katarak çalıştı.” cümlesinde “için” sözcüğünün cümleye kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Amaç",
+      "Koşul",
+      "Karşılaştırma",
+      "Zaman",
+      "Neden-sonuç"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Kazanmak için çalışmak' bir AMAÇ ilişkisi kurar; kişi belli bir hedefe ulaşmak amacıyla çalışmaktadır."
+    },
+    {
+     "soru": "“Havalar biraz ısınsa bahçedeki çiçekler hemen açacak.” cümlesinde altı çizili bölümün cümleye kattığı anlam aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Koşula bağlılık",
+      "Kesinlik",
+      "Amaç",
+      "Karşılaştırma",
+      "Neden"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Isınsa ... açacak' yapısı, çiçeklerin açmasını havaların ısınması KOŞULUNA bağlar; koşul-sonuç ilişkisi kurulmuştur."
+    },
+    {
+     "soru": "“Bu roman, yazarın öteki kitaplarına göre çok daha akıcı.” cümlesinde “göre” sözcüğü cümleye aşağıdaki anlamlardan hangisini katmıştır?",
+     "secenekler": [
+      "Karşılaştırma",
+      "Neden",
+      "Amaç",
+      "Koşul",
+      "Olasılık"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Öteki kitaplarına göre daha akıcı' ifadesi, romanı diğer kitaplarla KARŞILAŞTIRIR; 'göre' burada karşılaştırma anlamı katar."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-cumle-analizi",
+   "baslik": "Cümle Analizi",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir cümlede öznel/nesnel yargı, doğrudan/dolaylı anlatım, neden-sonuç, koşul gibi anlam özelliklerinin çözümlenmesi istenir.",
+    "icerik": [
+     "Nesnel yargı kanıtlanabilir/doğrulanabilir; öznel yargı kişisel görüş/beğeni içerir.",
+     "Bir cümlede birden çok yargı ve anlam ilişkisi bir arada bulunabilir.",
+     "Analizde cümlenin 'ne söylediği' kadar 'nasıl söylediği' de değerlendirilir."
+    ],
+    "anahtarNoktalar": [
+     "Nesnel: kanıtlanabilir; öznel: kişisel.",
+     "Bir cümlede çok yargı olabilir.",
+     "'Ne' ve 'nasıl' birlikte çözümlenir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Aşağıdaki cümlelerin hangisi tümüyle NESNEL bir yargı bildirir?",
+     "secenekler": [
+      "Roman, 320 sayfadan oluşuyor ve dört bölüme ayrılıyor.",
+      "Bu roman, son yılların en etkileyici eseridir.",
+      "Yazarın üslubu okuru büyülüyor.",
+      "Kitabın kapağı oldukça çirkin olmuş.",
+      "Bu, herkesin okuması gereken harika bir kitap."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Sayfa sayısı ve bölüm sayısı kanıtlanabilir/doğrulanabilir bilgilerdir; bu yüzden A NESNELDİR. Diğerleri beğeni/görüş içerdiğinden özneldir."
+    },
+    {
+     "soru": "“Bu şehir, bence Türkiye'nin en yaşanabilir yeridir; nüfusu az, havası temiz, ulaşımı kolaydır.” cümlesiyle ilgili olarak aşağıdakilerden hangisi söylenir?",
+     "secenekler": [
+      "Öznel bir yargı, nesnel gerekçelerle desteklenmiştir.",
+      "Cümle baştan sona nesneldir.",
+      "Cümlede hiçbir gerekçe yoktur.",
+      "Cümle yalnızca öznel yargılardan oluşur.",
+      "Cümlede karşılaştırma yoktur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'En yaşanabilir yer' öznel bir yargıdır; ancak 'nüfusu az, havası temiz, ulaşımı kolay' gibi NESNEL gerekçelerle desteklenmiştir."
+    },
+    {
+     "soru": "“Kapıyı açtığında, yıllardır görmediği kardeşiyle karşılaştı.” cümlesiyle ilgili aşağıdakilerden hangisi söylenemez?",
+     "secenekler": [
+      "Öznel bir değerlendirme içerir.",
+      "Bir zaman ilişkisi vardır.",
+      "Bir olay anlatılmaktadır.",
+      "Geçmişe gönderme yapılmıştır.",
+      "Nesnel bir anlatım vardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle bir olayı nesnel biçimde aktarır; kişisel beğeni/görüş (öznellik) İÇERMEZ. Bu yüzden 'öznel bir değerlendirme içerir' yargısı söylenemez."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-cumlede-anlam-iliskileri",
+   "baslik": "Cümlede Anlam İlişkileri",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Karşılaştırma, öneri, tahmin, olasılık, tanım, saptama (tespit), çıkarım, varsayım, eleştiri gibi anlam ilişkileri tanınır.",
+    "icerik": [
+     "Karşılaştırma: iki şey arasında benzerlik/farklılık kurar (daha, en, göre, kadar).",
+     "Öneri, tahmin, olasılık, varsayım geleceğe/belirsizliğe; tanım ve saptama var olana yöneliktir.",
+     "Çıkarım (istidlal): açıkça söylenmeyen ama söylenenlerden mantıkla ulaşılan yargıdır."
+    ],
+    "anahtarNoktalar": [
+     "Karşılaştırma / öneri / tahmin / olasılık / tanım / saptama / çıkarım.",
+     "Tahmin-olasılık belirsizlik bildirir.",
+     "Çıkarım söylenenden mantıkla ulaşılır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde bir SAPTAMA (tespit) söz konusudur?",
+     "secenekler": [
+      "Son yıllarda gençler arasında kitap okuma oranı düştü.",
+      "Belki yarın hava düzelir de gezmeye çıkarız.",
+      "Bence bu sorunun çözümü eğitimden geçer.",
+      "Keşke daha çok zamanımız olsaydı.",
+      "Bu kitabı herkes okumalı."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Okuma oranı düştü' var olan bir durumun gözlemlenip belirtilmesidir; yani bir SAPTAMADIR. Diğerlerinde olasılık, görüş, dilek ve öneri vardır."
+    },
+    {
+     "soru": "“Bu kadar az çalışıp sınıfını geçtiğine göre epey zeki bir öğrenci olmalı.” cümlesinde ağır basan anlam ilişkisi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Çıkarım",
+      "Tanım",
+      "Öneri",
+      "Karşılaştırma",
+      "Koşul"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Az çalışıp geçmek' bilgisinden 'zeki olmalı' yargısına ulaşılmaktadır; açıkça söylenmeyen bir sonuç mantıkla çıkarıldığından bu bir ÇIKARIMDIR."
+    },
+    {
+     "soru": "Aşağıdaki cümlelerin hangisinde ÖNERİ anlamı vardır?",
+     "secenekler": [
+      "Sınav kaygısını azaltmak için düzenli uyumayı deneyebilirsin.",
+      "Sınav kaygısı öğrencilerin başarısını düşürebilir.",
+      "Dün akşam çok geç yattım.",
+      "Sınav salonu oldukça kalabalıktı.",
+      "Bu konu geçen yıl da çıkmıştı."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Deneyebilirsin' ifadesi karşı tarafa bir yol/çözüm sunar; bu bir ÖNERİDİR. Diğerlerinde olasılık ve saptama vardır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-cumle-olusturma",
+   "baslik": "Cümle Oluşturma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Karışık verilen sözcük ya da söz öbeklerinden anlamlı ve kurallı bir cümle kurma becerisi ölçülür.",
+    "icerik": [
+     "Anlamlı ve kurallı cümlede öge dizilişi (özne–tümleç–yüklem) ve anlam bütünlüğü sağlanmalıdır.",
+     "Yüklem çoğunlukla sona gelir; tamlamalar ve bağlaçlar doğru sırayla dizilir.",
+     "Oluşan cümlenin hem dil bilgisi hem anlam yönünden tutarlı olması gerekir."
+    ],
+    "anahtarNoktalar": [
+     "Kurallı cümlede yüklem sonda.",
+     "Tamlama ve öge sırası korunur.",
+     "Hem dil bilgisi hem anlam tutarlı olmalı."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“okumak / insanın / en güvenilir / dünyayı tanımasında / yoludur / kitap”\n\nSözcük/söz öbekleriyle anlamlı ve kurallı bir cümle kurulduğunda hangisi BAŞTA yer alır?",
+     "secenekler": [
+      "Kitap",
+      "okumak",
+      "insanın",
+      "yoludur",
+      "en güvenilir"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Kurallı cümle 'Kitap, insanın dünyayı tanımasında en güvenilir yoludur.' biçiminde kurulur; başta özne olan 'Kitap' yer alır."
+    },
+    {
+     "soru": "“başarıya / sabırla / ancak / ulaşılır / sürdürülen / çabayla”\n\nBu sözcüklerle kurulabilecek anlamlı ve kurallı cümlenin YÜKLEMİ aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "ulaşılır",
+      "başarıya",
+      "çabayla",
+      "sabırla",
+      "sürdürülen"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'Başarıya ancak sabırla sürdürülen çabayla ulaşılır.' biçiminde kurulur; yüklem sonda yer alan 'ulaşılır'dır."
+    },
+    {
+     "soru": "Aşağıdaki sözcükler anlamlı ve kurallı bir cümle oluşturacak biçimde sıralandığında hangisi doğru olur?\n“(1) gölgesinde (2) yorgun (3) yolcular (4) ağacın (5) dinlendi”",
+     "secenekler": [
+      "Yorgun yolcular ağacın gölgesinde dinlendi.",
+      "Ağacın yorgun gölgesinde yolcular dinlendi.",
+      "Dinlendi yolcular yorgun ağacın gölgesinde.",
+      "Gölgesinde ağacın yorgun yolcular dinlendi.",
+      "Yolcular dinlendi yorgun ağacın gölgesinde."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Anlamlı ve kurallı diziliş 'Yorgun yolcular ağacın gölgesinde dinlendi.' biçimindedir; özne 'yorgun yolcular', yüklem sonda 'dinlendi'dir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-yargiya-ulasma",
+   "baslik": "Cümleden Hareketle Yargıya Ulaşma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Verilen bir cümleden yola çıkılarak KESİN olarak çıkarılabilecek ya da çıkarılamayacak yargıların belirlenmesi istenir.",
+    "icerik": [
+     "Bir cümleden ancak o cümlenin AÇIKÇA içerdiği ya da zorunlu olarak gerektirdiği yargı kesin çıkarılabilir.",
+     "'Belki, olabilir' gibi yorumlar kesin çıkarım değildir; metinde dayanağı olmalıdır.",
+     "Sık sorulan biçim: 'Bu cümleden kesin olarak çıkarılabilir / çıkarılamaz.'"
+    ],
+    "anahtarNoktalar": [
+     "Yalnız açıkça içerilen/zorunlu yargı çıkarılır.",
+     "Yorum ≠ kesin çıkarım.",
+     "'Kesin çıkarılamaz' dayanaksız seçenektir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“Ali, sınıftaki tüm öğrencilerden daha uzun boyludur.” cümlesinden aşağıdakilerden hangisi KESİN olarak çıkarılabilir?",
+     "secenekler": [
+      "Sınıfta Ali'den daha uzun boylu öğrenci yoktur.",
+      "Ali, okuldaki en uzun öğrencidir.",
+      "Ali, sınıfın en çalışkan öğrencisidir.",
+      "Sınıfta Ali'yle aynı boyda öğrenciler vardır.",
+      "Ali, boyu sayesinde basketbol oynar."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Tüm öğrencilerden daha uzun' ifadesinden, sınıfta ondan daha uzun kimse OLMADIĞI kesin çıkar. 'Okulun en uzunu' bilgisi ise cümlede yoktur (sadece sınıf)."
+    },
+    {
+     "soru": "“Bu ilaç, ancak doktor kontrolünde kullanılırsa yararlı olur.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "İlaç, her durumda mutlaka yararlıdır.",
+      "Doktor kontrolü olmadan kullanmak sakıncalı olabilir.",
+      "İlacın yararı bir koşula bağlıdır.",
+      "İlaç bilinçsiz kullanılmamalıdır.",
+      "İlacın kullanımı denetim gerektirir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle, yararın 'doktor kontrolü' KOŞULUNA bağlı olduğunu söyler; 'her durumda mutlaka yararlıdır' yargısı bu koşulla çelişir, çıkarılamaz."
+    },
+    {
+     "soru": "“Yağmur yağarsa maç ertelenecek.” cümlesinden aşağıdakilerden hangisi KESİN olarak çıkarılabilir?",
+     "secenekler": [
+      "Maçın oynanması, havanın durumuna bağlıdır.",
+      "Maç kesinlikle ertelenecektir.",
+      "Yağmur mutlaka yağacaktır.",
+      "Maç hiçbir koşulda ertelenmez.",
+      "Yağmur yağmazsa maç yine ertelenir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle, maçın oynanmasını 'yağmur yağması' koşuluna bağlar; buradan maçın havaya BAĞLI olduğu kesin çıkar. Diğerleri koşulu yok sayar ya da abartır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-iki-cumleden-paragraf",
+   "baslik": "İki Cümleden Hareketle Paragraf Oluşturma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Verilen iki (ya da daha çok) cümlenin anlamını BİRLEŞTİREN, ikisini de kapsayan yeni bir cümle/paragraf yargısını bulma becerisi ölçülür.",
+    "icerik": [
+     "Birleştiren cümle, verilen cümlelerin ORTAK düşüncesini içermeli; birini görmezden gelmemelidir.",
+     "Sadece bir cümleyi yineleyen ya da yeni/ilgisiz bilgi ekleyen seçenekler yanlıştır.",
+     "Ortak yargı çoğu zaman iki cümleden bir neden-sonuç veya bütünleyici ilişki kurar."
+    ],
+    "anahtarNoktalar": [
+     "Birleştiren cümle ikisini de kapsar.",
+     "Tek cümleyi yineleyen seçenek elenir.",
+     "İlgisiz/yeni bilgi ekleyen yanlıştır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "(I) Düzenli spor, bedeni güçlendirir. (II) Düzenli spor, zihni de dinç tutar.\n\nBu iki cümlede anlatılanları birlikte veren cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Düzenli spor, hem bedeni güçlendirir hem de zihni dinç tutar.",
+      "Spor yapmak beden için gereklidir.",
+      "Zihni dinç tutmanın tek yolu spordur.",
+      "Spor, yalnızca kaslar için yararlıdır.",
+      "Spor yapmayanlar sağlıksızdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle her iki yargıyı da (beden + zihin) kapsamalıdır; yalnızca A ikisini birlikte verir. Diğerleri bir yönü atlar ya da abartır."
+    },
+    {
+     "soru": "(I) Teknoloji, bilgiye ulaşmayı kolaylaştırdı. (II) Teknoloji, aynı zamanda dikkat dağınıklığını artırdı.\n\nBu iki cümleyi anlamca birleştiren cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Teknoloji, bilgiye erişimi kolaylaştırırken dikkat dağınıklığını da beraberinde getirdi.",
+      "Teknoloji her yönüyle zararlıdır.",
+      "Teknoloji yalnızca bilgiye ulaşmayı sağlar.",
+      "Dikkat dağınıklığının tek nedeni teknolojidir.",
+      "Teknoloji olmadan bilgiye ulaşılamaz."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "İki cümlenin biri olumlu (kolaylık) biri olumsuz (dikkat dağınıklığı) yönü verir; ikisini karşıtlık ilişkisiyle birleştiren A doğrudur."
+    },
+    {
+     "soru": "(I) Bu yazarın dili sade. (II) Bu yazarın anlattığı konular derin.\n\nİki cümledeki yargıları birleştiren cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Yazar, derin konuları sade bir dille anlatır.",
+      "Yazarın dili anlaşılması güçtür.",
+      "Yazar yalnızca sade konuları seçer.",
+      "Yazarın konuları yüzeyseldir.",
+      "Yazar süslü bir dil kullanır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Doğru cümle hem 'sade dil' hem 'derin konu' yargılarını birleştirmeli; A ikisini de kapsar, diğerleri en az biriyle çelişir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-uzak-yargi",
+   "baslik": "Cümleye Uzak Düşen Yargıyı Bulma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir cümlenin/parçanın anlamıyla ÖRTÜŞMEYEN, ondan çıkarılamayacak (uzak) yargıyı bulma becerisi ölçülür.",
+    "icerik": [
+     "Uzak yargı, cümlede söylenenlerle DESTEKLENMEYEN ya da onunla çelişen ifadedir.",
+     "Diğer seçenekler cümlede açıkça ya da dolaylı olarak yer alırken uzak yargının dayanağı yoktur.",
+     "'Aşağıdakilerden hangisi bu cümleden çıkarılamaz?' biçiminde sorulur."
+    ],
+    "anahtarNoktalar": [
+     "Uzak yargının metinde dayanağı yoktur.",
+     "Diğer şıklar açıkça/dolaylı vardır.",
+     "'Çıkarılamaz' seçeneği aranır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“Sabahın erken saatinde yola çıkan ekip, akşam karanlığına kadar aralıksız çalışarak köprünün onarımını tamamladı.” cümlesinden aşağıdakilerden hangisi ÇIKARILAMAZ?",
+     "secenekler": [
+      "Ekip, onarım için özel bir ödül almıştır.",
+      "Çalışma uzun sürmüştür.",
+      "Köprü onarılmıştır.",
+      "Ekip sabah erkenden işe başlamıştır.",
+      "Çalışma aralıksız sürmüştür."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Ödül alındığına dair cümlede hiçbir bilgi yoktur; bu yargı UZAK düşer. Diğerleri cümlede açıkça yer alır."
+    },
+    {
+     "soru": "“Küçük kasabanın tek kütüphanesi, her yaştan okurun bilgiye ücretsiz ulaştığı bir buluşma noktasıydı.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Kütüphaneden yalnızca çocuklar yararlanmaktadır.",
+      "Kütüphane ücretsiz hizmet vermektedir.",
+      "Kasabada tek kütüphane vardır.",
+      "Kütüphane bir buluşma işlevi görmektedir.",
+      "Farklı yaşlardan insanlar kütüphaneye gelmektedir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümle 'her yaştan okur' der; 'yalnızca çocuklar' yargısı bununla ÇELİŞİR, çıkarılamaz. Diğerleri cümlede yer alır."
+    },
+    {
+     "soru": "“Yıllarca ihmal edilen tarihî konak, gönüllülerin desteğiyle titizlikle onarılıp ziyarete açıldı.” cümlesinden aşağıdakilerden hangisi çıkarılamaz?",
+     "secenekler": [
+      "Konağın onarımı devlet bütçesiyle yapılmıştır.",
+      "Konak uzun süre bakımsız kalmıştır.",
+      "Onarımda gönüllüler görev almıştır.",
+      "Konak artık ziyaret edilebilmektedir.",
+      "Onarım özenli biçimde yapılmıştır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Cümlede finansmanın devlet bütçesinden geldiğine dair bilgi yoktur; aksine 'gönüllülerin desteği' vurgulanır. Bu yüzden A çıkarılamaz."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-soruya-cevap-parca",
+   "baslik": "Soruya Cevap Veren Parçayı Bulma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Verilen bir SORUYA doğrudan yanıt oluşturan parçayı/cümleyi bulma becerisi ölçülür.",
+    "icerik": [
+     "Doğru parça, sorulan soruyu tam olarak yanıtlar; konuyu genişletmez ya da başka bir soruya cevap vermez.",
+     "Sorunun 'ne, nasıl, neden, kim' gibi kökü, cevabın türünü belirler.",
+     "İlgili gibi görünüp soruyu yanıtlamayan seçenekler elenir."
+    ],
+    "anahtarNoktalar": [
+     "Doğru parça soruyu tam yanıtlar.",
+     "Soru kökü cevabın türünü belirler.",
+     "İlgili ama yanıtsız seçenek elenir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“İyi bir okur olmak için nelere dikkat etmek gerekir?” sorusuna cevap oluşturabilecek parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Okur; okuduğunu sorgulamalı, not almalı ve farklı türlerde eserler seçmelidir. Böylece hem kavrama hem de bakış açısı gelişir.",
+      "Kitaplar, insanlığın en eski dostlarındandır ve binlerce yıldır bilgiyi taşır.",
+      "Yayınevleri her yıl binlerce yeni kitap basmaktadır.",
+      "Bir kitabın kapağı, okuru cezbeden ilk unsurdur.",
+      "Kütüphaneler, kitapların korunduğu önemli mekânlardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'iyi okur olmak için NELERE DİKKAT edilmeli' diye sorar; yalnızca A bu soruya (sorgulamak, not almak, tür çeşitliliği) doğrudan cevap verir. Diğerleri ilgili ama yanıtsızdır."
+    },
+    {
+     "soru": "“Şehirlerde hava kirliliği nasıl azaltılabilir?” sorusuna cevap veren parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Toplu taşımanın yaygınlaştırılması, yeşil alanların artırılması ve sanayi denetimlerinin sıklaştırılması kirliliği önemli ölçüde düşürür.",
+      "Hava kirliliği, solunum yolu hastalıklarını artıran ciddi bir sorundur.",
+      "Büyük şehirlerde nüfus her yıl hızla artmaktadır.",
+      "Hava kirliliği ilk kez sanayi devrimiyle gündeme gelmiştir.",
+      "Temiz hava, sağlıklı bir yaşamın temel koşuludur."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NASIL azaltılabilir' der; yalnızca A çözüm yolları (toplu taşıma, yeşil alan, denetim) sunarak soruyu yanıtlar."
+    },
+    {
+     "soru": "“Bir dil neden yok olur?” sorusuna cevap oluşturan parça aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Konuşurları azaldıkça, genç kuşaklara aktarılmadıkça ve baskın diller karşısında kullanım alanı daraldıkça bir dil yok olma tehlikesine girer.",
+      "Diller, insanların en değerli kültürel mirasıdır.",
+      "Dünyada binlerce farklı dil konuşulmaktadır.",
+      "Dil bilimi, dillerin yapısını inceleyen bir bilim dalıdır.",
+      "Her dilin kendine özgü bir dil bilgisi vardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Soru 'NEDEN yok olur' der; yalnızca A yok oluşun nedenlerini (aktarılmama, kullanım alanının daralması) açıklayarak yanıt verir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-diyalog-yargi",
+   "baslik": "Diyalogdaki Söylemle Örtüşen Yargı",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir diyalogdaki kişinin söyledikleriyle ÖRTÜŞEN (ona uygun düşen) yargıyı bulma becerisi ölçülür.",
+    "icerik": [
+     "Örtüşen yargı, kişinin söylediklerinin ÖZÜNÜ farklı sözcüklerle yansıtır.",
+     "Diyalogdaki kişinin savunduğu görüşle çelişen ya da onun söylemediği bir şeyi ekleyen seçenek yanlıştır.",
+     "Kişinin tutumu (öneri, eleştiri, itiraz vb.) doğru okunmalıdır."
+    ],
+    "anahtarNoktalar": [
+     "Örtüşen yargı söylemin özünü yansıtır.",
+     "Çelişen/ eklenen seçenek elenir.",
+     "Kişinin tutumu doğru okunmalı."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Ayşe: “Bir işi sevmeden yapınca ne kadar çalışırsan çalış istediğin sonucu alamıyorsun; asıl mesele yaptığın işe gönül vermek.”\n\nAyşe'nin bu sözleriyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Başarı, işi sevmeye ve isteyerek yapmaya bağlıdır.",
+      "Çok çalışmak her zaman başarıyı getirir.",
+      "İşi sevmek başarı için gereksizdir.",
+      "Yetenek, çalışmaktan daha önemlidir.",
+      "Sonuç almak yalnızca şansa bağlıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Ayşe 'işe gönül vermenin' başarıda asıl etken olduğunu söyler; bununla örtüşen yargı A'dır. Diğerleri onun söylediğiyle çelişir."
+    },
+    {
+     "soru": "Mert: “Yeni fikirlere kapalı bir toplum, bir süre sonra kendini tekrar etmekten öteye gidemez; gelişme, farklı seslere kulak vermekle mümkün.”\n\nMert'in söylemiyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Gelişmenin yolu, farklı düşüncelere açık olmaktan geçer.",
+      "Toplumlar kendi geleneklerine sıkı sıkıya bağlı kalmalıdır.",
+      "Farklı sesler toplumu böler.",
+      "Yenilik, gelişmeyi engelleyen bir tehdittir.",
+      "Her toplum eninde sonunda geriler."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Mert, gelişmenin 'farklı seslere kulak vermekle' mümkün olduğunu savunur; bununla örtüşen yargı A'dır."
+    },
+    {
+     "soru": "Deniz: “Bir kitabı yarım bırakmak, kimi zaman onu bitirmekten daha değerlidir; çünkü sana hitap etmeyen bir metinde ısrar etmek, okuma sevgini köreltir.”\n\nDeniz'in sözleriyle örtüşen yargı aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kişiye hitap etmeyen bir kitabı bırakmak okuma isteğini korur.",
+      "Başlanan her kitap mutlaka bitirilmelidir.",
+      "Kitap bitirmek okuma sevgisini artırır.",
+      "Yarım bırakılan kitap zaman kaybıdır.",
+      "İyi okur, hiçbir kitabı yarım bırakmaz."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Deniz, hitap etmeyen kitapta ısrarın okuma sevgisini körelttiğini, bırakmanın değerli olabileceğini söyler; örtüşen yargı A'dır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-akisi-bozan-cumle",
+   "baslik": "Akışı Bozan Cümle",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir paragrafın ana düşüncesinden ya da konu bütünlüğünden KOPAN, anlam akışını bozan cümlenin bulunması istenir.",
+    "icerik": [
+     "Paragrafın tüm cümleleri aynı konuya/ana düşünceye hizmet eder; konudan sapan cümle akışı bozar.",
+     "Akışı bozan cümle çıkarıldığında paragrafın anlamı bozulmaz, aksine bütünlük güçlenir.",
+     "Genellikle numaralanmış cümlelerden biri sorulur."
+    ],
+    "anahtarNoktalar": [
+     "Bütün cümleler aynı konuya hizmet eder.",
+     "Bozan cümle çıkınca bütünlük artar.",
+     "Numaralı cümlelerden sapan aranır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "(I) Bal arıları, kovan içinde şaşırtıcı bir iş bölümüyle çalışır. (II) İşçi arılar besin toplar ve peteği onarır. (III) Kraliçe arı yumurta bırakarak nüfusu sürdürür. (IV) Arı sütü, günümüzde birçok kozmetik üründe kullanılır. (V) Erkek arılar ise yalnızca üreme döneminde işlev görür.\n\nBu parçada anlam akışını bozan cümle hangisidir?",
+     "secenekler": [
+      "IV.",
+      "I.",
+      "II.",
+      "III.",
+      "V."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçanın konusu kovandaki İŞ BÖLÜMÜDÜR. IV. cümle arı sütünün kozmetikte kullanımından söz ederek konudan kopar."
+    },
+    {
+     "soru": "(I) Deniz feneri, yüzyıllardır gemicilere yol gösterir. (II) Karanlıkta kıyının yerini belli ederek kazaları önler. (III) Işığının dönüşü, uzaktaki gemiler tarafından kolayca fark edilir. (IV) Bugün pek çok fener otomatik sistemlerle çalışır. (V) Deniz ürünleri, kıyı kentlerinin önemli bir geçim kaynağıdır.\n\nAnlam akışını bozan cümle aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "V.",
+      "I.",
+      "II.",
+      "III.",
+      "IV."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça deniz FENERİNİ anlatır; V. cümle deniz ürünlerinin geçim kaynağı oluşundan söz ederek konudan kopar."
+    },
+    {
+     "soru": "(I) Uyku, bedenin kendini onardığı temel bir süreçtir. (II) Yeterince uyunmadığında dikkat ve hafıza zayıflar. (III) Düzenli uyku, bağışıklığı da güçlendirir. (IV) Kahve, birçok insanın güne başlarken tercih ettiği bir içecektir. (V) Bu nedenle uyku düzenine özen göstermek sağlığı korur.\n\nAkışı bozan cümle hangisidir?",
+     "secenekler": [
+      "IV.",
+      "I.",
+      "II.",
+      "III.",
+      "V."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça UYKUNUN önemini anlatır; IV. cümle kahveden söz ederek konudan kopar ve akışı bozar."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-iki-paragrafa-bolme",
+   "baslik": "Parçayı İki Paragrafa Bölme",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Tek paragraf hâlinde verilen metnin, konu/düşünce DEĞİŞİMİNİN olduğu yerden iki paragrafa bölünmesi istenir.",
+    "icerik": [
+     "Bölme noktası, metnin BİR düşünceden başka bir düşünceye geçtiği cümledir.",
+     "İlk paragraf bir konuyu bitirir; ikinci paragraf yeni bir yöne/konuya başlar.",
+     "Genellikle numaralanmış cümleler arasından 'kaçıncı cümleden sonra' bölünmeli diye sorulur."
+    ],
+    "anahtarNoktalar": [
+     "Bölme, düşünce değişiminde olur.",
+     "İlk paragraf konuyu bitirir.",
+     "Numaralı cümleler arasında geçiş aranır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "(I) İnternet, bilgiye erişimi tarihte hiç olmadığı kadar hızlandırdı. (II) Artık bir tıkla dünyanın öbür ucundaki kaynağa ulaşabiliyoruz. (III) Ne var ki bu hız, bilgiyi denetlemeyi de zorlaştırdı. (IV) Yanlış bilgiler, doğrularla aynı hızda yayılıyor. (V) Bu yüzden bugün en önemli beceri, bilgiye ulaşmak değil onu süzmek.\n\nBu parça iki paragrafa bölünmek istense ikinci paragraf hangi cümleyle başlamalıdır?",
+     "secenekler": [
+      "III.",
+      "II.",
+      "IV.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-II internetin OLUMLU yönünü (hız) anlatır; III. cümle 'Ne var ki' ile OLUMSUZ yöne (denetim güçlüğü) geçer. Düşünce değişimi III'te olduğundan ikinci paragraf III ile başlamalıdır."
+    },
+    {
+     "soru": "(I) Göçmen kuşlar, her yıl binlerce kilometrelik yolculuklara çıkar. (II) Yönlerini güneşe, yıldızlara ve Dünya'nın manyetik alanına göre bulurlar. (III) Bu yolculuk sırasında sayısız tehlikeyle karşılaşırlar. (IV) İnsan da tarih boyunca büyük göçler yaşamıştır. (V) Kıtlık, savaş ve iklim, bu göçlerin başlıca nedenleri olmuştur.\n\nParça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlar?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III KUŞ göçünü anlatır; IV. cümle konuyu İNSAN göçüne çevirir. Konu değişimi IV'te olduğundan ikinci paragraf IV ile başlar."
+    },
+    {
+     "soru": "(I) Kahve, önce Etiyopya'da fark edilmiş bir bitkidir. (II) Buradan Yemen'e, oradan da tüm dünyaya yayılmıştır. (III) Zamanla kahvehaneler, birer sohbet ve kültür merkezine dönüşmüştür. (IV) Çay ise Uzak Doğu'da bambaşka bir geleneğin parçası olmuştur. (V) Japonya'da çay törenleri, adeta bir sanata dönüşmüştür.\n\nBu parça iki paragrafa bölünürse ikinci paragraf hangi cümleyle başlamalıdır?",
+     "secenekler": [
+      "IV.",
+      "II.",
+      "III.",
+      "V.",
+      "I."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I-III KAHVEYİ anlatır; IV. cümle 'Çay ise' diyerek yeni konuya (çay) geçer. İkinci paragraf IV ile başlamalıdır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-anlatim-bicimleri-2",
+   "baslik": "Anlatım Biçimleri ve Düşünceyi Geliştirme",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Açıklama, tartışma, betimleme, öyküleme anlatım biçimleri ile tanımlama, örnekleme, karşılaştırma, tanık gösterme, sayısal verilerden yararlanma gibi düşünceyi geliştirme yolları tanınır.",
+    "icerik": [
+     "Anlatım biçimleri: açıklama (bilgi verme), tartışma (karşıt görüş), betimleme (görüntü çizme), öyküleme (olay anlatma).",
+     "Düşünceyi geliştirme yolları: tanımlama, örnekleme, karşılaştırma, tanık gösterme (alıntı), sayısal veri, benzetme.",
+     "Bir parçada birden çok biçim/yol bir arada kullanılabilir."
+    ],
+    "anahtarNoktalar": [
+     "Açıklama/tartışma/betimleme/öyküleme.",
+     "Örnekleme, karşılaştırma, tanık gösterme, sayısal veri.",
+     "Birden çok yol bir arada olabilir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "“Sağlıklı beslenmek için sebze tüketmek çok önemlidir. Örneğin ıspanak demir, brokoli C vitamini bakımından zengindir. Havuç ise göz sağlığını destekler.” parçasında hangi düşünceyi geliştirme yolu kullanılmıştır?",
+     "secenekler": [
+      "Örnekleme",
+      "Tanık gösterme",
+      "Karşılaştırma",
+      "Sayısal veriden yararlanma",
+      "Benzetme"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Genel yargı (sebze önemlidir), ıspanak, brokoli, havuç gibi somut ÖRNEKLERLE desteklenmiştir; bu örneklemedir."
+    },
+    {
+     "soru": "“Ünlü düşünür, ‘Sorgulanmayan hayat yaşanmaya değmez.' demiştir. Gerçekten de düşünmeden geçen bir ömür, farkında olmadan tükenip gider.” parçasında ağır basan düşünceyi geliştirme yolu aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Tanık gösterme",
+      "Örnekleme",
+      "Sayısal veri",
+      "Karşılaştırma",
+      "Tanımlama"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Yazar, görüşünü bir düşünürden yaptığı ALINTIYLA (tanık göstererek) desteklemiştir."
+    },
+    {
+     "soru": "“Eski mahalle, dar sokakları, cumbalı ahşap evleri ve kaldırımlara taşan sardunyalarıyla insanı bir masalın içine çeker.” cümlesinde ağır basan anlatım biçimi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Betimleme",
+      "Öyküleme",
+      "Tartışma",
+      "Açıklama",
+      "Örnekleme"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Mahallenin görünümü (dar sokaklar, ahşap evler, sardunyalar) ayrıntılı biçimde göz önünde canlandırılmış; bu BETİMLEMEDİR."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-ana-dusunce-2",
+   "baslik": "Paragrafta Ana Düşünce",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Paragrafın vermek istediği asıl mesaj (ana düşünce/ana fikir) belirlenir; başlık, konu ve ana düşünce ayrımı yapılır.",
+    "icerik": [
+     "Ana düşünce, paragrafın tümüne yayılan ve yazarın okura ULAŞTIRMAK İSTEDİĞİ temel yargıdır.",
+     "Konu 'ne hakkında', ana düşünce 'bu konuda ne söylendiği' sorusunun yanıtıdır.",
+     "Ana düşünce çoğu kez giriş ya da sonuç cümlesinde yoğunlaşır ama paragrafın bütününden çıkarılır."
+    ],
+    "anahtarNoktalar": [
+     "Ana düşünce = yazarın asıl mesajı.",
+     "Konu 'ne', ana düşünce 'ne söylendiği'.",
+     "Bütünden çıkarılır; tek cümle değildir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Bir toplumu ayakta tutan, sahip olduğu zenginlikler değil, o zenginlikleri paylaşma biçimidir. En bereketli topraklar bile adaletsizce bölüşüldüğünde huzursuzluk doğurur; oysa az ama hakça paylaşılan bir ekmek, kavgayı değil dayanışmayı büyütür.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Bir toplumun huzuru, zenginliğin adil paylaşımına bağlıdır.",
+      "Bereketli topraklar her zaman zenginlik getirir.",
+      "Ekmek, insanların temel besinidir.",
+      "Toplumlar zenginleştikçe mutlu olur.",
+      "Paylaşmak, bireysel bir tercihtir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça boyunca vurgulanan, zenginliğin miktarının değil ADİL PAYLAŞIMININ huzuru sağladığıdır. Ana düşünce A'dır."
+    },
+    {
+     "soru": "Gerçek bir sanatçı, alkış için değil, iç dünyasındaki sesi duyurmak için üretir. Beğenilmeyi düşünerek yaratılan eser, kısa sürede unutulur; oysa yürekten çıkan eser, yıllara meydan okur.\n\nBu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Kalıcı sanat, beğeni kaygısıyla değil içtenlikle üretilendir.",
+      "Sanatçılar alkışlanmaktan hoşlanır.",
+      "Her eser eninde sonunda unutulur.",
+      "Sanat, yalnızca yetenekli kişilerin işidir.",
+      "Beğenilen eser her zaman kalıcıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, kalıcı sanatın alkış/beğeni kaygısıyla değil İÇTENLİKLE üretildiğini söyler; ana düşünce A'dır."
+    },
+    {
+     "soru": "Bir ülkenin geleceği, yeraltı kaynaklarında değil, iyi yetişmiş insanlarında saklıdır. Petrolü olmayan nice ülke, eğitime yaptığı yatırımla dünyanın en güçlü ekonomileri arasına girmiştir.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Bir ülkenin asıl zenginliği, iyi yetişmiş insan gücüdür.",
+      "Yeraltı kaynakları ekonomiyi belirleyen tek etkendir.",
+      "Petrolü olan ülkeler daima güçlüdür.",
+      "Eğitim, yalnızca zengin ülkelerin işidir.",
+      "Ekonomi, tümüyle şansa bağlıdır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, geleceğin yeraltı kaynaklarında değil İYİ YETİŞMİŞ İNSANDA olduğunu vurgular; ana düşünce A'dır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-yardimci-dusunce-2",
+   "baslik": "Paragrafta Yardımcı Düşünce",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Ana düşünceyi destekleyen yan (yardımcı) düşünceler ile paragrafta değinilmeyen düşüncelerin belirlenmesi istenir.",
+    "icerik": [
+     "Yardımcı düşünceler, ana düşünceyi açıklayan/örnekleyen/kanıtlayan yan yargılardır.",
+     "'Aşağıdakilerden hangisine değinilmemiştir?' sorusunda, paragrafta yer ALMAYAN düşünce aranır.",
+     "Paragrafta açıkça ya da dolaylı olarak yer alan her yargı yardımcı düşünce sayılır."
+    ],
+    "anahtarNoktalar": [
+     "Yardımcı düşünce ana düşünceyi destekler.",
+     "'Değinilmemiştir' → metinde yok olan.",
+     "Açık/dolaylı yer alan yardımcı sayılır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Kitap okumak, yalnızca bilgi edinmenin değil; hayal gücünü geliştirmenin, farklı yaşamlara tanık olmanın ve dili daha iyi kullanmanın da yoludur. Okuyan insan, kendini ve dünyayı daha derinlemesine anlar.\n\nBu parçada kitap okumanın yararları arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "İnsanın maddi kazancını artırması",
+      "Hayal gücünü geliştirmesi",
+      "Farklı yaşamları tanıtması",
+      "Dili daha iyi kullandırması",
+      "Dünyayı daha iyi anlatması"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada bilgi, hayal gücü, farklı yaşamlar, dil ve anlayıştan söz edilir; ancak MADDİ KAZANÇ artışına değinilmez."
+    },
+    {
+     "soru": "Düzenli spor; kalbi güçlendirir, uykuyu düzenler, kaygıyı azaltır ve kişinin kendine olan güvenini artırır. Kısacası spor, hem bedeni hem ruhu besler.\n\nBu parçada sporun yararları arasında aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "Sosyal çevreyi genişletmesi",
+      "Kalbi güçlendirmesi",
+      "Uykuyu düzenlemesi",
+      "Kaygıyı azaltması",
+      "Özgüveni artırması"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada kalp, uyku, kaygı ve özgüvenden söz edilir; SOSYAL ÇEVREYİ genişletmeye değinilmemiştir."
+    },
+    {
+     "soru": "Bir şehir, yalnızca binalardan oluşmaz; parkları, meydanları, insan ilişkileri ve kültürel yaşamıyla bir bütündür. İyi bir şehir, insanların yalnızca barındığı değil, mutlulukla yaşadığı yerdir.\n\nBu parçada şehirle ilgili aşağıdakilerden hangisine DEĞİNİLMEMİŞTİR?",
+     "secenekler": [
+      "Nüfusunun her yıl arttığına",
+      "Parkları ve meydanları olduğuna",
+      "İnsan ilişkilerini barındırdığına",
+      "Kültürel bir yaşamı olduğuna",
+      "İnsanların mutlulukla yaşayabildiği bir yer olması gerektiğine"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada parklar, meydanlar, insan ilişkileri, kültür ve mutluluktan söz edilir; NÜFUS ARTIŞINA değinilmemiştir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-analiz",
+   "baslik": "Paragrafta Analiz",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Paragrafın yapısı, cümleler arası ilişkiler, yazarın tutumu ve anlatımın özellikleri çözümlenir.",
+    "icerik": [
+     "Analizde paragrafın giriş-gelişme-sonuç yapısı, cümleler arası neden-sonuç/karşıtlık ilişkileri incelenir.",
+     "Yazarın tutumu (yansız, eleştirel, öğütleyici, savunucu) ve anlatım özellikleri (yalın, sanatlı) belirlenir.",
+     "'Bu parçayla ilgili aşağıdakilerden hangisi söylenemez?' biçiminde sorulabilir."
+    ],
+    "anahtarNoktalar": [
+     "Yapı ve cümle ilişkileri çözümlenir.",
+     "Yazarın tutumu okunur.",
+     "'Söylenemez' seçeneği metinle çelişir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Bilim, kesin ve değişmez doğruların değil, sürekli sınanan bilgilerin alanıdır. Bugün doğru sandığımız pek çok şey, yarın yeni kanıtlarla değişebilir. İşte bu yüzden bilimsel bilgi, katı bir tapınak değil, sürekli inşa edilen bir yapıdır.\n\nBu parçayla ilgili aşağıdakilerden hangisi SÖYLENEMEZ?",
+     "secenekler": [
+      "Bilimsel bilginin değişmez ve kesin olduğu savunulmaktadır.",
+      "Benzetmeden yararlanılmıştır.",
+      "Bilginin sınanabilirliği vurgulanmıştır.",
+      "Yazar açıklayıcı bir anlatım kullanmıştır.",
+      "Bilginin değişebilirliği örneklenmiştir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, bilginin DEĞİŞEBİLİR olduğunu savunur; 'değişmez ve kesin' yargısı bununla çelişir, söylenemez. 'Tapınak/yapı' benzetmesi de kullanılmıştır."
+    },
+    {
+     "soru": "Yazar, kısa cümlelerle ve gündelik sözcüklerle yazar; okuru hiç zorlamadan, âdeta elinden tutup metnin içinde gezdirir. Onu okurken bir arkadaşınızın sizinle sohbet ettiğini sanırsınız.\n\nBu parçada yazarın anlatımıyla ilgili aşağıdakilerden hangisi söylenemez?",
+     "secenekler": [
+      "Ağır ve sanatlı bir dil kullandığı",
+      "Yalın bir dil kullandığı",
+      "Okuru zorlamadığı",
+      "Samimi bir üsluba sahip olduğu",
+      "Gündelik sözcükleri tercih ettiği"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, yazarın YALIN ve samimi bir dil kullandığını söyler; 'ağır ve sanatlı bir dil' yargısı bununla çelişir, söylenemez."
+    },
+    {
+     "soru": "Şehirdeki son yeşil alanın da betona teslim edilmesi, yalnızca bir park kaybı değildir. Çocukların oyun alanı, kuşların sığınağı, mahallelinin nefes borusu bir anda yok olmuştur. Peki bu 'gelişme' kimin gelişmesidir?\n\nBu parçadan yazarın tutumuyla ilgili aşağıdakilerden hangisi çıkarılır?",
+     "secenekler": [
+      "Yeşil alanların yok edilmesine eleştirel yaklaşmaktadır.",
+      "Kentleşmeyi tümüyle desteklemektedir.",
+      "Konuya kayıtsız ve yansızdır.",
+      "Betonlaşmayı bir gelişme olarak övmektedir.",
+      "Parkların gereksiz olduğunu düşünmektedir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Yazar, yeşil alanın yok edilmesini sorgulayıp 'kimin gelişmesi?' diye sorarak ELEŞTİREL bir tutum sergiler."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-olusturma",
+   "baslik": "Paragraf Oluşturma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Karışık verilen cümlelerin anlamlı ve akıcı bir paragraf oluşturacak biçimde sıralanması istenir.",
+    "icerik": [
+     "Giriş cümlesi konuyu tanıtır; genellikle bağlaç/zamir içermeyen, bağımsız bir cümledir.",
+     "Cümleler arası 'bu, o, bu yüzden, ayrıca' gibi bağlayıcılar sıralamada ipucu verir.",
+     "Sonuç cümlesi düşünceyi bağlar; çoğunlukla 'kısacası, sonuçta, bu nedenle' ile başlar."
+    ],
+    "anahtarNoktalar": [
+     "Giriş cümlesi bağımsızdır.",
+     "Bağlaç/zamir sıralamada ipucu.",
+     "Sonuç cümlesi düşünceyi bağlar."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "(I) Bu yüzden her yeni kitap, onun için keşfedilmemiş bir kıtaydı. (II) Küçük Ela, okumayı öğrendiği günden beri kitaplara doyamıyordu. (III) Sayfaları çevirdikçe yeni dünyaların kapısını araladığını hissediyordu.\n\nBu cümlelerle anlamlı bir paragraf oluşturulduğunda doğru sıralama aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "I - II - III",
+      "III - I - II",
+      "II - I - III",
+      "I - III - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş, bağımsız II. cümledir (Ela'yı tanıtır). III onu geliştirir; I ise 'Bu yüzden' ile sonucu bağlar. Sıralama II-III-I'dir."
+    },
+    {
+     "soru": "(I) Ancak bu güç, doğru kullanılmadığında büyük zararlara da yol açabilir. (II) Ateş, insanlık tarihinin en önemli buluşlarından biridir. (III) İnsana ısınma, pişirme ve aydınlanma gibi sayısız olanak sağlamıştır.\n\nAnlamlı paragraf için doğru sıralama hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "II - I - III",
+      "III - II - I",
+      "I - II - III",
+      "III - I - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir (ateşi tanıtır); III olanakları sıralar; I 'Ancak' ile karşıt yönü (zarar) ekler. Sıralama II-III-I'dir."
+    },
+    {
+     "soru": "(I) Sonuçta iyi bir dinleyici olmak, konuşmaktan çok daha değerli bir beceridir. (II) Çoğu insan konuşmayı sever ama gerçekten dinlemeyi pek azı bilir. (III) Oysa dinlemek, karşımızdakini anlamanın ilk ve en önemli adımıdır.\n\nDoğru sıralama aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "II - III - I",
+      "I - II - III",
+      "III - II - I",
+      "II - I - III",
+      "III - I - II"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Giriş bağımsız II'dir; III 'Oysa' ile dinlemenin önemini açar; I 'Sonuçta' ile yargıyı bağlar. Sıralama II-III-I'dir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-yer-degistirme",
+   "baslik": "Paragrafta Yer Değiştirme",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Bir paragrafta anlam akışını bozan cümlenin, hangi cümleyle YER DEĞİŞTİRİRSE akışın düzeleceğinin bulunması istenir.",
+    "icerik": [
+     "Önce akışı bozan/yanlış yerdeki cümle belirlenir; sonra doğru konumu bulunur.",
+     "Cümledeki bağlaç ve zamirler (bu, oysa, ayrıca) doğru yeri işaret eder.",
+     "Yer değiştirme sonrası paragrafın mantık akışı sorunsuz olmalıdır."
+    ],
+    "anahtarNoktalar": [
+     "Önce yanlış yerdeki cümle bulunur.",
+     "Bağlaç/zamir doğru yeri gösterir.",
+     "Değişim sonrası akış düzelmeli."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "(I) Arılar, çiçekten çiçeğe konarak bal yapar. (II) Bu döngü, doğadaki dengenin küçük ama önemli bir parçasıdır. (III) Bu sırada farkında olmadan poleni de taşıyıp bitkilerin çoğalmasını sağlar. (IV) Böylece hem bal üretir hem de doğaya hizmet eder.\n\nBu parçada anlam akışının düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "II ve III",
+      "I ve II",
+      "I ve IV",
+      "III ve IV",
+      "II ve IV"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "III. cümle ('Bu sırada poleni taşır') I'den hemen sonra gelmelidir; II ise sonuç cümlesidir. II ile III yer değiştirdiğinde akış (I-III-IV-II) düzelir."
+    },
+    {
+     "soru": "(I) Kar yağışı, sabaha karşı bütün şehri beyaza bürümüştü. (II) Çocuklar bu manzarayı görünce sevinçle sokağa fırladı. (III) Kısa sürede her yer kartopu oyunlarıyla şenlendi. (IV) Pencereden dışarı bakanlar, bembeyaz sokakları hayranlıkla izliyordu.\n\nAnlam akışının düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "III ve IV",
+      "I ve II",
+      "II ve III",
+      "I ve IV",
+      "II ve IV"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "IV. cümle (pencereden manzarayı izlemek) çocukların sokağa fırlamasından ÖNCE gelmelidir; III ise oyunların sonucudur. IV ile III yer değiştirince akış düzelir."
+    },
+    {
+     "soru": "(I) Deniz, sabah sakin ve durgundu. (II) Balıkçılar da bu yüzden erkenden açılmıştı. (III) Öğleye doğru rüzgâr çıktı ve dalgalar yükseldi. (IV) Bu durgunluk, teknelerin rahatça ilerlemesini sağlıyordu.\n\nAkışın düzelmesi için hangi iki cümle yer değiştirmelidir?",
+     "secenekler": [
+      "II ve IV",
+      "I ve II",
+      "III ve IV",
+      "I ve III",
+      "II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "IV. cümle ('Bu durgunluk...') denizin sakinliğini (I) tamamlar ve balıkçıların açılmasından (II) ÖNCE gelmelidir. II ile IV yer değiştirince akış I-IV-II-III olur, düzelir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-coklu",
+   "baslik": "Çoklu Paragraf",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Aynı metnin okunup birden çok soruyla (ana düşünce, yardımcı düşünce, çıkarım vb.) değerlendirildiği uzun parça soruları çözülür.",
+    "icerik": [
+     "Uzun bir metin verilir; art arda birden çok soru (ana düşünce, çıkarım, sözcük anlamı) sorulur.",
+     "Metin bir kez dikkatle okunur; her soru için ilgili bölüme geri dönülür.",
+     "Soru kökü ('çıkarılamaz', 'ana düşünce', 'hangi anlamda') doğru okunmalıdır."
+    ],
+    "anahtarNoktalar": [
+     "Bir metin, çok soru.",
+     "Metne geri dönerek çözülür.",
+     "Soru kökü dikkatle okunur."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Bir toplumda okuma alışkanlığının yaygınlaşması kolay değildir. Okumak, önce evde başlayan; sonra okulda beslenen uzun bir süreçtir. Kitapla erken tanışan çocuk, ilerleyen yıllarda okumayı bir yük değil, bir haz olarak görür. Bu yüzden okuyan bir toplum yaratmak, tek tek okuyan bireyler yetiştirmekle mümkündür.\n\nBu parçadan aşağıdakilerden hangisi ÇIKARILAMAZ?",
+     "secenekler": [
+      "Okuma alışkanlığı yalnızca okulda kazanılır.",
+      "Okuma alışkanlığı erken yaşta temellenir.",
+      "Okumak zamanla bir zevke dönüşebilir.",
+      "Toplumsal okuma, bireysel okumayla başlar.",
+      "Okuma alışkanlığı kısa sürede kazanılmaz."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, okumanın 'önce evde başlayıp okulda beslendiğini' söyler; 'yalnızca okulda' yargısı bununla çelişir, çıkarılamaz."
+    },
+    {
+     "soru": "(Aynı parçaya göre) Bu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Okuyan bir toplum, erken yaşta ve tek tek yetişen okur bireylerle oluşur.",
+      "Okullar okuma alışkanlığından sorumlu değildir.",
+      "Kitaplar çocuklar için zararlıdır.",
+      "Okuma alışkanlığı doğuştan gelir.",
+      "Toplumlar okumadan da gelişebilir."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça boyunca vurgulanan, okuyan toplumun erken yaşta başlayan, birey birey yetişen okurlarla oluştuğudur; ana düşünce A'dır."
+    },
+    {
+     "soru": "(Aynı parçaya göre) Parçada geçen “haz” sözcüğü aşağıdakilerden hangisiyle anlamca en yakındır?",
+     "secenekler": [
+      "Zevk",
+      "Yük",
+      "Görev",
+      "Zorunluluk",
+      "Alışkanlık"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parçada okumanın 'yük değil haz' olarak görülmesinden söz edilir; 'haz' sözcüğü ZEVK anlamındadır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-onculu-sorular",
+   "baslik": "Öncüllü Sorular",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Numaralı öncüller (I, II, III...) verilir; bunlardan hangisinin/hangilerinin doğru olduğu ya da parçayla uyuştuğu belirlenir.",
+    "icerik": [
+     "Her öncül tek tek metinle karşılaştırılır; metinde dayanağı olan öncül doğrudur.",
+     "'I ve II', 'yalnız III' gibi seçenekler, doğru öncüllerin birleşiminden oluşur.",
+     "Metinde yer almayan ya da metinle çelişen öncül elenmelidir."
+    ],
+    "anahtarNoktalar": [
+     "Her öncül metinle sınanır.",
+     "Doğru öncüller birleştirilir.",
+     "Dayanaksız/çelişen öncül elenir."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Yenilenebilir enerji kaynakları, tükenmeyen ve çevreyi kirletmeyen kaynaklardır. Güneş ve rüzgâr bunların başında gelir. Bu kaynaklar, dışa bağımlılığı azaltmaları bakımından da önemlidir.\n\nBu parçadan,\nI. Yenilenebilir enerji çevre dostudur.\nII. Güneş ve rüzgâr yenilenebilir kaynaklardandır.\nIII. Yenilenebilir enerji, dışa bağımlılığı artırır.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I ve II parçada açıkça yer alır. III ise metinle çelişir (dışa bağımlılığı AZALTIR denir). Doğru: I ve II."
+    },
+    {
+     "soru": "Uyku düzeni bozulan kişilerde dikkat dağınıklığı ve unutkanlık görülür. Ayrıca uzun süreli uykusuzluk, bağışıklığı da zayıflatır.\n\nBu parçadan,\nI. Uykusuzluk dikkati olumsuz etkiler.\nII. Uykusuzluk bağışıklığı güçlendirir.\nIII. Uyku düzeni hafızayı etkiler.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve III",
+      "Yalnız II",
+      "I ve II",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I (dikkat) ve III (unutkanlık = hafıza) parçada yer alır. II ise metinle çelişir (bağışıklığı ZAYIFLATIR). Doğru: I ve III."
+    },
+    {
+     "soru": "Arı, çiçeklerden bal yaparken poleni de taşır ve bitkilerin çoğalmasına yardım eder. Bu nedenle arıların azalması, tarımı doğrudan tehdit eder.\n\nBu parçadan,\nI. Arılar bitkilerin üremesine katkı sağlar.\nII. Arıların azalması tarımı etkiler.\nIII. Arılar yalnızca bal üretir.\nöncüllerinden hangileri çıkarılabilir?",
+     "secenekler": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız III",
+      "II ve III",
+      "I, II ve III"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "I (üremeye katkı) ve II (tarımı tehdit) parçada yer alır. III metinle çelişir (arı hem bal yapar hem polen taşır). Doğru: I ve II."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-karma",
+   "baslik": "Karma Paragraf",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Farklı paragraf soru tiplerinin (ana düşünce, akışı bozan cümle, tamamlama, çıkarım) bir arada bulunduğu karışık alıştırmalar çözülür.",
+    "icerik": [
+     "Karma alıştırmalarda her soru, kendi tipine göre çözülür; soru kökü belirleyicidir.",
+     "Ana düşünce, yardımcı düşünce, tamamlama, akış ve çıkarım tipleri bir arada gelir.",
+     "Bol pratik, soru tipini hızlı tanımayı sağlar."
+    ],
+    "anahtarNoktalar": [
+     "Her soru kendi tipine göre.",
+     "Soru kökü belirleyici.",
+     "Pratik, tip tanımayı hızlandırır."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Bir ustanın elinden çıkan işi, aceleci birinin işinden ayıran şey zamandır. Usta, işine zaman ayırır; her ayrıntıyı gözden geçirir. ---- Bu yüzden ustalık, hızdan çok sabrın ürünüdür.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Aceleci kişi ise bitirmeyi, ustanın ise iyi yapmayı önemser.",
+      "Herkes bir gün usta olabilir.",
+      "Hız, her işte en önemli ölçüttür.",
+      "Zaman, işin kalitesini düşürür.",
+      "Ustalar da bazen acele eder."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluğun önü ustayı, sonu 'sabrın ürünü' yargısını verir; araya usta-aceleci KARŞITLIĞINI kuran A gelmelidir."
+    },
+    {
+     "soru": "(I) Deniz kaplumbağaları, yumurtlamak için doğdukları kumsala döner. (II) Bu yolculuk yüzlerce kilometre sürebilir. (III) Yönlerini Dünya'nın manyetik alanıyla bulurlar. (IV) Kumsallardaki ışık kirliliği, yavruların yönünü şaşırtır. (V) Plastik kirliliği de okyanuslardaki en büyük tehditlerden biridir.\n\nBu parçada anlam akışını bozan cümle hangisidir?",
+     "secenekler": [
+      "V.",
+      "I.",
+      "II.",
+      "III.",
+      "IV."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, kaplumbağaların YÖN BULMASI ve yuvaya dönüşünü anlatır; V. cümle genel plastik kirliliğinden söz ederek konudan kopar."
+    },
+    {
+     "soru": "Sanat eseri, yapıldığı çağın tanığıdır. Bir tabloya baktığımızda yalnızca renkleri değil, o dönemin yaşam biçimini, inançlarını ve acılarını da görürüz.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+     "secenekler": [
+      "Sanat eserleri, ait oldukları dönemi yansıtır.",
+      "Tablolar yalnızca renklerden oluşur.",
+      "Sanat, geçmişten bağımsızdır.",
+      "Her sanatçı acı çeker.",
+      "Sanat eserleri anlaşılması zor yapıtlardır."
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, sanat eserinin çağını (yaşam, inanç, acı) yansıttığını söyler; ana düşünce A'dır."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-cumle-yerlestirme",
+   "baslik": "Cümle Yerleştirme",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Paragraftan çıkarılmış bir cümlenin, numaralı boşluklardan hangisine getirilmesi gerektiğinin bulunması istenir.",
+    "icerik": [
+     "Verilen cümlenin önündeki ve sonundaki cümlelerle anlam-dil bağı kurulur.",
+     "Cümledeki bağlaç ve zamirler (bu, oysa, ayrıca, çünkü) doğru boşluğu işaret eder.",
+     "Cümle yerleştirildiğinde önü ve sonuyla akış bozulmamalıdır."
+    ],
+    "anahtarNoktalar": [
+     "Cümlenin önü-sonu bağı kurulur.",
+     "Bağlaç/zamir boşluğu gösterir.",
+     "Yerleştirince akış bozulmamalı."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Ne var ki bu ilgi, çoğu zaman kalıcı bir alışkanlığa dönüşmez.” cümlesi getirilmelidir?\n\n(I) Yeni yılda birçok insan spora başlamaya karar verir. (II) Salonlar, ocak ayında dolup taşar. (III) İlk haftalarda herkes büyük bir hevesle çalışır. (IV) Şubatın sonuna gelindiğinde salonlar yeniden boşalır. (V)",
+     "secenekler": [
+      "IV. yerin başına (III ile IV arasına)",
+      "I. yere",
+      "II. yere",
+      "V. yere",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Getirilecek cümle 'Ne var ki bu ilgi kalıcı olmaz' der; hevesli başlangıç (III) ile salonların boşalması (IV) ARASINA gelmelidir, karşıtlık ilişkisini kurar."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Oysa gerçek dostluk, iyi günde değil zor günde belli olur.” cümlesi getirilmelidir?\n\n(I) Herkesin çevresinde pek çok tanıdık vardır. (II) İşler yolundayken bu kalabalık hiç eksilmez. (III) Ama bir sıkıntı baş gösterdiğinde çevre bir anda seyrekleşir. (IV) Geriye yalnızca gerçekten değer verenler kalır.",
+     "secenekler": [
+      "II ile III arasına",
+      "I. yere",
+      "III ile IV arasına",
+      "IV. yerin sonuna",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Oysa gerçek dostluk zor günde belli olur' cümlesi, iyi gündeki kalabalık (II) ile sıkıntıdaki seyrekleşme (III) ARASINA gelerek karşıtlığı kurar."
+    },
+    {
+     "soru": "Aşağıdaki parçada numaralanmış yerlerden hangisine “Bu yüzden küçük bir tohum, koca bir ormanın başlangıcı olabilir.” cümlesi getirilmelidir?\n\n(I) Doğada hiçbir şey tek başına var olmaz. (II) Bir tohum, uygun toprak ve suyla filizlenir. (III) Filiz zamanla fidana, fidan ağaca dönüşür. (IV) Ağaçlar tohumlarını yayar ve döngü yeniden başlar. (V)",
+     "secenekler": [
+      "V. yere",
+      "I. yere",
+      "II. yere",
+      "III. yere",
+      "I ile II arasına"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "'Bu yüzden küçük bir tohum koca bir ormanın başlangıcı olabilir' cümlesi, döngünün anlatıldığı IV'ten sonra (V) SONUÇ olarak gelmelidir."
+    }
+   ]
+  },
+  {
+   "id": "turkce-paragraf-bosluk-doldurma",
+   "baslik": "Boşluk Doldurma",
+   "grup": "paragraf",
+   "anlatim": {
+    "ozet": "Paragrafın bütünlüğünü koruyacak biçimde boş bırakılan yer(ler)e uygun cümle ya da ifadeyi getirme becerisi ölçülür.",
+    "icerik": [
+     "Boşluk paragrafın giriş, gelişme ya da sonuç bölümünde olabilir; her birinin işlevi farklıdır.",
+     "Giriş boşluğu konuyu tanıtmalı; gelişme boşluğu düşünceyi ilerletmeli; sonuç boşluğu bağlamalıdır.",
+     "Getirilecek ifade, önü ve sonuyla hem anlam hem dil yönünden uyumlu olmalıdır."
+    ],
+    "anahtarNoktalar": [
+     "Boşluğun bölümdeki işlevi belirlenir.",
+     "Giriş tanıtır, sonuç bağlar.",
+     "Önü-sonuyla uyum şart."
+    ]
+   },
+   "sorular": [
+    {
+     "soru": "----. Bir orkestrada her çalgı kendi sesini korur; ama hepsi bir araya geldiğinde tek bir uyum doğar. İşte toplum da böyle bir uyumdur: farklılıklar, doğru yönetildiğinde zenginliğe dönüşür.\n\nBu parçanın başına düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "Birlik, farklılıkların yok edilmesi değil, uyumla bir araya gelmesidir",
+      "Toplumda herkesin aynı düşünmesi gerekir",
+      "Farklılıklar her zaman çatışma doğurur",
+      "Bir orkestrada tek bir çalgı yeterlidir",
+      "Uyum, ancak benzer insanlar arasında kurulur"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Parça, farklılıkların uyumla zenginliğe dönüştüğünü örnekler; giriş cümlesi bu ana düşünceyi veren A olmalıdır. Diğerleri örnekle çelişir."
+    },
+    {
+     "soru": "Kitap okumak, bir kas gibidir; ----. Düzenli okuyan biri, zamanla daha hızlı kavrar, daha derin düşünür. Bırakıldığında ise bu beceri yavaş yavaş körelir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "çalıştırıldıkça güçlenir, ihmal edildikçe zayıflar",
+      "herkeste aynı biçimde gelişir",
+      "yalnızca çocuklukta gelişebilir",
+      "bir kez kazanılınca hiç kaybolmaz",
+      "yaşla birlikte kendiliğinden artar"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluktan sonra 'düzenli okuyan gelişir, bırakan köreltir' denir; kas benzetmesine uygun ve bu yargıyı özetleyen A gelmelidir."
+    },
+    {
+     "soru": "Başarılı insanların çoğu, başarısızlıktan korkmaz; ----. Onlar için her yanılgı, bir sonraki denemenin yol göstericisidir. Kısacası başarı, düşmemekte değil, her düşüşten sonra kalkabilmektedir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+     "secenekler": [
+      "tam tersine, onu öğrenmenin bir parçası olarak görür",
+      "başarısızlığı bir son olarak kabul eder",
+      "denemekten büsbütün vazgeçer",
+      "hatalarını başkalarında arar",
+      "yalnızca şansına güvenir"
+     ],
+     "dogruIndex": 0,
+     "aciklama": "Boşluğun önünde 'korkmaz', sonunda 'her yanılgı yol gösterici' denir; bu akışa 'onu öğrenmenin parçası olarak görür' (A) uyar."
+    }
+   ]
   }
  ]
 }
