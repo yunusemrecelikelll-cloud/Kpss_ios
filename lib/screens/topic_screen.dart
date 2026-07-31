@@ -898,51 +898,8 @@ class _SummaryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DsCard(
-      accent: colors.violet,
-      padding: const EdgeInsets.all(18),
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          colors.violet.withValues(alpha: colors.isLight ? 0.16 : 0.24),
-          colors.rose.withValues(alpha: colors.isLight ? 0.08 : 0.14),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          DsIconBadge(emoji: '💡', color: colors.violet, size: 42, glow: false),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '📌 ÖZET',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 1.1,
-                    color: colors.violetL,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  text,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 15,
-                    height: 1.35,
-                    color: colors.text,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+    // Özet de not defteri sayfası (kullanıcı isteği: bütün anlatım not defteri).
+    return _NotSayfasi(emoji: '📌', text: 'ÖZET\n$text', colors: colors, kalin: true);
   }
 }
 
@@ -955,40 +912,10 @@ class _ParagraphCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final palette = [colors.violet, colors.mint, colors.gold, colors.rose];
-    final accent = palette[index % palette.length];
     final emoji = _kParagraphEmojis[index % _kParagraphEmojis.length];
-
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: accent.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: accent.withValues(alpha: 0.22)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 30,
-            height: 30,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: accent.withValues(alpha: 0.18),
-              shape: BoxShape.circle,
-            ),
-            child: Text(emoji, style: const TextStyle(fontSize: 15)),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 14, height: 1.45, color: colors.text),
-            ),
-          ),
-        ],
-      ),
-    );
+    // Kullanıcı isteği: konu anlatımı NOT DEFTERİ sayfaları gibi olsun; yazıya
+    // göre büyür. (Akılda Kalıcı ekranıyla aynı "kâğıt" dili.)
+    return _NotSayfasi(emoji: emoji, text: text, colors: colors);
   }
 }
 
@@ -1019,49 +946,144 @@ class _KeyPointCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final palette = [colors.gold, colors.mint, colors.violet, colors.rose];
-    final accent = palette[index % palette.length];
-
     final split = _splitLeadingEmoji(text);
     final emoji = split?.$1 ?? _kKeyPointFallbackEmojis[index % _kKeyPointFallbackEmojis.length];
     final label = split?.$2 ?? text;
+    return _NotSayfasi(emoji: emoji, text: label, colors: colors, kalin: true);
+  }
+}
+
+/// Konu anlatımını NOT DEFTERİ SAYFASI gibi gösteren kart (kullanıcı isteği):
+/// kâğıt yüzey, üstte spiral delikleri, solda kırmızı marj çizgisi ve arka
+/// planda soluk çizgili satırlar. Metin uzadıkça sayfa büyür. Renkler temaya
+/// uyarlanır (açık: krem kâğıt + mavi çizgi; koyu: koyu yüzey).
+class _NotSayfasi extends StatelessWidget {
+  final String emoji;
+  final String text;
+  final KpssColors colors;
+  final bool kalin;
+  const _NotSayfasi({
+    required this.emoji,
+    required this.text,
+    required this.colors,
+    this.kalin = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    final kagit = c.isLight ? const Color(0xFFFFFDF4) : c.bg2;
+    final cizgi = c.isLight
+        ? const Color(0xFF9AB4D4).withValues(alpha: 0.30)
+        : c.border.withValues(alpha: 0.55);
+    final marj = const Color(0xFFEF6C6C).withValues(alpha: 0.55);
+    final ink = c.isLight ? const Color(0xFF2B3A55) : c.text;
+    const fontSize = 14.5;
+    const satir = fontSize * 1.6;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       decoration: BoxDecoration(
-        color: accent.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: accent.withValues(alpha: 0.28)),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 32,
-            height: 32,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: accent.withValues(alpha: 0.20),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(emoji, style: const TextStyle(fontSize: 16)),
+        color: kagit,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: c.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: c.isLight ? 0.10 : 0.30),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
           ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              label,
-              style: TextStyle(
-                fontSize: 13.5,
-                fontWeight: FontWeight.w600,
-                height: 1.4,
-                color: colors.text,
-              ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Spiral cilt: üstte küçük delikler.
+          Container(
+            height: 16,
+            color: c.isLight
+                ? const Color(0xFFF0ECDC)
+                : Colors.white.withValues(alpha: 0.04),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (var i = 0; i < 12; i++)
+                  Container(
+                    width: 7,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: c.bg.withValues(alpha: 0.9),
+                      border: Border.all(color: c.border),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+          CustomPaint(
+            painter: _DefterCizgileriPainter(
+                cizgi: cizgi, marj: marj, marjX: 34, satir: satir),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(44, 10, 14, 12),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      fontSize: fontSize,
+                      height: 1.6,
+                      fontWeight: kalin ? FontWeight.w700 : FontWeight.w500,
+                      color: ink,
+                    ),
+                  ),
+                ),
+                // Emoji, kırmızı marjın solunda küçük bir işaret gibi durur.
+                Positioned(
+                  left: 8,
+                  top: 8,
+                  child: Text(emoji, style: const TextStyle(fontSize: 16)),
+                ),
+              ],
             ),
           ),
         ],
       ),
     );
   }
+}
+
+/// Not defteri kâğıdının arka planı: soluk yatay satır çizgileri + solda dikey
+/// kırmızı marj çizgisi.
+class _DefterCizgileriPainter extends CustomPainter {
+  final Color cizgi;
+  final Color marj;
+  final double marjX;
+  final double satir;
+  const _DefterCizgileriPainter({
+    required this.cizgi,
+    required this.marj,
+    required this.marjX,
+    required this.satir,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Paint()
+      ..color = cizgi
+      ..strokeWidth = 1;
+    // İlk satırın altından başlayarak metin satır yüksekliğiyle uyumlu çizgiler.
+    for (var y = 10 + satir; y < size.height; y += satir) {
+      canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
+    }
+    final mp = Paint()
+      ..color = marj
+      ..strokeWidth = 1.4;
+    canvas.drawLine(Offset(marjX, 0), Offset(marjX, size.height), mp);
+  }
+
+  @override
+  bool shouldRepaint(covariant _DefterCizgileriPainter old) =>
+      old.cizgi != cizgi || old.marj != marj || old.marjX != marjX || old.satir != satir;
 }
 
 /// Konu ekranında ilgili dersin hocalarını gösteren kart — bir hocaya
