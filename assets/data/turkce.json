@@ -970,54 +970,6 @@
      "aciklama": "Bu seçenek, vokallerin üretilme şeklinin sesin niteliğini etkilemesini doğru olarak ifade eder."
     },
     {
-     "soru": "Aşağıdaki paragrafın anlamını ve içeriğini açıklamaya çalışın. Paragraf, ses bilgisinin temel kavramlarını ve sesin insan duyu organlarıyla algılanışını açıklamaktadır. Paragrafın başlangıcında, sesin insan duyu organlarının algılama yeteneklerine dayalı olarak oluştuğunu belirtmektedir. Ardından, sesin temel kavramlarını ele almasıyla ilgili olarak, sesin frekansı, amplitüdü ve titreşiminin insan duyu organlarıyla algılanışını açıklamaktadır. Paragrafın sonuna doğru, sesin insan duyu organlarıyla algılanışının etkileyen faktörleri açıklamaktadır. Paragrafın son cümlesinde, sesin insan duyu organlarıyla algılanışının önemini vurgulamaktadır.",
-     "secenekler": [
-      "Paragraf, sesin insan duyu organlarıyla algılanışını açıklamaktadır. Sesin insan duyu organlarıyla algılanışının temel kavramları, frekans, amplitüd ve titreşimdir.",
-      "Paragraf, sesin insan duyu organlarıyla algılanışını açıklamaktadır. Sesin insan duyu organlarıyla algılanışının temel kavramları, sesin frekansı, amplitüdü ve titreşimidir.",
-      "Paragraf, sesin insan duyu organlarıyla algılanışını açıklamaktadır. Sesin insan duyu organlarıyla algılanışının temel kavramları, sesin frekansı, amplitüdü ve titreşiminin insan duyu organlarıyla algılanışını etkileyen faktörlerdir.",
-      "Paragraf, sesin insan duyu organlarıyla algılanışını açıklamaktadır. Sesin insan duyu organlarıyla algılanışının temel kavramları, sesin titreşimini ve amplitüdünü açıklamaktadır.",
-      "Paragraf, sesin insan duyu organlarıyla algılanışını açıklamaktadır. Sesin insan duyu organlarıyla algılanışının temel kavramları, sesin frekansıdır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer B seçeneğini seçen kullanıcılar, paragrafın içinde yer alan sesin temel kavramlarını açıklamaktadır. Kullanıcılar, paragrafın içeriğini ve anlamını doğru bir şekilde açıklamaktadır."
-    },
-    {
-     "soru": "Ses bilgisi, dilbilgisi teorisi açısından önemli bir konudur. Ses bilgisi, dilbilgisinde sesler arasındaki ilişkileri inceleyen bir alt disiplin olarak kabul edilir. Ses bilgisi, dilbilgisinde seslerin nasıl bir araya gelerek kelimeleri oluşturduğunu ve bu kelimelerin nasıl bir anlam ifade ettiğini inceleyen bir disiplindir. Ses bilgisi, dilbilgisinin bir parçasıdır ve dilbilgisinin anlaşılabilmesi için gerekli bir araçtır. İşte bu nedenlerden ötürü, ses bilgisi, dilbilgisinin önemli bir parçasıdır.",
-     "secenekler": [
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır.",
-      "Ses bilgisi, sadece kelime dağarcığının oluşturulmasına yardımcı olur.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır.",
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır ve dilbilgisinin anlaşılabilmesi için gerekli bir araçtır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen öğrenciler, ses bilgisinin dilbilgisinin anlaşılabilmesi için gerekli bir araç olduğunu ve aynı zamanda dilbilgisinin önemli bir parçası olduğunu bilmeleri gerekir."
-    },
-    {
-     "soru": "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır. Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır. Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır.",
-     "secenekler": [
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır.",
-      "Ses bilgisi, sadece kelime dağarcığının oluşturulmasına yardımcı olur.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır.",
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır ve dilbilgisinin anlaşılabilmesi için gerekli bir araçtır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen öğrenciler, ses bilgisinin dilbilgisinin anlaşılabilmesi için gerekli bir araç olduğunu ve aynı zamanda dilbilgisinin önemli bir parçası olduğunu bilmeleri gerekir."
-    },
-    {
-     "soru": "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır. Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır. Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır. İşte bu nedenlerden ötürü, ses bilgisi, dilbilgisinin önemli bir parçasıdır. İşte bu nedenlerden ötürü, ses bilgisi, dilbilgisinin önemli bir parçasıdır.",
-     "secenekler": [
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır.",
-      "Ses bilgisi, sadece kelime dağarcığının oluşturulmasına yardımcı olur.",
-      "Ses bilgisi, dilbilgisinin anlaşılabilmesi için gerekli bir araçtır ve aynı zamanda dilbilgisinin önemli bir parçasıdır.",
-      "Ses bilgisi, sadece dilbilgisinin bir parçasıdır ve dilbilgisinin anlaşılabilmesi için gerekli bir araçtır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen öğrenciler, ses bilgisinin dilbilgisinin anlaşılabilmesi için gerekli bir araç olduğunu ve aynı zamanda dilbilgisinin önemli bir parçası olduğunu bilmeleri gerekir."
-    },
-    {
      "soru": "Aşağıdaki paragrafın boşluğa uygun düşen sözcüğü hangisidir? 'Ünlü yazarın romanı, okurlar tarafından büyük bir ilgiyle karşılandı ve _____________ bir şekilde raflardan kayboldu.'",
      "secenekler": [
       "Hızlı",
@@ -1124,66 +1076,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Cümle 3, Türkçenin ses bilgisini öğrenmenin dilin yapısını ve kullanılışını anlamak için önemli olduğunu belirtmektedir, bu nedenle doğru cevap."
-    },
-    {
-     "soru": "Ses noktalarının ne ifade ettiğini anlamak için paragrafı okuma ve anlamlandırma becerilerinizi kullanın: Aynı sesin farklı ses tonlarından meydana gelen bir parçasına 'ses noktası' denir. Ses noktaları arasındaki farklılıklar, kelimenin anlamını değiştirebilir. Aşağıdaki paragrafta yer alan kelimenin ses noktalarının ne ifade ettiğini bulunuz: 'Kardeşimin yeni araba' cümlesinde hangi ses noktalarının kelimenin anlamını değiştirebileceğini bulunuz.",
-     "secenekler": [
-      "Kardeşimin yeni",
-      "Kardeşimin yeni araba",
-      "Kardeşimin yeni arabası",
-      "Kardeşimin yeni arabayı",
-      "Kardeşimin yeni arabasını"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, kelimenin ses noktalarının kelimenin anlamını değiştirebileceğini anlarlar. Ses noktaları, kelimenin anlamını değiştirebilir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuyun ve cevabını seçin. Sesin, insan duyu organlarının en gelişmiş organıdır. Sesin, insan ses organı, gırtlak, soluk borusu, solunum yolları ve burun gibi organlardan oluşur. Ses organının görevi, hava akışını kontrol ederek ses dalgalarını oluşturmaktır. Ses dalgaları, hava moleküllerinin titreşmesi ile oluşur. Sesin titreşimi, insan duyu organlarının algılayabileceği sınırlar içinde olmalıdır.",
-     "secenekler": [
-      "Ses, insan duyu organlarının en gelişmiş organıdır.",
-      "Ses organının görevi, hava akışını kontrol ederek ses dalgalarını oluşturmaktır.",
-      "Ses dalgaları, hava moleküllerinin titreşmesi ile oluşur.",
-      "Ses organının görevi, insan duyu organlarını algılatmaktır.",
-      "Ses organının görevi, insan sesini oluşturmaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı, paragrafın ilk cümlesini okuduğunda, sesin insan duyu organlarının en gelişmiş organı olduğu fikrine ulaşabilir. Bu nedenle doğru cevabı seçmiştir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuyun ve cevabını seçin. Sesin, insan duyu organlarının en gelişmiş organıdır. Sesin, insan ses organı, gırtlak, soluk borusu, solunum yolları ve burun gibi organlardan oluşur.",
-     "secenekler": [
-      "Ses organının görevi, hava akışını kontrol ederek ses dalgalarını oluşturmaktır.",
-      "Ses dalgaları, hava moleküllerinin titreşmesi ile oluşur.",
-      "Ses organının görevi, insan sesini oluşturmaktır.",
-      "Ses organının görevi, insan duyu organlarını algılatmaktır.",
-      "Ses organının görevi, insan ses organını oluşturmaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı, paragrafın ikinci cümlesini okuduğunda, ses organının görevini doğru olarak anlar. Bu nedenle doğru cevabı seçmiştir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuyun ve cevabını seçin. Ses dalgaları, hava moleküllerinin titreşmesi ile oluşur. Ses dalgaları, insan duyu organlarının algılayabileceği sınırlar içinde olmalıdır.",
-     "secenekler": [
-      "Ses dalgaları, insan duyu organlarının algılayabileceği sınırlar içinde olmalıdır.",
-      "Ses dalgaları, hava moleküllerinin titreşmesi ile oluşur.",
-      "Ses dalgaları, insan duyu organlarını algılatmaktır.",
-      "Ses dalgaları, insan sesini oluşturmaktır.",
-      "Ses dalgaları, insan ses organını oluşturmaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcı, paragrafın ikinci cümlesini okuduğunda, ses dalgalarının insanın algılayabileceği sınırlar içinde oluştuğunu anlar. Bu nedenle doğru cevabı seçmiştir."
-    },
-    {
-     "soru": "Ses bilgisi, sesin temel özellikleri ve kullanılış alanları ile ilgilidir. Sesin niteliği ve kullanılış alanlarından bahseden bir metin aşağıda verilmiştir. Metinde geçen 'sesin niteliği' ifadesi yerine geçen kelimenin hangisi olacağının hangi seçeneği doğru olduğunu belirterek cevaplayın.",
-     "secenekler": [
-      "Sesin yapısı",
-      "Sesin niteliği",
-      "Sesin yapısı ve niteliği",
-      "Ses yapısı ve kullanılış alanları",
-      "Ses niteliği ve kullanılış alanları"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen kullanıcı, metinde geçen 'sesin niteliği' ifadesinin yerine 'sesin yapısı ve niteliği' ifadesinin geleceğini anlayacaktır."
     },
     {
      "soru": "Seslerin niteliği ile sesleri yalıtmak için kullanılan araçlar arasındaki ilişkiyi açıklamaya çalışın.",
@@ -2767,54 +2659,6 @@
      "aciklama": "Buna neden seçmiş olabilirsiniz: Seçenek 'E' doğru cevaptır çünkü paragrafın ana teması kardeşinin annesi tarafından sıcak bakmaktan oluşuyor."
     },
     {
-     "soru": "Örnek 2: Dünya'nın ilk ve tek okyanusu, Güney Okyanusu'dur. Güney Okyanusu, 180 derece güney enleminde bulunan bir okyanustur. Kuzey Yarım Küre'nin aksine, Güney Yarım Küre'de okyanuslar daha az bulunur. Güney Okyanusu'nda da, okyanusun ortasındaki en büyük adalar, okyanusun etrafındaki en büyük adalar kadar büyük değildir. Güney Okyanusu'nun en büyük adası, Tasmanya'dır. Tasmanya, 68.000 kilometre karelik bir alanı kaplar. Tasmanya, 1.000 metre yükseklikte bulunan bir ada değildir. Tasmanya, 1.500 metre yükseklikte bulunan bir adadır.",
-     "secenekler": [
-      "Paragrafın ana teması, Güney Okyanusu'nun en büyük adalarından oluşuyor.",
-      "Paragrafın ana teması, okyanuslar arasındaki farktan oluşuyor.",
-      "Paragrafın ana teması, okyanuslar ve adaların arasındaki etkileşimden oluşuyor.",
-      "Paragrafın ana teması, Tasmanya'nın coğrafi özelliklerinden oluşuyor.",
-      "Paragrafın ana teması, Güney Okyanusu'nun coğrafi özelliklerinden oluşuyor."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Buna neden seçmiş olabilirsiniz: Seçenek 'E' doğru cevaptır çünkü paragrafın ana teması Güney Okyanusu'nun coğrafi özelliklerinden oluşuyor."
-    },
-    {
-     "soru": "Örnek 3: Bir gün, bir adamın evine bir ziyaretçi geldi. Adam, ziyaretçiyi kapıdan kabul etti ve ziyaretçiyle bir şeyler içmek için oturma odasına girdi. Ziyaretçi, adamın evindeki en büyük odası olan yemek odasına girdi. Ziyaretçi, yemek odasındaki tabloları ve resimleri inceledi. Ziyaretçi, yemek odasındaki en büyük tabloyu seçti ve resmini çekti. Ziyaretçi, resmini çektiktan sonra, yemek odasından çıktı ve adamla tekrar buluştu.",
-     "secenekler": [
-      "Paragrafın ana teması, ziyaretçinin yemek odasına girmekten oluşuyor.",
-      "Paragrafın ana teması, adamın evine ziyaretçi gelmesinden oluşuyor.",
-      "Paragrafın ana teması, ziyaretçinin resmini çekmesinden oluşuyor.",
-      "Paragrafın ana teması, yemek odasındaki tabloların incelenmesinden oluşuyor.",
-      "Paragrafın ana teması, ziyaretçinin adamla yeniden buluşmasından oluşuyor."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Buna neden seçmiş olabilirsiniz: Seçenek 'E' doğru cevaptır çünkü paragrafın ana teması ziyaretçinin adamla yeniden buluşmasından oluşuyor."
-    },
-    {
-     "soru": "Örnek 4: Dünya'nın en büyük okyanusu, Güney Okyanusu'dur. Güney Okyanusu, 180 derece güney enleminde bulunan bir okyanustur. Güney Okyanusu'nda, okyanusun ortasındaki en büyük ada, Tasmanya'dır. Tasmanya, 68.000 kilometre karelik bir alanı kaplar. Tasmanya, 1.000 metre yükseklikte bulunan bir ada değildir. Tasmanya, 1.500 metre yükseklikte bulunan bir adadır.",
-     "secenekler": [
-      "Paragrafın ana teması, Güney Okyanusu'nun en büyük adalarından oluşuyor.",
-      "Paragrafın ana teması, okyanuslar arasındaki farktan oluşuyor.",
-      "Paragrafın ana teması, okyanuslar ve adaların arasındaki etkileşimden oluşuyor.",
-      "Paragrafın ana teması, Tasmanya'nın coğrafi özelliklerinden oluşuyor.",
-      "Paragrafın ana teması, Güney Okyanusu'nun coğrafi özelliklerinden oluşuyor."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Buna neden seçmiş olabilirsiniz: Seçenek 'E' doğru cevaptır çünkü paragrafın ana teması Güney Okyanusu'nun coğrafi özelliklerinden oluşuyor."
-    },
-    {
-     "soru": "Aşağıdaki metni okuduktan sonra, yazarın amacının ne olduğunu söyleyin. Metin, 2010 yılında İstanbul'da yaşanan bir olayı anlatır.",
-     "secenekler": [
-      "Yazar, İstanbul'un gelişen ve büyüyen bir şehri olduğunu vurgulamaktadır.",
-      "Yazar, İstanbul'un gelişememesi ve yozlaşması hakkında endişelerini dile getirmektedir.",
-      "Yazar, İstanbul'un trafik sorunlarına dikkat çekmektedir.",
-      "Yazar, İstanbul'un sosyal ve ekonomik sorunlarına dikkat çekmektedir.",
-      "Yazar, İstanbul'un tarihi ve kültürel mirasına dikkat çekmektedir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Yazarın amacını tam olarak anladığı için bu seçeneği seçmiş olacaktır. Metin, İstanbul'un sosyal ve ekonomik sorunlarına dikkat çekmektedir."
-    },
-    {
      "soru": "Türkçe dilinde imla kuralları çerçevesinde cümlelerin sonundaki noktalama işaretleri nasıl kullanılır?",
      "secenekler": [
       "Cümle sonlarında tek başına nokta kullanılır.",
@@ -2923,42 +2767,6 @@
      "aciklama": "Yapısal kelimesi, cümlelerin birbirine eklenerek uzun cümleler oluşturabilmesinden bahsetmektedir. Bu nedenle doğru cevaptır."
     },
     {
-     "soru": "Örnek bir paragraf: \"Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir ve metnin anlamını bozar. Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır. \"",
-     "secenekler": [
-      "Yazım kuralları, bir metnin anlamını bozar.",
-      "Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir.",
-      "Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır.",
-      "Yazım kuralları, metnin anlamını bozmaz.",
-      "Yazım kuralları, metnin anlamını bozar ama okunabilirliğini arttırır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, yazım kurallarının metnin okunabilirliğini ve anlaşılabilitini artıran kurallarını düşünerek seçmiş olabilir."
-    },
-    {
-     "soru": "Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir. Bu nedenle, yazım kurallarına uymayan bir metin, okuyucunun dikkatini dağıtır ve metnin anlamını bozar. Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır.",
-     "secenekler": [
-      "Yazım kuralları, bir metnin anlamını bozar.",
-      "Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir.",
-      "Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır.",
-      "Yazım kuralları, metnin anlamını bozmaz.",
-      "Yazım kuralları, metnin anlamını bozar ama okunabilirliğini arttırır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen, yazım kurallarına uymayan bir metinin okuyucunun dikkatini dağıttığını düşünerek seçmiş olabilir."
-    },
-    {
-     "soru": "Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir. Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır. Bir metnin anlamını bozan bir yazım kuralları yoktur.",
-     "secenekler": [
-      "Yazım kuralları, bir metnin anlamını bozar.",
-      "Yazım kurallarına uymayan bir metin, okunurken okuyucunun dikkatini dağıtabilir.",
-      "Yazım kuralları, bir metnin okunabilirliğini ve anlaşılabilitini artıran kurallardır.",
-      "Yazım kuralları, metnin anlamını bozmaz.",
-      "Yazım kuralları, metnin anlamını bozar ama okunabilirliğini arttırır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, yazım kurallarının metnin okunabilirliğini ve anlaşılabilitini artıran kurallarını düşünerek seçmiş olabilir."
-    },
-    {
      "soru": "Mehmet'in annesinin babası kaç yaşındaydı?",
      "secenekler": [
       "Mehmet'in annesinin babası 40 yaşındaydı.",
@@ -2969,30 +2777,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Eğer bu seçeneği seçen kişi, paragrafın içinde Mehmet'in annesinin babası ile ilgili bir bilgi olmadığının farkında ise bu seçeneği seçmiş olabilir."
-    },
-    {
-     "soru": "Paragrafını okuyun: \"Ezra Pound, 20. yüzyılın en önemli şairlerinden biridir. Modernist hareketin önemli bir figürü olarak kabul edilir. Ömrü boyunca, Pound'un şiirleri ve çevirileri, modernist edebiyatın gelişiminde büyük bir rol oynamıştır. Pound'un şiirleri, örneğin \"The Cantos\" ve \"Hugh Selwyn Mauberley\" gibi eserleri, modernist edebiyatın karakteristik özelliklerini taşır.\",",
-     "secenekler": [
-      "Modernist edebiyatın karakteristik özelliklerini taşıyan şiirlerin örneği \"The Cantos\" değil, \"The Waste Land\"dir.",
-      "Modernist edebiyatın karakteristik özelliklerini taşıyan şiirlerin örneği \"The Cantos\"dir.",
-      "Modernist edebiyatın karakteristik özelliklerini taşıyan şiirlerin örneği \"Hugh Selwyn Mauberley\"dir.",
-      "Modernist edebiyatın karakteristik özelliklerini taşıyan şiirlerin örneği \"The Waste Land\"dir.",
-      "Modernist edebiyatın karakteristik özelliklerini taşıyan şiirlerin örneği \"Ulysses\"dir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer bu seçeneği seçen kişi, paragrafın içinde \"The Cantos\"ın modernist edebiyatın karakteristik özelliklerini taşıyan bir şiir olduğu ile ilgili bir bilgi var ise bu seçeneği seçmiş olabilir."
-    },
-    {
-     "soru": "Paragrafını okuyun: \"Gülbahar Karaman, 20. yüzyılın önemli Türk şairlerinden biridir. Ömrü boyunca, Karaman'ın şiirleri, Türk edebiyatının gelişiminde büyük bir rol oynamıştır. Karaman'ın şiirleri, örneğin \"Aşk\" ve \"Sevgi\" gibi eserleri, Türk edebiyatının karakteristik özelliklerini taşır.\",",
-     "secenekler": [
-      "Karaman'ın şiirleri, Türk edebiyatının karakteristik özelliklerini taşıyan eserlerin örneği \"Aşk\" değil, \"Sevgi\"dir.",
-      "Karaman'ın şiirleri, Türk edebiyatının karakteristik özelliklerini taşıyan eserlerin örneği \"Aşk\"dir.",
-      "Karaman'ın şiirleri, Türk edebiyatının karakteristik özelliklerini taşıyan eserlerin örneği \"Sevgi\"dir.",
-      "Karaman'ın şiirleri, Türk edebiyatının karakteristik özelliklerini taşıyan eserlerin örneği \"Aşk\" ve \"Sevgi\"dir.",
-      "Karaman'ın şiirleri, Türk edebiyatının karakteristik özelliklerini taşıyan eserlerin örneği \"Ses\"dir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Eğer bu seçeneği seçen kişi, paragrafın içinde \"Sevgi\"ın Türk edebiyatının karakteristik özelliklerini taşıyan bir eser olduğu ile ilgili bir bilgi var ise bu seçeneği seçmiş olabilir."
     },
     {
      "soru": "Aşağıdaki paragrafın genel anlamı nedir? Türk dilinin zenginleşmesi ve gelişmesi için dilbilgisi kurallarının yanı sıra yazım kuralları da büyük önem taşımaktadır. Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar. Bu kurallar olmadan, dilin anlamı ve yapısı bozulur. Örneğin, nokta ve virgül gibi noktalama işaretlerinin doğru kullanımı, cümlelerin anlamını değiştirebilir. Aynı şekilde, büyük ve küçük harflerin doğru kullanımı da önemlidir. Büyük harfler, cümlelerin başlangıcını ve özel isimlerin başını gösterirken, küçük harfler cümlelerin geri kalan kısmını oluşturur. Bu nedenle, yazım kurallarına uymak, dilin doğru ve etkili bir şekilde kullanılmasını sağlar.",
@@ -3101,30 +2885,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçenek doğrudur. Türkçe kelimelerde 'i' yerine 'ı' kullanılır."
-    },
-    {
-     "soru": "Birazdan okuyacağınız paragrafın anlamını özetleyen cümceyi bulunuz. Paragraf: İnsanların, dilbilgisel kuralların verdiği sınırlara uyması, dillerin evrimi ve değişimi sürecinde önemli bir role sahiptir. Bu sınırlar, dillerin yapısını ve işleyişini belirler. Örneğin, Türkçe'de bir cümlenin yapısı ve anlamı, öbek ve cümle kurallarına uygun olarak oluşturulur. Bu kurallar, dilbilgisel sınırların verdiği çerçevede, dilin anlam ve yapıya kazandırılmasına yardımcı olur.",
-     "secenekler": [
-      "Dillerin evrimi ve değişimi sürecinde dilbilgisel kuralların verdiği sınırlar önemli bir role sahiptir.",
-      "Dilbilgisel kurallar, dillerin yapısını ve işleyişini belirler.",
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırlara uymaktan etkilenir.",
-      "Dillerin evrimi ve değişimi süreci, dilbilgisel kuralların verdiği sınırlara uymaktan etkilenmez.",
-      "Dilbilgisel kurallar, dillerin anlam ve yapısına kazandırılmasını belirler."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bazı öğrenciler, paragrafın anlamını özetleyen cümceyi bulurken paragrafın detaylarına odaklanabilir ve paragrafın ana fikrini kaçırabilirler."
-    },
-    {
-     "soru": "Birazdan okuyacağınız paragrafın anlamını özetleyen cümceyi bulunuz. Paragraf: Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırların ötesinde de etkilenebilir. Örneğin, sosyal faktörler, kültürel değerler ve teknolojik gelişmeler, dillerin yapısını ve işleyişini etkileyebilir. Bu faktörler, dilbilgisel kuralların verdiği sınırları aşabilir ve yeni dilbilgisel kurallar oluşturabilir.",
-     "secenekler": [
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırlara uymaktan etkilenmez.",
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırların ötesinde de etkilenebilir.",
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırların ötesinde de etkilenemez.",
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırlara uymaktan etkilenir.",
-      "Dillerin yapısı ve işleyişi, dilbilgisel kuralların verdiği sınırların ötesinde de etkilenmez."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Paragrafın anlamını özetleyen cümce, paragrafın ana fikrini özetlerken genellikle sosyal faktörler, kültürel değerler ve teknolojik gelişmelerin dilbilgisel kuralların verdiği sınırları aşmasını belirtir."
     },
     {
      "soru": "Aşağıdaki cümlede, 'gibi' bağlacının kullanılmasıyla ilgili bir sorun var mıdır?",
@@ -5992,42 +5752,6 @@
      "aciklama": "Bu seçeneğin doğru olması muhtemeldir çünkü paragrafın ana fikri, noktalama işaretlerinin yazının anlaşılırlığını sağlayan ve okunuşunu kolaylaştıran birer araçtır."
     },
     {
-     "soru": "Paragrafın sonunda noktalama işaretinin bulunmaması, paragrafa ilişkin bir eksiklik veya noksanlık oluşturur. Paragrafın sonunda noktalama işaretinin bulunmaması, paragrafın anlamını ve okunuşunu etkiler. Paragrafın sonunda noktalama işaretinin bulunmaması, okudakini anlama ve paragrafın analizi için zorluklar oluşturur.",
-     "secenekler": [
-      "Paragrafın anlamını ve okunuşunu etkilemez.",
-      "Paragrafın sonunda noktalama işaretinin bulunmaması, paragrafa ilişkin bir eksiklik veya noksanlık oluşturur.",
-      "Noktalama işaretlerinin paragrafın anlamını ve okunuşunu etkilememesi gerekir.",
-      "Paragrafın sonunda noktalama işaretinin bulunmaması, okudakini anlama ve paragrafın analizi için zorluklar oluşturur.",
-      "Paragrafın sonunda noktalama işaretinin bulunmaması, paragrafın anlamını ve okunuşunu etkilemez."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcı, paragrafın sonunda noktalama işaretinin bulunmamasının paragrafa ilişkin bir eksiklik veya noksanlık oluşturduğunu anlamış olabilir."
-    },
-    {
-     "soru": "Paragrafın başında noktalama işaretlerinin bulunması, paragrafın anlamını ve okunuşunu etkilemez. Paragrafın başında noktalama işaretlerinin bulunması, okudakini anlama ve paragrafın analizi için zorluklar oluşturmaz.",
-     "secenekler": [
-      "Paragrafın anlamını ve okunuşunu etkiler.",
-      "Paragrafın başında noktalama işaretlerinin bulunması, paragrafa ilişkin bir eksiklik veya noksanlık oluşturur.",
-      "Noktalama işaretlerinin paragrafın anlamını ve okunuşunu etkilemesi gerekir.",
-      "Paragrafın başında noktalama işaretlerinin bulunması, okudakini anlama ve paragrafın analizi için zorluklar oluşturur.",
-      "Paragrafın anlamını ve okunuşunu etkilemez."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçeneği seçen kullanıcı, paragrafın anlamını ve okunuşunu etkilemeyişi anlamış olabilir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan seçeneği seçiniz. 'Noktalama işaretlerinin doğru kullanımı, cümlelerin anlaşılır olmasını sağlar. Bu nedenle, noktalama işaretlerinin hangi durumlarda kullanılacağı bilinmelidir. Örneğin, cümleler arasında mối bağ kurmak için virgül kullanılır. Ayrıca, cümlelerin sonuna nokta konularak cümlenin bitişi belirtilir. Ancak, noktalama işaretlerinin aşırı kullanımı cümleleri karmaşık hale getirebilir. Bu nedenle, noktalama işaretlerini kullanırken dikkatli olmak gerekir.'",
-     "secenekler": [
-      "Noktalama işaretleri cümleleri daha karmaşık hale getirir.",
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlar.",
-      "Noktalama işaretleri cümlelerin sonuna konulur.",
-      "Noktalama işaretleri cümlelerin başına konulur.",
-      "Noktalama işaretleri cümlelerin ortasına konulur."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen öğrenciler, paragrafın noktalama işaretlerinin cümlelerin anlaşılır olmasını sağladığını söyleyen kısmını doğru olarak anlamışlardır."
-    },
-    {
      "soru": "Aşağıdaki cümlede noktalama işaretlerinin doğru kullanımı hangisidir? 'Kitapları okudum; şimdi uyuyorum.'",
      "secenekler": [
       "Cümledeki noktalama işaretleri doğru kullanılmıştır.",
@@ -6038,54 +5762,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçeneği seçen öğrenciler, cümledeki noktalama işaretlerinin doğru kullanımını anlamışlardır. Cümledeki noktalama işaretleri, cümleler arasında mối bağ kurmak için kullanılmıştır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan seçeneği seçiniz. 'Okulda, öğrencilerin derslere düzenli olarak katılmaları beklenmektedir. Ancak, bazı öğrenciler derslere düzenli olarak katılmamaktadır. Bu nedenle, okul yönetimi öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri almaktadır.'",
-     "secenekler": [
-      "Okul yönetimi, öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri almaktadır.",
-      "Okul yönetimi, öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri almamaktadır.",
-      "Okul yönetimi, öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri alması beklenmemektedir.",
-      "Okul yönetimi, öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri almaya başlamaktadır.",
-      "Okul yönetimi, öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri almayı bırakmaktadır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen öğrenciler, paragrafın okul yönetiminin öğrencilerin derslere düzenli olarak katılmaları için gerekli önlemleri aldığını doğru olarak anlamışlardır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan seçeneği seçiniz. 'Noktalama işaretlerinin doğru kullanımı, cümlelerin anlaşılır olmasını sağlar. Bu nedenle, noktalama işaretlerinin hangi durumlarda kullanılacağı bilinmelidir.'",
-     "secenekler": [
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlar.",
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlamaz.",
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlar, ancak hangi durumlarda kullanılacağı bilinmemelidir.",
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlar, ancak fazla kullanılmamalıdır.",
-      "Noktalama işaretleri cümlelerin anlaşılır olmasını sağlar, ancak eksik kullanılmamalıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen öğrenciler, paragrafın noktalama işaretlerinin cümlelerin anlaşılır olmasını sağladığını doğru olarak anlamışlardır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını yorumlayınız. Paragrafın tamamı okunarak sorunun cevabı belirlenmelidir. Paragrafın başlangıcında noktalama işaretleri ile ilgili bir cümle yer almamaktadır. Bu nedenle sorunun cevabı noktalama işaretleri ile ilgili değil, paragrafın anlamı ile ilgilidir. Paragrafın anlamını yorumlayınız. Kış mevsimi, yılın en soğuk mevsimi olarak bilinir. Kar yağması, yağmur yağması, don olayları ve soğuk hava bu mevsimi karakterize eden doğal olaylardır. İnsanlar bu mevsimde genellikle evlerinde kalır, dışarı çıkmak zorunda kalırlarsa da ılık giysiler giyerek dışarı çıkırlar. Bu mevsimde, insanlar genellikle evde keyifli zaman geçirirler, evde yemekler pişirler, kitap okuyarak vakit geçirirler.",
-     "secenekler": [
-      "Paragraf, kış mevsimi ile ilgili bir bilgi içermektedir.",
-      "Paragraf, noktalama işaretleri ile ilgili bir bilgi içermemektedir.",
-      "Paragraf, bahar mevsimi ile ilgili bir bilgi içermektedir.",
-      "Paragraf, yaz mevsimi ile ilgili bir bilgi içermektedir.",
-      "Paragraf, sonbahar mevsimi ile ilgili bir bilgi içermektedir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Paragrafın tamamı okunarak sorunun cevabı belirlenmelidir. Paragrafın anlamı ile ilgili bir cümle yer almamaktadır. Paragraf, kış mevsimi ile ilgili bir bilgi içermektedir."
-    },
-    {
-     "soru": "Aşağıdaki cümlenin anlamını yorumlayınız. Paragrafın tamamı okunarak sorunun cevabı belirlenmelidir. Paragrafın başlangıcında noktalama işaretleri ile ilgili bir cümle yer almamaktadır. Bu nedenle sorunun cevabı noktalama işaretleri ile ilgili değil, cümlenin anlamı ile ilgilidir. Cümlenin anlamını yorumlayınız. Kış mevsimi, yılın en soğuk mevsimi olarak bilinir. Kar yağması, yağmur yağması, don olayları ve soğuk hava bu mevsimi karakterize eden doğal olaylardır. İnsanlar bu mevsimde genellikle evlerinde kalır, dışarı çıkmak zorunda kalırlarsa da ılık giysiler giyerek dışarı çıkırlar.",
-     "secenekler": [
-      "Cümle, kış mevsimi ile ilgili bir bilgi içermektedir.",
-      "Cümle, noktalama işaretleri ile ilgili bir bilgi içermemektedir.",
-      "Cümle, bahar mevsimi ile ilgili bir bilgi içermektedir.",
-      "Cümle, yaz mevsimi ile ilgili bir bilgi içermektedir.",
-      "Cümle, sonbahar mevsimi ile ilgili bir bilgi içermektedir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Cümlenin tamamı okunarak sorunun cevabı belirlenmelidir. Cümle, kış mevsimi ile ilgili bir bilgi içermektedir."
     },
     {
      "soru": "İbrahim Sinasi'nin 'Sevdalı Hececiler' adlı şiirinde, 'Sevdalı hececiler' ifadesi neyi ifade eder?",
@@ -7068,54 +6744,6 @@
      "aciklama": "'Tatlı bir gülümsemesi vardı.' cümlesinde 'tatlı' sözcüğü tat alma duyusuyla değil, hoş, sevimli bir görünümü nitelemek için mecazi olarak kullanılmıştır."
     },
     {
-     "soru": "Sokrates'in felsefi düşüncelerini anlamak için, 'Ölümün ardından ne olacağını' sorusunu sorduğu ünlü diyaloga dikkat etmek gerekir. Bu diyalogda Sokrates, ölümün ardından ne olacağını bilmediğini ama bir şeyler olduğunu düşünüyor. İşte bu diyalogdaki bir alıntı:",
-     "secenekler": [
-      "Sokrates, ölümün ardından cennete gideceğini düşünüyor.",
-      "Sokrates, ölümün ardından cehenneme gideceğini düşünüyor.",
-      "Sokrates, ölümün ardından ne cennete ne de cehenneme gideceğini düşünüyor.",
-      "Sokrates, ölümün ardından ruhunun ölümsüz olduğunu düşünüyor.",
-      "Sokrates, ölümün ardından ruhu yok olacağını düşünüyor."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, diyalogdaki düşünceleri doğru bir şekilde analiz etmişlerdir. Sokrates'in ölümün ardından ne cennete ne de cehenneme gideceğini düşünmesi, ruhunun ölümsüz olduğunu düşündüğünden kaynaklanmamaktadır."
-    },
-    {
-     "soru": "Özdemir Asaf'ın 'Gurbet' şiirinde, gurbet duygusunu anlamak için şiirin ilk dizelerini incelemek gerekir. İşte bu şiirin ilk dizeleri:",
-     "secenekler": [
-      "Gurbet, bir insanı başka bir yere götürür.",
-      "Gurbet, bir insanı başka bir yere götürür ve onu yalnız bırakır.",
-      "Gurbet, bir insanı başka bir yere götürür ve onu daha da yalnızlaştırır.",
-      "Gurbet, bir insanı başka bir yere götürür ve onu daha da güçlüleştirir.",
-      "Gurbet, bir insanı başka bir yere götürür ve onu daha da zenginleştirir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenler, şiirin ilk dizelerini doğru bir şekilde analiz etmişlerdir. Şiirin ilk dizeleri, gurbet duygusunu yalnızlaştırır düşüncesini içermektedir."
-    },
-    {
-     "soru": "Proust'un 'İmparatorluk' romanında, zamanın akışı ile ilgili düşüncelerini anlamak için romanın son dizelerini incelemek gerekir. İşte bu romanın son dizeleri:",
-     "secenekler": [
-      "Zaman, bir insanı geçmişe götürür.",
-      "Zaman, bir insanı geleceğe götürür.",
-      "Zaman, bir insanı geçmişe ve geleceğe götürür.",
-      "Zaman, bir insanı sadece geçmişe götürür.",
-      "Zaman, bir insanı sadece geleceğe götürür."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, romanın son dizelerini doğru bir şekilde analiz etmişlerdir. Romanın son dizeleri, zamanın hem geçmişe hem de geleceğe götürür düşüncesini içermektedir."
-    },
-    {
-     "soru": "Heidegger'in 'Varlık ve Zaman' kitabında, zamanın doğasını anlamak için kitabın ilk bölümlerini incelemek gerekir. İşte bu kitabın ilk bölümlerinden bir alıntı:",
-     "secenekler": [
-      "Zaman, sadece bir kavramdır.",
-      "Zaman, sadece bir gerçekliktir.",
-      "Zaman, hem bir kavram hem de bir gerçekliktir.",
-      "Zaman, sadece bir kavramdır ve gerçeklikten bağımsız bir konudur.",
-      "Zaman, sadece bir gerçekliktir ve kavramdan bağımsız bir konudur."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, kitabın ilk bölümlerini doğru bir şekilde analiz etmişlerdir. Kitabın ilk bölümleri, zamanın hem bir kavram hem de bir gerçekliktir düşüncesini içermektedir."
-    },
-    {
      "soru": "Aşağıdaki paragrafın anlamını anlatan cümleler nelerdir? Bir çocuk, babasına \"Babacığım, ben de sana bir hediye alayım\" dedi. Babası \"Sen ne alacaksın?\" diye sordu. Çocuk \"Ben sana bir çiçek alayım\" dedi.",
      "secenekler": [
       "Çocuk babasına bir hediye almayı teklif etti.",
@@ -7164,30 +6792,6 @@
      "aciklama": "Bu seçeneği seçenler, paragrafın ana fikrini doğru olarak anladıklarını gösteriyor. Paragraf, insanların yaşam felsefeleri ve değer yargılarını vurguluyor."
     },
     {
-     "soru": "Paragrafın ana fikri, insanın doğası ve insan ilişkileri üzerine kurulmuştur. Paragraf, insanın doğasını nasıl etkileyen faktörleri inceliyor. Bir insan, doğadan aldığı genetik özelliklere ve çevresinden aldığı eğitim ve deneyimler nedeniyle farklı bir karaktere sahiptir. Bu karakter, insan ilişkilerini ve sosyal etkileşimlerini etkiler. Bir insan, diğer insanlarla yaptığı etkileşimler, karakterini oluşturur ve bu karakter, insan ilişkilerini etkiler.",
-     "secenekler": [
-      "Paragrafın ana fikri, insanın doğasıdır.",
-      "Paragrafın ana fikri, insan ilişkileridir.",
-      "Paragrafın ana fikri, insanın doğası ve insan ilişkileridir.",
-      "Paragrafın ana fikri, insanın karakteridir.",
-      "Paragrafın ana fikri, insan ilişkilerinin sosyal etkileşimleri değildir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, paragrafın ana fikrini doğru olarak anladıklarını gösteriyor. Paragraf, insanın doğası ve insan ilişkilerini vurguluyor."
-    },
-    {
-     "soru": "Paragrafın ana fikri, insan ilişkilerinin sosyal etkileşimlerini inceliyor. Paragraf, insan ilişkilerinin sosyal etkileşimlerini nasıl etkileyen faktörleri inceliyor. Bir insan, diğer insanlarla yaptığı etkileşimler, karakterini oluşturur ve bu karakter, insan ilişkilerini etkiler. Bir insan, diğer insanlarla yaptığı etkileşimler, sosyal etkileşimlerini etkiler. Bu sosyal etkileşimler, insan ilişkilerini şekillendirir ve insanları birbirinden ayırır.",
-     "secenekler": [
-      "Paragrafın ana fikri, insan ilişkileridir.",
-      "Paragrafın ana fikri, insan ilişkilerinin sosyal etkileşimleri değildir.",
-      "Paragrafın ana fikri, insan ilişkilerinin sosyal etkileşimlerini etkileyen faktörlerdir.",
-      "Paragrafın ana fikri, insan karakteridir.",
-      "Paragrafın ana fikri, insan ilişkilerinin sosyal etkileşimlerini etkileyen faktörler değildir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, paragrafın ana fikrini doğru olarak anladıklarını gösteriyor. Paragraf, insan ilişkilerinin sosyal etkileşimlerini etkileyen faktörleri inceliyor."
-    },
-    {
      "soru": "Mehmet Akif Ersoy, 'Kızılırmak Kağıdı' adlı şiirinde, kadınların özgürleşmesini ve eşitliği vurgulamaktadır. Aşağıdaki paragrafın anlamını en iyi yansıtan seçenekler aşağıda verilmiştir. Paragrafın anlamını anlamanın yanında, seçenekler arasında ne gibi benzerlikler ve farklılıklar var?",
      "secenekler": [
       "Mehmet Akif Ersoy, kadınların özgürleşmesini ve eşitliğini vurgulamaktadır. Ancak bu eşitlik, yalnızca kadınların erkeklere benzemesiyle sağlanabilir.",
@@ -7198,18 +6802,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "D seçeneği, kadınların özgürlüğünün yalnızca eğitimle ve eşitlikle sağlanacağı düşüncesini benimsemiştir. Bu, sosyal, kültürel ve fiziksel eşitliğin birlikte gerçekleşeceği anlamına gelir."
-    },
-    {
-     "soru": "Kardeşimin yeni işine gittim ve bana çok iyi bir iş yeri olduğunu söyledi. Ayrıca çok iyi bir maaş alıyormuş. Ben daha önce bu iş yeri hakkında hiç bir şey bilmiyordum. Ancak kardeşimin sözünü tuttuğu için çok sevindim. Şimdi de ben buraya gideceğim.",
-     "secenekler": [
-      "Benim kardeşimin sözünü tuttuğu için sevindim.",
-      "Benim kardeşimin yeni işine gittim ve çok iyi bir iş yeri olduğunu gördüm.",
-      "Benim kardeşimin sözünü tuttuğu için sevindim ve yeni işine gittim.",
-      "Benim kardeşimin sözünü tuttuğu için sevindim ve yeni işine gitmem gerektiğini düşünüyorum.",
-      "Benim kardeşimin sözünü tuttuğu için sevindim ve yeni işine gitmek için bana daha fazla bilgi verdi."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru olduğu için, kardeşinin sözünü tuttuğu için sevindiklerini söylemek yetmiyor, aynı zamanda yeni işine gittiklerini söylemeleri de gerekiyor."
     },
     {
      "soru": "Aşağıdaki paragrafın boşluğunu doldurmak için en uygun sözcük hangisidir? Edebiyat, insan yaşamının çeşitli yönlerini yansıtan, insana dair her şeyi inceleyen ve insanın varlığını anlamlandırmaya çalışan bir disiplin olarak kabul edilir. Bu nedenle, edebi eserlerin incelenmesi ve anlaşılması, insan doğasını daha iyi anlamak için büyük önem taşır. Edebiyat, aynı zamanda toplumsal sorunlara dikkat çekmek, insan haklarını savunmak, toplumsal adaletsizliği eleştirmek gibi konularda önemli bir role sahiptir. Bu bağlamda, edebiyatın _______________ fonksiyonu da bulunmaktadır.",
@@ -7378,30 +6970,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Paragrafın ana fikri, bir dilin sözcüklerinin, o dilin konuşulduğu toplumun kültürel özelliklerini taşıdığıdır."
-    },
-    {
-     "soru": "Ali, \"Sokakta bir köpek gördüm\" cümlesini okurken anlama yeteneği ile ilgili bir soruya cevap vermeliyim. Cümleyi okuduğunu anlama yeteneği ile ilgili olarak cümledeki köpeğin ne olduğu soruluyor. Cevaplar:",
-     "secenekler": [
-      "Köpek bir hayvandır.",
-      "Köpek, sokakta bir canlıdır.",
-      "Köpek, bir evcil hayvandır.",
-      "Köpek, sokakta bir hayvan değildir.",
-      "Köpek, bir ev hayvanı değildir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü cümlede köpeğin ne olduğu soruluyor ve köpek bir hayvan olduğu için bu seçenek doğru."
-    },
-    {
-     "soru": "Sokakta bir köpek gördüm cümlesini okuduğunu anlama yeteneği ile ilgili olarak cümledeki köpeğin ne tür bir hayvan olduğu soruluyor. Cevaplar:",
-     "secenekler": [
-      "Köpek, bir evcil hayvandır.",
-      "Köpek, sokakta bir canlıdır.",
-      "Köpek, bir ev hayvanı değildir.",
-      "Köpek, sokakta bir hayvan değildir.",
-      "Köpek, bir ev hayvanıdır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru çünkü cümlede köpeğin sokakta bir canlı olduğu bahsediliyor."
     },
     {
      "soru": "Okuyucunun, 'Sözcükte Anlam' konusunda bilgi sahibi olmasını sağlayan bir metin aşağıda verilmiştir. Metinde bahsedilen 'sözcük' ne ifade etmektedir?",
@@ -9752,114 +9320,6 @@
      "aciklama": "'Bugün hava güneşliydi.' cümlesinde herhangi bir kıyaslama ifadesi ('daha, göre, kadar' vb.) yoktur; yalnızca bir durum bildirilmektedir. Diğer seçeneklerin tümünde açık bir karşılaştırma vardır."
     },
     {
-     "soru": "Gündüz saatlerinde, güneş ışınları, gökyüzünde, bulutların arasında, bir dizi olaya neden olur. Bu olaylar arasında, bulutlardaki su damlacıklarının yoğunlaşması, yağmur yağması, kar yağması, dolu yağması ve fırtına oluşması yer alır. Bu olayların hepsi, gökyüzünde bulutların bir araya gelmesiyle başlar. Bulutlar, su buharının yoğunlaşmasıyla oluşur. Su buharı, havada bulunan nemin yoğunlaşmasıyla oluşur. Nem, gökyüzündeki bulutların altındadır. Bulutlar, su buharının yoğunlaşmasıyla büyür ve daha büyük bulutlara dönüşür. Bu büyük bulutlar, gökyüzünde bulutların bir araya gelmesiyle başlar ve yağmur yağması, kar yağması, dolu yağması ve fırtına oluşması gibi olaylara neden olur. Bu olaylar, gökyüzünde bulutların bir araya gelmesiyle başlar ve sonunda, yağmur yağması, kar yağması, dolu yağması ve fırtına oluşması gibi olaylara neden olur.",
-     "secenekler": [
-      "Gökyüzündeki bulutlar, su buharının yoğunlaşmasıyla oluşur.",
-      "Nem, gökyüzündeki bulutların altındadır.",
-      "Su buharı, havada bulunan nemin yoğunlaşmasıyla oluşur.",
-      "Bulutlar, su buharının yoğunlaşmasıyla büyür ve daha büyük bulutlara dönüşür.",
-      "Yağmur yağması, kar yağması, dolu yağması ve fırtına oluşması gibi olaylar, gökyüzündeki bulutların bir araya gelmesiyle başlar."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek, olayın tam olarak nasıl başladığını açıklamaktadır. Bulutlar, su buharının yoğunlaşmasıyla büyür ve daha büyük bulutlara dönüşür."
-    },
-    {
-     "soru": "Dünya, 4,54 milyar yıl önce, bir patlama ile oluşmuştur. Bu patlama, güneş sisteminin oluşumunu tetiklemiş ve dünyanın oluşumunu da hızlandırmıştır. Dünya, bu patlama ile birlikte, bir ateş topuna dönüşmüştür. Ateş topu, zamanla soğuyarak, bir gezegen haline gelmiştir. Gezegen, zamanla, atmosferi oluşturmuştur. Atmosfer, gezegenin sıcaklığını ve havasını kontrol etmektedir. Gezegen, atmosferi ile birlikte, yaşamı destekleyen bir ortam haline gelmiştir. Bu ortam, zamanla, yaşamın ortaya çıkmasına neden olmuştur.",
-     "secenekler": [
-      "Dünya, 4,54 milyar yıl önce, bir patlama ile oluşmuştur.",
-      "Dünya, bu patlama ile birlikte, bir ateş topuna dönüşmüş ve zamanla soğuyarak, bir gezegen haline gelmiştir.",
-      "Atmosfer, gezegenin sıcaklığını ve havasını kontrol etmektedir.",
-      "Gezegen, atmosferi ile birlikte, yaşamı destekleyen bir ortam haline gelmiştir.",
-      "Bu ortam, zamanla, yaşamın ortaya çıkmasına neden olmuştur."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, olayın tam olarak nasıl başladığını açıklamaktadır. Dünya, 4,54 milyar yıl önce, bir patlama ile oluşmuştur."
-    },
-    {
-     "soru": "İnsanlar, yıllarca, doğadan uzaklaşmış ve şehirlerde yaşamaya başlamışlardır. Bu, insanları, doğayla kopuk hale getirmiş ve onların doğayı anlamasını zorlaştırmıştır. Doğa, insanların yaşadığı şehirlerde, çok az görülmektedir. Şehirler, insanları, doğadan tamamen uzaklaştırmıştır. İnsanlar, doğayı, sadece görebilmek için, doğaya giderek bakarlar. Bu, doğayı, sadece bir obje olarak görmelerini sağlamıştır. Doğa, sadece bir obje değildir. Doğa, canlı, hareketli ve değişken bir şeydir. Doğa, insanların yaşadığı şehirlerde, çok az görülmektedir.",
-     "secenekler": [
-      "İnsanlar, doğadan uzaklaşmış ve şehirlerde yaşamaya başlamışlardır.",
-      "Doğa, sadece bir obje değildir.",
-      "Doğa, canlı, hareketli ve değişken bir şeydir.",
-      "İnsanlar, doğayı, sadece görebilmek için, doğaya giderek bakarlar.",
-      "Doğa, insanların yaşadığı şehirlerde, çok az görülmektedir."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek, insanların doğayı nasıl gördüklerini açıklamaktadır. İnsanlar, doğayı, sadece görebilmek için, doğaya giderek bakarlar."
-    },
-    {
-     "soru": "Turgut Özal'ın 'Bütüncül düşünme' kavramı ile ilgili olarak söylediği cümleyi okuyunuz. 'Bütüncül düşünme' kavramı, bireyin herhangi bir konuda, sadece o konuya odaklanmadan, tüm olayların bağlamını düşünerek düşünmesini ifade eder. İşte bu nedenle, bütüncül düşünme, bireyin, kendi bakış açısı ve düşünceleri dışında kalan farklı görüş ve düşünceleri de değerlendirmesine ve kabul etmesine de yol açar. Böylelikle, bireyin, farklı bakış açıları ile ilgili olarak daha objektif ve gerçekçi kararlar almasını sağlar.",
-     "secenekler": [
-      "Turgut Özal, bütüncül düşünme kavramı ile ilgili olarak, bireyin sadece kendi düşünceleri ile değil, aynı zamanda diğer insanların düşüncelerini de düşünmesini öneriyor.",
-      "Bütüncül düşünme, bireyin sadece kendi düşüncelerini düşünmesini ifade etmez.",
-      "Bütüncül düşünme, bireyin, kendi bakış açısı ve düşünceleri dışında kalan farklı görüş ve düşünceleri de değerlendirmesine ve kabul etmesine yol açar.",
-      "Bütüncül düşünme, bireyin sadece kendi düşüncelerini düşünmesini ifade eder.",
-      "Turgut Özal, bütüncül düşünme kavramı ile ilgili olarak, bireyin sadece kendi düşünceleri ile değil, aynı zamanda diğer insanların düşüncelerini de düşünmesini önermiyor."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü, bütüncül düşünme, bireyin, kendi bakış açısı ve düşünceleri dışında kalan farklı görüş ve düşünceleri de değerlendirmesine ve kabul etmesine yol açar."
-    },
-    {
-     "soru": "Süleyman Demirel, Türkiye'nin en çok görevde kalan başbakanı olarak tarihe geçti. 1960 yılında ordunun darbesinden sonra 1961 seçimlerini kazandı ve hükümeti kurdu. Demirel, 1965 seçimlerini de kazanarak ikinci kez başbakanlık görevine başladı. 1973 seçimlerinden sonra da üçüncü kez başbakan oldu. Demirel, 1977 seçimlerinde yeniden başbakan seçildi. 1980 darbesinden sonra Demirel, 1983 yılında cumhurbaşkanı seçildi ve görevini 1989 yılına kadar sürdürdü. Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir.",
-     "secenekler": [
-      "Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir.",
-      "Demirel, Türkiye'nin en çok görevde kalan başbakanı olarak tarihe geçti.",
-      "Demirel, 1980 darbesinden sonra cumhurbaşkanı seçildi.",
-      "Demirel, 1960 yılında ordunun darbesinden sonra 1961 seçimlerini kazandı.",
-      "Demirel, 1977 seçimlerinde yeniden başbakan seçildi."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir. Diğer seçeneklerdeki bilgiler, Demirel'in kariyerini açıklamaktadır, ancak bu seçenek, onun cumhurbaşkanlığı döneminin önemini vurgulamaktadır."
-    },
-    {
-     "soru": "Süleyman Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir. Demirel, 1960 yılında ordunun darbesinden sonra 1961 seçimlerini kazandı ve hükümeti kurdu. Demirel, 1965 seçimlerini de kazanarak ikinci kez başbakanlık görevine başladı. 1973 seçimlerinden sonra da üçüncü kez başbakan oldu. Demirel, 1977 seçimlerinde yeniden başbakan seçildi. 1980 darbesinden sonra Demirel, 1983 yılında cumhurbaşkanı seçildi ve görevini 1989 yılına kadar sürdürdü.",
-     "secenekler": [
-      "Demirel'in cumhurbaşkanlığı döneminde demokrasi güçlendi.",
-      "Demirel'in cumhurbaşkanlığı döneminde demokrasi zayıfladı.",
-      "Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir.",
-      "Demirel'in cumhurbaşkanlığı döneminde demokrasi değişmedi.",
-      "Demirel'in cumhurbaşkanlığı döneminde demokrasi kötüleşti."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru çünkü Demirel'in cumhurbaşkanlığı dönemi, demokrasiyi koruma ve güçlendirme açısından önemlidir."
-    },
-    {
-     "soru": "Türkçe'de cümle anlamını anlama becerisindeki önemli bir nokta, cümlenin ana fikri ve ana fikri destekleyen unsurları ayırmaktır. Bu, cümlenin temelini oluşturan ana fikri, destekleyen unsurları ve cümlenin amacını anlama becerisine dayanır. Aşağıdaki paragrafın anlamını anlamak için cümlenin ana fikri ve ana fikri destekleyen unsurlarını belirleyiniz.",
-     "secenekler": [
-      "Ana fikri, cümledeki ana fikri destekleyen unsurlarla birlikte cümlenin amacını anlama becerisine dayanır.",
-      "Ana fikri, cümlenin ana fikri destekleyen unsurlarla farklıdır.",
-      "Ana fikri, cümlenin amacını anlama becerisine dayanır.",
-      "Ana fikri, cümlenin ana fikri destekleyen unsurlarla birlikte cümlenin temelini oluşturur.",
-      "Ana fikri, cümlenin ana fikri destekleyen unsurlarla birlikte cümlenin amacını anlama becerisine dayanmaz."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, cümlenin ana fikri ve ana fikri destekleyen unsurları arasındaki ilişkiyi doğru olarak anlama becerisine sahip olurlar. Cümlenin ana fikri ve ana fikri destekleyen unsurları birlikte cümlenin temelini oluşturur."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını anlamak için cümlenin ana fikri ve ana fikri destekleyen unsurlarını belirleyiniz. Paragrafın ana fikri ve ana fikri destekleyen unsurları arasındaki ilişkiyi doğru olarak anlama becerisine sahip olunuz.",
-     "secenekler": [
-      "Paragrafın ana fikri, cümlenin ana fikri destekleyen unsurlarla birlikte cümlenin amacını anlama becerisine dayanır.",
-      "Paragrafın ana fikri, cümlenin ana fikri destekleyen unsurlarla farklıdır.",
-      "Paragrafın ana fikri, cümlenin amacını anlama becerisine dayanır.",
-      "Paragrafın ana fikri, cümlenin ana fikri destekleyen unsurlarla birlikte cümlenin temelini oluşturur.",
-      "Paragrafın ana fikri, cümlenin ana fikri destekleyen unsurlarla birlikte cümlenin amacını anlama becerisine dayanmaz."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, cümlenin ana fikri ve ana fikri destekleyen unsurları arasındaki ilişkiyi doğru olarak anlama becerisine sahip olurlar. Cümlenin ana fikri ve ana fikri destekleyen unsurları birlikte cümlenin temelini oluşturur."
-    },
-    {
-     "soru": "Babamın anlattığı hikayeyi hatırlıyorum. O, bir zamanlar köyde yaşayan bir avuç insanın yaşadığı bir kasabaydı. Kasaba, bir nehrin kenarında yer alıyordu. Bir gün, kasabaya bir grup göçmen geldi. Bu göçmenler, nehrin kıyısındaki araziyi işgal etmeye başladılar. Kasabalılar, göçmenlerin nehrin suyuna zarar verdiğini ve kasabanın su ihtiyacını yerine getiremediklerini söylediler. Bu durum, kasabalıların göçmenleri kovmalarına neden oldu. Köyün büyükleri, nehrin kıyısındaki araziyi işgal eden göçmenleri kovma kararı aldılar. Bu kararı, kasabalılar onayladılar. Ancak, bu kararın nehrin suyunu azaltacağından ve kasabanın su ihtiyacını yerine getirememesinden endişe edenler de vardı. Bu durum, kasabalılar arasında bir tartışmaya neden oldu.",
-     "secenekler": [
-      "Göçmenlerin kasabaya gelmesiyle kasabalılar arasında bir tartışma çıktı.",
-      "Kasabalılar göçmenleri kovma kararını aldı.",
-      "Nehirin suyunu azaltan göçmenler kasabada su sıkıntısı yaratıyordu.",
-      "Göçmenler nehrin kıyısındaki araziyi işgal etmeye başladı.",
-      "Kasabalılar göçmenleri kovdu."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, hikayenin başlangıcında göçmenlerin nehrin kıyısındaki araziyi işgal etmeye başladıklarını hatırlayabilir."
-    },
-    {
      "soru": "Aşağıdaki metni okuduktan sonra, metnin ana mesajı nedir?",
      "secenekler": [
       "İnsanlar, çevreleri hakkında bilgi edinmek için bilimsel araştırmalara ihtiyaç duyuyor.",
@@ -9870,54 +9330,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Doğru cevaptır. Metnin ana mesajı, bilimsel araştırmaların insanların çevreleri hakkında bilgi edinmelerine yardımcı olduğu."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını tam olarak anlamanın için bu soruyu cevaplayınız. Yunanistan'da bir köyde, bir kadın doğum yapacağı gün, doğumdan önce büyük bir üzüntüyle, çok büyük bir kaygıyla, yorgun ve bitkin bir halde, evine çekilir. İnsanların, doğumdan önce büyük bir hazırlık yapmaları, bu hazırlığı en büyük hazırlık olarak algılamaları, aslında doğumun bir başka yüzüdür. Doğum, bir yaşamın başlamasıdır; bir yaşamın ortaya çıkmasıdır. Bu yaşamın ortaya çıkması, aslında bir başka yaşamın bitimidir. Bu yaşamın bitimi, yeni bir yaşamın başlangıcıdır. Bu nedenle, doğumdan önce, insanlar büyük bir hazırlık yaparlar; çünkü doğum, aslında yeni bir yaşamın başlangıcıdır. Doğum, bir başka yaşamın bitimidir; yeni bir yaşamın ortaya çıkmasıdır. Bu nedenle, doğumdan önce, insanlar büyük bir hazırlık yaparlar.",
-     "secenekler": [
-      "Doğum, yeni bir yaşamın başlangıcıdır.",
-      "Doğum, bir başka yaşamın bitimidir.",
-      "İnsanlar, doğumdan önce büyük bir hazırlık yaparlar.",
-      "Doğum, bir yaşamın ortaya çıkmasıdır.",
-      "Doğum, bir başka yaşamın ortaya çıkmasıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneğin doğru olduğu için, seçenekler arasında en doğrusu olan bu seçenek. Doğum, bir yaşamın ortaya çıkmasıdır."
-    },
-    {
-     "soru": "Aşağıdaki metnin anlamını tam olarak anlamanın için bu soruyu cevaplayınız. İnsanların, doğumdan önce büyük bir hazırlık yapmalarının, aslında doğumun bir başka yüzü olduğunu söylemiştik. Doğum, bir yaşamın başlamasıdır; bir yaşamın ortaya çıkmasıdır. Bu yaşamın ortaya çıkması, aslında bir başka yaşamın bitimidir. Bu yaşamın bitimi, yeni bir yaşamın başlangıcıdır. Bu nedenle, doğumdan önce, insanlar büyük bir hazırlık yaparlar; çünkü doğum, aslında yeni bir yaşamın başlangıcıdır.",
-     "secenekler": [
-      "Doğum, aslında yeni bir yaşamın başlangıcıdır.",
-      "Doğum, aslında bir başka yaşamın bitimidir.",
-      "İnsanlar, doğumdan önce büyük bir hazırlık yaparlar.",
-      "Doğum, aslında bir yaşamın ortaya çıkmasıdır.",
-      "Doğum, aslında bir başka yaşamın ortaya çıkmasıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğu için, seçenekler arasında en doğrusu olan bu seçenek. Doğum, aslında yeni bir yaşamın başlangıcıdır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını tam olarak anlamanın için bu soruyu cevaplayınız. Bir kadın, doğumdan sonra, büyük bir huzur ve mutluluk duygusuyla, yeni doğan bebekini kucağına aldı. Bebek, annesinin kalbinde, yeni bir yaşamın başlangıcını ifade ediyordu. Anne, bu yeni yaşamın başlangıcını, büyük bir sevinç ve mutluluk duygusuyla karşıladı. Bu yeni yaşamın başlangıcı, aslında bir başka yaşamın bitimidir. Bu yaşamın bitimi, yeni bir yaşamın ortaya çıkmasıdır.",
-     "secenekler": [
-      "Doğum, yeni bir yaşamın başlangıcıdır.",
-      "Doğum, bir başka yaşamın bitimidir.",
-      "İnsanlar, doğumdan önce büyük bir hazırlık yaparlar.",
-      "Doğum, bir yaşamın ortaya çıkmasıdır.",
-      "Doğum, bir başka yaşamın ortaya çıkmasıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneğin doğru olduğu için, seçenekler arasında en doğrusu olan bu seçenek. Doğum, bir yaşamın ortaya çıkmasıdır."
-    },
-    {
-     "soru": "Kardeşimin yeni evlendiği için düğünümüze davet ettiğini öğrenince çok sevindim. Ancak düğün günü geldiğinde, evde kimsenin gelmemesi beni pek sevindirmiyor. Düğünde bir şeylerin eksik olduğunu hissediyordum. Kardeşimin yeni eşinin de gelmemesi, beni çok üzdü. Düğünün güzel geçmesini umuyorum. Kardeşimin yeni evlendiği için çok sevindim, Ancak düğün günü geldiğinde, evde kimsenin gelmemesi beni pek sevindirmiyor. Düğünde bir şeylerin eksik olduğunu hissediyordum.",
-     "secenekler": [
-      "Kardeşimin yeni eşinin gelmemesi",
-      "Düğünde bir şeylerin eksik olduğunu hissediyorum",
-      "Düğünün güzel geçmesini umuyorum",
-      "Kardeşimin yeni evlendiği için çok sevindim",
-      "Düğünde kimsenin gelmemesi beni üzdü"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, düğünde bir şeylerin eksik olduğunu hissettiği için doğru olabilir. Düğünde kimsenin gelmemesi, bir şeylerin eksik olduğunu hissettirebilir."
     },
     {
      "soru": "Aşağıdaki paragrafın anlamını anlamanın en uygun yolu hangisidir? Kardeşimin evine gittim. Babaları yoktu ama anneleri vardı. Anneleri de evde çalışıyorlar. Kardeşimin babası da çalışıyor. Onun için, kardeşimin babası çalışıyor ve evde annesi yok.",
@@ -11368,42 +10780,6 @@
      "aciklama": "Bu seçenek, paragrafın anlamını anlama konusunu tam olarak karşılamaktadır. Paragrafın ana fikri, okuduklarından sonra okuyucunun ne öğrenmesi gerektiğini söylemektedir. Bu nedenle okuyucu, paragrafın anlamını anlama konusunda bu seçeneği tercih etmelidir."
     },
     {
-     "soru": "Türkçe'nin gelişimine etkileyen etmenler, dillerin birbiri arasında var olan farklılıkları, dilin yapısı ve dilin evrimi hakkında bilgi sahibi olmanın önemi hakkında aşağıdaki metin içerisinde bahsedilmektedir. Türk dilinin gelişimine etkileyen etmenler, dillerin birbiri arasında var olan farklılıkları, dilin yapısı ve dilin evrimi hakkında bilgi sahibi olmanın önemi, Türk dilinin gelişimine etkileyen etmenlerin neler olduğu, Türk dilinin yapısı nasıl şekillendi, Türk dilinin evrimi nasıl ilerledi, Türk dilinin farklılıkları nelerdir, Türk dilinin dilbilgisi yapısı, Türk dilinin gramer yapısı, Türk dilinin dilbilgisi kuralları, Türk dilinin gramer kuralları, Türk dilinin dilbilgisi ve gramer kuralları, Türk dilinin dilbilgisi ve gramer yapısı hakkında bilgi sahibi olunması gereken noktalar ve Türk dilinin dilbilgisi ve gramer yapısı ile ilgili olarak yapılan çalışmaların önemi hakkında bilgi verilmektedir. İşte bu noktada Türk dilinin dilbilgisi ve gramer yapısı ile ilgili olarak yapılan çalışmaların önemi hakkında bilgi verilerek Türk dilinin dilbilgisi ve gramer yapısı hakkında bilgi sahibi olunması gereken noktalar hakkında bilgi verilmektedir.",
-     "secenekler": [
-      "Türkçe'nin gelişimine etkileyen etmenler, Türk dilinin yapısı ve Türk dilinin evrimi hakkında bilgi sahibi olmak, Türk dilinin farklılıkları ve Türk dilinin dilbilgisi yapısı hakkında bilgi sahibi olmak, Türk dilinin gramer yapısı hakkında bilgi sahibi olmak, Türk dilinin dilbilgisi ve gramer kuralları hakkında bilgi sahibi olmak, Türk dilinin dilbilgisi ve gramer yapısı hakkında bilgi sahibi olmak ve Türk dilinin dilbilgisi ve gramer yapısı ile ilgili olarak yapılan çalışmaların önemi hakkında bilgi sahibi olmak.",
-      "Türkçe'nin gelişimine etkileyen etmenler, Türk dilinin yapısı ve Türk dilinin evrimi hakkında bilgi sahibi olmak, Türk dilinin farklılıkları ve Türk dilinin dilbilgisi yapısı hakkında bilgi sahibi olmak.",
-      "Türkçe'nin gelişimine etkileyen etmenler ve Türk dilinin yapısı hakkında bilgi sahibi olmak.",
-      "Türk dilinin dilbilgisi ve gramer yapısı hakkında bilgi sahibi olmak.",
-      "Türkçe'nin gelişimine etkileyen etmenler hakkında bilgi sahibi olmak."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "A seçeneği doğru çünkü metinde bahsedilen konular hakkında bilgi sahibi olmak, Türk dilinin gelişimine etkileyen etmenler, Türk dilinin yapısı ve Türk dilinin evrimi hakkında bilgi sahibi olmak, Türk dilinin farklılıkları ve Türk dilinin dilbilgisi yapısı hakkında bilgi sahibi olmak, Türk dilinin gramer yapısı hakkında bilgi sahibi olmak, Türk dilinin dilbilgisi ve gramer kuralları hakkında bilgi sahibi olmak, Türk dilinin dilbilgisi ve gramer yapısı hakkında bilgi sahibi olmak ve Türk dilinin dilbilgisi ve gramer yapısı ile ilgili olarak yapılan çalışmaların önemi hakkında bilgi sahibi olmak."
-    },
-    {
-     "soru": "Gündemin en tepesinde yer alan konuları ve güncel olayları takip etmek, tartışmaların temelini oluşturan unsurları anlamak, bu konularda etkili bir şekilde iletişim kurmak, fikirlerini ve düşüncelerini dile getirmek zorundasınız. Ayrıca, gelişmekte olan olaylar karşısında düşünce kurma ve sorun çözümleme becerilerinizi geliştirmek için her tür kaynakdan yararlanmak gerekir.",
-     "secenekler": [
-      "Gündemdeki olaylar hakkında fikir sahibi olmak ve etkili bir şekilde iletişim kurmak",
-      "Gelişmekte olan olaylar karşısında düşünce kurma ve sorun çözümleme becerilerini geliştirmek",
-      "Tartışmaların temelini oluşturan unsurları anlamak",
-      "Gündemin en tepesinde yer alan konuları takip etmek",
-      "Fikirlerini ve düşüncelerini dile getirmek"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenlerin büyük ihtimalle gelişmekte olan olaylar karşısında düşünce kurma ve sorun çözümleme becerilerini geliştirmekle ilgilendikleri için bu seçeneği seçmiş olabilirler."
-    },
-    {
-     "soru": "Dünya genelinde yaşanan teknolojik gelişmeler, insanları birbirine daha yaklaştırmış ve farklı kültürlerin bir araya gelmesiyle yeni bir dünya düzeninin oluşmasına yol açmıştır. Bu gelişmeler, insanları daha fazla birbirine bağlamıştır ve kültürel çeşitliliğin ön plana çıkmasını sağlamıştır.",
-     "secenekler": [
-      "Dünya genelinde yaşanan teknolojik gelişmeler, insanları birbirine daha uzaklaştırmıştır.",
-      "Dünya genelinde yaşanan teknolojik gelişmeler, insanları birbirine daha yaklaştırmıştır.",
-      "Teknolojik gelişmeler, kültürel çeşitliliğin ön plana çıkmasını sağlamamıştır.",
-      "Teknolojik gelişmeler, insanları birbirine bağlamamıştır.",
-      "Dünya genelinde yaşanan teknolojik gelişmeler, insanları birbirine bağlamamıştır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenlerin büyük ihtimalle teknolojik gelişmelerin insanları birbirine daha yaklaştırdığını düşünerek bu seçeneği seçmiş olabilirler."
-    },
-    {
      "soru": "Aşağıdaki paragrafı okuyunuz. Paragrafa göre, yazarın temel amacı nedir? 'Dil, bir milletin kültürünü, tarihini, coğrafyasını ve diğer milletlerle olan ilişkilerini yansıtan önemli bir araçtır. Bir milletin dilini öğrenmek, o milletin kültürünü ve tarihini öğrenmek demektir. Türk dili, Türk milletinin tarihini, kültürünü ve diğer milletlerle olan ilişkilerini yansıtan zengin bir dildir.'",
      "secenekler": [
       "Türk dilinin diğer dillerden üstün olduğunu kanıtlamak",
@@ -11462,126 +10838,6 @@
      ],
      "dogruIndex": 4,
      "aciklama": "Doğru, porque paragraf dil ve kimlik arasındaki ilişkiyi açıklamaya çalışıyor."
-    },
-    {
-     "soru": "Okuduklarından anlama ve paragraf içindeki anlam ilişkilerini kurma becerisi, başarılı bir okumanın temel taşlarındandır. Başarılı bir okuma, sadece gördüğümüzü anlamak değil, aynı zamanda metnin ardında yatan mesajı da kavramaktır. Okuyucunun, yazarın mesajını doğru bir şekilde anlaması, metni doğru bir şekilde yorumlaması ve anlamlandırması ile mümkündür. Bu nedenle, okuma becerisinin geliştirilmesi, bireyin daha iyi bir iletişim kurabilmesi ve daha iyi bir şekilde bilgiyi işleyebilmesi için çok önemlidir.",
-     "secenekler": [
-      "Okuma becerisi, bireyin daha iyi bir iletişim kurabilmesi için önemlidir.",
-      "Okuma becerisi, bireyin daha iyi bir şekilde bilgiyi işleyebilmesi için önemlidir.",
-      "Okuma becerisi, bireyin sadece gördüğünü anlaması için önemlidir.",
-      "Okuma becerisi, bireyin yazarın mesajını doğru bir şekilde anlaması için önemlidir.",
-      "Okuma becerisi, bireyin metni doğru bir şekilde yorumlaması için önemlidir."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Seçenek D, paragrafın ana fikri ile uyumlu olan doğru cevaptır. Okuyucular, yazarın mesajının doğru bir şekilde anlaşılmasının okumanın temel bir parçası olduğunu anlamış olmalıdırlar."
-    },
-    {
-     "soru": "Bir metni okurken, önce metnin genel anlamını kavramaya çalışmak önemlidir. Metnin genel anlamını kavramak, okurun metni daha iyi anlamasını ve metinde verilen bilgilerin daha iyi işlenmesini sağlar. Metnin genel anlamını kavramak için, metnin başlığını, metnin konusunu ve metinde verilen ana fikirleri dikkate almak gerekir.",
-     "secenekler": [
-      "Metnin genel anlamını kavramak, okurun metni daha iyi anlamasını sağlar.",
-      "Metnin genel anlamını kavramak, okurun metni daha hızlı okummasını sağlar.",
-      "Metnin genel anlamını kavramak, okurun metinde verilen bilgilerin daha iyi işlenmesini sağlar.",
-      "Metnin genel anlamını kavramak, metnin başlığını ve konusunu dikkate almak ile mümkündür.",
-      "Metnin genel anlamını kavramak, metinde verilen ana fikirleri dikkate almak ile mümkündür."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Seçenek A, metnin genel anlamını kavramanın okurun metni daha iyi anlamasını sağladığını söylemektedir. Bu, paragrafın ana fikri ile uyumlu olan doğru cevaptır."
-    },
-    {
-     "soru": "Okuma becerisi, bireyin hayatında önemli bir role sahiptir. İyi bir okuma becerisi, bireyin daha iyi bir iletişim kurabilmesi, daha iyi bir şekilde bilgiyi işleyebilmesi ve daha iyi bir şekilde sorunları çözebilmesi için çok önemlidir. İyi bir okuma becerisi, aynı zamanda bireyin kendini geliştirmesi ve daha iyi bir hayat sürmesi için de önemlidir.",
-     "secenekler": [
-      "İyi bir okuma becerisi, bireyin daha iyi bir iletişim kurabilmesi için önemlidir.",
-      "İyi bir okuma becerisi, bireyin daha iyi bir şekilde bilgiyi işleyebilmesi için önemlidir.",
-      "İyi bir okuma becerisi, bireyin daha iyi bir şekilde sorunları çözebilmesi için önemlidir.",
-      "İyi bir okuma becerisi, bireyin kendini geliştirmesi ve daha iyi bir hayat sürmesi için önemlidir.",
-      "İyi bir okuma becerisi, bireyin hayatında önemli bir role sahiptir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Seçenek E, iyi bir okuma becerisinin bireyin hayatında önemli bir role sahip olduğunu söylemektedir. Bu, paragrafın ana fikri ile uyumlu olan doğru cevaptır."
-    },
-    {
-     "soru": "Paragraf içindeki anlam ilişkilerini kurma, başarılı bir okumanın temel taşlarından biridir. Bu, okurun metni daha iyi anlamasını ve metinde verilen bilgilerin daha iyi işlenmesini sağlar. Paragraf içindeki anlam ilişkilerini kurmak için, okurun metnin başlığını, metnin konusunu ve metinde verilen ana fikirleri dikkate almak gerekir.",
-     "secenekler": [
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metni daha iyi anlamasını sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metni daha hızlı okummasını sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metinde verilen bilgilerin daha iyi işlenmesini sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, metnin başlığını ve konusunu dikkate almak ile mümkündür.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, metinde verilen ana fikirleri dikkate almak ile mümkündür."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Seçenek A, paragraf içindeki anlam ilişkilerini kurmanın okurun metni daha iyi anlamasını sağladığını söylemektedir. Bu, paragrafın ana fikri ile uyumlu olan doğru cevaptır."
-    },
-    {
-     "soru": "Paragraf içindeki anlam ilişkilerini kurma, başarılı bir okumanın temel taşlarından biridir. Bu, okurun metni daha iyi anlamasını ve metinde verilen bilgilerin daha iyi işlenmesini sağlar. Paragraf içindeki anlam ilişkilerini kurmak için, okurun metnin başlığını, metnin konusunu ve metinde verilen ana fikirleri dikkate almak gerekir. Ayrıca, okurun metinde kullanılan sözcüklerin anlamlarını ve metinde kullanılan cümlelerin yapısını da dikkate alması gerekir.",
-     "secenekler": [
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metni daha iyi anlamasını sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metni daha hızlı okumasını sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, okurun metinde verilen bilgilerin daha iyi işlenmesini sağlar.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, metnin başlığını ve konusunu dikkate almak ile mümkündür.",
-      "Paragraf içindeki anlam ilişkilerini kurmak, metinde kullanılan sözcüklerin anlamlarını dikkate almak ile mümkündür."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Seçenek A, paragraf içindeki anlam ilişkilerini kurmanın okurun metni daha iyi anlamasını sağladığını söylemektedir. Bu, paragrafın ana fikri ile uyumlu olan doğru cevaptır."
-    },
-    {
-     "soru": "Paragraf okuyarak anlamı anlamanın önemi ve gerekliliği hakkında bir düşünce yazınız. İşte bu konu hakkında bir düşünce: 'Paragraf okuyarak anlamı anlama yeteneğimiz, okuduklarımızı anlamamızın temelidir. Okuduğumuz metinleri sadece kelimelerin sıralanışını takip etmekle yetinmeyerek, metnin anlamını kavramak ve o anlamı kendi düşüncelerimize göre yorumlamak, bizler için önemli bir beceridir. Bu beceri, okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olur. Ayrıca, okuduğumuz metinlerdeki düşünceleri, duyguları ve olayları anlamamızın da bu beceriye bağlı olduğu düşünülmektedir. Dolayısıyla, paragraf okuyarak anlamı anlama yeteneğimiz, okuduklarımızı anlamamızın ve yazdığımız metinlerin etkili olmasının temelini oluşturur.'",
-     "secenekler": [
-      "Paragraf okuyarak anlamı anlama yeteneğimiz, sadece okuduklarımızı anlamamızı kolaylaştırır.",
-      "Paragraf okuyarak anlamı anlama yeteneğimiz, okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olur.",
-      "Paragraf okuyarak anlamı anlama yeteneğimiz, sadece yazdığımız metinlerin etkili ve anlaşılır olmasına yardımcı olur.",
-      "Paragraf okuyarak anlamı anlama yeteneğimiz, okuduklarımızı anlamamızın yanı sıra, kendi düşüncelerimize göre metni yorumlamamızı kolaylaştırır.",
-      "Paragraf okuyarak anlamı anlama yeteneğimiz, metnin anlamını kavramamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olmaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragraf okuyarak anlamı anlama yeteneğinin okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olduğunu doğru bir şekilde ortaya koymaktadır."
-    },
-    {
-     "soru": "Paragraf analizi yapmanın önemi ve gerekliliği hakkında bir düşünce yazınız. İşte bu konu hakkında bir düşünce: 'Paragraf analizi yapmanın önemi, okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olmasıdır. Paragraf analizi yaparken, metnin anlamını kavramak ve o anlamı kendi düşüncelerimize göre yorumlamak, bizler için önemlidir. Çünkü, paragraf analizi yaparken, metnin anlamını kavramak ve o anlamı kendi düşüncelerimize göre yorumlamak, bizler için önemlidir. Ayrıca, paragraf analizi yaparken, metnin anlamını kavramak ve o anlamı kendi düşüncelerimize göre yorumlamak, bizler için önemlidir. Dolayısıyla, paragraf analizi yapmanın önemi, okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olmasıdır.",
-     "secenekler": [
-      "Paragraf analizi yapmanın önemi, sadece yazdığımız metinlerin etkili ve anlaşılır olmasına yardımcı olur.",
-      "Paragraf analizi yapmanın önemi, okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olur.",
-      "Paragraf analizi yapmanın önemi, sadece okuduklarımızı anlamamızı kolaylaştırır.",
-      "Paragraf analizi yapmanın önemi, metnin anlamını kavramamızın yanı sıra, kendi düşüncelerimize göre metni yorumlamamızı kolaylaştırır.",
-      "Paragraf analizi yapmanın önemi, metnin anlamını kavramamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olmaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragraf analizi yapmanın öneminin okuduklarımızı anlamamızın yanı sıra, yazdığımız metinlerin de etkili ve anlaşılır olmasına yardımcı olduğunu doğru bir şekilde ortaya koymaktadır."
-    },
-    {
-     "soru": "Mehmet Akif Ersoy, Türkiye'nin ilk milliyetçi şairidir. 1873 yılında Şanlıurfa'da doğan Ersoy, Ankara Üniversitesi Dil ve Tarih-Coğrafya Fakültesi'nden mezun oldu. Şairin ilk şiiri olan 'Huzurum Sensin' 1890 yılında yayımlanmıştır. Şairin en ünlü eseri olan 'İnkilab-ı Vatan' şiiri, 1891 yılında yayımlanmıştır. Şairin şiirleri, milliyetçi duyguları ve vatan sevgisi ile doludur. Şairin en ünlü şiirleri arasında 'İnkilab-ı Vatan', 'Huzurum Sensin', 'Sarı Çizmeli Mehmet Ağa' yer almaktadır.",
-     "secenekler": [
-      "Şairin ilk şiiri 'Huzurum Sensin' 1890 yılında yayımlanmıştır.",
-      "Şairin en ünlü eseri 'İnkilab-ı Vatan' 1891 yılında yayımlanmıştır.",
-      "Şairin şiirleri, milliyetçi duyguları ve vatan sevgisi ile doludur.",
-      "Şairin en ünlü şiirleri arasında 'İnkilab-ı Vatan', 'Huzurum Sensin', 'Sarı Çizmeli Mehmet Ağa' yer almaktadır.",
-      "Şair, Ankara Üniversitesi Dil ve Tarih-Coğrafya Fakültesi'nden mezun olmuştur."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen kullanıcı, doğru cevabı seçmiş olabilir. Şairin şiirleri, milliyetçi duyguları ve vatan sevgisi ile doludur."
-    },
-    {
-     "soru": "Türkçe, dünya genelinde en çok konuşulan dildir. 1932 yılında Türk Dil Kurumu kurulmuştur. Türk Dil Kurumu, Türkçenin geliştirilmesi ve yayılması için çalışmaktadır. Türk Dil Kurumu'nun en önemli görevlerinden biri, Türkçenin standartlaştırılmasıdır. Türk Dil Kurumu, Türkçenin standartlaştırılması için çeşitli çalışmalar yapmaktadır.",
-     "secenekler": [
-      "Türk Dil Kurumu, Türkçenin geliştirilmesi ve yayılması için çalışmaktadır.",
-      "Türk Dil Kurumu, Türkçenin standartlaştırılması için çeşitli çalışmalar yapmaktadır.",
-      "Türk Dil Kurumu, Türkçenin geliştirilmesi ve yayılması için çalışmaktadır ve Türkçenin standartlaştırılması için çeşitli çalışmalar yapmaktadır.",
-      "Türk Dil Kurumu, Türkçenin geliştirilmesi için çalışmaktadır.",
-      "Türk Dil Kurumu, Türkçenin yayılması için çalışmaktadır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcı, doğru cevabı seçmiş olabilir. Türk Dil Kurumu, Türkçenin standartlaştırılması için çeşitli çalışmalar yapmaktadır."
-    },
-    {
-     "soru": "İsmail Hakkı Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli çalışmalar yapmış bir Türk akademisyenidir. 1881 yılında İstanbul'da doğan Baltacıoğlu, 1905 yılında Robert Koleji'nden mezun olmuştur. Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli eserler bırakmıştır. Baltacıoğlu'nun en önemli eseri, 'Türk Dilinin İncelenmesi' isimli eseridir.",
-     "secenekler": [
-      "Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli eserler bırakmıştır.",
-      "Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli çalışmalar yapmış bir Türk akademisyenidir.",
-      "Baltacıoğlu, 1905 yılında Robert Koleji'nden mezun olmuştur.",
-      "Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli eserler bırakmıştır ve 1905 yılında Robert Koleji'nden mezun olmuştur.",
-      "Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli çalışmalar yapmış bir Türk akademisyenidir ve 1905 yılında Robert Koleji'nden mezun olmuştur."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcı, doğru cevabı seçmiş olabilir. Baltacıoğlu, Türk dilbilimi ve edebiyatbilim alanlarında önemli çalışmalar yapmış bir Türk akademisyenidir."
     },
     {
      "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? Güneş, Dünya'nın enerji kaynaklarının büyük çoğunluğunu sağlıyor. Bitkiler fotosentez yaparak güneşten gelen enerjiyi kullanıyorlar. Hayvanlar ise bu bitkileri yiyerek veya bitki yiyen diğer hayvanları yiyerek bu enerjiye ulaşıyorlar. Bu şekilde, tüm canlıların yaşamını sürdürebilmeleri için gerekli olan enerji, _______________ yoluyla elde ediliyor. A) Fotosentez B) Solunum C) Besin zinciri D) Hücre bölünmesi E) Çıkartma",
@@ -11702,78 +10958,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Eğer C seçeneğini seçerlerse, büyük ihtimalle, insanların kendilerinden ve çevrelere gelen bilgilerle anlam bulma arayışlarını etkilenğini doğru olarak algılamış olabilecekleri için bu seçeneği seçmiş olabilirler."
-    },
-    {
-     "soru": "Açıkça görüleceği gibi, günümüzde teknoloji gelişiyor ve insanların hayatını kolaylaştırmaya devam ediyor. Bu gelişmeler, insanların yeni işler bulma ve yeni alanlar keşfetme fırsatlarını artırmaktadır. Yeni teknolojiler ve cihazlar, insanlar için yeni fırsatlar sunuyor ve onlara farklı yollar açıyor. Örneğin, internet ve sosyal medya, insanların birbirleriyle bağlantı kurma ve yeni insanlarla tanışma fırsatlarını genişletiyor. Ayrıca, teknolojik gelişmeler, insanların daha iyi eğitim almasına ve yeni beceriler edinmesine yardımcı oluyor.",
-     "secenekler": [
-      "İnsanların yeni teknolojileri öğrenmesi ve kullanması zorlaşıyor.",
-      "İnsanların yeni teknolojiler ve cihazlar ile daha kolay iş bulma fırsatları artıyor.",
-      "İnsanların yeni teknolojiler ve cihazlar ile daha fazla zamanını evde geçirmesi gerekiyor.",
-      "İnsanların yeni teknolojiler ve cihazlar ile daha iyi eğitim alma fırsatları artıyor.",
-      "İnsanların yeni teknolojiler ve cihazlar ile daha az zamanını dışarıda geçirmesi gerekiyor."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, teknolojik gelişmeler ile insanların yeni işler bulma ve yeni alanlar keşfetme fırsatlarının arttığı gerçeğini yansıtmaktadır."
-    },
-    {
-     "soru": "Güncel teknoloji, insan hayatını birçok açıdan etkileyerek, insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarını genişleterek, insanların yaşam kalitesini artırmaya devam ediyor. Bu gelişmeler, insanların yeni işler bulma ve yeni alanlar keşfetme fırsatlarını da artırmaktadır. Örneğin, internet ve sosyal medya, insanların birbirleriyle bağlantı kurma ve yeni insanlarla tanışma fırsatlarını genişletiyor.",
-     "secenekler": [
-      "Güncel teknoloji, insan hayatını olumsuz etkileyerek insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarını daraltarak, insanların yaşam kalitesini düşürmeye devam ediyor.",
-      "Güncel teknoloji, insan hayatını birçok açıdan etkileyerek, insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarını genişleterek, insanların yaşam kalitesini artırmaya devam ediyor.",
-      "Güncel teknoloji, insan hayatını etkilemeden insanların yeni işler bulma ve yeni alanlar keşfetme fırsatlarını artırmaya devam ediyor.",
-      "Güncel teknoloji, insan hayatını birçok açıdan etkileyerek, insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarını daraltarak, insanların yaşam kalitesini düşürmeye devam ediyor.",
-      "Güncel teknoloji, insan hayatını birçok açıdan etkileyerek, insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarını artırmaya devam ediyor, ancak insanların yaşam kalitesini artırmıyor."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, teknolojik gelişmeler ile insanların yeni beceriler edinmesine ve daha iyi eğitim alma fırsatlarının arttığı gerçeğini yansıtmaktadır."
-    },
-    {
-     "soru": "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde büyük bir dönüm noktasıdır. 1453 yılında Fatih Sultan Mehmet'in önderliğinde gerçekleştirilen bu fetih, İstanbul'u merkezine katarak Osmanlı İmparatorluğu'nu kurmuştur. Bu tarihsel olay, Osmanlı İmparatorluğu'nun en önemli başarılarından biri olarak kabul edilmektedir. İstanbul'un fethi, aynı zamanda Osmanlı Devleti'nin kültürel, ekonomik ve askeri gelişimini de hızlandırmıştır.",
-     "secenekler": [
-      "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde büyük bir başarısızlıktır.",
-      "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde küçük bir başarıdır.",
-      "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde büyük bir dönüm noktasıdır.",
-      "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde önemli bir olay değildir.",
-      "İstanbul'un fethi, Osmanlı Devleti'nin tarihinde son derece önemli bir olay değildir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, doğru cevabı seçmiştir. İstanbul'un fethi, Osmanlı Devleti'nin tarihinde büyük bir dönüm noktasıdır."
-    },
-    {
-     "soru": "Amerika Birleşik Devletleri'nin en büyük şehri New York'tur. Şehir, 8 milyon kişinin yaşadığı bir metropoliten bölgedir. New York, dünyanın en önemli finans merkezlerinden biridir ve birçok uluslararası şirketin merkezi burada bulunmaktadır. Şehir, aynı zamanda sanat, müzik ve kültür açısından da oldukça zengin bir geçmişe sahiptir.",
-     "secenekler": [
-      "New York, Amerika Birleşik Devletleri'nin en küçük şehridir.",
-      "New York, Amerika Birleşik Devletleri'nin en büyük şehri değildir.",
-      "New York, Amerika Birleşik Devletleri'nin en büyük şehridir.",
-      "New York, Amerika Birleşik Devletleri'nin en önemli şehri değildir.",
-      "New York, Amerika Birleşik Devletleri'nin en küçük şehri değildir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, doğru cevabı seçmiştir. New York, Amerika Birleşik Devletleri'nin en büyük şehridir."
-    },
-    {
-     "soru": "Dünya'nın en büyük jeoloji parkı, ABD'nin Arizona eyaletinde bulunmaktadır. Park, 1.900 km2'lik bir alanı kaplar ve birçok jeolojik oluşumun yer aldığı bir bölgedir. Parkta, kayalar, mağaralar, kanyonlar ve diğer jeolojik oluşumlar bulunur.",
-     "secenekler": [
-      "Dünya'nın en büyük jeoloji parkı, ABD'nin Kaliforniya eyaletinde bulunmaktadır.",
-      "Dünya'nın en büyük jeoloji parkı, ABD'nin Nevada eyaletinde bulunmaktadır.",
-      "Dünya'nın en büyük jeoloji parkı, ABD'nin Arizona eyaletinde bulunmaktadır.",
-      "Dünya'nın en büyük jeoloji parkı, ABD'nin Utah eyaletinde bulunmaktadır.",
-      "Dünya'nın en büyük jeoloji parkı, ABD'nin Colorado eyaletinde bulunmaktadır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, doğru cevabı seçmiştir. Dünya'nın en büyük jeoloji parkı, ABD'nin Arizona eyaletinde bulunmaktadır."
-    },
-    {
-     "soru": "Kur'an-ı Kerim, İslam dininin en önemli kitabıdır. Kitap, Allah'ın peygamberi Muhammed'e (s.a.v.) vahyedilmiş ve 7. yüzyılın ilk yarısında tamamlanmıştır. Kitap, 114 suresinden oluşur ve her suresinde farklı konulara değinilmektedir.",
-     "secenekler": [
-      "Kur'an-ı Kerim, İslam dininin en küçük kitabıdır.",
-      "Kur'an-ı Kerim, İslam dininin en büyük kitabı değildir.",
-      "Kur'an-ı Kerim, İslam dininin en önemli kitabıdır.",
-      "Kur'an-ı Kerim, İslam dininin en küçük kitabı değildir.",
-      "Kur'an-ı Kerim, İslam dininin en büyük kitabıdır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, doğru cevabı seçmiştir. Kur'an-ı Kerim, İslam dininin en önemli kitabıdır."
     },
     {
      "soru": "Dünya genelinde, özellikle de gelişmiş ülkelerde, teknoloji kullanımı arttıkça, insanlar daha çok evlerinde çalışmaya başladı. Bu durum, şehir merkezlerinde trafikte yaşanan kalabalık sorununu da azalttı. Ancak, evde çalışanlar, genellikle daha az sosyal etkileşime sahip olurlar. Bunun sonucunda, yalnızlık sorunları da artmaya başladı. Aşağıdaki paragrafın ana fikri nedir?",
@@ -14387,18 +13571,6 @@
      "aciklama": "Köpek kelimesinin yapısını açıklamaktadır."
     },
     {
-     "soru": "Türkçe'de sözcük yapısı, kelimelerin bir araya gelerek oluşturdukları yapıdır. Sözcük yapısı, kelimenin anlamını ve kullanımını etkiler. Bir sözcük, bir kelime, bir fiil, bir isim, bir sıfat ve bir zarf gibi çeşitli unsurlardan oluşabilir. Sözcük yapısı, kelimenin işlevini ve yerini belirler.",
-     "secenekler": [
-      "Sözcük yapısı, kelimenin anlamını belirler.",
-      "Sözcük yapısı, kelimenin işlevini belirler.",
-      "Sözcük yapısı, kelimenin kullanımını etkiler.",
-      "Sözcük yapısı, kelimenin anlamını ve işlevini belirler.",
-      "Sözcük yapısı, kelimenin işlevini ve yerini belirler."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Sözcük yapısı, kelimenin anlamını ve işlevini belirleyen bir faktördür."
-    },
-    {
      "soru": "Sözcük yapısı, kelimenin işlevini nasıl belirler?",
      "secenekler": [
       "Sözcük yapısı, kelimenin işlevini belirleyen bir faktör değildir.",
@@ -14433,18 +13605,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Sözcük yapısı, kelimenin anlamını ve işlevini belirleyen bir faktördür."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını tam olarak anlamanız için aşağıdaki metni okuduktan sonra sorularımıza cevap veriniz. Paragraf: İnsanların dil, kültür ve ırkları farklılıklarından ötürü birbirlerinden farklı olduğu düşüncesine dayalı olarak ortaya çıkan ve bireylerin birbirleriyle farklılıklarını belirterek onları ayıran bir yaklaşımdır. Bu yaklaşıma dayalı olarak ortaya çıkan bir düşünce olarak 'ırkçılık' olarak tanımlanabilir. İnsanların her birinin farklı karakteristikleri ve özelliklere sahip olması ve bu farklılıkları temel alan ırkçılık, insanları farklı ırklara ayırarak onları birbirlerinden ayırmaya yönelik bir düşünce biçimidir. Sorularımıza cevap veriniz.",
-     "secenekler": [
-      "İnsanların kültürleri ve dilleri farklılıklarından ötürü birbirlerinden farklı olduğu düşüncesine dayalı olarak ortaya çıkan bir düşünce biçimi ırkçılıktır.",
-      "İnsanların ırkları farklılıklarından ötürü birbirlerinden farklı olduğu düşüncesine dayalı olarak ortaya çıkan bir düşünce biçimi ırkçılıktır.",
-      "İnsanların dilleri ve kültürleri farklılıklarından ötürü birbirlerinden farklı olduğu düşüncesine dayalı olarak ortaya çıkan bir düşünce biçimi ırkçılıktır.",
-      "İnsanların karakteristikleri ve özellikleri farklılıklarından ötürü birbirlerinden farklı olduğu düşüncesine dayalı olarak ortaya çıkan bir düşünce biçimi ırkçılıktır.",
-      "İnsanların farklı karakteristikleri ve özelliklerine sahip olması ırkçılık düşüncesinin temelini oluşturur."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, farklı ırklara dayalı olarak insanları ayıran bir düşünce biçiminin ırkçılık olduğunu tam olarak anlamış olmalıdır."
     },
     {
      "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan seçenek hangisidir? Türkçenin yapısı, diğer dillerden oldukça farklıdır. Bu farklılık, dilin gramer ve sözcük yapısında görülür. Türkçenin grameri, eklemeli bir gramerdir. Bu, kelimelerin sonuna gelen eklerle anlamın değiştiği anlamına gelir. Örneğin, 'ev' kelimesine '-de' eki getirilerek 'evde' şeklinde anlam değişir.",
@@ -16087,90 +15247,6 @@
      "aciklama": "'Belki' sözcüğüyle birlikte kullanılan 'yağar' fiilindeki geniş zaman eki, burada kesin bir gerçeği değil, geleceğe yönelik bir tahmini/olasılığı bildirmektedir."
     },
     {
-     "soru": "Türkçe'de fiil çekiminde kip ve zaman kavramlarının anlaşılması önemlidir. İşte, bu konuya dair bir örnek paragraf: 'Sizler okulda derslere gittikten sonra, evde yemek yediler ve sonra da televizyon izlediler.' Paragrafın anlamını ve içerdiği fiil çekimlerini analiz edin.",
-     "secenekler": [
-      "Paragrafın anlamı, okulda derslere gitmek, yemek yemek ve televizyon izlemek ile ilgili.",
-      "Paragrafın anlamı, okulda derslere gitmek, yemek yemek ve televizyon izlemek ile ilgili, aynı zamanda bu eylemler aynı anda gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek, yemek yemek ve televizyon izlemek ile ilgili, aynı zamanda bu eylemler farklı zamanlarda gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek, yemek yemek ve televizyon izlemek ile ilgili, aynı zamanda bu eylemler farklı zamanlarda gerçekleşmiştir ve aynı anda gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek, yemek yemek ve televizyon izlemek ile ilgili, aynı zamanda bu eylemler geçmişte gerçekleşmiştir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragrafın anlamını tam olarak yansıtıyor ve kip ve zaman kavramlarını dikkate alıyor."
-    },
-    {
-     "soru": "Türkçe'de fiil çekiminde kip ve zaman kavramlarının anlaşılması önemlidir. İşte, bu konuya dair bir örnek cümle: 'Sizler okulda derslere gittik.' Paragrafın anlamını ve içerdiği fiil çekimlerini analiz edin.",
-     "secenekler": [
-      "Paragrafın anlamı, okulda derslere gitmek ile ilgili.",
-      "Paragrafın anlamı, okulda derslere gitmek ile ilgili, aynı zamanda bu eylemin geçmişte gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek ile ilgili, aynı zamanda bu eylemin gelecekte gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek ile ilgili, aynı zamanda bu eylemin aynı anda gerçekleşmiştir.",
-      "Paragrafın anlamı, okulda derslere gitmek ile ilgili, aynı zamanda bu eylemin farklı zamanlarda gerçekleşmiştir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragrafın anlamını tam olarak yansıtıyor ve kip ve zaman kavramlarını dikkate alıyor."
-    },
-    {
-     "soru": "Türkçe'de fiil çekiminde kip ve zaman kavramlarının anlaşılması önemlidir. İşte, bu konuya dair bir örnek paragraf: 'Benim bir kardeşim var ve o dün eve geldi.' Paragrafın anlamını ve içerdiği fiil çekimlerini analiz edin.",
-     "secenekler": [
-      "Paragrafın anlamı, bir kardeşin varlığı ve dün eve gelmesi ile ilgili.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve dün eve gelmesi ile ilgili, aynı zamanda bu eylemin geçmişte gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve dün eve gelmesi ile ilgili, aynı zamanda bu eylemin gelecekte gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve dün eve gelmesi ile ilgili, aynı zamanda bu eylemin aynı anda gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve dün eve gelmesi ile ilgili, aynı zamanda bu eylemin farklı zamanlarda gerçekleşmiştir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragrafın anlamını tam olarak yansıtıyor ve kip ve zaman kavramlarını dikkate alıyor."
-    },
-    {
-     "soru": "Türkçe'de fiil çekiminde kip ve zaman kavramlarının anlaşılması önemlidir. İşte, bu konuya dair bir örnek cümle: 'Benim bir kardeşim var ve o bugün eve gidiyor.' Paragrafın anlamını ve içerdiği fiil çekimlerini analiz edin.",
-     "secenekler": [
-      "Paragrafın anlamı, bir kardeşin varlığı ve bugün eve gitmesi ile ilgili.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve bugün eve gitmesi ile ilgili, aynı zamanda bu eylemin gelecekte gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve bugün eve gitmesi ile ilgili, aynı zamanda bu eylemin geçmişte gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve bugün eve gitmesi ile ilgili, aynı zamanda bu eylemin aynı anda gerçekleşmiştir.",
-      "Paragrafın anlamı, bir kardeşin varlığı ve bugün eve gitmesi ile ilgili, aynı zamanda bu eylemin farklı zamanlarda gerçekleşmiştir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, paragrafın anlamını tam olarak yansıtıyor ve kip ve zaman kavramlarını dikkate alıyor."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın anlamını ve ana fikrini tam olarak çıkarabilen kişi, fiil çekiminin temelini oluşturan kip ve zaman kavramlarını da doğru olarak anlar. Aşağıdaki metni okuyun ve soruları yanıtlayın.",
-     "secenekler": [
-      "Paragrafda, bir bilim adamının bilimsel araştırmaları ve bulgularını aktaran metin türünün özellikleri hakkında bilgi verilmektedir.",
-      "Paragrafda, bir akademisyenin ders notlarında kullanmak istediği dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerine değinilmektedir.",
-      "Paragrafda, bir bilim adamının yazdığı makalelerde sıkça kullanılan dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir akademisyenin ders anlatırken kullandığı dilin özelliklerini açıklamaktadır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer doğru seçerse, paragrafın metnini doğru olarak anladığı için, bir akademisyenin ders notlarında kullanmak istediği dilin özelliklerini açıklamaktadır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafın metnini doğru olarak okuyabilen ve anlamını çıkarabilen kişi, fiil çekiminin temelini oluşturan kip ve zaman kavramlarını da doğru olarak anlar. Aşağıdaki metni okuyun ve soruları yanıtlayın.",
-     "secenekler": [
-      "Paragrafda, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerine değinilmektedir.",
-      "Paragrafda, bir bilim adamının yazdığı makalelerde sıkça kullanılan dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir akademisyenin ders notlarında kullanmak istediği dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir bilim adamının yazdığı makalelerde kullanılan dilin özelliklerini açıklamaktadır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Eğer doğru seçerse, paragrafın metnini doğru olarak anladığı için, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerine değinilmektedir."
-    },
-    {
-     "soru": "Aşağıdaki metni okuyun ve soruları yanıtlayın. Paragrafda, bir bilim adamının yazdığı makalelerde sıkça kullanılan dilin özelliklerini açıklamaktadır.",
-     "secenekler": [
-      "Paragrafda, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerine değinilmektedir.",
-      "Paragrafda, bir bilim adamının yazdığı makalelerde sıkça kullanılan dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir akademisyenin ders notlarında kullanmak istediği dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir yazarın hikayeleri anlatırken kullandığı dilin özelliklerini açıklamaktadır.",
-      "Paragrafda, bir bilim adamının yazdığı makalelerde kullanılan dilin özelliklerini açıklamaktadır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Eğer doğru seçerse, paragrafın metnini doğru olarak anladığı için, bir bilim adamının yazdığı makalelerde sıkça kullanılan dilin özelliklerini açıklamaktadır."
-    },
-    {
      "soru": "Ali, annesine \"Geçen yılın sonbaharında yağan yağmur, bu yılın sonbaharında yağmurdan daha fazla yağdı\" demişti. Bu cümlede kullanılan fiilin hangi kipi ve zamanı gösteriyor?",
      "secenekler": [
       "İtiraf zamanı, fiilimiz üçüncü kip",
@@ -16181,30 +15257,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Cümlede geçen fiil, geçmişte gerçekleşen bir olayı göstermektedir. Ayrıca, üçüncü kip fiil ile birlikte kullanıldığı için bu seçenek doğru bir seçenektir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, \"Bu yılın başlarında doğan çocuklar, gelecek yılın başlarında 2 yaşına geleceklerdir.\" cümlesinde kullanılan fiilin hangi kipi ve zamanı gösterdiğini söyleyin.",
-     "secenekler": [
-      "Gelecek zamanı, fiilimiz birinci kip",
-      "Geçmiş zamanı, fiilimiz ikinci kip",
-      "Gelecek zamanı, fiilimiz ikinci kip",
-      "Geçmiş zamanı, fiilimiz birinci kip",
-      "Gelecekteki gelecek zamanı, fiilimiz üçüncü kip"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Cümlede geçen fiil, gelecekte gerçekleşecek bir olayı göstermektedir. Ayrıca, ikinci kip fiil ile gelecek zaman birlikte kullanıldığı için bu seçenek doğru bir seçenektir."
-    },
-    {
-     "soru": "Görünürde basit bir olaya şahit oluyoruz. Bir öğrenci, bir gün sokağa çıktı ve bir ağaca tırmandı. Öğrencinin bu eylemi, birçoğumuzun aklını çelmeye yetecek kadar saçma gibi görünüyor. Ancak, bu eylemin arkasında bir neden var. Öğrenci, ağacın tepesinden bir kuşun yuvasını keşfetti ve kuşun yuvasını yok sayan bir bina inşaatı yapımcılarının işine gelmeyen bir gerçekti. Öğrenci, bu olayla ilgili bir haber yazıyordu. Olay, öğrencinin ağacın tepesine tırmanmasıyla başladı. Öğrenci, kuşun yuvasını keşfetti ve bir haber yazmaya başladı.",
-     "secenekler": [
-      "Öğrenci, kuşun yuvasını yok sayan bina inşaatı yapımcılarını eleştirir.",
-      "Öğrenci, kuşun yuvasını keşfettiği için ağacın tepesine tırmandı.",
-      "Öğrenci, bir haber yazmaya başlamadan önce ağacın tepesine tırmandı.",
-      "Öğrenci, kuşun yuvasını yok sayan bina inşaatı yapımcılarının işine gelmeyen bir gerçekti.",
-      "Öğrenci, ağacın tepesinden bir kuşun yuvasını keşfetti."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Buna neden seçmış olabileceğine dair açıklama: Seçenek E doğru çünkü öğrenci, ağacın tepesinden bir kuşun yuvasını keşfetti."
     },
     {
      "soru": "Bir gün, bir öğrenci okuluna geldi ve öğretmenine söyledi ki: \"Öğretmenim, ben bugün okuldan izin istiyorum.\" Öğretmen, öğrencinin isteğini duyunca, öğrenciye sordu: \"Niye izin istiyorsun?\" Öğrenci, öğretmenine söyledi ki: \"Benim annemin doğum günü var.\" Öğretmen, öğrencinin cevabını duyduktan sonra, öğrenciye sordu: \"Annenin doğum günü ne zaman?\" Öğrenci, öğretmenine söyledi ki: \"Bugün.\"",
@@ -16241,90 +15293,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçenek, İstanbul'un tarihsel önemini bilerek seçilmiş olabilir. İstanbul'un başkentlik geçmişini bilerek ve doğru bir şekilde yorumlayabilmek, doğru bir sonuç doğurur."
-    },
-    {
-     "soru": "Kasım ayında yağan yağmurun ardından, İstanbul'un semtleri sular altında kalmıştı. Sokaklar, evler, parklar ve tüm şehir sular altında kalıyordu. Bu durum, İstanbul'un tarihsel önemini hatırlatıyordu. İstanbul'un geçmişini incelediğimizde, birçok imparatorluğun ve devletin başkenti olduğunu görüyoruz.",
-     "secenekler": [
-      "Bakımını yaptığımız zaman, İstanbul'un başkentlik geçmişini hatırlayabiliriz.",
-      "İstanbul'un tarihsel önemini bilerek ve doğru bir şekilde yorumlayabiliriz.",
-      "İstanbul'un başkentlik geçmişini bilmeden, İstanbul'un tarihsel önemini hatırlayabiliriz.",
-      "İstanbul'un başkentlik geçmişi, İstanbul'un tarihsel önemini hatırlatmaz.",
-      "İstanbul'un başkentlik geçmişini bilmeden, İstanbul'un tarihsel önemini bilerek yorumlayabiliriz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, İstanbul'un tarihsel önemini bilerek seçilmiş olabilir. İstanbul'un başkentlik geçmişini bilerek ve doğru bir şekilde yorumlayabilmek, doğru bir sonuç doğurur."
-    },
-    {
-     "soru": "Kasım ayında yağan yağmurun ardından, İstanbul'un semtleri sular altında kalmıştı. Sokaklar, evler, parklar ve tüm şehir sular altında kalıyordu. Bu durum, İstanbul'un tarihsel önemini hatırlatıyordu. İstanbul'un başkentlik geçmişi, İstanbul'un tarihsel önemini hatırlatmaz.",
-     "secenekler": [
-      "Evet, İstanbul'un başkentlik geçmişi, İstanbul'un tarihsel önemini hatırlatmaz.",
-      "Hayır, İstanbul'un tarihsel önemini bilerek yorumlayabiliriz.",
-      "Bilmiyoruz, çünkü bu konuya dair yeterli bilgiye sahip değiliz.",
-      "Evet, İstanbul'un tarihsel önemini bilerek yorumlayabiliriz.",
-      "Hayır, İstanbul'un başkentlik geçmişi, İstanbul'un tarihsel önemini hatırlatır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, İstanbul'un tarihsel önemini doğru bilerek seçilmiş olabilir. İstanbul'un başkentlik geçmişi, İstanbul'un tarihsel önemini hatırlatmaz diyerek doğru bir yorumlama yapabilmek, doğru bir sonuç doğurur."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, 'Tüm öğrenciler dersi' ifadesinin hangi fiilin çekimine göre kullanıldığını seçin. Tüm öğrenciler dersi başladıktan sonra, öğretmenler ve öğrenciler ders saatinde toplanacak. Dersin ilk 15 dakika kadarı, öğrencilerin ders saatinde toplanması ve dersin önemi hakkında konuşulacak. Tüm öğrenciler dersi, öğrencilerin ders saatinde toplanması ve dersin önemi hakkında konuşulacak.",
-     "secenekler": [
-      "Geçmiş zaman",
-      "Gelecek zaman",
-      "Şimdiki zaman",
-      "Temel fiil",
-      "Zarflarla oluşturulan kelimeler"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçeneğimiz doğru. Tüm öğrenciler fiili, 'şimdiki zaman' ile çekimlidir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, 'Bilgisayarlar' cümlesindeki fiilin çekimini seçin. Bilgisayarlar, öğrencilerin ders çalışma zamanlarında büyük yardımcılar olarak görülüyor. Bilgisayarlar, öğrencilerin ders çalışma zamanlarında büyük yardımcılar olarak görülüyor.",
-     "secenekler": [
-      "Geçmiş zaman",
-      "Gelecek zaman",
-      "Şimdiki zaman",
-      "Temel fiil",
-      "Zarflarla oluşturulan kelimeler"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçeneğimiz doğru. Bilgisayarlar fiili, 'şimdiki zaman' ile çekimlidir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, 'öğrenciler' cümlesindeki fiilin çekimini seçin. Öğrenciler, ders çalışma zamanlarında büyük yardımcılar olarak görülüyor. Öğrenciler, ders çalışma zamanlarında büyük yardımcılar olarak görülüyor.",
-     "secenekler": [
-      "Geçmiş zaman",
-      "Gelecek zaman",
-      "Şimdiki zaman",
-      "Temel fiil",
-      "Zarflarla oluşturulan kelimeler"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçeneğimiz doğru. Öğrenciler fiili, 'şimdiki zaman' ile çekimlidir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, 'ders çalışmaları' cümlesindeki fiilin çekimini seçin. Ders çalışma zamanlarında öğrenciler, büyük yardımcılar olarak görülüyor. Ders çalışma zamanlarında öğrenciler, büyük yardımcılar olarak görülüyor.",
-     "secenekler": [
-      "Geçmiş zaman",
-      "Gelecek zaman",
-      "Şimdiki zaman",
-      "Temel fiil",
-      "Zarflarla oluşturulan kelimeler"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçeneğimiz doğru. Ders çalışmaları fiili, 'şimdiki zaman' ile çekimlidir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, 'öğrenciler' cümlesindeki fiilin çekimini seçin. Ders çalışma zamanlarında öğrenciler, büyük yardımcılar olarak görülüyor. Öğrenciler, ders çalışma zamanlarında büyük yardımcılar olarak görülüyor.",
-     "secenekler": [
-      "Geçmiş zaman",
-      "Gelecek zaman",
-      "Şimdiki zaman",
-      "Temel fiil",
-      "Zarflarla oluşturulan kelimeler"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Seçeneğimiz doğru. Öğrenciler fiili, 'şimdiki zaman' ile çekimlidir."
     }
    ]
   },
@@ -17186,42 +16154,6 @@
      "aciklama": "'Ne kadar güzelmiş, öyle değil mi?' cümlesinde 'değil mi' ifadesi bir cevap beklemekten çok, söylenen düşünceyi pekiştirmek amacıyla kullanılmıştır."
     },
     {
-     "soru": "Aşağıdaki paragrafda, cümlenin türünü ve cümledeki anahtar kelimeleri bulunuz. 'Kadınların hayatını kolaylaştırmak için birçok adım atıldı. İlk olarak, kadınların oy kullanma hakları verildi. Daha sonra kadınların eğitim alma hakları da verildi. Bu adımlarla, kadınların daha fazla hakka kavuşması sağlandı. Ancak, hâlâ birçok kadın, eğitim almaya ve oy kullanmaya yetkili değildir.'",
-     "secenekler": [
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, soruludur. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcıların büyük ihtimalle bu seçeneği seçmesinde, paragrafın açıklamalı cümlelerden oluşması ve cümledeki anahtar kelimelerin açıkça belirtildiği sebep olabilir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafda, cümlenin türü ve anahtar kelimeleri bulunuz. 'Kadınların oy kullanma hakları, eğitim alma hakları ve daha birçok hakkı elde etmesi, kadınların hayatını kolaylaştırmak için önemli adımlar atmıştır.'",
-     "secenekler": [
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, soruludur. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Kullanıcıların büyük ihtimalle bu seçeneği seçmesinde, paragrafın açıklamalı cümlelerden oluşması ve cümledeki anahtar kelimelerin açıkça belirtildiği sebep olabilir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafda, cümlenin türü ve anahtar kelimeleri bulunuz. 'Kadınların hayatını kolaylaştırmak için birçok adım atıldı. İlk olarak, kadınların oy kullanma hakları verildi. Daha sonra kadınların eğitim alma hakları da verildi.'",
-     "secenekler": [
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, soruludur. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, oy kullanma hakları, eğitim alma hakları.",
-      "Paragrafın cümle türü, açıklamalı cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları.",
-      "Paragrafın cümle türü, emredici cümledir. Anahtar kelimeler: kadınların hayatını kolaylaştırmak, eğitim alma hakları, oy kullanma hakları."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Kullanıcıların büyük ihtimalle bu seçeneği seçmesinde, paragrafın emredici cümlelerden oluşması ve cümledeki anahtar kelimelerin açıkça belirtildiği sebep olabilir."
-    },
-    {
      "soru": "Aşağıdaki cümle hangi cümle türünden bir örnektir?",
      "secenekler": [
       "Bu cümle, bir olayı ya da durumu anlatan cümledir.",
@@ -17282,42 +16214,6 @@
      "aciklama": "Bu cümle, aktif bir cümledir, çünkü 'Ali' özne, 'kitabını' nesne ve 'okuduy' söylenidir."
     },
     {
-     "soru": "Birkaç gün önce, Ankara'da bir grup öğrenci, okulun bahçesinde oynarken, bir köpek tarafından ısırıldı. Köpek, öğrencilerin arasında dolaşıp, bazılarını ısırarak yaralandırarak büyük bir panik yarattı. Öğrenciler, köpeğin ısırmasına rağmen, büyük bir soğukkanlılık göstererek, olay yerine gelen polis memurlarına köpeği tuttular. İşte bu olay, öğrencilerin soğukkanlılığı ve köpeği tutma çabaları karşısında, büyük bir şaşkınlık yarattı.",
-     "secenekler": [
-      "Köpek, öğrencilerin arasında dolaşıp, bazılarını ısırarak yaralandırarak büyük bir panik yarattı.",
-      "Öğrenciler, köpeğin ısırmasına rağmen, büyük bir soğukkanlılık göstererek, olay yerine gelen polis memurlarına köpeği tuttular.",
-      "Öğrencilerin, köpeğin ısırmasına rağmen, büyük bir panik yaşadığını görmedik.",
-      "Köpek, öğrencilerin arasında dolaşmadan, bir öğrenciyi tekmeleyerek yaralandırarak büyük bir panik yarattı.",
-      "Öğrenciler, köpeği tuttuktan sonra, olay yerine gelen polis memurlarını tutmaya çalıştılar."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bunu seçen, öğrencilerin soğukkanlılığı ve köpeği tutma çabaları karşısında şaşkınlık duyduğunu ve olayın detaylarını doğru olarak algılamış olabileceği için."
-    },
-    {
-     "soru": "Sokakta yürürken, karşıdan gelen bir araç, trafik ışıkları kapanmadan, sola dönmeye çalışıyordu. Sürücü, aracını sola döndürmeye çalışırken, bir araç ile çarpıştı. Çarpışmadan sonra, sürücünün aracında, büyük bir hasar vardı. Sürücü, aracını sola döndürmeye çalışırken, trafik ışıklarına uymamıştı.",
-     "secenekler": [
-      "Trafik ışıkları, sürücünün sola dönmeye çalıştığı anda kapanmıştı.",
-      "Sürücü, aracını sola döndürmeye çalışırken, trafik ışıklarına uymuştu.",
-      "Sürücünün aracında, büyük bir hasar yoktu.",
-      "Aracın, sola dönüşü sırasında, karşıdan gelen araçla çarpışması, sürücünün trafik ışıklarına uymamasından kaynaklanmıştı.",
-      "Trafik ışıkları, sürücünün sola dönmeye çalıştığı anda açık değildi."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bunu seçen, çarpışmanın sürücünün trafik ışıklarına uymamasından kaynaklandığını doğru olarak algılamış olabileceği için."
-    },
-    {
-     "soru": "Birkaç gün önce, bir grup öğrenci, okulun bahçesinde bir grup köpekle oynarken, büyük bir köpek tarafından ısırıldı. Öğrenciler, büyük bir panik yaşadılar ve olay yerine gelen polis memurlarına yardımcı oldular. Büyük bir şaşkınlık yaratan olayın ardından, öğrenciler, büyük bir soğukkanlılıkla olayı yönettiler.",
-     "secenekler": [
-      "Öğrenciler, büyük bir panik yaşadılar ve olay yerine gelen polis memurlarına yardımcı oldular.",
-      "Öğrenciler, büyük bir soğukkanlılıkla olayı yönettiler.",
-      "Büyük bir şaşkınlık yaratan olay, okulun bahçesinde gerçekleşti.",
-      "Öğrenciler, büyük bir panik yaşadılar ve olay yerine gelen polis memurlarına yardımcı olamadılar.",
-      "Büyük bir şaşkınlık yaratan olay, okulun bahçesinde gerçekleşmedi."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bunu seçen, öğrencilerin büyük bir soğukkanlılıkla olayı yönettiğini doğru olarak algılamış olabileceği için."
-    },
-    {
      "soru": "Örnek 1: Cümlelerin cinsi belirlenmesi",
      "secenekler": [
       "Bu metin, okurların eğitimle ilgili önemli konuları hakkında bilgi sahibi olması için yazılmıştır.",
@@ -17328,42 +16224,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Bu seçeneği seçen, metnin okurların eğitimle ilgili önemli konuları hakkında bilgi sahibi olmadığından bahsediyor. Bu doğru bir açıklama."
-    },
-    {
-     "soru": "Paragraf: 'Sözün gücü' konulu bir makalede, yazarın 'sözün gücü' kavramını şu şekilde tanımlamasını okuduk: 'Sözün gücü, insanın düşünce ve duygularını ifade etmek için kullandığı bir araçtır. Söz, insanı birbirinden ayırır, aynı zamanda insanları birleştirir. Söz, insanı özgürleştirir, aynı zamanda insanı zincirlendirir. Söz, insanı yükseltir, aynı zamanda insanı aşağı çeker.' Makaleyi okuyan öğrenci, sözün gücünü şu şekilde tanımlayabilir:",
-     "secenekler": [
-      "Sözün gücü, insanın düşünce ve duygularını ifade etmek için kullandığı bir araçtır.",
-      "Söz, insanı özgürleştirir ve yükseltir.",
-      "Söz, insanları birleştirir ve zincirlendirir.",
-      "Söz, insanın düşünce ve duygularını ifade etmek için kullandığı bir araçtır ve insanı özgürleştirir.",
-      "Söz, insanı özgürleştirir, aynı zamanda insanı zincirlendirir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, makalenin başlangıcındaki tanımlama ile aynıdır ve makaleye uygun bir tanımdır."
-    },
-    {
-     "soru": "Paragraf: 'Sözün gücü' konulu bir makalede, yazarın 'sözün gücü' kavramını şu şekilde tanımlamasını okuduk: 'Sözün gücü, insanın düşünce ve duygularını ifade etmek için kullandığı bir araçtır. Söz, insanı özgürleştirir, aynı zamanda insanı zincirlendirir. Söz, insanı yükseltir, aynı zamanda insanı aşağı çeker.' Makaleyi okuyan öğrenci, sözün gücünü şu şekilde tanımlayabilir:",
-     "secenekler": [
-      "Söz, insanı özgürleştirir ve yükseltir.",
-      "Sözün gücü, insanın düşünce ve duygularını ifade etmek için kullandığı bir araçtır.",
-      "Söz, insanları birleştirir ve zincirlendirir.",
-      "Söz, insanı özgürleştirir, aynı zamanda insanı zincirlendirir.",
-      "Söz, insanı özgürleştirir, aynı zamanda insanı yükseltir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, makalenin başlangıcındaki tanımlama ile aynıdır ve makaleye uygun bir tanımdır."
-    },
-    {
-     "soru": "Ömer Faruk Emre'nin 'Geç Kaldım' adlı şiirinden bir paragraf aşağıda verilmiştir. Paragrafın cümle türünü belirten cümleyi seçiniz.",
-     "secenekler": [
-      "Bu şiirde, şiirin tema ve mesajını açıklamaya yönelik bir cümle vardır.",
-      "Bu şiirde, şiirin tema ve mesajını açıklamaya yönelik bir cümle yoktur.",
-      "Bu şiirde, şiirin tema ve mesajını açıklamaya yönelik bir cümle vardır ve şiirin ana temasını da açıklar.",
-      "Bu şiirde, şiirin tema ve mesajını açıklamaya yönelik bir cümle vardır ve şiirin ana temasını da açıklar fakat şiirin mesajını da açıklar.",
-      "Bu şiirde, şiirin tema ve mesajını açıklamaya yönelik bir cümle yoktur ve şiirin ana temasını da açıklamaz."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, şiirin tema ve mesajını açıklamaya yönelik bir cümle olduğunu ve şiirin ana temasını da açıkladığını düşünmüş olabilirler."
     },
     {
      "soru": "Edebiyatın bir türü olan şiir, genellikle bir olayı ya da duyguyu anlatır. Bu şiirin cümle türünü seçiniz.",
@@ -17412,78 +16272,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Büyük ihtimalle bu seçeneği seçen, güzellik kavramının değişebileceğini anlamış olabilir. Paragrafda, güzellik kavramının değişebileceği vurgulanmaktadır."
-    },
-    {
-     "soru": "Paragraf: İnsan, doğadan bağımsız bir varlıktır. Doğa, insanı etkiler, ama insan da doğayı etkiler. İnsan, doğanın bir parçasıdır, ama aynı zamanda doğanın üzerinde de bir kontrolü vardır. Doğa, insanı şekillendirir, ama insan da doğayı şekillendirir. İşte bu yüzden insan, doğadan bağımsız bir varlıktır. İnsan, doğanın bir parçasıdır. Doğa, insanı etkiler, ama insan da doğayı etkiler. İnsan, doğanın bir parçası olarak doğanın içinde yaşar, ama aynı zamanda doğayı da etkiler. İşte bu yüzden insan, doğadan bağımsız bir varlıktır.",
-     "secenekler": [
-      "İnsan, doğadan bağımsızdır.",
-      "İnsan, doğanın bir parçasıdır.",
-      "Doğa, insanı etkiler.",
-      "İnsan, doğayı etkiler.",
-      "İnsan, doğanın üzerinde kontrolü yoktur."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçen, insanın doğadan bağımsız olduğunu anlamış olabilir. Paragrafda, insanın doğadan bağımsız olduğunu vurgulamaktadır."
-    },
-    {
-     "soru": "Paragraf: Bir şeyin değerini, o şeyin sahip olduğu özellikler belirler. Bir şeyin sahip olduğu özellikler, o şeyin değerini artıran veya azaltan unsurlardır. İşte bu yüzden bir şeyin değerini, o şeyin sahip olduğu özellikler belirler. Bir şeyin değerini, o şeyin sahip olduğu özellikler belirler. Bir şeyin sahip olduğu özellikler, o şeyin değerini artıran veya azaltan unsurlardır. İşte bu yüzden bir şeyin değerini, o şeyin sahip olduğu özellikler belirler.",
-     "secenekler": [
-      "Bir şeyin değerini, o şeyin sahip olduğu özellikler belirler.",
-      "Bir şeyin değerini, o şeyin sahip olmadığı özellikler belirler.",
-      "Bir şeyin değerini, o şeyin sahip olduğu özellikler belirlemez.",
-      "Bir şeyin değerini, o şeyin sahip olduğu özellikler azaltan unsurlar belirler.",
-      "Bir şeyin değerini, o şeyin sahip olmadığı özellikler artıran unsurlar belirler."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçen, bir şeyin değerini belirleyen faktörleri anlamış olabilir. Paragrafda, bir şeyin değerini belirleyen faktör olarak sahip olduğu özellikler vurgulanmaktadır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra hangi cümle türüne ait olduğunu belirten cümle türünü bulunuz. Mavi gökyüzü, bir o yana, bir bu yana dolaşan beyaz bulutlarla çok güzeldi. Güneşin ışınları, bulutların üzerinde bir altın halka gibi parlıyordu.",
-     "secenekler": [
-      "Sözel cümle",
-      "Duruşma cümlesi",
-      "Soru cümlesi",
-      "Bağlama cümlesi",
-      "Konusma cümlesi"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu cümle, özelliklerin sıralanmasıyla karakterize edilen sözel cümle türüne aittir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra hangi cümle türüne ait olduğunu belirten cümle türünü bulunuz. \"Sana ne diyeyim,\" dedi. \"Seninle konuşmak istiyorum ama nasıl başlamalı diye düşünüyorum.\"",
-     "secenekler": [
-      "Sözel cümle",
-      "Duruşma cümlesi",
-      "Soru cümlesi",
-      "Bağlama cümlesi",
-      "Konusma cümlesi"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu cümle, bir konuyu açıklamak ya da tartışmak amacıyla kullanılan konusma cümlesi türüne aittir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra hangi cümle türüne ait olduğunu belirten cümle türünü bulunuz. \"Biliyorum ki sen bu işe girmek istemezsin,\" dedi. \"Ama sen de biliyorsun ki bu işe girmek zorundayız.\"",
-     "secenekler": [
-      "Sözel cümle",
-      "Duruşma cümlesi",
-      "Soru cümlesi",
-      "Bağlama cümlesi",
-      "Konusma cümlesi"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu cümle, bir konuyu açıklamak ya da tartışmak amacıyla kullanılan konusma cümlesi türüne aittir."
-    },
-    {
-     "soru": "Türkçe'de cümle türlerini açıklayan bir metin, 'Cümle türleri' konusunun temelini oluşturur. Cümle türleri, cümlelerin yapısını ve anlamını belirleyen unsurlardır. Dile girmeden önce cümle türlerini bilmemiz, daha doğru ve etkili bir dil kullanmamızı sağlar.",
-     "secenekler": [
-      "Cümle türleri, cümlelerin yapısını ve anlamını belirleyen unsurlardır.",
-      "Cümle türleri, cümlelerin yapısını belirleyen unsurlardır.",
-      "Cümle türleri, cümlelerin anlamını belirleyen unsurlardır.",
-      "Cümle türleri, cümlelerin yapısını ve anlamını belirleyen unsurlar değildir.",
-      "Cümle türleri, dili belirleyen unsurlardır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğu için, yanlış bir seçenek seçmek için kullanıcı büyük ihtimalle cümle türlerinin sadece yapısını veya anlamını belirlediğini düşünmüş olabilir."
     },
     {
      "soru": "Aşağıdaki cümlelerden hangisi yapı bakımından basit cümledir?",
@@ -18489,18 +17277,6 @@
      "aciklama": "Bu seçeneği tercih eden kullanıcılar, kendini beğenmiş bir kişinin kendinden uzaklaşır olduğu varsayımını taşıyor olabilirler."
     },
     {
-     "soru": "Aşağıdaki metni oku ve soruları cevapla. Dil, bireyin sosyal yaşamını etkileyen önemli bir faktördür. Bireyin dilini doğru kullanması, sosyal ilişkilerini geliştirmesine, iletişim kurmasına ve toplumsal kurumlara uyumuna katkı sağlar. Dil bozuklukları, bireyin dilini doğru kullanamaması anlamını taşır. Bu durum, sosyal yaşamda önemli sorunlar oluşturabilir. Dil bozukluğunun nedenleri, genetik, çevresel ve travmatik faktörler olabilir. Genetik faktörler, bireyin doğuştan sahip olduğu dil bozukluğu türünü belirlerken, çevresel faktörler, bireyin dil öğrenme sürecini etkileyebilir. Travmatik faktörler, bireyin dilini kaybetmesine neden olabilir. Dil bozukluğu, bireyin sosyal yaşamını etkileyen önemli bir sorundur. Buna rağmen, dil bozukluğu, bireyin dilini doğru kullanamaması anlamını taşır. Bireyin dilini doğru kullanması, sosyal ilişkilerini geliştirmesine, iletişim kurmasına ve toplumsal kurumlara uyumuna katkı sağlar.",
-     "secenekler": [
-      "Dil bozukluğu, bireyin doğuştan sahip olduğu bir durumdur.",
-      "Dil bozukluğu, bireyin dilini öğrenme sürecini etkileyebilir.",
-      "Dil bozukluğu, bireyin dilini kaybetmesine neden olabilir.",
-      "Dil bozukluğu, bireyin sosyal yaşamını etkileyen önemli bir sorundur.",
-      "Dil bozukluğu, bireyin dilini doğru kullanamaması anlamını taşır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçeneği seçenler, dil bozukluğunun sosyal yaşamı etkileyen önemli bir sorundan başka bir şey olmadığını düşünüyor olabilirler."
-    },
-    {
      "soru": "Aşağıdaki paragrafı okuduktan sonra hangi kelimenin 'anlatım bozukluğu' ile ilgili olmadığını söyleyebilirsiniz? 'Anlatım bozukluğu', bireyin bir düşünce, duygu veya olayı ifade ederken kullandığı dil kalıplarının, söyleyişinin, konuşma ritminin ve diğer dil özelliklerinin normlara uymayan şekilde kullanılmasıdır. Bu bozukluklar, bireyin dilbilgisi, söyleyiş, dilin ritmi ve dilin anlamı gibi özelliklerinde görülebilir. Anlatım bozuklukları, bireyin dil becerilerini etkileyebilir ve iletişim kurma becerilerini azaltabilir.",
      "secenekler": [
       "Dilbilgisi",
@@ -18549,30 +17325,6 @@
      "aciklama": "Bu seçenek doğru cevaptır, hata dilde kullanılan sözcüklerin ya da cümlelerin birbirini izleyen sırayla yanlış kullanılmasına denir."
     },
     {
-     "soru": "Paragrafını okuyun ve cevabını seçin: Türkçe dilinde anlatım bozukluklarından biri olan 'yanlış anlamaya' neden olabilecek bir cümle verin. Örneğin, 'Benim arabam çok güzeldir' cümlesinde 'arabamın' kelimesi 'arabamın' yerine kullanıldığından hata yapılmış olur. Bu cümlede kullanılan 'arabamın' kelimesi cümlenin anlamını değiştirebilir.",
-     "secenekler": [
-      "Sözcüklerin anlamı değişmeden cümlede kullanılan kelimeye başka bir kelimenin eklenmesi",
-      "Cümle içinde kullanılan sözcüklerin ya da cümlelerin birbirini izleyen sırayla yanlış kullanılmasına denir",
-      "Dilbilgisi ve gramer kurallarına uymayan cümleler ya da sözcüklerden kaynaklanan hatalar",
-      "Anlamca aynı olan sözcüklerin birbirini yer değiştirme hali",
-      "Sözcüklerin ya da cümlelerin birbirini izleyen sırayla doğru kullanılmasına denir"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru cevaptır, sözcüklerin anlamı değişmeden cümlede kullanılan kelimeye başka bir kelimenin eklenmesi yan anlamaya neden olabilir."
-    },
-    {
-     "soru": "Paragrafını okuyun ve cevabını seçin: Türkçe dilinde anlatım bozukluklarından biri olan 'yanlış anlamaya' neden olabilecek bir cümle verin. Örneğin, 'Benim arabamın arkasındaki çocuk çok güzeldir' cümlesinde 'arabamın arkasındaki' cümlesinin anlamı değiştirebilir. Bu cümlede kullanılan 'arabamın arkasındaki' cümlesi cümlenin anlamını değiştirebilir.",
-     "secenekler": [
-      "Sözcüklerin anlamı değişmeden cümlede kullanılan kelimeye başka bir kelimenin eklenmesi",
-      "Cümle içinde kullanılan sözcüklerin ya da cümlelerin birbirini izleyen sırayla yanlış kullanılmasına denir",
-      "Dilbilgisi ve gramer kurallarına uymayan cümleler ya da sözcüklerden kaynaklanan hatalar",
-      "Anlamca aynı olan sözcüklerin birbirini yer değiştirme hali",
-      "Sözcüklerin ya da cümlelerin birbirini izleyen sırayla doğru kullanılmasına denir"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru cevaptır, sözcüklerin anlamı değişmeden cümlede kullanılan kelimeye başka bir kelimenin eklenmesi yan anlamaya neden olabilir."
-    },
-    {
      "soru": "Aşağıdaki paragrafın ana fikri nedir? Dil, insanlığın en önemli iletişim araçlarından birisidir. İnsanlar düşüncelerini, duygularını ve isteklerini dil yoluyla birbirlerine aktararak anlaşabilirler. Ancak dilin doğru ve etkili kullanılması için gerekli olan becerilerden biri de anlatımın bozukluklardan arınmış olmasıdır. Anlatım bozuklukları, dilin yanlış veya eksik kullanılması sonucu ortaya çıkandur. Bu tür bozukluklar, iletişimi zorlaştırabilir ve yanlış anlaşılmaya neden olabilir. Örneğin, cümlelerin uzun ve karmaşık olması, yanlış kelime seçimi, noktalama işaretlerinin yanlış kullanılması gibi hatalar, anlatım bozukluklarına örnek olarak verilebilir. Bu nedenle, etkili iletişim için anlatımın doğru ve açık olması gerekmektedir.",
      "secenekler": [
       "Anlatımın doğru ve açık olması",
@@ -18583,42 +17335,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Paragrafın son cümlesinde vurgulandığı üzere metnin ana fikri, anlatım bozukluklarından kaçınarak dilin doğru ve açık bir şekilde kullanılmasının etkili iletişim için gerekli olduğudur; paragrafta verilen diğer bilgiler (dilin önemi, anlatım bozukluğu örnekleri) bu ana fikri desteklemek amacıyla sunulmuştur. Bu nedenle doğru cevap A şıkkıdır."
-    },
-    {
-     "soru": "Aşağıdaki paragraftan, anlamsal bağımlılık ilişkisinin ne olduğu konusunda bir karar verin. \"Büyük kentlerde yaşayanlar, genellikle büyük şehirlerin avantajlarını ve dezavantajlarını bilir. Ancak küçük kentlerde yaşayanlar, büyük kentlerin avantajlarını bilmezler. Bu nedenle, büyük kentlere taşınanlar, küçük kentlerdeki yaşamdan daha mutlu olurlar.\" Paragrafın anlamsal bağımlılık ilişkisini seçin.",
-     "secenekler": [
-      "Anlamsal bağımlılık ilişkisi, causa et effect ilişkisidir.",
-      "Anlamsal bağımlılık ilişkisi, koşullu ifadedir.",
-      "Anlamsal bağımlılık ilişkisi, karşılaştırmadır.",
-      "Anlamsal bağımlılık ilişkisi, nedensel bağıntıdır.",
-      "Anlamsal bağımlılık ilişkisi, şartlı ifadedir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru olması için, paragrafın içeriğinden anlaşıldığı gibi, büyük kentlere taşınanlar küçük kentlerdeki yaşamdan daha mutlu olurlar. Bu nedenle, anlamsal bağımlılık ilişkisi, koşullu ifadedir."
-    },
-    {
-     "soru": "Aşağıdaki paragraftan, anlamsal bağımlılık ilişkisinin ne olduğu konusunda bir karar verin. \"Sokakta bir adam, bir kadının gördüğünü görmüştür. Ancak, adam kadının gördüğünü görmemiştir.\" Paragrafın anlamsal bağımlılık ilişkisini seçin.",
-     "secenekler": [
-      "Anlamsal bağımlılık ilişkisi, koşullu ifadedir.",
-      "Anlamsal bağımlılık ilişkisi, nedensel bağıntıdır.",
-      "Anlamsal bağımlılık ilişkisi, karşılaştırmadır.",
-      "Anlamsal bağımlılık ilişkisi, causa et effect ilişkisidir.",
-      "Anlamsal bağımlılık ilişkisi, şartlı ifadedir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçeneğin doğru olması için, paragrafın içeriğinden anlaşıldığı gibi, adam kadının gördüğünü görmemiştir. Bu nedenle, anlamsal bağımlılık ilişkisi, şartlı ifadedir."
-    },
-    {
-     "soru": "Aşağıdaki paragraftan, anlamsal bağımlılık ilişkisinin ne olduğu konusunda bir karar verin. \"Dünya, güneşin ışığı ile aydınlatılır.\" Paragrafın anlamsal bağımlılık ilişkisini seçin.",
-     "secenekler": [
-      "Anlamsal bağımlılık ilişkisi, nedensel bağıntıdır.",
-      "Anlamsal bağımlılık ilişkisi, koşullu ifadedir.",
-      "Anlamsal bağımlılık ilişkisi, karşılaştırmadır.",
-      "Anlamsal bağımlılık ilişkisi, causa et effect ilişkisidir.",
-      "Anlamsal bağımlılık ilişkisi, şartlı ifadedir."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneğin doğru olması için, paragrafın içeriğinden anlaşıldığı gibi, dünya güneşin ışığı ile aydınlatılır. Bu nedenle, anlamsal bağımlılık ilişkisi, causa et effect ilişkisidir."
     },
     {
      "soru": "Aşağıdaki cümlelerin hangisinde belirgin bir anlatım bozukluğu vardır?",
@@ -20314,18 +19030,6 @@
      "aciklama": "Bu cümlede 'ile' sözcüğü bağlaç (ve anlamında) olarak kullanılmıştır. 'ile' sözcüğü Türkçede cümledeki görevine göre farklı türlere girebilen sözcüklerden biridir; diğer seçeneklerde aynı sözcük farklı görevlerde (edat (birliktelik), edat (vasıta), edat (tarz), edat (birliktelik)) yer almaktadır."
     },
     {
-     "soru": "Türkçe'de sözcük türleri arasında yer alan isimlerin, özellikle cümledeki rollerine göre sınıflandırılması gerekir. İşte bu sınıflandırma yapılırken, en önemli nokta isimlerin cümledeki yeridir. İsmin cümledeki yeri, onun niteliğini ve görevini direkt olarak gösterir. İşte bu noktada, cümledeki rolleri açısından isimlerin sınıflandırılması yapılırken, en temel kategori olan fiilin yerine geçme özelliği gösteren isimleri 'fiil yerine geçen isimler' olarak adlandırmak doğru olur.",
-     "secenekler": [
-      "Bu isimlerin cümledeki rolleri fiil yerine geçmek değildir.",
-      "Bu isimlerin cümledeki rolleri fiil yerine geçme özelliği gösterir.",
-      "Bu isimlerin cümledeki rolleri fiil yerine geçme özelliği göstermez.",
-      "Bu isimlerin cümledeki rolleri fiil yerine geçme özelliği gösterir, ancak sadece geçmiş zamanda kullanılır.",
-      "Bu isimlerin cümledeki rolleri fiil yerine geçme özelliği gösterir, ancak sadece gelecekte kullanılır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu gibi bir seçeneği seçen, bu isimlerin cümledeki rollerini doğru bir şekilde algılamış ve buna göre hareket etmiştir."
-    },
-    {
      "soru": "Türkçe'nin sözcük türlerinden biri olan sıfatlar, bir nesneyi tanımlamak için kullanılır. İşte bir örnek cümle: \"Evimiz büyük ve güzel.\" Bu cümlede 'büyük' ve 'güzel' sıfatlar olarak işlev görür. Ancak, bu cümlede 'büyük' ve 'güzel' sıfatlarının işlevi aynıdır. Hangi sözcük türünden örnek cümlede yer aldıklarını belirterek soruyorum?",
      "secenekler": [
       "Filler",
@@ -20386,18 +19090,6 @@
      "aciklama": "Bu cümlede 'ev' ve 'annem' isimlerin farklı işlevlerde kullanıldığını görebiliyoruz. Bu nedenle doğru seçenektir."
     },
     {
-     "soru": "Türkçe'de sözcük türleri, dilin temel yapı taşlarını oluşturur. Sözcük türleri, kelime türleri olarak da bilinir. Sözcük türleri, sözcüğün anlam ve kullanımını belirler. Sözcük türleri, dilbilgisinde önemli bir yer tutar. Sözcük türleri, kelime türleri olarak da bilinir.",
-     "secenekler": [
-      "Kelime türleri",
-      "Sözcük türleri",
-      "Anlam türleri",
-      "Kullanım türleri",
-      "Dilbilgisi türleri"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Sözcüklerin anlam, kullanım ve gramer özellikleri nedeniyle doğru seçenektir."
-    },
-    {
      "soru": "Sözcük türleri nelerdir? Sözcük türleri, dilin temel yapı taşlarını oluşturur. Sözcük türleri, kelime türleri olarak da bilinir. Sözcük türleri, dilbilgisinde önemli bir yer tutar.",
      "secenekler": [
       "Sözcük türleri, eylem, isim, zarf, sıfat ve diğerleri gibi kategorilere ayrılır.",
@@ -20408,54 +19100,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Sözcük türleri, dilin temel yapı taşlarını oluşturur ve eylem, isim, zarf, sıfat ve diğerleri gibi kategorilere ayrılır."
-    },
-    {
-     "soru": "Sözcük türleri, dilbilgisinde önemli bir yer tutar. Sözcük türleri, kelime türleri olarak da bilinir. Sözcük türleri, dilin temel yapı taşlarını oluşturur.",
-     "secenekler": [
-      "Sözcük türleri, sadece gramer kurallarını açıklamak için kullanılır.",
-      "Sözcük türleri, sadece dilin anlamını açıklamak için kullanılır.",
-      "Sözcük türleri, sadece dilin kullanımını açıklamak için kullanılır.",
-      "Sözcük türleri, gramer kurallarını, dilin anlamını ve kullanımını açıklamak için kullanılır.",
-      "Sözcük türleri, sadece dilin gramer kurallarını açıklamak için kullanılır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Sözcük türleri, gramer kurallarını, dilin anlamını ve kullanımını açıklamak için kullanılır."
-    },
-    {
-     "soru": "Bilindiği gibi, Türk Dil Kurumu sözcük türlerini 'isim', 'fiil', 'edat', 'zaman', 'sayı', 'ecol', 'sifat', 'hüküm', 'işaret', 'müzekker', 'münekkil', 'müsellim', 'müfred', 'müspet', 'müteaddi', 'mütevazi' ve 'mütevekkil' olmak üzere on sekiz gruba ayırmaktadır. Bu grilere göre sınıflandırılan sözcüklerin bazıları, başka bir gruba da dahil edilebilir. Örneğin, 'şarkı' sözcüğü hem isim hem de edat olarak kullanılabilir. Bu durum, sözcük türlerinin sınıflandırılmasındaki zorluğu göstermektedir.",
-     "secenekler": [
-      "Sözcük türleri, sadece Türk Dil Kurumu tarafından belirlenir.",
-      "Sözcük türleri, Türk Dil Kurumu tarafından belirlenmemektedir.",
-      "Sözcük türleri, Türk Dil Kurumu tarafından belirlenir ve sınıflandırılır.",
-      "Sözcük türleri, sadece Türk Dil Kurumu tarafından sınıflandırılır.",
-      "Sözcük türleri, Türk Dil Kurumu tarafından belirlenmez."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği tercih eden adaylar, Türk Dil Kurumu'nun sözcük türlerini sınıflandırma yöntemini doğru olarak algılamış olabilirler."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra hangi sözcük türünün hangi sözcük türüne dönüştüğünü belirten cümleyi seçiniz. 'İki büyük kedi, bir büyük köpek ve birkaç küçük köpek, arazide gezinirken karşılaştıkları bir büyük köpek yavrusunu kovaladılar.'",
-     "secenekler": [
-      "Özel isim, genel isim",
-      "Genel isim, özel isim",
-      "Özel isim, sıfat",
-      "Sıfat, özel isim",
-      "Genel isim, sıfat"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ilk cümlesinde 'iki büyük kedi', 'bir büyük köpek' ve 'biraz küçük köpek' gibi özel isimler kullanılmış ve bu özel isimler genel isimler olarak kullanıldıklarında cümle anlamı değişecektir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra hangi sözcük türünün hangi sözcük türüne dönüştüğünü belirten cümleyi seçiniz. 'Kardeşimin yeni evine gittim ve evin çok güzel olduğunu gördüm.'",
-     "secenekler": [
-      "Genel isim, özel isim",
-      "Özel isim, genel isim",
-      "Genel isim, sıfat",
-      "Sıfat, özel isim",
-      "Özel isim, sıfat"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru çünkü 'ev' genel isimdir ve 'kardeşimin yeni evine' cümlede 'yeni' kelimesinin bir sıfat olarak kullanılmasıyla oluşturulan bir özel isimdir."
     },
     {
      "soru": "Aşağıdaki paragrafı okuyarak, soruları cevaplayınız. Dil, düşünceleri, duyguları ve experiencesi aktarmak için kullanılan en önemli araçlardan birisidir. İnsanların birbirleriyle iletişimini sağlayan dil, aynı zamanda kültürel mirasın taşınmasında önemli bir rol oynar. Bir dilin zenginliği, o dilin söz varlığının zenginliği ile ölçülür. Sözcükler, bir dili oluşturan en temel birimlerden birisidir. Sözcük türleri ise bir dili daha iyi anlamak ve kullanmak için önemli bir konudur. Sözcük türleri, isim, sıfat, fiil ve zarf gibi temel kategorilere ayrılır. İsimler, varlıkları veya kavramları ifade ederken, sıfatlar özelliklerini belirtir. Fiiller, eylemleri veya durumları ifade ederken, zarflar ise bu eylemlerin veya durumların niteliğini veya niceliğini belirtir. Ayrıca, bağlaçlar, sıfatlar ve zarflar gibi yardımcı sözcükler de bir cümledeki sözcüklerin birbirleriyle olan ilişkilerini gösterir. Örneğin, 'köy' kelimesi bir isim, 'büyük' kelimesi bir sıfat, 'gelmek' kelimesi bir fiil, 'hızlı' kelimesi bir zarf, 've' kelimesi bir bağlaçtır. Sözcük türlerini doğru bir şekilde tanımlamak ve kullanmak, etkili ve doğru bir iletişim için çok önemlidir. Aşağıdaki cümlelerdeki sözcük türlerini belirleyerek, soruları cevaplayınız. 'Cumhuriyet'in ilan edildiği gün, tüm halk sevinç içerisindeydi.' Bu cümledeki 'sevinç' sözcüğünün sözcük türü nedir?",
@@ -20480,30 +19124,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Bu seçenek doğru çünkü Türkçe'de sözcükler fiil, sıfat, zarf, isim ve sayılardan oluşur. Bu kategoriler, Türkçe'deki sözcüklerin temel yapısını oluşturur."
-    },
-    {
-     "soru": "Birkaç gün önce, doğalgazın ucuzladığı haberleri okuduk. Doğalgazın fiyatlarının düşmesiyle birlikte, birçok kişi ısınmak için doğalgaz kullanmayı düşünüyor. Ancak, doğalgazın ucuzluğuna rağmen, ısınmak için doğalgaz kullanımının bazı dezavantajları var. Örneğin, doğalgazın kullanımının en büyük dezavantajı, doğalgazın fiyatının her yıl değişmesi. Bu da, ısınmak için doğalgaz kullanmak, ekonomik bir yöntem olmayabilir. Ayrıca, doğalgazın kullanımının bir diğer dezavantajı, doğalgazın çevre için zararlı bir kaynak olması. Doğalgazın yakılması, sera gazı emisyonlarını artırır ve iklim değişikliğine katkıda bulunur. Bu nedenle, ısınmak için doğalgaz kullanmak, çevre dostu bir yöntem olmayabilir. Son olarak, doğalgazın kullanımının bir diğer dezavantajı, doğalgazın güvenli bir kaynak olmayışı. Doğalgazın kullanımında, güvenlik riskleri var ve bu riskler, doğalgazın kullanımı sırasında ortaya çıkabilir.",
-     "secenekler": [
-      "Doğalgazın ucuzluğu, ısınmak için doğalgaz kullanımının en büyük avantajıdır.",
-      "Doğalgazın fiyatının her yıl değişmesi, doğalgazın kullanımının en büyük dezavantajıdır.",
-      "Doğalgazın çevre için zararlı bir kaynak olması, doğalgazın kullanımının en büyük dezavantajıdır.",
-      "Doğalgazın güvenli bir kaynak olması, doğalgazın kullanımının en büyük avantajıdır.",
-      "Doğalgazın kullanımının en büyük dezavantajı, doğalgazın fiyatının her yıl değişmesi ve doğalgazın çevre için zararlı bir kaynak olmasıdır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "E seçeneği doğalgazın kullanımının en büyük dezavantajlarını doğru bir şekilde vurgular. Doğalgazın fiyatının her yıl değişmesi ve doğalgazın çevre için zararlı bir kaynak olması, doğalgazın kullanımının gerçekçi bir tablosunu sunar."
-    },
-    {
-     "soru": "Yazın, çocuklar genellikle okuldan sonra evde oyun oynarken, anneleri evi temizler. Bu durum, çocukların oyun oynarken annelerin evi temizlemesi olarak algılanabilir. Ancak, bu durumun ardında yatan gerçek, çocukların oyun oynarken annelerin evi temizlemesi değil, çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltmasıdır. Çocukların oyun oynarken evi temizleme zorunluluğunu azaltması, annelerin evi temizleme yükünü azaltır ve annelerin diğer işlerini yapmalarını kolaylaştırır.",
-     "secenekler": [
-      "Çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltması, annelerin evi temizleme yükünü artırmaz.",
-      "Çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltması, annelerin evi temizleme yükünü azaltmaz.",
-      "Çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltması, annelerin diğer işlerini yapmalarını kolaylaştırır.",
-      "Çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltması, annelerin evi temizleme yükünü artırmaz ve annelerin diğer işlerini yapmalarını kolaylaştırır.",
-      "Çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltması, annelerin evi temizleme yükünü azaltır ve annelerin diğer işlerini yapmalarını kolaylaştırır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "E seçeneği, çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltmasını ve annelerin diğer işlerini yapmalarını kolaylaştırmasını doğru bir şekilde vurgular. Seçenekte bahsedilen gerçek, çocukların oyun oynarken annelerin evi temizleme zorunluluğunu azaltmasıdır."
     },
     {
      "soru": "Bir parça okuduktan sonra, aşağıdaki seçeneklerden hangisi okuduklarınıza en uygun olanı yansıtmaktadır?",
@@ -21886,30 +20506,6 @@
      "aciklama": "'yeni evi' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve edat tümleci ögeleridir."
     },
     {
-     "soru": "Aşağıdaki paragrafın anlamını doğru şekilde yorumlayan cümleyi seçin. Cümlenin öğeleri, cümlede yer alan kelime ve sözlerin bir araya gelerek oluşturdukları anlam ve işlevleridir. Cümlede yer alan kelimelerin bir araya gelerek oluşturduğu anlam, cümlenin ana anlamını oluşturur. Ana anlam, cümlenin temelini oluşturan ve cümlenin anlamını taşıyan kelimelerdir. Cümlede yer alan kelimelerin işlevi, cümlenin anlamını oluşturmaya katkıda bulunmalarından kaynaklanır. İşlev, cümlenin öğelerinin bir araya gelerek oluşturduğu anlamı açıklar.",
-     "secenekler": [
-      "Cümlede yer alan kelimelerin işlevi, cümlenin ana anlamını oluşturmaktır.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin temelini oluşturmaktır.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin anlamını açıklamaktır.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin öğelerini oluşturmaktır.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin anlamını oluşturmaktır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek, cümlede yer alan kelimelerin işlevinin cümlenin anlamını oluşturmaktan bahsetmesi doğru seçenektir."
-    },
-    {
-     "soru": "Aşağıdaki cümlede yer alan kelimelerin işlevini doğru şekilde yorumlayan cümleyi seçin. Cümlede yer alan kelimelerin işlevi, cümlenin anlamını oluşturmaya katkıda bulunmalarından kaynaklanır.",
-     "secenekler": [
-      "Cümlede yer alan kelimelerin işlevi, cümlenin anlamını açıklar.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin temelini oluşturur.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin ana anlamını oluşturur.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin öğelerini oluşturur.",
-      "Cümlede yer alan kelimelerin işlevi, cümlenin anlamını oluşturmaktadır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek, cümlede yer alan kelimelerin işlevinin cümlenin anlamını oluşturmaktan bahsetmesi doğru seçenektir."
-    },
-    {
      "soru": "Aşağıdaki cümlede 'Dünya'nın 'hangi öğelerinden oluştuğunu söyleyen cümlenin örneği hangisidir?",
      "secenekler": [
       "Dünya'nın oluşumunu anlatan cümle, önek, fiil, nesne ve sıfat içermelidir.",
@@ -21932,78 +20528,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Bu seçeneğin doğru olmasının nedeni, cümlede fiil ve nesne bulunmasıdır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra cümlenin hangi öğesinin 'nesne' olarak tanımlanabileceğine karar verin. Paragraf: 'Kardeşimin yeni araba alması beni çok sevindirdi. Arkadaşlarımla birlikte arabayı görmek için eve geldim ve kardeşimin yüzünü gördüğüm anda mutluluk içinde kaldım.'",
-     "secenekler": [
-      "Cümlenin bağımlı parçaları",
-      "Cümlenin bağımsız parçaları",
-      "Cümlenin nesnesi",
-      "Cümlenin öznesi",
-      "Cümlenin bağlamı"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Doğru seçenektir, Çünkü cümlenin nesnesi 'araba'dır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra cümlenin hangi öğesinin 'özne' olarak tanımlanabileceğine karar verin. Paragraf: 'Beyaz kedi, beyaz köpek, beyaz tavuk gibi beyaz renkteki hayvanlar benim favorimdir.'",
-     "secenekler": [
-      "Cümlenin bağımlı parçaları",
-      "Cümlenin bağımsız parçaları",
-      "Cümlenin öznesi",
-      "Cümlenin nesnesi",
-      "Cümlenin bağlamı"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Doğru seçenektir, çünkü cümlenin öznesi 'ben'im."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra cümlenin hangi öğesinin 'bağlam' olarak tanımlanabileceğine karar verin. Paragraf: 'Benim en favori hayvanlarım arasında beyaz kedi, beyaz köpek, beyaz tavuk gibi beyaz renkteki hayvanlar vardır. Onlar çok sevimli ve oyunseverdir.'",
-     "secenekler": [
-      "Cümlenin bağımlı parçaları",
-      "Cümlenin bağımsız parçaları",
-      "Cümlenin öznesi",
-      "Cümlenin nesnesi",
-      "Cümlenin bağlamı"
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Doğru seçenektir, Çünkü cümlenin bağlamı 'benim en favori hayvanlarım' cümlesidir."
-    },
-    {
-     "soru": "Bir cümle 'Ayni', 'Bütünlüklü', 'Tamamlanmiş', 'Yüklü', 'Tam', 'Tamamlanmış', 'Bütünlüklü', 'Ayni' gibi sıfatlarla tamamlanabilir. Bu cümleyi seçenekler arasında tamamlayarak cümledeki anlamı ortaya koyunuz.",
-     "secenekler": [
-      "Bu cümle tamamlanmış bir cümledir.",
-      "Bu cümle yüklü bir cümledir.",
-      "Bu cümle bütünlüklü bir cümledir.",
-      "Bu cümle tam bir cümledir.",
-      "Bu cümle ayni bir cümledir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, cümle bütünlüklü bir cümle olduğu düşüncesindedir. Cümledeki anlamı tamamlamak için bütünlüklü bir cümle olduğu düşünülmektedir."
-    },
-    {
-     "soru": "Bir cümlede yer alan 'Ayni', 'Bütünlüklü', 'Tamamlanmış', 'Yüklü', 'Tam', 'Bütünlüklü', 'Ayni' gibi sıfatlar cümleyi tamamlamaktadır. İşte bu cümleyi seçenekler arasında tamamlayarak cümledeki anlamı ortaya koyunuz:",
-     "secenekler": [
-      "Bu cümle tamamlanmış bir cümle değildir.",
-      "Bu cümle yüklü bir cümledir.",
-      "Bu cümle bütünlüklü bir cümledir.",
-      "Bu cümle tam bir cümledir.",
-      "Bu cümle ayni bir cümledir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, cümle bütünlüklü bir cümle olduğu düşüncesindedir. Cümledeki anlamı tamamlamak için bütünlüklü bir cümle olduğu düşünülmektedir."
-    },
-    {
-     "soru": "Ayni, bütünlüklü, tamamlanmış, yüklü, tam, bütünlüklü, ayni gibi sıfatlar cümleyi tamamlamaktadır. İşte bu cümleyi seçenekler arasında tamamlayarak cümledeki anlamı ortaya koyunuz:",
-     "secenekler": [
-      "Bu cümle bütünlüklü bir cümledir.",
-      "Bu cümle tamamlanmış bir cümledir.",
-      "Bu cümle yüklü bir cümledir.",
-      "Bu cümle tam bir cümledir.",
-      "Bu cümle ayni bir cümledir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen, cümle yüklü bir cümle olduğu düşüncesindedir. Cümledeki anlamı tamamlamak için yüklü bir cümle olduğu düşünülmektedir."
     },
     {
      "soru": "Aşağıdaki paragrafı okuduktan sonra cümlelerin öğelerini tanımlayan kelimeleri bulmaya çalışın. 'Kızım' adlı kitabın yazarı, kitabın ana temasını 'kızımın' annesiyle olan ilişkisine dayandırmış. Kitabın ana karakteri, annesinin kızıyla olan ilişkisine çok kızgındı ve bu kızgınlık, kitabın başından sonuna kadar devam etti. Kitabın yazarı, kitabın ana temasını 'kızımın' annesiyle olan ilişkisine dayandırmış. Kitabın son sayfalarında, ana karakterin annesiyle barışmasıyla kitabın teması da çözülmüş oldu. Kitabın bu çözümü, okuyuculara çok fazla sürmedi ve kitabın son sayfalarına ulaşmak çok kolay oldu. Cümlelerin öğelerini tanımlayan kelimeler hangileri?",
@@ -22100,42 +20624,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Verilen cümlede 'dil' kelimesi, insanların düşünce, duygu ve deneyimlerini ifade edebilmelerini sağlayan bir araç olarak kullanılmıştır; cümlenin kurduğu anlam ilişkisi bunu doğrudan ortaya koymaktadır. Bu nedenle doğru cevap B şıkkıdır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra cümlenin hangi öğelerinden oluştuğunu bulunuz. Paragraf: 'Kardeşimin evine gittim. Gittim çünkü annemin sana bir mektup yazması gerektiğini söyledi. Mektubu sana vereceğim.', cümlelerin hangi öğelerinden oluştuğunu belirtiniz.",
-     "secenekler": [
-      "İsim, nesne, zaman ve cümle",
-      "İsim, yardımcı fiil, nesne ve cümle",
-      "İsim, yardımcı fiil, zaman ve cümle",
-      "İsim, nesne, yardımcı fiil ve cümle",
-      "İsim, yardımcı fiil, nesne ve yardımcı fiil"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Verilen paragraftaki cümleler incelendiğinde, her bir cümlenin bir isim unsuru, bir yardımcı fiil yapısı, bir nesne ve cümlenin bütünü olarak ele alınan öğelerden oluştuğu görülmektedir. Bu nedenle doğru cevap B şıkkıdır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra cümlelerin hangi öğelerinden oluştuğunu bulunuz. Paragraf: 'Annem bana kitap alacağı için 50 lira verdi. Kitap alacağı için bana 50 lira verdi.', cümlelerin hangi öğelerinden oluştuğunu belirtiniz.",
-     "secenekler": [
-      "İsim, yardımcı fiil, nesne, zaman ve cümle",
-      "İsim, yardımcı fiil, nesne, yardımcı fiil ve cümle",
-      "İsim, yardımcı fiil, nesne ve yardımcı fiil",
-      "İsim, yardımcı fiil, zaman ve cümle",
-      "İsim, yardımcı fiil, nesne, yardımcı fiil ve yardımcı fiil"
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Paragraftaki cümleler, bir isim unsuru, bir yardımcı fiil yapısı, bir nesne ve bu yardımcı fiil yapısının tekrarıyla kurulan öğelerden oluşmaktadır. Bu nedenle doğru cevap C şıkkıdır."
-    },
-    {
-     "soru": "Bir cümlenin temel öğelerini sıralayınız: \"Dünya üzerinde en çok su bulunduran yerler, okyanuslardır. Okyanuslar, dünyanın %71'ini kaplar. Bu nedenle okyanuslarda yaşayan canlılar, deniz canlıları olarak bilinir.",
-     "secenekler": [
-      "Dünya, okyanus, deniz canlısı, su",
-      "Okyanus, dünya, deniz canlısı, su",
-      "Su, dünya, okyanus, deniz canlısı",
-      "Dünya, deniz canlısı, okyanus, su",
-      "Okyanus, su, deniz canlısı, dünya"
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Paragrafın ana fikri, okyanusların dünyadaki su miktarına etkisine ilişkindir. Bu nedenle doğru sıralama, paragrafın ana fikrini yansıtır."
     },
     {
      "soru": "Dünya üzerinde en çok su bulunan yerler hangileridir? (Paragraf: \"Dünya üzerinde en çok su bulunduran yerler, okyanuslardır. Okyanuslar, dünyanın %71'ini kaplar.\")",
@@ -24827,18 +23315,6 @@
      "aciklama": "Bu seçeneği yanlış seçenekler, paragrafın ilk cümlesini ana tema olarak seçecektir. Çünkü paragrafın ilk cümlesi, diğer cümlelerin bağlamını oluşturur ve diğer cümlelerin anlamını açıklar."
     },
     {
-     "soru": "Türkçe'de 'Sözel Mantık' konusu, dilin anlamını oluşturan temel ögelerin nasıl bir araya geldiğini incelemektedir. Bu anlamda, bir cümlede veya paragrafta hangi kelimelerin nasıl bir mantıkla sıralandığı önemlidir. İşte bir örnek:",
-     "secenekler": [
-      "Cümlede sıralanan kelimelerin mantıkla alakalı olmadığını, sadece kelime seçimine bağlı olduğunu söylemek doğru olacaktır.",
-      "Cümlede sıralanan kelimelerin mantıkla alakalı olduğunu, ancak kelime seçiminde de bir mantık olduğunu söylemek daha doğru bir yaklaşım oluşturur.",
-      "Cümledeki kelimelerin mantıkla alakalı olmadığını, ancak kelime seçiminde bir mantık bulunduğunu söylemek doğru değildir.",
-      "Cümledeki kelimelerin mantığı sadece kelime seçimine bağlıdır.",
-      "Cümledeki kelimelerin mantığı sadece kelime seçimi değildir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru bir yaklaşım oluşturur, çünkü cümledeki kelimelerin mantıkla alakalı olduğunu ve kelime seçiminde de bir mantık olduğunu belirtir."
-    },
-    {
      "soru": "Sözel mantık, dilin anlamını oluşturan temel ögelerin nasıl bir araya geldiğini incelemektedir. İşte bir örnek paragraf:",
      "secenekler": [
       "Paragrafın anlamı, paragrafın ilk cümlesinden oluşur.",
@@ -24851,66 +23327,6 @@
      "aciklama": "Bu seçenek doğru bir yaklaşım oluşturur, çünkü paragrafın anlamı paragrafın tüm cümlelerinden oluşur."
     },
     {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, paragrafın temel argümanını açıklamalısınız. Paragrafın temel argümanını açıklamada kullandığınız ifadeler ne olursa olsun, paragrafın bir başka noktasını da açıklamalısınız. Paragrafın temel argümanını açıklarken kullanılan ifadelerin paragrafın diğer noktalarıyla olan ilişkisini açıklamalısınız.",
-     "secenekler": [
-      "Paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir. Eğitim sisteminin yenilenmesi, öğrencilerin daha iyi bir eğitim alabilmeleri için önemlidir.",
-      "Paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir. Eğitim sisteminin yenilenmesi, öğretmenlerin daha iyi bir eğitim alabilmeleri için önemlidir.",
-      "Paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir. Eğitim sisteminin yenilenmesi, velilerin daha iyi bir eğitim alabilmeleri için önemlidir.",
-      "Paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir. Eğitim sisteminin yenilenmesi, okul binalarının daha iyi bir şekilde inşa edilmesi için önemlidir.",
-      "Paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir. Eğitim sisteminin yenilenmesi, öğrencilerin daha fazla zaman harcayabilmeleri için önemlidir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın temel argümanı, eğitim sisteminin yenilenmesi gerektiğidir ve öğrencilerin daha iyi bir eğitim alabilmeleri için önemlidir. Öğrencilerin daha iyi bir eğitim alabilmeleri için eğitim sisteminin yenilenmesi gerektiği, paragrafın diğer noktasıdır."
-    },
-    {
-     "soru": "Ali, bir gün parkta bir ağaç altında otururken, bir kediyi görür. Kedi, bir kediye doğru koşar ve bu kedinin burnundan geçerek, ağaç dibine iner. Ali, kedinin bu davranışını izlerken, kedinin neden bu davranışını gösterdiğini düşünür. A) Kedi, diğer kedinin burnundan geçerek, daha iyi bir koku almaya çalışıyordu. B) Kedi, diğer kedinin burnundan geçerek, daha hızlı bir şekilde ağaç dibine iniyordu. C) Kedi, diğer kedinin burnundan geçerek, daha az gürültü yaratıyordu. D) Kedi, diğer kedinin burnundan geçerek, daha az enerji tüketiyordu. E) Kedi, diğer kedinin burnundan geçerek, daha iyi bir görsel deneyime sahip oluyordu.",
-     "secenekler": [
-      "Ağaç dibinde bir kedi bulunuyordu.",
-      "Kedi, diğer kedinin burnundan geçerek, daha iyi bir koku almaya çalışıyordu.",
-      "Kedi, diğer kedinin burnundan geçerek, daha hızlı bir şekilde ağaç dibine iniyordu.",
-      "Kedi, diğer kedinin burnundan geçerek, daha az gürültü yaratıyordu.",
-      "Kedi, diğer kedinin burnundan geçerek, daha az enerji tüketiyordu."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu açıklama, kedinin burnundan geçerek daha iyi bir görsel deneyime sahip olma davranışını açıklamaktadır. Ancak bu, kedinin neden bu davranışını gösterdiğini tam olarak açıklamaz."
-    },
-    {
-     "soru": "Bir gün, bir öğrenci, bir dershanede bir öğretmenle konuşurken, öğretmeninin ona bir soruyu sormasını istemez. Öğretmen, öğrenciye bir soru sorar ve öğrenci, cevabını vermeyi reddeder. Öğretmen, öğrencinin neden bu davranışını gösterdiğini sorar. A) Öğrenci, öğretmeninin sorusunu cevaplama konusunda çekinceliydi. B) Öğrenci, öğretmeninin sorusunu cevaplama konusunda güvende değildi. C) Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok iyi bir eğitim almıştı. D) Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok fazla zaman vardı. E) Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok fazla deneyim sahibi değildi.",
-     "secenekler": [
-      "Öğrenci, öğretmeninin sorusunu cevaplama konusunda çekinceliydi.",
-      "Öğrenci, öğretmeninin sorusunu cevaplama konusunda güvende değildi.",
-      "Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok iyi bir eğitim almıştı.",
-      "Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok fazla zaman vardı.",
-      "Öğrenci, öğretmeninin sorusunu cevaplama konusunda çok fazla deneyim sahibi değildi."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu açıklama, öğrencinin öğretmeninin sorusunu cevaplama konusunda çekinceli olmasıyla alakalıdır. Öğrenci, öğretmeninin sorusunu cevaplama konusunda çekinceli olunca, cevabını vermeyi reddeder."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, paragrafın tematik anlamda ne olduğuna ilişkin bir yorum yapın. Paragrafın tematik anlamda ne olduğunu açıklamanın yanı sıra, paragrafa verdikleri tema ile paragrafın içeriğinin uyumlu olup olmadığını açıklamalısınız.",
-     "secenekler": [
-      "Paragrafın teması eğitim-öğretim ile ilgilidir. Paragrafın içeriği ile tema uyumlu değildir.",
-      "Paragrafın teması eğitim-öğretim ile ilgilidir. Paragrafın içeriği ile tema uyumludur.",
-      "Paragrafın teması edebiyat ile ilgilidir. Paragrafın içeriği ile tema uyumludur.",
-      "Paragrafın teması eğitim-öğretim ile ilgilidir. Paragrafın içeriği ile tema uyumsuzdur.",
-      "Paragrafın teması edebiyat ile ilgilidir. Paragrafın içeriği ile tema uyumsuzdur."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kişiler, paragrafın içeriğini tema ile ilişkilendirebilirler. Paragrafın içeriği ile tema uyumlu olduğunu doğru olarak tespit edebilirler."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra, paragrafın amacının ne olduğunu açıklamalısınız. Paragrafın amacını açıklamanın yanı sıra, paragrafın amacının başarıya ulaşması için neler gerektirdiğini açıklamalısınız.",
-     "secenekler": [
-      "Paragrafın amacı okurları, okudukları metin ile ilgili düşünmeye teşvik etmektir. Paragrafın amacını başarıya ulaştırmak için okurların ödevleri ile ilgili düşünmeleri gereklidir.",
-      "Paragrafın amacı okurları, okudukları metin ile ilgili düşünmeye teşvik etmektir. Paragrafın amacını başarıya ulaştırmak için okurların metin ile ilgili soru sormaları gereklidir.",
-      "Paragrafın amacı okurları, okudukları metin ile ilgili düşünmeye teşvik etmektir. Paragrafın amacını başarıya ulaştırmak için okurların okudukları metin ile ilgili yazmaları gereklidir.",
-      "Paragrafın amacı okurları, okudukları metin ile ilgili düşünmeye teşvik etmektir. Paragrafın amacını başarıya ulaştırmak için okurların metin ile ilgili tartışmalara katılmaları gereklidir.",
-      "Paragrafın amacı okurları, okudukları metin ile ilgili düşünmeye teşvik etmektir. Paragrafın amacını başarıya ulaştırmak için okurların metin ile ilgili anketlere katılmaları gereklidir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kişiler, paragrafın amacını doğru olarak tespit edebilirler. Paragrafın amacını başarıya ulaştırmak için neler gerektirdiğini de doğru olarak açıklamaya başlayabilirler."
-    },
-    {
      "soru": "Aşağıdaki paragrafın anlamını anlamak için öncelikle hangi kelimenin anahtar kelime olduğunu belirlemek gerekir. Paragrafın anlamını anlamak için bu kelimenin ne anlama geldiğini bilmemiz gerekir. Paragrafın tamamı okunmadan da paragrafın anlamı hakkında bir idea sahibi olabilir miyiz? Paragrafın tamamını okumadan paragrafın anlamını anlamak mümkün müdür?",
      "secenekler": [
       "Evet, paragrafın tamamını okumadan da paragrafın anlamı hakkında bir idea sahibi olabiliriz.",
@@ -24921,90 +23337,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçenek doğru bir seçimdir. Paragrafın tamamını okumadan da paragrafın anlamı hakkında bir idea sahibi olamazız."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra boşluğa doğru cevap yazınız. İyilik, sevgi ve şefkat gibi duyguların insan hayatındaki yeri ve önemini anlatan bir şiir olan 'İyilik' şiiri, Türk edebiyatında önemli bir yere sahiptir. Şiirin yazarı, 19. yüzyılın önemli Türk şairlerinden biridir ve Türk edebiyatını geliştirmiş, zenginleştirmiştir. Şiirin ana teması, insanın iyilik ve sevgi gibi duygulara sahip olması ve bunların hayatındaki önemini vurgulamaktır. Şiirde kullanılan dil, basit ve anlaşılır bir dildir ve okuyucuya kolayca anlaşılabilecek bir dil kullanır. Şiirin sonunda, okuyucu, insan hayatındaki iyilik ve sevginin önemini anlar ve bu duyguları yaşamayı amaçlar.",
-     "secenekler": [
-      "Şiirin yazarı, 20. yüzyılın önemli Türk şairlerinden biridir.",
-      "Şiirin ana teması, insanın iyilik ve sevgi gibi duygulara sahip olması ve bunların hayatındaki önemini vurgulamaktır.",
-      "Şiir, okuyucuya zor bir dil kullanır.",
-      "Şiirin sonunda, okuyucu, insan hayatındaki iyilik ve sevginin önemini anlar ve bu duyguları yaşamayı amaçlar.",
-      "Şiir, Türk edebiyatında önemli bir yere sahip değildir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru seçilmiştir, çünkü şiirin ana teması gerçekten de insanın iyilik ve sevgi gibi duygulara sahip olması ve bunların hayatındaki önemini vurgulamaktır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra boşluğa doğru cevap yazınız. İnsan hayatında, arkadaşlık ve dostluk gibi ilişkiler önemli bir yere sahiptir. Arkadaşlık ve dostluk, insanları birbirine bağlar ve hayatın zorlu zamanlarında destek sağlar. Ancak, bazen bu ilişkilerde sorunlar ortaya çıkabilir ve arkadaşlık ve dostluk bozulabilir. Bu sorunların çözümü, iki tarafın da birbirini anlaması ve iletişim kurmasını gerektirir. İletişim, arkadaşlık ve dostluk ilişkilerinde çok önemlidir ve bu ilişkilerin gelişimini sağlar.",
-     "secenekler": [
-      "İnsan hayatında, arkadaşlık ve dostluk gibi ilişkiler önemli bir yere sahiptir.",
-      "İletişim, arkadaşlık ve dostluk ilişkilerinde çok önemlidir ve bu ilişkilerin gelişimini sağlar.",
-      "İnsanlar, arkadaşlık ve dostluk ilişkilerini genellikle zor bulurlar.",
-      "İnsanların birbirini anlaması, iletişim kurmasını gerektirir.",
-      "İnsanların birbirini sevmesi, arkadaşlık ve dostluk ilişkilerini geliştirir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru seçilmiştir, çünkü iletişim gerçekten de arkadaşlık ve dostluk ilişkilerinde çok önemlidir ve bu ilişkilerin gelişimini sağlar."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra boşluğa doğru cevap yazınız. İnsanlık tarihi boyunca, savaşlar ve çatışmalar insanlık için büyük bir yıkım kaynağı olmuştur. Savaşlar, insanları birbirine karşı düşman olarak göstermiş, savaşın yarattığı yıkım ve acı, insanlık için büyük bir yük haline gelmiştir. Ancak, savaşlar aynı zamanda insanlığın gelişimine de katkıda bulunmuştur. Savaşlar, teknolojik gelişmeler için önemli bir motivasyon kaynağı olmuştur ve savaşlar sırasında geliştirilen teknolojiler, barış zamanlarında da kullanılmıştır.",
-     "secenekler": [
-      "Savaşlar, insanlık için büyük bir yıkım kaynağı olmuştur.",
-      "Savaşlar, insanlık için önemli bir gelişim kaynağı olmuştur.",
-      "Savaşlar, insanları birbirine karşı düşman olarak göstermemiştir.",
-      "Savaşlar, teknolojik gelişmeler için önemli bir motivasyon kaynağı olmuştur.",
-      "Savaşlar, insanlığın gelişimine katkıda bulunmamıştır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru seçilmiştir, çünkü savaşlar gerçekten de insanlık için büyük bir yıkım kaynağı olmuştur."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuduktan sonra boşluğa doğru cevap yazınız. İnsanlık tarihinin en büyük keşiflerinden biri, uzayda yaşama olan inancın keşfidir. Uzayda yaşama olan inanç, insanları uzayda yaşamaya teşvik etmiş ve uzay araştırmaları için önemli bir motivasyon kaynağı olmuştur. Uzay araştırmaları, teknolojik gelişmeler için önemli bir kaynak olmuştur ve uzayda yaşamaya ilişkin bilgiler, insanlığın gelişimine katkıda bulunmuştur.",
-     "secenekler": [
-      "İnsanlık tarihinin en büyük keşiflerinden biri, uzayda yaşama olan inancın keşfidir.",
-      "Uzay araştırmaları, teknolojik gelişmeler için önemli bir kaynak olmuştur.",
-      "Uzayda yaşama olan inanç, insanları uzayda yaşamaya teşvik olmamıştır.",
-      "İnsanlık tarihinin en büyük keşiflerinden biri, uzayda yaşamaya ilişkin bilgilerdir.",
-      "Uzay araştırmaları, insanlığın gelişimine katkıda bulunmamıştır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru seçilmiştir, çünkü uzayda yaşama olan inanç gerçekten de insanlık tarihinin en büyük keşiflerinden biri olmuştur."
-    },
-    {
-     "soru": "Küçük bir köyde bir gün, bir köylü, köydeki çocukları toplayarak onlara bir hikaye anlatmaya başladı. Çocuklar, hikayeyi dinlerken, kendilerini o hikayenin içinde buldular. Hikaye, bir çocuğun, annesinin öldüğü bir eve döndüğünde yaşadığı duyguları anlattı.",
-     "secenekler": [
-      "Hikayenin ana karakteri, annesinin öldüğünü öğrenince çok mutlu oldu.",
-      "Hikayenin ana karakteri, annesinin öldüğünü öğrenince çok üzüntü duydu.",
-      "Hikayenin ana karakteri, annesinin öldüğünü öğrenince annesinin evine döndü.",
-      "Hikayenin ana karakteri, annesinin öldüğünü öğrenince annesinin hikayesini dinledi.",
-      "Hikayenin ana karakteri, annesinin öldüğünü öğrenince annesini aramaya çıktı."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, hikayenin ana karakterinin duygularını doğru anlıyor. Hikaye, karakterin annesinin ölümünden dolayı üzüntü duyduğunu anlatıyor. Bu nedenle, bu seçenek en doğru cevaptır."
-    },
-    {
-     "soru": "Yılın en soğuk ayında, bir grup öğrenci, okulda ders çalışma için bir araya geldi. Öğrencilerden biri, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi. Diğer öğrenciler ise ders çalışmak konusunda kararlıydı.",
-     "secenekler": [
-      "Öğrenci, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi çünkü ders çalışma, onun için çok sıkıcıydı.",
-      "Öğrenci, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi çünkü diğer öğrenciler, onun yerine ders çalışıyordu.",
-      "Öğrenci, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi çünkü soğuk hava, onun için çok iyiydi.",
-      "Öğrenci, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi çünkü ders çalışma, onun için çok önemli değildi.",
-      "Öğrenci, ders çalışmak yerine, dışarıda soğuk havada dolaşmak istedi çünkü diğer öğrenciler, onun yerine dışarıda dolaşıyordu."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek, öğrencinin nedenini doğru anlıyor. Öğrenci, ders çalışma, onun için önemli olmadığı için dışarıda dolaşmak istediği gibi görünüyor. Bu nedenle, bu seçenek en doğru cevaptır."
-    },
-    {
-     "soru": "Bir gün, bir öğretmen, öğrencilerine bir ders anlatmaya başladı. Öğrenciler, dersi dinlerken, kendilerini dersin içinde buldular. Ders, bir çocuğu, annesinin öldüğü bir eve döndüğünde yaşadığı duyguları anlattı.",
-     "secenekler": [
-      "Dersin ana karakteri, annesinin öldüğünü öğrenince çok mutlu oldu.",
-      "Dersin ana karakteri, annesinin öldüğünü öğrenince çok üzüntü duydu.",
-      "Dersin ana karakteri, annesinin öldüğünü öğrenince annesinin evine döndü.",
-      "Dersin ana karakteri, annesinin öldüğünü öğrenince annesinin hikayesini dinledi.",
-      "Dersin ana karakteri, annesinin öldüğünü öğrenince annesini aramaya çıktı."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek, dersin ana karakterinin duygularını doğru anlıyor. Ders, karakterin annesinin ölümünden dolayı üzüntü duyduğunu anlatıyor. Bu nedenle, bu seçenek en doğru cevaptır."
     },
     {
      "soru": "Aşağıdaki paragrafı okuyarak, verilen cümlelerin hangisinin doğru olduğunu söyleyiniz. Güneş, dünya üzerinde yaşamın temel kaynağı olarak kabul edilir. Dünya'nın diğer gezegenlerden farklı olarak, su, hava ve besin gibi yaşamın temel bileşenlerini barındırması, güneşin varlığıyla直接 ilgilidir. İklim ve mevsimlerin oluşumunda, bitki ve hayvanların yaşamlarında, su döngüsünde güneş önemli bir rol oynar. Ayrıca, güneş ışığının fotosentez için gerekli olması, bitki yaşamının temelini oluşturur. Güneşin yaşam için önemini aşağıdaki seçeneklerden hangisi doğru olarak açıklar?",
@@ -25065,102 +23397,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bilgi teknolojilerinin yeni fırsatlar yaratmak için önemli olduğu için bu seçenek doğru."
-    },
-    {
-     "soru": "Türkçe'de kullanılan bazı sözcüklerin anlama ve kullanımını etkileyen bir özelliği, karşıtlık oluşturmalarıdır. Karşıtlık, bir sözcüğün veya kavramın, diğerinin tam tersini ifade etmesidir. İşte bir örnek paragraf bu kavramı açıklamaktadır: Birbirine zıt iki özellik taşıyan şeyler, karşıtlık oluştururlar. Örneğin, 'güzel-kötü', 'ileri-geri', 'doğru-yanlış' gibi çiftler karşıtlık oluştururlar. Bu çiftler, birbirleriyle ilişkili oldukları için, birbirlerinin anlamlarını net bir şekilde ortaya koyarlar. Karşıtlık oluşturan çiftler, aynı zamanda düşüncelerin ve duyguların, birbirleriyle bağlantılı olduğunu da gösterir.",
-     "secenekler": [
-      "Karıslık, bir sözcüğün veya kavramın, diğerinin tam tersini ifade etmesidir.",
-      "Karıslık, bir sözcüğün veya kavramın, aynı anlamı taşımasıdır.",
-      "Karıslık, bir sözcüğün veya kavramın, farklı bir anlamı taşımasıdır.",
-      "Karıslık, bir sözcüğün veya kavramın, başka bir dildeki karşılığının bulunmasıdır.",
-      "Karıslık, bir sözcüğün veya kavramın, başka bir dildeki karşılığının bulunmamasıdır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle doğru cevabı seçmiş olacaktır. Çünkü paragraf, karşıtlık oluşturan çiftlerin, birbirleriyle ilişkili oldukları ve birbirlerinin anlamlarını net bir şekilde ortaya koyduklarını açıklamaktadır."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuyarak, yazarın amacını ve kastettiği anlamı anlamanız requer edilir. \"Karanlıkta sadece bir ışık varsa, o ışık her şeyin ışığıdır. Ancak birçok ışık varsa, her biri kendi ışığıdır.\" Paragrafın yazarı kastettiği anlamı aşağıda listede bulabilirsiniz.",
-     "secenekler": [
-      "Paragrafın yazarı, tek bir ışık varsa o ışık tüm diğer ışıkların ışığıdır.",
-      "Paragrafın yazarı, birçok ışık varsa her biri ayrı bir ışığı temsil eder.",
-      "Paragrafın yazarı, karanlıkta tek bir ışık varsa o ışık tüm diğer ışıkların ışığıdır.",
-      "Paragrafın yazarı, karanlıkta birçok ışık varsa her biri ayrı bir ışığı temsil eder.",
-      "Paragrafın yazarı, karanlıkta bir ışığı yoksa o ışık tüm diğer ışıkların ışığıdır."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek paragrafın yazarının amacını ve kastettiği anlamı en doğru şekilde yansıtmaktadır. Paragraf yazarı karanlıkta birçok ışık varsa her biri ayrı bir ışığı temsil ettiğini belirtmektedir."
-    },
-    {
-     "soru": "Aşağıdaki paragrafı okuyarak, yazarın amacını ve kastettiği anlamı anlamanız requer edilir. \"İnsanların bazıları, kendi hatalarını ve eksikliklerini kabul etmezler. Bu, kendilerini daha da hatalı ve eksik hale getirmelerine neden olur.\" Paragrafın yazarı kastettiği anlamı aşağıda listede bulabilirsiniz.",
-     "secenekler": [
-      "Paragrafın yazarı, insanların bazıları kendi hatalarını ve eksikliklerini kabul etmezler.",
-      "Paragrafın yazarı, insanların bazıları kendi hatalarını ve eksikliklerini kabul etmezler ve bu nedenle kendilerini daha da hatalı ve eksik hale getirmelerine neden olur.",
-      "Paragrafın yazarı, insanların bazıları kendi hatalarını ve eksikliklerini kabul ederler.",
-      "Paragrafın yazarı, insanların bazıları kendi hatalarını ve eksikliklerini kabul ederler ve bu nedenle kendilerini daha da hatalı ve eksik hale getirmelerine neden olur.",
-      "Paragrafın yazarı, insanların bazıları kendi hatalarını ve eksikliklerini kabul etmezler ve bu nedenle kendilerini daha da hatalı ve eksik hale getirmelerine neden olmaz."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek paragrafın yazarının amacını ve kastettiği anlamı en doğru şekilde yansıtmaktadır. Paragraf yazarı insanların bazıları kendi hatalarını ve eksikliklerini kabul etmezler ve bu nedenle kendilerini daha da hatalı ve eksik hale getirmelerine neden olur olduğunu belirtmektedir."
-    },
-    {
-     "soru": "Ferahlık, dinginlik ve huzurun eşsiz bir sentezi olan bahçe, insan ruhunu saran güzelliklerin en başında gelir. Bahçenin sunduğu huzur, insanın doğayla olan bağını güçlendirir ve insanın iç dünyasını dengelendirir. İnsanın doğayla olan ilişkisinin dengelenmesi, insanın iç dünyasındaki huzuru ve ferahlığı sağlar.",
-     "secenekler": [
-      "Bahçe, insanın doğayla olan bağını güçlendirir.",
-      "Bahçe, insanın iç dünyasını dengelendirir.",
-      "Bahçe, insanın huzurunu ve ferahlığını sağlar.",
-      "Bahçe, insanın yaşamını kolaylaştırır.",
-      "Bahçe, insanın ruh sağlığını olumsuz etkiler."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneğin doğru olması, bahçenin sunduğu huzur ve ferahlığı vurguluyor."
-    },
-    {
-     "soru": "Dünya, yepyeni bir güne açılırken, insan ruhunu saran güzelliklerin en başında gelen bahçe, insanın yaşamını renklendirir. Bahçenin sunduğu güzellik, insanın yaşamını zenginleştirir ve insanın yaşamını daha güzel kılar.",
-     "secenekler": [
-      "Bahçe, insanın yaşamını renklendirir.",
-      "Bahçe, insanın yaşamını zenginleştirir.",
-      "Bahçe, insanın yaşamını daha güzel kılar.",
-      "Bahçe, insanın yaşamını basitleştirir.",
-      "Bahçe, insanın yaşamını olumsuz etkiler."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olması, bahçenin sunduğu güzelliklerin insan yaşamını renklendirdiğini vurguluyor."
-    },
-    {
-     "soru": "Doğanın en güzel eserlerinden biri olan bahçe, insanın yaşamını etkileyen birçok faktöre sahiptir. Bahçe, insanın yaşamını renklendirir, insanın yaşamını zenginleştirir ve insanın yaşamını daha güzel kılar.",
-     "secenekler": [
-      "Bahçe, insanın yaşamını renklendirir.",
-      "Bahçe, insan yaşamını zenginleştirir.",
-      "Bahçe, insanın yaşamını daha güzel kılar.",
-      "Bahçe, insanın yaşamını basitleştirir.",
-      "Bahçe, insanın yaşamını olumsuz etkiler."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneğin doğru olması, bahçenin sunduğu güzelliklerin insan yaşamını zenginleştirdiğini vurguluyor."
-    },
-    {
-     "soru": "Bahçe, insanın yaşamını etkileyen birçok faktöre sahiptir. Bahçe, insanın yaşamını renklendirir, insanın yaşamını zenginleştirir ve insanın yaşamını daha güzel kılar.",
-     "secenekler": [
-      "Bahçe, insanın yaşamını renklendirir.",
-      "Bahçe, insan yaşamını zenginleştirir.",
-      "Bahçe, insanın yaşamını daha güzel kılar.",
-      "Bahçe, insanın yaşamını basitleştirir.",
-      "Bahçe, insanın yaşamını olumsuz etkiler."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olması, bahçenin sunduğu güzelliklerin insan yaşamını renklendirdiğini vurguluyor."
-    },
-    {
-     "soru": "Gülseren Budağı'nın 'Hayal Kurma' adlı hikayesinde, yazarın hayal kurma yeteneği ve çocukların hayal gücünü nasıl destekliyor olduğunu anlarsınız. Yazar, küçük bir kızın hayallerini ve hayal dünyasını nasıl yaratıyor olduğunu anlatır. Bu hikaye, çocukların hayal güçlerini geliştirmeleri ve hayallerini gerçekleştirmeleri için ne kadar önemli olduğunu vurgular. Hikayede kullanılan dil, çocukların hayal güçlerini nasıl desteklediğini gösterir. Yazara göre hayal, çocukların düşüncelerini ve duygularını ifade etmelerinde önemli bir rol oynar. Çocukların hayal güçlerini geliştirmeleri, onların yaratıcılıklarını ve hayal güçlerini geliştirmelerine yardımcı olur.",
-     "secenekler": [
-      "Yazarın hayal kurma yeteneği, çocukların hayal güçlerini geliştirmelerine yardımcı olur.",
-      "Hikayede kullanılan dil, çocukların hayal güçlerini destekler.",
-      "Hayal, çocukların düşüncelerini ve duygularını ifade etmelerinde önemli bir rol oynar.",
-      "Yazarın hikayesi, çocukların hayal güçlerini geliştirmeleri için ne kadar önemli olduğunu vurgular.",
-      "Hikayenin amacı, çocukların hayal güçlerini geliştirmelerine yardımcı olmaktır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçen, yazarın hayal kurma yeteneğinin çocukların hayal güçlerini geliştirmelerine yardımcı olduğunu düşünmüş olabilir. Ancak bu seçenekte, hikayenin çocukların hayal güçlerini geliştirmeleri için ne kadar önemli olduğunu vurgulamadığına dikkat edilmelidir."
     },
     {
      "soru": "Aydınlatıcı bir dil, okuyucuları nasıl etkiler? Aydınlatıcı dil, okuyucuları daha iyi anlamaya ve daha fazla bilgi almaya teşvik eder. Ancak, okuyucuların dikkatini dağıtabilir ve metnin anlamlılığını azaltabilir. Aydınlatıcı dil, okuyucuların metnin içeriğinden daha fazla bilgi almalarını sağlar. Ancak, metnin anlamını kaybettirebilir.",
@@ -27490,54 +25726,6 @@
      "aciklama": "C seçeneği doğru cevaptır. Paragraf, yazarın düşüncelerini geliştirmektedir."
     },
     {
-     "soru": "Paragraf analizi sorusu: Güncel teknoloji ile birlikte insan hayatı büyük ölçüde değişmiştir. İnsanlar artık her yerde, her an birbirleriyle iletişim kurabilirler. Sosyal medya, cep telefonları ve internet bu iletişim kolaylığını sağlamışlardır. Ancak bu kolaylık, insanoğlunun bazı özelliklerini de değiştirmiştir. İnsanların birçoğu, sosyal medyada kendilerini göstermek, popüler olmak için büyük çabalar harcıyorlar. Bu ise, gerçekçi bir benlik imgesi oluşturmakta zorluklar çıkarıyor. İnsanların kendilerini gerçekçi bir şekilde tanımlamaları, sosyal medyanın etkisini azaltabilir.",
-     "secenekler": [
-      "Paragrafın ana konusu, teknolojinin insan hayatı üzerindeki etkisidir.",
-      "Paragrafın ana konusu, sosyal medyanın insan hayatı üzerindeki etkisidir.",
-      "Paragrafın ana konusu, insanoğlunun bazı özelliklerinin değişmesidir.",
-      "Paragrafın ana konusu, gerçekçi bir benlik imgesi oluşturmanın zorluğu ile ilgilidir.",
-      "Paragrafın ana konusu, teknolojinin ve sosyal medyanın insan hayatı üzerindeki etkisidir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ana konusu, teknolojinin ve sosyal medyanın insan hayatı üzerindeki etkisini ayrıntılı olarak ele alır."
-    },
-    {
-     "soru": "Paragraf analizi sorusu: Sokakta ya da parkta rastladığınız bir kişinin size 'Merhaba' demesi, aslında bir sosyal davranışın ifadesidir. Bu davranış, toplumda karşılıklı saygı ve hoşgörünün bir gereğidir. Ancak bu davranış, sadece yüz yüze iletişim kurduğumuz zamanlarda kendini gösterir. İnternet ve sosyal medya gibi teknolojilerle birlikte, bu davranışın kapsamı genişlemiştir. Artık bir kişinin size 'Merhaba' demesi, sadece yüz yüze iletişim kurmanın bir sonucu değildir. Bu davranış, çevrimiçi ortamda da kendisini göstermektedir.",
-     "secenekler": [
-      "Paragrafın ana konusu, sosyal davranışın ifadesidir.",
-      "Paragrafın ana konusu, yüz yüze iletişim kurmanın bir sonucu olan merhaba demenin önemidir.",
-      "Paragrafın ana konusu, çevrimiçi ortamda merhaba demenin önemi ile ilgilidir.",
-      "Paragrafın ana konusu, sosyal davranışın çevrimiçi ortamda kendini gösterirken de önemini korumasıdır.",
-      "Paragrafın ana konusu, teknolojilerin sosyal davranış üzerinde etkisini belirtmektedir."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ana konusu, sosyal davranışın çevrimiçi ortamda kendini gösterirken de önemini korumasını detaylandırır."
-    },
-    {
-     "soru": "Paragraf analizi sorusu: Kendimizi ifade etmek için kullandığımız kelimeler, aslında bir dilin unsurlarından biridir. Bu kelimeler, duygu ve düşüncelerimizi karşı tarafa ilettiğimiz bir araçtır. Ancak kelimelerin anlamı, kullanılan dilin kültürü ve coğrafyasına bağlıdır. İki farklı kültür arasında kelime anlamının farklı olması, iletişim kurmada zorluklara neden olabilir. Bu nedenle, kelimelerin doğru kullanımı önemlidir.",
-     "secenekler": [
-      "Paragrafın ana konusu, kelimelerin anlamının farklı kültürlerde farklı olmasının etkisidir.",
-      "Paragrafın ana konusu, kelimelerin doğru kullanımı ile ilgili önemli bir konudur.",
-      "Paragrafın ana konusu, dilin unsurlarının kültürel ve coğrafi bağlamlara göre farklılıklar göstermesi ile ilgilidir.",
-      "Paragrafın ana konusu, kelimelerin duygu ve düşünceleri iletişimde önemli bir rolü vardır.",
-      "Paragrafın ana konusu, kelimelerin anlamının farklı kültürlerde farklı olmasının etkisini ve doğru kullanımının önemini belirtir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ana konusu, kelimelerin anlamının farklı kültürlerde farklı olmasının etkisini ve doğru kullanımının önemini belirtir."
-    },
-    {
-     "soru": "Paragraf analizi sorusu: Dil, bir toplumun kültürel ve tarihsel geçmişinden kaynaklanan bir mirastır. Dil, toplumun düşünce ve duygu ifade etme biçimini belirler. Ancak dil, sadece bir araç değildir. Dil, bir toplumun kimliğini ve varoluşunu da belirler. Bu nedenle, dilin doğru kullanımı önemlidir.",
-     "secenekler": [
-      "Paragrafın ana konusu, dilin bir toplumun kültürel ve tarihsel geçmişinden kaynakladığını belirtir.",
-      "Paragrafın ana konusu, dilin bir toplumun kimliğini ve varoluşunu belirlediğini detaylandırır.",
-      "Paragrafın ana konusu, dilin doğru kullanımının önemini vurgular.",
-      "Paragrafın ana konusu, dilin sadece bir araç olduğu yönündeki yanlış algıyı düzeltir.",
-      "Paragrafın ana konusu, dilin bir toplumun kültürel ve tarihsel geçmişinden kaynakladığını ve doğru kullanımının önemini belirtir."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ana konusu, dilin bir toplumun kültürel ve tarihsel geçmişinden kaynakladığını ve doğru kullanımının önemini belirtir."
-    },
-    {
      "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Ülkemizde eğitim sistemi, birçok alanda olduğu gibi sürekli değişime uğramaktadır. Bu değişimlerin amacı, öğrencilere daha iyi bir eğitim vermek ve onları gelecekteki hayatlarına hazırlamaktır. Ancak bu değişimlerin bazen olumlu bazen de olumsuz sonuçları olabilir. Örneğin, yeni eğitim sistemlerinin uygulanması, bazı öğrencilerin zorluklarla karşılaşmasına neden olabilir. Buna karşın, bu sistemler sayesinde öğrencilerin daha çok şey öğrenmesi ve gelişmesi de mümkündür. Dolayısıyla, eğitim sistemindeki değişimlerin öğrenciler üzerindeki etkileri hakkında daha fazla araştırma yapılması gerekmektedir.'",
      "secenekler": [
       "Eğitim sistemindeki değişimlerin öğrenciler üzerindeki etkileri",
@@ -27622,18 +25810,6 @@
      "aciklama": "Paragrafa göre, bir ülkenin kültür ve sanat yaşamı, hem iç dinamiklerine hem de dış ilişkilerine bağlıdır. Bu, paragrafın ana fikridir."
     },
     {
-     "soru": "Paragraf analizi ve anlama: Aşağıdaki paragrafı okuduktan sonra paragrafın ana fikrinin ne olduğunu listeleyiniz. Dil, toplumların en önemli unsurlarından biridir. Dil, toplumların kültürünü, tarihini, geleneklerini ve kurumlarını ilettiği bir araçtır. Dil, aynı zamanda toplumların eğitimine ve eğitim sistemine de önemli bir katkı sunar. Dil, toplumların düşüncelerini, duygularını ve fikirlerini ilettiği bir araçtır. Dil, aynı zamanda toplumların değerlerini ve geleneklerini kazandırır.",
-     "secenekler": [
-      "Dil, toplumların en önemli unsurlarından biridir ve toplumların eğitimine ve eğitim sistemine önemli bir katkı sunar.",
-      "Dil, toplumların en önemli unsurlarından biridir ve toplumların kültürünü, tarihini, geleneklerini ve kurumlarını ilettiği bir araçtır.",
-      "Dil, toplumların en önemli unsurlarından biridir ve toplumların düşüncelerini, duygularını ve fikirlerini ilettiği bir araçtır.",
-      "Dil, toplumların en önemli unsurlarından biridir ve toplumların eğitimine ve eğitim sistemine önemli bir katkı sunar, ayrıca dilin toplumların kültürünü, tarihini, geleneklerini ve kurumlarını ilettiği bir araçtır.",
-      "Dil, toplumların en önemli unsurlarından biridir ve toplumların düşüncelerini, duygularını ve fikirlerini ilettiği bir araçtır, ayrıca dilin toplumların eğitimine ve eğitim sistemine önemli bir katkı sunması."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçenek doğru çünkü paragrafın ana fikri bu şekildedir. Paragraf, dilin toplumların en önemli unsurlarından biri olduğunu, toplumların kültürünü, tarihini, geleneklerini ve kurumlarını ilettiği bir araç olduğunu belirtmektedir."
-    },
-    {
      "soru": "Paragraf analizi yapın. Aşağıdaki paragrafı okuduktan sonra hangi düşünceyi geliştirmek için kullanıldığını açıklayın. 'Bilgiyi aktarmak' bir yazarın görevi midir? Bilgiyi aktarmak, sadece bilgilerin bir yerden bir yere taşınmasıdır. Bu, basit bir görev gibi görünse de, bilgiyi aktarmak, aynı zamanda bilgiyi aktaran kişiye de bir görev olarak yüklenmektedir. Bilgiyi aktarmak, aynı zamanda bilgiyi aktaran kişinin, bilgiyi aktarırken, kendi görüşünü bile bile veya bilmeyerek, kendi düşüncelerini veya duygularını ekleyerek aktarmasına da yol açabilir. Bu nedenle, bilgiyi aktarmak, sadece bir görev olarak değil, aynı zamanda, bilgiyi aktaran kişinin, bilgiyi aktarırken, kendi görüşünü, düşüncelerini ve duygularını da ortaya koyabilecek bir araç olarak da kullanılmaktadır. Bu açıdan bakıldığında, bilgiyi aktarmak, bilgiyi aktaran kişiye, bilgiyi aktarırken, kendi görüşünü, düşüncelerini ve duygularını da ortaya koyabilecek bir fırsat sunmaktadır.",
      "secenekler": [
       "Bilgiyi aktarmak, sadece bir görev olarak görülmektedir.",
@@ -27644,42 +25820,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Bu seçeneği seçenler, paragrafta bahsedilen 'bilgiyi aktarmak'ın aynı zamanda bilgiyi aktaran kişinin, bilgiyi aktarırken, kendi görüşünü, düşüncelerini ve duygularını da ortaya koyabilecek bir araç olarak kullanıldığını anlamış olabilirler."
-    },
-    {
-     "soru": "Paragraf analizi yapın. Aşağıdaki paragrafı okuduktan sonra hangi düşünceyi geliştirmek için kullanıldığını açıklayın. 'Paragrafın başlığı' bir yazarın, paragrafın içeriğini belirleyen bir araç olarak kullanılmaktadır. Paragrafın başlığı, paragrafın içeriğini, okuyucuya bir özet olarak sunmaktadır. Bu nedenle, paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak, okuyucunun paragrafın içeriğini daha kolay olarak anlama ve anlamlandırmasına yardımcı olmaktadır. Ayrıca, paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak, yazarın paragrafın içeriğini daha kolay olarak belirlemesine de yardımcı olmaktadır. Bu nedenle, paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak, okuyucunun ve yazarın yararlanabileceği bir araç olarak kullanılmaktadır.",
-     "secenekler": [
-      "Paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak kullanılmamaktadır.",
-      "Paragrafın başlığı, okuyucuya paragrafın içeriğini bir özet olarak sunmaktadır, ancak paragrafın içeriğini belirleyen bir araç olarak kullanılmamaktadır.",
-      "Paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak kullanılmaktadır ve okuyucunun paragrafın içeriğini daha kolay olarak anlama ve anlamlandırmasına yardımcı olmaktadır.",
-      "Paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak kullanılmamaktadır ve okuyucunun paragrafın içeriğini daha kolay olarak anlama ve anlamlandırmasına yardımcı olmaktadır.",
-      "Paragrafın başlığı, paragrafın içeriğini belirleyen bir araç olarak kullanılmamaktadır ve yazarın paragrafın içeriğini belirlemesine yardımcı olmamaktadır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçenler, paragrafta bahsedilen 'paragrafın başlığı'ın paragrafın içeriğini belirleyen bir araç olarak kullanıldığını ve okuyucunun paragrafın içeriğini daha kolay olarak anlama ve anlamlandırmasına yardımcı olduğunu anlamış olabilirler."
-    },
-    {
-     "soru": "Bir yazar, 'Büyük bir şehirde yaşayanların, küçük bir kasabada yaşayanlardan daha çok düşünmesi gerektiğini' söylüyor. Bu düşüncenin arkasındaki nedenlerden biri, şehirde yaşayanların, daha çok farklı görüşe, düşünceye maruz kalmasıdır. Şehirde yaşayanlar, farklı kültürler arasında etkileşim kurmak zorundadır. Bu etkileşim, onların düşünce yapısını zenginleştirmesine yardımcı olur.",
-     "secenekler": [
-      "Yazarın bu düşüncesine göre, şehirde yaşayanlar, küçük kasabada yaşayanlardan daha çok düşünmektedirler.",
-      "Yazarın bu düşüncesine göre, şehirde yaşayanlar, küçük kasabada yaşayanlardan daha az düşünmektedirler.",
-      "Yazarın bu düşüncesine göre, şehirde yaşayanlar, küçük kasabada yaşayanlardan bağımsız düşünmektedirler.",
-      "Yazarın bu düşüncesine göre, şehirde yaşayanlar, küçük kasabada yaşayanlardan daha az farklı kültürlerle etkileşim kurmaktadırlar.",
-      "Yazarın bu düşüncesine göre, şehirde yaşayanlar, küçük kasabada yaşayanlardan daha çok farklı kültürlerle etkileşim kurmaktadırlar."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, yazarın düşüncesini doğru olarak anladılar. Yazar, şehirde yaşayanların daha çok düşünmesini söylüyor ve bu düşüncenin arkasındaki nedenlerden biri, farklı kültürlerle etkileşim kurmaktır."
-    },
-    {
-     "soru": "Bir yazar, 'Paragrafın temel unsurlarından biri, imla kurallarına uyulmasıdır.' diyor. Bu imla kurallarına uymanın, paragrafın kalitesini nasıl etkilediğini açıklamaya çalışıyor. İmla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın okunabilirliğini artırmaktır. İmla kurallarına uymanın, paragrafın okunabilirliğini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın anlaşılabiliyor olmasıdır.",
-     "secenekler": [
-      "Yazarın bu düşüncesine göre, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın okunabilirliğini artırmaktır.",
-      "Yazarın bu düşüncesine göre, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın anlaşılabiliyor olmasıdır.",
-      "Yazarın bu düşüncesine göre, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın okunabilirliğini artırmaktır ve paragrafın anlaşılabiliyor olmasıdır.",
-      "Yazarın bu düşüncesine göre, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın okunabilirliğini artırmaktır ve paragrafın kalitesini artırmaktır.",
-      "Yazarın bu düşüncesine göre, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, yazarın en çok üzerinde durduğu nokta, paragrafın anlaşılabiliyor olmasıdır ve paragrafın kalitesini artırmaktır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, yazarın düşüncesini doğru olarak anladılar. Yazar, imla kurallarına uymanın, paragrafın kalitesini artırdığından bahsederken, iki noktanın üzerinde durduğunu söylüyor: paragrafın okunabilirliğini artırmak ve paragrafın anlaşılabiliyor olması."
     },
     {
      "soru": "Okuduklarından anladıklarını çeşitli şekillerde ortaya koyabilen bireylerin, paragraf içinde düşüncelerini geliştirme ve destekleme yolları nelerdir?",
@@ -27838,30 +25978,6 @@
      "aciklama": "Doğru, çünkü sürpriz unsurunun amacı okuyucunun dikkatini çekmek ve onu metne çekmektir."
     },
     {
-     "soru": "Aşağıdaki metinde bahsettiğimiz gibi, paragrafın ana fikri, insan hayatının bir parçası olan müzikin ne kadar önemli olduğunu vurgulamaktadır. İşte paragrafın metni: Müzik, hayatımızın birçok alanında önemli bir rol oynamaktadır. İlk olarak, müzik insanın duygularını ifade etmesinde büyük bir yardımcı olmaktadır. İnsanların duygularını müzikle ifade etmeleri, duygularını daha iyi anlamaları ve ifade etmeleri için bir yol sunmaktadır. İkinci olarak, müzik insanın zihinsel ve bedensel sağlığını korumada da önemli bir rol oynamaktadır. Müzik, insanın zihinsel ve bedensel sağlığını korumasında ve geliştirmesinde büyük bir yardımcı olmaktadır. Son olarak, müzik insanlarla iletişimde de büyük bir rol oynamaktadır. Müzik, insanlarla iletişimde ve sosyal bağların kurulmasında büyük bir yardımcı olmaktadır.",
-     "secenekler": [
-      "Paragrafın ana fikri, insan hayatının bir parçası olan müzikin ne kadar önemli olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanın duygularını ifade etmesinde büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanın zihinsel ve bedensel sağlığını korumada büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanlarla iletişimde büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanın hayatının bir parçası olmadığını vurgulamaktadır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçen kullanıcı, paragrafın ana fikrinin müzikin ne kadar önemli olduğunu vurgulamasını anlayabilmiştir."
-    },
-    {
-     "soru": "Aşağıdaki metinde bahsettiğimiz gibi, paragrafın ana fikri, insan hayatının bir parçası olan müzikin ne kadar önemli olduğunu vurgulamaktadır. İşte paragrafın metni: Müzik, hayatımızın birçok alanında önemli bir rol oynamaktadır. İlk olarak, müzik insanın duygularını ifade etmesinde büyük bir yardımcı olmaktadır. İkincisi, müzik insanın zihinsel ve bedensel sağlığını korumada da önemli bir rol oynamaktadır. Üçüncüsü, müzik insanlarla iletişimde de büyük bir yardımcı olmaktadır.",
-     "secenekler": [
-      "Paragrafın ana fikri, müzikin insanın duygularını ifade etmesinde büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanın zihinsel ve bedensel sağlığını korumada büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanlarla iletişimde büyük bir yardımcı olduğunu vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insan hayatının bir parçası olmadığını vurgulamaktadır.",
-      "Paragrafın ana fikri, müzikin insanın hayatının bir parçası olduğunu vurgulamaktadır."
-     ],
-     "dogruIndex": 4,
-     "aciklama": "Büyük ihtimalle bu seçeneği seçen kullanıcı, paragrafın müzikin insanın hayatının bir parçası olduğunu vurgulamasını anlayabilmiştir."
-    },
-    {
      "soru": "Paragrafın konusunu ve ana fikrini belirten cümle ne zaman kullanılır?",
      "secenekler": [
       "Paragrafın konusunu ve ana fikrini belirten cümle her zaman paragrafın başında kullanılır.",
@@ -27908,18 +26024,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "Eğer doğru seçilirse, paragrafın ana fikri ilk cümlesinde belirtilmiştir. Bu nedenle doğru cevaptır."
-    },
-    {
-     "soru": "Bir yazar, bir yazarın paragrafını okurken, yazarın düşüncesini geliştirmek için kullanılan yöntemleri analiz eder. Yazara göre, yazarın düşüncesini geliştirmek için kullanılan yöntemler arasında paragrafların başında veya sonunda kullanılan cümleler, paragrafların içinde kullanılan örnekler, paragrafların sonunda kullanılan sonuçlar ve öneriler gibi yöntemler yer alır. Bu yöntemler, yazarın düşüncesini geliştirmesine yardımcı olur ve okurları daha iyi anlamalarına yardımcı olur.",
-     "secenekler": [
-      "Yazarın düşüncesini geliştirmek için kullanılan yöntemler arasında paragrafların başında veya sonunda kullanılan cümleler yer alır.",
-      "Paragrafların içinde kullanılan örnekler, yazarın düşüncesini geliştirmesine yardımcı olur.",
-      "Paragrafların sonunda kullanılan sonuçlar ve öneriler, yazarın düşüncesini geliştirmesine yardımcı olur.",
-      "Paragrafların başında veya sonunda kullanılan cümleler, yazarın düşüncesini geliştirmesine yardımcı olmaz.",
-      "Paragrafların içinde kullanılan örnekler, yazarın düşüncesini geliştirmesine yardımcı olmaz."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Eğer yanlış seçerse neden seçmiş olabileceği: Soruda bahsedilen yöntemlere bakılmadan sadece paragrafların sonunda kullanılan sonuçlar ve önerileri analiz etmiş olabilir."
     },
     {
      "soru": "Kütüphanenin yüksek tavanlı salonunda tozlu bir ışık huzmesi raflar arasında süzülüyordu. Eski kağıt ve deri ciltli kitapların kokusu havada asılı duruyor, ahşap masalar cilalı yüzeyleriyle parıldıyordu. Köşedeki pencereden sızan gün ışığı, okuma lambalarının sarı ışığıyla karışarak salona ılık bir renk veriyordu. Bu parçada hangi anlatım biçiminden (tekniğinden) yararlanılmıştır?",

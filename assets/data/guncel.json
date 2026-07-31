@@ -1268,30 +1268,6 @@
      "aciklama": "Bu seçeneği seçenler, doğru cevabı vermişlerdir. Savaş sırasında kullanılan kaynakların tekrar ekonomiye kazandırılması ve savaşın yol açtığı yıkımın telafisi, 1945-1950 yılları arasında gerçekleşen ekonomik krizin önemli nedenleridir."
     },
     {
-     "soru": "Türkiye'nin yakın tarihinin bir özelliği, 1960'lı yıllarda gerçekleşen askeri darbe ile cumhuriyetin ilan edilmesidir.",
-     "secenekler": [
-      "Cumhuriyetin ilan edilmesiyle birlikte, Türkiye'nin ilk cumhurbaşkanı Mustafa Kemal Atatürk seçildi.",
-      "Cumhuriyetin ilan edilmesiyle birlikte, Türkiye'nin ilk cumhurbaşkanı Mustafa Kemal Atatürk seçildi ve cumhuriyetin ilk yılı 1923 olarak kabul edildi.",
-      "Cumhuriyetin ilan edilmesiyle birlikte, Türkiye'nin ilk cumhurbaşkanı Mustafa Kemal Atatürk seçildi, ancak cumhuriyetin ilk yılı 1923 olarak kabul edilmemiştir.",
-      "Cumhuriyetin ilan edilmesiyle birlikte, Türkiye'nin ilk cumhurbaşkanı Mustafa Kemal Atatürk seçildi ve cumhuriyetin ilk yılı 1923 olarak kabul edildi, ancak bu askeri darbe ile gerçekleşmedi.",
-      "Cumhuriyetin ilan edilmesi, askeri darbe ile gerçekleşmedi ve cumhuriyetin ilk yılı 1923 olarak kabul edilmemiştir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçenler, doğru cevabı vermişlerdir. Cumhuriyetin ilan edilmesiyle birlikte Mustafa Kemal Atatürk seçilmiş ve cumhuriyetin ilk yılı 1923 olarak kabul edilmiştir."
-    },
-    {
-     "soru": "Türkiye'nin yakın tarihinin bir özelliği, 1980 yılında gerçekleşen askeri darbedir.",
-     "secenekler": [
-      "Askeri darbe, Türkiye'nin siyasi istikrarını sağlayıp ekonomiye de katkıda bulunmuştur.",
-      "Askeri darbe, Türkiye'nin siyasi istikrarını sağlayıp ekonomiye de katkıda bulunmuş, ancak bu katkılar kısa ömürlüydü.",
-      "Askeri darbe, Türkiye'nin siyasi istikrarını sağlayıp ekonomiye de katkıda bulunmuş, ancak bu katkılar uzun ömürlüydü.",
-      "Askeri darbe, Türkiye'nin siyasi istikrarını sağlamamış ve ekonomiye de katkıda bulunmamıştır.",
-      "Askeri darbe, Türkiye'nin siyasi istikrarını sağlamamış, ancak ekonomiye katkıda bulunmuştur."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçeneği seçenler, doğru cevabı vermişlerdir. Askeri darbe, Türkiye'nin siyasi istikrarını sağlamamış ve ekonomiye de katkıda bulunmamıştır."
-    },
-    {
      "soru": "I. Dünya Savaşı'ndan sonra, 1920 yılında imzalanan Lozan Antlaşması ile Türkiye'nin sınırları belirlendi. Bu antlaşmanın en önemli sonuçlarından biri Türkiye'nin...",
      "secenekler": [
       "Bulgaristan ve Yunanistan'dan toprak kayıp yaşamasıydı.",
@@ -1434,30 +1410,6 @@
      ],
      "dogruIndex": 0,
      "aciklama": "AK Parti'nin iktidar olması, Türkiye'nin güncel siyasi gelişmelerinden biridir."
-    },
-    {
-     "soru": "Türkiye'nin en güncel siyasi gelişmelerinden biri olan 2023 yılında gerçekleşen seçimlerde, AK Parti'nin %45, CHP'nin %29, MHP'nin %15, HDP'nin %11 ve IYİ Parti'nin %3 oy almasıyla sonuçlanmıştı. Bu seçimlerde, AK Parti'nin lideri Recep Tayyip Erdoğan, Türkiye'nin yeni cumhurbaşkanı olarak seçilmiştir. İşte bu seçimlerin ardından, Erdoğan'ın cumhurbaşkanlığı görevine başlaması ve ilk yılını değerlendirmesidir.",
-     "secenekler": [
-      "Cumhurbaşkanı Erdoğan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir.",
-      "Cumhurbaşkanı Erdoğan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, cumhurbaşkanlığı yetkilerini artırmaya devam etmiştir.",
-      "Cumhurbaşkanı Erdoğan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, cumhurbaşkanlığı yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır.",
-      "Cumhurbaşkanı Erdoğan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, cumhurbaşkanlığı yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır. Ayrıca, muhalefeti bastırmak için sert tedbirler almıştır.",
-      "Cumhurbaşkanı Erdoğan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, cumhurbaşkanlığı yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır. Ayrıca, muhalefeti bastırmak için sert tedbirler almıştır. Ayrıca, anayasayı değiştirmeye çalışmıştır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen kullanıcı, cumhurbaşkanı Erdoğan'ın ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket ettiğini düşünmüş olabilir. Ancak, diğer seçeneklerin analizleri bu seçeneğin doğru olmadığını göstermektedir."
-    },
-    {
-     "soru": "Türkiye'de 2022 yılında gerçekleşen seçimlerde, HDP'nin %15, CHP'nin %23, AK Parti'nin %35, MHP'nin %15 oy almasıyla sonuçlanmıştı. İşte bu seçimlerin ardından, HDP'nin lideri Pervin Buldan, Türkiye'nin yeni milletvekilliği olarak seçilmiştir. İşte bu seçimlerin ardından, Pervin Buldan'ın milletvekilliği görevine başlaması ve ilk yılını değerlendirmesidir.",
-     "secenekler": [
-      "Milletvekili Pervin Buldan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir.",
-      "Milletvekili Pervin Buldan, ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, milletvekilliği yetkilerini artırmaya devam etmiştir.",
-      "Milletvekili Pervin Buldan, ilk yılında demokrasinin temel ilkelerini korumuş ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, milletvekilliği yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır.",
-      "Milletvekili Pervin Buldan, ilk yılında demokrasinin temel ilkelerini korumuş ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, milletvekilliği yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır. Ayrıca, muhalefeti bastırmak için sert tedbirler almıştır.",
-      "Milletvekili Pervin Buldan, ilk yılında demokrasinin temel ilkelerini korumuş ve Türkiye'nin ekonomisini büyütme hedefiyle hareket etmiştir. Ancak, muhalefetin eleştirilerine rağmen, milletvekilliği yetkilerini artırmaya devam etmiştir. Ayrıca, yargının bağımsızlığını da sınırlamıştır. Ayrıca, muhalefeti bastırmak için sert tedbirler almıştır. Ayrıca, anayasayı değiştirmeye çalışmıştır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneği seçen kullanıcı, milletvekili Pervin Buldan'ın ilk yılında demokrasinin temel ilkelerini koruyarak ve Türkiye'nin ekonomisini büyütme hedefiyle hareket ettiğini düşünmüş olabilir. Ancak, diğer seçeneklerin analizleri bu seçeneğin doğru olmadığını göstermektedir."
     },
     {
      "soru": "Türkiye'nin son 20 yıllık siyasi gelişmelerini genel olarak hangi olaylar belirlemektedir?",
@@ -4453,30 +4405,6 @@
      ],
      "dogruIndex": 2,
      "aciklama": "Kamu harcamalarının artması, ekonomideki üretimi ve istihdamı artırabilir."
-    },
-    {
-     "soru": "Kamu görevlisi olarak atanma işleminde en önemli kriter:",
-     "secenekler": [
-      "Kamu görevlisi olarak atanma işleminde en önemli kriter, adayın kamu görevlisi olarak atanabileceği pozisyona uygun olmasıdır.",
-      "Kamu görevlisi olarak atanma işleminde en önemli kriter, adayın kamu görevlisi olarak atanabileceği pozisyonda gösterdiği başarı ve tecrübedir.",
-      "Kamu görevlisi olarak atanma işleminde en önemli kriter, adayın kamu görevlisi olarak atanabileceği pozisyonda gösterdiği başarı, tecrübe ve ehliyetli olmasıdır.",
-      "Kamu görevlisi olarak atanma işleminde en önemli kriter, adayın kamu görevlisi olarak atanabileceği pozisyonda gösterdiği ehliyetli olmasıdır.",
-      "Kamu görevlisi olarak atanma işleminde en önemli kriter, adayın kamu görevlisi olarak atanabileceği pozisyonda gösterdiği başarı ve ehliyetli olmasıdır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, kamu görevlisi olarak atanma işleminde en önemli kriterin adayın kamu görevlisi olarak atanabileceği pozisyonda gösterdiği başarı, tecrübe ve ehliyetli olması olduğunu göstermektedir."
-    },
-    {
-     "soru": "Kamu görevlisi olarak görev yaparken, kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin:",
-     "secenekler": [
-      "Kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin cezai ve hukuki sorumluluğunu doğurur.",
-      "Kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin disiplin cezası almasına neden olur.",
-      "Kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin görevine devam etmesini sağlar.",
-      "Kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin görevini yapmasını engeller.",
-      "Kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin görevini yapmasına yardımcı olur."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek, kamu görevlisinin görevini yaparken ortaya çıkan herhangi bir hata veya ihmali, kamu görevlisinin cezai ve hukuki sorumluluğunu doğurduğunu göstermektedir."
     },
     {
      "soru": "Ekonomik krizin etkileri nelerdir?",

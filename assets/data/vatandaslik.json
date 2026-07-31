@@ -1290,18 +1290,6 @@
      "aciklama": "Hukuk, tam olarak ifade edilmiştir."
     },
     {
-     "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları' kavramı, hukukun neye dayandığıyla ilgilidir.",
-     "secenekler": [
-      "Hukukun kaynakları, hukukun temel ilkelerini oluşturan ve hukukun varlığını sağlayan unsurlardır.",
-      "Hukukun kaynakları, hukukun uygulama alanını belirleyen ve hukukun kapsamını oluşturan unsurlardır.",
-      "Hukukun kaynakları, hukukun yorumlanmasını sağlayan ve hukukun uygulanmasını kolaylaştıran unsurlardır.",
-      "Hukukun kaynakları, hukukun tarihi gelişimini belirleyen ve hukukun evrimini oluşturan unsurlardır.",
-      "Hukukun kaynakları, hukukun uluslararası boyutunu oluşturan ve hukukun globalleşmesini sağlayan unsurlardır."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru çünkü hukukun kaynakları, hukukun temel ilkelerini oluşturan ve hukukun varlığını sağlayan unsurlardır."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları' kavramı, hangi kaynaktan oluşur?",
      "secenekler": [
       "Hukukun kaynakları, anayasal kaynaklardan oluşur.",
@@ -1650,18 +1638,6 @@
      "aciklama": "Bu seçenek hukuki sonuçların belirlenmesinde etkili olan faktörlerden biridir. Hukuki sonuçlar, hukuki normların uygulanması sonucu ortaya çıkar."
     },
     {
-     "soru": "Hukukun temel kavramlarından birini seçiniz. Hukuki düzenlemenin temel amaçlarından birini seçiniz.",
-     "secenekler": [
-      "Hukuki düzenlemenin temel amacı, hukuki normların uygulanmasını sağlamak.",
-      "Hukuki düzenlemenin temel amacı, hukuksal ilişkileri düzenlemek.",
-      "Hukuki düzenlemenin temel amacı, hukuksal sonuçları belirlemek.",
-      "Hukuki düzenlemenin temel amacı, hukuksal düzenlemenin amaçlarını gerçekleştirmek.",
-      "Hukuki düzenlemenin temel amacı, hukuksal düzenlemenin amaçlarını ve hedeflerini gerçekleştirmek."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek hukuksal düzenlemenin temel amacıdır. Hukuki düzenlemenin temel amacı, hukuksal düzenlemenin amaçlarını gerçekleştirmektedir."
-    },
-    {
      "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynağı' kavramı nedir?",
      "secenekler": [
       "Hukukun kaynağı, yargı organlarınca oluşturulan yargı kararıdır.",
@@ -1816,30 +1792,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz, çünkü insan hakları hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır."
-    },
-    {
-     "soru": "Hukukun temel kavramları arasında yer alan 'Hukukun Kaynakları'ndan biri de 'Adalet' kavramıdır. Bu kavram, hukukun temel ilkelerinden biridir.",
-     "secenekler": [
-      "Adalet, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-      "Adalet, hukukun temel ilkelerinden biridir ve devletlerin vatandaşlarına tanıdığı hak ve özgürlüklerdir.",
-      "Adalet, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır, fakat devletlerin vatandaşlarına tanıdığı hak ve özgürlükler değildir.",
-      "Adalet, hukukun temel ilkelerinden biridir, fakat bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-      "Adalet, hukukun temel kavramları arasında yer alan 'Hukukun Kaynakları'ndan biridir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz, çünkü adalet hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır."
-    },
-    {
-     "soru": "Hukukun temel kavramları arasında yer alan 'Hukukun Kaynakları'ndan biri de 'Hukuk'un Niteliği' kavramıdır.",
-     "secenekler": [
-      "Hukuk'un Niteliği, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-      "Hukuk'un Niteliği, hukukun temel ilkelerinden biridir ve devletlerin vatandaşlarına tanıdığı hak ve özgürlüklerdir.",
-      "Hukuk'un Niteliği, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır, fakat devletlerin vatandaşlarına tanıdığı hak ve özgürlükler değildir.",
-      "Hukuk'un Niteliği, hukukun temel ilkelerinden biridir, fakat bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-      "Hukuk'un Niteliği, hukukun temel kavramları arasında yer alan 'Hukukun Kaynakları'ndan biridir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz, çünkü hukukun niteliği hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır."
     },
     {
      "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ndan biri hangisidir?",
@@ -17739,18 +17691,6 @@
      "aciklama": "Bu seçenek, mahalli idarelerin temel özelliklerini doğru bir şekilde yansıtmaktadır: kamu hizmetlerini yürütmekle görevlendirilmiş kuruluşlardır."
     },
     {
-     "soru": "Mahalli idarelerin görev ve yetkileri, Anayasa ve kanunlarla belirlenir.",
-     "secenekler": [
-      "Mahalli idarelerin görev ve yetkileri, yalnızca Anayasa tarafından belirlenir.",
-      "Mahalli idarelerin görev ve yetkileri, yalnızca kanunlarla belirlenir.",
-      "Mahalli idarelerin görev ve yetkileri, Anayasa ve kanunlarla belirlenir.",
-      "Mahalli idarelerin görev ve yetkileri, merkezî idare tarafından belirlenir.",
-      "Mahalli idarelerin görev ve yetkileri, seçmenler tarafından belirlenir."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek, mahalli idarelerin görev ve yetkilerinin belirlenme şeklini doğru bir şekilde yansıtmaktadır: Anayasa ve kanunlarla belirlenir."
-    },
-    {
      "soru": "Mahalli idareler hangileridir?",
      "secenekler": [
       "İl özel idaresi, belediye ve köy",
@@ -20033,18 +19973,6 @@
      "aciklama": "Bu seçenek doğru cevaptır, çünkü ifade hürriyeti bireyin düşüncelerini, kanaatlerini ve inançlarını özgürce ifade edebilme hakını ifade eder."
     },
     {
-     "soru": "Temel hak ve özgürlükler arasında yer alan bir diğer hak, toplantı ve gösteri hürriyetidir. Toplantı ve gösteri hürriyeti, bireyin toplu olarak toplanma ve gösteri yapma hakını ifade eder. Bu hak, bireyin kamuoyunu ve kamuoyunu etkileme hakkıdır.",
-     "secenekler": [
-      "Toplantı ve gösteri hürriyeti, bireyin toplu olarak toplanma ve gösteri yapma hakını ifade eder.",
-      "Toplantı ve gösteri hürriyeti, yalnızca bireyin kamuoyunu etkileme hakkıdır.",
-      "Toplantı ve gösteri hürriyeti, bireyin yalnızca toplu olarak toplanma hakkını ifade eder.",
-      "Toplantı ve gösteri hürriyeti, yalnızca bireyin gösteri yapma hakkını ifade eder.",
-      "Toplantı ve gösteri hürriyeti, bireyin toplu olarak toplanma ve gösteri yapma haklarını ifade eder."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Bu seçenek doğru cevaptır, çünkü toplantı ve gösteri hürriyeti bireyin toplu olarak toplanma ve gösteri yapma hakını ifade eder."
-    },
-    {
      "soru": "Temel hak ve özgürlükler arasında yer alan bir diğer hak, medeni ve siyasi haklardan biridir. Bu hak, bireyin kendi yaşamını özgürce planlayabilme ve kendi kararlarını alabilme hakını ifade eder. Bu hak, bireyin evlenmesine, boşanmasına, miras bırakmasına ve diğer kişisel haklarına ilişkindir.",
      "secenekler": [
       "Bu hak, bireyin kendi yaşamını özgürce planlayabilme ve kendi kararlarını alabilme hakını ifade eder.",
@@ -20235,30 +20163,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Doğrudur. Temel hak ve özgürlükler kavramının merkezinde bireyin özgürlük (hürriyet) alanının korunması yer alır; eşitlik ve adalet gibi diğer ilkeler, bu özgürlüğün herkes için güvence altına alınmasına hizmet eden tamamlayıcı unsurlardır."
-    },
-    {
-     "soru": "Temel hak ve özgürlükler arasında yer alan bir hak, bireyin fikirlerini açıklama özgürlüğüdür. Bu hak, bir bireyin hangi koşullarda fikirlerini açıklama özgürlüğünden mahrum bırakılabileceğini belirten bir yargı kararıdır.",
-     "secenekler": [
-      "Fikirleri açıklama özgürlüğünden mahrum bırakılabilecek bir durum, bireyin devletin güvenliğine karşı eylemlerde bulunmasıdır.",
-      "Fikirleri açıklama özgürlüğünden mahrum bırakılabilecek bir durum, bireyin diğer insanların hak ve özgürlüklerini ihlal etmesidir.",
-      "Fikirleri açıklama özgürlüğünden mahrum bırakılabilecek bir durum, bireyin suç işlemesidir.",
-      "Fikirleri açıklama özgürlüğünden mahrum bırakılabilecek bir durum, bireyin devletin güvenliğine karşı eylemlerde bulunması veya diğer insanların hak ve özgürlüklerini ihlal etmesidir.",
-      "Fikirleri açıklama özgürlüğünden mahrum bırakılabilecek bir durum, bireyin siyasi partilere üye olmamasıdır."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Bu seçenek doğru cevaptır, çünkü bireyin fikirlerini açıklama özgürlüğünden mahrum bırakılabilecek durumlar devletin güvenliğine karşı eylemlerde bulunması veya diğer insanların hak ve özgürlüklerini ihlal etmesidir."
-    },
-    {
-     "soru": "Temel hak ve özgürlükler arasında yer alan bir hak, bireyin din ve vicdan özgürlüğüdür. Bu hak, bir bireyin hangi koşullarda din ve vicdan özgürlüğünden mahrum bırakılabileceğini belirten bir yargı kararıdır.",
-     "secenekler": [
-      "Din ve vicdan özgürlüğünden mahrum bırakılabilecek bir durum, bireyin dinini değiştirmesidir.",
-      "Din ve vicdan özgürlüğünden mahrum bırakılabilecek bir durum, bireyin dinini açıklama özgürlüğünün ihlalidir.",
-      "Din ve vicdan özgürlüğünden mahrum bırakılabilecek bir durum, bireyin diğer insanların hak ve özgürlüklerini ihlal etmesidir.",
-      "Din ve vicdan özgürlüğünden mahrum bırakılabilecek bir durum, bireyin devletin güvenliğine karşı eylemlerde bulunmasıdır.",
-      "Din ve vicdan özgürlüğünden mahrum bırakılabilecek bir durum, bireyin siyasi partilere üye olmamasıdır."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bu seçenek doğru cevaptır, çünkü din ve vicdan özgürlüğünden mahrum bırakılabilecek durumlar diğer insanların hak ve özgürlüklerini ihlal etmesidir."
     },
     {
      "soru": "Temel hak ve özgürlüklerin güvence altına alınması için hangi机构 sorumludur?",
@@ -23202,30 +23106,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bunun doğru bir açıklaması var. Seçim sisteminin demokratik niteliğini güçlendirmek için, vatandaşların oy kullanma hakkını kısıtlayan yasaların çıkarılması, demokrasinin gelişimini destekler. Ancak bu ifade, vatandaşların oy kullanma hakkını kısıtlayan yasaların çıkarılmasını destekler. Bu nedenle bu seçeneğin doğru bir açıklaması yok."
-    },
-    {
-     "soru": "Pazartesi günü seçime katılacak olan bir siyasi parti, halkın desteğini kazanmak için bir reklam kampanyası düzenler. Bu reklam kampanyası, seçime katılacak olan diğer siyasi partileri hedef alır ve onların olumsuzlarını vurgular. Bu siyasi partinin davranışının bir anlamı vardır:",
-     "secenekler": [
-      "Bu siyasi partinin davranışının bir anlamı yoktur.",
-      "Bu siyasi partinin davranışının bir anlamı vardır.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanamaz.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanabilir.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kaybetmez."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bunun doğru bir açıklaması var. Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanamaz. Bu siyasi parti, halkın desteğini kazanmak için halkın desteğini kazanacak olan diğer siyasi partilerle yarışır. Ancak bu siyasi parti, halkın desteğini kazanacak olan diğer siyasi partilerin olumsuzlarını vurgulayarak halkın desteğini kazanamaz."
-    },
-    {
-     "soru": "Bir siyasi partinin seçim kampanyası, halkın desteğini kazanmak için bir slogan kullanır. Bu slogan, halkın desteğini kazanacak olan diğer siyasi partilerin olumsuzlarını vurgular. Bu siyasi partinin davranışının bir anlamı vardır:",
-     "secenekler": [
-      "Bu siyasi partinin davranışının bir anlamı yoktur.",
-      "Bu siyasi partinin davranışının bir anlamı vardır.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanamaz.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanabilir.",
-      "Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kaybetmez."
-     ],
-     "dogruIndex": 2,
-     "aciklama": "Bunun doğru bir açıklaması var. Bu siyasi partinin davranışının bir anlamı yoktur ve bu siyasi parti, halkın desteğini kazanamaz. Bu siyasi parti, halkın desteğini kazanmak için halkın desteğini kazanacak olan diğer siyasi partilerle yarışır. Ancak bu siyasi parti, halkın desteğini kazanacak olan diğer siyasi partilerin olumsuzlarını vurgulayarak halkın desteğini kazanamaz."
     },
     {
      "soru": "Seçim sisteminin amaçlarından biri nedir?",

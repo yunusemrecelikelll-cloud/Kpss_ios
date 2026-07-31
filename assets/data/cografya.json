@@ -1593,18 +1593,6 @@
      "aciklama": "Doğru, Türkiye'nin yüzey şekilleri çoğunlukla engebelidir."
     },
     {
-     "soru": "Göller Yöresi'nin jeolojik yapısı hakkında bilgi verin.",
-     "secenekler": [
-      "Göller Yöresi'nin jeolojik yapısı çoğunlukla granit ve şistlerden oluşur.",
-      "Göller Yöresi'nin jeolojik yapısı çoğunlukla volkanik kayalardan oluşur.",
-      "Göller Yöresi'nin jeolojik yapısı çoğunlukla jeolojik olarak genç bir bölgedir.",
-      "Göller Yöresi'nin jeolojik yapısı çoğunlukla karstik bir bölgedir.",
-      "Göller Yöresi'nin jeolojik yapısı çoğunlukla engebelidir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru, Göller Yöresi'nin jeolojik yapısı çoğunlukla granit ve şistlerden oluşur."
-    },
-    {
      "soru": "Türkiye'nin coğrafi konumu hakkında bilgi verin.",
      "secenekler": [
       "Türkiye, Asya ve Avrupa kıtasını birleştiren geçitlerden biridir.",
@@ -1615,30 +1603,6 @@
      ],
      "dogruIndex": 3,
      "aciklama": "Doğru, Türkiye, Asya ve Avrupa kıtasını birleştiren geçitlerden biridir ve Akdeniz'e kıyısı vardır."
-    },
-    {
-     "soru": "Türkiye'nin iklimi hakkında bilgi verin.",
-     "secenekler": [
-      "Türkiye'nin iklimi çoğunlukla Akdeniz iklimidir.",
-      "Türkiye'nin iklimi çoğunlukla karasal iklimdir.",
-      "Türkiye'nin iklimi çoğunlukla tropikal iklimdir.",
-      "Türkiye'nin iklimi çoğunlukla çöllük iklimdir.",
-      "Türkiye'nin iklimi çoğunlukla ılıman iklimdir."
-     ],
-     "dogruIndex": 3,
-     "aciklama": "Doğru, Türkiye'nin iklimi çoğunlukla çöllük iklimdir."
-    },
-    {
-     "soru": "Türkiye'nin jeolojik yapısı hakkında bilgi verin.",
-     "secenekler": [
-      "Türkiye'nin jeolojik yapısı çoğunlukla granit ve şistlerden oluşur.",
-      "Türkiye'nin jeolojik yapısı çoğunlukla volkanik kayalardan oluşur.",
-      "Türkiye'nin jeolojik yapısı çoğunlukla karstik bir bölgedir.",
-      "Türkiye'nin jeolojik yapısı çoğunlukla engebelidir.",
-      "Türkiye'nin jeolojik yapısı çoğunlukla jeolojik olarak genç bir bölgedir."
-     ],
-     "dogruIndex": 0,
-     "aciklama": "Doğru, Türkiye'nin jeolojik yapısı çoğunlukla granit ve şistlerden oluşur."
     },
     {
      "soru": "Türkiye'nin en kuzey noktası hangi kentte yer alır?",
@@ -22522,18 +22486,6 @@
      "aciklama": "Bu ölçek türü, haritanın ölçeğini belirlerken kullanılan ve en yaygın olarak kullanılan ölçek türüdür."
     },
     {
-     "soru": "Harita üzerinde ölçek, doğru ve yanlış ölçeklemelerin farklarını göstermektedir.",
-     "secenekler": [
-      "Harita üzerinde ölçek, yalnızca haritada gösterilen alanın büyüklüğünü gösterir.",
-      "Harita üzerinde ölçek, haritanın doğru ve yanlış ölçeklemelerini gösterir.",
-      "Harita üzerinde ölçek, haritanın ölçeğini ve coğrafi uzaklıkları gösterir.",
-      "Harita üzerinde ölçek, yalnızca haritanın ölçeğini gösterir.",
-      "Harita üzerinde ölçek, haritanın ölçeğini ve haritanın coğrafi uzaklıklarını gösterir."
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Bu seçeneği seçen kullanıcılar, harita üzerinde ölçeklemelerin doğru ve yanlış ölçeklemelerini doğru olarak algılamış olmalıdır."
-    },
-    {
      "soru": "Harita üzerinde ölçek, 100 m lik bir uzaklığı ne kadarlık bir ölçek ile göstermektedir?",
      "secenekler": [
       "1 cm",
@@ -22772,18 +22724,6 @@
      ],
      "dogruIndex": 1,
      "aciklama": "Bu seçeneğe doğru seçmek, ölçek kavramını doğru olarak anlamış olacaktır."
-    },
-    {
-     "soru": "Bir harita üzerinde ölçek 1/100.000'dir. Haritanın ölçekli bir bölümünde 1 cm uzunluğundaki hat 10 km uzunluğundaki yolun bir bölümünü temsil eder.",
-     "secenekler": [
-      "Bu yolun gerçek uzunluğu 100 km",
-      "Bu yolun gerçek uzunluğu 10 km",
-      "Bu yolun gerçek uzunluğu 50 km",
-      "Bu yolun gerçek uzunluğu 5 km",
-      "Bu yolun gerçek uzunluğu 20 km"
-     ],
-     "dogruIndex": 1,
-     "aciklama": "Büyük ihtimalle 1 cm uzunluğundaki hatın temsil ettiği yolun gerçek uzunluğunu 10 km olarak hesaplamışlardır."
     },
     {
      "soru": "1/25.000 ölçekli bir haritada 8 cm'lik bir uzunluk gerçekte kaç km'ye karşılık gelir?",
