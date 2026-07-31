@@ -84,7 +84,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   'benzersiz kullanıcı kimliğin kimlik doğrulama için Firebase Authentication\'da tutulur\n'
                   '• Sohbet özelliğini kullanırsan: gönderdiğin genel sohbet mesajları ve '
                   'özel mesajların (DM) içeriği, kimin engellediğin/şikayet ettiğin bilgisi\n'
-                  '• Özel Lig\'de: kullanıcı adın ve haftalık/toplam skor bilgin (diğer '
+                  '• Lig\'de: kullanıcı adın ve haftalık/toplam skor bilgin (diğer '
                   'kullanıcılarla karşılaştırma için)\n'
                   '• KPSS Düello/Royale\'de: oyuncu adın, oda içindeki cevapların ve skorun '
                   '(maç süresince, diğer oda oyuncularıyla paylaşılır)\n\n'

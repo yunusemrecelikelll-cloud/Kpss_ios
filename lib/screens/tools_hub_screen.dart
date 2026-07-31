@@ -356,9 +356,9 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
               // NOT: Buradaki "🧰 Diğer Araçlar" bölümü kaldırıldı — içindeki
               // araçlar oyun değil çalışma aracı oldukları için ait oldukları
               // yerlere taşındı:
-              //   • Bugün Sınava Girsen Kaç Alırsın? → Profil
-              //   • Özel Lig                        → Profil
-              //   • Puan Hesaplama                  → Profil
+              //   • Bugün Sınava Girsen Kaç Alırsın? → Profil / Anasayfa
+              //   • Lig                             → Profil / Anasayfa
+              //   • Puan Hesaplama                  → Profil / Anasayfa
               //   • Akılda Kalıcı Kodlama           → Anasayfa çekmecesi (Drawer)
               //   • Mentörlük Seansları             → Anasayfa çekmecesi (Drawer)
               //   • Çalışma Kronometresi            → Anasayfa çekmecesi (Drawer)

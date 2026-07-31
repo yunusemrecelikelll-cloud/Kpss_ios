@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import '../firebase_bootstrap.dart';
 import 'storage_service.dart';
 
-/// "Özel Lig" ligi/kademesi — kullanıcının bu haftaki lig puanına göre
-/// diğer kullanıcılara kıyasla bulunduğu kademe.
+/// Lig kademesi — kullanıcının bu haftaki lig puanına göre diğer kullanıcılara
+/// kıyasla bulunduğu kademe.
 enum LeagueTier { bronz, gumus, altin, platin, elmas, efsane }
 
 extension LeagueTierLabel on LeagueTier {
@@ -40,12 +40,18 @@ class LeagueResult {
   /// Bu haftaki (Pazartesi'den bugüne) lig puanı — bkz. StorageService.getWeeklyPoints.
   final int myWeeklyPoints;
 
+  /// Her kademede bu hafta kaç kişi yer aldığı (kullanıcı isteği: "lig başına
+  /// kişi sayısı görünsün"). Her katılımcının puanı kendi yüzdelik dilimine,
+  /// o da bir kademeye eşlenip sayılır. Boş harita olabilir (offline).
+  final Map<LeagueTier, int> tierCounts;
+
   const LeagueResult({
     required this.tier,
     required this.percentile,
     required this.totalParticipants,
     required this.myRate,
     required this.myWeeklyPoints,
+    this.tierCounts = const {},
   });
 }
 
@@ -79,8 +85,14 @@ class PublicUserProfile {
   });
 }
 
-/// Firestore'daki gerçek kullanıcı skorlarına göre "Özel Lig" yüzdelik
-/// dilimini hesaplayan servis.
+/// Firestore'daki gerçek kullanıcı skorlarına göre Lig yüzdelik dilimini
+/// hesaplayan servis.
+///
+/// GİZLİ İSTATİSTİK — KATILIM: Kullanıcı "İstatistiklerimi Gizle"yi açsa bile
+/// lige DAHİL olur (skoru [publishMyScore] ile yayınlanır ve karşılaştırmaya
+/// katılır). `hideStats` yalnızca BAŞKALARININ profil ekranında istatistik
+/// görünürlüğünü etkiler; lig sıralamasındaki VARLIĞINI değil (kullanıcı
+/// isteği: "gizli tutsa da lige katılsın").
 ///
 /// Firebase yapılandırılmamışsa, kullanıcı giriş yapmamışsa ya da ağ
 /// hatası/offline durum varsa [computeMyLeagueTier] `null` döner — hiçbir
@@ -201,11 +213,23 @@ class LeagueService {
           totalParticipants: 1,
           myRate: myOverall.rate,
           myWeeklyPoints: myPoints,
+          tierCounts: {_tierFor(0): 1},
         );
       }
 
       final below = points.where((p) => p < myPoints).length;
       final percentile = (below / points.length) * 100;
+
+      // Kademe dağılımı: her katılımcının puanını kendi yüzdelik dilimine, o
+      // dilimi de bir kademeye eşleyip say. Böylece "her ligde kaç kişi var"
+      // gösterilebilir (kullanıcı isteği).
+      final tierCounts = {for (final t in LeagueTier.values) t: 0};
+      for (final p in points) {
+        final altta = points.where((x) => x < p).length;
+        final pct = (altta / points.length) * 100;
+        final t = _tierFor(pct);
+        tierCounts[t] = tierCounts[t]! + 1;
+      }
 
       return LeagueResult(
         tier: _tierFor(percentile),
@@ -213,6 +237,7 @@ class LeagueService {
         totalParticipants: points.length,
         myRate: myOverall.rate,
         myWeeklyPoints: myPoints,
+        tierCounts: tierCounts,
       );
     } catch (e) {
       debugPrint('LeagueService.computeMyLeagueTier başarısız (offline olabilir): $e');

@@ -599,7 +599,8 @@ class _FeatureComparisonTable extends StatelessWidget {
     ('🎯', 'Sınav Puanı Tahmini', null, 'Anlık net/puan tahmini'),
     ('⏱️', 'Çalışma Kronometresi', null, 'Detaylı zaman analizi'),
     ('🎓', 'Mentörlük Seansları', null, 'Tüm seanslara erişim'),
-    ('🏆', 'Özel Lig', null, 'Haftalık sıralama ve kademe'),
+    // Lig artık ücretsiz (kullanıcı isteği) — premium ayrıcalığı olmaktan
+    // çıktığı için karşılaştırma tablosundan kaldırıldı.
     ('📊', 'İstatistik Derinliği', 'Temel özet', 'Konu bazlı detaylı istatistikler'),
   ];
 

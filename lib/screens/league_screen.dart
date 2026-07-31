@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../services/league_service.dart';
 import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
-import 'tools_hub_screen.dart';
 
 /// Prestij sırası: en üst kademe en başta (podyum sıralaması bu listeye göre).
 const _tiersByRank = [
@@ -39,7 +38,7 @@ Color _madalyaRengi(int sira, Color varsayilan) => switch (sira) {
       _ => varsayilan,
     };
 
-/// Özel Lig — JS: renderLeague.
+/// Lig — JS: renderLeague.
 ///
 /// Haftalık lig puanına (bkz. StorageService.getWeeklyPoints — her doğru
 /// cevap +10 puan, her Pazartesi sıfırlanır) göre, Firestore'daki `league_scores`
@@ -66,20 +65,15 @@ class _LeagueScreenState extends State<LeagueScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // LİG ARTIK ÜCRETSİZ (kullanıcı isteği): premium kilidi kaldırıldı, tüm
+    // kullanıcılar haftalık ligi görür ve katılır.
     final storage = context.watch<StorageService>();
-    if (!storage.isPremiumUser()) {
-      return const LockedFeatureCard(
-        title: 'Özel Lig',
-        desc: "Haftalık lig puanına göre kademeni ve diğer kullanıcılara kıyasla yerini görmek için Premium'a geç.",
-      );
-    }
-
     final c = context.watch<ThemeProvider>().colors;
     final weeklyPoints = storage.getWeeklyPoints();
     final userName = storage.getUserName();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('🏆 Özel Lig')),
+      appBar: AppBar(title: const Text('🏆 Lig')),
       body: FutureBuilder<LeagueResult?>(
         future: _future,
         builder: (context, snap) {
@@ -127,6 +121,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
                       ulasildi: i > _tiersByRank.indexOf(tier),
                       userName: userName,
                       weeklyPoints: weeklyPoints,
+                      kisiSayisi: result?.tierCounts[_tiersByRank[i]] ?? 0,
                     ),
                   ),
                 ),
@@ -239,7 +234,7 @@ class _VitrinKarti extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 22, 20, 20),
         child: Column(
           children: [
-            // Altın "ÖZEL LİG" şeridi
+            // Altın lig şeridi
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
               decoration: BoxDecoration(
@@ -397,6 +392,9 @@ class _KademeSatiri extends StatelessWidget {
   final String userName;
   final int weeklyPoints;
 
+  /// Bu kademede bu hafta yer alan kişi sayısı (0 ise gösterilmez — offline).
+  final int kisiSayisi;
+
   const _KademeSatiri({
     required this.sira,
     required this.tier,
@@ -404,6 +402,7 @@ class _KademeSatiri extends StatelessWidget {
     required this.ulasildi,
     required this.userName,
     required this.weeklyPoints,
+    required this.kisiSayisi,
   });
 
   @override
@@ -486,7 +485,9 @@ class _KademeSatiri extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  _esikMetni(tier),
+                  kisiSayisi > 0
+                      ? '${_esikMetni(tier)} • $kisiSayisi kişi'
+                      : _esikMetni(tier),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w600, color: c.textFaint),

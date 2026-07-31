@@ -262,14 +262,13 @@ class ProfileScreen extends StatelessWidget {
             DsListRow(
               icon: Icons.emoji_events,
               accent: c.gold,
-              title: 'Özel Lig',
-              status: premium
-                  ? 'Başarı seviyene göre lig rütbeni gör.'
-                  : '🔒 Premium — lig rütbeni gör.',
+              title: 'Lig',
+              // Lig artık ücretsiz (kullanıcı isteği) — herkes rütbesini görür.
+              status: 'Başarı seviyene göre lig rütbeni gör.',
               onTap: () {
                 context.read<SoundService>().click();
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => premium ? const LeagueScreen() : const PremiumScreen()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const LeagueScreen()));
               },
             ),
             const SizedBox(height: kDsGap),
