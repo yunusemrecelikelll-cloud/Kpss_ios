@@ -205,7 +205,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
           HowToPlayButton(
             title: '⚔️ Nasıl Oynanır?',
             body: "Düello'da bir rakiple, Royale'de birden çok oyuncuyla aynı "
-                'soruları aynı anda çözersün; hızlı ve doğru cevap veren daha çok '
+                'soruları eş zamanlı çözersün; hızlı ve doğru cevap veren daha çok '
                 'puan kazanır. Oda kurabilir, kodla özel bir odaya katılabilir ya da '
                 "hazır odalardan birine girebilirsin. İnternetin yoksa 'Tek Başına "
                 "Yarış' ile pratik yapabilirsin.",

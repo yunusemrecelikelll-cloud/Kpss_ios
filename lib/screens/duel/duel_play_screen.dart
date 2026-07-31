@@ -451,7 +451,7 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
             HowToPlayButton(
               title: '⚔️ Nasıl Oynanır?',
               body: "Düello'da bir rakiple, Royale'de birden çok oyuncuyla aynı "
-                  'soruları aynı anda çözersün; hızlı ve doğru cevap veren daha çok '
+                  'soruları eş zamanlı çözersün; hızlı ve doğru cevap veren daha çok '
                   'puan kazanır. Süre dolmadan cevap ver — cevap veremezsen o soruyu '
                   'kaçırmış olursun.',
             ),
