@@ -86,6 +86,16 @@ class AdService {
   /// Bu servis depolamaya dokunmaz — test edilebilir ve premium'dan bağımsız
   /// kalsın diye.
   Future<bool> odulluReklamGoster() async {
+    // GELİŞTİRME/TEST KOLAYLIĞI: Gerçek reklam SDK'sı web'de çalışmaz, debug
+    // derlemelerde de test reklamı her zaman gelmeyebilir. Bu yüzden YALNIZCA
+    // kDebugMode'da (web dahil) ödül akışı, gerçek reklam olmadan başarılı
+    // sayılır ki "reklam izle → +hak" akışı test edilebilsin.
+    // RELEASE derlemede (kDebugMode == false) bu blok ÇALIŞMAZ; gerçek reklam
+    // izlenmeden hak verilmez.
+    if (kDebugMode) {
+      await Future.delayed(const Duration(milliseconds: 500));
+      return true;
+    }
     if (!_baslatildi) await baslat();
     // Hazır değilse kısa bir yükleme şansı ver.
     if (_reklam == null) {

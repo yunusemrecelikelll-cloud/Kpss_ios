@@ -62,8 +62,6 @@ class _ResultScreenState extends State<ResultScreen> {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
-    final k = KpssPoints.compute(
-        dogru: result.dogru, yanlis: result.yanlis, toplam: result.toplam);
     final name = storage.getDisplayName();
     final motivation = motivationMessageFor(name, result.skor);
     final motivationColor = motivationColorFor(result.skor, c);
@@ -102,17 +100,6 @@ class _ResultScreenState extends State<ResultScreen> {
                       _Stat(label: 'Doğru ✓', value: '${result.dogru}', color: c.success),
                       _Stat(label: 'Yanlış ✗', value: '${result.yanlis}', color: c.danger),
                       _Stat(label: 'Boş —', value: '${result.bos}', color: c.textFaint),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Text('Net: ${k.net.toStringAsFixed(2)}'),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _Stat(label: 'P3', value: '${k.p3}'),
-                      _Stat(label: 'P93', value: '${k.p93}'),
-                      _Stat(label: 'P94', value: '${k.p94}'),
                     ],
                   ),
                   const SizedBox(height: 16),

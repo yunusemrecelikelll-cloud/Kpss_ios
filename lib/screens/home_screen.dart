@@ -333,9 +333,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisCount: 2,
                 mainAxisSpacing: kDsGap,
                 crossAxisSpacing: kDsGap,
-                mainAxisExtent: 104 *
+                mainAxisExtent: 132 *
                     (MediaQuery.textScalerOf(context).scale(14) / 14)
-                        .clamp(1.0, 1.5),
+                        .clamp(1.0, 1.6),
               ),
               children: [
                 // "Bugün sınava girsen kaç alırsın?" → tahmini P3 puanı.
@@ -1279,30 +1279,39 @@ class _MiniAksiyonKarti extends StatelessWidget {
       onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        // Sabit yükseklikli ızgara hücresinde taşma olmasın diye içerik
+        // spaceBetween ile dağıtılır ve metinler Flexible içine alınır.
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              DsIconBadge(emoji: emoji, color: renk, size: 32, glow: false),
+              DsIconBadge(emoji: emoji, color: renk, size: 30, glow: false),
               const Spacer(),
               Icon(Icons.chevron_right, size: 16, color: c.textFaint),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(deger,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontSize: 19, fontWeight: FontWeight.w900, color: c.text)),
-          Text(baslik,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontSize: 12, fontWeight: FontWeight.w800, color: c.textDim)),
-          Text(altDeger,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 10.5, color: c.textFaint)),
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(deger,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w900, color: c.text)),
+                Text(baslik,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w800, color: c.textDim)),
+                Text(altDeger,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 10.5, color: c.textFaint)),
+              ],
+            ),
+          ),
         ],
       ),
     );
