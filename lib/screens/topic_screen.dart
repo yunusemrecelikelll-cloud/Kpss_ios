@@ -60,6 +60,13 @@ class TopicScreen extends StatefulWidget {
 
 class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
   bool _startingQuiz = false;
+
+  /// Konu testinde çözülecek soru sayısı (kullanıcı isteği: 10/20/50 seçimi).
+  /// Ücretsiz pakette yalnızca 10 seçilebilir; 20/50 premium'a özeldir
+  /// (ücretsiz havuz zaten [QuestionPicker.freeTopicPoolSize]=20 ile sınırlı).
+  int _soruSayisi = 10;
+  static const List<int> _soruSecenekleri = [10, 20, 50];
+
   late final TtsService _ttsService;
   // dispose()'ta context.read güvenli olmadığından depolama referansı da
   // initState'te yakalanır.
@@ -209,7 +216,10 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     if (!context.mounted) return;
     setState(() => _startingQuiz = false);
     final picker = QuestionPicker(storage);
-    final qs = picker.pickForTopic(pool, 10, topic.id, premium: premium);
+    // Ücretsiz kullanıcı her zaman 10 soru çözer (havuz da 20 ile sınırlı);
+    // premium 10/20/50 seçebilir.
+    final istenen = premium ? _soruSayisi : 10;
+    final qs = picker.pickForTopic(pool, istenen, topic.id, premium: premium);
 
     // Konu testlerinde SÜRE SINIRI YOKTUR: ne süre sorulur ne de geri sayım
     // kurulur (durationSec verilmez). Ayarlar'daki süre tercihi yalnızca
@@ -451,13 +461,48 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                     style: TextStyle(fontSize: 13, height: 1.4, color: colors.textDim),
                   ),
                   const SizedBox(height: 12),
+                  // Soru sayısı seçimi (kullanıcı isteği: 10/20/50). Ücretsizde
+                  // yalnızca 10 aktif; 20/50 kilitli ve dokununca Premium'a yönlendirir.
+                  Text('Kaç soru?',
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          color: colors.textFaint)),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      for (final n in _soruSecenekleri) ...[
+                        Expanded(
+                          child: _SoruSayisiSecenek(
+                            sayi: n,
+                            secili: (premium ? _soruSayisi : 10) == n,
+                            kilitli: !premium && n != 10,
+                            onTap: () {
+                              context.read<SoundService>().click();
+                              if (!premium && n != 10) {
+                                // Ücretsizde 20/50 kilitli → Premium daveti.
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => const PremiumScreen()));
+                                return;
+                              }
+                              setState(() => _soruSayisi = n);
+                            },
+                          ),
+                        ),
+                        if (n != _soruSecenekleri.last) const SizedBox(width: 8),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 14),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: DsPillButton(
                       // Soru havuzu indirilirken buton pasif kalsın.
                       label: _startingQuiz
                           ? 'Hazırlanıyor…'
-                          : (attempts.isNotEmpty ? 'Tekrar Çöz' : 'Teste Başla'),
+                          : (attempts.isNotEmpty
+                              ? 'Tekrar Çöz (${premium ? _soruSayisi : 10} soru)'
+                              : 'Teste Başla (${premium ? _soruSayisi : 10} soru)'),
                       color: colors.violet,
                       gradient: LinearGradient(colors: [colors.violet, colors.rose]),
                       trailingIcon: Icons.arrow_forward,
@@ -978,6 +1023,64 @@ class _TeacherTemperamentsSection extends StatelessWidget {
                 ),
               ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Konu testinde soru sayısı seçeneği (10/20/50). Seçiliyse mor dolgulu;
+/// kilitliyse (ücretsizde 20/50) soluk + kilit rozeti gösterir.
+class _SoruSayisiSecenek extends StatelessWidget {
+  final int sayi;
+  final bool secili;
+  final bool kilitli;
+  final VoidCallback onTap;
+  const _SoruSayisiSecenek({
+    required this.sayi,
+    required this.secili,
+    required this.kilitli,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final aktif = secili;
+    return Material(
+      color: aktif ? c.violet.withValues(alpha: 0.18) : c.glass2,
+      borderRadius: BorderRadius.circular(kDsRadiusSm),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(kDsRadiusSm),
+            border: Border.all(
+              color: aktif ? c.violet : c.border,
+              width: aktif ? 1.6 : 1,
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('$sayi',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      color: aktif ? c.text : (kilitli ? c.textFaint : c.textDim))),
+              const SizedBox(height: 2),
+              if (kilitli)
+                Icon(Icons.lock_outline, size: 12, color: c.textFaint)
+              else
+                Text('soru',
+                    style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w700,
+                        color: aktif ? c.violetL : c.textFaint)),
+            ],
+          ),
         ),
       ),
     );
