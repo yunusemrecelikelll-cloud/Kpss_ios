@@ -64,18 +64,32 @@ class MapGameScreen extends StatelessWidget {
             ),
           ],
           const SizedBox(height: 16),
+          // ── ÖĞRETİCİ BÖLÜM — EN BAŞTA (kullanıcı isteği: "en başına
+          // öğrenmek için bir bölüm ekle, genel öğretici olsun") ──
+          const _SectionTitle('📚 Önce Öğren'),
+          const SizedBox(height: 10),
+          _LearnBanner(
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => const LearnMapHubScreen())),
+          ),
+          const SizedBox(height: 20),
           _FlagshipCard(conquered: conquered, subjects: subjects, storage: storage),
           const SizedBox(height: 20),
-          const _SectionTitle('📚 Haritadan Öğren'),
+          // ── KONU HARİTALARI — kategori bazlı tek oyunlar (soruya göre şehir
+          // çıkar; bkz. urun_haritasi_mode.dart / kHaritaKategorileri) ──
+          const _SectionTitle('🗺️ Konu Haritaları'),
           const SizedBox(height: 10),
-          _ModeTile(
-            gameId: kHaritadanOgrenGameId,
-            icon: '📚',
-            title: 'Haritadan Öğren',
-            desc: 'Tarım, hayvancılık, maden ve enerji haritalarıyla Türkiye coğrafyasını puansız öğren.',
-            storage: storage,
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const LearnMapHubScreen())),
-          ),
+          for (final k in kHaritaKategorileri)
+            _ModeTile(
+              gameId: kUrunHaritasiGameId,
+              icon: k.emoji,
+              title: k.ad,
+              desc: k.aciklama,
+              storage: storage,
+              showTime: false,
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => UrunHaritasiScreen(kategori: k.kategori))),
+            ),
           const SizedBox(height: 20),
           const _SectionTitle('🎮 Mini Oyunlar'),
           const SizedBox(height: 10),
@@ -104,14 +118,6 @@ class MapGameScreen extends StatelessWidget {
             onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const KomsuIlScreen())),
           ),
           _ModeTile(
-            gameId: kUrunHaritasiGameId,
-            icon: '🌾',
-            title: 'Ürün Haritası',
-            desc: 'Fındık, çay, pamuk gibi ürünlerin ilini bul.',
-            storage: storage,
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const UrunHaritasiScreen())),
-          ),
-          _ModeTile(
             gameId: kTarihHaritasiGameId,
             icon: '🕰️',
             title: 'Tarih Haritası',
@@ -136,6 +142,64 @@ class MapGameScreen extends StatelessWidget {
             onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HizliTurkiyeScreen())),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// "Önce Öğren" tanıtım kartı — en başta duran, öğretici Haritadan Öğren
+/// kütüphanesine götüren belirgin bir kart.
+class _LearnBanner extends StatelessWidget {
+  final VoidCallback onTap;
+  const _LearnBanner({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return InkWell(
+      borderRadius: BorderRadius.circular(18),
+      onTap: () {
+        context.read<SoundService>().click();
+        onTap();
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              c.mint.withValues(alpha: c.isLight ? 0.20 : 0.32),
+              c.violet.withValues(alpha: c.isLight ? 0.14 : 0.24),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: c.mint.withValues(alpha: 0.4)),
+        ),
+        child: Row(
+          children: [
+            const Text('📚', style: TextStyle(fontSize: 30)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Haritadan Öğren',
+                      style: TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w900, color: c.text)),
+                  const SizedBox(height: 3),
+                  Text(
+                    'Oyuna başlamadan önce: tarım, hayvancılık, maden ve enerji '
+                    'haritalarını puansız, öğretici modda incele.',
+                    style: TextStyle(fontSize: 12, height: 1.35, color: c.textDim),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right, color: c.textDim),
+          ],
+        ),
       ),
     );
   }
@@ -215,6 +279,11 @@ class _ModeTile extends StatelessWidget {
   final String desc;
   final StorageService storage;
   final VoidCallback onTap;
+
+  /// Kategori oyunları aynı [gameId]\'yi (kUrunHaritasiGameId) paylaştığı için
+  /// her birinde aynı "toplam süre" görünmesin diye kapatılabilir.
+  final bool showTime;
+
   const _ModeTile({
     required this.gameId,
     required this.icon,
@@ -222,13 +291,14 @@ class _ModeTile extends StatelessWidget {
     required this.desc,
     required this.storage,
     required this.onTap,
+    this.showTime = true,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
     final palette = mapModePaletteFor(gameId);
-    final playedSeconds = storage.getGameTimeSpent(gameId);
+    final playedSeconds = showTime ? storage.getGameTimeSpent(gameId) : 0;
     final playedLabel = playedSeconds > 0 ? formatPlayDuration(playedSeconds) : null;
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
