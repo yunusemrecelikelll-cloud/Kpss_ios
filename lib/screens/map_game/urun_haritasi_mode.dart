@@ -30,7 +30,7 @@ class UrunEsleme {
 const List<UrunEsleme> kUrunEslemeleri = [
   UrunEsleme('Çay', ['rize', 'trabzon']),
   UrunEsleme('Fındık', ['giresun', 'ordu']),
-  UrunEsleme('Antep Fıstığı', ['gaziantep']),
+  UrunEsleme('Yeşil Fıstık', ['gaziantep']),
   UrunEsleme('Kayısı', ['malatya']),
   UrunEsleme('Pamuk', ['sanliurfa', 'adana', 'aydin']),
   UrunEsleme('Zeytin/Zeytinyağı', ['aydin', 'mugla', 'balikesir']),
@@ -40,7 +40,7 @@ const List<UrunEsleme> kUrunEslemeleri = [
   UrunEsleme('Muz', ['mersin']),
   UrunEsleme('Şeftali', ['bursa', 'amasya', 'bilecik']),
   UrunEsleme('Pastırma ve Sucuk', ['kayseri']),
-  UrunEsleme('Maraş Dondurması', ['kahramanmaras']),
+  UrunEsleme('Dövme Dondurma', ['kahramanmaras']),
   UrunEsleme('Kırmızı Toz Biber', ['kahramanmaras']),
   UrunEsleme('Leblebi', ['corum']),
   UrunEsleme('Kaya Tuzu', ['cankiri']),
@@ -51,7 +51,7 @@ const List<UrunEsleme> kUrunEslemeleri = [
   UrunEsleme('Çini/Seramik', ['kutahya']),
   UrunEsleme('Otlu Peynir', ['van']),
   UrunEsleme('Kaşar Peyniri', ['kars', 'ardahan']),
-  UrunEsleme('Tiftik (Ankara Keçisi)', ['ankara']),
+  UrunEsleme('Tiftik (keçi yünü)', ['ankara']),
   UrunEsleme('Petrol Rafinerisi', ['batman']),
   UrunEsleme('Kivi', ['yalova']),
   // Aşağıdaki maddeler lib/data/learn_map_data.dart'taki "Haritadan Öğren"
