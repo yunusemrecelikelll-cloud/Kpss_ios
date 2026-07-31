@@ -812,6 +812,72 @@ const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
     EslestirmeCifti('e-Devlet', 'Kamu Hizmeti'),
     EslestirmeCifti('TÜBİTAK', 'Bilimsel Araştırma'),
     EslestirmeCifti('Siber Güvenlik', 'Veri Koruma'),
+    // — Güncel kartları genişletildi (kullanıcı isteği) —
+    EslestirmeCifti('Sanal Gerçeklik', 'VR'),
+    EslestirmeCifti('Artırılmış Gerçeklik', 'AR'),
+    EslestirmeCifti('Kripto Para', 'Bitcoin'),
+    EslestirmeCifti('Yerli Otomobil', 'TOGG'),
+    EslestirmeCifti('İnsansız Hava Aracı', 'Bayraktar'),
+    EslestirmeCifti('Uzay Ajansı', 'TUA'),
+    EslestirmeCifti('Yazılım Dili', 'Python'),
+    EslestirmeCifti('Açık Kaynak', 'Linux'),
+    EslestirmeCifti('Uydu', 'Türksat'),
+  ],
+
+  // ── GÜNCEL: Dünya Siyaseti ve Uluslararası Örgütler ──
+  'guncel-dunya-siyaseti': [
+    EslestirmeCifti('BM', '1945'),
+    EslestirmeCifti('NATO', '1949'),
+    EslestirmeCifti('Avrupa Birliği', 'Brüksel'),
+    EslestirmeCifti('UNESCO', 'Eğitim-Kültür'),
+    EslestirmeCifti('WHO (DSÖ)', 'Sağlık'),
+    EslestirmeCifti('IMF', 'Uluslararası Para'),
+    EslestirmeCifti('OPEC', 'Petrol İhraç'),
+    EslestirmeCifti('UNICEF', 'Çocuk'),
+    EslestirmeCifti('BM Genel Merkezi', 'New York'),
+    EslestirmeCifti('Avrupa Konseyi', 'Strazburg'),
+  ],
+
+  // ── GÜNCEL: Ekonomi ve Kamu Kurumları ──
+  'guncel-ekonomi-kurumlar': [
+    EslestirmeCifti('TCMB', 'Merkez Bankası'),
+    EslestirmeCifti('SPK', 'Sermaye Piyasası'),
+    EslestirmeCifti('BDDK', 'Bankacılık Denetimi'),
+    EslestirmeCifti('TÜİK', 'İstatistik'),
+    EslestirmeCifti('Borsa İstanbul', 'BIST'),
+    EslestirmeCifti('Enflasyon', 'Fiyat Artışı'),
+    EslestirmeCifti('GSYİH', 'Milli Gelir'),
+    EslestirmeCifti('Bütçe', 'Gelir-Gider'),
+    EslestirmeCifti('Rekabet Kurumu', 'Tekel Denetimi'),
+    EslestirmeCifti('RTÜK', 'Yayın Denetimi'),
+  ],
+
+  // ── GÜNCEL: Kültür, Sanat ve Bilim ──
+  'guncel-kultur-sanat': [
+    EslestirmeCifti('Nobel Edebiyat (Türk)', 'Orhan Pamuk'),
+    EslestirmeCifti('UNESCO Dünya Mirası', 'Göbeklitepe'),
+    EslestirmeCifti('Oscar', 'Sinema Ödülü'),
+    EslestirmeCifti('Grammy', 'Müzik Ödülü'),
+    EslestirmeCifti('Nobel Barış', 'İnsan Hakları'),
+    EslestirmeCifti('İstanbul', '2010 Kültür Başkenti'),
+    EslestirmeCifti('Yerçekimi Dalgaları', 'LIGO'),
+    EslestirmeCifti('Aşı', 'Bağışıklık'),
+    EslestirmeCifti('DNA', 'Genetik Şifre'),
+    EslestirmeCifti('Kâşif', 'James Webb Teleskobu'),
+  ],
+
+  // ── GÜNCEL: Türkiye'nin Yakın Tarihi ──
+  'guncel-turkiye-siyasi': [
+    EslestirmeCifti('Cumhuriyet İlanı', '1923'),
+    EslestirmeCifti('Çok Partili Hayat', '1946'),
+    EslestirmeCifti('Kadınlara Seçme Hakkı', '1934'),
+    EslestirmeCifti('BM Üyeliği', '1945'),
+    EslestirmeCifti('NATO Üyeliği', '1952'),
+    EslestirmeCifti('AB Adaylığı', '1999'),
+    EslestirmeCifti('Cumhurbaşkanlığı Sistemi', '2018'),
+    EslestirmeCifti('Anayasa Mahkemesi', '1961'),
+    EslestirmeCifti('Türkiye Başkenti', 'Ankara'),
+    EslestirmeCifti('TBMM Açılışı', '1920'),
   ],
 
   // ─────────────────────────── MATEMATİK ───────────────────────────
