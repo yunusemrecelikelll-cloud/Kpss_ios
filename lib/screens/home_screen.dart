@@ -254,9 +254,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            // 1) ÜST ŞERİT — "Kalan süre" + "Merhaba" yan yana, kompakt
-            // (kullanıcı isteği: iki widget yan yana ama daha kısa olsun).
-            IntrinsicHeight(
+            // 1) ÜST ŞERİT — "Kalan süre" + "Merhaba" yan yana, kompakt.
+            // NOT: IntrinsicHeight yerine SABİT (metin ölçeğiyle ölçeklenen)
+            // yükseklik kullanılıyor — IntrinsicHeight, alt piksel yuvarlama
+            // yüzünden "BOTTOM OVERFLOWED BY 1.0 px" hatasına yol açıyordu.
+            // Sabit yükseklik + stretch: iki kart tam eşit boyda ve taşmasız.
+            SizedBox(
+              height: 128 *
+                  (MediaQuery.textScalerOf(context).scale(14) / 14)
+                      .clamp(1.0, 1.7),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -527,9 +533,11 @@ class _KalanSureMiniState extends State<_KalanSureMini> {
     return DsCard(
       accent: c.violet,
       padding: const EdgeInsets.all(14),
+      // spaceBetween + max: sabit yükseklikte taşmasız (bkz. _MerhabaMini notu).
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -547,7 +555,6 @@ class _KalanSureMiniState extends State<_KalanSureMini> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
           if (parts.isEmpty)
             Text(countdown,
                 maxLines: 2,
@@ -582,7 +589,6 @@ class _KalanSureMiniState extends State<_KalanSureMini> {
                   ),
               ],
             ),
-          const SizedBox(height: 8),
           Text('${examInfo.label} • $dateStr',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -628,9 +634,13 @@ class _MerhabaMini extends StatelessWidget {
     return DsCard(
       accent: premium ? c.gold : c.mint,
       padding: const EdgeInsets.all(14),
+      // spaceBetween + max: içerik sabit yüksekliğe göre dağıtılır; çocukların
+      // toplam yüksekliği alandan küçük olduğu için ASLA taşmaz (IntrinsicHeight
+      // 1px taşma hatasının kalıcı çözümü).
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -648,18 +658,21 @@ class _MerhabaMini extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          Text(name,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.baloo2(
-                  fontSize: 22, fontWeight: FontWeight.w700, color: c.text)),
-          const SizedBox(height: 4),
-          Text('Hazır mısın? ✨',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontSize: 11.5, color: c.textDim)),
-          const SizedBox(height: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.baloo2(
+                      fontSize: 21, fontWeight: FontWeight.w700, color: c.text)),
+              Text('Hazır mısın? ✨',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 11.5, color: c.textDim)),
+            ],
+          ),
           DsChip(
             label: premium ? '👑 PREMIUM' : 'ÜCRETSİZ',
             color: premium ? c.gold : c.violetL,

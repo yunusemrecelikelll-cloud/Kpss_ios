@@ -55,10 +55,20 @@ class PresenceService {
           : ((user.displayName?.trim().isNotEmpty ?? false)
               ? user.displayName!.trim()
               : (user.email?.split('@').first ?? 'Kullanıcı'));
+      final premium = storage.isPremiumUser();
+      // premiumKaynak: panelden verildiyse 'grant', mağazadan satın alındıysa
+      // 'satin', premium değilse '' — yönetici paneli bu ikisini AYRI gösterir.
+      final kaynak = premium
+          ? (storage.getSettings()['premiumKaynak'] == 'grant' ? 'grant' : 'satin')
+          : '';
       await _db.collection(statusCollection).doc(user.uid).set({
         'name': ad,
         'email': user.email ?? '',
-        'premium': storage.isPremiumUser(),
+        'premium': premium,
+        'premiumKaynak': kaynak,
+        // Uygulamada geçirilen toplam süre (saniye) — panel isimlerin karşısında
+        // gösterir (kullanıcı isteği).
+        'usageSeconds': storage.getAppUsageSeconds(),
         'lastSeen': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
     } catch (e) {

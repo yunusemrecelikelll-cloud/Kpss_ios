@@ -599,6 +599,18 @@ class StorageService extends ChangeNotifier {
 
   int getTotalStudyTime() => getStudyTime().values.fold(0, (a, b) => a + b);
 
+  // ── Uygulamada geçirilen TOPLAM süre (yönetici paneli için) ─────────────────
+  // Uygulama ÖN PLANDA açık kaldığı sürece biriken, hiç sıfırlanmayan kümülatif
+  // saniye. Çalışma/oyun sürelerinden bağımsızdır: kullanıcının uygulamada ne
+  // kadar vakit geçirdiğini gösterir (bkz. InAppNoticeOverlay ön plan sayacı →
+  // PresenceService.bildir ile user_status'a yazılır).
+  int getAppUsageSeconds() =>
+      ((_get('app_usage_seconds', 0) as num?) ?? 0).toInt();
+  Future<void> addAppUsageSeconds(int seconds) async {
+    if (seconds <= 0) return;
+    await _set('app_usage_seconds', getAppUsageSeconds() + seconds);
+  }
+
   // ── Mini oyun bazlı toplam oynama süresi (Kart Oyunu / Balon Patlat / Hız 60 /
   // Düello vb.) — `getStudyTime`/`addStudyTime` ile AYNI desen (Map<String, int>,
   // ders yerine oyun kimliği anahtarlı), ama TAMAMEN AYRI bir alanda tutulur;

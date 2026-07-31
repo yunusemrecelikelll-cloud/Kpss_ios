@@ -55,11 +55,22 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
   InAppNotice? _cizilen;
   Timer? _kapatmaZamanlayici;
 
+  // ── Uygulamada geçirilen süre sayacı (yönetici paneli için) ──────────────
+  // Uygulama ön plandayken çalışan kronometre; periyodik olarak ve arka plana
+  // geçince yerel toplama eklenir (bkz. StorageService.addAppUsageSeconds).
+  final Stopwatch _kullanimSw = Stopwatch();
+  Timer? _kullanimFlush;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _servis.addListener(_servisDegisti);
+    // Ön plan süre sayacını başlat ve dakikada bir yerel toplama yaz (uygulama
+    // aniden kapansa bile kaybı en fazla ~1 dk olsun).
+    _kullanimSw.start();
+    _kullanimFlush = Timer.periodic(
+        const Duration(seconds: 60), (_) => _kullanimYaz(devamEt: true));
   }
 
   @override
@@ -69,12 +80,38 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
     _threadAboneligi?.cancel();
     _istekAboneligi?.cancel();
     _kapatmaZamanlayici?.cancel();
+    _kullanimFlush?.cancel();
+    _kullanimYaz(devamEt: false);
     super.dispose();
+  }
+
+  /// Kronometredeki süreyi yerel toplama ekler. [devamEt] true ise (periyodik
+  /// akış / hâlâ ön plan) sayaç sıfırlanıp yeniden başlatılır.
+  void _kullanimYaz({required bool devamEt}) {
+    final sn = _kullanimSw.elapsed.inSeconds;
+    if (sn > 0 && mounted) {
+      // ignore: unawaited_futures
+      context.read<StorageService>().addAppUsageSeconds(sn);
+    }
+    _kullanimSw.reset();
+    if (devamEt && _yasamDurumu == AppLifecycleState.resumed) {
+      _kullanimSw.start();
+    }
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    final oncekiDurum = _yasamDurumu;
     _yasamDurumu = state;
+
+    // Süre sayacı: öne gelince başlat, arka plana geçince durdurup yaz.
+    if (state == AppLifecycleState.resumed) {
+      if (!_kullanimSw.isRunning) _kullanimSw.start();
+    } else if (oncekiDurum == AppLifecycleState.resumed) {
+      _kullanimSw.stop();
+      _kullanimYaz(devamEt: false);
+    }
+
     // Uygulama öne geldiğinde canlılık kaydını tazele (yönetici panelindeki
     // "online" sayısı bundan beslenir) ve panelden premium verildiyse uygula.
     if (state == AppLifecycleState.resumed && mounted) {
