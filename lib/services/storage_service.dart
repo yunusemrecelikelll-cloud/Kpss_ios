@@ -573,15 +573,6 @@ class StorageService extends ChangeNotifier {
   Future<void> onboardingGoruldu() async =>
       _prefs?.setBool('onboarding_seen_v1', true);
 
-  // ── Yönetici duyurusu — CİHAZA özel, GLOBAL ─────────────────────────────────
-  // Panelden gelen aktif duyuru cihazda YALNIZCA BİR KEZ (her yeni duyuru için)
-  // üstten afişle gösterilir. En son gösterilen duyurunun kimliği burada tutulur;
-  // profil ön eki KULLANILMAZ (duyuru tüm hesaplar için aynıdır).
-  String getSonGorulenDuyuruId() =>
-      _prefs?.getString('son_gorulen_duyuru_id') ?? '';
-  Future<void> setSonGorulenDuyuruId(String id) async =>
-      _prefs?.setString('son_gorulen_duyuru_id', id);
-
   // ── Oyun ilerlemesi (Kart Oyunu V2 / Solitaire) — konu bazlı geçme takibi ──
   Map<String, bool> getGamePassedTopics(String gameId) =>
       Map<String, bool>.from(_get('game_passed_$gameId', <String, dynamic>{}));

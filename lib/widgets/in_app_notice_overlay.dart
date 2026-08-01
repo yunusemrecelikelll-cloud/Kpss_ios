@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
-import '../services/duyuru_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/notification_service.dart';
 import '../services/presence_service.dart';
@@ -120,26 +119,12 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
       PresenceService.instance.bildir(storage);
       // ignore: unawaited_futures
       PresenceService.instance.premiumKontrol(storage);
-      // Panelden gelen aktif duyuruyu kontrol et (yeni ise üstten afiş).
-      // ignore: unawaited_futures
-      DuyuruService.instance.kontrolVeGoster(storage);
     }
   }
-
-  // Duyuru cold-start kontrolü SADECE bir kez (resume tetiklenmeyen ilk açılış).
-  bool _duyuruBakildi = false;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    // İlk açılışta (uygulama zaten "resumed" başladığı için lifecycle olayı
-    // gelmez) panelden gelen aktif duyuruyu bir kez kontrol et.
-    if (!_duyuruBakildi) {
-      _duyuruBakildi = true;
-      // ignore: unawaited_futures
-      DuyuruService.instance.kontrolVeGoster(context.read<StorageService>());
-    }
 
     // Giriş/çıkışta aboneliği tazele.
     final uid = context.watch<AuthService>().currentUser?.uid;
