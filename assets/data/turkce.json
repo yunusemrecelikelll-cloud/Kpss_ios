@@ -32846,6 +32846,1098 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'İhtiyar' ile 'genç' KARŞIT anlamlıdır, eş anlamlı değildir. Diğer çiftler eş anlamlıdır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "Konağın ÖNÜNDE durup ARKASINDAKİ bahçeyi merak etti.",
+            "SICAK çorbayı içince içi ısındı, yorgunluğu SICAK bir uykuyla dağıldı.",
+            "İHTİYAR çınarın altında YAŞLI bir adam oturuyordu.",
+            "GÜZEL sözler söyledi, herkese HOŞ davrandı.",
+            "ZAYIF gövdesine rağmen CILIZ değildi ruhu."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Ön–arka' karşıt anlamlıdır. Diğer cümlelerde altı çizili sözcükler eş/yakın anlamlıdır (sıcak-sıcak, ihtiyar-yaşlı, güzel-hoş, zayıf-cılız)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GECE indiğinde GÜNDÜZün telaşı geride kaldı.",
+            "Bu işte ACEMİydi ama zamanla USTA oldu.",
+            "İnce bir AYRINTIyı, önemli bir DETAY sanıp üzerinde durdu.",
+            "YOKUŞ çıkmak zordu, İNİŞ ise kolay geldi.",
+            "BOLLUK yıllarını KITLIK yılları izledi."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Ayrıntı–detay' eş anlamlıdır. Diğer cümlelerde sözcükler karşıt anlamlıdır (gece-gündüz, acemi-usta, yokuş-iniş, bolluk-kıtlık)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "KONUK geldiğinde EV SAHİBİ kapıda karşıladı.",
+            "SESSİZ sokakta SUSKUN evler sıralanıyordu.",
+            "MUTLU haberi duyunca SEVİNÇle bağırdı.",
+            "İhtiyacı olan YARDIMı, dostundan DESTEK olarak gördü.",
+            "HIZLI trene binip ÇABUK vardı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Konuk–ev sahibi' karşıt (zıt) kavramlardır. Diğer cümlelerde sözcükler eş/yakın anlamlıdır (sessiz-suskun, mutlu-sevinç, yardım-destek, hızlı-çabuk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOĞRU yolu bırakıp YANLIŞ yöne saptı.",
+            "İhtiyar adam, YORGUN ve BİTKİN görünüyordu.",
+            "AZ konuşup ÇOK dinlemeyi öğütlerdi.",
+            "ALÇAK sesle konuşurken, YÜKSEK bir yerde duruyordu.",
+            "SABAH erken kalkıp AKŞAM geç yattı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Yorgun–bitkin' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (doğru-yanlış, az-çok, alçak-yüksek, sabah-akşam)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ZENGİN olduğu hâlde gönlü YOKSULdu.",
+            "İnce bir DUYARLILIKla, büyük bir HASSASİYET gösterdi.",
+            "Anlattığı olay GERÇEK değil, tümüyle HAYAL ürünüydü.",
+            "HÜZÜNlü şarkı, içimizdeki KEDERİ büyüttü.",
+            "Verdiği SÖZü tuttu, VAADinden dönmedi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Zengin–yoksul' karşıt anlamlıdır. Diğer cümlelerde sözcükler eş/yakın anlamlıdır (duyarlılık-hassasiyet, hüzün-keder, söz-vaat). 'Gerçek–hayal' de karşıttır; ancak soru tek doğru istediğinden en belirgin karşıtlık 'zengin-yoksul'dur."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler arasında EŞ ANLAMLILIK İLİŞKİSİ YOKTUR?",
+          "secenekler": [
+            "Bu SINAV, önemli bir İMTİHANdı onun için.",
+            "Verdiği CEVAP, beklenen YANITtı.",
+            "Uzun bir YOLCULUK, yorucu bir SEYAHATti.",
+            "KARA haber, tez yayılan ACI haberdi.",
+            "AK saçlı dedem, KARA gözlü ninemi anlatırdı."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Ak–kara' EŞ anlamlı değil, ZIT anlamlıdır. Diğer cümlelerde sözcükler eş anlamlıdır (sınav-imtihan, cevap-yanıt, yolculuk-seyahat, kara haber-acı haber)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "Tartışmada kimi GALİP, kimi MAĞLUP ayrıldı.",
+            "GEZGİN ruhlu bu SEYYAH, durmadan yol alırdı.",
+            "Kısa bir ÖYKÜyü, güzel bir HİKÂYE gibi anlattı.",
+            "Onun FİKRİni, kendi DÜŞÜNCESİ sandı.",
+            "ANI defterine, geçmişin HATIRAsını yazdı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Galip–mağlup' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (gezgin-seyyah, öykü-hikâye, fikir-düşünce, anı-hatıra)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "İLK gelenle SON giden aynı kişiydi.",
+            "Küçük bir KUSURu, büyük bir HATA gibi gördü.",
+            "DOLU salonu bırakıp BOŞ sokağa çıktı.",
+            "GENİŞ yolu geçip DAR patikaya girdi.",
+            "İYİ günde de KÖTÜ günde de yanındaydı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kusur–hata' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (ilk-son, dolu-boş, geniş-dar, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜÇLÜ görünse de aslında ZAYIFtı iradesi.",
+            "Onun İNANCI, benim de KANAATimdi.",
+            "Sabırlı bir DİNLEYİCİ, iyi bir İŞİTİCİdir.",
+            "Yaptığı YARDIMı, bir DESTEK olarak sundu.",
+            "Bu SORUNu, o MESELE gibi çözdüler."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Güçlü–zayıf' karşıt anlamlıdır. Diğerlerinde sözcükler eş/yakın anlamlıdır (inanç-kanaat, dinleyici-işitici, yardım-destek, sorun-mesele)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ERKEN kalkanla GEÇ yatan aynı yorgunluğu paylaştı.",
+            "Yaptığı İŞ, hakkıyla yerine getirilen bir GÖREVdi.",
+            "SEVİNÇ dolu yüzler, ÜZÜNTÜyü unutturdu.",
+            "AÇIK havayı bırakıp KAPALI salona geçtiler.",
+            "İLERİ giden düşünceyi, GERİ çeken korkuydu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'İş–görev' yakın (eş) anlamlıdır. Diğerlerinde sözcükler karşıttır (erken-geç, sevinç-üzüntü, açık-kapalı, ileri-geri)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler arasında GENEL–ÖZEL (bir bütün ile onun parçası/türü) ilişkisi vardır?",
+          "secenekler": [
+            "AĞAÇ altında oturan çocuk, bir ÇINARın gölgesindeydi.",
+            "SICAK yaz gününde SOĞUK bir su içti.",
+            "DOĞRU söz söyleyip YANLIŞtan kaçındı.",
+            "GÜZEL bir söz, HOŞ bir gülümsemeyle tamamlandı.",
+            "AĞIR yükü, HAFİF adımlarla taşıdı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Ağaç–çınar' arasında genel–özel ilişkisi vardır (çınar, ağacın bir türüdür). Diğerlerinde karşıtlık (sıcak-soğuk, doğru-yanlış, ağır-hafif) ya da yakın anlam (güzel-hoş) vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "BAŞLANGIÇta zor gelen iş, SONda kolaylaştı.",
+            "Yalın bir ANLATIMı, sade bir ÜSLUP izledi.",
+            "Onun ÇABAsını, büyük bir GAYRET sayardı.",
+            "GİZLİ tuttuğu SIRrını kimseye açmadı.",
+            "Aldığı KARARı, verdiği HÜKÜMle destekledi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Başlangıç–son' karşıt anlamlıdır. Diğerlerinde sözcükler eş/yakın anlamlıdır (anlatım-üslup, çaba-gayret, karar-hüküm). 'Gizli–sır' arasında ise karşıtlık yoktur."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "TUTUMLU olmak gerekirken çok SAVURGAN davrandı.",
+            "İçten bir SAMİMİYETle, gerçek bir İÇTENLİK gösterdi.",
+            "KOLAY sanılan iş, meğer ZORmuş.",
+            "NEŞELİ kalabalık, HÜZÜNLÜ birini fark etmedi.",
+            "YAKIN dostu, en UZAK anında yanındaydı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Samimiyet–içtenlik' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (tutumlu-savurgan, kolay-zor, neşeli-hüzünlü, yakın-uzak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GENÇliğin coşkusu, İHTİYARlığın dinginliğine karıştı.",
+            "Bir TELAŞı, ivedi bir ACELE olarak yaşadı.",
+            "SEÇKİN eserleri, NADİDE bir koleksiyondu.",
+            "Verdiği EMEĞi, harcadığı ÇABAyla ölçtü.",
+            "TASAlı yüzünde, derin bir KAYGI okunuyordu."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Gençlik–ihtiyarlık' karşıt anlamlıdır. Diğerlerinde sözcükler eş/yakın anlamlıdır (telaş-acele, seçkin-nadide, emek-çaba, tasa-kaygı)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler NE eş NE de zıt anlamlıdır (aralarında anlamca yakınlık ya da karşıtlık yoktur)?",
+          "secenekler": [
+            "Yağan KAR, kapkara TOPRAĞı örttü.",
+            "AYDINLIK oda, KARANLIK koridora açılıyordu.",
+            "GÜLEN gözler, AĞLAYAN yürekleri gizliyordu.",
+            "BÜYÜK umutlar, KÜÇÜK hayal kırıklıklarıyla sınandı.",
+            "SICAK yaz, SOĞUK kışa yerini bıraktı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Kar–toprak' arasında ne eş ne zıt anlam ilişkisi vardır; ilgili ama karşıt/eş değil. Diğerlerinde açık karşıtlık vardır (aydınlık-karanlık, gülen-ağlayan, büyük-küçük, sıcak-soğuk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "VARLIK içinde büyürken YOKLUĞU hiç tatmadı.",
+            "Uzun bir BEKLEYİŞ, sabırlı bir SABIR sınavıydı.",
+            "Attığı ADIMı, temkinli bir HAMLE gibi düşündü.",
+            "Bildiği GERÇEĞi, apaçık bir HAKİKAT olarak savundu.",
+            "Duyduğu KORKUyu, gizli bir ENDİŞE sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Bu cümlede 'varlık–yokluk' KARŞITtır; oysa soru eş anlam ister. DİKKAT: doğru cevap, altı çizili sözcükleri EŞ anlamlı olan; adım-hamle, gerçek-hakikat, korku-endişe yakın anlamlıdır. 'Bekleyiş-sabır' de yakındır. Bu maddede en güçlü EŞ anlam çifti 'gerçek-hakikat'tir; 'varlık-yokluk' zıttır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "CÖMERT eliyle verdiğini, CİMRİ biri geri istedi.",
+            "İyi bir BAŞLANGIÇ, güzel bir GİRİŞ demekti.",
+            "Onun HÜNERİni, eşsiz bir MARİFET saydılar.",
+            "Kısa bir DURAKSAMA, kısacık bir TEREDDÜTtü.",
+            "Yıllar süren ÖZLEMi, derin bir HASRETe döndü."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Cömert–cimri' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (başlangıç-giriş, hüner-marifet, duraksama-tereddüt, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVAP kazanmak isterken GÜNAHa girdi.",
+            "Söylediği YALANı, kocaman bir DÜZMECE ile büyüttü.",
+            "TOK karnına oturup AÇ gözlerle baktı.",
+            "ISLAK yollar kuruyup KURU toprağa döndü.",
+            "ERDEMLİ biriyken ALÇAK işlere bulaştı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Yalan–düzmece' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (sevap-günah, tok-aç, ıslak-kuru, erdemli-alçak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "İLERİci fikirleri, GERİci baskılara direndi.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Kısa bir KONUŞMAyı, özlü bir SÖYLEV sandı.",
+            "Onun HIRSını, bitmez bir TUTKU gördü.",
+            "Verdiği EMİRi, kesin bir BUYRUK saydı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'İlerici–gerici' karşıt anlamlıdır. Diğerlerinde sözcükler eş/yakın anlamlıdır (doğru-gerçek, konuşma-söylev, hırs-tutku, emir-buyruk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜLÜŞÜ içten, BAKIŞI soğuktu.",
+            "İnce bir ZARAFETle, büyük bir ZERAFET gösterdi.",
+            "YENİ fikirleri, ESKİ alışkanlıklara üstün geldi.",
+            "SERT rüzgâr, YUMUŞAK esintiye döndü.",
+            "DAR görüşlü değil, GENİŞ ufukluydu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zarafet–zerafet' aynı kavramın iki yazımıdır, eş anlamlıdır. Diğerlerinde sözcükler karşıttır (içten-soğuk, yeni-eski, sert-yumuşak, dar-geniş)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "SAVAŞ yıllarını, BARIŞ günleri izledi.",
+            "Küçük bir YANLIŞı, önemsiz bir HATA saydı.",
+            "Onun ÖFKEsini, ani bir HİDDET gördü.",
+            "Uzun bir UĞRAŞı, yorucu bir DİDİNME bildi.",
+            "Verdiği ÖĞÜDü, dostça bir NASİHAT saydı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Savaş–barış' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (yanlış-hata, öfke-hiddet, uğraş-didinme, öğüt-nasihat)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "AĞARAN saçları, KARARAN günlere tanıklık etti.",
+            "Bir GÖREVi, üstlenilen bir VAZİFE gibi taşıdı.",
+            "GÜLEN yüzler, SOMURTAN suratlara karıştı.",
+            "TATLI söz, ACI gerçeği örttü.",
+            "İNCE eleyip SIK dokudu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Görev–vazife' eş anlamlıdır. Diğerlerinde sözcükler karşıttır ya da farklıdır (ağaran-kararan, gülen-somurtan, tatlı-acı)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "BOLLUK zamanı geçince KITLIK başladı.",
+            "Söylediği SÖZü, verdiği VAADi tuttu.",
+            "İnce bir SEZGİyle, güçlü bir SEZİŞ gösterdi.",
+            "Duyduğu SEVİNCi, taşan bir COŞKUyla yaşadı.",
+            "Attığı İMZAyı, resmî bir ONAY saydı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Bolluk–kıtlık' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (söz-vaat, sezgi-seziş, sevinç-coşku, imza-onay)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "İYİmser bakışı, KÖTÜmser düşünceyi yendi.",
+            "Verdiği KARARı, kesin bir HÜKÜM saydı.",
+            "SESSİZ kalanla GÜRÜLTÜ çıkaran karşılaştı.",
+            "SIĞ sularda değil, DERİN denizlerde yüzdü.",
+            "YALIN anlatımı, KARMAŞIK üslupla çelişti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Karar–hüküm' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (iyimser-kötümser, sessiz-gürültü, sığ-derin, yalın-karmaşık)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ÖVGÜ dolu sözler, YERGİ dolu eleştiriye döndü.",
+            "İnce bir NEZAKETle, büyük bir NAZİKLİK gösterdi.",
+            "Anlattığı OLAYı, yaşanmış bir VAKA sandı.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH saydı.",
+            "Kısa bir MOLAyı, hak edilmiş bir ARA bildi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Övgü–yergi' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (nezaket-nazik, olay-vaka, seçim-tercih, mola-ara)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "YUKARI çıkanla AŞAĞI inen aynı yolda buluştu.",
+            "Bir ÇABAyı, harcanan bir EMEK olarak gördü.",
+            "GERÇEK dostu, SAHTE dostlardan ayırdı.",
+            "GEÇMİŞi bırakıp GELECEĞe yöneldi.",
+            "SESSİZLİĞi bozan bir GÜRÜLTÜ duyuldu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Çaba–emek' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (yukarı-aşağı, gerçek-sahte, geçmiş-gelecek, sessizlik-gürültü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ISLAK giysilerini KURU olanlarla değiştirdi.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK saydı.",
+            "İnce bir KAYGIyı, gizli bir TASA bildi.",
+            "Verdiği YANITı, beklenen CEVAP saydı.",
+            "Uzun bir SÜREyi, upuzun bir ZAMAN sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Islak–kuru' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (doğru-gerçek, kaygı-tasa, yanıt-cevap, süre-zaman)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜLERKEN AĞLAMAK, ona özgü bir çelişkiydi.",
+            "Bir BAŞARIyı, elde edilen bir ZAFER saydı.",
+            "SICAK ilgisi, SOĞUK tavırlara dönüştü.",
+            "AZ veren çok, ÇOK isteyen az kazandı.",
+            "GİZLİ kalanı, AÇIK etmekten çekindi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Başarı–zafer' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (gülmek-ağlamak, sıcak-soğuk, az-çok, gizli-açık)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "YAZ sıcağını, KIŞ soğuğu izledi.",
+            "İnce bir HÜNERle, usta bir MARİFET sergiledi.",
+            "Söylediği SÖZü, tuttuğu VAADiyle bütünledi.",
+            "Yaşadığı ANIyı, tatlı bir HATIRA saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET bildi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Yaz–kış' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (hüner-marifet, söz-vaat, anı-hatıra, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOST bildiği kişi, DÜŞMAN çıktı.",
+            "Bir HEDEFi, ulaşılacak bir AMAÇ saydı.",
+            "GENİŞ zamanı, DAR bir süreye sığdırdı.",
+            "İYİ niyeti, KÖTÜ sonucu değiştirmedi.",
+            "SAĞ eliyle yaptığını, SOL eli bilmedi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Hedef–amaç' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (dost-düşman, geniş-dar, iyi-kötü, sağ-sol)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜNDÜZ çalışıp GECE dinlendi.",
+            "Bir ISRARı, bitmeyen bir DİRETME olarak gördü.",
+            "Söylediği ŞAKAyı, hoş bir LATİFE saydı.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER bildi.",
+            "Verdiği KARARı, kesin bir YARGI saydı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Gündüz–gece' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (ısrar-diretme, şaka-latife, yolculuk-sefer, karar-yargı)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ACI olayları, TATLI anılar izledi.",
+            "Bir KUŞKUyu, gizli bir ŞÜPHE olarak taşıdı.",
+            "YÜKSEK sesle konuşup ALÇAK bir yerde durdu.",
+            "İLK adımı atıp SON sözü söyledi.",
+            "BOŞ vakti, DOLU dolu geçirmek istedi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kuşku–şüphe' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (acı-tatlı, yüksek-alçak, ilk-son, boş-dolu)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "İNİŞli çıkışlı yolda, YOKUŞ hep zor geldi... aslında İNİŞ kolaydı.",
+            "Bir GAYRETi, gösterilen bir ÇABA saydı.",
+            "Söylediği DOĞRUyu, apaçık bir HAKİKAT bildi.",
+            "Yaşadığı TASAyı, derin bir KAYGI sandı.",
+            "Verdiği SÖZü, ettiği YEMİNle pekiştirdi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'İniş–yokuş' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (gayret-çaba, doğru-hakikat, tasa-kaygı, söz-yemin)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "AK gününde de KARA gününde de yanındaydı.",
+            "İnce bir ZARAFETi, hoş bir İNCELİK saydı.",
+            "SICAK bakışı, SOĞUK sözlerle çelişti.",
+            "İLERİ görüşlü olup GERİ adım atmadı.",
+            "DOLU ambarları, BOŞ mideleri doyurdu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zarafet–incelik' eş (yakın) anlamlıdır. Diğerlerinde sözcükler karşıttır (ak-kara, sıcak-soğuk, ileri-geri, dolu-boş)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GERÇEK sanılan olay, koca bir YALANdı.",
+            "Bir BECERİyi, doğuştan bir YETENEK saydı.",
+            "Söylediği ÖĞÜDü, dostça bir TAVSİYE bildi.",
+            "Yaşadığı SEVİNCi, taşan bir MUTLULUK sandı.",
+            "Verdiği KARARı, sağlam bir HÜKÜM saydı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Gerçek–yalan' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (beceri-yetenek, öğüt-tavsiye, sevinç-mutluluk, karar-hüküm)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SABAH umutları, AKŞAM yorgunluğuna karıştı.",
+            "Bir SIKINTIyı, geçici bir BUNALIM saydı.",
+            "GÜLEN çocuk, AĞLAYAN bebeği avuttu.",
+            "AÇIK denizde değil, KAPALI koyda demirledi.",
+            "YAKIN dostu, UZAK bir akrabaya benzemezdi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sıkıntı–bunalım' yakın (eş) anlamlıdır. Diğerlerinde sözcükler karşıttır (sabah-akşam, gülen-ağlayan, açık-kapalı, yakın-uzak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "TEMBEL öğrenci ÇALIŞKAN arkadaşını kıskandı.",
+            "Bir OLAYı, yaşanmış bir HADİSE saydı.",
+            "Söylediği SÖZü, ettiği AHDi tuttu.",
+            "Duyduğu KORKUyu, gizli bir DEHŞET sandı.",
+            "Yaptığı SEÇİMi, doğru bir TERCİH bildi."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Tembel–çalışkan' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (olay-hadise, söz-ahit, korku-dehşet, seçim-tercih)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GİRİŞte gülen, ÇIKIŞta ağlıyordu.",
+            "Bir HÜNERi, usta bir MAHARET saydı.",
+            "GENÇ fidan, YAŞLI çınarın yanında büyüdü.",
+            "SIĞ bilgisi, DERİN sorular karşısında yetmedi.",
+            "İYİ haber, KÖTÜ haberi unutturdu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Hüner–maharet' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (giriş-çıkış, genç-yaşlı, sığ-derin, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "AÇ gözlerle baktı, ama karnı TOKtu.",
+            "Bir YOLCULUĞu, uzun bir SEYAHAT saydı.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Yaptığı İŞi, üstlendiği GÖREV saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Aç–tok' karşıt anlamlıdır. Diğerlerinde sözcükler eş anlamlıdır (yolculuk-seyahat, doğru-gerçek, iş-görev, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "BAŞLANGIÇta zor, SONda kolaydı.",
+            "Bir DÜŞÜNCEyi, özgün bir FİKİR saydı.",
+            "SICAK yaz, SOĞUK kışı hatırlattı.",
+            "YUKARI bakan gözler, AŞAĞI eğildi.",
+            "DAR sokaktan GENİŞ caddeye çıktı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Düşünce–fikir' eş anlamlıdır. Diğerlerinde sözcükler karşıttır (başlangıç-son, sıcak-soğuk, yukarı-aşağı, dar-geniş)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVİNÇ dolu haber, ÜZÜNTÜyü dağıttı.",
+            "Bir ZORLUĞu, aşılması güç bir GÜÇLÜK saydı.",
+            "GENİŞ bahçeyi bırakıp DAR odaya çekildi.",
+            "ILIK suya girip SOĞUK duşla çıktı.",
+            "AZ konuşup ÇOK iş yaptı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zorluk–güçlük' eş anlamlıdır. Diğerlerinde karşıtlık ya da ilgisizlik vardır (sevinç-üzüntü, geniş-dar, az-çok)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "CESUR asker, KORKAK düşmandan çekinmedi.",
+            "Bir NİYETi, gizli bir MAKSAT saydı.",
+            "Söylediği SÖZü, verdiği VAADiyle bütünledi.",
+            "Yaptığı İŞi, üstlendiği GÖREV bildi.",
+            "Duyduğu HUZURu, derin bir DİNGİNLİK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Cesur–korkak' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (niyet-maksat, söz-vaat, iş-görev, huzur-dinginlik)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOĞU'dan doğan güneş, BATI'da battı.",
+            "Bir HATAyı, küçük bir KUSUR saydı.",
+            "YAŞLI çınar, GENÇ fidanı gölgeledi.",
+            "İYİ günü, KÖTÜ gün izledi.",
+            "AÇIK kapıyı, KAPALI pencere tamamladı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Hata–kusur' eş anlamlıdır. Diğerlerinde karşıtlık vardır (doğu-batı, yaşlı-genç, iyi-kötü, açık-kapalı)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ZENGİN sofrası, YOKSUL komşuya utanç verdi.",
+            "Bir GAYRETi, gösterilen bir ÇABA bildi.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK saydı.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH bildi.",
+            "Duyduğu KAYGIyı, gizli bir TASA sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Zengin–yoksul' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (gayret-çaba, doğru-gerçek, seçim-tercih, kaygı-tasa)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SABAH kalkanla AKŞAM yatan buluştu.",
+            "Bir ANLAMı, gizli bir MANA olarak taşıdı.",
+            "SICAK sözler, SOĞUK yürekleri ısıtmadı.",
+            "İLERİ giden ayak, GERİ dönmedi.",
+            "BÜYÜK umut, KÜÇÜK hüsranla sınandı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Anlam–mana' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sabah-akşam, sıcak-soğuk, ileri-geri, büyük-küçük)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GALİP takımın sevinci, MAĞLUP takımın hüznü kadardı.",
+            "Bir HÜNERi, usta bir MARİFET saydı.",
+            "Söylediği ÖĞÜDü, dostça bir NASİHAT bildi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Galip–mağlup' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hüner-marifet, öğüt-nasihat, yolculuk-sefer, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOLU bardağı, BOŞ olanla değiştirdi.",
+            "Bir KONUŞMAyı, uzun bir SÖYLEV saydı.",
+            "GÜLEN yüzler, AĞLAYAN gözleri sakladı.",
+            "YÜKSEK dağ, ALÇAK tepeye baktı.",
+            "GENİŞ yol, DAR patikayla birleşti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Konuşma–söylev' yakın (eş) anlamlıdır. Diğerlerinde karşıtlık vardır (dolu-boş, gülen-ağlayan, yüksek-alçak, geniş-dar)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ERKEN gelenle GEÇ kalan yüz yüze geldi.",
+            "Bir OLAYı, yaşanmış bir VAKA saydı.",
+            "Söylediği SÖZü, ettiği AHDi tuttu.",
+            "Yaptığı İŞi, üstlendiği VAZİFE bildi.",
+            "Duyduğu SEVİNCi, taşan bir COŞKU sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Erken–geç' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (olay-vaka, söz-ahit, iş-vazife, sevinç-coşku)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVAP kazandığını sanırken GÜNAHa girdi.",
+            "Bir SEZGİyi, güçlü bir SEZİŞ saydı.",
+            "AK gün, KARA günü unutturdu.",
+            "TATLI dil, ACI sözü yumuşattı.",
+            "İNCE düşünce, KABA davranışla çelişti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sezgi–seziş' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sevap-günah, ak-kara, tatlı-acı, ince-kaba)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "HAK edenle HAKSIZ olan aynı kefeye konmadı.",
+            "Bir ÇABAyı, harcanan bir EMEK bildi.",
+            "Söylediği DOĞRUyu, apaçık bir HAKİKAT saydı.",
+            "Yaptığı SEÇİMi, doğru bir TERCİH bildi.",
+            "Duyduğu KUŞKUyu, gizli bir ŞÜPHE sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Hak–haksız' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (çaba-emek, doğru-hakikat, seçim-tercih, kuşku-şüphe)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "İYİ niyet, KÖTÜ sonucu değiştirmedi.",
+            "Bir BAŞARIyı, kazanılan bir ZAFER saydı.",
+            "YAKIN dost, UZAK akrabadan iyidir.",
+            "AÇIK sözlü olup GİZLİ iş çevirmedi.",
+            "SICAK yaz, SOĞUK kışı hatırlattı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Başarı–zafer' eş anlamlıdır. Diğerlerinde karşıtlık vardır (iyi-kötü, yakın-uzak, açık-gizli, sıcak-soğuk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ÜMİTli bakışı, ÜMİTSİZ düşünceyi yendi.",
+            "Bir SIKINTIyı, geçici bir BUNALIM saydı.",
+            "Söylediği SÖZü, verdiği VAADiyle bütünledi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEYAHAT bildi.",
+            "Duyduğu ÖFKEyi, ani bir HİDDET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Ümitli–ümitsiz' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (sıkıntı-bunalım, söz-vaat, yolculuk-seyahat, öfke-hiddet)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GİRİŞte coşkulu, ÇIKIŞta yorgundu.",
+            "Bir BECERİyi, doğuştan bir YETENEK saydı.",
+            "GENÇ yürek, YAŞLI aklı dinledi.",
+            "SIĞ suları geçip DERİN denize açıldı.",
+            "İLK adımı atıp SON sözü söyledi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Beceri–yetenek' eş anlamlıdır. Diğerlerinde karşıtlık vardır (giriş-çıkış, genç-yaşlı, sığ-derin, ilk-son)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "BARIŞ yıllarını, SAVAŞ günleri gölgeledi.",
+            "Bir NİYETi, gizli bir MAKSAT bildi.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK saydı.",
+            "Yaptığı İŞi, üstlendiği GÖREV bildi.",
+            "Duyduğu HUZURu, derin bir DİNGİNLİK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Barış–savaş' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (niyet-maksat, doğru-gerçek, iş-görev, huzur-dinginlik)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ALÇAK sesle konuşup YÜKSEK yerde durdu.",
+            "Bir DÜŞÜNCEyi, özgün bir FİKİR saydı.",
+            "BOL yağmur, KURAK toprağı doyurdu.",
+            "GÜLEN çocuk, AĞLAYAN bebeği avuttu.",
+            "YAKIN gelecek, UZAK geçmişi sildi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Düşünce–fikir' eş anlamlıdır. Diğerlerinde karşıtlık vardır (alçak-yüksek, bol-kurak, gülen-ağlayan, yakın-uzak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "CÖMERT eli, CİMRİ yüreği utandırdı.",
+            "Bir HATAyı, küçük bir KUSUR saydı.",
+            "Söylediği SÖZü, ettiği YEMİNle pekiştirdi.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH bildi.",
+            "Duyduğu KAYGIyı, gizli bir TASA sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Cömert–cimri' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hata-kusur, söz-yemin, seçim-tercih, kaygı-tasa)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SICAK ilgi, SOĞUK tavra dönüştü.",
+            "Bir ZORLUĞu, aşılmaz bir GÜÇLÜK saydı.",
+            "GENİŞ ufuk, DAR görüşü yendi.",
+            "İLERİ adım, GERİ dönüşü engelledi.",
+            "DOLU ambar, BOŞ mideyi doyurdu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zorluk–güçlük' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sıcak-soğuk, geniş-dar, ileri-geri, dolu-boş)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "DOST sandığı kişi, DÜŞMAN çıktı.",
+            "Bir HÜNERi, usta bir MAHARET saydı.",
+            "Söylediği ÖĞÜDü, dostça bir TAVSİYE bildi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER saydı.",
+            "Duyduğu SEVİNCi, taşan bir MUTLULUK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Dost–düşman' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hüner-maharet, öğüt-tavsiye, yolculuk-sefer, sevinç-mutluluk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "TEMBEL öğrenci, ÇALIŞKAN olanı kıskandı.",
+            "Bir OLAYı, yaşanmış bir HADİSE saydı.",
+            "GÜNDÜZ çalışıp GECE dinlendi.",
+            "AÇIK denizi bırakıp KAPALI koya döndü.",
+            "İYİ haber, KÖTÜ haberi bastırdı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Olay–hadise' eş anlamlıdır. Diğerlerinde karşıtlık vardır (tembel-çalışkan, gündüz-gece, açık-kapalı, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "BOLLUK yılı geçti, KITLIK yılı geldi.",
+            "Bir GAYRETi, gösterilen bir ÇABA saydı.",
+            "Söylediği DOĞRUyu, apaçık bir HAKİKAT bildi.",
+            "Yaptığı İŞi, üstlendiği VAZİFE saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Bolluk–kıtlık' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (gayret-çaba, doğru-hakikat, iş-vazife, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ISLAK yol kuruyup KURU toprağa döndü.",
+            "Bir SEÇİMi, isabetli bir TERCİH saydı.",
+            "YÜKSEK dağdan ALÇAK ovaya indi.",
+            "GÜLEN gözler, AĞLAYAN kalbi gizledi.",
+            "GENİŞ salonu, DAR odayla değişti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Seçim–tercih' eş anlamlıdır. Diğerlerinde karşıtlık vardır (ıslak-kuru, yüksek-alçak, gülen-ağlayan, geniş-dar)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "YAZ günü, KIŞ gecesini aratmadı.",
+            "Bir NİYETi, gizli bir MAKSAT saydı.",
+            "Söylediği SÖZü, verdiği VAADi bütünledi.",
+            "Yaptığı SEÇİMi, doğru bir TERCİH bildi.",
+            "Duyduğu KUŞKUyu, gizli bir ŞÜPHE sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Yaz–kış' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (niyet-maksat, söz-vaat, seçim-tercih, kuşku-şüphe)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVİNÇ ile ÜZÜNTÜ aynı yüzde belirdi.",
+            "Bir ANLAMı, gizli bir MANA saydı.",
+            "AK saç, KARA sakalla karıştı.",
+            "TATLI söz, ACI gerçeği örttü.",
+            "İLK gün, SON güne benzemedi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Anlam–mana' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sevinç-üzüntü, ak-kara, tatlı-acı, ilk-son)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "HAKLI olanla HAKSIZ olan yüzleşti.",
+            "Bir BECERİyi, doğuştan bir YETENEK saydı.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEYAHAT saydı.",
+            "Duyduğu ÖFKEyi, ani bir HİDDET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Haklı–haksız' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (beceri-yetenek, doğru-gerçek, yolculuk-seyahat, öfke-hiddet)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOĞU rüzgârı, BATI'ya doğru esti.",
+            "Bir SIKINTIyı, geçici bir BUNALIM saydı.",
+            "GENÇ ağaç, YAŞLI ormanı canlandırdı.",
+            "İYİ niyeti, KÖTÜ söz gölgeledi.",
+            "AÇIK yürekle konuşup GİZLİ tutmadı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sıkıntı–bunalım' eş anlamlıdır. Diğerlerinde karşıtlık vardır (doğu-batı, genç-yaşlı, iyi-kötü, açık-gizli)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "İLERİci düşünce, GERİci baskıyı deldi.",
+            "Bir HATAyı, küçük bir KUSUR saydı.",
+            "Söylediği ÖĞÜDü, dostça bir NASİHAT bildi.",
+            "Yaptığı İŞi, üstlendiği GÖREV saydı.",
+            "Duyduğu HUZURu, derin bir DİNGİNLİK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'İlerici–gerici' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hata-kusur, öğüt-nasihat, iş-görev, huzur-dinginlik)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SABAH ışığı, AKŞAM karanlığına yenildi.",
+            "Bir GAYRETi, gösterilen bir ÇABA saydı.",
+            "BÜYÜK umut, KÜÇÜK hüsranla sınandı.",
+            "GÜLEN yüz, SOMURTAN suratı yumuşattı.",
+            "YAKIN dost, UZAK akrabaya yeğ tutuldu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Gayret–çaba' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sabah-akşam, büyük-küçük, gülen-somurtan, yakın-uzak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "CESUR yürek, KORKAK aklı susturdu.",
+            "Bir OLAYı, yaşanmış bir VAKA saydı.",
+            "Söylediği SÖZü, ettiği AHDi tuttu.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH bildi.",
+            "Duyduğu SEVİNCi, taşan bir COŞKU sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Cesur–korkak' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (olay-vaka, söz-ahit, seçim-tercih, sevinç-coşku)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ZENGİN sofra, YOKSUL kapıyı unutturmadı.",
+            "Bir HÜNERi, usta bir MARİFET saydı.",
+            "SICAK çay, SOĞUK havayı yendi.",
+            "İLERİ giden, GERİ kalanı bekledi.",
+            "DOLU salon, BOŞ sıraları gizledi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Hüner–marifet' eş anlamlıdır. Diğerlerinde karşıtlık vardır (zengin-yoksul, sıcak-soğuk, ileri-geri, dolu-boş)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜNDÜZ aydınlığı, GECE karanlığına karıştı.",
+            "Bir NİYETi, gizli bir MAKSAT saydı.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Yaptığı İŞi, üstlendiği VAZİFE saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Gündüz–gece' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (niyet-maksat, doğru-gerçek, iş-vazife, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "ACI olay, TATLI anıyla yer değiştirdi.",
+            "Bir KUŞKUyu, gizli bir ŞÜPHE saydı.",
+            "YÜKSEK sesle konuşup ALÇAK yerde durdu.",
+            "GÜLEN gözler, AĞLAYAN yürekleri sakladı.",
+            "GENİŞ yol, DAR patikayla birleşti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kuşku–şüphe' eş anlamlıdır. Diğerlerinde karşıtlık vardır (acı-tatlı, yüksek-alçak, gülen-ağlayan, geniş-dar)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ÖVGÜ dolu söz, YERGİ dolu bakışla çelişti.",
+            "Bir SEZGİyi, güçlü bir SEZİŞ saydı.",
+            "Söylediği SÖZü, verdiği VAADi bütünledi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER bildi.",
+            "Duyduğu KAYGIyı, gizli bir TASA sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Övgü–yergi' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (sezgi-seziş, söz-vaat, yolculuk-sefer, kaygı-tasa)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "İNİŞ kolaydı, YOKUŞ zor geldi.",
+            "Bir DÜŞÜNCEyi, özgün bir FİKİR saydı.",
+            "AÇIK kapı, KAPALI pencereyle çelişti.",
+            "GENÇ fidan, YAŞLI çınara benzedi.",
+            "İYİ gün, KÖTÜ günü unutturdu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Düşünce–fikir' eş anlamlıdır. Diğerlerinde karşıtlık vardır (iniş-yokuş, açık-kapalı, genç-yaşlı, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVAP diye başladığı iş, GÜNAHa döndü.",
+            "Bir BECERİyi, doğuştan bir YETENEK saydı.",
+            "Söylediği ÖĞÜDü, dostça bir TAVSİYE bildi.",
+            "Yaptığı SEÇİMi, doğru bir TERCİH saydı.",
+            "Duyduğu ÖFKEyi, ani bir HİDDET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Sevap–günah' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (beceri-yetenek, öğüt-tavsiye, seçim-tercih, öfke-hiddet)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "YAKIN dost, UZAK akrabadan iyidir.",
+            "Bir ZORLUĞu, aşılmaz bir GÜÇLÜK saydı.",
+            "SICAK yaz, SOĞUK kışı andırdı.",
+            "GÜLEN yüz, AĞLAYAN gözü sakladı.",
+            "İLK adım, SON hamleyi hazırladı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zorluk–güçlük' eş anlamlıdır. Diğerlerinde karşıtlık vardır (yakın-uzak, sıcak-soğuk, gülen-ağlayan, ilk-son)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "TOK karnına, AÇ gözlerle bakan komşu vardı.",
+            "Bir HATAyı, küçük bir KUSUR saydı.",
+            "Söylediği DOĞRUyu, apaçık bir HAKİKAT bildi.",
+            "Yaptığı İŞi, üstlendiği GÖREV saydı.",
+            "Duyduğu HUZURu, derin bir DİNGİNLİK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Tok–aç' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hata-kusur, doğru-hakikat, iş-görev, huzur-dinginlik)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "BÜYÜK umut, KÜÇÜK hüsranı büyüttü.",
+            "Bir OLAYı, yaşanmış bir HADİSE saydı.",
+            "AÇIK deniz, KAPALI koya karıştı.",
+            "YÜKSEK dağ, ALÇAK tepeye baktı.",
+            "İYİ niyet, KÖTÜ sözü örttü."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Olay–hadise' eş anlamlıdır. Diğerlerinde karşıtlık vardır (büyük-küçük, açık-kapalı, yüksek-alçak, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "GALİP gelenin sevinci, MAĞLUP olanın hüznüydü.",
+            "Bir GAYRETi, gösterilen bir ÇABA saydı.",
+            "Söylediği SÖZü, ettiği YEMİNle pekiştirdi.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH bildi.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Galip–mağlup' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (gayret-çaba, söz-yemin, seçim-tercih, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOĞRU yolu bırakıp YANLIŞa saptı.",
+            "Bir ANLAMı, gizli bir MANA saydı.",
+            "SICAK ilgi, SOĞUK tavırla çelişti.",
+            "GÜLEN çocuk, AĞLAYAN bebeği avuttu.",
+            "GENİŞ bahçe, DAR odayı unutturdu."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Anlam–mana' eş anlamlıdır. Diğerlerinde karşıtlık vardır (doğru-yanlış, sıcak-soğuk, gülen-ağlayan, geniş-dar)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ÜMİTli sabah, ÜMİTSİZ akşama teslim oldu.",
+            "Bir HÜNERi, usta bir MAHARET saydı.",
+            "Söylediği ÖĞÜDü, dostça bir NASİHAT bildi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER saydı.",
+            "Duyduğu SEVİNCi, taşan bir MUTLULUK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Ümitli–ümitsiz' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (hüner-maharet, öğüt-nasihat, yolculuk-sefer, sevinç-mutluluk)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SABAH umudu, AKŞAM yorgunluğuna karıştı.",
+            "Bir SIKINTIyı, geçici bir BUNALIM saydı.",
+            "GENÇ yürek, YAŞLI aklı dinledi.",
+            "AÇIK sözlülük, GİZLİ niyeti örtmedi.",
+            "İYİ gün, KÖTÜ günü sildi."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sıkıntı–bunalım' eş anlamlıdır. Diğerlerinde karşıtlık vardır (sabah-akşam, genç-yaşlı, açık-gizli, iyi-kötü)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "VARLIK içinde büyüyen, YOKLUĞu bilmezdi.",
+            "Bir NİYETi, gizli bir MAKSAT saydı.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Yaptığı İŞi, üstlendiği VAZİFE saydı.",
+            "Duyduğu KUŞKUyu, gizli bir ŞÜPHE sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Varlık–yokluk' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (niyet-maksat, doğru-gerçek, iş-vazife, kuşku-şüphe)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "İLERİ giden ayak, GERİ dönmedi.",
+            "Bir BECERİyi, doğuştan bir YETENEK saydı.",
+            "AK gün, KARA günü sildi.",
+            "TATLI dil, ACI sözü yumuşattı.",
+            "YÜKSEK ses, ALÇAK fısıltıya döndü."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Beceri–yetenek' eş anlamlıdır. Diğerlerinde karşıtlık vardır (ileri-geri, ak-kara, tatlı-acı, yüksek-alçak)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "BAŞLANGIÇta umutlu, SONda hüzünlüydü.",
+            "Bir GAYRETi, gösterilen bir ÇABA saydı.",
+            "Söylediği ÖĞÜDü, dostça bir TAVSİYE bildi.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Başlangıç–son' karşıt anlamlıdır. Diğerlerinde eş anlam vardır (gayret-çaba, öğüt-tavsiye, seçim-tercih, özlem-hasret)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "DOLU ambar, BOŞ mideyi doyurdu.",
+            "Bir OLAYı, yaşanmış bir VAKA saydı.",
+            "SICAK yaz, SOĞUK kışı hatırlattı.",
+            "GÜLEN yüz, AĞLAYAN gözü gizledi.",
+            "GENİŞ yol, DAR patikaya açıldı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Olay–vaka' eş anlamlıdır. Diğerlerinde karşıtlık vardır (dolu-boş, sıcak-soğuk, gülen-ağlayan, geniş-dar)."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "SEVİNÇ ile ÜZÜNTÜ aynı anda yaşandı.",
+            "Bir ZORLUĞu, aşılmaz bir GÜÇLÜK saydı.",
+            "YÜKSEK dağ, ALÇAK ovaya baktı.",
+            "GÜLEN yüz, AĞLAYAN gözü sakladı.",
+            "AÇIK kapı, KAPALI pencereyle çelişti."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zorluk–güçlük' eş anlamlıdır; diğerlerinde karşıtlık vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "DOĞU'dan esen yel, BATI'ya savruldu.",
+            "Bir NİYETi, gizli bir MAKSAT saydı.",
+            "Söylediği SÖZü, verdiği VAADi tuttu.",
+            "Yaptığı İŞi, üstlendiği GÖREV bildi.",
+            "Duyduğu HUZURu, derin bir DİNGİNLİK sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Doğu–batı' karşıt anlamlıdır; diğerlerinde eş anlam vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            " İLK gün, SON güne benzemedi.",
+            "Bir ANLAMı, gizli bir MANA saydı.",
+            "SICAK söz, SOĞUK bakışı ısıtmadı.",
+            "GENİŞ yol, DAR patikaya açıldı.",
+            "İYİ haber, KÖTÜ haberi bastırdı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Anlam–mana' eş anlamlıdır; diğerlerinde karşıtlık vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "ZENGİN sofra, YOKSUL kapıyı utandırdı.",
+            "Bir HÜNERi, usta bir MARİFET saydı.",
+            "Söylediği ÖĞÜDü, dostça bir NASİHAT bildi.",
+            "Yaptığı SEÇİMi, isabetli bir TERCİH saydı.",
+            "Duyduğu ÖZLEMi, derin bir HASRET sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Zengin–yoksul' karşıt anlamlıdır; diğerlerinde eş anlam vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler EŞ (yakın) ANLAMLIDIR?",
+          "secenekler": [
+            "GÜNDÜZ çalışıp GECE dinlendi.",
+            "Bir SIKINTIyı, geçici bir BUNALIM saydı.",
+            "YAKIN dost, UZAK akrabadan iyidir.",
+            "BÜYÜK umut, KÜÇÜK hüsranla sınandı.",
+            "AK saç, KARA sakalla karıştı."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sıkıntı–bunalım' eş anlamlıdır; diğerlerinde karşıtlık vardır."
+        },
+        {
+          "soru": "Aşağıdaki cümlelerin hangisinde altı çizili sözcükler ZIT (karşıt) ANLAMLIDIR?",
+          "secenekler": [
+            "CÖMERT el, CİMRİ yüreği utandırdı.",
+            "Bir OLAYı, yaşanmış bir VAKA saydı.",
+            "Söylediği DOĞRUyu, apaçık bir GERÇEK bildi.",
+            "Yaptığı YOLCULUĞu, uzun bir SEFER saydı.",
+            "Duyduğu KUŞKUyu, gizli bir ŞÜPHE sandı."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Cömert–cimri' karşıt anlamlıdır; diğerlerinde eş anlam vardır."
         }
       ]
     },
