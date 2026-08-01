@@ -45,6 +45,15 @@ class LeagueResult {
   /// o da bir kademeye eşlenip sayılır. Boş harita olabilir (offline).
   final Map<LeagueTier, int> tierCounts;
 
+  /// Bu haftanın BİRİNCİSİ — en yüksek lig puanına sahip kullanıcının adı ve
+  /// puanı (kullanıcı isteği: "ligde 1. olan kişinin ismi lig bölümünün üstünde
+  /// 'haftanın birincisi' gibi yazsın"). Katılımcı yoksa/offline ise null.
+  final String? leaderName;
+  final int leaderPoints;
+
+  /// Birinci BEN miyim? (vitrinde "sensin!" vurgusu için.)
+  final bool leaderIsMe;
+
   const LeagueResult({
     required this.tier,
     required this.percentile,
@@ -52,6 +61,9 @@ class LeagueResult {
     required this.myRate,
     required this.myWeeklyPoints,
     this.tierCounts = const {},
+    this.leaderName,
+    this.leaderPoints = 0,
+    this.leaderIsMe = false,
   });
 }
 
@@ -206,6 +218,21 @@ class LeagueService {
           .map((d) => (d.data()['weeklyPoints'] as num?)?.toInt() ?? 0)
           .toList();
 
+      // Haftanın birincisi: en yüksek lig puanlı doküman (0 puanlılar da olsa
+      // en tepedeki alınır; hepsi 0 ise yine ilk sıradaki gösterilir).
+      String? leaderName;
+      int leaderPoints = 0;
+      bool leaderIsMe = false;
+      for (final d in snap.docs) {
+        final p = (d.data()['weeklyPoints'] as num?)?.toInt() ?? 0;
+        if (leaderName == null || p > leaderPoints) {
+          leaderPoints = p;
+          final ad = (d.data()['displayName'] as String?)?.trim();
+          leaderName = (ad == null || ad.isEmpty) ? 'Bir aday' : ad;
+          leaderIsMe = d.id == uid;
+        }
+      }
+
       if (points.isEmpty) {
         return LeagueResult(
           tier: _tierFor(0),
@@ -214,6 +241,9 @@ class LeagueService {
           myRate: myOverall.rate,
           myWeeklyPoints: myPoints,
           tierCounts: {_tierFor(0): 1},
+          leaderName: leaderName,
+          leaderPoints: leaderPoints,
+          leaderIsMe: leaderIsMe,
         );
       }
 
@@ -238,6 +268,9 @@ class LeagueService {
         myRate: myOverall.rate,
         myWeeklyPoints: myPoints,
         tierCounts: tierCounts,
+        leaderName: leaderName,
+        leaderPoints: leaderPoints,
+        leaderIsMe: leaderIsMe,
       );
     } catch (e) {
       debugPrint('LeagueService.computeMyLeagueTier başarısız (offline olabilir): $e');

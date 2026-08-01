@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/league_service.dart';
@@ -68,10 +70,34 @@ class LeagueScreen extends StatefulWidget {
 class _LeagueScreenState extends State<LeagueScreen> {
   late final Future<LeagueResult?> _future;
 
+  // Haftalık turnuvanın bitişine geri sayım için saniyede bir tetiklenen saat.
+  Timer? _saat;
+  DateTime _simdi = DateTime.now();
+
   @override
   void initState() {
     super.initState();
     _future = LeagueService().computeMyLeagueTier(context.read<StorageService>());
+    _saat = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() => _simdi = DateTime.now());
+    });
+  }
+
+  @override
+  void dispose() {
+    _saat?.cancel();
+    super.dispose();
+  }
+
+  /// Bu haftalık turnuvanın bitişi = GELECEK Pazartesi 00:00 (her Pazartesi
+  /// puanlar sıfırlanır, bkz. StorageService haftalık puan mantığı).
+  DateTime _haftaBitisi() {
+    final n = _simdi;
+    // weekday: Pzt=1 ... Paz=7. Gelecek Pazartesi'ye kalan gün.
+    final kalanGun = (8 - n.weekday) % 7;
+    final gun = kalanGun == 0 ? 7 : kalanGun; // bugün Pazartesi ise +7
+    final hedef = DateTime(n.year, n.month, n.day).add(Duration(days: gun));
+    return hedef;
   }
 
   @override
@@ -92,9 +118,30 @@ class _LeagueScreenState extends State<LeagueScreen> {
           final loading = snap.connectionState == ConnectionState.waiting;
           final tier = result?.tier ?? _localTierFallback(weeklyPoints);
 
+          final kalan = _haftaBitisi().difference(_simdi);
+
           return ListView(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
             children: [
+              // ── Haftanın birincisi (kullanıcı isteği) — ligin ÜSTÜNDE, taçlı,
+              // premium lüks isim arkası. Online veri yoksa gizlenir.
+              if (result?.leaderName != null) ...[
+                _girisAnimasyonu(
+                  sira: 0,
+                  child: _HaftaninBirincisi(
+                    ad: result!.leaderName!,
+                    puan: result.leaderPoints,
+                    benMiyim: result.leaderIsMe,
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+              // ── Turnuva bitişine geri sayım (kullanıcı isteği).
+              _girisAnimasyonu(
+                sira: 0,
+                child: _GeriSayim(kalan: kalan),
+              ),
+              const SizedBox(height: 16),
               _girisAnimasyonu(
                 sira: 0,
                 child: _VitrinKarti(
@@ -387,6 +434,215 @@ class _VitrinKarti extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Ligin en üstünde "HAFTANIN BİRİNCİSİ" — taçlı, altın degrade lüks isim
+/// arkası (kullanıcı isteği). Birinci kullanıcının kendisiyse özel vurgu.
+class _HaftaninBirincisi extends StatelessWidget {
+  final String ad;
+  final int puan;
+  final bool benMiyim;
+  const _HaftaninBirincisi({
+    required this.ad,
+    required this.puan,
+    required this.benMiyim,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final bas = (ad.trim().isEmpty ? '?' : ad.trim().characters.first).toUpperCase();
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.lerp(Colors.black, _kAltin, 0.30)!,
+            Color.lerp(Colors.black, _kAltin, 0.55)!,
+            Color.lerp(Colors.black, const Color(0xFFB8860B), 0.42)!,
+          ],
+        ),
+        border: Border.all(color: _kAltin.withValues(alpha: 0.6), width: 1.2),
+        boxShadow: [
+          BoxShadow(
+              color: _kAltin.withValues(alpha: 0.30),
+              blurRadius: 20,
+              offset: const Offset(0, 8)),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Taç + baş harfi rozeti
+          Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFFE9A8), _kAltin],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.5), width: 1.5),
+                ),
+                alignment: Alignment.center,
+                child: Text(bas,
+                    style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFF4A3B00))),
+              ),
+              const Positioned(
+                top: -16,
+                child: Text('👑', style: TextStyle(fontSize: 22)),
+              ),
+            ],
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    const Text('🏆', style: TextStyle(fontSize: 12)),
+                    const SizedBox(width: 5),
+                    Text(
+                      'HAFTANIN BİRİNCİSİ',
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.4,
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  benMiyim ? '$ad (sen!)' : ad,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                    letterSpacing: 0.2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('$puan',
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white, height: 1.1)),
+              Text('puan',
+                  style: TextStyle(
+                      fontSize: 9.5,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white.withValues(alpha: 0.7))),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Turnuva bitişine (gelecek Pazartesi) geri sayım şeridi — gün/saat/dakika/sn.
+class _GeriSayim extends StatelessWidget {
+  final Duration kalan;
+  const _GeriSayim({required this.kalan});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final k = kalan.isNegative ? Duration.zero : kalan;
+    final gun = k.inDays;
+    final saat = k.inHours % 24;
+    final dk = k.inMinutes % 60;
+    final sn = k.inSeconds % 60;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        gradient: LinearGradient(
+          colors: [
+            c.violet.withValues(alpha: c.isLight ? 0.14 : 0.24),
+            c.rose.withValues(alpha: c.isLight ? 0.10 : 0.18),
+          ],
+        ),
+        border: Border.all(color: c.violet.withValues(alpha: 0.35)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.timer_outlined, size: 18, color: c.violetL),
+          const SizedBox(width: 10),
+          Text(
+            'Bitişe',
+            style: TextStyle(
+                fontSize: 12.5, fontWeight: FontWeight.w800, color: c.textDim),
+          ),
+          const Spacer(),
+          _kutu(context, gun, 'GÜN'),
+          _ikiNokta(c),
+          _kutu(context, saat, 'SA'),
+          _ikiNokta(c),
+          _kutu(context, dk, 'DK'),
+          _ikiNokta(c),
+          _kutu(context, sn, 'SN'),
+        ],
+      ),
+    );
+  }
+
+  Widget _ikiNokta(dynamic c) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 3),
+        child: Text(':',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w900, color: c.textFaint)),
+      );
+
+  Widget _kutu(BuildContext context, int deger, String etiket) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 34,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          decoration: BoxDecoration(
+            color: c.glass2,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: c.border),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            deger.toString().padLeft(2, '0'),
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w900, color: c.text),
+          ),
+        ),
+        const SizedBox(height: 3),
+        Text(etiket,
+            style: TextStyle(
+                fontSize: 8, fontWeight: FontWeight.w800, color: c.textFaint)),
+      ],
     );
   }
 }
