@@ -13,6 +13,7 @@ import '../services/cloud_sync_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../theme/theme_provider.dart';
 import '../theme/design_system.dart';
+import '../widgets/karalama_katmani.dart';
 import 'result_screen.dart';
 import 'placement_result_screen.dart';
 
@@ -114,6 +115,9 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   int _perqTimerIndex = -1;
+  // Karalama (scratchpad) katmanı açık mı? (kullanıcı isteği: testlerde çizim/
+  // yazı yapılabilen, alta sabit, cevapların üzerinde açılan alan.)
+  bool _karalamaAcik = false;
   List<int> _perqRemaining = [];
 
   // Fix 2: her sorunun şıkları bu OTURUM (bu QuizScreen örneği) boyunca bir
@@ -524,7 +528,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         ],
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
+          children: [
+            Column(
           children: [
             // ── Sabit üst panel: solda toplam soru, ortada aktif soru
             // (otomatik ortalanır), animasyonlu geçiş (kullanıcı isteği) ──
@@ -651,6 +657,37 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
       ),
           ],
         ),
+            // ── KARALAMA katmanı: alta SABİT, "sonraki soru" butonlarının
+            // üzerinde; açıkken yukarı kayar, cevapların üzerini örter. Ağaçta
+            // hep mounted kaldığı için (AnimatedSlide) not/çizim açılıp
+            // kapanınca korunur.
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: MediaQuery.sizeOf(context).height * 0.52,
+              child: IgnorePointer(
+                ignoring: !_karalamaAcik,
+                child: AnimatedSlide(
+                  duration: const Duration(milliseconds: 260),
+                  curve: Curves.easeOutCubic,
+                  offset: _karalamaAcik ? Offset.zero : const Offset(0, 1.15),
+                  child: KaralamaKatmani(
+                    onKapat: () => setState(() => _karalamaAcik = false),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        heroTag: 'karalamaFab',
+        backgroundColor: c.violet,
+        foregroundColor: Colors.white,
+        tooltip: _karalamaAcik ? 'Karalamayı kapat' : 'Karalama defteri',
+        onPressed: () => setState(() => _karalamaAcik = !_karalamaAcik),
+        child: Icon(_karalamaAcik ? Icons.close_rounded : Icons.edit_rounded),
       ),
       // Madde 5: Önceki / Sonraki / Testi Bitir butonları ekranın ALT KISMINDA
       // sabit — içerik kaydırılsa bile hep görünür, üçü eşit genişlikte.
