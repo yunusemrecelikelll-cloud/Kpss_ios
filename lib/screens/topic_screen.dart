@@ -616,27 +616,34 @@ class _BolumBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 4 buton EŞİT boyda (aynı genişlik + aynı yükseklik) ve ekrana tam sığacak
+    // biçimde: her biri Expanded (eşit genişlik) ve sabit yükseklikli bir satır
+    // içinde stretch edilir (içerik 1/2 satır olsa da hepsi aynı yükseklikte).
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
       decoration: BoxDecoration(
         color: colors.bg2,
         border: Border(bottom: BorderSide(color: colors.border)),
       ),
-      child: Row(
-        children: [
-          for (var i = 0; i < _ogeler.length; i++) ...[
-            if (i > 0) const SizedBox(width: 8),
-            Expanded(
-              child: _BolumButon(
-                emoji: _ogeler[i].$1,
-                etiket: _ogeler[i].$2,
-                secili: aktif == i,
-                colors: colors,
-                onTap: () => onSec(i),
+      child: SizedBox(
+        height: 60,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (var i = 0; i < _ogeler.length; i++) ...[
+              if (i > 0) const SizedBox(width: 8),
+              Expanded(
+                child: _BolumButon(
+                  emoji: _ogeler[i].$1,
+                  etiket: _ogeler[i].$2,
+                  secili: aktif == i,
+                  colors: colors,
+                  onTap: () => onSec(i),
+                ),
               ),
-            ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
@@ -665,7 +672,7 @@ class _BolumButon extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 4),
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kDsRadiusSm),
             border: Border.all(
@@ -674,17 +681,18 @@ class _BolumButon extends StatelessWidget {
             ),
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 17)),
+              Text(emoji, style: const TextStyle(fontSize: 18)),
               const SizedBox(height: 3),
               Text(
                 etiket,
                 textAlign: TextAlign.center,
                 maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 10.5,
-                  height: 1.1,
+                  height: 1.05,
                   fontWeight: FontWeight.w800,
                   color: secili ? c.text : c.textDim,
                 ),
@@ -899,7 +907,8 @@ class _SummaryBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Özet de not defteri sayfası (kullanıcı isteği: bütün anlatım not defteri).
-    return _NotSayfasi(emoji: '📌', text: 'ÖZET\n$text', colors: colors, kalin: true);
+    return _NotSayfasi(
+        emoji: '📌', text: 'ÖZET\n$text', colors: colors, kalin: true, renkIndex: 3);
   }
 }
 
@@ -914,8 +923,9 @@ class _ParagraphCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final emoji = _kParagraphEmojis[index % _kParagraphEmojis.length];
     // Kullanıcı isteği: konu anlatımı NOT DEFTERİ sayfaları gibi olsun; yazıya
-    // göre büyür. (Akılda Kalıcı ekranıyla aynı "kâğıt" dili.)
-    return _NotSayfasi(emoji: emoji, text: text, colors: colors);
+    // göre büyür ve arka planlar RENKLİ RENKLİ. (Akılda Kalıcı ekranıyla aynı
+    // "kâğıt" dili.) Her paragraf paletten farklı bir tonda çizilir.
+    return _NotSayfasi(emoji: emoji, text: text, colors: colors, renkIndex: index);
   }
 }
 
@@ -949,35 +959,54 @@ class _KeyPointCard extends StatelessWidget {
     final split = _splitLeadingEmoji(text);
     final emoji = split?.$1 ?? _kKeyPointFallbackEmojis[index % _kKeyPointFallbackEmojis.length];
     final label = split?.$2 ?? text;
-    return _NotSayfasi(emoji: emoji, text: label, colors: colors, kalin: true);
+    // Anahtar noktalar da renkli kâğıt; paragraflardan farklı bir başlangıç
+    // ofsetiyle (peş peşe aynı renk düşmesin) paletten seçilir.
+    return _NotSayfasi(
+        emoji: emoji, text: label, colors: colors, kalin: true, renkIndex: index + 2);
   }
 }
 
+/// Anlatım not kâğıtlarının RENKLİ tonları (kullanıcı isteği: "arka planları
+/// RENKLİ RENKLİ olsun", Akılda Kalıcı ekranındaki not kâğıtlarıyla aynı dil).
+/// Mnemonics ekranıyla AYNI hue paleti kullanılır ki iki ekran tutarlı olsun.
+const _kNotKagitTonlari = <double>[48, 96, 168, 200, 256, 320, 12];
+
+Color _notKagitRengi(int i, bool acikTema) {
+  final h = _kNotKagitTonlari[i % _kNotKagitTonlari.length];
+  return HSLColor.fromAHSL(1, h, acikTema ? 0.82 : 0.30, acikTema ? 0.90 : 0.17)
+      .toColor();
+}
+
+Color _notMurekkep(bool acikTema) =>
+    acikTema ? const Color(0xFF241C33) : const Color(0xFFEFE9F7);
+
 /// Konu anlatımını NOT DEFTERİ SAYFASI gibi gösteren kart (kullanıcı isteği):
 /// kâğıt yüzey, üstte spiral delikleri, solda kırmızı marj çizgisi ve arka
-/// planda soluk çizgili satırlar. Metin uzadıkça sayfa büyür. Renkler temaya
-/// uyarlanır (açık: krem kâğıt + mavi çizgi; koyu: koyu yüzey).
+/// planda soluk çizgili satırlar. Metin uzadıkça sayfa büyür. Arka plan RENKLİ:
+/// her kâğıt [renkIndex]'e göre paletten farklı bir pastel/koyu tonda çizilir.
 class _NotSayfasi extends StatelessWidget {
   final String emoji;
   final String text;
   final KpssColors colors;
   final bool kalin;
+  final int renkIndex;
   const _NotSayfasi({
     required this.emoji,
     required this.text,
     required this.colors,
     this.kalin = false,
+    this.renkIndex = 0,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = colors;
-    final kagit = c.isLight ? const Color(0xFFFFFDF4) : c.bg2;
-    final cizgi = c.isLight
-        ? const Color(0xFF9AB4D4).withValues(alpha: 0.30)
-        : c.border.withValues(alpha: 0.55);
+    final kagit = _notKagitRengi(renkIndex, c.isLight);
+    final ink = _notMurekkep(c.isLight);
+    // Çizgiler ve marj, renkli kâğıt üstünde okunur kalsın diye mürekkep
+    // renginin soluk tonlarıdır (temaya göre koyu/açık).
+    final cizgi = ink.withValues(alpha: c.isLight ? 0.14 : 0.18);
     final marj = const Color(0xFFEF6C6C).withValues(alpha: 0.55);
-    final ink = c.isLight ? const Color(0xFF2B3A55) : c.text;
     const fontSize = 14.5;
     const satir = fontSize * 1.6;
 
@@ -998,12 +1027,12 @@ class _NotSayfasi extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Spiral cilt: üstte küçük delikler.
+          // Spiral cilt: üstte küçük delikler. Kâğıt renginin biraz
+          // koyu/açık bir tonu (renkli kâğıtla uyumlu).
           Container(
             height: 16,
-            color: c.isLight
-                ? const Color(0xFFF0ECDC)
-                : Colors.white.withValues(alpha: 0.04),
+            color: (c.isLight ? Colors.black : Colors.white)
+                .withValues(alpha: c.isLight ? 0.06 : 0.06),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
