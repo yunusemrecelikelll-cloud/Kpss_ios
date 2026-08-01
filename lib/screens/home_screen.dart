@@ -289,6 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     emoji: '🧠',
                     baslik: 'Akılda Kalıcı\nKodlama',
                     renk: c.mint,
+                    premiumOzellik: true,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -302,6 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     emoji: '🎓',
                     baslik: 'Mentörlük\nSeansları',
                     renk: c.gold,
+                    premiumOzellik: true,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -322,6 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     emoji: '🎯',
                     baslik: 'Bugün Girsen Kaç Alırsın',
                     renk: c.violet,
+                    premiumOzellik: true,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -1149,44 +1152,97 @@ class _SubjectCard extends StatelessWidget {
 
 /// Anasayfadaki yan yana hızlı erişim kartı (Akılda Kalıcı Kodlama /
 /// Mentörlük). Dokununca ilgili sayfayı açar.
+/// Premium'a ÖZEL bir özellik kartına eklenen görsel işaretler (kullanıcı
+/// isteği): kartın köşesinde HER ZAMAN küçük altın "premium" rozeti bulunur;
+/// kullanıcı ücretsizse kart ayrıca SOLUK (yarı saydam) çizilir, premium açıksa
+/// kart normale döner ama rozet yine durur.
+///
+/// [kart]'ı sarıp döndürür. [premiumOzellik] false ise kartı aynen döndürür.
+Widget wrapPremiumKart(BuildContext context, Widget kart, bool premiumOzellik) {
+  if (!premiumOzellik) return kart;
+  final c = context.watch<ThemeProvider>().colors;
+  final premium = context.watch<StorageService>().isPremiumUser();
+  final govde = premium ? kart : Opacity(opacity: 0.55, child: kart);
+  return Stack(
+    children: [
+      govde,
+      Positioned(
+        top: 4,
+        right: 4,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [c.gold, c.gold.withValues(alpha: 0.72)],
+            ),
+            borderRadius: BorderRadius.circular(999),
+            boxShadow: [
+              BoxShadow(color: c.gold.withValues(alpha: 0.40), blurRadius: 6),
+            ],
+          ),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.workspace_premium, size: 10, color: Colors.white),
+              SizedBox(width: 3),
+              Text('premium',
+                  style: TextStyle(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.3,
+                      color: Colors.white)),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
 class _HizliErisimKarti extends StatelessWidget {
   final String emoji;
   final String baslik;
   final Color renk;
   final VoidCallback onTap;
+  final bool premiumOzellik;
   const _HizliErisimKarti({
     required this.emoji,
     required this.baslik,
     required this.renk,
     required this.onTap,
+    this.premiumOzellik = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    return DsCard(
-      accent: renk,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      onTap: onTap,
-      child: Row(
-        children: [
-          DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              baslik,
-              maxLines: 2,
-              style: TextStyle(
-                fontSize: 12.5,
-                height: 1.25,
-                fontWeight: FontWeight.w800,
-                color: c.text,
+    return wrapPremiumKart(
+      context,
+      DsCard(
+        accent: renk,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        onTap: onTap,
+        child: Row(
+          children: [
+            DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                baslik,
+                maxLines: 2,
+                style: TextStyle(
+                  fontSize: 12.5,
+                  height: 1.25,
+                  fontWeight: FontWeight.w800,
+                  color: c.text,
+                ),
               ),
             ),
-          ),
-          Icon(Icons.chevron_right, size: 18, color: c.textFaint),
-        ],
+            Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+          ],
+        ),
       ),
+      premiumOzellik,
     );
   }
 }
@@ -1251,40 +1307,46 @@ class _MiniAksiyonKarti extends StatelessWidget {
   final String baslik;
   final Color renk;
   final VoidCallback onTap;
+  final bool premiumOzellik;
   const _MiniAksiyonKarti({
     required this.emoji,
     required this.baslik,
     required this.renk,
     required this.onTap,
+    this.premiumOzellik = false,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    return DsCard(
-      accent: renk,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
-          const SizedBox(width: 10),
-          Flexible(
-            child: Text(
-              baslik,
-              maxLines: 2,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12.5,
-                height: 1.2,
-                fontWeight: FontWeight.w800,
-                color: c.text,
+    return wrapPremiumKart(
+      context,
+      DsCard(
+        accent: renk,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        onTap: onTap,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DsIconBadge(emoji: emoji, color: renk, size: 40, glow: false),
+            const SizedBox(width: 10),
+            Flexible(
+              child: Text(
+                baslik,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12.5,
+                  height: 1.2,
+                  fontWeight: FontWeight.w800,
+                  color: c.text,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      premiumOzellik,
     );
   }
 }
