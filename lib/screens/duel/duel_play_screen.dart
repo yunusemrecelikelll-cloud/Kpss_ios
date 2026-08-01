@@ -28,11 +28,28 @@ import 'duel_result_screen.dart';
 class DuelPlayScreen extends StatefulWidget {
   final String? roomId; // null => solo
   final List<Subject> soloSubjects;
+  // Solo yapılandırması (kullanıcı isteği: solo'da da süre + konu seçimi).
+  // null => karışık; belirtilmişse yalnızca o ders/konudan sorular gelir.
+  final String? soloSubjectId;
+  final String? soloTopicId;
+  final int soloSeconds;
+  final int soloCount;
 
-  const DuelPlayScreen.online({super.key, required String this.roomId}) : soloSubjects = const [];
+  const DuelPlayScreen.online({super.key, required String this.roomId})
+      : soloSubjects = const [],
+        soloSubjectId = null,
+        soloTopicId = null,
+        soloSeconds = 30,
+        soloCount = 10;
 
-  const DuelPlayScreen.solo({super.key, required List<Subject> subjects})
-      : roomId = null,
+  const DuelPlayScreen.solo({
+    super.key,
+    required List<Subject> subjects,
+    this.soloSubjectId,
+    this.soloTopicId,
+    this.soloSeconds = 30,
+    this.soloCount = 10,
+  })  : roomId = null,
         soloSubjects = subjects;
 
   bool get isSolo => roomId == null;
@@ -114,16 +131,33 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     List<Question> pool = const [];
     try {
       final remote = context.read<RemoteQuestionService>();
-      // ÖNCEDEN doğrudan QuickModesShared.collectAll kullanılıyordu; bu, soru
-      // havuzunu tamamen indirilmiş/JSON banka verisine bağlıyor ve turdan
-      // tura aynı soruların gelmesini engellemiyordu. buildSoloQuestions ise
-      // JSON bankasını gömülü 90 soruluk solo havuzuyla birleştirir, tekrarı
-      // eler ve daha önce sorulanları atlar — böylece "Tek Başına Yarış"
-      // çevrimdışıyken de dolu bir havuzla çalışır.
-      pool = await _duel.buildSoloQuestions(
-        subjects: widget.soloSubjects,
-        remote: remote,
-      );
+      if (widget.soloTopicId != null || widget.soloSubjectId != null) {
+        // KONU/DERS SEÇİLDİ (kullanıcı isteği): havuz doğrudan seçili ders/konu
+        // sorularından kurulur; gömülü karışık solo havuzu (buildSoloQuestions)
+        // KULLANILMAZ ki sorular konu dışına çıkmasın.
+        final secilenler = <Question>[];
+        for (final s in widget.soloSubjects) {
+          if (widget.soloSubjectId != null && s.id != widget.soloSubjectId) {
+            continue;
+          }
+          for (final t in s.konular) {
+            if (widget.soloTopicId != null && t.id != widget.soloTopicId) {
+              continue;
+            }
+            secilenler.addAll(t.sorular.where((q) => q.secenekler.length >= 2));
+          }
+        }
+        secilenler.shuffle();
+        pool = secilenler.take(widget.soloCount).toList();
+      } else {
+        // KARIŞIK: JSON bankasını gömülü solo havuzuyla birleştiren varsayılan
+        // akış (çevrimdışı da dolu çalışır).
+        pool = await _duel.buildSoloQuestions(
+          subjects: widget.soloSubjects,
+          remote: remote,
+          count: widget.soloCount,
+        );
+      }
     } catch (_) {
       pool = const [];
     }
@@ -131,7 +165,7 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     setState(() {
       _questions = pool;
       _total = _questions.length;
-      _perQ = 30;
+      _perQ = widget.soloSeconds;
       _startedAt = DateTime.now();
       _soloIndex = 0;
       _soloQuestionStart = DateTime.now();

@@ -181,11 +181,30 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
 
   Future<void> _playSolo() async {
     if (_loadingSubjects) return;
+    // Solo'da da süre + konu seçimi (kullanıcı isteği): önce yapılandırma
+    // yaprağı gösterilir, sonra hak tüketilip yarış başlatılır.
+    final cfg = await showModalBottomSheet<_RoomConfig>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: context.read<ThemeProvider>().colors.bg2,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+      ),
+      builder: (_) => _CreateRoomSheet(
+          mode: DuelService.modeDuello, subjects: _subjects, solo: true),
+    );
+    if (cfg == null || !mounted) return;
     if (!await _consumePlayOrGate()) return;
     if (!mounted) return;
     // Solo tamamen yerel (Firestore GEREKTİRMEZ) — çevrimdışı da çalışır.
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => DuelPlayScreen.solo(subjects: _subjects),
+      builder: (_) => DuelPlayScreen.solo(
+        subjects: _subjects,
+        soloSubjectId: cfg.subjectIds.isEmpty ? null : cfg.subjectIds.first,
+        soloTopicId: cfg.topicId,
+        soloSeconds: cfg.secondsPerQuestion,
+        soloCount: cfg.questionCount,
+      ),
     ));
   }
 
@@ -757,8 +776,12 @@ class _RoomConfig {
 }
 
 /// Süre (saniye) seçenekleri — host'un soru başına verdiği süreyi seçtiği
-/// sabit liste.
-const List<int> kDuelSecondsOptions = [10, 15, 20, 30];
+/// sabit liste (kullanıcı isteğiyle 10-20-30-40-50 sn'ye yükseltildi).
+const List<int> kDuelSecondsOptions = [10, 20, 30, 40, 50];
+
+/// Soru başına VARSAYILAN (normal) süre — süre seçicinin altında bilgi notu
+/// olarak gösterilir ve yeni oda/solo kurulurken ön seçili değerdir.
+const int kDuelDefaultSeconds = 30;
 
 /// Soru sayısı seçenekleri — host'un maçın toplam soru sayısını seçtiği
 /// sabit liste (Royale'in 5 soruda bir eleme mantığıyla uyumlu olsun diye
@@ -768,7 +791,11 @@ const List<int> kDuelQuestionCountOptions = [5, 10, 15, 20];
 class _CreateRoomSheet extends StatefulWidget {
   final String mode;
   final List<Subject> subjects;
-  const _CreateRoomSheet({required this.mode, required this.subjects});
+  /// true ise "Tek Başına Yarış" yapılandırması — maksimum oyuncu ve herkese
+  /// açıklık gibi çok oyunculu alanlar GİZLENİR; yalnızca ders/konu, süre ve
+  /// soru sayısı seçilir (kullanıcı isteği: solo'da da süre + konu seçimi).
+  final bool solo;
+  const _CreateRoomSheet({required this.mode, required this.subjects, this.solo = false});
 
   @override
   State<_CreateRoomSheet> createState() => _CreateRoomSheetState();
@@ -783,6 +810,7 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
   late int _questionCount;
 
   bool get _isRoyale => widget.mode == DuelService.modeRoyale;
+  bool get _isSolo => widget.solo;
 
   Subject? get _selectedSubject {
     if (_selectedSubjectId == null) return null;
@@ -796,7 +824,7 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
   void initState() {
     super.initState();
     _maxPlayers = _isRoyale ? 20 : 2;
-    _secondsPerQuestion = 30;
+    _secondsPerQuestion = kDuelDefaultSeconds;
     _questionCount = _isRoyale ? 15 : 10;
   }
 
@@ -827,7 +855,10 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                 ),
               ),
             ),
-            Text('${_isRoyale ? "👑 Royale" : "⚔️ Düello"} Odası Kur',
+            Text(
+                _isSolo
+                    ? '🎯 Tek Başına Yarış'
+                    : '${_isRoyale ? "👑 Royale" : "⚔️ Düello"} Odası Kur',
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
             const SizedBox(height: 4),
             Text('Ders seçmezsen tüm derslerden karışık sorular gelir.',
@@ -895,6 +926,10 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   ),
               ],
             ),
+            const SizedBox(height: 6),
+            Text('ℹ️ Normalde her soru için verilen süre: $kDuelDefaultSeconds sn.',
+                style: TextStyle(
+                    fontSize: 11, color: c.textFaint, fontStyle: FontStyle.italic)),
             const SizedBox(height: 16),
             Text('Soru sayısı', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
             const SizedBox(height: 6),
@@ -910,29 +945,33 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   ),
               ],
             ),
-            const SizedBox(height: 16),
-            Text('Maksimum oyuncu: ${_maxPlayers.round()}',
-                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
-            Slider(
-              value: _maxPlayers.clamp(minP.toDouble(), maxP.toDouble()),
-              min: minP.toDouble(),
-              max: maxP.toDouble(),
-              divisions: maxP - minP,
-              label: '${_maxPlayers.round()}',
-              onChanged: (v) => setState(() => _maxPlayers = v),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              value: _isPublic,
-              onChanged: (v) => setState(() => _isPublic = v),
-              title: const Text('Odalar listesinde herkese açık', style: TextStyle(fontSize: 13.5)),
-              subtitle: Text('Kapalıysa sadece kodu bilenler katılabilir.',
-                  style: TextStyle(fontSize: 11, color: c.textFaint)),
-            ),
+            // Maksimum oyuncu ve herkese açıklık YALNIZCA çok oyunculu (online)
+            // oda kurarken anlamlı — solo'da gizlenir.
+            if (!_isSolo) ...[
+              const SizedBox(height: 16),
+              Text('Maksimum oyuncu: ${_maxPlayers.round()}',
+                  style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+              Slider(
+                value: _maxPlayers.clamp(minP.toDouble(), maxP.toDouble()),
+                min: minP.toDouble(),
+                max: maxP.toDouble(),
+                divisions: maxP - minP,
+                label: '${_maxPlayers.round()}',
+                onChanged: (v) => setState(() => _maxPlayers = v),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                value: _isPublic,
+                onChanged: (v) => setState(() => _isPublic = v),
+                title: const Text('Odalar listesinde herkese açık', style: TextStyle(fontSize: 13.5)),
+                subtitle: Text('Kapalıysa sadece kodu bilenler katılabilir.',
+                    style: TextStyle(fontSize: 11, color: c.textFaint)),
+              ),
+            ],
             const SizedBox(height: 8),
             Center(
               child: DsPillButton(
-                label: 'Odayı Oluştur',
+                label: _isSolo ? 'Yarışa Başla' : 'Odayı Oluştur',
                 trailingIcon: Icons.arrow_forward,
                 color: _isRoyale ? c.gold : c.violetL,
                 onPressed: () => Navigator.of(context).pop(_RoomConfig(
