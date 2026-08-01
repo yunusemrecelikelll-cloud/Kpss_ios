@@ -580,5 +580,35 @@
     "Bağlaç Kırılma Noktası: Paragrafı ikiye bölme ya da akışı bozan cümleyi bulurken 'ancak/oysa gibi bir karşıtlık bağlacının hemen öncesini/sonrasını' bir kırılma noktası gibi ara.",
     "Her Cümleye Tek Kelime Etiket: Akışı bozan cümleyi bulurken her cümlenin neyi anlattığını tek kelimeyle not et; dört cümle aynı konuyu işlerken farklı konuya kayan tek cümle akışı bozandır — bağlaçlar uysa bile konu değişimi ele verir.",
     "Tutkal İki Yüzeye Yapışmalı: Boşluğa cümle yerleştirme sorularında doğru cümlenin hem önceki hem sonraki cümleyle bağ kurması gerektiğini 'tutkal iki yüzeye de yapışmalı' imgesiyle ezberle; yalnızca tek tarafa bağlanan seçenek elenir."
+  ],
+  "tarih-cagdas": [
+    "SoğukSavaş = 'NATO vs VARŞOVA': Batı Bloku NATO (1949, ABD), Doğu Bloku Varşova Paktı (1955, SSCB). Türkiye NATO'ya 1952'de (Kore'ye asker → NATO bileti) girdi.",
+    "TÜRKİYE'nin Batı'ya biletleri sırasıyla: TRUMAN (1947) → MARSHALL (yardım) → KORE (1950) → NATO (1952). 'Tren Marşı Korkusuz Netleşti' baş harfleriyle: T-M-K-N.",
+    "Darbe yılları '60-71-80': aralarında 11'er yıl yok ama '60, +11=71, +9=80' — '60 ve 80'i uçları, 71 ortası diye hatırla."
+  ],
+  "turkce-soz-sanatlari": [
+    "İSTİARE ipucu: 'İSTİare = İSTeğe göre TEK öğe'. Açık istiare = benzeTİLEN var (aslan!), Kapalı istiare = benzeYEN var + kişileştirme kokar.",
+    "TEŞHİS-İNTAK: 'Teşhis = insan gibi', 'İntak = konuşturma'. Kural: HER İNTAKTA TEŞHİS VARDIR (konuşan şey önce insanlaşmıştır).",
+    "MECAZ-I MÜRSEL'de benzetme YOKTUR; 'sobayı yaktım' → parça-bütün/iç-dış ilgisi. 'Benzetme görürsen mürsel DEĞİL, teşbih/istiaredir' diye ayır."
+  ],
+  "matematik-acilar-ucgenler": [
+    "ÜÇGEN açı: iç=180, dış=360; 'Dış açı = uzaktaki iki iç açının TOPLAMI' (komşuyu atla, ötekileri topla).",
+    "ÖZEL ÜÇGENLER: '3-4-5, 5-12-13, 8-15-17' Pisagor üçlüleri ve '30-60-90 / 45-45-90' açı üçgenleri — 'Üç Beş On Üç' diye ezberle.",
+    "Benzerlikte 'kenar k, ALAN k KARE': oran k ise alan oranı k²'dir (kare unutma)."
+  ],
+  "matematik-cokgenler-dortgenler": [
+    "İç açı toplamı (n−2)·180 — 'iki eksiğini 180 ile çarp'. Dış açı toplamı HER ZAMAN 360.",
+    "Köşegen sayısı n(n−3)/2 — 'n çarpı (n eksi 3) böl 2'.",
+    "ALAN kısayolu: köşegenleri DİK kesişen dörtgenlerde (kare, eşkenar dörtgen, deltoid) Alan = köşegen çarpımı / 2."
+  ],
+  "matematik-cember-daire-cisim": [
+    "ÇEMBER açı: 'Çevre açı = yarım yay, Merkez açı = tam yay'. Aynı yayı gören çevre açı, merkez açının yarısıdır.",
+    "SİVRİ CİSİM (koni, piramit) hacminde daima 1/3 vardır; 'sivri uçlar üçte bir'.",
+    "KÜRE: 'Hacim dört-üçte-bir pi r küp (4/3πr³), Yüzey dört pi r kare (4πr²)'."
+  ],
+  "matematik-ozel-islem": [
+    "ÖZEL İŞLEM: 'Kuralı gör, yerine koy'. a∗b = 2a+b ise 3∗4 = 2·3+4 = 10. Parantez/sıraya dikkat.",
+    "BİRİM ELEMAN e: 'a∗e = a'yı sağlayan e'. TERS: 'a∗x = e' yapan x. Tabloda birim = satırı başlıkla AYNI olan.",
+    "MODÜLER: saat=mod 12/24, gün=mod 7. Üslü sayıda birler basamağı DEVREDER (2→2,4,8,6; 4'lü devir)."
   ]
 }

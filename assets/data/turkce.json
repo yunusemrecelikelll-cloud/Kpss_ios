@@ -40944,6 +40944,34 @@
           "aciklama": "Boşluktan sonra 'huzur iç dünyada saklıdır' denir; mutluluğu DIŞARIDA arayanın onu bulamayacağı vurgulanır."
         }
       ]
+    },
+    {
+      "id": "turkce-soz-sanatlari",
+      "baslik": "Söz Sanatları (Edebî Sanatlar)",
+      "anlatim": {
+        "ozet": "🎭 Anlatımı güçlendiren edebî sanatlar: benzetme, istiare, mecaz, kişileştirme, tezat, abartma, kinaye ve daha fazlası — örnekleriyle.",
+        "icerik": [
+          "TEŞBİH (Benzetme): Aralarında ilgi bulunan iki şeyden zayıf olanı güçlü olana benzetmedir. Dört öğesi vardır: benzeyen, benzetilen, benzetme yönü ve benzetme edatı ('gibi, kadar, sanki'). Örn: 'Aslan gibi güçlü adam.' (benzeyen: adam, benzetilen: aslan, yön: güçlü, edat: gibi).",
+          "İSTİARE (Eğretileme): Benzetmenin temel öğelerinden yalnızca biri (benzeyen ya da benzetilen) kullanılarak yapılan sanattır. Açık istiarede sadece benzetilen ('Bir hilal uğruna...' → hilal=bayrak), kapalı istiarede sadece benzeyen bulunur.",
+          "MECAZ-I MÜRSEL (Ad Aktarması): Benzetme amacı GÜTMEDEN, bir sözü başka bir sözün yerine ilgi/bağ yoluyla kullanmaktır. Örn: 'Sobayı yaktım' (sobayı değil kömürü/odunu), 'Bereket yağıyor' (yağmur).",
+          "KİŞİLEŞTİRME (Teşhis) ve İNTAK (Konuşturma): İnsan dışı varlıklara insan özelliği vermek teşhis, onları konuşturmak intaktır. Örn: 'Menekşeler gülüyordu' (teşhis); 'Karga tilkiye seslendi' (intak). Her intakta teşhis vardır.",
+          "TEZAT (Karşıtlık) ve TENASÜP (Uygunluk): Aralarında karşıtlık olan kavramları bir arada kullanmak tezat ('ağladım güldüm'); anlamca ilgili sözcükleri bir arada kullanmak tenasüptür ('gül, bülbül, diken').",
+          "MÜBALAĞA (Abartma), KİNAYE, TEVRİYE, HÜSN-İ TALİL: Abartma bir şeyi olduğundan çok göstermek ('bir içim su'); kinaye hem gerçek hem mecaz anlama gelecek biçimde asıl mecazı kastetmek ('eli açık'); hüsn-i talil bir olayı güzel bir nedene bağlamaktır."
+        ],
+        "anahtarNoktalar": [
+          "🔑 Teşbih: 4 öğe — benzeyen, benzetilen, benzetme yönü, benzetme edatı.",
+          "🔑 İstiare: benzetmenin tek öğesiyle yapılır (açık = benzetilen, kapalı = benzeyen).",
+          "🔑 Mecaz-ı mürsel: benzetme YOK, ilgi/bağ ile ad aktarması.",
+          "🔑 Teşhis: cansıza insan özelliği; İntak: onu konuşturma. Her intakta teşhis vardır.",
+          "🔑 Tezat: karşıt kavramlar bir arada; Tenasüp: ilgili kavramlar bir arada.",
+          "🔑 Mübalağa: abartma; Kinaye: gerçek+mecaz, asıl mecaz kastedilir.",
+          "🔑 Hüsn-i talil: bir olayı güzel/hayalî bir nedene bağlama.",
+          "🔑 Tevriye: birden çok anlamı olan sözcüğü uzak anlamıyla kastetme.",
+          "🔑 Cinas: yazılışı/söylenişi aynı, anlamı farklı sözcükler; Aliterasyon: ünsüz tekrarı.",
+          "🔑 Telmih: bilinen bir olay/kişiye gönderme yapma."
+        ]
+      },
+      "sorular": []
     }
   ]
 }

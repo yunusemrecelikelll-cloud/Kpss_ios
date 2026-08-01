@@ -23252,6 +23252,34 @@
           "aciklama": "Bu seçeneği seçen kişi, Osmanlı İmparatorluğu'nun 20. yüzyılın başında ekonomik ve teknolojik gerilikten muzdariptiğini doğru olarak görmüştür."
         }
       ]
+    },
+    {
+      "id": "tarih-cagdas",
+      "baslik": "Çağdaş Türk ve Dünya Tarihi",
+      "anlatim": {
+        "ozet": "🌍 II. Dünya Savaşı'ndan günümüze: Soğuk Savaş, bloklaşma, Türkiye'nin çok partili hayata geçişi, AB süreci ve küreselleşen dünya.",
+        "icerik": [
+          "İki Dünya Savaşı arası dönemde (1919-1939) totaliter rejimler (faşizm, nazizm) yükseldi; 1929 Dünya Ekonomik Buhranı ülkeleri sarstı. Türkiye bu dönemde tarafsızlığını koruyup iç kalkınmaya (İzmir İktisat Kongresi, devletçilik) yöneldi.",
+          "II. Dünya Savaşı (1939-1945) 'Mihver' (Almanya-İtalya-Japonya) ile 'Müttefikler' (İngiltere-SSCB-ABD) arasında geçti. Türkiye savaşın büyük bölümünde tarafsız kaldı, 1945'te sembolik olarak Almanya ve Japonya'ya savaş ilan edip Birleşmiş Milletler kurucu üyeleri arasına girdi.",
+          "Savaş sonrası dünya iki kutba ayrıldı: ABD öncülüğünde Batı Bloku (NATO, 1949) ve SSCB öncülüğünde Doğu Bloku (Varşova Paktı, 1955). Bu 'Soğuk Savaş' dönemi silahlanma yarışı, uzay yarışı ve vekâlet savaşlarıyla (Kore, Vietnam) sürdü.",
+          "Türkiye Batı Bloku'nda yer aldı: 1947 Truman Doktrini ve Marshall Yardımı'yla ABD'ye yakınlaştı, 1950'de Kore'ye asker gönderdi ve 1952'de NATO'ya üye oldu. İç politikada 1946'da çok partili hayata geçildi, 1950'de Demokrat Parti iktidara geldi.",
+          "1960, 1971 ve 1980'de askerî müdahaleler yaşandı; her biri sonrasında yeni anayasalar hazırlandı. Kıbrıs Sorunu 1974 Barış Harekâtı'yla önemli bir dönüm noktasına ulaştı. Türkiye 1963 Ankara Antlaşması'yla AB (o zaman AET) yolculuğuna başladı, 1999'da adaylık statüsü aldı.",
+          "1991'de SSCB dağıldı, Soğuk Savaş sona erdi; küreselleşme, Avrupa Birliği'nin genişlemesi ve Türk Cumhuriyetleri'nin bağımsızlığı yeni bir dönem başlattı. Günümüzde bilgi çağı, dijitalleşme ve bölgesel iş birlikleri (TDT, G20) uluslararası ilişkileri şekillendirmektedir."
+        ],
+        "anahtarNoktalar": [
+          "🔑 II. Dünya Savaşı: 1939-1945; Mihver'e karşı Müttefikler kazandı, ardından BM kuruldu (1945).",
+          "🔑 Türkiye savaşın çoğunda TARAFSIZ; 1945'te sembolik savaş ilanıyla BM kurucu üyesi oldu.",
+          "🔑 Soğuk Savaş: ABD (NATO, 1949) — SSCB (Varşova Paktı, 1955) iki kutuplu dünya.",
+          "🔑 Truman Doktrini (1947) + Marshall Yardımı Türkiye'yi Batı'ya yaklaştırdı.",
+          "🔑 Türkiye 1950 Kore'ye asker gönderdi, 1952'de NATO üyesi oldu.",
+          "🔑 Çok partili hayat: 1946; Demokrat Parti iktidarı: 1950.",
+          "🔑 Askerî müdahaleler: 1960, 1971, 1980.",
+          "🔑 Kıbrıs Barış Harekâtı: 1974.",
+          "🔑 AB süreci: Ankara Antlaşması 1963, adaylık 1999.",
+          "🔑 SSCB'nin dağılması (1991) Soğuk Savaş'ı bitirdi; Türk Cumhuriyetleri bağımsız oldu."
+        ]
+      },
+      "sorular": []
     }
   ]
 }
