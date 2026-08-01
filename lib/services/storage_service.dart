@@ -394,6 +394,10 @@ class StorageService extends ChangeNotifier {
     final all = getAllDrafts();
     all[key] = state;
     await _set('drafts', all);
+    // Anasayfa StorageService'i dinliyor; test kök Navigator'da açıldığından
+    // kapanınca kendiliğinden yeniden çizilmiyordu → "yarım kalan test" kartı
+    // görünmüyordu. Bildirimle anasayfa tazelenir.
+    notifyListeners();
   }
 
   Map<String, Map<String, dynamic>> getAllDrafts() {

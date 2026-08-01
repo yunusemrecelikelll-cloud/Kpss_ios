@@ -115,12 +115,14 @@ class QuizEngine extends ChangeNotifier {
   void goTo(int i) {
     if (i < 0 || i >= questions.length) return;
     currentIndex = i;
+    _saveDraft(); // yarıda çıkışta anasayfadaki "devam et" güncel kalsın
     notifyListeners();
   }
 
   void next() {
     if (currentIndex < questions.length - 1) {
       currentIndex++;
+      _saveDraft();
       notifyListeners();
     }
   }
@@ -128,6 +130,7 @@ class QuizEngine extends ChangeNotifier {
   void prev() {
     if (currentIndex > 0) {
       currentIndex--;
+      _saveDraft();
       notifyListeners();
     }
   }
