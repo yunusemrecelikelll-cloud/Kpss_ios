@@ -1,0 +1,1980 @@
+{
+  "id": "genel",
+  "ad": "Genel Kültür",
+  "konular": [
+    {
+      "id": "genel-tarih",
+      "baslik": "Tarih ve İnkılap Tarihi",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "Mustafa Kemal Atatürk'ün 'sivil' olarak (askerlikten istifa etmiş hâlde) katıldığı ilk kongre hangisidir?",
+          "secenekler": [
+            "A) Erzurum Kongresi",
+            "B) Sivas Kongresi",
+            "C) Amasya Kongresi",
+            "D) Balıkesir Kongresi",
+            "E) Alaşehir Kongresi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Mustafa Kemal, askerlik görevinden istifa ettikten sonra ilk kez 'sivil' sıfatıyla Erzurum Kongresi'ne katılmış ve başkan seçilmiştir.",
+          "distractorAciklama": "Sivas Kongresi Erzurum'dan sonradır; Amasya bir genelge/görüşmedir; Balıkesir ve Alaşehir yerel kongrelerdir ve Mustafa Kemal katılmamıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mustafa Kemal Paşa'nın 'Siz orada yalnız düşmanı değil, milletin makûs talihini de yendiniz' sözünü söylediği savaş hangisidir?",
+          "secenekler": [
+            "A) I. İnönü Muharebesi",
+            "B) Sakarya Meydan Muharebesi",
+            "C) II. İnönü Muharebesi",
+            "D) Büyük Taarruz",
+            "E) Dumlupınar Muharebesi"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Bu ünlü telgraf, II. İnönü Muharebesi'nin ardından cephe komutanı İsmet Paşa'ya gönderilmiştir.",
+          "distractorAciklama": "I. İnönü daha erken bir zaferdir; Sakarya ve Büyük Taarruz/Dumlupınar sonraki dönüm noktalarıdır ve bu söz onlara ait değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mustafa Kemal'e 'Gazilik' unvanı ve 'Mareşallik' rütbesi hangi savaştan sonra verilmiştir?",
+          "secenekler": [
+            "A) Sakarya Meydan Muharebesi",
+            "B) Büyük Taarruz",
+            "C) II. İnönü Muharebesi",
+            "D) Dumlupınar Muharebesi",
+            "E) Başkomutanlık Muharebesi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "23 Ağustos–13 Eylül 1921 Sakarya Meydan Muharebesi zaferinden sonra TBMM, Mustafa Kemal'e Gazilik unvanı ve Mareşallik rütbesi vermiştir.",
+          "distractorAciklama": "Büyük Taarruz ve Dumlupınar 1922'dedir; II. İnönü daha öncedir. Rütbe/unvan Sakarya sonrası verilmiştir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Millî Mücadele Dönemi'nde kapanan ilk cephe hangisidir?",
+          "secenekler": [
+            "A) Doğu Cephesi",
+            "B) Batı Cephesi",
+            "C) Güney Cephesi",
+            "D) Kafkas Cephesi",
+            "E) Trakya Cephesi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Ermenistan'la yapılan Gümrü Antlaşması (1920) ile Doğu Cephesi kapanmıştır; bu, TBMM'nin uluslararası ilk siyasi başarısıdır.",
+          "distractorAciklama": "Batı Cephesi Mudanya ile en son kapanmıştır; Güney Cephesi Ankara Antlaşması ile kapanmıştır; Kafkas/Trakya bu bağlamda cephe adı değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Misak-ı Millî'den verilen ilk taviz olarak kabul edilen ve Moskova Antlaşması ile Gürcistan'a bırakılan yer neresidir?",
+          "secenekler": [
+            "A) Kars",
+            "B) Ardahan",
+            "C) Artvin",
+            "D) Batum",
+            "E) Nahçıvan"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1921 Moskova Antlaşması'nda Batum Gürcistan'a bırakılmış; bu, Misak-ı Millî'den verilen ilk taviz sayılmıştır.",
+          "distractorAciklama": "Kars ve Ardahan Türkiye'de kalmıştır; Artvin de Türkiye sınırları içindedir; Nahçıvan'a özerklik tanınmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nin Batı'da en geniş sınırlara ulaştığı antlaşma hangisidir?",
+          "secenekler": [
+            "A) Karlofça Antlaşması",
+            "B) Bucaş Antlaşması",
+            "C) Zitvatorok Antlaşması",
+            "D) Vasvar Antlaşması",
+            "E) Pasarofça Antlaşması"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1672 Bucaş Antlaşması ile Podolya alınmış, Osmanlı Batı'da en geniş sınırlarına ulaşmıştır.",
+          "distractorAciklama": "Karlofça ve Pasarofça toprak kaybı antlaşmalarıdır; Zitvatorok ve Vasvar Avusturya ile yapılan farklı antlaşmalardır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nde basılan ilk kâğıt para hangisidir ve hangi padişah döneminde çıkarılmıştır?",
+          "secenekler": [
+            "A) Kaime – Sultan Abdülmecid",
+            "B) Sikke – Sultan Abdülaziz",
+            "C) Kaime – II. Mahmud",
+            "D) Meskukat – Sultan Abdülhamid",
+            "E) Akçe – Fatih Sultan Mehmed"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İlk Osmanlı kâğıt parası 'Kaime', 1840'ta Sultan Abdülmecid döneminde çıkarılmıştır.",
+          "distractorAciklama": "Akçe ve sikke madenî paralardır; II. Mahmud ve Abdülaziz dönemleri kâğıt paranın çıkarıldığı dönem değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nde demokratikleşmenin/anayasal gelişmelerin ilk adımı sayılan belge hangisidir?",
+          "secenekler": [
+            "A) Tanzimat Fermanı (1839)",
+            "B) Sened-i İttifak (1808)",
+            "C) Islahat Fermanı (1856)",
+            "D) Kanun-i Esasî (1876)",
+            "E) Adalet Fermanı (1792)"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1808 Sened-i İttifak, padişahın yetkilerinin ilk kez sınırlandığı belge olarak demokratikleşmenin ilk adımı kabul edilir.",
+          "distractorAciklama": "Tanzimat, Islahat ve Kanun-i Esasî sonraki aşamalardır; Adalet Fermanı diye bir dönüm noktası yoktur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nde çıkarılan ilk özel (resmî olmayan) Türkçe gazete hangisidir?",
+          "secenekler": [
+            "A) Tercüman-ı Ahvâl",
+            "B) Takvim-i Vekayi",
+            "C) Ceride-i Havadis",
+            "D) Tasvir-i Efkâr",
+            "E) Basiret"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Şinasi ve Agâh Efendi tarafından 1860'ta çıkarılan Tercüman-ı Ahvâl ilk özel Türk gazetesidir.",
+          "distractorAciklama": "Takvim-i Vekayi ilk RESMÎ gazetedir; Ceride-i Havadis yarı resmî/İngiliz sermayelidir; Tasvir-i Efkâr ve Basiret sonraki gazetelerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Millî Mücadele'nin haklılığını uluslararası alanda kanıtlayan, işgallerin Yunan zulmünü belgeleyen ilk rapor hangisidir?",
+          "secenekler": [
+            "A) Amiral Bristol Raporu",
+            "B) General Harbord Raporu",
+            "C) Millî Ant Raporu",
+            "D) King-Crane Raporu",
+            "E) Sevr Komisyonu Raporu"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İzmir'in işgalini soruşturan Amiral Bristol Raporu, işgalin haksızlığını ve Yunan zulmünü uluslararası alanda belgelemiştir.",
+          "distractorAciklama": "Harbord Raporu Ermeni meselesiyle; King-Crane manda konusuyla ilgilidir; diğerleri bu içerikte rapor değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mustafa Kemal Atatürk'ün doğup büyüdüğü Selanik şehri günümüzde hangi ülkenin sınırları içindedir?",
+          "secenekler": [
+            "A) Bulgaristan",
+            "B) Kuzey Makedonya",
+            "C) Arnavutluk",
+            "D) Yunanistan",
+            "E) Sırbistan"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Selanik bugün Yunanistan sınırları içindedir ve ülkenin ikinci büyük kentidir.",
+          "distractorAciklama": "Bulgaristan, Kuzey Makedonya, Arnavutluk ve Sırbistan Balkan ülkeleridir ama Selanik bunların hiçbirinde değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mustafa Kemal'in Harf İnkılabı'nı yeni Türk alfabesiyle ilk kez halka tanıttığı yer neresidir?",
+          "secenekler": [
+            "A) Ankara – Ulus Meydanı",
+            "B) İzmir – Kültürpark",
+            "C) Kayseri – Cumhuriyet Meydanı",
+            "D) Bursa – Atatürk Caddesi",
+            "E) İstanbul – Gülhane Parkı"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "9 Ağustos 1928'de İstanbul Gülhane Parkı'nda yaptığı konuşmayla Atatürk yeni harfleri halka tanıtmıştır.",
+          "distractorAciklama": "Ankara, İzmir, Kayseri ve Bursa harf inkılabının tanıtıldığı ilk yer değildir; tanıtım Gülhane Parkı'nda yapılmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Millî Mücadele'de Batı Cephesi hangi antlaşma ile tamamen kapanmıştır?",
+          "secenekler": [
+            "A) Mudanya Ateşkes Antlaşması",
+            "B) Lozan Barış Antlaşması",
+            "C) Gümrü Antlaşması",
+            "D) Ankara Antlaşması",
+            "E) Moskova Antlaşması"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "11 Ekim 1922 Mudanya Ateşkes Antlaşması ile silahlı mücadele sona ermiş, Batı Cephesi kapanmıştır.",
+          "distractorAciklama": "Gümrü Doğu Cephesi'ni, Ankara Güney Cephesi'ni kapatmıştır; Lozan barış antlaşmasıdır; Moskova Sovyetlerle yapılmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye Cumhuriyeti'nin ilk Başbakanı (İcra Vekilleri Heyeti Reisi) kimdir?",
+          "secenekler": [
+            "A) İsmet İnönü",
+            "B) Ali Fethi Okyar",
+            "C) Celal Bayar",
+            "D) Rauf Orbay",
+            "E) Refet Bele"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Cumhuriyet'in ilanının ardından ilk Başbakan İsmet İnönü olmuştur.",
+          "distractorAciklama": "Ali Fethi Okyar farklı dönemlerde başbakanlık yapmıştır ama ilk değildir; Celal Bayar, Rauf Orbay ve Refet Bele ilk başbakan değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye Büyük Millet Meclisi'nin ilk Başkanı (Meclis Reisi) kimdir?",
+          "secenekler": [
+            "A) Ali Fethi Okyar",
+            "B) Kâzım Karabekir",
+            "C) Mustafa Kemal Atatürk",
+            "D) Fevzi Çakmak",
+            "E) Abdülhalik Renda"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "23 Nisan 1920'de açılan TBMM'nin ilk başkanı Mustafa Kemal Atatürk'tür; başkanlık aynı zamanda devlet başkanlığı anlamı taşımıştır.",
+          "distractorAciklama": "Ali Fethi Okyar sonraki meclis başkanlarındandır; Kâzım Karabekir ve Fevzi Çakmak komutanlardır; Abdülhalik Renda daha sonra başkanlık yapmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nin ilk resmî gazetesi hangisidir?",
+          "secenekler": [
+            "A) Takvim-i Vekayi",
+            "B) Tercüman-ı Ahvâl",
+            "C) Ceride-i Havadis",
+            "D) Tasvir-i Efkâr",
+            "E) Vakit"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1831'de II. Mahmud döneminde çıkarılan Takvim-i Vekayi ilk resmî Osmanlı gazetesidir.",
+          "distractorAciklama": "Tercüman-ı Ahvâl ilk ÖZEL gazetedir; Ceride-i Havadis yarı resmîdir; Tasvir-i Efkâr ve Vakit sonraki gazetelerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osmanlı Devleti'nde ilk matbaayı kuran Türk matbaacı kimdir?",
+          "secenekler": [
+            "A) İbrahim Müteferrika",
+            "B) Şinasi",
+            "C) Ahmet Vefik Paşa",
+            "D) Said Efendi",
+            "E) Nedim"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İbrahim Müteferrika, Said Efendi ile birlikte 1727'de ilk Türk matbaasını kurmuştur (ilk basılan kitap Vankulu Lügati'dir).",
+          "distractorAciklama": "Şinasi gazeteci-şairdir; Ahmet Vefik Paşa tiyatroyla anılır; Said Efendi matbaanın kurulmasına destek vermiştir ama kurucu Müteferrika'dır; Nedim şairdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mondros Mütarekesi sonrası işgale uğrayan ilk Osmanlı toprağı neresidir?",
+          "secenekler": [
+            "A) İzmir",
+            "B) Antep",
+            "C) Musul",
+            "D) Adana",
+            "E) Kars"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Mondros'un hemen ardından İngilizler Musul'u işgal etmiştir; bu, mütareke sonrası işgal edilen ilk yerdir.",
+          "distractorAciklama": "İzmir 15 Mayıs 1919'da Yunanlarca işgal edilmiştir (daha sonra); Antep, Adana ve Kars da sonraki işgallerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İzmir'in işgaline karşı ilk kurşunu atarak şehit olan gazeteci kimdir?",
+          "secenekler": [
+            "A) Hasan Tahsin",
+            "B) Namık Kemal",
+            "C) Yahya Kemal",
+            "D) Süleyman Nazif",
+            "E) Ziya Gökalp"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Asıl adı Osman Nevres olan gazeteci Hasan Tahsin, 15 Mayıs 1919'da İzmir'in işgalinde ilk kurşunu atarak şehit olmuştur.",
+          "distractorAciklama": "Namık Kemal ve Yahya Kemal şairlerdir; Süleyman Nazif işgali kınayan yazısıyla ünlüdür ama ilk kurşunu atmamıştır; Ziya Gökalp sosyologdur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Atatürk'ün, Tanin'e alternatif olarak Ankara'da çıkarttığı ve 'benim gazetem' dediği yayın organı hangisidir?",
+          "secenekler": [
+            "A) İrade-i Millîye",
+            "B) Ulus",
+            "C) Cumhuriyet",
+            "D) Anadolu Ajansı",
+            "E) Hâkimiyet-i Millîye"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Atatürk'ün Ankara'da çıkarttığı Hâkimiyet-i Millîye, Millî Mücadele'nin sesi olmuş, sonradan 'Ulus' adını almıştır.",
+          "distractorAciklama": "İrade-i Millîye Sivas'ta çıkmıştır; Ulus, Hâkimiyet-i Millîye'nin sonraki adıdır; Cumhuriyet ayrı bir gazetedir; Anadolu Ajansı bir haber ajansıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'de ilk Anayasa Mahkemesi hangi anayasa ile kurulmuştur?",
+          "secenekler": [
+            "A) 1924 Anayasası",
+            "B) 1982 Anayasası",
+            "C) 1921 Anayasası",
+            "D) 1961 Anayasası",
+            "E) 1876 Kanun-i Esasî"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Anayasa Mahkemesi ilk kez 1961 Anayasası ile kurulmuştur.",
+          "distractorAciklama": "1921 ve 1924 anayasalarında AYM yoktur; 1982 Anayasası AYM'yi yeniden düzenlemiştir ama ilk kuran 1961'dir; Kanun-i Esasî Osmanlı anayasasıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sivas Kongresi sırasında çıkarılan ve Millî Mücadele'nin yayın organı olan gazete hangisidir?",
+          "secenekler": [
+            "A) Hâkimiyet-i Millîye",
+            "B) Takvim-i Vekayi",
+            "C) Tanin",
+            "D) İrade-i Millîye",
+            "E) Peyam-ı Sabah"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "İrade-i Millîye, Sivas Kongresi sırasında çıkarılan ve millî mücadeleyi savunan ilk yayın organıdır.",
+          "distractorAciklama": "Hâkimiyet-i Millîye Ankara'da çıkmıştır; Takvim-i Vekayi resmî Osmanlı gazetesidir; Tanin ve Peyam-ı Sabah İstanbul basınıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-cografya",
+      "baslik": "Coğrafya, Tabiat ve Turizm",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "Dünyanın ilan edilen ilk millî parkı olarak kabul edilen, ABD'deki park hangisidir?",
+          "secenekler": [
+            "A) Yosemite Millî Parkı",
+            "B) Grand Canyon Millî Parkı",
+            "C) Serengeti Millî Parkı",
+            "D) Yellowstone Millî Parkı",
+            "E) Banff Millî Parkı"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1872'de ilan edilen Yellowstone, dünyanın ilk millî parkı kabul edilir.",
+          "distractorAciklama": "Yosemite ve Grand Canyon sonraki ABD parklarıdır; Serengeti Tanzanya'da, Banff Kanada'dadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin yüzölçümü bakımından en büyük gölü hangisidir?",
+          "secenekler": [
+            "A) Tuz Gölü",
+            "B) Beyşehir Gölü",
+            "C) Eğirdir Gölü",
+            "D) Van Gölü",
+            "E) İznik Gölü"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Van Gölü, yaklaşık 3.713 km² ile Türkiye'nin en büyük gölüdür (aynı zamanda en büyük sodalı gölüdür).",
+          "distractorAciklama": "Tuz Gölü ikinci büyüktür; Beyşehir en büyük tatlı su gölüdür; Eğirdir ve İznik daha küçüktür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin en büyük tatlı su gölü hangisidir?",
+          "secenekler": [
+            "A) Van Gölü",
+            "B) Beyşehir Gölü",
+            "C) Tuz Gölü",
+            "D) Eğirdir Gölü",
+            "E) Sapanca Gölü"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Beyşehir Gölü, Türkiye'nin en büyük tatlı su gölüdür.",
+          "distractorAciklama": "Van ve Tuz gölleri tuzlu/sodalıdır; Eğirdir tatlı su gölüdür ama Beyşehir'den küçüktür; Sapanca çok daha küçüktür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin en yüksek dağı hangisidir?",
+          "secenekler": [
+            "A) Erciyes Dağı",
+            "B) Süphan Dağı",
+            "C) Kaçkar Dağı",
+            "D) Ağrı Dağı",
+            "E) Uludağ"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "5.137 m ile Ağrı Dağı Türkiye'nin en yüksek dağıdır.",
+          "distractorAciklama": "Süphan ikinci en yüksektir; Erciyes, Kaçkar ve Uludağ daha alçaktır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'de volkanik patlama sonucu oluşan, 'Dünyanın Nazar Boncuğu' olarak bilinen kurumuş maar gölü hangisidir?",
+          "secenekler": [
+            "A) Salda Gölü",
+            "B) Nemrut Krater Gölü",
+            "C) Meke Gölü",
+            "D) Acıgöl",
+            "E) Çıldır Gölü"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Konya Karapınar'daki Meke Gölü, volkanik kökenli yapısıyla 'Dünyanın Nazar Boncuğu' olarak anılır.",
+          "distractorAciklama": "Salda 'Türkiye'nin Maldivleri'dir; Nemrut krater gölü Bitlis'tedir; Acıgöl ve Çıldır farklı göllerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sakin Şehir (Cittaslow) unvanını Türkiye'de ilk alan ilçe hangisidir?",
+          "secenekler": [
+            "A) Akyaka (Muğla)",
+            "B) Gökçeada (Çanakkale)",
+            "C) Taraklı (Sakarya)",
+            "D) Uzundere (Erzurum)",
+            "E) Seferihisar (İzmir)"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İzmir'in Seferihisar ilçesi, 2009'da Türkiye'nin ilk Cittaslow (Sakin Şehir) unvanını almıştır.",
+          "distractorAciklama": "Akyaka, Gökçeada, Taraklı ve Uzundere de Sakin Şehir'dir ama ilk unvanı Seferihisar almıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk Biyosfer Rezerv Alanı seçilen yer neresidir?",
+          "secenekler": [
+            "A) Camili (Macahel) – Artvin",
+            "B) Küre Dağları – Kastamonu",
+            "C) Uzungöl – Trabzon",
+            "D) Kaz Dağları – Balıkesir",
+            "E) Sultan Sazlığı – Kayseri"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Artvin'deki Camili (Macahel) Havzası, 2005'te Türkiye'nin ilk UNESCO Biyosfer Rezerv Alanı seçilmiştir.",
+          "distractorAciklama": "Küre Dağları millî parktır; Uzungöl, Kaz Dağları ve Sultan Sazlığı önemli doğal alanlardır ama ilk biyosfer rezervi Camili'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Dünyanın en derin ikinci kanyonu kabul edilen ve Uşak'ta bulunan kanyon hangisidir?",
+          "secenekler": [
+            "A) Valla Kanyonu",
+            "B) Köprülü Kanyon",
+            "C) Saklıkent Kanyonu",
+            "D) Ulubey Kanyonu",
+            "E) Karanlık Kanyon"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Uşak'taki Ulubey Kanyonu, ABD'deki Grand Canyon'dan sonra dünyanın en derin ikinci kanyonu kabul edilir.",
+          "distractorAciklama": "Valla Kastamonu'da, Köprülü Antalya'da, Saklıkent Muğla/Antalya'da, Karanlık Kanyon Erzincan'dadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Beyaz travertenleriyle ünlü, 'Pamuk Kale' olarak bilinen ve Denizli'de yer alan UNESCO alanı hangisidir?",
+          "secenekler": [
+            "A) Kaklık Mağarası",
+            "B) Karahayıt",
+            "C) Salda",
+            "D) Kaymaklı",
+            "E) Pamukkale"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Denizli'deki Pamukkale, beyaz travertenleri ve antik Hierapolis kentiyle UNESCO Dünya Mirası'dır.",
+          "distractorAciklama": "Kaklık 'yeraltı Pamukkalesi'dir; Karahayıt kırmızı sulu kaplıcadır; Salda gölüdür; Kaymaklı yeraltı şehridir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Güller Diyarı' ve lavanta üretimiyle (Kuyucak köyü) bilinen ilimiz hangisidir?",
+          "secenekler": [
+            "A) Burdur",
+            "B) Afyonkarahisar",
+            "C) Denizli",
+            "D) Antalya",
+            "E) Isparta"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Isparta, gül ve gülyağı üretimi ile lavanta tarlalarıyla (Kuyucak) 'Güller Diyarı' olarak bilinir.",
+          "distractorAciklama": "Burdur, Afyon, Denizli ve Antalya komşu illerdir ama 'Güller Diyarı' unvanı Isparta'nındır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilan edilen ilk millî parkı hangisidir?",
+          "secenekler": [
+            "A) Yıldız Dağları Millî Parkı",
+            "B) Yozgat Çamlığı Millî Parkı",
+            "C) Uludağ Millî Parkı",
+            "D) Kuşcenneti Millî Parkı",
+            "E) Munzur Vadisi Millî Parkı"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1958'de ilan edilen Yozgat Çamlığı, Türkiye'nin ilk millî parkıdır.",
+          "distractorAciklama": "Uludağ ve Kuşcenneti sonraki parklardır; Yıldız Dağları ve Munzur Vadisi de sonradan ilan edilmiştir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin en yüksek debili (en çok su taşıyan) akarsuyu hangisidir?",
+          "secenekler": [
+            "A) Fırat Nehri",
+            "B) Dicle Nehri",
+            "C) Sakarya Nehri",
+            "D) Kızılırmak",
+            "E) Çoruh Nehri"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Birim alandan en çok su taşıyan (en yüksek debili) akarsuyumuz Çoruh Nehri'dir.",
+          "distractorAciklama": "Kızılırmak en uzun nehirdir; Fırat en çok su toplayan havzadır ama debi/akış hızı bakımından Çoruh öndedir; Dicle ve Sakarya farklıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sınırlarımız içinden doğup ülke dışında denize dökülen en uzun nehrimiz hangisidir?",
+          "secenekler": [
+            "A) Dicle Nehri",
+            "B) Aras Nehri",
+            "C) Çoruh Nehri",
+            "D) Fırat Nehri",
+            "E) Meriç Nehri"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Fırat, Türkiye'de doğar, Suriye-Irak üzerinden Basra Körfezi'ne dökülür; sınır dışında denize ulaşan en uzun nehrimizdir.",
+          "distractorAciklama": "Dicle de sınır dışına gider ama Fırat'tan kısadır; Aras ve Çoruh farklı yönlere akar; Meriç sınır oluşturur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Tuzlu, sığ ve tektonik kökenli; flamingoların önemli kuluçka merkezi olan Ramsar Alanı gölümüz hangisidir?",
+          "secenekler": [
+            "A) Van Gölü",
+            "B) Tuz Gölü",
+            "C) Beyşehir Gölü",
+            "D) Manyas Gölü",
+            "E) Burdur Gölü"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İç Anadolu'daki Tuz Gölü, sığ ve tuzlu yapısıyla flamingoların önemli üreme alanıdır.",
+          "distractorAciklama": "Manyas (Kuşcenneti) kuş cennetidir ama tatlı sudur; Van sodalıdır; Beyşehir tatlı sudur; Burdur ayrı bir göldür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Türkiye'nin Maldivleri' olarak anılan ve Burdur'da yer alan göl hangisidir?",
+          "secenekler": [
+            "A) Meke Gölü",
+            "B) Salda Gölü",
+            "C) Eğirdir Gölü",
+            "D) Acıgöl",
+            "E) Gölhisar Gölü"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Burdur'daki Salda Gölü, beyaz kumları ve turkuaz suyuyla 'Türkiye'nin Maldivleri' olarak bilinir.",
+          "distractorAciklama": "Meke 'Nazar Boncuğu'dur; Eğirdir tatlı su gölüdür; Acıgöl ve Gölhisar farklı göllerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk ve tek UNESCO Küresel Jeoparkı olan, Manisa'daki alan neresidir?",
+          "secenekler": [
+            "A) Kula-Salihli Jeoparkı",
+            "B) Pamukkale Jeoparkı",
+            "C) Kızılcahamam Jeoparkı",
+            "D) Nemrut Jeoparkı",
+            "E) Levent Vadisi Jeoparkı"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Manisa'daki Kula-Salihli (Kuladokya), Türkiye'nin ilk UNESCO Küresel Jeoparkı'dır.",
+          "distractorAciklama": "Diğerleri jeolojik açıdan önemli alanlardır ama UNESCO Küresel Jeoparkı unvanını ilk alan Kula-Salihli'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Erzurum'da bulunan, renkli toprak yapısıyla 'Kırmızı Peri Bacaları' olarak anılan yer neresidir?",
+          "secenekler": [
+            "A) Paşabağ",
+            "B) Narman Peri Bacaları",
+            "C) Kızılçukur Vadisi",
+            "D) Aladağlar",
+            "E) Zelve"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Erzurum Narman'daki peri bacaları, kırmızı toprak yapısıyla 'Kırmızı Peri Bacaları' olarak ünlüdür.",
+          "distractorAciklama": "Paşabağ, Kızılçukur ve Zelve Nevşehir/Kapadokya'dadır; Aladağlar bir dağ silsilesidir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Cennet–Cehennem Obrukları' hangi ilimizin sınırları içindedir?",
+          "secenekler": [
+            "A) Konya (Karapınar)",
+            "B) Antalya (Kaş)",
+            "C) Karaman",
+            "D) Mersin (Silifke)",
+            "E) Adana (Kozan)"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Cennet-Cehennem obrukları (çökme dolinleri), Mersin Silifke'de yer alan doğal oluşumlardır.",
+          "distractorAciklama": "Karapınar obrukları Konya'dadır ama Cennet-Cehennem Silifke'dedir; Antalya, Karaman ve Adana farklıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin yüzölçümü bakımından en büyük ikinci gölü olan, tuzlu göl hangisidir?",
+          "secenekler": [
+            "A) Beyşehir Gölü",
+            "B) Tuz Gölü",
+            "C) Eğirdir Gölü",
+            "D) İznik Gölü",
+            "E) Burdur Gölü"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İç Anadolu'daki Tuz Gölü, Van'dan sonra Türkiye'nin en büyük ikinci gölüdür ve tuz üretiminin önemli bölümünü karşılar.",
+          "distractorAciklama": "Beyşehir en büyük tatlı su gölüdür; Eğirdir, İznik ve Burdur daha küçüktür.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-kultur-sanat",
+      "baslik": "Kültür, Sanat ve Edebiyat",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "'Tarihçilerin Kutbu' ve 'Şeyhü'l-Müverrihîn' unvanlarıyla anılan, Osmanlı iktisat tarihinin öncüsü ünlü Türk tarihçi kimdir?",
+          "secenekler": [
+            "A) Fuat Köprülü",
+            "B) İlber Ortaylı",
+            "C) Ömer Lütfi Barkan",
+            "D) Enver Ziya Karal",
+            "E) Halil İnalcık"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Halil İnalcık, Osmanlı tarihine dair çalışmalarıyla dünyaca tanınmış, 'Tarihçilerin Kutbu' olarak anılmıştır.",
+          "distractorAciklama": "Fuat Köprülü edebiyat tarihçisidir; İlber Ortaylı ve Enver Ziya Karal önemli tarihçilerdir ama bu unvan İnalcık'ındır; Barkan iktisat tarihçisidir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türk edebiyatında 'Vatan Şairi' olarak bilinen ve İntibah romanının yazarı kimdir?",
+          "secenekler": [
+            "A) Şinasi",
+            "B) Ziya Paşa",
+            "C) Namık Kemal",
+            "D) Ahmet Mithat Efendi",
+            "E) Recaizade Mahmut Ekrem"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Namık Kemal, 'Vatan yahut Silistre' oyunu ve İntibah romanıyla tanınan, 'Vatan Şairi' olarak bilinen Tanzimat yazarıdır.",
+          "distractorAciklama": "Şinasi ve Ziya Paşa Tanzimat öncüleridir; Ahmet Mithat halk için yazan romancıdır; Recaizade 'Araba Sevdası' ile tanınır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı şairi Mehmet Akif Ersoy, şiirlerini hangi eserinde toplamıştır?",
+          "secenekler": [
+            "A) Safahat-ı Millet",
+            "B) Çanakkale Destanı",
+            "C) Bülbül",
+            "D) Safahat",
+            "E) Fatih Kürsüsünde"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Mehmet Akif Ersoy'un şiirleri Safahat adlı eserde toplanmıştır (İstiklal Marşı ise Safahat'a alınmamıştır).",
+          "distractorAciklama": "'Bülbül' ve 'Fatih Kürsüsünde' Safahat içindeki bölüm/şiirlerdir; 'Çanakkale Destanı' bir şiirdir; 'Safahat-ı Millet' diye bir eser yoktur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Doğu'nun Limanları', 'Semerkant' ve 'Afrikalı Leo' eserlerinin yazarı Lübnan asıllı yazar kimdir?",
+          "secenekler": [
+            "A) Halil Cibran",
+            "B) Necib Mahfuz",
+            "C) Elif Şafak",
+            "D) Amin Maalouf",
+            "E) Orhan Pamuk"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Fransızca yazan Lübnan asıllı Amin Maalouf, 'Semerkant' ve 'Afrikalı Leo' gibi tarihî romanlarıyla tanınır.",
+          "distractorAciklama": "Halil Cibran 'Ermiş' ile ünlüdür; Necib Mahfuz Mısırlı Nobel'li yazardır; Elif Şafak ve Orhan Pamuk Türk yazarlardır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Dünyaca ünlü 'Küçük Prens' eseri hangi ülkenin edebiyatına aittir?",
+          "secenekler": [
+            "A) İngiltere",
+            "B) Fransa",
+            "C) Almanya",
+            "D) İtalya",
+            "E) Belçika"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Küçük Prens', Fransız yazar Antoine de Saint-Exupéry'nin eseridir.",
+          "distractorAciklama": "İngiltere, Almanya, İtalya ve Belçika edebiyatına ait değildir; eser Fransız edebiyatına aittir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Pamuk Prenses' ve 'Hansel ile Gretel' gibi masalları derleyen Grimm Kardeşler hangi ülkelidir?",
+          "secenekler": [
+            "A) Almanya",
+            "B) Danimarka",
+            "C) Fransa",
+            "D) İngiltere",
+            "E) Hollanda"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Grimm Kardeşler (Jacob ve Wilhelm Grimm), Alman masal derlemecileridir.",
+          "distractorAciklama": "Danimarkalı masalcı Andersen'dir; Grimm Kardeşler Fransız, İngiliz ya da Hollandalı değil Almandır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Eskişehir'deki Odunpazarı Modern Müze'nin (OMM) mimarı olan dünyaca ünlü Japon mimar kimdir?",
+          "secenekler": [
+            "A) Tadao Ando",
+            "B) Kenzo Tange",
+            "C) Kengo Kuma",
+            "D) Toyo Ito",
+            "E) Shigeru Ban"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "OMM'nin mimarı, ahşap kullanımıyla ünlü Japon mimar Kengo Kuma'dır.",
+          "distractorAciklama": "Tadao Ando, Kenzo Tange, Toyo Ito ve Shigeru Ban ünlü Japon mimarlardır ama OMM'yi Kengo Kuma tasarlamıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'İnce Memed' romanıyla tanınan, Nobel Edebiyat Ödülü'ne aday gösterilmiş Türk yazar kimdir?",
+          "secenekler": [
+            "A) Orhan Pamuk",
+            "B) Yaşar Kemal",
+            "C) Kemal Tahir",
+            "D) Sabahattin Ali",
+            "E) Ahmet Hamdi Tanpınar"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yaşar Kemal, 'İnce Memed' ve 'Ortadirek' gibi eserleriyle Nobel'e aday gösterilen ünlü Türk yazardır.",
+          "distractorAciklama": "Orhan Pamuk Nobel'i KAZANMIŞTIR; Kemal Tahir, Sabahattin Ali ve Tanpınar önemli yazarlardır ama 'İnce Memed' Yaşar Kemal'indir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "2006 yılında Nobel Edebiyat Ödülü'nü kazanan ilk Türk yazar kimdir?",
+          "secenekler": [
+            "A) Yaşar Kemal",
+            "B) Nazım Hikmet",
+            "C) Orhan Pamuk",
+            "D) Aziz Nesin",
+            "E) Sait Faik Abasıyanık"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Orhan Pamuk, 2006'da Nobel Edebiyat Ödülü'nü kazanan ilk (ve tek) Türk yazardır.",
+          "distractorAciklama": "Yaşar Kemal aday gösterildi ama kazanamadı; Nazım Hikmet, Aziz Nesin ve Sait Faik Nobel almamıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Türk Plastik Sanatlarının Öncüsü' kabul edilen ve 'Kaplumbağa Terbiyecisi' tablosuyla tanınan ressamımız kimdir?",
+          "secenekler": [
+            "A) İbrahim Çallı",
+            "B) Bedri Rahmi Eyüboğlu",
+            "C) Fikret Mualla",
+            "D) Osman Hamdi Bey",
+            "E) Şeker Ahmet Paşa"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Osman Hamdi Bey, 'Kaplumbağa Terbiyecisi' tablosuyla ünlü, Türk resminin ve müzeciliğinin öncüsüdür.",
+          "distractorAciklama": "İbrahim Çallı ve Şeker Ahmet Paşa önemli ressamlardır; Bedri Rahmi ve Fikret Mualla sonraki dönem sanatçılarıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Osman Hamdi Bey tarafından kurulan ve günümüzde Mimar Sinan Güzel Sanatlar Üniversitesi olan okul hangisidir?",
+          "secenekler": [
+            "A) Darülfünun",
+            "B) Mekteb-i Sultanî",
+            "C) Galatasaray Mektebi",
+            "D) Mekteb-i Mülkiye",
+            "E) Sanayi-i Nefise Mektebi"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1882'de Osman Hamdi Bey'in kurduğu Sanayi-i Nefise Mektebi, bugünkü Mimar Sinan Güzel Sanatlar Üniversitesi'nin temelidir.",
+          "distractorAciklama": "Darülfünun bugünkü İstanbul Üniversitesi'dir; Mekteb-i Mülkiye Ankara SBF'dir; Mekteb-i Sultanî Galatasaray Lisesi'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Mona Lisa' ve 'Son Akşam Yemeği' tablolarının sahibi ünlü İtalyan Rönesans sanatçısı kimdir?",
+          "secenekler": [
+            "A) Michelangelo",
+            "B) Raffaello",
+            "C) Sandro Botticelli",
+            "D) Leonardo da Vinci",
+            "E) Donatello"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Leonardo da Vinci, 'Mona Lisa' ve 'Son Akşam Yemeği' ile Rönesans'ın en ünlü sanatçısıdır.",
+          "distractorAciklama": "Michelangelo 'Davut' heykeli ve Sistine tavanıyla; Raffaello 'Atina Okulu' ile; Botticelli 'Venüs'ün Doğuşu' ile tanınır; Donatello heykeltıraştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Dışavurumculuğun simgesi kabul edilen 'Çığlık' (The Scream) tablosu hangi ressama aittir?",
+          "secenekler": [
+            "A) Vincent van Gogh",
+            "B) Pablo Picasso",
+            "C) Salvador Dalí",
+            "D) Claude Monet",
+            "E) Edvard Munch"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Çığlık', Norveçli ressam Edvard Munch'un eseridir.",
+          "distractorAciklama": "Van Gogh 'Yıldızlı Gece' ile; Picasso 'Guernica' ile; Dalí sürrealizmle; Monet empresyonizmle anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türk edebiyatında ilk yerli roman kabul edilen 'Taaşşuk-ı Talat ve Fitnat' eserinin yazarı kimdir?",
+          "secenekler": [
+            "A) Namık Kemal",
+            "B) Ahmet Mithat Efendi",
+            "C) Recaizade Mahmut Ekrem",
+            "D) Şemsettin Sami",
+            "E) Halit Ziya Uşaklıgil"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Şemsettin Sami'nin 'Taaşşuk-ı Talat ve Fitnat' eseri ilk yerli roman kabul edilir.",
+          "distractorAciklama": "Namık Kemal'in İntibah'ı; Recaizade'nin Araba Sevdası (ilk realist roman); Halit Ziya'nın Aşk-ı Memnu (ilk edebî/olgun roman) sonraki eserlerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türk edebiyatında ilk psikolojik roman kabul edilen 'Eylül' kimin eseridir?",
+          "secenekler": [
+            "A) Mehmet Rauf",
+            "B) Halit Ziya Uşaklıgil",
+            "C) Peyami Safa",
+            "D) Yakup Kadri Karaosmanoğlu",
+            "E) Reşat Nuri Güntekin"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Mehmet Rauf'un 'Eylül' romanı, Türk edebiyatında ilk psikolojik roman kabul edilir.",
+          "distractorAciklama": "Peyami Safa'nın 'Dokuzuncu Hariciye Koğuşu' da psikolojik romandır ama İLKİ Eylül'dür; Halit Ziya, Yakup Kadri ve Reşat Nuri farklı eserlerle anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Kendi Gök Kubbemiz' ve 'Aziz İstanbul' eserleriyle tanınan şairimiz kimdir?",
+          "secenekler": [
+            "A) Ahmet Haşim",
+            "B) Yahya Kemal Beyatlı",
+            "C) Necip Fazıl Kısakürek",
+            "D) Faruk Nafiz Çamlıbel",
+            "E) Cahit Sıtkı Tarancı"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yahya Kemal Beyatlı, İstanbul ve Osmanlı estetiğini işleyen 'Kendi Gök Kubbemiz' ve 'Aziz İstanbul' ile tanınır.",
+          "distractorAciklama": "Ahmet Haşim 'Piyale' ile; Necip Fazıl 'Çile' ile; Faruk Nafiz 'Han Duvarları' ile; Cahit Sıtkı '35 Yaş' ile anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Dünyaca ünlü 'Don Kişot' romanının yazarı kimdir?",
+          "secenekler": [
+            "A) Lope de Vega",
+            "B) Gabriel García Márquez",
+            "C) Fyodor Dostoyevski",
+            "D) Dante Alighieri",
+            "E) Miguel de Cervantes"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Don Kişot', İspanyol yazar Miguel de Cervantes'in başyapıtıdır.",
+          "distractorAciklama": "Lope de Vega İspanyol oyun yazarıdır; Márquez Kolombiyalıdır; Dostoyevski Rus, Dante İtalyan yazardır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Sefiller' ve 'Notre Dame'ın Kamburu' eserlerinin yazarı Fransız edebiyatçı kimdir?",
+          "secenekler": [
+            "A) Émile Zola",
+            "B) Honoré de Balzac",
+            "C) Gustave Flaubert",
+            "D) Victor Hugo",
+            "E) Alexandre Dumas"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Victor Hugo, 'Sefiller' ve 'Notre Dame'ın Kamburu' ile Fransız romantizminin en büyük yazarlarındandır.",
+          "distractorAciklama": "Zola natüralizmle; Balzac 'İnsanlık Komedyası' ile; Flaubert 'Madam Bovary' ile; Dumas 'Üç Silahşörler' ile anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı şairi olan ve 'Çanakkale Şehitlerine' şiirini de yazan isim kimdir?",
+          "secenekler": [
+            "A) Yahya Kemal Beyatlı",
+            "B) Namık Kemal",
+            "C) Mehmet Akif Ersoy",
+            "D) Ziya Gökalp",
+            "E) Süleyman Nazif"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hem İstiklal Marşı'nı hem 'Çanakkale Şehitlerine' şiirini yazan isim Mehmet Akif Ersoy'dur.",
+          "distractorAciklama": "Yahya Kemal, Namık Kemal, Ziya Gökalp ve Süleyman Nazif önemli isimlerdir ama bu iki eser Mehmet Akif'indir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Cumhurbaşkanlığı Kültür ve Sanat Büyük Ödülleri'nde adı 'Vefa Ödülü' ile birlikte anılan, Osmanlı klasik mimarisinin zirvesi kabul edilen mimarımız kimdir?",
+          "secenekler": [
+            "A) Mimar Sinan",
+            "B) Sedefkâr Mehmed Ağa",
+            "C) Mimar Kemaleddin",
+            "D) Mimar Vedat Tek",
+            "E) Balyan Ailesi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Mimar Sinan, Selimiye ve Süleymaniye gibi eserleriyle klasik Osmanlı mimarisinin en büyük ustasıdır.",
+          "distractorAciklama": "Sedefkâr Mehmed Ağa Sultanahmet'i; Kemaleddin ve Vedat Tek I. Ulusal Mimarlık akımını; Balyan Ailesi Dolmabahçe'yi yapmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-vatandaslik",
+      "baslik": "Anayasa, Hukuk ve Devlet Teşkilatı",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "1982 Anayasası'na göre Anayasa Mahkemesi kaç üyeden oluşur?",
+          "secenekler": [
+            "A) 11 üye",
+            "B) 13 üye",
+            "C) 17 üye",
+            "D) 21 üye",
+            "E) 15 üye"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1982 Anayasası'na göre Anayasa Mahkemesi 15 üyeden oluşur.",
+          "distractorAciklama": "11 ve 17 farklı dönem/yanlış sayılardır; HSK 13 üyelidir (karıştırılır); 21 doğru değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Anayasa Mahkemesi üyelerinin görev süresi kaç yıldır?",
+          "secenekler": [
+            "A) 9 yıl",
+            "B) 7 yıl",
+            "C) 6 yıl",
+            "D) 12 yıl",
+            "E) Süresiz"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "AYM üyeleri 12 yıl için seçilir ve bir kişi iki kez seçilemez.",
+          "distractorAciklama": "9, 7 ve 6 yıl farklı kurumların süreleridir; görev süresizlik yaş sınırı (65) ile sınırlanır ama esas süre 12 yıldır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Hâkimler ve Savcılar Kurulu (HSK) kaç üyeden oluşur ve başkanı kimdir?",
+          "secenekler": [
+            "A) 13 üye – Adalet Bakanı",
+            "B) 15 üye – Cumhurbaşkanı",
+            "C) 11 üye – HSK Genel Sekreteri",
+            "D) 22 üye – Adalet Bakanı",
+            "E) 17 üye – Yargıtay Başkanı"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "HSK 13 üyeden oluşur ve Kurulun Başkanı Adalet Bakanı'dır.",
+          "distractorAciklama": "AYM 15 üyelidir (karıştırılır); HSK başkanı Cumhurbaşkanı ya da Yargıtay Başkanı değil, Adalet Bakanı'dır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'de milletvekili seçilme yaşı kaçtır?",
+          "secenekler": [
+            "A) 25 yaş",
+            "B) 30 yaş",
+            "C) 21 yaş",
+            "D) 40 yaş",
+            "E) 18 yaş"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2017 değişikliğiyle milletvekili seçilme yaşı 18'e indirilmiştir.",
+          "distractorAciklama": "Eski düzenlemede 25 ve 30 gibi yaşlar geçmiştir; Cumhurbaşkanı seçilme yaşı 40'tır (karıştırılır).",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "TBMM Genel Kurulu'nda karar yeter sayısı, Anayasa'da daha yüksek bir sayı öngörülmedikçe en az kaçtır?",
+          "secenekler": [
+            "A) Üye tamsayısının salt çoğunluğu (301)",
+            "B) Üye tamsayısının 1/3'ü (200)",
+            "C) Üye tamsayısının 1/4'ünün 1 fazlası (151)",
+            "D) Toplantıya katılanların yarısı",
+            "E) Üye tamsayısının 2/3'ü (400)"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Karar yeter sayısı, toplantıya katılanların salt çoğunluğudur ama bu sayı üye tamsayısının dörtte birinin bir fazlasından (151) az olamaz.",
+          "distractorAciklama": "301 salt çoğunluktur (toplantı/özel oylamalar); 200, 400 farklı nitelikli çoğunluklardır; 'katılanların yarısı' asgari sınırı karşılamaz.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Devlet Denetleme Kurulu (DDK) nereye bağlıdır?",
+          "secenekler": [
+            "A) TBMM'ye",
+            "B) Cumhurbaşkanlığına",
+            "C) Başbakanlığa",
+            "D) Adalet Bakanlığına",
+            "E) Sayıştaya"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "DDK, Cumhurbaşkanlığına bağlı olarak idarenin hukuka uygunluğunu ve düzenli işleyişini denetler.",
+          "distractorAciklama": "Başbakanlık kaldırılmıştır; TBMM'ye Sayıştay/Ombudsman bağlıdır; DDK yargı ve silahlı kuvvetler dışında denetim yapar.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Devlet Denetleme Kurulu (DDK) aşağıdakilerden hangisini denetleyemez?",
+          "secenekler": [
+            "A) Kamu kurumu niteliğindeki meslek kuruluşlarını",
+            "B) Kamu iktisadi teşebbüslerini",
+            "C) Kamuya yararlı dernekleri",
+            "D) Vakıfları",
+            "E) Yargı organlarını"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "DDK, yargı organlarını (ve Silahlı Kuvvetleri) denetleyemez; bunun dışındaki kamu kurum ve kuruluşlarını denetleyebilir.",
+          "distractorAciklama": "Meslek kuruluşları, KİT'ler, kamuya yararlı dernek ve vakıflar DDK'nın denetim alanındadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sayıştay kimin adına denetim yapar?",
+          "secenekler": [
+            "A) TBMM adına",
+            "B) Cumhurbaşkanı adına",
+            "C) Adalet Bakanlığı adına",
+            "D) Danıştay adına",
+            "E) Hazine adına"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Sayıştay, kamu idarelerinin gelir-gider ve mallarını TBMM adına denetler.",
+          "distractorAciklama": "Sayıştay yürütmeye değil yasamaya (TBMM) hesap verir; Cumhurbaşkanı, Danıştay ya da Hazine adına denetim yapmaz.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Kamu Başdenetçiliği Kurumu (Ombudsmanlık) nereye bağlı olarak kurulmuştur?",
+          "secenekler": [
+            "A) Cumhurbaşkanlığına",
+            "B) Adalet Bakanlığına",
+            "C) Danıştaya",
+            "D) İçişleri Bakanlığına",
+            "E) TBMM Başkanlığına"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kamu Denetçiliği Kurumu, TBMM Başkanlığına bağlı olarak idarenin işleyişiyle ilgili şikâyetleri inceler.",
+          "distractorAciklama": "DDK Cumhurbaşkanlığına bağlıdır (karıştırılır); Ombudsman yargı ya da bakanlığa değil TBMM'ye bağlıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Siyasi partilerin kapatılması davalarına hangi mahkeme bakar?",
+          "secenekler": [
+            "A) Yargıtay",
+            "B) Anayasa Mahkemesi",
+            "C) Danıştay",
+            "D) Uyuşmazlık Mahkemesi",
+            "E) Bölge Adliye Mahkemesi"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Siyasi parti kapatma davaları, Yargıtay Cumhuriyet Başsavcısı'nın açtığı dava üzerine Anayasa Mahkemesi'nde görülür.",
+          "distractorAciklama": "Yargıtay Cumhuriyet Başsavcısı davayı AÇAR ama davaya AYM bakar; Danıştay idari yargı, Uyuşmazlık Mahkemesi görev uyuşmazlıklarına bakar.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "1982 Anayasası'na göre yasama yetkisi kime aittir?",
+          "secenekler": [
+            "A) Türk Milleti adına TBMM'ye",
+            "B) Cumhurbaşkanına",
+            "C) Bakanlar Kuruluna",
+            "D) Türk Milleti adına Cumhurbaşkanına",
+            "E) Danıştaya"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yasama yetkisi, Türk Milleti adına Türkiye Büyük Millet Meclisi'nindir ve devredilemez.",
+          "distractorAciklama": "Yürütme Cumhurbaşkanınındır (karıştırılır); Bakanlar Kurulu kaldırılmıştır; yasama yalnızca TBMM'ye aittir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "1982 Anayasası'na (2017 değişikliği sonrası) göre yürütme yetkisi ve görevi kime aittir?",
+          "secenekler": [
+            "A) Cumhurbaşkanı ve Bakanlar Kuruluna",
+            "B) Başbakana",
+            "C) TBMM'ye",
+            "D) Cumhurbaşkanına",
+            "E) Cumhurbaşkanı ve TBMM'ye"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Cumhurbaşkanlığı hükümet sisteminde yürütme yetkisi ve görevi Cumhurbaşkanına aittir.",
+          "distractorAciklama": "Başbakanlık ve Bakanlar Kurulu kaldırılmıştır; yürütme artık tek başına Cumhurbaşkanınındır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Anayasa Mahkemesi Başkanını kim seçer?",
+          "secenekler": [
+            "A) Cumhurbaşkanı seçer",
+            "B) TBMM seçer",
+            "C) HSK seçer",
+            "D) Anayasa Mahkemesi üyeleri kendi aralarından seçer",
+            "E) Yargıtay Genel Kurulu seçer"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "AYM Başkanı, mahkeme üyeleri tarafından kendi aralarından dört yıl için seçilir.",
+          "distractorAciklama": "Cumhurbaşkanı ve TBMM üyeleri seçer ama başkanı üyeler kendi arasından belirler; HSK ve Yargıtay bu seçimi yapmaz.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Danıştay üyelerinin dörtte üçünü (3/4) kim seçer?",
+          "secenekler": [
+            "A) Cumhurbaşkanı",
+            "B) TBMM",
+            "C) Danıştay Genel Kurulu",
+            "D) Adalet Bakanı",
+            "E) Hâkimler ve Savcılar Kurulu (HSK)"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Danıştay üyelerinin 3/4'ünü HSK, kalan 1/4'ünü Cumhurbaşkanı seçer.",
+          "distractorAciklama": "Cumhurbaşkanı yalnızca 1/4'ünü seçer; TBMM, Danıştay Genel Kurulu ve Adalet Bakanı bu seçimi yapmaz.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sıkıyönetim ve olağanüstü hâl ayrımındaki 'sıkıyönetim' kavramı, Anayasa'dan hangi değişiklikle çıkarılmıştır?",
+          "secenekler": [
+            "A) 2017 Anayasa değişikliği",
+            "B) 2010 Anayasa değişikliği",
+            "C) 2007 Anayasa değişikliği",
+            "D) 1995 Anayasa değişikliği",
+            "E) 2001 Anayasa değişikliği"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2017 Anayasa değişikliğiyle 'sıkıyönetim' kavramı kaldırılmış, yalnızca 'olağanüstü hâl' bırakılmıştır.",
+          "distractorAciklama": "2010, 2007, 2001 ve 1995 değişiklikleri farklı düzenlemeler içerir; sıkıyönetimi kaldıran 2017'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Bir milletvekilinin milletvekilliği hangi durumda kendiliğinden (re'sen) düşer?",
+          "secenekler": [
+            "A) Partisinden istifa etmesi durumunda",
+            "B) Bir oturuma katılmaması durumunda",
+            "C) Yurt dışına çıkması durumunda",
+            "D) Milletvekili maaşını reddetmesi durumunda",
+            "E) Cumhurbaşkanı, Cumhurbaşkanı Yardımcısı veya Bakan seçilmesi durumunda"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Bakan/Cumhurbaşkanı Yardımcısı ya da Cumhurbaşkanı seçilen kişinin milletvekilliği kendiliğinden düşer.",
+          "distractorAciklama": "Partiden istifa milletvekilliğini düşürmez; oturuma katılmama, yurt dışı ve maaş reddi kendiliğinden düşme sebebi değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Milli Güvenlik Kurulu'nun (MGK) gündemini kim belirler?",
+          "secenekler": [
+            "A) Cumhurbaşkanı",
+            "B) Genelkurmay Başkanı",
+            "C) İçişleri Bakanı",
+            "D) TBMM Başkanı",
+            "E) Milli Savunma Bakanı"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "MGK'nın gündemi, Cumhurbaşkanı Yardımcıları ve Genelkurmay Başkanı'nın önerileri dikkate alınarak Cumhurbaşkanı tarafından belirlenir.",
+          "distractorAciklama": "Genelkurmay Başkanı ve bakanlar öneride bulunur ama gündemi Cumhurbaşkanı belirler.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-bilim-sahsiyet",
+      "baslik": "Bilim, Şahsiyetler ve İlkler",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "2015 yılında Nobel Kimya Ödülü'nü kazanan Türk bilim insanı kimdir?",
+          "secenekler": [
+            "A) Oktay Sinanoğlu",
+            "B) Cahit Arf",
+            "C) Aziz Sancar",
+            "D) Feryal Özel",
+            "E) Canan Dağdeviren"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Aziz Sancar, DNA onarımı üzerine çalışmalarıyla 2015 Nobel Kimya Ödülü'nü kazanmıştır.",
+          "distractorAciklama": "Oktay Sinanoğlu ve Cahit Arf ünlü bilim insanlarıdır ama Nobel almamıştır; Feryal Özel astrofizikçi, Canan Dağdeviren mühendistir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Tarihte bilinen ilk kadın hükümdar kabul edilen, Sakaların (İskitlerin) kraliçesi kimdir?",
+          "secenekler": [
+            "A) Nene Hatun",
+            "B) Kösem Sultan",
+            "C) Halime Hatun",
+            "D) Ayşe Hafsa Sultan",
+            "E) Tomris Hatun"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Saka (İskit) hükümdarı Tomris Hatun, tarihin bilinen ilk kadın hükümdarı kabul edilir (Pers kralı Kiros'u yenmiştir).",
+          "distractorAciklama": "Nene Hatun Aziziye kahramanıdır; Kösem ve Ayşe Hafsa Sultan Osmanlı valide sultanlarıdır; Halime Hatun efsanevi bir figürdür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sosyolojinin kurucusu kabul edilen ve 'Mukaddime' adlı eserin sahibi İslam bilgini kimdir?",
+          "secenekler": [
+            "A) İbn-i Haldun",
+            "B) Farabi",
+            "C) İbn-i Sina",
+            "D) Biruni",
+            "E) Gazali"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İbn-i Haldun, 'Mukaddime' eseriyle tarih felsefesi ve sosyolojinin öncüsü kabul edilir.",
+          "distractorAciklama": "Farabi felsefeyle; İbn-i Sina tıpla; Biruni astronomi-coğrafyayla; Gazali kelam/tasavvufla anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Avrupa'da 'Avicenna' adıyla tanınan, 'El-Kanun fi't-Tıbb' eserinin sahibi bilim insanı kimdir?",
+          "secenekler": [
+            "A) İbn-i Rüşd",
+            "B) Râzî",
+            "C) İbn-i Haldun",
+            "D) Zehravi",
+            "E) İbn-i Sina"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İbn-i Sina (Avicenna), 'El-Kanun fi't-Tıbb' ile yüzyıllarca Avrupa tıp eğitiminin temel kaynağı olmuştur.",
+          "distractorAciklama": "İbn-i Rüşd (Averroes) filozoftur; Râzî ve Zehravi de hekimlerdir ama bu eser İbn-i Sina'nındır; İbn-i Haldun sosyologdur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Cebir biliminin kurucusu kabul edilen ve sayı sistemlerinin gelişimine katkı sunan İslam bilgini kimdir?",
+          "secenekler": [
+            "A) Ali Kuşçu",
+            "B) Uluğ Bey",
+            "C) Battani",
+            "D) Cezerî",
+            "E) Harezmî"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "El-Harezmî, 'el-Cebir ve'l-Mukabele' eseriyle cebrin kurucusu kabul edilir; 'algoritma' terimi de adından türemiştir.",
+          "distractorAciklama": "Ali Kuşçu ve Uluğ Bey astronomdur; Battani astronomi-matematikle; Cezerî robotik/mekanikle anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Fatih Sultan Mehmet'in İstanbul'un fethinde yanında bulunan ve Semerkant'tan getirdiği ünlü matematikçi-astronom kimdir?",
+          "secenekler": [
+            "A) Ali Kuşçu",
+            "B) Uluğ Bey",
+            "C) Takiyüddin",
+            "D) Akşemseddin",
+            "E) Molla Gürani"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Ali Kuşçu, Semerkant'tan İstanbul'a gelerek Fatih döneminde astronomi ve matematik alanında önemli çalışmalar yapmıştır.",
+          "distractorAciklama": "Uluğ Bey Semerkant'ta kalmıştır; Takiyüddin sonraki dönem astronomudur; Akşemseddin ve Molla Gürani Fatih'in hocalarıdır ama matematikçi-astronom değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İlk Türk denizcisi kabul edilen ve donanma kurarak 1081'in Türk Deniz Kuvvetleri'nin kuruluş yılı sayılmasını sağlayan komutan kimdir?",
+          "secenekler": [
+            "A) Barbaros Hayrettin Paşa",
+            "B) Turgut Reis",
+            "C) Piri Reis",
+            "D) Kılıç Ali Paşa",
+            "E) Çaka Bey"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İzmir merkezli bir beylik kuran Çaka Bey, ilk Türk denizcisi kabul edilir; 1081 Türk Deniz Kuvvetleri'nin kuruluş yılı sayılır.",
+          "distractorAciklama": "Barbaros, Turgut Reis, Piri Reis ve Kılıç Ali Paşa Osmanlı denizcileridir, çok daha sonraki dönemlere aittir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İlk Türk kadın tiyatro (sahne) oyuncusu kimdir?",
+          "secenekler": [
+            "A) Bedia Muvahhit",
+            "B) Cahide Sonku",
+            "C) Afife Jale",
+            "D) Neyyire Neyir",
+            "E) Münir Nurettin Selçuk"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Afife Jale, Müslüman-Türk kadınların sahneye çıkmasının yasak olduğu bir dönemde sahneye çıkan ilk Türk kadın tiyatro oyuncusudur.",
+          "distractorAciklama": "Bedia Muvahhit ilk Türk sinema oyuncularındandır; Cahide Sonku ve Neyyire Neyir sonraki sanatçılardır; Münir Nurettin bir müzisyendir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İlk Türk kadın pilotumuz kimdir?",
+          "secenekler": [
+            "A) Bedriye Tahir Gökmen",
+            "B) Vecihi Hürkuş",
+            "C) Sabiha Gökçen",
+            "D) Eribe Hatun",
+            "E) Belkıs Şevket"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Atatürk'ün manevi kızı Sabiha Gökçen, dünyanın ilk kadın savaş pilotlarından ve Türkiye'nin ilk kadın pilotudur.",
+          "distractorAciklama": "Vecihi Hürkuş erkek bir havacı ve uçak tasarımcısıdır; diğerleri ilk kadın pilot değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Muallim-i Sânî' (İkinci Öğretmen) olarak anılan ünlü İslam filozofu kimdir?",
+          "secenekler": [
+            "A) İbn-i Sina",
+            "B) Farabi",
+            "C) Kindî",
+            "D) İbn-i Rüşd",
+            "E) Gazali"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Aristoteles'e 'Muallim-i Evvel' (İlk Öğretmen), Farabi'ye ise 'Muallim-i Sânî' (İkinci Öğretmen) denir.",
+          "distractorAciklama": "İbn-i Sina, Kindî, İbn-i Rüşd ve Gazali önemli filozoflardır ama bu unvan Farabi'ye aittir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Sibernetik ve robotik biliminin öncüsü kabul edilen, su saatleri ve otomatik makineleriyle ünlü Artuklu dönemi bilim insanı kimdir?",
+          "secenekler": [
+            "A) Harezmî",
+            "B) El-Cezerî",
+            "C) İbn-i Heysem",
+            "D) Battani",
+            "E) Ali Kuşçu"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Cizreli El-Cezerî, otomatik makineleri ve mekanik icatlarıyla robotik/sibernetiğin öncüsü kabul edilir.",
+          "distractorAciklama": "Harezmî cebir; İbn-i Heysem optik; Battani astronomi; Ali Kuşçu astronomi alanında öne çıkar.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mikrobun (hastalık yapan canlıların) varlığını yüzyıllar önce dile getiren ve Fatih Sultan Mehmet'in hocası olan âlim kimdir?",
+          "secenekler": [
+            "A) Akşemseddin",
+            "B) Molla Gürani",
+            "C) Ali Kuşçu",
+            "D) Hoca Sadeddin",
+            "E) Zenbilli Ali Efendi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Akşemseddin, hastalıkların gözle görülmeyen canlılardan (mikroplardan) bulaştığını belirtmiş, Fatih'in hocalığını yapmıştır.",
+          "distractorAciklama": "Molla Gürani Fatih'in bir diğer hocasıdır; Ali Kuşçu astronomdur; Hoca Sadeddin ve Zenbilli Ali Efendi sonraki dönem âlimleridir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Piri Reis'in ceylan derisine çizdiği ünlü dünya haritasını sunduğu Osmanlı padişahı kimdir?",
+          "secenekler": [
+            "A) Kanuni Sultan Süleyman",
+            "B) Yavuz Sultan Selim",
+            "C) Fatih Sultan Mehmet",
+            "D) II. Bayezid",
+            "E) II. Selim"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Piri Reis, 1513'te çizdiği ünlü haritasını 1517'de Mısır'da Yavuz Sultan Selim'e sunmuştur.",
+          "distractorAciklama": "Kanuni, Fatih, II. Bayezid ve II. Selim farklı dönemlerin padişahlarıdır; harita Yavuz'a sunulmuştur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Cihannüma' adlı coğrafya eseriyle tanınan ünlü Osmanlı bilgini kimdir?",
+          "secenekler": [
+            "A) Evliya Çelebi",
+            "B) Kâtip Çelebi",
+            "C) Piri Reis",
+            "D) Seydi Ali Reis",
+            "E) Takiyüddin"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kâtip Çelebi (Hacı Halife), 'Cihannüma' adlı coğrafya eseri ve 'Keşfü'z-Zünûn' bibliyografyasıyla tanınır.",
+          "distractorAciklama": "Evliya Çelebi 'Seyahatname' ile; Piri Reis harita/Kitab-ı Bahriye ile; Seydi Ali Reis denizcilikle; Takiyüddin astronomiyle anılır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk kadın kimyageri kimdir?",
+          "secenekler": [
+            "A) Safiye Ali",
+            "B) Jale İnan",
+            "C) Süreyya Ağaoğlu",
+            "D) Halide Edib Adıvar",
+            "E) Remziye Hisar"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Remziye Hisar, Türkiye'nin ilk kadın kimyagerlerindendir.",
+          "distractorAciklama": "Safiye Ali ilk kadın hekim; Jale İnan ilk kadın arkeolog; Süreyya Ağaoğlu ilk kadın avukat; Halide Edib yazardır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk kadın arkeoloğu kimdir?",
+          "secenekler": [
+            "A) Halet Çambel",
+            "B) Muazzez İlmiye Çığ",
+            "C) Afet İnan",
+            "D) Remziye Hisar",
+            "E) Jale İnan"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Jale İnan, Türkiye'nin ilk kadın arkeoloğu kabul edilir (Side ve Perge kazılarıyla tanınır).",
+          "distractorAciklama": "Halet Çambel ve Muazzez İlmiye Çığ da önemli arkeolog/hititologlardır; Afet İnan tarihçi-sosyolog; Remziye Hisar kimyagerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk kadın hekimi (doktoru) kimdir?",
+          "secenekler": [
+            "A) Müfide Küley",
+            "B) Safiye Ali",
+            "C) Pakize İzzet Tarzi",
+            "D) Remziye Hisar",
+            "E) Türkan Saylan"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Safiye Ali, Türkiye'nin tıp diploması alan ilk kadın hekimidir.",
+          "distractorAciklama": "Müfide Küley ve Pakize İzzet Tarzi sonraki dönem hekimleridir; Remziye Hisar kimyager; Türkan Saylan çağdaş bir hekimdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin ilk kadın avukatı kimdir?",
+          "secenekler": [
+            "A) Beyhan Cenap",
+            "B) Melahat Ruacan",
+            "C) Süreyya Ağaoğlu",
+            "D) Safiye Ali",
+            "E) Jale İnan"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Süreyya Ağaoğlu, Türkiye'nin ilk kadın avukatıdır.",
+          "distractorAciklama": "Melahat Ruacan ilk kadın hâkim/Yargıtay üyesidir; Safiye Ali hekim, Jale İnan arkeologdur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'de ilk kadın muhtar kimdir?",
+          "secenekler": [
+            "A) Gül Esin",
+            "B) Sabiha Gökçen",
+            "C) Halide Edib",
+            "D) Nezihe Muhiddin",
+            "E) Lale Aytaman"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Aydın-Çine Karpuzlu'da görev yapan Gül Esin (Hatun), Türkiye'nin ilk kadın muhtarıdır.",
+          "distractorAciklama": "Sabiha Gökçen ilk kadın pilot; Nezihe Muhiddin kadın hakları öncüsü; Lale Aytaman ilk kadın validir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye Cumhuriyeti'nin ilk kadın valisi kimdir?",
+          "secenekler": [
+            "A) Gül Esin",
+            "B) Süreyya Ağaoğlu",
+            "C) Türkan Akyol",
+            "D) Lale Aytaman",
+            "E) Nezihe Muhiddin"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Lale Aytaman, 1991'de Muğla Valisi olarak Türkiye'nin ilk kadın valisi olmuştur.",
+          "distractorAciklama": "Türkan Akyol ilk kadın bakan/rektördür; Gül Esin ilk kadın muhtar; Süreyya Ağaoğlu ilk kadın avukattır.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-unesco",
+      "baslik": "UNESCO ve Tarihi Miras",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "Dünyanın bilinen en eski tapınak kompleksi kabul edilen ve Şanlıurfa'da bulunan UNESCO mirası hangisidir?",
+          "secenekler": [
+            "A) Göbeklitepe",
+            "B) Çatalhöyük",
+            "C) Nemrut Dağı",
+            "D) Karahantepe",
+            "E) Arslantepe"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Şanlıurfa'daki Göbeklitepe (~12.000 yıl), bilinen en eski tapınak kompleksi olarak 'tarihin sıfır noktası' sayılır.",
+          "distractorAciklama": "Çatalhöyük Konya'da bir Neolitik yerleşimdir; Karahantepe Göbeklitepe'nin kardeş alanıdır ama daha sonra öne çıkmıştır; Nemrut ve Arslantepe farklıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Göbeklitepe'ye 'kardeş' gösterilen ve son kazılarla önem kazanan, Şanlıurfa'daki arkeolojik alan hangisidir?",
+          "secenekler": [
+            "A) Çatalhöyük",
+            "B) Alacahöyük",
+            "C) Kültepe",
+            "D) Karahantepe",
+            "E) Aslantepe"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Şanlıurfa'daki Karahantepe, Göbeklitepe ile aynı kültür bölgesine ait (Taş Tepeler) önemli bir Neolitik alandır.",
+          "distractorAciklama": "Çatalhöyük Konya'da; Alacahöyük ve Kültepe Orta Anadolu'da; Aslantepe Malatya'dadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'nin UNESCO Dünya Mirası Listesi'ne alınan, Ankara Polatlı'daki 'Kral Midas'ın Kenti' olarak da bilinen antik kent hangisidir?",
+          "secenekler": [
+            "A) Hattuşaş",
+            "B) Sagalassos",
+            "C) Aizanoi",
+            "D) Gordion",
+            "E) Pessinus"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Ankara Polatlı'daki Gordion, Frig Krallığı'nın başkenti ve Kral Midas'ın kentidir; UNESCO listesindedir.",
+          "distractorAciklama": "Hattuşaş Çorum'da Hitit başkentidir; Sagalassos Burdur'da; Aizanoi Kütahya'da; Pessinus farklı bir Frig kentidir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Mimar Sinan'ın 'ustalık eserim' dediği ve UNESCO Dünya Mirası Listesi'nde yer alan yapı hangisidir?",
+          "secenekler": [
+            "A) Süleymaniye Camii (İstanbul)",
+            "B) Şehzade Camii (İstanbul)",
+            "C) Sultanahmet Camii (İstanbul)",
+            "D) Mihrimah Sultan Camii",
+            "E) Selimiye Camii (Edirne)"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Mimar Sinan, Edirne'deki Selimiye Camii için 'ustalık eserim' demiştir; cami UNESCO listesindedir.",
+          "distractorAciklama": "Süleymaniye 'kalfalık', Şehzade 'çıraklık' eseridir; Sultanahmet'i Sedefkâr Mehmed Ağa yapmıştır; Mihrimah Sultan farklı bir eserdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Binbir Kilise Şehri' olarak bilinen ve Kars'ta yer alan UNESCO Dünya Mirası alanı hangisidir?",
+          "secenekler": [
+            "A) Sümela Manastırı",
+            "B) Akdamar Kilisesi",
+            "C) Mren Katedrali",
+            "D) Işhan Manastırı",
+            "E) Ani Arkeolojik Alanı"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kars'taki Ani, ortaçağın önemli bir ticaret ve din merkezi olup 'Binbir Kilise Şehri' olarak anılır; UNESCO listesindedir.",
+          "distractorAciklama": "Sümela Trabzon'da; Akdamar Van'da; Mren ve Işhan da tarihî yapılardır ama 'Binbir Kilise' Ani'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Çanakkale'de bulunan ve Homeros'un 'İlyada' destanına konu olan antik kent hangisidir?",
+          "secenekler": [
+            "A) Assos",
+            "B) Troya (Truva)",
+            "C) Bergama",
+            "D) Efes",
+            "E) Milet"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Çanakkale'deki Troya, Homeros'un İlyada destanına konu olan ve 'Truva Atı' ile bilinen antik kenttir; UNESCO listesindedir.",
+          "distractorAciklama": "Assos Çanakkale'de başka bir antik kenttir; Bergama, Efes ve Milet Ege'nin diğer önemli antik kentleridir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Aydın'da bulunan, antik dönemin önemli mermer heykelcilik merkezi olan UNESCO mirası kent hangisidir?",
+          "secenekler": [
+            "A) Milet",
+            "B) Afrodisyas",
+            "C) Priene",
+            "D) Didyma",
+            "E) Nysa"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Aydın'daki Afrodisyas, heykeltıraşlık okulu ve mermer işçiliğiyle ünlü UNESCO Dünya Mirası kentidir.",
+          "distractorAciklama": "Milet, Priene, Didyma ve Nysa da Aydın çevresindeki antik kentlerdir ama heykelcilik merkezi Afrodisyas'tır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Karabük'te yer alan ve korunmuş tarihî evleriyle ünlü UNESCO Dünya Mirası şehri hangisidir?",
+          "secenekler": [
+            "A) Beypazarı",
+            "B) Safranbolu",
+            "C) Amasya",
+            "D) Cumalıkızık",
+            "E) Odunpazarı"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Karabük'teki Safranbolu, geleneksel Türk evleri dokusuyla UNESCO Dünya Mirası Listesi'ndedir.",
+          "distractorAciklama": "Cumalıkızık (Bursa) da UNESCO listesindedir ama Karabük'te değildir; Beypazarı, Amasya ve Odunpazarı tarihî dokularıyla ünlüdür ama soru Karabük'ü işaret eder.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Efes Antik Kenti ve Meryem Ana Evi hangi ilimizde yer alır?",
+          "secenekler": [
+            "A) Aydın",
+            "B) Manisa",
+            "C) Muğla",
+            "D) Denizli",
+            "E) İzmir (Selçuk)"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Efes Antik Kenti ve Meryem Ana Evi, İzmir'in Selçuk ilçesindedir; Efes UNESCO listesindedir.",
+          "distractorAciklama": "Aydın, Manisa, Muğla ve Denizli komşu illerdir ama Efes ve Meryem Ana Evi Selçuk/İzmir'dedir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Şanlıurfa'da, İbrahim Peygamber'in ateşe atıldığına inanılan ve kutsal balıklarıyla ünlü tarihî mekân hangisidir?",
+          "secenekler": [
+            "A) Göbeklitepe",
+            "B) Harran",
+            "C) Eyyübiye",
+            "D) Balıklıgöl (Halil-ür Rahman)",
+            "E) Zeugma"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Şanlıurfa'daki Balıklıgöl, İbrahim Peygamber inancıyla ilişkilendirilen ve kutsal balıklarıyla ünlü göldür.",
+          "distractorAciklama": "Göbeklitepe tapınak alanıdır; Harran tarihî kubbeli evleriyle; Zeugma mozaikleriyle (Gaziantep) ünlüdür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Hitit İmparatorluğu'nun başkenti olan Hattuşaş antik kenti hangi ilimizdedir?",
+          "secenekler": [
+            "A) Yozgat",
+            "B) Kırşehir",
+            "C) Çorum",
+            "D) Nevşehir",
+            "E) Amasya"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hitit başkenti Hattuşaş (Boğazköy), Çorum'un Boğazkale ilçesindedir; UNESCO Dünya Mirası'dır.",
+          "distractorAciklama": "Yozgat, Kırşehir, Nevşehir ve Amasya komşu illerdir ama Hattuşaş Çorum'dadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Adıyaman'da bulunan, dev heykelleri ve tümülüsüyle ünlü, 'Kommagene Krallığı'ndan kalma UNESCO mirası hangisidir?",
+          "secenekler": [
+            "A) Perre Antik Kenti",
+            "B) Cendere Köprüsü",
+            "C) Arsameia",
+            "D) Nemrut Dağı Ören Yeri",
+            "E) Karakuş Tümülüsü"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Adıyaman'daki Nemrut Dağı, Kommagene Kralı I. Antiochos'un dev heykelleri ve tümülüsüyle UNESCO listesindedir.",
+          "distractorAciklama": "Perre, Cendere Köprüsü, Arsameia ve Karakuş Tümülüsü de Adıyaman'daki Kommagene eserleridir ama UNESCO mirası olarak öne çıkan Nemrut'tur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Anadolu'nun bilinen ilk yerleşimlerinden olan ve Konya'da yer alan Çatalhöyük ne tür bir yerleşimdir?",
+          "secenekler": [
+            "A) Tunç Çağı kalesi",
+            "B) Neolitik Dönem kenti",
+            "C) Roma garnizonu",
+            "D) Bizans manastırı",
+            "E) Frig kaya yerleşimi"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Konya'daki Çatalhöyük, Neolitik Dönem'e ait, tarihin en eski kent yerleşimlerinden biri olup UNESCO listesindedir.",
+          "distractorAciklama": "Çatalhöyük Roma, Bizans, Tunç Çağı ya da Frig dönemine değil, Neolitik Dönem'e aittir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Karadeniz'de, kayalık bir yamaca inşa edilmiş ünlü Sümela Manastırı hangi ilimizin sınırları içindedir?",
+          "secenekler": [
+            "A) Rize",
+            "B) Gümüşhane",
+            "C) Giresun",
+            "D) Trabzon",
+            "E) Artvin"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Sümela Manastırı, Trabzon'un Maçka ilçesinde, Altındere Vadisi'ndeki dik bir kayalığa inşa edilmiştir.",
+          "distractorAciklama": "Rize, Gümüşhane, Giresun ve Artvin Karadeniz illeridir ama Sümela Trabzon'dadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Doğu Beyazıt'ta yer alan, Osmanlı-İran sınırındaki görkemli tarihî saray hangi ilimizdedir?",
+          "secenekler": [
+            "A) Van",
+            "B) Ağrı (Doğubayazıt)",
+            "C) Iğdır",
+            "D) Kars",
+            "E) Muş"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İshak Paşa Sarayı, Ağrı'nın Doğubayazıt ilçesindedir ve son dönem Osmanlı saray mimarisinin önemli örneğidir.",
+          "distractorAciklama": "Van, Iğdır, Kars ve Muş çevre illerdir ama İshak Paşa Sarayı Ağrı/Doğubayazıt'tadır.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-spor",
+      "baslik": "Spor Kültürü",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "Tarihte modern Olimpiyat Oyunları ilk kez hangi şehirde ve yılda düzenlenmiştir?",
+          "secenekler": [
+            "A) Atina (1896)",
+            "B) Paris (1900)",
+            "C) Londra (1908)",
+            "D) Olympia (MÖ 776)",
+            "E) Los Angeles (1932)"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İlk modern Olimpiyat Oyunları, 1896'da Yunanistan'ın başkenti Atina'da düzenlenmiştir.",
+          "distractorAciklama": "Paris 1900 ve Londra 1908 sonraki olimpiyatlardır; MÖ 776 antik olimpiyatların başlangıcıdır; Los Angeles 1932 çok sonradır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Kırkpınar Yağlı Güreşleri geleneksel olarak hangi ilimizde düzenlenmektedir?",
+          "secenekler": [
+            "A) Kırklareli",
+            "B) Edirne",
+            "C) Tekirdağ",
+            "D) Bursa",
+            "E) Antalya"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Tarihî Kırkpınar Yağlı Güreşleri, Edirne'de düzenlenir ve UNESCO Somut Olmayan Kültürel Miras Listesi'ndedir.",
+          "distractorAciklama": "Kırklareli, Tekirdağ, Bursa ve Antalya farklı illerdir; Kırkpınar Edirne'ye özgüdür.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Rüzgârın Oğlu' lakabıyla tanınan, olimpiyat rekortmeni Jamaikalı kısa mesafe koşucusu kimdir?",
+          "secenekler": [
+            "A) Carl Lewis",
+            "B) Mo Farah",
+            "C) Yohan Blake",
+            "D) Asafa Powell",
+            "E) Usain Bolt"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Jamaikalı Usain Bolt, 100 ve 200 metre dünya rekortmeni ve çok sayıda olimpiyat şampiyonudur.",
+          "distractorAciklama": "Carl Lewis Amerikalıdır; Mo Farah uzun mesafecidir; Blake ve Powell de Jamaikalıdır ama 'Rüzgârın Oğlu' Bolt'tur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Formula 1 yarışlarının Türkiye ayağı hangi pistte gerçekleştirilmektedir?",
+          "secenekler": [
+            "A) İzmir Otodrom",
+            "B) Körfez Pisti",
+            "C) Ankara Hipodromu",
+            "D) Intercity İstanbul Park",
+            "E) Antalya Racing Park"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Türkiye Grand Prix'si, İstanbul'daki Intercity İstanbul Park pistinde koşulmuştur.",
+          "distractorAciklama": "Diğer seçenekler F1'e ev sahipliği yapan pistler değildir; Türkiye ayağı İstanbul Park'ta düzenlenmiştir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "'Cep Herkülü' lakabıyla anılan, dünya rekorları kıran efsanevi haltercimiz kimdir?",
+          "secenekler": [
+            "A) Halil Mutlu",
+            "B) Nurcan Taylan",
+            "C) Naim Süleymanoğlu",
+            "D) Taner Sağır",
+            "E) Şule Şahbaz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Naim Süleymanoğlu, üç olimpiyat şampiyonluğu ve çok sayıda dünya rekoruyla 'Cep Herkülü' olarak anılır.",
+          "distractorAciklama": "Halil Mutlu ve Taner Sağır da olimpiyat şampiyonu haltercilerdir; Nurcan Taylan ilk kadın olimpiyat şampiyonumuzdur ama 'Cep Herkülü' Naim'dir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Kadın Voleybol Millî Takımımızın (A Millî) bilinen popüler lakabı nedir?",
+          "secenekler": [
+            "A) Bordo-Mavililer",
+            "B) Ay-Yıldızlılar",
+            "C) Filenin Sultanları",
+            "D) Filenin Efeleri",
+            "E) Potanın Perileri"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Kadın Voleybol Millî Takımı 'Filenin Sultanları' olarak bilinir.",
+          "distractorAciklama": "'Filenin Efeleri' erkek voleybol takımıdır; 'Potanın Perileri' kadın basketbol takımıdır; diğerleri lakap değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    },
+    {
+      "id": "genel-karma",
+      "baslik": "Genel Kültür - Karma Bilgiler",
+      "anlatim": {},
+      "sorular": [
+        {
+          "soru": "Avrupa İnsan Hakları Mahkemesi (AİHM) hangi şehirde yer alır?",
+          "secenekler": [
+            "A) Lahey (Hollanda)",
+            "B) Strazburg (Fransa)",
+            "C) Brüksel (Belçika)",
+            "D) Cenevre (İsviçre)",
+            "E) Lüksemburg"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "AİHM, Fransa'nın Strazburg şehrinde bulunan Avrupa Konseyi'ne bağlı bir mahkemedir.",
+          "distractorAciklama": "Lahey'de UCM ve BM Adalet Divanı; Brüksel'de AB kurumları; Lüksemburg'da AB Adalet Divanı bulunur.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Birleşmiş Milletler'in başlıca yargı organı olan Uluslararası Adalet Divanı (BM Adalet Divanı) nerededir?",
+          "secenekler": [
+            "A) Lahey (Hollanda)",
+            "B) New York (ABD)",
+            "C) Cenevre (İsviçre)",
+            "D) Viyana (Avusturya)",
+            "E) Strazburg (Fransa)"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "BM Adalet Divanı, Hollanda'nın Lahey kentindeki Barış Sarayı'nda bulunur.",
+          "distractorAciklama": "BM Genel Merkezi New York'tadır; Cenevre ve Viyana BM ofislerine ev sahipliği yapar ama Adalet Divanı Lahey'dedir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı ilk kez hangi gazetede yayımlanmıştır?",
+          "secenekler": [
+            "A) Hâkimiyet-i Millîye",
+            "B) İrade-i Millîye",
+            "C) Takvim-i Vekayi",
+            "D) Açıksöz Gazetesi (Kastamonu)",
+            "E) Tanin"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "İstiklal Marşı ilk kez Kastamonu'da yayımlanan Açıksöz gazetesinde basılmıştır (dergi olarak da Sebilürreşad'da yayımlanmıştır).",
+          "distractorAciklama": "Hâkimiyet-i Millîye ve İrade-i Millîye millî mücadele yayınlarıdır ama İstiklal Marşı ilk kez Açıksöz'de çıkmıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı hangi dergide yayımlanmıştır?",
+          "secenekler": [
+            "A) Servet-i Fünun",
+            "B) Genç Kalemler",
+            "C) Türk Yurdu",
+            "D) Dergâh",
+            "E) Sebilürreşad"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İstiklal Marşı, dönemin önemli fikir dergisi Sebilürreşad'da yayımlanmıştır.",
+          "distractorAciklama": "Servet-i Fünun, Genç Kalemler, Türk Yurdu ve Dergâh farklı dönem/akım dergileridir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı'nın (kabul edildiği ilk dönemdeki) ilk bestecisi kimdir?",
+          "secenekler": [
+            "A) Osman Zeki Üngör",
+            "B) Ali Rıfat Çağatay",
+            "C) Zeki Müren",
+            "D) Muhlis Sabahattin",
+            "E) Cemal Reşit Rey"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İstiklal Marşı ilk olarak Ali Rıfat Çağatay'ın bestesiyle okunmuş; günümüzdeki beste ise Osman Zeki Üngör'e aittir.",
+          "distractorAciklama": "Osman Zeki Üngör bugünkü bestenin sahibidir; Zeki Müren, Muhlis Sabahattin ve Cemal Reşit Rey İstiklal Marşı'nın bestecisi değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Atatürk'ün 'Benim şehrim' dediği, çiftlik ve tarım çalışmalarıyla ilgilendiği ilimiz hangisidir?",
+          "secenekler": [
+            "A) Ankara",
+            "B) Yalova",
+            "C) İstanbul",
+            "D) Bursa",
+            "E) Adana"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Atatürk, Yalova için 'Benim şehrim' demiş; burada Baltacı Çiftliği ve Yürüyen Köşk gibi çalışmalarla ilgilenmiştir.",
+          "distractorAciklama": "Ankara başkenttir; İstanbul, Bursa ve Adana farklı şehirlerdir; 'Benim şehrim' sözü Yalova içindir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Atatürk'ün 'Şahsi meselem' olarak nitelediği ve çözümü için özel çaba gösterdiği konu hangisidir?",
+          "secenekler": [
+            "A) Musul Sorunu",
+            "B) Boğazlar Sorunu",
+            "C) Hatay Sorunu",
+            "D) Nüfus Mübadelesi",
+            "E) Kıbrıs Sorunu"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Atatürk, Hatay'ın anavatana katılmasını 'şahsi meselem' olarak nitelemiştir (Hatay 1939'da katılmıştır).",
+          "distractorAciklama": "Musul Irak'a bırakılmıştır; Boğazlar Montrö ile çözülmüştür; mübadele Lozan kapsamındadır; Kıbrıs sonraki bir meseledir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Lozan Barış Antlaşması'nda Türkiye'yi temsil eden heyetin başkanı kimdir?",
+          "secenekler": [
+            "A) Rauf Orbay",
+            "B) Fevzi Çakmak",
+            "C) Rıza Nur",
+            "D) İsmet İnönü",
+            "E) Hasan Saka"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Lozan görüşmelerinde Türk heyetinin başkanı, dönemin Dışişleri Bakanı İsmet İnönü'dür.",
+          "distractorAciklama": "Rıza Nur ve Hasan Saka heyet üyeleridir; Rauf Orbay ve Fevzi Çakmak heyet başkanı değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Yüzölçümü bakımından dünyanın en büyük ülkesi hangisidir?",
+          "secenekler": [
+            "A) Kanada",
+            "B) Çin",
+            "C) Rusya",
+            "D) ABD",
+            "E) Brezilya"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Rusya, yaklaşık 17 milyon km² ile dünyanın yüzölçümü en büyük ülkesidir.",
+          "distractorAciklama": "Kanada ikinci, ABD ve Çin yakın büyüklüktedir; Brezilya beşinci sıradadır ama en büyük Rusya'dır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Güncel verilere göre dünyanın nüfus bakımından en kalabalık ülkesi hangisidir?",
+          "secenekler": [
+            "A) Çin",
+            "B) ABD",
+            "C) Endonezya",
+            "D) Hindistan",
+            "E) Pakistan"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2023 itibarıyla Hindistan, Çin'i geride bırakarak dünyanın en kalabalık ülkesi olmuştur.",
+          "distractorAciklama": "Çin uzun süre birinciydi ama ikinciye düşmüştür; ABD, Endonezya ve Pakistan sonraki sıralardadır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "İstiklal Marşı Türkiye Büyük Millet Meclisi'nde hangi tarihte kabul edilmiştir?",
+          "secenekler": [
+            "A) 23 Nisan 1920",
+            "B) 29 Ekim 1923",
+            "C) 19 Mayıs 1919",
+            "D) 30 Ağustos 1922",
+            "E) 12 Mart 1921"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İstiklal Marşı, 12 Mart 1921'de TBMM tarafından millî marş olarak kabul edilmiştir.",
+          "distractorAciklama": "23 Nisan 1920 TBMM'nin açılışı; 29 Ekim 1923 Cumhuriyet'in ilanı; 19 Mayıs ve 30 Ağustos farklı önemli günlerdir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türkiye'de internet kullanımı ilk kez hangi üniversite üzerinden başlamıştır?",
+          "secenekler": [
+            "A) İstanbul Üniversitesi",
+            "B) Boğaziçi Üniversitesi",
+            "C) ODTÜ (1993)",
+            "D) Hacettepe Üniversitesi",
+            "E) İTÜ"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Türkiye'nin internete ilk bağlantısı 1993'te ODTÜ üzerinden gerçekleştirilmiştir.",
+          "distractorAciklama": "Boğaziçi, İstanbul Üniversitesi, Hacettepe ve İTÜ köklü üniversitelerdir ama ilk internet bağlantısı ODTÜ'dendir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Türk lirasından altı sıfır atılarak 'Yeni Türk Lirası'na geçilmesi hangi yılda gerçekleşmiştir?",
+          "secenekler": [
+            "A) 2005",
+            "B) 2001",
+            "C) 2009",
+            "D) 1999",
+            "E) 2012"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1 Ocak 2005'te TL'den altı sıfır atılmış ve 'Yeni Türk Lirası' (YTL) tedavüle girmiştir.",
+          "distractorAciklama": "2001 ekonomik kriz yılıdır; 2009'da 'Yeni' ibaresi kaldırılmıştır; 1999 ve 2012 farklı yıllardır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Atatürk'ün naaşı, geçici kabri Etnografya Müzesi'nden Anıtkabir'e hangi yıl nakledilmiştir?",
+          "secenekler": [
+            "A) 10 Kasım 1938",
+            "B) 10 Kasım 1953",
+            "C) 29 Ekim 1953",
+            "D) 10 Kasım 1944",
+            "E) 23 Nisan 1953"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Atatürk'ün naaşı, ölümünün 15. yıl dönümünde, 10 Kasım 1953'te Anıtkabir'e nakledilmiştir.",
+          "distractorAciklama": "10 Kasım 1938 Atatürk'ün vefat tarihidir; diğer tarihler nakil tarihi değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Anıtkabir'in mimarları kimlerdir?",
+          "secenekler": [
+            "A) Mimar Kemaleddin ve Vedat Tek",
+            "B) Sedad Hakkı Eldem",
+            "C) Bruno Taut",
+            "D) Emin Onat ve Orhan Arda",
+            "E) Clemens Holzmeister"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Anıtkabir, açılan yarışmayı kazanan mimarlar Emin Onat ve Orhan Arda tarafından tasarlanmıştır.",
+          "distractorAciklama": "Kemaleddin ve Vedat Tek I. Ulusal Mimarlık dönemi mimarlarıdır; Sedad Hakkı Eldem, Bruno Taut ve Holzmeister başka yapıları tasarlamıştır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Doğu Anadolu Bölgesi'nin ilk Sakin Şehir (Cittaslow) unvanı alan ilçesi hangisidir?",
+          "secenekler": [
+            "A) Seferihisar (İzmir)",
+            "B) Taraklı (Sakarya)",
+            "C) Ahlat (Bitlis)",
+            "D) Uzundere (Erzurum)",
+            "E) Gökçeada (Çanakkale)"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Erzurum'un Uzundere ilçesi, Doğu Anadolu'nun ilk Sakin Şehir (Cittaslow) unvanlı ilçesidir.",
+          "distractorAciklama": "Seferihisar Türkiye'nin ilk Sakin Şehri'dir ama Ege'dedir; Taraklı ve Gökçeada başka bölgelerdedir; Ahlat da Sakin Şehir'dir ama ilk değildir.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Kızılay'ın kuruluşundaki eski adı nedir?",
+          "secenekler": [
+            "A) Hilal-i Ahmer Cemiyeti",
+            "B) Hilal-i Ahdar Cemiyeti",
+            "C) Mecruhîn-i Askeriye",
+            "D) Darülaceze",
+            "E) Himaye-i Etfal"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Kızılay, 1868'de 'Hilal-i Ahmer Cemiyeti' adıyla kurulmuş, sonradan Kızılay adını almıştır.",
+          "distractorAciklama": "Hilal-i Ahdar Yeşilay'ın eski adıdır; Darülaceze ve Himaye-i Etfal (Çocuk Esirgeme) farklı hayır kurumlarıdır.",
+          "kaynak": "KPSS Genel Kültür"
+        },
+        {
+          "soru": "Yeşilay'ın kuruluşundaki eski adı nedir?",
+          "secenekler": [
+            "A) Hilal-i Ahdar Cemiyeti",
+            "B) Hilal-i Ahmer Cemiyeti",
+            "C) Men-i Müskirat Cemiyeti",
+            "D) Himaye-i Etfal",
+            "E) Darüşşafaka"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yeşilay, 1920'de 'Hilal-i Ahdar Cemiyeti' (yeşil ay) adıyla kurulmuştur.",
+          "distractorAciklama": "Hilal-i Ahmer Kızılay'ın eski adıdır; Men-i Müskirat içki yasağıyla ilişkili farklı bir oluşumdur; diğerleri ayrı kurumlardır.",
+          "kaynak": "KPSS Genel Kültür"
+        }
+      ]
+    }
+  ]
+}
