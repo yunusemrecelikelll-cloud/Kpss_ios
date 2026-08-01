@@ -10136,18 +10136,6 @@
           "aciklama": "Bunlar doğru siyaset biliminde kullanılan ana kategori."
         },
         {
-          "soru": "İçerik ve işlem temelli siyaset teorileri hangileridir?",
-          "secenekler": [
-            "Marksizm ve Anarşizm",
-            "Liberalizm ve Konservatizm",
-            "Ulusalcilik ve Uluslararasıizm",
-            "Muhafazakarlık ve Liberizm",
-            "İçerik ve işlem temelli"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bunlar içerik ve işlem temelli siyaset teorileridir."
-        },
-        {
           "soru": "Avrupa Birliği'nin kurucu anlaşması hangi ülkelerde imzalanmıştır?",
           "secenekler": [
             "Fransa, Almanya ve İtalya",
