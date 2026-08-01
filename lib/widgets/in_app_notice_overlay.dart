@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart' show anasayfaKokunde, rootNavigatorKey;
+import '../screens/hak_satin_al_screen.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/notification_service.dart';
 import '../services/presence_service.dart';
+import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
 
@@ -196,14 +199,18 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
   // ── Çizim tarafı ─────────────────────────────────────────────────────────
 
   void _servisDegisti() {
+    if (!mounted) return;
     final yeni = _servis.aktif;
-    if (yeni == null || !mounted) return;
-    setState(() {
+    // Yeni bir afiş geldiyse kaydırma animasyonunu + kapanma zamanlayıcısını
+    // başlat. (testAktif gibi diğer değişimlerde yalnızca yeniden çizilir ki
+    // global hak pili teste girince gizlenip çıkınca geri gelsin.)
+    if (yeni != null && yeni != _cizilen) {
       _cizilen = yeni;
       _afisGorunur = true;
-    });
-    _kapatmaZamanlayici?.cancel();
-    _kapatmaZamanlayici = Timer(const Duration(milliseconds: 3800), _kapat);
+      _kapatmaZamanlayici?.cancel();
+      _kapatmaZamanlayici = Timer(const Duration(milliseconds: 3800), _kapat);
+    }
+    setState(() {});
   }
 
   void _kapat() {
@@ -220,12 +227,43 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
+    final storage = context.watch<StorageService>();
     final b = _cizilen;
+    // Global hak göstergesi: premium DEĞİLSE, test AÇIK DEĞİLSE ve anasayfa
+    // kökünde DEĞİLSEK (anasayfa kendi çipini gösterir) sağ üstte küçük bir pil
+    // olarak görünür — kullanıcı nerede olursa olsun hak bakiyesini görür.
+    final hakPiliGoster = !storage.isPremiumUser() && !_servis.testAktif;
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Stack(
         children: [
           widget.child,
+          if (hakPiliGoster)
+            ValueListenableBuilder<bool>(
+              valueListenable: anasayfaKokunde,
+              builder: (context, kokte, _) {
+                if (kokte) return const SizedBox.shrink();
+                return Positioned(
+                  top: 0,
+                  right: 0,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 6, right: 10),
+                      child: _GlobalHakPili(
+                        haklar: storage.getHaklar(),
+                        onTap: () {
+                          context.read<SoundService>().click();
+                          rootNavigatorKey.currentState?.push(
+                            MaterialPageRoute(
+                                builder: (_) => const HakSatinAlScreen()),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           if (b != null)
             Positioned(
               top: 0,
@@ -243,47 +281,86 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                     onVerticalDragEnd: (d) {
                       if ((d.primaryVelocity ?? 0) < 0) _kapat();
                     },
-                    // Afiş, uygulamanın kart diliyle aynı: bg2 yüzey, ince
-                    // kenarlık, solda tema moru vurgu şeridi ve DsIconBadge
-                    // tarzı renk tonlu emoji rozeti. Sistem bildirimleri
-                    // (tema/rozet/ödül) TEK SATIRDIR (govde boş); yalnızca
-                    // mesaj/istek afişlerinde ikinci satır önizleme çıkar.
+                    // PREMIUM afiş: cam (glass) yüzey üstünde ince tema-moru →
+                    // gül degrade, hafif iç parlama, çok katmanlı gölge ve
+                    // halkalı emoji rozeti. Sistem bildirimleri (tema/rozet/
+                    // ödül) TEK SATIRDIR (govde boş); yalnızca mesaj/istek
+                    // afişlerinde ikinci satır önizleme çıkar.
                     child: Container(
-                      margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
+                      margin: const EdgeInsets.fromLTRB(12, 10, 12, 0),
                       clipBehavior: Clip.antiAlias,
                       decoration: BoxDecoration(
-                        color: c.bg2,
-                        borderRadius: BorderRadius.circular(18),
-                        border: Border.all(color: c.border),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.alphaBlend(
+                                c.violet.withValues(alpha: 0.16), c.bg2),
+                            c.bg2,
+                            Color.alphaBlend(
+                                c.rose.withValues(alpha: 0.10), c.bg2),
+                          ],
+                          stops: const [0.0, 0.55, 1.0],
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                            color: c.violet.withValues(alpha: 0.35), width: 1),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.28),
-                            blurRadius: 20,
-                            offset: const Offset(0, 6),
+                            color: Colors.black.withValues(alpha: 0.30),
+                            blurRadius: 26,
+                            offset: const Offset(0, 10),
+                          ),
+                          BoxShadow(
+                            color: c.violet.withValues(alpha: 0.20),
+                            blurRadius: 30,
+                            spreadRadius: -6,
+                            offset: const Offset(0, 4),
                           ),
                         ],
                       ),
                       child: Row(
                         children: [
-                          // Sol vurgu şeridi — DsCard.accent ile aynı dil.
-                          Container(width: 4, height: 52, color: c.violet),
-                          const SizedBox(width: 12),
+                          // Sol degrade vurgu şeridi — mor→gül.
                           Container(
-                            width: 36,
-                            height: 36,
+                            width: 5,
+                            height: 58,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: c.violet.withValues(alpha: 0.16),
-                            ),
-                            child: Center(
-                              child: Text(b.emoji,
-                                  style: const TextStyle(fontSize: 18)),
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [c.violet, c.rose],
+                              ),
                             ),
                           ),
                           const SizedBox(width: 12),
+                          // Halkalı emoji rozeti — DsIconBadge dili, çift katman.
+                          Container(
+                            width: 42,
+                            height: 42,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  c.violet.withValues(alpha: 0.28),
+                                  c.rose.withValues(alpha: 0.20),
+                                ],
+                              ),
+                              border: Border.all(
+                                  color: c.violet.withValues(alpha: 0.45),
+                                  width: 1),
+                            ),
+                            child: Center(
+                              child: Text(b.emoji,
+                                  style: const TextStyle(fontSize: 19)),
+                            ),
+                          ),
+                          const SizedBox(width: 13),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(vertical: 11),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -294,7 +371,8 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w800,
-                                          fontSize: 13.5,
+                                          fontSize: 14,
+                                          letterSpacing: 0.2,
                                           color: c.text)),
                                   if (b.govde.isNotEmpty) ...[
                                     const SizedBox(height: 2),
@@ -310,6 +388,11 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                               ),
                             ),
                           ),
+                          const SizedBox(width: 10),
+                          // Kapatma ipucu — ince aşağı ok / grabber.
+                          Icon(Icons.keyboard_arrow_up_rounded,
+                              size: 20,
+                              color: c.textFaint.withValues(alpha: 0.7)),
                           const SizedBox(width: 12),
                         ],
                       ),
@@ -319,6 +402,63 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+/// Ekranın sağ üstünde yüzen küçük hak (bilet) göstergesi — anasayfadaki üst
+/// panel çipiyle aynı dil. Test dışında her ekranda görünür (bkz.
+/// InAppNoticeOverlay). Dokununca Hak Satın Al ekranına gider. Yalnızca
+/// ücretsiz kullanıcıda çizilir.
+class _GlobalHakPili extends StatelessWidget {
+  final int haklar;
+  final VoidCallback onTap;
+  const _GlobalHakPili({required this.haklar, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color.alphaBlend(c.violet.withValues(alpha: 0.18), c.bg2),
+            borderRadius: BorderRadius.circular(999),
+            border:
+                Border.all(color: c.violet.withValues(alpha: 0.40), width: 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.22),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          padding: const EdgeInsets.fromLTRB(9, 5, 5, 5),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('🎟️', style: TextStyle(fontSize: 13)),
+              const SizedBox(width: 4),
+              Text('$haklar',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900, fontSize: 14, color: c.text)),
+              const SizedBox(width: 5),
+              Container(
+                width: 18,
+                height: 18,
+                alignment: Alignment.center,
+                decoration:
+                    BoxDecoration(color: c.violet, shape: BoxShape.circle),
+                child: const Icon(Icons.add, size: 13, color: Colors.white),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

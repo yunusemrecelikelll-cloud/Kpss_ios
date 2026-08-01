@@ -17,6 +17,18 @@ import 'screens/splash_screen.dart';
 import 'widgets/in_app_notice_overlay.dart';
 import 'firebase_bootstrap.dart';
 
+/// Tüm ekranların ÜSTÜNDEKİ katmandan (bildirim/hak göstergesi overlay'i)
+/// yönlendirme yapabilmek için kök Navigator anahtarı. Overlay, MaterialApp'in
+/// `builder`'ında yaşadığı için normal `Navigator.of(context)` uygulamanın
+/// Navigator'ını GÖREMEZ; bu anahtar üzerinden push edilir.
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
+/// Global hak göstergesi (overlay pili) ANASAYFA KÖKÜNDE gizlenir — çünkü
+/// anasayfanın kendi üst panelinde zaten hak çipi vardır; iki kez göstermeyelim.
+/// MainShell, aktif sekme "home" ve o sekmede açık alt ekran yokken bunu true
+/// yapar. Diğer tüm ekranlarda (testler hariç) pil görünür.
+final ValueNotifier<bool> anasayfaKokunde = ValueNotifier<bool>(true);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFirebaseIfConfigured();
@@ -89,6 +101,7 @@ class KpssApp extends StatelessWidget {
     return MaterialApp(
       title: 'KPSS Hazırlık',
       debugShowCheckedModeBanner: false,
+      navigatorKey: rootNavigatorKey,
       theme: themeProvider.themeData,
       // TÜM ekranların üstünde yaşayan bildirim katmanı: yeni mesaj /
       // arkadaşlık isteği geldiğinde üstten kayan afiş gösterir (test

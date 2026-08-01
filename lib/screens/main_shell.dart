@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../main.dart' show anasayfaKokunde;
 import '../models/subject.dart';
 import '../services/league_service.dart';
 import '../services/sound_service.dart';
@@ -73,11 +74,31 @@ class _MainShellState extends State<MainShell> {
       // ignore: unawaited_futures
       LeagueService().publishMyScore(context.read<StorageService>());
     });
+    // Açılışta anasayfa kökündeyiz — global hak pilini gizli başlat.
+    _hakPiliniTazele();
+  }
+
+  // Anasayfa sekmesinin iç Navigator'ındaki push/pop olaylarını dinleyip
+  // global hak pilinin görünürlüğünü tazeler (anasayfa KÖKÜNDE gizli, alt
+  // ekran açılınca görünür).
+  late final NavigatorObserver _anasayfaGozlemcisi =
+      _RotaGozlemcisi(_hakPiliniTazele);
+
+  void _hakPiliniTazele() {
+    // Frame sonunda: aktif sekme "home" VE o sekmede açık alt ekran yoksa gizle.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      // Anasayfa her zaman ilk sekmedir (_index == 0); premium'a göre değişen
+      // sekme sırasından etkilenmesin diye doğrudan indeksi kontrol ediyoruz.
+      final homeKokte = !(_navKeys['home']?.currentState?.canPop() ?? false);
+      anasayfaKokunde.value = (_index == 0) && homeKokte;
+    });
   }
 
   Widget _tabNavigator(String id, Widget root) {
     return Navigator(
       key: _navKeys[id],
+      observers: id == 'home' ? [_anasayfaGozlemcisi] : const [],
       onGenerateRoute: (settings) => MaterialPageRoute(builder: (_) => root),
     );
   }
@@ -89,6 +110,7 @@ class _MainShellState extends State<MainShell> {
     } else {
       setState(() => _index = i);
     }
+    _hakPiliniTazele();
   }
 
   @override
@@ -130,6 +152,23 @@ class _MainShellState extends State<MainShell> {
       ),
     );
   }
+}
+
+/// Anasayfa sekmesinin iç Navigator'ında rota değişimlerini (push/pop/replace)
+/// dinleyip verilen geri çağrıyı tetikleyen basit gözlemci. Global hak pilinin
+/// "anasayfa kökünde miyiz?" durumunu tazelemek için kullanılır.
+class _RotaGozlemcisi extends NavigatorObserver {
+  final VoidCallback onDegisim;
+  _RotaGozlemcisi(this.onDegisim);
+
+  @override
+  void didPush(Route route, Route? previousRoute) => onDegisim();
+  @override
+  void didPop(Route route, Route? previousRoute) => onDegisim();
+  @override
+  void didRemove(Route route, Route? previousRoute) => onDegisim();
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) => onDegisim();
 }
 
 /// Alt navigasyon çubuğu — Material `NavigationBar` yerine elle çizilmiş

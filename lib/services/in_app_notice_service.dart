@@ -54,6 +54,11 @@ class InAppNoticeService extends ChangeNotifier {
 
   bool get _bekletiliyor => _bekletmeSayaci > 0;
 
+  /// Şu an bir test/sınav çözülüyor mu? (afiş bekletme sayacından türetilir).
+  /// Global hak göstergesi overlay'i bunu kontrol eder: test sırasında hak
+  /// çipi GİZLENİR (kullanıcı isteği: "hak göstergesi testler hariç her yerde").
+  bool get testAktif => _bekletiliyor;
+
   /// Yeni bir afiş talep eder. Bekletme aktifse ya da halihazırda bir afiş
   /// gösteriliyorsa kuyruğa girer.
   void goster(InAppNotice bildirim) {
@@ -76,11 +81,15 @@ class InAppNoticeService extends ChangeNotifier {
   /// Test/sınav başlarken çağrılır: afiş akışını duraklat.
   void beklet() {
     _bekletmeSayaci++;
+    // testAktif değişti — global hak göstergesi overlay'i kendini gizlesin.
+    if (_bekletmeSayaci == 1) notifyListeners();
   }
 
   /// Test/sınav bitince çağrılır: birikenler sırayla gösterilir.
   void devamEt() {
     if (_bekletmeSayaci > 0) _bekletmeSayaci--;
+    // testAktif tekrar false — hak göstergesi geri gelsin.
+    if (_bekletmeSayaci == 0) notifyListeners();
     _iletmeyiDene();
   }
 
