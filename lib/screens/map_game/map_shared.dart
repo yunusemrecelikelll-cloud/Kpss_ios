@@ -42,6 +42,187 @@ const Map<String, Color> kRegionColors = {
 
 Color regionColor(String bolge) => kRegionColors[bolge] ?? Colors.grey;
 
+/// Kullanıcının haritalarda seçebileceği vurgu renkleri (kullanıcı isteği:
+/// "haritanın rengi değiştirilebilir olsun, üst köşede renk seçeneği olsun ve
+/// hatırlansın"). İlk seçenek `null` = TEMA rengi (varsayılan).
+const List<(String, Color?)> kMapRenkSecenekleri = [
+  ('Tema', null),
+  ('Mor', Color(0xFF8B5CF6)),
+  ('Mavi', Color(0xFF3B82F6)),
+  ('Camgöbeği', Color(0xFF06B6D4)),
+  ('Yeşil', Color(0xFF22C55E)),
+  ('Amber', Color(0xFFF59E0B)),
+  ('Turuncu', Color(0xFFF97316)),
+  ('Kırmızı', Color(0xFFEF4444)),
+  ('Pembe', Color(0xFFEC4899)),
+  ('Altın', Color(0xFFD4AF37)),
+];
+
+/// Haritalarda illerin vurgulanacağı GÜNCEL rengi döndürür: kullanıcı bir renk
+/// seçtiyse o, seçmediyse temanın mor/vurgu rengi (bkz. StorageService
+/// getMapColorValue). `context.watch<StorageService>()` sayesinde renk
+/// değişince ekran otomatik yenilenir.
+Color mapHighlightColor(BuildContext context) {
+  final v = context.watch<StorageService>().getMapColorValue();
+  if (v != 0) return Color(v);
+  return context.watch<ThemeProvider>().colors.violet;
+}
+
+/// Haritalardaki NÖTR (hedef/geri bildirim olmayan) illerin taban dolgusu —
+/// seçilen harita renginin verilen saydamlıkta tonu. Böylece kullanıcı harita
+/// rengini değiştirince mini oyunlardaki taban harita da o renge döner
+/// (başarı/hata/hedef renkleri DEĞİŞMEZ, onlar success/danger/target'tır).
+Color mapNeutral(BuildContext context, double alpha) =>
+    mapHighlightColor(context).withValues(alpha: alpha);
+
+/// AppBar'a konulan renk seçici düğmesi — dokununca alttan bir yaprak açılır,
+/// [kMapRenkSecenekleri] içinden seçilen renk kalıcı olarak kaydedilir.
+class MapColorPickerAction extends StatelessWidget {
+  const MapColorPickerAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final aktif = mapHighlightColor(context);
+    return IconButton(
+      tooltip: 'Harita rengi',
+      onPressed: () => _renkSec(context),
+      icon: Stack(
+        alignment: Alignment.center,
+        children: [
+          const Icon(Icons.palette_outlined),
+          Positioned(
+            right: 2,
+            bottom: 2,
+            child: Container(
+              width: 9,
+              height: 9,
+              decoration: BoxDecoration(
+                color: aktif,
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white70, width: 1),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _renkSec(BuildContext context) {
+    final storage = context.read<StorageService>();
+    final c = context.read<ThemeProvider>().colors;
+    final secili = storage.getMapColorValue();
+    context.read<SoundService>().click();
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: c.bg2,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+      ),
+      builder: (sheetCtx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Text('🎨', style: TextStyle(fontSize: 20)),
+                  const SizedBox(width: 8),
+                  Text('Harita Rengi',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: c.text)),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text('Seçtiğin renk tüm haritalarda kullanılır ve hatırlanır.',
+                  style: TextStyle(fontSize: 12.5, color: c.textFaint)),
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                children: [
+                  for (final (ad, renk) in kMapRenkSecenekleri)
+                    _RenkKutusu(
+                      ad: ad,
+                      renk: renk ?? c.violet,
+                      temaMi: renk == null,
+                      secili: (renk?.toARGB32() ?? 0) == secili,
+                      onTap: () {
+                        storage.setMapColorValue(renk?.toARGB32() ?? 0);
+                        Navigator.of(sheetCtx).pop();
+                      },
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RenkKutusu extends StatelessWidget {
+  final String ad;
+  final Color renk;
+  final bool temaMi;
+  final bool secili;
+  final VoidCallback onTap;
+  const _RenkKutusu({
+    required this.ad,
+    required this.renk,
+    required this.temaMi,
+    required this.secili,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return InkWell(
+      borderRadius: BorderRadius.circular(14),
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: renk,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: secili ? c.text : Colors.white24,
+                width: secili ? 3 : 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: renk.withValues(alpha: 0.5),
+                    blurRadius: secili ? 12 : 4),
+              ],
+            ),
+            child: temaMi
+                ? const Icon(Icons.auto_awesome, size: 20, color: Colors.white)
+                : (secili
+                    ? const Icon(Icons.check, size: 22, color: Colors.white)
+                    : null),
+          ),
+          const SizedBox(height: 5),
+          Text(ad,
+              style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: secili ? c.text : c.textFaint)),
+        ],
+      ),
+    );
+  }
+}
+
 // ── Harita oyunu modlarının kimlikleri (oyun-bazlı SÜRE takibi için) ──
 // NOT: Bunlar [kMapGameId] (günlük ORTAK oynama hakkı sayacı) ile KARIŞTIRILMAMALI
 // — her modun burada AYRI bir kimliği var, çünkü "hangi modda ne kadar zaman
@@ -227,18 +408,14 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProv
   //   (2) `boundaryMargin` cömert tutuldu ki içeri/dışarı sıkışma olmasın,
   //   (3) parmak kaldırıldığında ölçek 1.0'a çok yaklaşmışsa harita YUMUŞAK
   //       bir animasyonla tam oturmuş hâline geri döner (küçültememe hatasına
-  //       karşı garantili çıkış yolu),
-  //   (4) çift dokunuş, dokunulan noktayı merkez alarak KADEMELİ (animasyonlu)
-  //       yakınlaştırır; zaten yakınlaşmışsa aynı animasyonla sıfırlar.
+  //       karşı garantili çıkış yolu).
   static const double _kMinScale = 1.0;
   static const double _kMaxScale = 4.0;
-  static const double _kDoubleTapScale = 2.4;
   static const Duration _kZoomDuration = Duration(milliseconds: 260);
 
   final _controller = TransformationController();
   late final AnimationController _anim;
   Animation<Matrix4>? _zoomAnimation;
-  Offset? _doubleTapPos;
 
   @override
   void initState() {
@@ -260,24 +437,6 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProv
   void _resetZoom() => _animateTo(Matrix4.identity());
 
   double get _scale => _controller.value.getMaxScaleOnAxis();
-
-  void _handleDoubleTap() {
-    // Zaten yakınlaşmışsa sıfırla, değilse dokunulan noktaya yaklaş.
-    if (_scale > _kMinScale + 0.05) {
-      _resetZoom();
-      return;
-    }
-    final pos = _doubleTapPos;
-    if (pos == null) {
-      _resetZoom();
-      return;
-    }
-    const s = _kDoubleTapScale;
-    // Dokunulan nokta sabit kalsın: s * p + t = p  →  t = -p * (s - 1)
-    _animateTo(Matrix4.identity()
-      ..translateByDouble(-pos.dx * (s - 1), -pos.dy * (s - 1), 0, 1)
-      ..scaleByDouble(s, s, 1, 1));
-  }
 
   /// Parmak kaldırıldığında ölçek tam oturmuş hâle çok yakınsa küçük
   /// kaymaları temizleyip haritayı tam oturmuş hâline geri yaslar.
@@ -317,22 +476,25 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProv
       child: Stack(
         children: [
           Positioned.fill(
-            child: GestureDetector(
-              onDoubleTapDown: (d) => _doubleTapPos = d.localPosition,
-              onDoubleTap: _handleDoubleTap,
-              child: InteractiveViewer(
-                transformationController: _controller,
-                minScale: _kMinScale,
-                maxScale: _kMaxScale,
-                boundaryMargin: const EdgeInsets.all(48),
-                onInteractionStart: (_) {
-                  if (_anim.isAnimating) _anim.stop();
-                },
-                onInteractionEnd: (_) => _snapIfNearFit(),
-                child: TurkeyMapWidget(
+            // NOT: Eskiden burada çift-dokunuşla yakınlaştırma (onDoubleTap)
+            // vardı; bu, TEK dokunuşun ~300 ms "çift mi olacak?" gecikmesiyle
+            // çözülmesine yol açıyordu — kullanıcı "hızlı tıklayınca algılamıyor"
+            // dedi. Çift dokunuş kaldırıldı; il seçimi artık ANINDA çözülür.
+            // Yakınlaştırma için iki parmak (pinch) + sağ alttaki sıfırla
+            // düğmesi kullanılır.
+            child: InteractiveViewer(
+              transformationController: _controller,
+              minScale: _kMinScale,
+              maxScale: _kMaxScale,
+              boundaryMargin: const EdgeInsets.all(48),
+              onInteractionStart: (_) {
+                if (_anim.isAnimating) _anim.stop();
+              },
+              onInteractionEnd: (_) => _snapIfNearFit(),
+              child: TurkeyMapWidget(
                   geos: geos,
                   fillColors: fillColors,
-                  defaultFillColor: colors.violet.withValues(alpha: 0.15),
+                  defaultFillColor: mapNeutral(context, 0.15),
                   borderColor: colors.border,
                   dimmedIds: widget.dimmed,
                   overlays: overlays,
@@ -347,7 +509,6 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProv
                 ),
               ),
             ),
-          ),
           Positioned(
             right: 6,
             bottom: 6,
@@ -400,6 +561,7 @@ class MapQuizScaffold extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         actions: [
+          const MapColorPickerAction(),
           if (howToPlay != null)
             IconButton(
               tooltip: 'Nasıl oynanır?',

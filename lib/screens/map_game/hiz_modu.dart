@@ -390,6 +390,7 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
       );
     }
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     final palette = mapModePaletteFor(kHizliTurkiyeGameId);
     return Scaffold(
       appBar: AppBar(
@@ -450,7 +451,7 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
                         return colors.success.withValues(alpha: 0.55);
                       }
                     }
-                    return colors.violet.withValues(alpha: 0.32);
+                    return mapRenk.withValues(alpha: 0.32);
                   },
                   onTap: _onTapProvince,
                 ),

@@ -373,6 +373,7 @@ class _UrunHaritasiScreenState extends State<UrunHaritasiScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '$_emoji $_baslik',
       promptText: '"${_target.urun}" → doğru ili haritada işaretle!',
@@ -385,7 +386,7 @@ class _UrunHaritasiScreenState extends State<UrunHaritasiScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (_target.ilIds.contains(p.id)) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;

@@ -175,6 +175,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '🧭 Bölgeyi Bul',
       promptText: '"$_target" Bölgesi\'nden bir il seç!',
@@ -187,7 +188,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.bolge == _target) return regionColor(_target).withValues(alpha: 0.75);
           return colors.violet.withValues(alpha: 0.12);

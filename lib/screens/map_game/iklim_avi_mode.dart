@@ -552,6 +552,7 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '☀️ İklim Avı',
       promptText: _soru.soru,
@@ -564,7 +565,7 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           // Cevap verildikten sonra tarife UYAN tüm iller yeşil gösterilir —
           // kullanıcı doğru cevabın tek bir il değil bir KÜME olduğunu görür.

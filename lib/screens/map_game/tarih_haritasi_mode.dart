@@ -193,6 +193,7 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     final targetName = kTurkeyProvinces.firstWhere((p) => p.id == _target.ilId).ad;
     return MapQuizScaffold(
       title: '🕰️ Tarih Haritası',
@@ -206,7 +207,7 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.id == _target.ilId) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;

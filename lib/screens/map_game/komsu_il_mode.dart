@@ -165,6 +165,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '🤝 Komşu İl Oyunu',
       promptText: '"${_target.ad}"nin komşularından birini seç!',
@@ -182,7 +183,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (_target.komsular.contains(p.id)) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;

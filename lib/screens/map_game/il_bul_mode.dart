@@ -247,6 +247,7 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '🔎 İli Bul',
       promptText: '"${_target.ad}" ilini haritada bul!',
@@ -259,11 +260,11 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
         colorFor: (p) {
           if (!_showResult) {
             if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.id == _target.id) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;
-          return colors.violet.withValues(alpha: 0.15);
+          return mapRenk.withValues(alpha: 0.15);
         },
         onTap: _onTapProvince,
       ),

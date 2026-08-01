@@ -573,6 +573,14 @@ class StorageService extends ChangeNotifier {
   Future<void> onboardingGoruldu() async =>
       _prefs?.setBool('onboarding_seen_v1', true);
 
+  // ── Harita vurgu rengi — CİHAZA özel, GLOBAL, hatırlanır ─────────────────────
+  // Haritalarda (Haritadan Öğren / mini oyunlar) illerin vurgulandığı renk.
+  // 0 = "tema rengini kullan" (varsayılan). Diğer değerler ARGB renk kodudur.
+  // Profil ön eki KULLANILMAZ — kullanıcı bir kez seçer, tüm profillerde geçerli.
+  int getMapColorValue() => (_prefs?.getInt('harita_vurgu_renk') ?? 0);
+  Future<void> setMapColorValue(int argb) async =>
+      _prefs?.setInt('harita_vurgu_renk', argb);
+
   // ── Oyun ilerlemesi (Kart Oyunu V2 / Solitaire) — konu bazlı geçme takibi ──
   Map<String, bool> getGamePassedTopics(String gameId) =>
       Map<String, bool>.from(_get('game_passed_$gameId', <String, dynamic>{}));
