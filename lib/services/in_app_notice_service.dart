@@ -57,12 +57,12 @@ class InAppNoticeService extends ChangeNotifier {
   /// Yeni bir afiş talep eder. Bekletme aktifse ya da halihazırda bir afiş
   /// gösteriliyorsa kuyruğa girer.
   void goster(InAppNotice bildirim) {
-    // PEŞ PEŞE BİRLEŞTİRME: aynı etiketli bekleyen bildirimleri düşür — böylece
-    // hızlı tekrar eden eylemlerde (ör. üst üste tema değiştirme) yalnızca EN
-    // SON bildirim görünür, öncekiler iptal olur.
-    if (bildirim.etiket != null) {
-      _kuyruk.removeWhere((b) => b.etiket == bildirim.etiket);
-    }
+    // KULLANICI İSTEĞİ: Yeni bir bildirim gelince ÖNCEKİLER KOMPLE SİLİNİR ve
+    // yenisi HEMEN gösterilir — arka arkaya bildirim yığılmaz, kullanıcı neye
+    // tıkladıysa onunla ilgili afiş anında görünür. (Test sırasında akış
+    // bekletiliyorsa yalnızca en son bildirim beklemede kalır, o da tek olur.)
+    _kuyruk.clear();
+    _aktif = null;
     _kuyruk.add(bildirim);
     _iletmeyiDene();
   }
