@@ -34090,6 +34090,1098 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Boşluğun önü 'paylaşıldıkça değer kazanır' der; karşıtı 'saklandığında anlamını yitirir' gelmelidir."
+        },
+        {
+          "soru": "Okumak, yalnızca satırların üzerinden göz gezdirmek değildir; asıl okuma ----. Bir metni gerçekten anlayan kişi, yazarın söylediği kadar söylemediğini de sezer.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "satırların arasını da görebilmektir",
+            "sayfa sayısını hızla artırmaktır",
+            "sözcükleri sesli tekrarlamaktır",
+            "kitabı bir an önce bitirmektir",
+            "yalnızca ünlü yazarları seçmektir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'söylemediğini de sezmek'ten söz edilir; bu, okumanın satır aralarını görmek olduğunu gösterir. Diğerleri bu akışla çelişir."
+        },
+        {
+          "soru": "Başarı çoğu zaman ani bir sıçrama gibi görünür; oysa ----. Sahnede bir anda parlayan sanatçı, aslında yıllarca kimsenin görmediği bir emeğin ürünüdür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "onu hazırlayan uzun bir birikim vardır",
+            "şansın payı her şeyden büyüktür",
+            "yetenek olmadan hiçbir şey olmaz",
+            "kısa sürede elde edilir",
+            "yalnızca doğuştan gelir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'yıllarca görünmeyen emek'ten söz edilir; bu, başarının uzun bir birikime dayandığını gösterir."
+        },
+        {
+          "soru": "İyi bir dinleyici olmak sanıldığından zordur; çünkü dinlemek ----. Karşımızdakini gerçekten duymak, kendi söyleyeceklerimizi bir süreliğine bir kenara bırakmayı gerektirir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca kulakla yapılır",
+            "hiç çaba gerektirmez",
+            "sabır ve özveri ister",
+            "konuşmaktan kolaydır",
+            "herkesin doğuştan bildiği bir şeydir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'kendi söyleyeceklerini bir kenara bırakmak' gerektiği belirtilir; bu, dinlemenin sabır ve özveri istediğini gösterir."
+        },
+        {
+          "soru": "Bir şehri tanımak için haritasına bakmak yetmez; gerçek tanışma ----. Sokaklarında yürüyen, insanlarıyla konuşan biri o şehrin ruhunu ancak öyle kavrayabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca kitaplardan öğrenilir",
+            "kısa bir gezide tamamlanır",
+            "fotoğraflara bakmakla olur",
+            "onu yaşayarak mümkün olur",
+            "rehber tutmayı gerektirir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'sokaklarında yürüyüp insanlarıyla konuşmak'tan söz edilir; bu, tanımanın yaşayarak olduğunu gösterir."
+        },
+        {
+          "soru": "Eleştiriye açık olmak, insanı küçültmez; tam tersine ----. Kendi hatalarını görebilen biri, onları düzeltme fırsatını da yakalamış olur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "onu zayıf düşüren bir kusurdur",
+            "onu geliştiren bir güçtür",
+            "gereksiz bir alçakgönüllülüktür",
+            "başkalarına boyun eğmektir",
+            "özgüveni yok eden bir tutumdur"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'hataları düzeltme fırsatı'ndan söz edilir; bu, eleştiriye açıklığın geliştirici bir güç olduğunu gösterir."
+        },
+        {
+          "soru": "Doğa, en iyi öğretmenlerden biridir; ama dersini ----. Bir tohumun toprağa düşüp aylarca beklemesi, sabrın ne demek olduğunu sözcüklere gerek kalmadan anlatır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca kitaplarda anlatır",
+            "aceleyle ve gürültüyle sunar",
+            "hiçbir zaman öğretemez",
+            "yalnızca uzmanlara açıklar",
+            "sessizce ve örnekleriyle verir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra tohumun 'sözcüklere gerek kalmadan' sabrı anlattığından söz edilir; bu, doğanın dersini sessizce ve örneklerle verdiğini gösterir."
+        },
+        {
+          "soru": "Zaman, herkese eşit dağıtılmış tek zenginliktir; farkı yaratan ----. Aynı yirmi dört saat, kimine bir ömür, kimine boşa geçen bir gün olur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "sahip olduğumuz para miktarıdır",
+            "yaşadığımız şehirdir",
+            "doğuştan gelen şansımızdır",
+            "başkalarının bize verdiğidir",
+            "onu nasıl değerlendirdiğimizdir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra aynı sürenin farklı değerlendirildiği belirtilir; bu, farkı yaratanın zamanı nasıl kullandığımız olduğunu gösterir."
+        },
+        {
+          "soru": "Bir fikri savunmak kadar, gerektiğinde ondan vazgeçebilmek de önemlidir; çünkü ----. Yeni bir kanıt karşısında görüşünü değiştirebilen kişi, inatçı değil, akıllıdır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gerçeğe bağlılık, fikre bağlılıktan üstündür",
+            "hiçbir fikir değiştirilmemelidir",
+            "kararsızlık bir erdemdir",
+            "başkalarının sözü her zaman doğrudur",
+            "tartışmaktan kaçınmak gerekir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'yeni kanıt karşısında görüş değiştirmenin akıllılık olduğu' söylenir; bu, gerçeğe bağlılığın fikre bağlılıktan üstün olduğunu gösterir."
+        },
+        {
+          "soru": "Sanat eseri, bittiği anda sanatçının elinden çıkar; artık ----. Her okur, her izleyici ona kendi anlamını katar; eser bu yüzden hiçbir zaman tek bir yorumla sınırlı kalmaz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca sanatçıya aittir",
+            "değişmez tek bir anlam taşır",
+            "onu tamamlayan seyircinin bakışıdır",
+            "kimse tarafından anlaşılamaz",
+            "değerini tümüyle yitirir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'her izleyicinin kendi anlamını kattığı' belirtilir; bu, eseri tamamlayanın seyircinin bakışı olduğunu gösterir."
+        },
+        {
+          "soru": "Gerçek cömertlik, artanı vermek değildir; ----. İhtiyacı olduğu hâlde elindekini paylaşabilen kişi, cömertliğin asıl anlamını yaşatır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca zenginlere özgü bir davranıştır",
+            "karşılık beklemekle olur",
+            "gösteriş için yapılır",
+            "hiç fedakârlık gerektirmez",
+            "kendine lazım olanı bile paylaşabilmektir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'ihtiyacı olduğu hâlde paylaşmak'tan söz edilir; bu, cömertliğin kendine lazım olanı bile paylaşmak olduğunu gösterir."
+        },
+        {
+          "soru": "Bir toplumu ayakta tutan, yalnızca yasaları değildir; asıl güç ----. İnsanların birbirine duyduğu güven olmadan, en iyi kurallar bile kâğıt üzerinde kalır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "bireyler arasındaki güvendir",
+            "sahip olunan silahlardır",
+            "coğrafi büyüklüktür",
+            "nüfusun kalabalığıdır",
+            "geçmişin zaferleridir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'güven olmadan kuralların kâğıt üzerinde kaldığı' belirtilir; bu, asıl gücün bireyler arası güven olduğunu gösterir."
+        },
+        {
+          "soru": "Merak, öğrenmenin başlangıcıdır; çünkü ----. Bir soru sormadan hiçbir cevap aranmaz, hiçbir keşif yapılmaz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "ezber yapmayı kolaylaştırır",
+            "yalnızca çocuklara özgüdür",
+            "insanı bilmeye iten ilk kıvılcım odur",
+            "öğrenmeyi zorlaştırır",
+            "bilgiyle bir ilgisi yoktur"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'soru sormadan cevap aranmadığı' belirtilir; bu, merakın bilmeye iten ilk kıvılcım olduğunu gösterir."
+        },
+        {
+          "soru": "Yazının en büyük gücü, unutulanı saklayabilmesidir; onun sayesinde ----. Binlerce yıl önce yaşamış birinin düşüncesi, bugün hâlâ bize seslenebiliyor.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her şey kısa sürede unutulur",
+            "yalnızca güncel olaylar aktarılır",
+            "bilgi çabucak yok olur",
+            "insanlar konuşmayı bırakır",
+            "geçmişle bugün arasında köprü kurulur"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'binlerce yıl önceki düşüncenin bugüne seslendiği' belirtilir; bu, yazının geçmişle bugün arasında köprü kurduğunu gösterir."
+        },
+        {
+          "soru": "Alışkanlıklar, küçük tekrarlarla kök salar; bu yüzden ----. Her gün atılan minik bir adım, zamanla ya sağlam bir erdeme ya da ağır bir yüke dönüşür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "onları hiç değiştirmemek gerekir",
+            "büyük kararlar tek başına yeterlidir",
+            "tekrarın hiçbir önemi yoktur",
+            "onları oluştururken dikkatli olmak gerekir",
+            "yalnızca şans belirleyicidir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra günlük küçük adımların erdeme ya da yüke dönüştüğü belirtilir; bu, alışkanlıkları oluştururken dikkatli olmak gerektiğini gösterir."
+        },
+        {
+          "soru": "İyi bir öğretmen, öğrencisine yalnızca bilgi vermez; ona ----. Cevapları ezberleten değil, soru sormayı öğreten öğretmen kalıcı iz bırakır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her şeyi hazır sunar",
+            "düşünmeyi yasaklar",
+            "yalnızca sınav tekniği aşılar",
+            "kendi görüşünü dayatır",
+            "öğrenmeyi öğretir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'soru sormayı öğreten öğretmenin kalıcı iz bıraktığı' belirtilir; bu, iyi öğretmenin öğrenmeyi öğrettiğini gösterir."
+        },
+        {
+          "soru": "Bir dilin yaşaması, konuşulmasına bağlıdır; kullanılmayan bir dil ----. Sözcükleri unutulur, deyimleri anlamını yitirir ve sonunda yalnızca kitaplarda kalır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her zaman güçlenerek büyür",
+            "hiçbir zaman değişmez",
+            "yavaş yavaş yok olmaya yüz tutar",
+            "kendiliğinden zenginleşir",
+            "başka dilleri de canlandırır"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra dilin sözcüklerinin unutulup kitaplarda kaldığı belirtilir; bu, kullanılmayan dilin yok olmaya yüz tuttuğunu gösterir."
+        },
+        {
+          "soru": "Hata yapmak, öğrenmenin doğal bir parçasıdır; asıl sorun ----. Aynı yanlışı defalarca tekrarlayan kişi, deneyiminden hiçbir şey öğrenmemiş demektir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiç hata yapmamaktır",
+            "denemekten vazgeçmemektir",
+            "yeni şeyler öğrenmektir",
+            "aynı hatada ısrar etmektir",
+            "başkalarına danışmaktır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'aynı yanlışı tekrarlayanın öğrenmediği' belirtilir; bu, asıl sorunun aynı hatada ısrar etmek olduğunu gösterir."
+        },
+        {
+          "soru": "Başkalarını anlamak, onların yerine kendini koymakla başlar; çünkü ----. Bir insanın neden öyle davrandığını, ancak onun gözünden bakınca kavrayabiliriz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "herkes yalnızca kendini düşünmelidir",
+            "yargılamak anlamaktan kolaydır",
+            "başkalarının derdi bizi ilgilendirmez",
+            "empati, anlayışın temelidir",
+            "insanlar asla değişmez"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'onun gözünden bakınca kavramak'tan söz edilir; bu, empatinin anlayışın temeli olduğunu gösterir."
+        },
+        {
+          "soru": "Bir kitabın değeri, kalınlığıyla ölçülmez; kimi zaman birkaç sayfalık bir eser ----. Az sözle çok şey anlatabilen yazar, gerçek ustalığı yakalamıştır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "koca ciltlerden daha çok şey söyler",
+            "hiçbir işe yaramaz",
+            "okunmaya değmez",
+            "her zaman sıkıcıdır",
+            "yalnızca çocuklar içindir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'az sözle çok şey anlatmanın ustalık olduğu' belirtilir; bu, kısa eserin koca ciltlerden çok şey söyleyebileceğini gösterir."
+        },
+        {
+          "soru": "Cesaret, korkusuzluk değildir; asıl cesaret ----. Korktuğu hâlde doğru bildiğini yapabilen kişi, gerçekten cesur olandır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiçbir şeyden korkmamaktır",
+            "korkuya rağmen ilerleyebilmektir",
+            "tehlikeyi görmezden gelmektir",
+            "her zaman geri çekilmektir",
+            "başkalarına güvenmektir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'korktuğu hâlde doğru bildiğini yapmak'tan söz edilir; bu, cesaretin korkuya rağmen ilerlemek olduğunu gösterir."
+        },
+        {
+          "soru": "Bir ustanın elinde sıradan bir malzeme bile değer kazanır; çünkü ----. Aynı taş, birinin elinde moloz kalırken, bir başkasının elinde heykele dönüşür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "değeri belirleyen, onu işleyen ustalıktır",
+            "malzemenin cinsi her şeyi belirler",
+            "emek hiçbir fark yaratmaz",
+            "ustalık öğrenilemez",
+            "her taş aynıdır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra aynı taşın kiminde moloz kimindeyse heykel olduğu belirtilir; bu, değeri belirleyenin ustalık olduğunu gösterir."
+        },
+        {
+          "soru": "Geçmişi bilmek, geleceği kurmanın anahtarıdır; çünkü ----. Nereden geldiğini bilmeyen bir toplum, nereye gideceğini de kestiremez.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "geçmiş, bugünü anlamanın ışığıdır",
+            "geçmiş tümüyle unutulmalıdır",
+            "yalnızca gelecek önemlidir",
+            "tarih hiçbir işe yaramaz",
+            "insanlar geçmişten ders almaz"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'nereden geldiğini bilmeyenin nereye gideceğini kestiremediği' belirtilir; bu, geçmişin bugünü anlamanın ışığı olduğunu gösterir."
+        },
+        {
+          "soru": "Konuşmak gümüşse, susmak altındır derler; çünkü bazen ----. Yerinde bir sessizlik, boş sözlerin hepsinden daha anlamlı olabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "çok konuşmak her zaman iyidir",
+            "susmak korkaklıktır",
+            "sözcükler gereksizdir",
+            "en güçlü ifade sessizliktir",
+            "sessizlik ilgisizliktir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'yerinde sessizliğin boş sözlerden anlamlı olduğu' belirtilir; bu, bazen en güçlü ifadenin sessizlik olduğunu gösterir."
+        },
+        {
+          "soru": "İnsan, yalnızca aldıklarıyla değil, verdikleriyle de zenginleşir; çünkü ----. Paylaşıldıkça çoğalan tek şey, belki de iyiliktir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "vermek insanı yoksullaştırır",
+            "yalnızca almak mutluluk verir",
+            "iyilik boşa harcanan bir çabadır",
+            "vermek, insanı içten doyurur",
+            "cömertlik gereksizdir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'paylaşıldıkça çoğalan iyilik'ten söz edilir; bu, vermenin insanı içten doyurduğunu gösterir."
+        },
+        {
+          "soru": "Bir düşünceyi anlamak, ona katılmayı gerektirmez; olgun insan ----. Karşı çıktığı bir görüşü bile önce doğru anlamaya çalışır, sonra değerlendirir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca kendi görüşünü dinler",
+            "anlamadan hemen reddeder",
+            "katılmasa da bir fikri anlayabilir",
+            "her fikre körü körüne katılır",
+            "tartışmaktan kaçar"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'karşı çıktığı görüşü bile önce anlamaya çalıştığı' belirtilir; bu, olgun insanın katılmasa da bir fikri anlayabildiğini gösterir."
+        },
+        {
+          "soru": "Yolculuk, yalnızca bir yerden bir yere gitmek değildir; asıl yolculuk ----. Gittiğimiz her yer, bize kendimiz hakkında yeni bir şey öğretir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "insanın kendini keşfetmesidir",
+            "en kısa yolu bulmaktır",
+            "hiç durmadan ilerlemektir",
+            "yalnızca fotoğraf çekmektir",
+            "para harcamaktır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'her yerin bize kendimiz hakkında bir şey öğrettiği' belirtilir; bu, asıl yolculuğun kendini keşfetmek olduğunu gösterir."
+        },
+        {
+          "soru": "Bilim, kesin doğrular sunmaz; onun gücü ----. Her yeni kanıt, dünkü bilgiyi güncelleyebilir; işte bu esneklik onu güçlü kılar.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiç değişmemesindedir",
+            "kendini sürekli yenileyebilmesindedir",
+            "her şeyi kesin bilmesindedir",
+            "sorgulanamaz olmasındadır",
+            "geçmişe bağlı kalmasındadır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'her yeni kanıtın bilgiyi güncellediği' belirtilir; bu, bilimin gücünün kendini yenileyebilmesinde olduğunu gösterir."
+        },
+        {
+          "soru": "Bir dostluğu ayakta tutan, sık görüşmek değildir; çünkü gerçek dostlukta ----. Yıllarca uzak kalsalar da yeniden bir araya geldiklerinde hiçbir şey değişmemiş gibidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kısa bir ayrılık her şeyi bitirir",
+            "görüşülmezse dostluk biter",
+            "araya giren zaman bağı zayıflatmaz",
+            "mesafe sevgiyi yok eder",
+            "sıklık tek ölçüttür"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'yıllar geçse de değişmeyen bağ'dan söz edilir; bu, gerçek dostlukta zamanın bağı zayıflatmadığını gösterir."
+        },
+        {
+          "soru": "Başarısızlık, yolun sonu değildir; çoğu zaman ----. En büyük buluşlar bile onlarca denemenin ardından, üst üste yaşanan hayal kırıklıklarından doğmuştur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her şeyin bittiği noktadır",
+            "denemeyi bırakma nedenidir",
+            "kalıcı bir yenilgidir",
+            "yeni bir başlangıcın kapısıdır",
+            "utanılacak bir durumdur"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'buluşların hayal kırıklıklarından doğduğu' belirtilir; bu, başarısızlığın yeni bir başlangıcın kapısı olduğunu gösterir."
+        },
+        {
+          "soru": "Nezaket, zayıflığın değil, gücün işaretidir; çünkü ----. Öfkeye öfkeyle değil, sabırla karşılık verebilen kişi, kendine hâkim olabilen kişidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kaba olmak saygı kazandırır",
+            "nazik insanlar hep ezilir",
+            "öfke her zaman haklıdır",
+            "kendini tutabilmek asıl güçtür",
+            "yumuşaklık bir kusurdur"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'öfkeye sabırla karşılık verenin kendine hâkim olduğu' belirtilir; bu, kendini tutabilmenin asıl güç olduğunu gösterir."
+        },
+        {
+          "soru": "Bir toplumun geleceği, çocuklarına verdiği eğitimde gizlidir; çünkü ----. Bugün ekilen bilgi ve değerler, yarının dünyasını biçimlendirecektir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "çocukların geleceği önemsizdir",
+            "eğitim boşa harcanan bir çabadır",
+            "gelecek kendiliğinden gelir",
+            "eğitim, geleceğe atılan tohumdur",
+            "geçmiş her şeyi belirler"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'bugün ekilenin yarını biçimlendireceği' belirtilir; bu, eğitimin geleceğe atılan tohum olduğunu gösterir."
+        },
+        {
+          "soru": "İnsan, çevresini değiştirmeden önce kendini değiştirmelidir; çünkü ----. Kendi davranışını düzeltmeyen birinin, başkalarına verdiği öğüt havada kalır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gerçek değişim insanın kendisinden başlar",
+            "başkalarını suçlamak yeterlidir",
+            "kimse değişmek zorunda değildir",
+            "çevre her şeyi belirler",
+            "öğüt vermek en etkili yoldur"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'kendini düzeltmeyenin öğüdünün havada kaldığı' belirtilir; bu, gerçek değişimin insanın kendisinden başladığını gösterir."
+        },
+        {
+          "soru": "Doğru bilgiye ulaşmak, bilgiye ulaşmaktan daha zordur; çünkü bugün ----. Karşımıza çıkan her şeyi sorgulamadan kabul etmek, bizi gerçeğe değil, yanılgıya götürür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her bilgi kesinlikle doğrudur",
+            "bilgiye ulaşmak imkânsızdır",
+            "bilgi kadar yanlış bilgi de çoğalmıştır",
+            "sorgulamak zaman kaybıdır",
+            "internet her zaman güvenilirdir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'her şeyi sorgusuz kabul etmenin yanılgıya götürdüğü' belirtilir; bu, bilgi kadar yanlış bilginin de çoğaldığını gösterir."
+        },
+        {
+          "soru": "Sabır, hareketsizlik değildir; tam tersine ----. Doğru anı bekleyen bir avcı gibi, sabırlı insan da harekete geçeceği zamanı sezmeyi bilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiçbir şey yapmamaktır",
+            "vazgeçmenin başka adıdır",
+            "tembelliğin bir türüdür",
+            "aceleyle davranmaktır",
+            "doğru zamanı bekleyebilme becerisidir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'doğru anı bekleyen avcı' benzetmesi yapılır; bu, sabrın doğru zamanı bekleyebilme becerisi olduğunu gösterir."
+        },
+        {
+          "soru": "Bir eseri özgün kılan, kullandığı malzeme değil, ----. Aynı notalarla sayısız beste yapılabilir; farkı yaratan, onları bir araya getiren bakıştır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "malzemenin pahalı olmasıdır",
+            "onları bir araya getiren özgün bakıştır",
+            "eserin uzunluğudur",
+            "kopya edilmiş olmasıdır",
+            "kuralların katılığıdır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'aynı notalarla farklı besteler' örneği verilir; bu, özgünlüğü yaratanın malzemeyi bir araya getiren bakış olduğunu gösterir."
+        },
+        {
+          "soru": "Övgü, insanı geliştirebilir; ama hak edilmeyen övgü ----. Gerçeği görmesini engelleyen bir övgü, kişiyi olduğundan büyük görmeye başlatır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her zaman yararlıdır",
+            "hiçbir etki bırakmaz",
+            "insanı olgunlaştırır",
+            "kişiyi yanıltarak zarar verir",
+            "eleştiriden daha değerlidir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'gerçeği görmeyi engelleyen övgünün kişiyi yanılttığı' belirtilir; bu, hak edilmeyen övgünün zarar verdiğini gösterir."
+        },
+        {
+          "soru": "Bir sorunu çözmenin ilk adımı, onu doğru tanımlamaktır; çünkü ----. Yanlış anlaşılmış bir sorun, ne kadar uğraşılırsa uğraşılsın çözülemez.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her sorun kendiliğinden çözülür",
+            "sorunu görmezden gelmek yeterlidir",
+            "çözüm her zaman kolaydır",
+            "tanımlamanın önemi yoktur",
+            "yanlış tanımlanan sorun çözülemez"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'yanlış anlaşılan sorunun çözülemediği' belirtilir; bu, yanlış tanımlanan sorunun çözülemeyeceğini gösterir."
+        },
+        {
+          "soru": "Gerçek bilgelik, çok şey bilmek değildir; asıl bilgelik ----. Ne kadar çok öğrenirse öğrensin, bilmediklerinin farkında olan kişi gerçekten bilgedir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her şeyi bildiğini sanmaktır",
+            "hiç soru sormamaktır",
+            "öğrenmeyi bırakmaktır",
+            "başkalarını küçümsemektir",
+            "bilmediğinin farkında olabilmektir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'bilmediklerinin farkında olanın bilge olduğu' belirtilir; bu, asıl bilgeliğin bilmediğinin farkında olmak olduğunu gösterir."
+        },
+        {
+          "soru": "Bir ülkenin gerçek zenginliği, yeraltı kaynakları değildir; asıl zenginlik ----. İyi yetişmiş, üretken insanlar, hiçbir madenin sağlayamayacağı bir güçtür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yetişmiş insan gücüdür",
+            "sahip olunan altın miktarıdır",
+            "toprakların genişliğidir",
+            "geçmişteki zaferlerdir",
+            "nüfusun kalabalığıdır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'iyi yetişmiş insanların hiçbir madenden değerli olduğu' belirtilir; bu, asıl zenginliğin yetişmiş insan gücü olduğunu gösterir."
+        },
+        {
+          "soru": "Yaratıcılık, yoktan var etmek değildir; çoğu zaman ----. Herkesin gördüğü şeyleri farklı biçimde birleştirebilen kişi, yeni olanı ortaya çıkarır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "var olanı yeni biçimde birleştirmektir",
+            "tümüyle rastlantıdır",
+            "yalnızca dâhilere özgüdür",
+            "kurallara harfiyen uymaktır",
+            "geçmişi taklit etmektir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'herkesin gördüğünü farklı birleştirmek'ten söz edilir; bu, yaratıcılığın var olanı yeni biçimde birleştirmek olduğunu gösterir."
+        },
+        {
+          "soru": "İnsan ilişkilerinde en değerli şey, kusursuzluk değildir; çünkü ----. Hatalarımızı bilerek yanımızda kalabilen biri, bizi gerçekten kabul etmiş demektir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiç hata yapmamaktır",
+            "herkese mükemmel görünmektir",
+            "kimseye güvenmemektir",
+            "eksikleriyle birlikte kabul edilmektir",
+            "sürekli özür dilemektir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'hatalarımızı bilerek yanımızda kalanın bizi kabul ettiği' belirtilir; bu, değerli olanın eksikleriyle kabul edilmek olduğunu gösterir."
+        },
+        {
+          "soru": "Bir işi sevmek, onu kolaylaştırmaz; ama ----. Zorlukları göze aldıran, yorgunluğu unutturan şey, çoğu zaman işe duyulan sevgidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "onu tümüyle zahmetsiz yapar",
+            "hiçbir fark yaratmaz",
+            "insanı tembelleştirir",
+            "başarıyı imkânsızlaştırır",
+            "ona katlanmayı anlamlı kılar"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'sevginin zorlukları göze aldırdığı' belirtilir; bu, işi sevmenin ona katlanmayı anlamlı kıldığını gösterir."
+        },
+        {
+          "soru": "Kitaplar, insanı yalnızlıktan kurtaran sessiz dostlardır; çünkü ----. Bir kitabı açan kişi, yüzyıllar öncesinden ya da dünyanın öbür ucundan biriyle sohbete başlar.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "onları okumak zaman kaybıdır",
+            "yalnızca bilgi ezberletirler",
+            "insanı toplumdan uzaklaştırır",
+            "hiçbir duygu uyandırmaz",
+            "onlar aracılığıyla başka zihinlerle buluşuruz"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'yüzyıllar öncesinden biriyle sohbet'ten söz edilir; bu, kitaplarla başka zihinlere ulaştığımızı gösterir."
+        },
+        {
+          "soru": "Doğru karar vermek, her zaman hızlı karar vermek demek değildir; bazen ----. Acele verilmiş bir karar, uzun uzun düşünülmüş bir karardan çok daha pahalıya mal olabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hız her şeyden önemlidir",
+            "düşünmek gereksizdir",
+            "sonuç önemsizdir",
+            "beklemek en doğru seçenektir",
+            "ilk akla gelen hep doğrudur"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'acele kararın pahalıya mal olduğu' belirtilir; bu, bazen beklemenin en doğru seçenek olduğunu gösterir."
+        },
+        {
+          "soru": "İnsan, tanımadığı şeyden korkar; bu yüzden önyargıların çoğu ----. Bir kültürü, bir insanı yakından tanıdığımızda, korkularımızın çoğunun yersiz olduğunu görürüz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gerçeklere dayanır",
+            "her zaman haklıdır",
+            "bilgisizlikten doğar",
+            "değiştirilemez",
+            "tanışınca güçlenir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'yakından tanıyınca korkuların yersiz çıktığı' belirtilir; bu, önyargıların bilgisizlikten doğduğunu gösterir."
+        },
+        {
+          "soru": "Bir toplumun uygarlık düzeyi, en güçsüz üyesine nasıl davrandığıyla ölçülür; çünkü ----. Zayıfı koruyan bir düzen, herkes için güvenli bir yaşam vaat eder.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gerçek gelişmişlik, dayanışmayla ölçülür",
+            "yalnızca güçlüler önemlidir",
+            "zayıflar göz ardı edilmelidir",
+            "zenginlik tek ölçüttür",
+            "kimse kimseden sorumlu değildir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'zayıfı koruyan düzenin herkese güven verdiği' belirtilir; bu, gerçek gelişmişliğin dayanışmayla ölçüldüğünü gösterir."
+        },
+        {
+          "soru": "Alışkanlıkların gücü, fark edilmemelerinden gelir; çünkü onları ----. Her gün otomatik olarak yaptığımız şeyleri sorgulamayız; oysa hayatımızı asıl onlar biçimlendirir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her an bilinçli seçeriz",
+            "kolayca değiştiririz",
+            "hiç tekrarlamayız",
+            "çoğu zaman farkında olmadan sürdürürüz",
+            "önemsiz sayarız"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'otomatik yaptıklarımızı sorgulamadığımız' belirtilir; bu, alışkanlıkları farkında olmadan sürdürdüğümüzü gösterir."
+        },
+        {
+          "soru": "Bir çınarın gölgesinde dinlenen kişi, çoğu zaman ----. Yıllar önce o ağacı diken kişiyi tanımaz bile; ama onun emeğinden bugün yararlanır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiç kimseye borçlu değildir",
+            "her şeyi kendi başarmıştır",
+            "gölgeyi kendi yaratmıştır",
+            "geçmişte ekilen bir emeğin meyvesini toplar",
+            "geçmişe hiçbir şey borçlu değildir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'ağacı dikenin emeğinden yararlandığı' belirtilir; bu, geçmişte ekilen emeğin meyvesini topladığımızı gösterir."
+        },
+        {
+          "soru": "Konuşmayı herkes bilir; ama az konuşup çok şey anlatmak ----. Gereksiz sözlerle uzayan bir konuşma, dinleyeni sıkar; oysa özlü söz akılda kalır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kolayca yapılır",
+            "hiç önemli değildir",
+            "herkesin harcıdır",
+            "yararsız bir çabadır",
+            "gerçek bir ustalık ister"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'özlü sözün akılda kaldığı' belirtilir; bu, az konuşup çok anlatmanın ustalık istediğini gösterir."
+        },
+        {
+          "soru": "İyimserlik, sorunları görmezden gelmek değildir; gerçek iyimser ----. Zorlukların farkındadır, ama onların üstesinden gelinebileceğine inanır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiçbir sorun olmadığını sanır",
+            "her şeyi kötü görür",
+            "güçlükleri görüp yine de umudunu korur",
+            "çabalamaktan vazgeçer",
+            "gerçeği reddeder"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'zorlukların farkında olup üstesinden gelinebileceğine inandığı' belirtilir; bu, gerçek iyimserin güçlükleri görüp umudunu koruduğunu gösterir."
+        },
+        {
+          "soru": "Sanatın amacı, yalnızca güzeli göstermek değildir; sanat çoğu zaman ----. Bir eser, bize rahatsız edici gerçekleri gösterip düşündürebilir de.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca eğlendirir",
+            "hiçbir işe yaramaz",
+            "gerçeği görmemizi sağlar",
+            "gerçeği gizler",
+            "yalnızca hoş vakit geçirtir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'rahatsız edici gerçekleri gösterip düşündürdüğü' belirtilir; bu, sanatın gerçeği görmemizi sağladığını gösterir."
+        },
+        {
+          "soru": "Bir dili öğrenmek, yalnızca sözcük ezberlemek değildir; asıl öğrenme ----. Bir dili konuşan toplumun düşünme biçimini de kavramayı gerektirir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "sözlük ezberlemektir",
+            "gramer kurallarını saymaktır",
+            "o dilin dünyasına girmektir",
+            "hiç konuşmamaktır",
+            "yalnızca yazmaktır"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'toplumun düşünme biçimini kavramak' gerektiği belirtilir; bu, asıl öğrenmenin o dilin dünyasına girmek olduğunu gösterir."
+        },
+        {
+          "soru": "Değişim, çoğu insanı ürkütür; çünkü bilinen bir zorluk ----. İnsan, tanıdığı bir kötülüğe katlanmayı, bilinmeyen bir iyiliği denemeye yeğleyebilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her zaman aşılabilir",
+            "önemsizdir",
+            "bilinmeyen bir kolaylıktan daha güven verir",
+            "kolayca değiştirilir",
+            "hiç korkutmaz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'tanıdık kötülüğe katlanmayı yeğlediği' belirtilir; bu, bilinen zorluğun bilinmeyen kolaylıktan güven verdiğini gösterir."
+        },
+        {
+          "soru": "Bir buluş, çoğu zaman tek bir kişinin adıyla anılır; oysa ----. Her yeni fikir, kendinden önceki sayısız denemenin üzerine kurulur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "buluşlar tümüyle rastlantıdır",
+            "hiçbir buluş geçmişten bağımsız değildir",
+            "tek kişi her şeyi başarır",
+            "geçmişin hiçbir katkısı yoktur",
+            "buluşlar birdenbire olur"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'her fikrin önceki denemeler üzerine kurulduğu' belirtilir; bu, hiçbir buluşun geçmişten bağımsız olmadığını gösterir."
+        },
+        {
+          "soru": "Eleştiri, yıkmak için değil, düzeltmek için yapılırsa değerlidir; çünkü yapıcı eleştiri ----. Kusuru gösterirken çözüm de sunan bir eleştiri, insanı ilerletir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca incitir",
+            "hiçbir işe yaramaz",
+            "insanı durdurur",
+            "her zaman haksızdır",
+            "yol gösterir, geliştirir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'kusuru gösterip çözüm sunan eleştirinin insanı ilerlettiği' belirtilir; bu, yapıcı eleştirinin yol gösterip geliştirdiğini gösterir."
+        },
+        {
+          "soru": "Mutluluk, sahip olduklarımızda değil, onları fark edebilmemizde gizlidir; çünkü ----. Aynı hayatı yaşayan iki kişiden biri şükrederken, diğeri sürekli yakınabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca zenginler mutlu olur",
+            "sahip olmak her şeydir",
+            "mutluluk imkânsızdır",
+            "önemli olan bakış açımızdır",
+            "hiç kimse mutlu olamaz"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'aynı hayatta birinin şükredip diğerinin yakındığı' belirtilir; bu, önemli olanın bakış açımız olduğunu gösterir."
+        },
+        {
+          "soru": "Bir çocuğun soruları bazen büyükleri zorlar; ama bu sorular ----. 'Neden?' diye soran çocuk, aslında dünyayı anlamanın ilk adımını atmaktadır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gereksiz ve sıkıcıdır",
+            "cevaplanmamalıdır",
+            "öğrenmenin en doğal yoludur",
+            "çocukları oyalar",
+            "hiçbir anlam taşımaz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'neden diye soran çocuğun dünyayı anlamaya başladığı' belirtilir; bu, soruların öğrenmenin en doğal yolu olduğunu gösterir."
+        },
+        {
+          "soru": "Zenginlik, çok şeye sahip olmak değildir; bazen ----. Az şeyle yetinmeyi bilen, hiçbir şeyin esiri olmayan kişi gerçekten özgürdür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "ne kadar çok o kadar iyidir",
+            "aza kanaat edebilmek asıl zenginliktir",
+            "yoksulluk bir erdemdir",
+            "para her şeyi çözer",
+            "sahip olmak mutluluk getirir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'az şeyle yetinenin özgür olduğu' belirtilir; bu, aza kanaat edebilmenin asıl zenginlik olduğunu gösterir."
+        },
+        {
+          "soru": "Bir usta, çırağına önce beklemeyi öğretir; çünkü acele eden el ----. Hızla yapılan iş çoğu zaman baştan savma olur, sabırla yapılan iş ise kalıcı.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her zaman en iyisini yapar",
+            "işi yarım bırakır ya da bozar",
+            "hiç yorulmaz",
+            "ustalık kazandırır",
+            "zaman kazandırır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'hızla yapılan işin baştan savma olduğu' belirtilir; bu, acele eden elin işi bozduğunu gösterir."
+        },
+        {
+          "soru": "İnsan, hatalarından öğrenir; ama bunun için önce ----. Yanlışını kabul etmeyen biri, onu düzeltme fırsatını da baştan yitirmiş olur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "başkalarını suçlaması gerekir",
+            "hatasını gizlemesi gerekir",
+            "hata yaptığını kabul etmesi gerekir",
+            "hiç denememesi gerekir",
+            "sorumluluktan kaçması gerekir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'yanlışını kabul etmeyenin düzeltme fırsatını yitirdiği' belirtilir; bu, önce hata yaptığını kabul etmek gerektiğini gösterir."
+        },
+        {
+          "soru": "Doğa, dengesini kendi kurar; ama insan bu dengeye çok fazla müdahale edince ----. Kesilen bir orman, yalnızca ağaçları değil, ona bağlı tüm yaşamı yok eder.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her şey daha iyi olur",
+            "geri dönüşü zor sorunlar ortaya çıkar",
+            "hiçbir şey değişmez",
+            "doğa güçlenir",
+            "denge kendiliğinden düzelir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'kesilen ormanın tüm yaşamı yok ettiği' belirtilir; bu, aşırı müdahalenin geri dönüşü zor sorunlar doğurduğunu gösterir."
+        },
+        {
+          "soru": "Gerçek dostluk, çıkar üzerine kurulmaz; çünkü çıkara dayanan bir ilişki ----. Menfaat bittiğinde biten bir dostluk, aslında hiç dostluk olmamıştır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "sonsuza dek sürer",
+            "en sağlam dostluktur",
+            "menfaat bitince sona erer",
+            "hiç bozulmaz",
+            "en değerlisidir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'menfaat bittiğinde biten dostluğun hiç dostluk olmadığı' belirtilir; bu, çıkara dayalı ilişkinin menfaat bitince sona erdiğini gösterir."
+        },
+        {
+          "soru": "Bir toplumu geliştiren, tek tip düşünen insanlar değil, ----. Farklı görüşlerin özgürce tartışıldığı bir ortamda, en iyi fikirler ortaya çıkar.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "herkesin aynı şeyi düşünmesidir",
+            "tartışmanın yasaklanmasıdır",
+            "tek bir görüşün dayatılmasıdır",
+            "farklı fikirlerin bir arada bulunmasıdır",
+            "susmanın yaygınlaşmasıdır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'farklı görüşlerin tartışıldığı ortamda en iyi fikirlerin çıktığı' belirtilir; bu, toplumu geliştirenin farklı fikirlerin bir arada bulunması olduğunu gösterir."
+        },
+        {
+          "soru": "Başkasının başarısını kıskanmak, insanın kendi yolunu görmesini engeller; çünkü ----. Sürekli başkasına bakan göz, kendi önündeki fırsatları fark edemez.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kıskançlık insanı geliştirir",
+            "başkasına bakmak yararlıdır",
+            "başarı kıskançlıkla gelir",
+            "kıskançlık, kişinin kendi gelişimini köreltir",
+            "herkes birbirini kıskanmalıdır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'başkasına bakan gözün kendi fırsatlarını göremediği' belirtilir; bu, kıskançlığın kişinin kendi gelişimini körelttiğini gösterir."
+        },
+        {
+          "soru": "Bir metni anlamak için sözlük yetmez; çünkü sözcükler ----. Aynı cümle, söylendiği duruma göre bambaşka anlamlar taşıyabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "bağlam içinde anlam kazanır",
+            "her zaman tek anlamlıdır",
+            "hiç değişmez",
+            "yalnızca sözlükte yaşar",
+            "duygudan bağımsızdır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'aynı cümlenin duruma göre farklı anlam taşıdığı' belirtilir; bu, sözcüklerin bağlam içinde anlam kazandığını gösterir."
+        },
+        {
+          "soru": "İnsan, ne kadar bilgili olursa olsun, tek başına her şeyi yapamaz; çünkü ----. Büyük işler, farklı yeteneklerin bir araya gelmesiyle başarılır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnız çalışmak en iyisidir",
+            "başkalarına ihtiyaç yoktur",
+            "bilgi her zaman yeter",
+            "iş bölümü ve dayanışma gereklidir",
+            "yardımlaşmak zayıflıktır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'büyük işlerin farklı yeteneklerle başarıldığı' belirtilir; bu, iş bölümü ve dayanışmanın gerekli olduğunu gösterir."
+        },
+        {
+          "soru": "Geçmişe takılıp kalmak, geleceği kaçırmaya yol açar; çünkü ----. Dün olanları değiştiremeyiz, ama bugünü ve yarını hâlâ biçimlendirebiliriz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "elimizde olan tek zaman şimdidir",
+            "geçmiş her zaman geri gelir",
+            "gelecek hiç önemli değildir",
+            "bugünün bir anlamı yoktur",
+            "yalnızca dün önemlidir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'dünü değiştiremeyeceğimiz ama bugünü biçimlendirebileceğimiz' belirtilir; bu, elimizde olan tek zamanın şimdi olduğunu gösterir."
+        },
+        {
+          "soru": "Bir liderin gücü, emir vermesinde değil, ----. İnsanları peşinden sürükleyen lider, onlara güven veren ve örnek olan kişidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "güven verip örnek olabilmesindedir",
+            "herkesi korkutmasındadır",
+            "kimseyi dinlememesindedir",
+            "sürekli emir yağdırmasındadır",
+            "kendini üstün görmesindedir"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'insanları sürükleyen liderin güven verip örnek olduğu' belirtilir; bu, liderin gücünün güven verip örnek olabilmesinde olduğunu gösterir."
+        },
+        {
+          "soru": "Teknoloji, insan yaşamını kolaylaştırdı; ama her kolaylık ----. Ekranlara bağlı geçen saatler, bazen gerçek dünyayla bağımızı zayıflatıyor.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca yarar sağlar",
+            "hiçbir bedeli yoktur",
+            "insanı her açıdan geliştirir",
+            "hiçbir şeyi değiştirmez",
+            "beraberinde yeni sorunlar getirebilir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'ekran saatlerinin gerçek dünyayla bağı zayıflattığı' belirtilir; bu, her kolaylığın yeni sorunlar getirebileceğini gösterir."
+        },
+        {
+          "soru": "Bir öğretmenin en büyük ödülü, notlar değildir; asıl ödül ----. Yıllar sonra bir öğrencinin 'siz olmasaydınız' demesi, her şeye değer.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yüksek maaş almaktır",
+            "kolay ders anlatmaktır",
+            "tatil yapabilmektir",
+            "öğrenciden korkulmasıdır",
+            "öğrencisinin hayatına dokunabilmektir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'öğrencinin siz olmasaydınız demesinin her şeye değdiği' belirtilir; bu, asıl ödülün öğrencinin hayatına dokunmak olduğunu gösterir."
+        },
+        {
+          "soru": "Sözünde durmak, küçük bir davranış gibi görünür; oysa ----. Verdiği sözü tutan kişiye güvenilir; güven ise bir kez sarsıldığında zor onarılır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiçbir önemi yoktur",
+            "insanı zora sokar",
+            "güvenin temelini oluşturur",
+            "gereksiz bir titizliktir",
+            "kolayca göz ardı edilir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'sözünü tutana güvenildiği' belirtilir; bu, sözünde durmanın güvenin temelini oluşturduğunu gösterir."
+        },
+        {
+          "soru": "Bir sorunu görmezden gelmek, onu çözmez; tam tersine ----. Küçükken çözülmeyen bir mesele, zamanla büyüyüp içinden çıkılmaz hâle gelir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "zamanla daha da büyür",
+            "kendiliğinden yok olur",
+            "önemsizleşir",
+            "kolayca çözülür",
+            "hiç değişmez"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'çözülmeyen meselenin büyüyüp içinden çıkılmaz olduğu' belirtilir; bu, görmezden gelinen sorunun zamanla büyüdüğünü gösterir."
+        },
+        {
+          "soru": "Bir insanı tanımak için ne söylediğine değil, ----. Sözler kolayca söylenir; oysa davranışlar kişinin gerçek yüzünü gösterir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "ne yaptığına bakmak gerekir",
+            "nasıl giyindiğine bakmak gerekir",
+            "kaç kişi tanıdığına bakmak gerekir",
+            "ne kadar konuştuğuna bakmak gerekir",
+            "hangi işi yaptığına bakmak yeter"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'davranışların gerçek yüzü gösterdiği' belirtilir; bu, kişiyi tanımak için ne yaptığına bakmak gerektiğini gösterir."
+        },
+        {
+          "soru": "Okumak insanı özgürleştirir; çünkü bilgi ----. Aklı sorularla dolu, düşünmeyi bilen bir insanı kimse kolayca yönlendiremez.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "insanı bağımlı kılar",
+            "hiçbir şeyi değiştirmez",
+            "korkuyu artırır",
+            "insanı bağımsız düşünmeye götürür",
+            "insanı köleleştirir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'düşünmeyi bilen insanın kolayca yönlendirilemediği' belirtilir; bu, bilginin insanı bağımsız düşünmeye götürdüğünü gösterir."
+        },
+        {
+          "soru": "Bir eser ne kadar iyi olursa olsun, ----. Yıllara direnip hâlâ okunabiliyorsa, gerçek değerini o zaman kanıtlamış olur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hemen unutulur",
+            "değeri anında anlaşılır",
+            "eleştiriye kapalıdır",
+            "hiç değişmez",
+            "asıl sınavı zamandır"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'yıllara direnip okunabilmenin değeri kanıtladığı' belirtilir; bu, bir eserin asıl sınavının zaman olduğunu gösterir."
+        },
+        {
+          "soru": "İnsan, en çok kendine dürüst olmakta zorlanır; çünkü ----. Başkalarını kandırmak kolaydır, ama kendi eksiklerimizle yüzleşmek cesaret ister.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kendi gerçeğiyle yüzleşmek güçtür",
+            "kendini kandırmak imkânsızdır",
+            "dürüstlük gereksizdir",
+            "herkes kendine dürüsttür",
+            "yüzleşmek kolaydır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'kendi eksiklerimizle yüzleşmenin cesaret istediği' belirtilir; bu, kendi gerçeğiyle yüzleşmenin güç olduğunu gösterir."
+        },
+        {
+          "soru": "Bir düşünceyi benimsetmenin en kötü yolu, onu dayatmaktır; çünkü zorla kabul ettirilen fikir ----. İnsan, ancak inandırıldığı şeyi içtenlikle savunur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yürekten benimsenmez",
+            "hemen sevilir",
+            "kalıcı olur",
+            "en doğrusudur",
+            "herkesçe savunulur"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'insanın ancak inandırıldığını içtenlikle savunduğu' belirtilir; bu, zorla kabul ettirilen fikrin yürekten benimsenmediğini gösterir."
+        },
+        {
+          "soru": "Doğanın her ayrıntısında bir denge vardır; avcı olmasa av türü aşırı çoğalır, av olmasa avcı aç kalır. Bu yüzden ----. Bir halkanın kopması, tüm zinciri etkiler.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her tür yalnız yaşar",
+            "canlılar birbirine bağlıdır",
+            "doğada denge yoktur",
+            "türler birbirinden bağımsızdır",
+            "avcılar gereksizdir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'bir halkanın kopmasının tüm zinciri etkilediği' belirtilir; bu, canlıların birbirine bağlı olduğunu gösterir."
+        },
+        {
+          "soru": "Bir işe başlamanın en zor yanı, çoğu zaman ----. İlk adımı attıktan sonra, gerisinin sanıldığı kadar korkutucu olmadığı görülür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "işi bitirebilmektir",
+            "başkalarına danışmaktır",
+            "malzeme bulmaktır",
+            "o ilk adımı atabilmektir",
+            "para kazanmaktır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'ilk adımdan sonra gerisinin korkutucu olmadığı' belirtilir; bu, en zor yanın ilk adımı atmak olduğunu gösterir."
+        },
+        {
+          "soru": "Gerçek özgüven, kusursuz olmaktan gelmez; çünkü ----. Eksiklerini bilen ama yine de kendine değer verebilen kişi, sağlam bir özgüvene sahiptir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiç hata yapmamaktan gelir",
+            "başkalarını küçümsemekten gelir",
+            "kusursuzluktan gelir",
+            "eksiğiyle barışık olmaktan gelir",
+            "övülmekten gelir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'eksiklerini bilip yine de kendine değer verenin sağlam özgüvene sahip olduğu' belirtilir; bu, gerçek özgüvenin eksiğiyle barışık olmaktan geldiğini gösterir."
+        },
+        {
+          "soru": "Bir toplumun belleği, müzeleri ve kitaplarıyla korunur; çünkü ----. Geçmişini kaydetmeyen bir toplum, aynı hataları tekrar tekrar yapmaya mahkûmdur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "geçmişi unutmak yararlıdır",
+            "belleğin hiçbir işlevi yoktur",
+            "kayıtlar gereksizdir",
+            "yazılı bellek, geçmişten ders almayı sağlar",
+            "toplumlar geçmişten ders almaz"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'geçmişini kaydetmeyenin aynı hataları yaptığı' belirtilir; bu, yazılı belleğin geçmişten ders almayı sağladığını gösterir."
+        },
+        {
+          "soru": "Bir fikri çürütmek için onu iyi anlamak gerekir; çünkü ----. Anlamadan karşı çıkan kişi, aslında var olmayan bir düşünceyle savaşır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "anlamak gereksizdir",
+            "her karşı çıkış haklıdır",
+            "gerçek eleştiri, doğru anlamaktan geçer",
+            "tartışmak zaman kaybıdır",
+            "fikirler anlaşılmaz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'anlamadan karşı çıkanın var olmayan bir düşünceyle savaştığı' belirtilir; bu, gerçek eleştirinin doğru anlamaktan geçtiğini gösterir."
+        },
+        {
+          "soru": "Küçük iyilikler, dünyayı değiştirmez gibi görünür; oysa ----. Bir gülümseme, bir yardım eli, kimi zaman bir insanın bütün gününü kurtarabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "iyilik boşa harcanan çabadır",
+            "yalnızca büyük işler önemlidir",
+            "her küçük iyiliğin bir karşılığı vardır",
+            "iyilik hiçbir işe yaramaz",
+            "kimse iyiliği fark etmez"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'bir gülümsemenin bir günü kurtarabildiği' belirtilir; bu, her küçük iyiliğin bir karşılığı olduğunu gösterir."
+        },
+        {
+          "soru": "Bir sanatçı, eserini herkesin beğenmesini bekleyemez; çünkü ----. Her göze aynı görünen bir eser, belki de hiç kimseye özel bir şey söylemiyordur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "herkes aynı şeyi görmelidir",
+            "gerçek sanat, farklı yorumlara açıktır",
+            "sanat tek anlamlıdır",
+            "beğenmeyen haksızdır",
+            "eser değişmez tek yorum taşır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Boşluktan sonra 'herkese aynı görünen eserin kimseye özel şey söylemediği' belirtilir; bu, gerçek sanatın farklı yorumlara açık olduğunu gösterir."
+        },
+        {
+          "soru": "Bir insanın olgunluğu, tartışırken belli olur; olgun insan ----. Sesini yükseltmeden, karşısındakini küçümsemeden düşüncesini savunabilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "her zaman bağırır",
+            "kimseyi dinlemez",
+            "hemen sinirlenir",
+            "haklıyken bile saygılı kalabilir",
+            "tartışmadan kaçar"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'sesini yükseltmeden düşüncesini savunduğu' belirtilir; bu, olgun insanın haklıyken bile saygılı kalabildiğini gösterir."
+        },
+        {
+          "soru": "Bir işin hakkını vermek, onu zamanında bitirmekten fazlasıdır; çünkü ----. Özenle yapılan bir iş, sahibinin imzası gibidir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hız her şeyden önemlidir",
+            "özenin bir değeri yoktur",
+            "işi bitirmek yeterlidir",
+            "işe konan emek, onun niteliğini belirler",
+            "kalite önemsizdir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'özenle yapılan işin sahibinin imzası gibi olduğu' belirtilir; bu, işe konan emeğin niteliği belirlediğini gösterir."
+        },
+        {
+          "soru": "Yeni bir şey öğrenmenin yaşı yoktur; çünkü öğrenme ----. Meraklı bir zihin, her yaşta gelişmeyi sürdürebilir.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca gençlere özgüdür",
+            "belli bir yaşta biter",
+            "gereksiz bir çabadır",
+            "okulla sınırlıdır",
+            "ömür boyu süren bir yolculuktur"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'meraklı zihnin her yaşta geliştiği' belirtilir; bu, öğrenmenin ömür boyu süren bir yolculuk olduğunu gösterir."
+        },
+        {
+          "soru": "Bir toplumu çökerten, dıştan gelen tehditler değil, çoğu zaman ----. İçeride çözülen güven ve dayanışma, en büyük düşmandan daha yıkıcıdır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "dışarıdan gelen saldırıdır",
+            "doğal afetlerdir",
+            "ekonomik büyümedir",
+            "teknolojik gelişmedir",
+            "içeriden gelen çürümedir"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Boşluktan sonra 'içeride çözülen güvenin en yıkıcı olduğu' belirtilir; bu, çökerten şeyin içeriden gelen çürüme olduğunu gösterir."
+        },
+        {
+          "soru": "Bir sözün etkisi, yalnızca içeriğinden değil, ----. Aynı cümle, sevgiyle de söylenebilir, öfkeyle de; ikisi bambaşka iz bırakır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca uzunluğundan gelir",
+            "hiçbir şeyden gelmez",
+            "konuşanın yaşından gelir",
+            "söyleniş biçiminden de gelir",
+            "yazılışından gelir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Boşluktan sonra 'aynı cümlenin sevgiyle/öfkeyle farklı iz bıraktığı' belirtilir; bu, etkinin söyleniş biçiminden de geldiğini gösterir."
+        },
+        {
+          "soru": "İnsan, en çok elindekinin değerini onu kaybedince anlar; çünkü ----. Alıştığımız güzellikleri, ancak yokluklarında fark ederiz.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "hiçbir şey kaybedilmez",
+            "her şey kalıcıdır",
+            "sahip olduğumuz şeyler zamanla görünmez olur",
+            "değerler hiç unutulmaz",
+            "kayıp bir şey öğretmez"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Boşluktan sonra 'alıştığımız güzellikleri yoklukta fark ettiğimiz' belirtilir; bu, sahip olduklarımızın zamanla görünmez olduğunu gösterir."
+        },
+        {
+          "soru": "Bir fikir tek başına güçsüzdür; ama paylaşıldıkça ----. Bir zihinden diğerine geçen düşünce, yol boyunca zenginleşerek büyür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "çoğalıp güçlenir",
+            "değerini yitirir",
+            "yok olur",
+            "zayıflar",
+            "değişmez kalır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boşluktan sonra 'bir zihinden diğerine geçen düşüncenin zenginleşerek büyüdüğü' belirtilir; bu, paylaşılan fikrin çoğalıp güçlendiğini gösterir."
         }
       ]
     },
