@@ -36554,6 +36554,1074 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Özgün cümledeki 'yanılma korkusu → gerçeği bulamamak' yargısı, 'hata yapmaktan çekinen doğruya ulaşamaz' cümlesinde korunur."
+        },
+        {
+          "soru": "“Bilgi paylaşıldıkça azalmaz, tam tersine çoğalır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bilgiyi paylaşan kişi zarar eder.",
+            "Bilgi yalnızca saklandığında değer kazanır.",
+            "Herkes bildiğini kendine saklamalıdır.",
+            "Bilgi zamanla kendiliğinden azalır.",
+            "Bilgi, paylaşıldığında eksilmek yerine artar."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Özgün cümledeki 'paylaşınca çoğalır' düşüncesi, 'paylaşıldığında artar' cümlesinde korunur; diğerleri çelişir."
+        },
+        {
+          "soru": "“Zamanı iyi kullanan, aslında hayatını iyi kullanmış olur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Zaman herkes için aynı hızda geçer.",
+            "Hayatı kısa olanın zamanı da azdır.",
+            "Zamanını değerlendiren, yaşamını da değerlendirmiş olur.",
+            "Zamanı boşa harcamak zenginliktir.",
+            "Zamanın hiçbir değeri yoktur."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Zamanı iyi kullanmak = hayatı iyi kullanmak' ilişkisi, doğru seçenekte aynen yer alır."
+        },
+        {
+          "soru": "“Gerçek dost, seni olduğun gibi kabul edendir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Gerçek dostluk, kişiyi değiştirmeye çalışmadan benimsemektir.",
+            "Dost, seni sürekli değiştirmek isteyendir.",
+            "İyi dost, çıkarına göre davranandır.",
+            "Dostluk yalnızca iyi günde sürer.",
+            "Herkes herkesin dostudur."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Olduğun gibi kabul etmek' düşüncesi, 'değiştirmeye çalışmadan benimsemek' seçeneğiyle örtüşür."
+        },
+        {
+          "soru": "“Başarı, düşmemekte değil, her düştüğünde kalkabilmektedir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Başarılı insan hiç düşmeyendir.",
+            "Düşen bir daha kalkamaz.",
+            "Başarı tümüyle şansa bağlıdır.",
+            "Asıl başarı, düştükten sonra yeniden ayağa kalkabilmektir.",
+            "Hata yapan başarısızdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Düştüğünde kalkabilmek' vurgusu, doğru seçenekte birebir korunur."
+        },
+        {
+          "soru": "“Eleştiriye kulak veren, kendini geliştirme fırsatı bulur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Eleştiri insanı yalnızca yıpratır.",
+            "Eleştiriye kulak vermemek en doğrusudur.",
+            "Eleştirileri dinleyen kişi, gelişme imkânı elde eder.",
+            "Gelişmek için eleştiriye gerek yoktur.",
+            "Eleştiren kişi her zaman haksızdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Eleştiriye kulak vermek → gelişme fırsatı' ilişkisi doğru seçenekte aynen yer alır."
+        },
+        {
+          "soru": "“Emek verilmeden elde edilen başarı, kalıcı olmaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Başarı için emek gereksizdir.",
+            "Emeksiz başarı en değerlisidir.",
+            "Çalışmak başarıyı engeller.",
+            "Kalıcı başarı şansla gelir.",
+            "Çabasız kazanılan başarı uzun ömürlü olmaz."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Emeksiz başarı kalıcı olmaz' düşüncesi, 'çabasız başarı uzun ömürlü olmaz' cümlesinde korunur."
+        },
+        {
+          "soru": "“İnsan, hata yaptıkça değil, hatasından ders almadıkça küçülür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Hata yapan herkes küçülür.",
+            "Ders almak gereksizdir.",
+            "Kişiyi düşüren hata değil, hatadan ders çıkarmamaktır.",
+            "Hatasız insan yoktur, o yüzden ders de gerekmez.",
+            "Hata yapmak insanı yüceltir."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Hatadan ders almamak küçültür' vurgusu doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sabır, acele edenin ulaşamadığı yere sakince ulaşır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Acele eden her zaman kazanır.",
+            "Sabır insanı geride bırakır.",
+            "Sabırlı davranan, aceleci olanın varamadığı sonuca erişir.",
+            "Hız her işte en önemlisidir.",
+            "Sabretmek zaman kaybıdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Sabırla ulaşmak, aceleyle ulaşamamak' karşıtlığı doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Okumayı seven bir çocuk, hayat boyu öğrenmeyi de sever.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kitap sevgisi kazanan çocuk, ömür boyu öğrenmeye açık olur.",
+            "Okuma sevgisi zamanla kaybolur.",
+            "Çocuklar okumaktan hoşlanmaz.",
+            "Öğrenmek yalnızca okulda olur.",
+            "Okuyan çocuk çabuk sıkılır."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Okuma sevgisi → ömür boyu öğrenme sevgisi' ilişkisi doğru seçenekte yer alır."
+        },
+        {
+          "soru": "“Yalnızca kendini düşünen insan, gerçek mutluluğu bulamaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Mutluluk yalnızca kendini düşünmekle gelir.",
+            "Başkalarını düşünmek mutsuzluk getirir.",
+            "Bencil davranan kişi, asıl mutluluğa ulaşamaz.",
+            "Herkes önce kendini düşünmelidir.",
+            "Mutluluk paylaşmakla azalır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Yalnız kendini düşünmek → mutluluğu bulamamak' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumu güçlü kılan, bireylerinin birbirine duyduğu güvendir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Toplumu ayakta tutan, bireyler arasındaki güvendir.",
+            "Toplumu güçlü kılan tek şey silahlardır.",
+            "Güven olmadan da toplum güçlü olur.",
+            "Bireyler birbirine güvenmemelidir.",
+            "Güç yalnızca zenginlikten gelir."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Bireyler arası güven → güçlü toplum' ilişkisi doğru seçenekte aynen korunur."
+        },
+        {
+          "soru": "“Konuşmadan önce düşünen, sonradan pişman olmaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Düşünmeden konuşmak en iyisidir.",
+            "Pişmanlık kaçınılmazdır.",
+            "Söyleyeceğini önceden düşünen kişi, pişmanlık yaşamaz.",
+            "Konuşmak her zaman zarar verir.",
+            "Düşünmek konuşmayı engeller."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Önce düşünmek → pişman olmamak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Küçük iyilikler, zamanla büyük değişimlere yol açar.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İyilik yapmak gereksiz bir çabadır.",
+            "Yalnızca büyük işler değişim yaratır.",
+            "Küçük iyi davranışlar, giderek büyük dönüşümler yaratır.",
+            "Küçük iyiliklerin hiçbir etkisi yoktur.",
+            "Değişim yalnızca zorla olur."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Küçük iyilik → büyük değişim' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Kendine güvenen, başkalarının onayına muhtaç olmaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Herkesin onayı olmadan hiçbir şey yapılamaz.",
+            "Özgüveni olan kişi, başkalarının beğenisine bağımlı kalmaz.",
+            "Özgüven zararlı bir duygudur.",
+            "Başkalarının onayı en önemlisidir.",
+            "Kendine güvenen yanılır."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kendine güven → başkasının onayına muhtaç olmama' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Doğayı korumak, aslında kendi geleceğimizi korumaktır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Doğa korunmasa da insan yaşar.",
+            "Doğa insana muhtaçtır.",
+            "Gelecekle doğanın ilgisi yoktur.",
+            "Doğayı korumak zaman kaybıdır.",
+            "Doğayı korumak, geleceğimizi güvence altına almaktır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Doğayı korumak = geleceğimizi korumak' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir işi severek yapan, yorgunluğunu bile fark etmez.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Sevilen iş insanı çabuk yorar.",
+            "İşi sevmek başarıyı engeller.",
+            "İşini severek yapan kişi, yorulduğunun ayırdına varmaz.",
+            "Yorgunluk her işte aynıdır.",
+            "Severek çalışmak imkânsızdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Severek yapmak → yorgunluğu fark etmemek' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Gerçek zenginlik, çok mala değil, gönül tokluğuna dayanır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Zengin olan yalnızca çok malı olandır.",
+            "Gönül tokluğu yoksulluktur.",
+            "Mal olmadan mutluluk olmaz.",
+            "Asıl zenginlik, mal çokluğu değil, kanaatkârlıktır.",
+            "Zenginlik yalnızca paradır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Zenginlik = gönül tokluğu' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bilgisini paylaşmaktan çekinmeyen usta, çırağını da usta yapar.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Usta bilgisini kimseye vermemelidir.",
+            "Çırak ustadan bir şey öğrenemez.",
+            "Bilgiyi paylaşmak ustayı zayıflatır.",
+            "Bildiğini cömertçe öğreten usta, çırağını da ustalaştırır.",
+            "Ustalık öğretilemez."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Bilgiyi paylaşan usta → çırağı ustalaştırır' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Zorluklar, insanı ya yıldırır ya da güçlendirir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Zorluk yalnızca zarar verir.",
+            "Zorluklar insanı hiç etkilemez.",
+            "Zorluktan kaçmak en iyisidir.",
+            "Güçlükler, kişiyi kimi zaman yıpratır kimi zaman kuvvetlendirir.",
+            "Güçlü insan zorluk yaşamaz."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Zorluk → yıldırma ya da güçlendirme' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İyi bir dinleyici olmak, iyi bir konuşmacı olmaktan önemlidir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Konuşmak dinlemekten her zaman üstündür.",
+            "Dinlemek gereksiz bir uğraştır.",
+            "Dinlemeyi bilmek, konuşmayı bilmekten daha değerlidir.",
+            "İyi konuşan dinlemek zorunda değildir.",
+            "Dinlemek zaman kaybıdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Dinleyici olmak > konuşmacı olmak' vurgusu doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Gerçeği söylemek her zaman kolay değildir, ama doğrudur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Gerçeği söylemek her zaman kolaydır.",
+            "Doğruyu söylemek zor olsa da yapılması gereken şeydir.",
+            "Yalan söylemek doğrudur.",
+            "Gerçeği gizlemek en iyisidir.",
+            "Doğruyu söylemek gereksizdir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Zor ama doğru' vurgusu doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İnsan, ancak deneyerek yeni şeyler öğrenebilir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Denemeden de her şey öğrenilir.",
+            "Deneme yalnızca zaman kaybıdır.",
+            "Öğrenmek, denemekten geçer.",
+            "Öğrenmek için denemek gereksizdir.",
+            "Deneyen kişi hep başarısız olur."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Deneyerek öğrenmek' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir ülkenin geleceği, eğitime verdiği önemle şekillenir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Eğitim, ülkenin geleceğini etkilemez.",
+            "Eğitime değer veren ülke, geleceğini de sağlam kurar.",
+            "Geleceği yalnızca ekonomi belirler.",
+            "Eğitim gereksiz bir yatırımdır.",
+            "Ülkeler eğitimsiz de gelişir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Eğitime önem → geleceği şekillendirir' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Alçakgönüllülük, gerçek büyüklüğün işaretidir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kibir, büyüklüğün işaretidir.",
+            "Mütevazı olmak, asıl büyüklüğün göstergesidir.",
+            "Alçakgönüllü insan zayıftır.",
+            "Büyüklük gösterişle olur.",
+            "Mütevazı olmak küçüklüktür."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Alçakgönüllülük = gerçek büyüklük' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Her yeni gün, yeni bir başlangıç için fırsattır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Geçmiş bir daha değiştirilemez, bu yüzden umut yoktur.",
+            "Yeni başlangıçlar imkânsızdır.",
+            "Günlerin birbirinden farkı yoktur.",
+            "Her gün, yeniden başlamak için bir şanstır.",
+            "Fırsatlar bir kez gelir, bir daha gelmez."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Her gün yeni başlangıç fırsatı' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sözünde durmayan kişi, zamanla güvenini yitirir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Söz tutmak gereksizdir.",
+            "Güven bir kez kaybedilse de kolayca döner.",
+            "Söz vermek zorunluluk değildir.",
+            "Verdiği sözü tutmayan, giderek güvenilirliğini kaybeder.",
+            "Güvenilir olmak önemsizdir."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Sözünde durmamak → güveni yitirmek' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir işi ertelemek, çoğu zaman onu daha da zorlaştırır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Ertelemek işi kolaylaştırır.",
+            "Ertelemenin hiçbir etkisi yoktur.",
+            "İş her zaman kendiliğinden biter.",
+            "Zamanında yapmak zararlıdır.",
+            "İşi geciktirmek, onu çoğunlukla daha güç hâle getirir."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Ertelemek → zorlaştırmak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Farklı düşüncelere saygı, gelişmiş bir toplumun ölçüsüdür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Herkes aynı şeyi düşünmelidir.",
+            "Farklı fikirler zararlıdır.",
+            "Saygı gelişmeyi engeller.",
+            "Farklı görüşlere saygı göstermek, toplumsal gelişmişliğin göstergesidir.",
+            "Tek görüş en iyisidir."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Farklı düşüncelere saygı = gelişmişlik ölçüsü' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Küçük şeylerden mutlu olabilen, hayattan çok şey alır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Mutluluk yalnızca büyük şeylerde vardır.",
+            "Küçük şeyler önemsizdir.",
+            "Mutlu olmak imkânsızdır.",
+            "Az şeyle yetinmek yoksulluktur.",
+            "Küçük mutlulukların değerini bilen, yaşamdan çok şey kazanır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Küçük şeylerden mutlu olmak → hayattan çok şey almak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Cesaret, korkmamak değil, korkuya rağmen ilerlemektir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Cesur insan hiç korkmaz.",
+            "Korkan kişi cesur olamaz.",
+            "Cesaret tehlikeyi görmezden gelmektir.",
+            "Korku her zaman geri çekilmeyi gerektirir.",
+            "Gerçek cesaret, korkuyu duyup yine de yürüyebilmektir."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Korkuya rağmen ilerlemek' tanımı doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir eserin değeri, kimi zaman ancak yıllar sonra anlaşılır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bir eserin değeri hemen anlaşılır.",
+            "Zaman, eserin değerini yok eder.",
+            "Eserlerin değeri hiç değişmez.",
+            "Değerli eser yoktur.",
+            "Kimi eserlerin değeri, ancak zamanla ortaya çıkar."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Değerin yıllar sonra anlaşılması' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Kendi hatasını görebilen, onu düzeltme yolunu da bulur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Yanlışını fark eden kişi, onu düzeltmenin de yolunu bulur.",
+            "Hatasını gören kişi asla düzeltemez.",
+            "Hata görülse de düzeltilmez.",
+            "Kimse kendi hatasını göremez.",
+            "Hata düzeltmek gereksizdir."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Hatayı görmek → düzeltmenin yolunu bulmak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Doğru bilgi, ancak sorgulayarak elde edilir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bilgi sorgulanmadan da doğru olur.",
+            "Sorgulamak bilgiyi bozar.",
+            "Her duyulan bilgi doğrudur.",
+            "Sorgulamak zaman kaybıdır.",
+            "Gerçek bilgiye, sorgulama yoluyla ulaşılır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Sorgulama → doğru bilgi' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Vermeyi bilen insan, aldığından daha çok kazanır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Vermek insanı yoksullaştırır.",
+            "Almak vermekten iyidir.",
+            "Paylaşmak hiçbir kazanç getirmez.",
+            "Cömertlik zarardır.",
+            "Paylaşmayı bilen kişi, verdiğinden fazlasını elde eder."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Vermek → daha çok kazanmak' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir dili öğrenmek, yeni bir dünyaya kapı açmaktır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Yeni bir dil öğrenmek, farklı bir dünyayı tanımaktır.",
+            "Dil öğrenmek gereksizdir.",
+            "Bir dil dünyayı daraltır.",
+            "Diller birbirinin aynısıdır.",
+            "Dil öğrenmek zaman kaybıdır."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Dil öğrenmek = yeni dünyaya kapı açmak' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Zamanında alınan küçük bir önlem, büyük zararları önler.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Önlem almak gereksizdir.",
+            "Vaktinde alınmış küçük bir tedbir, büyük kayıpların önüne geçer.",
+            "Küçük önlemlerin hiçbir yararı yoktur.",
+            "Zarar her hâlükârda gelir.",
+            "Tedbir zararı artırır."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Küçük önlem → büyük zararı önlemek' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Umudunu yitirmeyen, en karanlık günden bile çıkış bulur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Umut, insanı yanıltan bir duygudur.",
+            "Umutlu kalan kişi, en zor durumda bile bir yol bulur.",
+            "Karanlık günden çıkış yoktur.",
+            "Umut etmek zaman kaybıdır.",
+            "En umutsuz insan en akıllısıdır."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Umudunu yitirmemek → çıkış bulmak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir insanı tanımak için sözlerine değil, işlerine bakılır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İnsanı sözleri tam olarak tanıtır.",
+            "İşler kişiyi hiç yansıtmaz.",
+            "Söz her zaman eylemden önemlidir.",
+            "Bir kişiyi anlamak, söylediklerine değil, yaptıklarına bakmakla olur.",
+            "İnsan tanınamaz."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Sözlere değil işlere bakmak' vurgusu doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Gerçek özgürlük, sorumluluk almayı da beraberinde getirir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Özgürlük sorumluluktan kaçmaktır.",
+            "Sorumluluk özgürlüğü yok eder.",
+            "Özgür insan hiçbir şeyden sorumlu değildir.",
+            "Özgür olmak, aynı zamanda sorumluluk üstlenmeyi gerektirir.",
+            "Sorumluluk gereksizdir."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Özgürlük → sorumluluk' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İyi bir plan, işin yarısının tamamlanması demektir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Plan yapmak işi zorlaştırır.",
+            "Sağlam bir planlama, işi büyük ölçüde bitirmiş olmaktır.",
+            "Plansız iş daha kolaydır.",
+            "Planlamanın hiçbir yararı yoktur.",
+            "İş plan olmadan biter."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'İyi plan = işin yarısı' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Başkasının başarısını kıskanan, kendi yolunu göremez.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kıskançlık insanı geliştirir.",
+            "Başkasına bakmak her zaman yararlıdır.",
+            "Kıskanmak başarı getirir.",
+            "Başkasını çekemeyen kişi, kendi gelişimini fark edemez.",
+            "Herkes birbirini kıskanmalıdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Kıskançlık → kendi yolunu görememek' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sabırla atılan her adım, insanı hedefe yaklaştırır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Sabır insanı hedeften uzaklaştırır.",
+            "Sabırlı atılan adımlar, kişiyi amacına daha da yakınlaştırır.",
+            "Adım atmadan da hedefe varılır.",
+            "Hedefe ulaşmak imkânsızdır.",
+            "Acele etmek her zaman kazandırır."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sabırlı adım → hedefe yaklaşma' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumu asıl güçlü kılan, yetişmiş insanlarıdır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Toplumu yalnızca doğal kaynaklar güçlü kılar.",
+            "İnsanların yetişmesi önemsizdir.",
+            "Toplumu güçlü yapan, iyi yetişmiş bireyleridir.",
+            "Güç yalnızca coğrafyadan gelir.",
+            "Nüfusun çokluğu tek başına güçtür."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Yetişmiş insan → güçlü toplum' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Hoşgörü, farklılıkları bir zenginlik olarak görmektir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Hoşgörü, herkesi aynılaştırmaktır.",
+            "Farklılıklar bir tehdittir.",
+            "Hoşgörü zayıflıktır.",
+            "Farklılıklardan kaçınmak gerekir.",
+            "Hoşgörülü olmak, farklılıkları bir değer saymaktır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Farklılıkları zenginlik görmek' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Yılmadan çalışan, eninde sonunda emeğinin karşılığını alır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Çalışmanın hiçbir karşılığı yoktur.",
+            "Emek her zaman boşa gider.",
+            "Çalışmadan da başarı gelir.",
+            "Sonuç yalnızca şansa bağlıdır.",
+            "Yorulmadan çabalayan kişi, sonunda çabasının ödülünü görür."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Yılmadan çalışmak → emeğin karşılığını almak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir işi baştan doğru yapmak, sonradan düzeltmekten kolaydır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İşi ilk seferde doğru yapmak, sonradan onarmaktan daha az zahmetlidir.",
+            "Yanlış yapıp sonra düzeltmek en iyisidir.",
+            "Baştan doğru yapmak zaman kaybıdır.",
+            "Düzeltmek her zaman kolaydır.",
+            "İşin doğrusu yoktur."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Baştan doğru = sonradan düzeltmekten kolay' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Gerçek bilgelik, ne kadar az bildiğini fark etmekle başlar.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bilge kişi her şeyi bilendir.",
+            "Az bilen bilge olamaz.",
+            "Bilgelik doğuştan gelir.",
+            "Bilmediğini kabul etmek zayıflıktır.",
+            "Asıl bilgelik, bilmediklerinin ayırdına varmaktan doğar."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Az bildiğini fark etmek → bilgelik' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İnsan, verdiği emekle orantılı bir sonuç elde eder.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Emekle sonuç arasında bir ilişki yoktur.",
+            "Kişi, harcadığı çaba ölçüsünde bir karşılık alır.",
+            "Sonuç yalnızca şansa bağlıdır.",
+            "Çalışan kişi hep kaybeder.",
+            "Emek gereksizdir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Emek ↔ sonuç' orantısı doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Dürüstlük, uzun vadede her zaman kazandırır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Dürüst olmak insanı yoksullaştırır.",
+            "Yalan söylemek daha kârlıdır.",
+            "Dürüstlüğün hiçbir karşılığı yoktur.",
+            "Doğruluk kısa vadede bile zarar verir.",
+            "Doğruluk, zamanla mutlaka fayda getirir."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Dürüstlük uzun vadede kazandırır' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumun uygarlığı, en zayıfına gösterdiği özenle ölçülür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Uygarlık yalnızca zenginlikle ölçülür.",
+            "Zayıflar önemsizdir.",
+            "Bir toplumun gelişmişliği, güçsüzlerine davranışıyla anlaşılır.",
+            "Güçlü olan her şeyi hak eder.",
+            "Özen göstermek gereksizdir."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Zayıfa özen → uygarlık ölçüsü' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Kararlılık, engellerin karşısında yön değiştirmemektir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Azimli olmak, güçlükler karşısında yolundan sapmamaktır.",
+            "Kararlı insan her engelde vazgeçer.",
+            "Engel görünce dönmek en iyisidir.",
+            "Kararlılık inatçılıktır sadece.",
+            "Engeller aşılamaz."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Engelde yön değiştirmemek = kararlılık' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İyi bir öğretmen, cevap vermekten çok soru sordurur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İyi öğretmen her şeyi hazır verir.",
+            "Soru sormak öğrenmeyi engeller.",
+            "Nitelikli öğretmen, hazır cevaptan çok merak uyandırır.",
+            "Öğretmen yalnızca cevap vermelidir.",
+            "Merak zararlıdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Cevaptan çok soru sordurmak' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Zamanı gelmeden olgunlaşan hiçbir şey kalıcı değildir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Her şey zamansız olgunlaşmalıdır.",
+            "Olgunlaşmak için beklemek gereksizdir.",
+            "Kalıcılık şansa bağlıdır.",
+            "Zamanın hiçbir önemi yoktur.",
+            "Vaktinden önce olgunlaşan şey uzun ömürlü olmaz."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Zamansız olgunluk → kalıcı değil' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sözünü tutan insana her kapı açılır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Söz tutmak kimseyi etkilemez.",
+            "Verdiği sözü yerine getiren kişiye her yerde güvenilir.",
+            "Sözünü tutmayan daha çok kazanır.",
+            "Güven gereksizdir.",
+            "Söz vermek zorunluluktur."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sözünü tutmak → güven/kapıların açılması' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir fikri savunmak kadar, gerektiğinde değiştirebilmek de erdemdir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Fikir asla değiştirilmemelidir.",
+            "Fikir değiştirmek zayıflıktır.",
+            "Görüşünü savunmak gibi, gerekince onu değiştirebilmek de olgunluktur.",
+            "Savunmak gereksizdir.",
+            "İnatçılık en iyi tutumdur."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Gerektiğinde fikir değiştirmek = erdem' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Küçük ihmaller, zamanla büyük sorunlara dönüşür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İhmalin hiçbir sonucu yoktur.",
+            "Küçük şeyler önemsizdir.",
+            "Sorunlar kendiliğinden çözülür.",
+            "Önemsenmeyen küçük eksiklikler, giderek büyük sıkıntılar yaratır.",
+            "İhmal etmek zararsızdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Küçük ihmal → büyük sorun' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Gerçek güç, kendine hâkim olabilmektir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Güç, başkalarını ezmekle gösterilir.",
+            "Kendine hâkim olmak zayıflıktır.",
+            "Güç yalnızca bedenseldir.",
+            "Öfkelenmek güçtür.",
+            "Asıl güçlü olan, kendini kontrol edebilendir."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Kendine hâkim olmak = gerçek güç' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir işin başarısı, ekip içindeki uyuma bağlıdır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Ekip uyumu başarıyı engeller.",
+            "Herkes tek başına çalışmalıdır.",
+            "Uyumun bir önemi yoktur.",
+            "İşin başarıya ulaşması, takım uyumuyla ilişkilidir.",
+            "Başarı yalnızca tek kişiye bağlıdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Ekip uyumu → başarı' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Öğrenmenin sonu yoktur; insan her yaşta gelişebilir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Belli bir yaştan sonra öğrenilmez.",
+            "Öğrenmek yalnızca gençlere özgüdür.",
+            "Öğrenme hiç bitmez; kişi her yaşta kendini geliştirebilir.",
+            "Gelişmek imkânsızdır.",
+            "Öğrenmenin bir sınırı vardır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Öğrenmenin sonu yok, her yaşta gelişim' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sabreden, öfkeyle verilecek yanlış kararlardan korunur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Sabırlı davranan kişi, öfkeyle alınacak hatalı kararlardan sakınır.",
+            "Öfkeyle karar vermek en iyisidir.",
+            "Sabır insanı zora sokar.",
+            "Karar hızlı verilmelidir.",
+            "Öfke doğru kararlar getirir."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Sabır → öfkeli yanlış karardan korunma' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir kitabın değeri, sayfa sayısıyla değil, bıraktığı izle ölçülür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kalın kitaplar her zaman değerlidir.",
+            "Bir eserin değeri, uzunluğuyla değil, etkisiyle anlaşılır.",
+            "Kitabın izi önemsizdir.",
+            "Değer yalnızca sayfa sayısındadır.",
+            "Kısa kitapların değeri olmaz."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Değer sayfa sayısı değil, bıraktığı iz' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Doğaya verilen zarar, er ya da geç insana geri döner.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Doğaya zarar vermek insanı etkilemez.",
+            "Doğa insana muhtaçtır.",
+            "Zararın geri dönüşü yoktur.",
+            "Doğaya yapılan kötülük, sonunda insanın kendisine yansır.",
+            "Doğa kendini yeniler, sorun olmaz."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Doğaya zarar → insana geri döner' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumu ilerleten, sorgulayan bireylerdir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Toplumu sorgusuz itaat ilerletir.",
+            "Toplumu geliştiren, düşünüp sorgulayan insanlardır.",
+            "Sorgulamak zararlıdır.",
+            "Bireylerin etkisi yoktur.",
+            "Susmak en iyisidir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sorgulayan birey → toplumu ilerletir' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Nezaket, hiçbir şeye mal olmaz ama çok şey kazandırır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Nezaket insana zarar verir.",
+            "Kibar olmak pahalıya patlar.",
+            "Nezaketin hiçbir yararı yoktur.",
+            "Kabalık daha kazançlıdır.",
+            "Kibar olmak bedelsizdir, ama büyük kazanç sağlar."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Nezaket bedelsiz ama kazandırır' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İnsan, paylaştıkça yalnızlığını da azaltır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Paylaşmak yalnızlığı artırır.",
+            "Yalnızlık paylaşmakla ilgisizdir.",
+            "Paylaşmak insanı yorar.",
+            "Kişi, paylaşımda bulundukça yalnızlığını hafifletir.",
+            "Yalnız kalmak en iyisidir."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Paylaşmak → yalnızlığı azaltmak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Geçmişten ders alan, aynı hataları tekrarlamaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Geçmişin hiçbir yararı yoktur.",
+            "Aynı hatayı yapmak kaçınılmazdır.",
+            "Geçmişinden öğrenen kişi, eski yanlışlara düşmez.",
+            "Ders almak gereksizdir.",
+            "Geçmiş unutulmalıdır."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Geçmişten ders → hata tekrarlamamak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Kararında olan yiyecek de giyecek de insana yeter.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Ölçülü olan her şey, insana yeter de artar bile.",
+            "Ölçüsüzlük her zaman iyidir.",
+            "Az olan asla yetmez.",
+            "Ölçü tutmak gereksizdir.",
+            "Çok olan her zaman yeter."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Kararında olan yeter' (ölçülülük) düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Emeğe saygı, üretime verilen değerin göstergesidir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Emek saygıyı hak etmez.",
+            "Emeğe değer vermek, üretimi önemsemenin işaretidir.",
+            "Üretim önemsizdir.",
+            "Emekle üretimin ilgisi yoktur.",
+            "Çalışmaya saygı gereksizdir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Emeğe saygı = üretime değer' özdeşliği doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir sözün gücü, doğru zamanda söylenmesinden gelir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Söz her zaman aynı etkiyi yapar.",
+            "Bir sözün etkisi, yerinde ve zamanında söylenmesinden doğar.",
+            "Zamanlamanın önemi yoktur.",
+            "Söz ne zaman söylense fark etmez.",
+            "Sözün gücü uzunluğundadır."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Sözün gücü doğru zamanlamada' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Karşılık beklemeden yapılan iyilik, en değerli olandır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Çıkarsız yapılan iyilik, iyiliğin en kıymetlisidir.",
+            "İyilik ancak karşılığında değer kazanır.",
+            "Karşılıksız iyilik anlamsızdır.",
+            "İyilik yapmak zarardır.",
+            "En iyi iyilik gösteriş içindir."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Karşılıksız iyilik = en değerli' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir ustanın değeri, yetiştirdiği çıraklarla anlaşılır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Usta, çıraklarından bağımsız değerlendirilir.",
+            "Çırak yetiştirmek önemsizdir.",
+            "Ustalık öğretilemez.",
+            "İyi usta kimseyi yetiştirmez.",
+            "Bir ustanın niteliği, yetiştirdiği öğrencilerinden belli olur."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Ustanın değeri → çıraklarında' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Merak, öğrenmenin en güçlü itici gücüdür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Merak öğrenmeyi zorlaştırır.",
+            "Merak duygusu, öğrenmeyi en çok tetikleyen etkendir.",
+            "Öğrenmek için meraka gerek yoktur.",
+            "Meraklı insan çabuk sıkılır.",
+            "Merak gereksizdir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Merak → öğrenmenin itici gücü' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Kendini tanıyan insan, doğru kararlar verebilir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kendini tanımak karar vermeyi zorlaştırır.",
+            "Doğru karar şansa bağlıdır.",
+            "İnsan kendini tanıyamaz.",
+            "Kendini bilen kişi, isabetli seçimler yapabilir.",
+            "Kararlar önemsizdir."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Kendini tanımak → doğru karar' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sabırla sürdürülen küçük çabalar, büyük başarıları getirir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Küçük çabaların hiçbir etkisi yoktur.",
+            "Başarı yalnızca büyük atılımlarla gelir.",
+            "Sabır başarıyı engeller.",
+            "Çaba gereksizdir.",
+            "Sabırla yapılan ufak çabalar, sonunda büyük başarılara ulaştırır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Küçük sabırlı çaba → büyük başarı' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Doğru dostluk, mesafeyle değil, gönül bağıyla ölçülür.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Dostluk yalnızca sık görüşmekle sürer.",
+            "Uzaklık dostluğu bitirir.",
+            "Gönül bağı önemsizdir.",
+            "Dostluk çıkara dayanır.",
+            "Gerçek dostluğun ölçüsü uzaklık değil, gönülden bağlılıktır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Dostluk mesafeyle değil gönül bağıyla' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bilgi, uygulanmadıkça değer kazanmaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bilgi hiç kullanılmasa da değerlidir.",
+            "Uygulamak bilgiyi bozar.",
+            "Bilgi, hayata geçirilmedikçe işe yaramaz.",
+            "Bilgi ezberlendiğinde yeterlidir.",
+            "Bilginin uygulamayla ilgisi yoktur."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Bilgi uygulanınca değer kazanır' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İnsanı büyüten, karşılaştığı zorlukların üstesinden gelmesidir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Zorluk insanı yalnızca yıpratır.",
+            "Kolay yaşam insanı büyütür.",
+            "Zorluktan kaçmak olgunlaştırır.",
+            "Kişiyi olgunlaştıran, güçlükleri aşabilmesidir.",
+            "Zorlukların bir yararı yoktur."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Zorlukları aşmak → insanı büyütür' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumun belleği, kültürel eserleriyle korunur.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kültürel eserlerin belleğe katkısı yoktur.",
+            "Bir toplumun geçmişi, kültür ürünleri sayesinde yaşatılır.",
+            "Geçmiş kendiliğinden korunur.",
+            "Bellek gereksizdir.",
+            "Eserler zamanla değer yitirir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kültürel eser → toplumsal belleği korur' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Az konuşup çok dinleyen, çok şey öğrenir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Çok konuşan daha çok öğrenir.",
+            "Dinlemeye ağırlık veren kişi, daha çok şey öğrenir.",
+            "Dinlemek öğrenmeyi engeller.",
+            "Konuşmak dinlemekten üstündür.",
+            "Öğrenmek için dinlemek gereksizdir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Az konuşup çok dinlemek → çok öğrenmek' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Hayaller, gerçeğe dönüşmesi için çaba gerektirir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Hayaller kendiliğinden gerçekleşir.",
+            "Çaba hayalleri engeller.",
+            "Hayal kurmak zaman kaybıdır.",
+            "Gerçek olmayan hayal en iyisidir.",
+            "Düşler, gerçekleşmesi için emek ister."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Hayal → çabayla gerçeğe döner' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Vefalı insan, iyiliği hiçbir zaman unutmaz.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Vefalı insan iyilikleri çabuk unutur.",
+            "İyiliği hatırlamak gereksizdir.",
+            "Vefa zayıflıktır.",
+            "Vefası olan kişi, kendisine yapılan iyiliği aklından çıkarmaz.",
+            "İyilik unutulmalıdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Vefa → iyiliği unutmamak' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir işi zamanında bitirmek, huzurun kaynağıdır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Erteleme huzur getirir.",
+            "Zamanında iş yapmak strese sokar.",
+            "İşi vaktinde tamamlamak, insana rahatlık verir.",
+            "İşin zamanı önemsizdir.",
+            "Huzur işi bitirmemekle gelir."
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Zamanında bitirmek → huzur' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Deneyim, kitapların öğretemediğini yaşayarak öğretir.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Deneyimin kitaptan farkı yoktur.",
+            "Yaşayarak öğrenmek gereksizdir.",
+            "Kitaplar her şeyi öğretir.",
+            "Deneyim, kitaptan öğrenilemeyeni bizzat yaşatarak kavratır.",
+            "Deneyim yanıltıcıdır."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Deneyim, yaşayarak öğretir' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“İyimserlik, sorunları görmezden gelmek değil, çözüme inanmaktır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İyimserlik, sorunları görmezden gelmektir.",
+            "İyimser insan gerçeği reddeder.",
+            "Sorunlara inanmak iyimserliktir.",
+            "İyimserlik çaresizliktir.",
+            "İyimser olmak, güçlükleri yok saymak değil, aşılabileceğine inanmaktır."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'İyimserlik = çözüme inanmak' tanımı doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir düşünceyi anlamak, ona katılmayı gerektirmez.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Anlamak, mutlaka katılmaktır.",
+            "Katılmadığın fikri anlayamazsın.",
+            "Anlamak gereksizdir.",
+            "Her anlaşılan fikir benimsenir.",
+            "Bir görüşü kavramak, onu benimsemek zorunda olmak demek değildir."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Anlamak ≠ katılmak' ayrımı doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Küçük mutlulukların değerini bilen, büyük mutluluğu da yakalar.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Mutluluk yalnızca büyük şeylerdedir.",
+            "Küçük mutluluklar önemsizdir.",
+            "Mutlu olmak imkânsızdır.",
+            "Küçük sevinçlerin kıymetini bilen kişi, büyük mutluluğa da erişir.",
+            "Az şeyle mutluluk olmaz."
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Küçük mutlulukların değeri → büyük mutluluk' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Sorumluluğunu bilen birey, güvenilir bir insandır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Görevinin bilincinde olan kişi, güvenilir biridir.",
+            "Sorumluluk güveni azaltır.",
+            "Güvenilir olmak önemsizdir.",
+            "Sorumluluk almak zayıflıktır.",
+            "Güvenilir insan sorumluluk almaz."
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Sorumluluk bilinci → güvenilirlik' ilişkisi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Doğru soru sormak, doğru cevaba giden yolun yarısıdır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Soru sormak cevaptan uzaklaştırır.",
+            "Doğru cevap soruya bağlı değildir.",
+            "Soru sormak gereksizdir.",
+            "Cevap her zaman kendiliğinden gelir.",
+            "İyi bir soru sormak, doğru yanıta ulaşmanın büyük bölümüdür."
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Doğru soru → doğru cevabın yarısı' düşüncesi doğru seçenekte korunur."
+        },
+        {
+          "soru": "“Bir toplumu geriye götüren, öğrenmeyi bırakmasıdır.” cümlesine anlamca EN YAKIN cümle aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Toplumlar öğrenmese de ilerler.",
+            "Bir toplum, öğrenmekten vazgeçtiğinde geriler.",
+            "Öğrenmenin toplumla ilgisi yoktur.",
+            "Geri kalmak öğrenmekle olur.",
+            "Öğrenmek toplumu geriletir."
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Öğrenmeyi bırakmak → gerilemek' ilişkisi doğru seçenekte korunur."
         }
       ]
     },
