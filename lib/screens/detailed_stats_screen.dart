@@ -4,6 +4,8 @@ import 'package:fl_chart/fl_chart.dart';
 import '../models/attempt.dart';
 import '../models/badge.dart';
 import '../models/subject.dart';
+import '../services/sound_service.dart';
+import 'game_stats_screen.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
@@ -63,6 +65,40 @@ class DetailedStatsScreen extends StatelessWidget {
               solved: overall.solved,
               tests: overall.tests,
               correct: overall.correct,
+            ),
+            const SizedBox(height: kDsGap),
+            // ── Oyun İstatistikleri kısayolu (kullanıcı isteği) ──────────────
+            DsCard(
+              accent: c.gold,
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const GameStatsScreen()));
+              },
+              child: Row(
+                children: [
+                  DsIconBadge(emoji: '🎮', color: c.gold, size: 44),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('Oyun İstatistikleri',
+                            style: TextStyle(
+                                fontSize: 14.5,
+                                fontWeight: FontWeight.w900,
+                                color: c.text)),
+                        const SizedBox(height: 2),
+                        Text(
+                            'Oyunlardaki doğru/yanlışlara göre hangi ders iyi, hangisi zayıf',
+                            style: TextStyle(fontSize: 12, color: c.textDim)),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.chevron_right, color: c.textDim),
+                ],
+              ),
             ),
             const SizedBox(height: kDsGap),
             // ── Mini stat ızgarası ───────────────────────────────────────────

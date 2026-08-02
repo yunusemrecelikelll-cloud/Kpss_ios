@@ -353,6 +353,12 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
     setState(() => _mySelections[idx] = optionIdx);
 
+    // Oyun istatistiği kaydı (kullanıcı isteği: oyunlardaki doğru/yanlışlar
+    // istatistiklere işlensin). Solo'da seçili ders varsa o derse, yoksa
+    // "genel"e yazılır; online'da karışık geldiği için "genel".
+    _storage.addGameAnswer(
+        'duello', widget.soloSubjectId ?? 'genel', correct);
+
     context.read<SoundService>().click();
 
     if (widget.isSolo) {

@@ -115,10 +115,12 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kTarihHaritasiGameId, 'tarih', true);
       });
       return;
     }
     _attempts++;
+    context.read<StorageService>().addGameAnswer(kTarihHaritasiGameId, 'tarih', false);
     if (_attempts >= kMapMaxAttempts) {
       setState(() {
         _tapped = p;

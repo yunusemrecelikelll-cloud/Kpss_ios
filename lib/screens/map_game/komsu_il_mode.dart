@@ -87,10 +87,12 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kKomsuIlGameId, 'cografya', true);
       });
       return;
     }
     _attempts++;
+    context.read<StorageService>().addGameAnswer(kKomsuIlGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
       setState(() {
         _tapped = p;

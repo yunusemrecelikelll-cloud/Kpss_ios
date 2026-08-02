@@ -474,10 +474,12 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kIklimAviGameId, 'cografya', true);
       });
       return;
     }
     _attempts++;
+    context.read<StorageService>().addGameAnswer(kIklimAviGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
       setState(() {
         _tapped = p;

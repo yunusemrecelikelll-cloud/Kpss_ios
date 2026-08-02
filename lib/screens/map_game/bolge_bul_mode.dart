@@ -97,10 +97,12 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kBolgeBulGameId, 'cografya', true);
       });
       return;
     }
     _attempts++;
+    context.read<StorageService>().addGameAnswer(kBolgeBulGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
       setState(() {
         _tapped = p;
