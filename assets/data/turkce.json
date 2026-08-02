@@ -41270,6 +41270,186 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Örnekte 'en verimli, en bol, en elverişli' karşılaştırma bildirir. C'de de 'en kalın, en ağır' karşılaştırma vardır."
+        },
+        {
+          "soru": "Yıllardır kullanılmayan tarihî değirmen, çevresindeki otların bürümesiyle neredeyse görünmez hâle gelmiş, ahşap çarkları ise nem yüzünden çürümeye yüz tutmuştu. Belediyenin gecikmeli restorasyon kararı da yapıyı bu yavaş çöküşten kurtarmaya yetmedi.\n\nBu cümlede aşağıdaki anlam ilişkilerinden hangisi ağır basmaktadır?",
+          "secenekler": [
+            "Bakımsızlık nedeniyle ortaya çıkan bir sonucun anlatılması",
+            "İki farklı yapının birbiriyle karşılaştırılması",
+            "Bir işin belli bir koşula bağlanması",
+            "Gerçekleşmesi istenen bir amacın vurgulanması",
+            "Birbirini izleyen olayların abartılı biçimde sıralanması"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Otların bürümesi ve nem 'neden', değirmenin görünmez ve çürük hâle gelmesi 'sonuç'tur; ilişki neden-sonuçtur."
+        },
+        {
+          "soru": "Uzun süredir hayalini kurduğu keman resitalini gerçekleştirebilmek için genç sanatçı, iki yıl boyunca günde altı saat çalıştı, sosyal yaşamından ödün verdi ve hiçbir tatili gözden çıkarmaktan çekinmedi.\n\nBu cümledeki temel anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Koşul-sonuç",
+            "Karşılaştırma",
+            "Neden-sonuç",
+            "Amaç-sonuç",
+            "Ön yargı-yargı"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Resitali gerçekleştirebilmek için' ifadesi bir amaç bildirir; yapılan yoğun çalışma bu amaca yöneliktir, dolayısıyla amaç-sonuç ilişkisi vardır."
+        },
+        {
+          "soru": "Toprak yeterince nemlenmeden ve gece sıcaklıkları belli bir eşiğin üzerine çıkmadan bu nadir orkide türünün tohumları çimlenmez; bu yüzden bahçıvanlar dikimi mayıs sonuna kadar erteler.\n\nBu cümlede aşağıdaki anlam ilişkilerinden hangisi öne çıkmaktadır?",
+          "secenekler": [
+            "Amaç-sonuç",
+            "Karşılaştırma",
+            "Koşul-sonuç",
+            "Örnekleme",
+            "Neden-sonuç"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Tohumların çimlenmesi, toprağın nemlenmesi ve sıcaklığın belli eşiği aşması koşuluna bağlanmıştır; bu bir koşul-sonuç ilişkisidir."
+        },
+        {
+          "soru": "Kentin yeni açılan kütüphanesi, eski binaya göre çok daha aydınlık salonlara ve iki katı fazla kitap kapasitesine sahipken, sessizlik açısından beklenen düzeyi bir türlü tutturamadı.\n\nBu cümlede ağır basan anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "İki durumun karşılaştırılması",
+            "Bir amacın gerekçelendirilmesi",
+            "Olayların koşula bağlanması",
+            "Bir sonucun nedeninin açıklanması",
+            "Aşamalı bir gelişimin özetlenmesi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yeni kütüphane ile eski bina 'daha aydınlık', 'iki katı fazla kapasite' gibi ölçütlerle kıyaslanmıştır; ilişki karşılaştırmadır."
+        },
+        {
+          "soru": "Fabrikanın atık sularını hiçbir arıtmadan geçirmeden dereye boşaltması, aşağı kesimdeki köylerin içme suyu kaynaklarının kirlenmesine ve balık popülasyonunun hızla azalmasına yol açtı.\n\nBu cümledeki anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Amaç-sonuç",
+            "Koşul-sonuç",
+            "Karşılaştırma",
+            "Neden-sonuç",
+            "Benzetme"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Atık suların arıtılmadan boşaltılması 'neden', su kaynaklarının kirlenmesi ve balıkların azalması 'sonuç'tur."
+        },
+        {
+          "soru": "Deprem bölgesindeki ailelerin kışı sağlıklı geçirebilmesi amacıyla gönüllüler, yalıtımlı konteynerleri bir ay içinde kurdu, ısıtma sistemlerini bağladı ve her birime yeterli battaniye ulaştırdı.\n\nBu cümlede aşağıdaki anlam ilişkilerinden hangisi vardır?",
+          "secenekler": [
+            "Karşılaştırma",
+            "Amaç-sonuç",
+            "Neden-sonuç",
+            "Koşul-sonuç",
+            "Abartma"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Kışı sağlıklı geçirebilmesi amacıyla' ifadesi açık bir amaç bildirir; gönüllülerin yaptıkları bu amaca hizmet eder."
+        },
+        {
+          "soru": "Sınav takvimi açıklanmadıkça ve kayıt ücretleri netleşmedikçe adayların hazırlık programını kesinleştirmesi mümkün değil; bu belirsizlik binlerce kişinin planını askıda bırakıyor.\n\nBu cümlede öne çıkan anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Neden-sonuç",
+            "Amaç-sonuç",
+            "Koşul-sonuç",
+            "Karşılaştırma",
+            "Örnekleme"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hazırlık programının kesinleşmesi, takvimin açıklanması ve ücretlerin netleşmesi koşuluna bağlanmıştır; ilişki koşul-sonuçtur."
+        },
+        {
+          "soru": "Yeni model elektrikli otobüs, bir önceki sürüme kıyasla hem daha uzun menzil sunuyor hem de şarj süresini yarıya indiriyor; ancak bakım maliyeti bakımından eskisinden daha ekonomik sayılmaz.\n\nBu cümledeki baskın anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Koşul-sonuç",
+            "Karşılaştırma",
+            "Amaç-sonuç",
+            "Neden-sonuç",
+            "Tanımlama"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yeni model ile önceki sürüm menzil, şarj süresi ve maliyet açısından kıyaslanmıştır; ilişki karşılaştırmadır."
+        },
+        {
+          "soru": "Uzun süren kuraklık nedeniyle barajlardaki su seviyesi kritik eşiğin altına düştü, tarım arazileri çatladı ve bölgedeki birçok çiftçi ekim planını iptal etmek zorunda kaldı.\n\nBu cümlede aşağıdaki anlam ilişkilerinden hangisi vardır?",
+          "secenekler": [
+            "Amaç-sonuç",
+            "Karşılaştırma",
+            "Neden-sonuç",
+            "Koşul-sonuç",
+            "Benzetme"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Kuraklık nedeniyle' ifadesiyle kuraklık 'neden', baraj seviyesinin düşmesi ve ekimin iptali 'sonuç' olarak verilmiştir."
+        },
+        {
+          "soru": "Öğrenciler, mahalledeki yaşlıların dijital işlemlerini kolayca yapabilmesi için hafta sonları ücretsiz eğitim atölyeleri düzenledi, sabırla adım adım anlattı ve gerektiğinde birebir destek verdi.\n\nBu cümledeki temel anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Amaç-sonuç",
+            "Neden-sonuç",
+            "Karşılaştırma",
+            "Koşul-sonuç",
+            "Karşıtlık"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Kolayca yapabilmesi için' ifadesi bir amaç bildirir; atölyelerin düzenlenmesi bu amaca yöneliktir."
+        },
+        {
+          "soru": "Bilet fiyatları makul bir düzeye çekilmedikçe ve seans saatleri çalışanların programına uyacak şekilde düzenlenmedikçe küçük tiyatronun salonları dolmayacak, bu da perdenin bir süre sonra kapanmasına yol açacak.\n\nBu cümlede öne çıkan anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Karşılaştırma",
+            "Amaç-sonuç",
+            "Koşul-sonuç",
+            "Neden-sonuç",
+            "Örnekleme"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Salonların dolması, fiyatların düşmesi ve saatlerin uygun düzenlenmesi koşuluna bağlanmıştır; ilişki koşul-sonuçtur."
+        },
+        {
+          "soru": "Kıyı kasabasındaki yeni yürüyüş yolu, eskisine göre daha geniş ve engelli erişimine uygunken, gölgelik ağaç sayısı bakımından öncekinin oldukça gerisinde kaldı.\n\nBu cümledeki anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Neden-sonuç",
+            "Karşılaştırma",
+            "Koşul-sonuç",
+            "Amaç-sonuç",
+            "Tanımlama"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yeni yürüyüş yolu ile eskisi genişlik, erişim ve gölgelik ağaç sayısı yönünden kıyaslanmıştır; ilişki karşılaştırmadır."
+        },
+        {
+          "soru": "Ani gelen sağanak, açık havada kurulan konser alanındaki ses sistemini devre dışı bıraktı, sahne zeminini kaygan hâle getirdi ve organizasyonun yarıda kesilmesine sebep oldu.\n\nBu cümlede baskın olan anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Koşul-sonuç",
+            "Amaç-sonuç",
+            "Neden-sonuç",
+            "Karşılaştırma",
+            "Abartma"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Ani sağanak 'neden'; ses sisteminin bozulması, zeminin kayganlaşması ve organizasyonun kesilmesi 'sonuç'tur."
+        },
+        {
+          "soru": "Köyün geleneksel el sanatlarının unutulmaması ve genç kuşağa aktarılabilmesi için belediye, ustaların bir araya geldiği bir atölye evi açtı, kurslar düzenledi ve ürünlerin sergilenmesine olanak tanıdı.\n\nBu cümledeki temel anlam ilişkisi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Karşılaştırma",
+            "Koşul-sonuç",
+            "Neden-sonuç",
+            "Amaç-sonuç",
+            "Karşıtlık"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "'Unutulmaması ve aktarılabilmesi için' ifadesi amaç bildirir; belediyenin çalışmaları bu amaca yöneliktir."
+        },
+        {
+          "soru": "Havaalanına giden tek yolun heyelan yüzünden kapanması, yüzlerce yolcunun uçuşunu kaçırmasına, bazı kargoların bozulmasına ve şirketin büyük bir tazminat ödemesine yol açtı.\n\nBu cümlede aşağıdaki anlam ilişkilerinden hangisi vardır?",
+          "secenekler": [
+            "Neden-sonuç",
+            "Amaç-sonuç",
+            "Koşul-sonuç",
+            "Karşılaştırma",
+            "Örnekleme"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yolun heyelanla kapanması 'neden'; uçuşların kaçırılması, kargoların bozulması ve tazminat ödenmesi 'sonuç'tur."
         }
       ]
     },
@@ -60494,6 +60674,186 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Parça, insanın deneyimlerini benliğinin parçası olarak kabullenerek olgunlaştığını anlatır."
+        },
+        {
+          "soru": "Bir kentin belleği, yalnızca anıtlarında ya da resmî tarih kitaplarında saklı değildir. Asıl bellek, dar sokaklarının köşesinde yıllarca ekmek pişiren fırıncının elinde, mahalle bakkalının veresiye defterinde, akşamüstü aynı bankta buluşan yaşlıların anlattığı hikâyelerde yaşar. Bu sıradan görünen ayrıntılar silindiğinde, geriye kalan cadde ve binalar ne kadar görkemli olursa olsun, kent ruhunu yitirir. Çünkü bir yeri yaşanabilir kılan, taşın sertliği değil, o taşa sinmiş insan izleridir.\n\nBu parçadan aşağıdakilerin hangisi çıkarılabilir?",
+          "secenekler": [
+            "Kentlerin gerçek belleği, resmî tarih kayıtlarından çok gündelik yaşamın küçük izlerinde barınır",
+            "Anıtlar ve görkemli binalar bir kentin en güvenilir tarih kaynaklarıdır",
+            "Yaşlı insanların anlattığı hikâyeler zamanla tümüyle unutulmaya mahkûmdur",
+            "Kentlerin gelişmesi için eski mahalle yapılarının tümüyle yıkılması gerekir",
+            "Bir kentin değeri, sokaklarının genişliğiyle doğru orantılı olarak artar"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Parça, kent belleğinin gündelik ve sıradan ayrıntılarda yaşadığını vurgulamaktadır."
+        },
+        {
+          "soru": "Okumak, kimileri için yalnızca bilgi edinmenin bir aracıdır; oysa gerçek okur için sayfalar arasında yürümek, kendi düşüncelerinin sınırlarını zorlamak demektir. İyi bir kitap, sizi hemfikir olduğunuz görüşlerle rahatlatmaz; tam tersine, rahatınızı kaçırır, alışkanlıklarınızı sorgulatır. Böyle bir okuma bittiğinde kişi, başladığı andakinden biraz farklı biri hâline gelir. Değişmeden kapatılan bir kitap, aslında hiç açılmamış sayılır.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Kitaplar yalnızca güncel bilgilere ulaşmak için okunmalıdır",
+            "Nitelikli okuma, okuru sorgulatarak dönüştüren bir deneyimdir",
+            "Okurun kitapla hemfikir olması, o kitabın niteliğini kanıtlar",
+            "Az kitap okumak, çok kitap okumaktan her zaman daha yararlıdır",
+            "Kitaplar ancak rahatlatıcı oldukları ölçüde okunmaya değerdir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, iyi okumanın okuru sorgulatıp değiştiren bir süreç olduğunu belirtmektedir."
+        },
+        {
+          "soru": "Doğada hiçbir şey yalnız var olmaz. Bir ormanın en görkemli çınarı, altındaki mantar ağlarıyla, kökündeki solucanlarla, dallarına konan en küçük kuşla sessiz bir anlaşma içindedir. Bu ağın bir halkasını kopardığınızda, etkisi başta görünmese de zamanla tüm sisteme yayılır. İnsan çoğu zaman doğaya bir seyirci gibi bakar; oysa o da bu görünmez ağın bir düğümüdür ve kopardığı her ipin ucu, er ya da geç kendi eline döner.\n\nBu parçadan aşağıdaki yargılardan hangisine ulaşılabilir?",
+          "secenekler": [
+            "Ormanlardaki en büyük ağaçlar, çevrelerindeki canlılardan bağımsız yaşar",
+            "İnsan, doğanın dışında ve ondan üstün bir gözlemci konumundadır",
+            "Doğadaki canlılar birbirine bağlıdır ve insan da bu bütünün bir parçasıdır",
+            "Doğaya verilen zararların sonuçları yalnızca kısa vadede görülür",
+            "Küçük canlıların ekosistem üzerinde herhangi bir etkisi bulunmaz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, doğadaki karşılıklı bağımlılığı ve insanın bu bütünün parçası olduğunu anlatmaktadır."
+        },
+        {
+          "soru": "Sanatçı, gördüğünü olduğu gibi aktaran bir ayna değildir. Aynı gün batımına bakan yüzlerce insan olabilir, ama onu tuvale dökerken kendi hüznünü, çocukluğunu, özlemini karıştıran yalnızca sanatçıdır. Bu yüzden gerçek bir eser, betimlediği şeyden çok, onu betimleyeni anlatır. İzleyici manzarayı görürken aslında bir başkasının iç dünyasına misafir olur; eserin büyüsü de tam buradadır.\n\nBu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Sanat eseri, dış dünyayı hiçbir yorum katmadan olduğu gibi yansıtır",
+            "Gün batımını en iyi resmeden sanatçı en başarılı sanatçıdır",
+            "Bir sanat eseri, konusundan çok sanatçının iç dünyasını yansıtır",
+            "İzleyici, bir eserde yalnızca betimlenen nesneyi görmek ister",
+            "Sanatçının duyguları eserin değerini olumsuz yönde etkiler"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, eserin sanatçının iç dünyasını yansıttığını vurgulamaktadır."
+        },
+        {
+          "soru": "Başarı öykülerini dinlerken çoğu kez yalnızca zirveyi görürüz: alkışları, ödülleri, parlak sonucu. Oysa o zirveye çıkan yolun büyük bölümü karanlıkta kalır. Yılların sabrı, defalarca yinelenen başarısızlıklar, vazgeçmenin eşiğinden dönüşler kimsenin gözüne çarpmaz. Bu yüzden başkalarının başarısını bir anlık şans sanmak kolaydır. Gerçekte ise her parlak sonuç, görünmeyen sayısız denemenin sessiz toplamıdır.\n\nBu parçadan aşağıdaki sonuçlardan hangisi çıkarılabilir?",
+          "secenekler": [
+            "Başarı, çoğunlukla ani bir şansın ürünü olarak ortaya çıkar",
+            "Görünen başarıların arkasında uzun ve zorlu bir emek süreci vardır",
+            "İnsanlar başarısızlıklarını gizlemek yerine öne çıkarmalıdır",
+            "Zirveye ulaşmak için başarısızlıklardan kaçınmak gerekir",
+            "Başarı öyküleri gerçeği olduğu gibi yansıtan anlatılardır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, görünen başarıların ardındaki gizli emek sürecini vurgulamaktadır."
+        },
+        {
+          "soru": "Dil, bir toplumun yalnızca konuşma aracı değil, dünyayı algılama biçimidir. Bir milletin kelime dağarcığı, o milletin nelere önem verdiğini ele verir. Karların çeşidini ayrı sözcüklerle adlandıran bir halk için kar, tek bir sözcükle geçiştiren bir halka göre çok daha ayrıntılı bir gerçekliktir. Böylece her dil, kendi konuşurlarına dünyaya bakacakları özel bir pencere sunar; o pencerenin biçimi de görülen manzarayı belirler.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Dil, yalnızca insanlar arasında iletişimi sağlayan bir araçtır",
+            "Kelime sayısı fazla olan diller, az olanlardan üstündür",
+            "Dil, bir toplumun dünyayı algılama ve kavrama biçimini şekillendirir",
+            "Bütün diller dünyayı tamamen aynı biçimde anlatır",
+            "Karla ilgili sözcükler yalnızca soğuk iklimlerde önem taşır"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, dilin dünyayı algılama biçimini şekillendirdiğini savunmaktadır."
+        },
+        {
+          "soru": "Zamanı iyi kullanmak, onu boşluksuz doldurmak demek değildir. Sürekli meşgul olan biri, aslında hiçbir şeye derinlemesine yer açamayan biri olabilir. Bazen en verimli anlar, hiçbir şey yapmadan düşüncelerin serbestçe dolaştığı boşluklardır. Zihin de tıpkı toprak gibidir; sürekli ekilip biçilirse tükenir, ancak ara sıra nadasa bırakıldığında yeniden bereketlenir. Boşluk, tembellik değil, verimin gizli koşuludur.\n\nBu parçadan aşağıdakilerin hangisi çıkarılabilir?",
+          "secenekler": [
+            "Zamanı verimli kullanmak, her anı bir işle doldurmakla mümkündür",
+            "Dinlenme ve boşluk anları, zihinsel verim için gereklidir",
+            "Sürekli meşgul olan insanlar en başarılı kişilerdir",
+            "Düşüncelerin serbestçe dolaşması zaman kaybından başka bir şey değildir",
+            "Zihin, ne kadar çok çalıştırılırsa o kadar güçlenir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, boşluk ve dinlenme anlarının verimlilik için gerekli olduğunu anlatmaktadır."
+        },
+        {
+          "soru": "Bir usta ile çırağı arasındaki bağ, yalnızca bilginin aktarımından ibaret değildir. Usta, çırağına bir tekniği gösterirken aslında bir sabrı, bir duruşu, işe verilen değeri de sessizce aktarır. Çırak, ustanın ellerini izlerken gördüğünden fazlasını öğrenir; öğrendiğini yıllar sonra kendi çırağına aktarırken de bu görünmez mirası sürdürür. Böylece her el emeği, kuşaktan kuşağa taşınan sessiz bir hikâyenin son halkası olur.\n\nBu parçada asıl vurgulanmak istenen aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Usta-çırak ilişkisinde yalnızca teknik bilgi önemlidir",
+            "Çıraklık, bilginin yanında değerlerin de aktarıldığı bir süreçtir",
+            "Bir zanaatı öğrenmek için ustayı izlemek yeterli değildir",
+            "Ustalar bilgilerini çıraklarından gizlemeye eğilimlidir",
+            "El emeğine dayalı meslekler zamanla yok olmaya mahkûmdur"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, çıraklıkta tekniğin yanı sıra değerlerin de aktarıldığını vurgulamaktadır."
+        },
+        {
+          "soru": "İnsan, tanımadığı şeyden korkar; korktuğu şeye de çoğu zaman düşman kesilir. Oysa bir kültürü, bir inancı ya da bir yaşam biçimini yakından tanıdığımızda, uzaktan tuhaf ya da tehdit edici görünen pek çok şeyin aslında bizimkine benzer kaygılardan doğduğunu fark ederiz. Anlamak, korkuyu eritir; korku eridikçe düşmanlık yerini merağa bırakır. Bu yüzden barışın ilk adımı silahları değil, önyargıları bırakmaktır.\n\nBu parçadan aşağıdaki yargılardan hangisine ulaşılabilir?",
+          "secenekler": [
+            "İnsanlar arasındaki düşmanlıkların temel nedeni bilgisizlik ve önyargıdır",
+            "Farklı kültürler arasında gerçek bir yakınlık kurulamaz",
+            "Korku, insanı her zaman doğru kararlara yönelten bir duygudur",
+            "Barış, ancak silahların tümüyle ortadan kalkmasıyla sağlanır",
+            "Tanımadığımız kültürlerden uzak durmak en güvenli yoldur"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Parça, düşmanlığın kökeninde tanımama ve önyargının bulunduğunu belirtmektedir."
+        },
+        {
+          "soru": "Bir nehir, önüne çıkan kayaya öfkelenmez; onu aşmanın bir yolunu bulur, gerekirse etrafından dolanır, gerekirse üzerinden akar. Nehri güçlü kılan, sertliği değil, biçim değiştirebilme yeteneğidir. İnsan da çoğu zaman engellerin karşısında katılaşıp kırıldığı için yıpranır. Oysa esneyebilen, koşullara göre yolunu yeniden çizebilen kişi, tıpkı su gibi, en sert engelleri bile zamanla aşındırır.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Engellerle karşılaşan insan sert ve tavizsiz olmalıdır",
+            "Suyun kayaları aşındırması yalnızca zamanla ilgili bir olaydır",
+            "Zorluklar karşısında esnek olabilmek, kalıcı bir güç kaynağıdır",
+            "İnsan, önüne çıkan her engelden uzak durmayı öğrenmelidir",
+            "Nehirler, doğadaki en güçlü varlıklar olarak kabul edilir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, su örneğiyle esnekliğin gerçek güç olduğunu anlatmaktadır."
+        },
+        {
+          "soru": "Fotoğraf makinesi icat edildiğinde, birçok ressam sanatın sonunun geldiğini düşündü. Gerçeği bir makine bir saniyede yakalayabiliyorsa, resmin ne anlamı kalırdı? Oysa olan tam tersi oldu. Ressamlar, gerçeği birebir kopyalama yükünden kurtuldukları için hayal güçlerini serbest bıraktılar; renklerle, biçimlerle, duygularla oynamaya başladılar. Böylece bir tehdit gibi görünen icat, sanatı öldürmek yerine ona yeni ufuklar açtı.\n\nBu parçadan aşağıdaki sonuçlardan hangisi çıkarılabilir?",
+          "secenekler": [
+            "Fotoğraf makinesi, resim sanatını tümüyle ortadan kaldırmıştır",
+            "Yeni bir teknoloji, bir sanat dalını beklenmedik biçimde geliştirebilir",
+            "Ressamlar her zaman gerçeği birebir yansıtmaya çalışmalıdır",
+            "Teknolojik gelişmeler sanata yalnızca zarar verir",
+            "Fotoğrafçılık, resimden daha değerli bir sanat dalıdır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, tehdit sanılan teknolojinin sanatı geliştirdiğini örneklemektedir."
+        },
+        {
+          "soru": "Eleştiri, çoğu kişinin sandığı gibi bir kusur avcılığı değildir. Gerçek eleştirmen, bir eseri yerin dibine batırmak için değil, onu daha iyi anlamak ve anlatmak için okur. İyi bir eleştiri, esere yeni bir kapı aralar; okurun tek başına fark edemeyeceği inceliklere ışık tutar. Bu yüzden yıkıcı değil, yol gösterici olan eleştiri, hem sanatçıyı hem de okuru zenginleştiren bir köprü kurar.\n\nBu parçada asıl anlatılmak istenen aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Eleştirinin amacı, bir eserin kusurlarını ortaya çıkarmaktır",
+            "Eleştirmenler genellikle sanatçılara karşı olumsuz tutum sergiler",
+            "Nitelikli eleştiri, eseri anlamayı derinleştiren yapıcı bir etkinliktir",
+            "Bir eseri en iyi, onu hiç eleştirmeyen kişi anlar",
+            "Okurlar eleştiri yazılarına güvenmemelidir"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, eleştirinin yıkıcı değil yapıcı ve aydınlatıcı olduğunu savunmaktadır."
+        },
+        {
+          "soru": "Yalnızlık ile yalnız kalabilmek birbirinden çok farklı iki durumdur. Kalabalıkların ortasında kendini kimseye ait hissetmeyen biri, derin bir yalnızlık çekebilir. Buna karşılık, kendi başına oturup kitabıyla, düşünceleriyle, sessizliğiyle huzur bulan biri hiç de yalnız değildir; o, kendi iç dünyasıyla dolu dolu bir sohbet içindedir. Asıl mesele fiziksel olarak kaç kişiyle çevrili olduğumuz değil, kendimizle ne kadar barışık olduğumuzdur.\n\nBu parçadan aşağıdaki yargılardan hangisine ulaşılabilir?",
+          "secenekler": [
+            "Kalabalıklar, insanı yalnızlık duygusundan tümüyle kurtarır",
+            "Yalnızlık duygusu, çevredeki insan sayısıyla belirlenir",
+            "İnsanın huzuru, kendisiyle kurduğu ilişkinin niteliğine bağlıdır",
+            "Tek başına vakit geçirmek her zaman mutsuzluk getirir",
+            "Yalnız kalan insanlar toplumdan kopmaya mahkûmdur"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Parça, huzurun insanın kendisiyle barışık olmasına bağlı olduğunu belirtmektedir."
+        },
+        {
+          "soru": "Bir tohumun toprağa düşmesiyle ağaca dönüşmesi arasında uzun ve görünmez bir süreç vardır. Toprağın altında, kimsenin görmediği bir yerde, kökler sessizce derinlere iner; su arar, direnç geliştirir. Yüzeyde henüz hiçbir şey görünmezken aslında en önemli iş orada, karanlıkta yapılır. Sabırsız bir bahçıvan, filiz çıkmıyor diye toprağı deşerse, o görünmeyen emeği yok eder. Büyümenin en kritik evresi, çoğu zaman en sabırlı beklemeyi gerektirir.\n\nBu parçanın ana düşüncesi aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Bir bitkinin büyümesi için toprağın sık sık kontrol edilmesi gerekir",
+            "Gerçek gelişimin temeli, görünmeyen ve sabır isteyen bir süreçte atılır",
+            "Filiz vermeyen tohumlar hiçbir zaman ağaca dönüşmez",
+            "Büyüme, yalnızca yüzeyde gözle görülen değişimlerle gerçekleşir",
+            "Bahçıvanlıkta sabırdan çok hızlı hareket etmek önemlidir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, gerçek gelişimin görünmeyen ve sabır gerektiren bir süreçte kurulduğunu anlatmaktadır."
+        },
+        {
+          "soru": "İnsan hafızası bir arşiv değil, bir atölyedir. Geçmişi hatırlarken onu olduğu gibi bir rafta bulup çıkarmayız; her hatırlayışta o anıyı yeniden kurarız, bugünün duygularıyla yeniden boyarız. Bu yüzden yıllar önce yaşanan bir olay, her anımsanışında biraz değişir; bazı ayrıntılar silinir, bazıları abartılır. Anılarımız aslında geçmişin birer kaydı değil, sürekli yeniden yazdığımız hikâyelerdir.\n\nBu parçadan aşağıdaki sonuçlardan hangisi çıkarılabilir?",
+          "secenekler": [
+            "İnsan hafızası, geçmiş olayları değişmez biçimde saklayan bir arşivdir",
+            "Anılar, her hatırlanışta bugünün etkisiyle yeniden biçimlenir",
+            "Yıllar önce yaşanan olaylar tümüyle unutulmaya mahkûmdur",
+            "İnsanlar geçmişlerini olduğu gibi eksiksiz hatırlar",
+            "Duygular, anıların hatırlanmasını tümüyle engeller"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Parça, anıların her hatırlanışta yeniden kurulup değiştiğini vurgulamaktadır."
         }
       ]
     },
@@ -65422,6 +65782,186 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Sonraki cümleler yanlış virgülün, yerindeki soru işaretinin anlamı değiştirdiğini örnekler; boşluk küçük bir yanlışın büyük anlamı bozabileceğini belirtmelidir."
+        },
+        {
+          "soru": "Bir yazarın üslubu, onun düşünce dünyasının aynasıdır. Kimi yazarlar duygularını süslü sözlerle örterken kimileri de yalın bir anlatımı tercih eder. Bu yalınlık, ---- bir tutum değildir; aksine, gereksiz her sözcüğü ayıklamayı, düşünceyi en açık biçimde okura ulaştırmayı gerektiren zahmetli bir çabanın ürünüdür.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kolayca elde edilen",
+            "herkesçe beğenilen",
+            "sık rastlanan",
+            "özenle korunan",
+            "geçici olarak benimsenen"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Devamındaki 'aksine ... zahmetli bir çabanın ürünüdür' ifadesi, yalınlığın kolay elde edilmediğini vurgular; bu yüzden 'kolayca elde edilen' uygundur."
+        },
+        {
+          "soru": "Doğadaki dengeler son derece incedir. Bir bölgede tek bir türün yok olması, ---- ; av-avcı ilişkileri bozulur, bitki örtüsü değişir ve zamanla bütün bir ekosistem farklı bir yapıya bürünür.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yalnızca o türü ilgilendirir",
+            "zincirleme etkiler doğurur",
+            "kısa sürede telafi edilir",
+            "insanlar tarafından fark edilmez",
+            "bilim insanlarınca önemsenmez"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Noktalı virgülden sonra sıralanan 'bozulur, değişir, bürünür' etkileri bir zincir oluşturur; bu nedenle 'zincirleme etkiler doğurur' uygundur."
+        },
+        {
+          "soru": "Okumak, yalnızca sayfalardaki harfleri seslendirmek değildir. Gerçek okur, satırların arasında gizlenen anlamı sezer, yazarın söylemediklerini ---- . Bu yüzden aynı kitap, farklı okurların elinde bambaşka dünyalara açılan kapılara dönüşür.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "görmezden gelir",
+            "kendi zihninde tamamlar",
+            "başkalarına aktarır",
+            "eleştiriyle karşılar",
+            "belleğinden siler"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Satır aralarını sezme' ve 'bambaşka dünyalar' vurgusu, okurun eksik bırakılanı kendi zihninde kurduğunu anlatır; 'kendi zihninde tamamlar' uygundur."
+        },
+        {
+          "soru": "Sanatçı, çağının tanığıdır. Yaşadığı dönemin acılarını, sevinçlerini ve çelişkilerini eserine sindirir. Bu nedenle bir sanat yapıtını gerçekten anlamak isteyen kişi, onu ---- değerlendirmemeli; yapıldığı dönemin koşullarını da göz önünde bulundurmalıdır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "dönemin ruhuyla birlikte",
+            "başka eserlerle karşılaştırarak",
+            "içinde doğduğu ortamdan koparıp",
+            "sanatçının niyetini araştırarak",
+            "eleştirmenlerin gözünden"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Yapıldığı dönemin koşullarını da göz önünde bulundurmalıdır' ifadesi, eserin ortamından koparılmaması gerektiğini söyler; 'içinde doğduğu ortamdan koparıp' uygundur."
+        },
+        {
+          "soru": "Başarı, çoğu zaman görünmeyen bir emeğin sonucudur. İnsanlar sahnede parlayan sanatçıyı alkışlar; ancak o ışıltılı anın gerisinde yılların çalışması vardır. Bu yüzden başarıyı yalnızca ---- ölçmek, işin en zor bölümünü göz ardı etmek olur.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "harcanan çabayla",
+            "gösterilen sabırla",
+            "ulaşılan sonuçla",
+            "geçen zamanla",
+            "verilen destekle"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Görünmeyen emek ile 'sahnedeki ışıltı' karşıtlığı kuruluyor; başarıyı yalnızca 'ulaşılan sonuçla' ölçmenin süreci göz ardı etmek olduğu belirtilir."
+        },
+        {
+          "soru": "Dil, durağan bir yapı değildir; ---- . Yeni kavramlar ortaya çıktıkça sözcükler türetilir, kimi eski kelimeler unutulup gider, kimi anlamlar değişir. Bir dili yüzyıllar önceki hâliyle bugünküyle karşılaştıran biri, adeta iki farklı dille karşılaşır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "kurallara sıkı sıkıya bağlıdır",
+            "sürekli değişip gelişir",
+            "yalnızca yazıyla korunur",
+            "toplumdan topluma benzer",
+            "kolayca öğrenilebilir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Durağan değildir' ifadesinden sonra sözcük türetme, unutulma ve anlam değişimi örnekleri verilir; bunlar 'sürekli değişip gelişir' yargısını destekler."
+        },
+        {
+          "soru": "İyi bir dinleyici olmak, sanılanın aksine hiç de kolay değildir. Karşımızdakini dinlerken çoğu zaman onun sözünü bitirmesini beklemez, kendi söyleyeceklerimizi düşünürüz. Oysa gerçek dinleme, ---- ve söylenenleri yargılamadan anlamaya çalışmayı gerektirir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "zihnimizi tümüyle karşımızdakine açmayı",
+            "sözü hemen bölüp katkı sunmayı",
+            "kendi görüşümüzü öne çıkarmayı",
+            "konuyu farklı alanlara taşımayı",
+            "verilecek yanıtı önceden hazırlamayı"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Kendi söyleyeceklerimizi düşünürüz' eleştirisinin karşısında, 'yargılamadan anlamaya çalışma' ile uyumlu olarak 'zihnimizi tümüyle karşımızdakine açmayı' gelir."
+        },
+        {
+          "soru": "Bir kentin belleği, sokaklarında ve yapılarında saklıdır. Eski bir çeşme, yıllanmış bir çınar ya da köhne bir han, o kentin geçmişine dair sessiz tanıklardır. Bu izleri korumadan geleceğe yürüyen bir toplum, ---- .\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "daha hızlı gelişme gösterir",
+            "kimliğini yitirme tehlikesiyle karşılaşır",
+            "ekonomik olarak güçlenir",
+            "çevre sorunlarından kurtulur",
+            "kültürel çeşitliliğini artırır"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kentin belleğini oluşturan izlerin korunmaması, o kentin kimliğinin silinmesi anlamına gelir; 'kimliğini yitirme tehlikesiyle karşılaşır' uygundur."
+        },
+        {
+          "soru": "Bilimsel bilgi, kesin ve değişmez değildir. Bugün doğru sayılan bir kuram, yarın yapılacak yeni bir gözlemle geçerliliğini yitirebilir. İşte bu ---- , bilimi diğer bilgi türlerinden ayıran en önemli özelliktir; çünkü bilim, hatalarını düzeltmeye her zaman açıktır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "katı tutuculuk",
+            "kendini yenileyebilme esnekliği",
+            "değişmez kesinlik",
+            "toplumsal kabul",
+            "yalın anlatım"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Yeni gözlemle geçerliliğini yitirebilir' ve 'hatalarını düzeltmeye açık' ifadeleri, bilimin yenilenme esnekliğini anlatır; 'kendini yenileyebilme esnekliği' uygundur."
+        },
+        {
+          "soru": "Yolculuk, insanı yalnızca bir yerden başka bir yere taşımaz. Görülen her yeni manzara, tanışılan her insan, tadılan her yemek, yolcunun ---- . Böylece kişi, döndüğünde gittiği kişiden biraz farklı biri olur.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "yorgunluğunu artırır",
+            "iç dünyasını zenginleştirir",
+            "bütçesini zorlar",
+            "planlarını bozar",
+            "eve dönüşünü geciktirir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Döndüğünde farklı biri olur' sonucu, yolculuğun insanı içsel olarak dönüştürdüğünü gösterir; 'iç dünyasını zenginleştirir' uygundur."
+        },
+        {
+          "soru": "Eleştiri, yıkmak için değil, ---- yapılmalıdır. Bir eserin eksiklerini gösterirken onun güçlü yanlarını da görmek, hakkaniyetli bir tutumun gereğidir. Yalnızca kusur arayan bir göz, çoğu zaman eserin asıl değerini de gözden kaçırır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "beğeni toplamak için",
+            "geliştirmeye katkı sunmak için",
+            "dikkat çekmek için",
+            "üstünlük kurmak için",
+            "tartışma başlatmak için"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Yıkmak için değil' karşıtlığı ve 'hakkaniyetli tutum' vurgusu, eleştirinin yapıcı amacını gösterir; 'geliştirmeye katkı sunmak için' uygundur."
+        },
+        {
+          "soru": "Teknoloji, yaşamımızı kolaylaştırırken bir yandan da bizi ---- . Bir zamanlar ezberimizde tuttuğumuz telefon numaralarını artık hatırlamıyor, yön bulmayı tümüyle uygulamalara bırakıyoruz. Kolaylık, çoğu zaman kendi bedelini sessizce ödetiyor bize.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "daha yaratıcı kılıyor",
+            "bazı yetilerimizden uzaklaştırıyor",
+            "topluma yaklaştırıyor",
+            "geçmişe bağlıyor",
+            "daha sabırlı yapıyor"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Numara ezberleme ve yön bulma yetilerinin körelmesi örnekleri, teknolojinin bazı becerileri zayıflattığını gösterir; 'bazı yetilerimizden uzaklaştırıyor' uygundur."
+        },
+        {
+          "soru": "Gerçek dostluk, bolluk günlerinde değil, ---- belli olur. Herkesin yanında olduğu zamanlarda dost görünmek kolaydır; asıl mesele, kimsenin kalmadığı, işlerin sarpa sardığı anlarda o kişinin hâlâ yanı başımızda durmasıdır.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "mutlu anlarda",
+            "başarı zamanlarında",
+            "sıkıntılı günlerde",
+            "uzun ayrılıklarda",
+            "kalabalık ortamlarda"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Bolluk günlerinde değil' karşıtlığı ve 'işlerin sarpa sardığı anlar' ifadesi, dostluğun zorlukta sınandığını anlatır; 'sıkıntılı günlerde' uygundur."
+        },
+        {
+          "soru": "Çocukların hayal gücü, sınır tanımaz. Bir karton kutu onların elinde uçan bir gemiye, bir kaşık ise büyülü bir asaya dönüşebilir. Büyükler olarak bizim görevimiz bu hayalleri ---- , onları gerçekçilik adına kısıtlamak yerine özgürce beslenmelerine izin vermektir.\n\nBu parçada boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "gölgede bırakmak",
+            "yönlendirip biçimlendirmek",
+            "sekteye uğratmak",
+            "korkuyla bastırmak",
+            "canlı tutup desteklemek"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "'Kısıtlamak yerine özgürce beslenmelerine izin vermek' ifadesiyle uyumlu olarak, hayalleri 'canlı tutup desteklemek' seçeneği gelir."
+        },
+        {
+          "soru": "Bir toplumun geleceği, ---- şekillenir. Nitelikli, sorgulayan ve üreten bireyler yetiştiren toplumlar ilerlerken; ezbere dayalı, düşünmeyi geri plana atan sistemler kısır bir döngüye saplanır. Bu nedenle eğitime yapılan yatırım, aslında yarına yapılan bir yatırımdır.\n\nBu parçada boş bırakılan yere düşüncenin akışına göre aşağıdakilerden hangisi getirilmelidir?",
+          "secenekler": [
+            "büyük ölçüde eğitim anlayışıyla",
+            "yalnızca ekonomik güçle",
+            "coğrafi konumuyla",
+            "geçmişin mirasıyla",
+            "askeri yapısıyla"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Nitelikli birey yetiştirme, ezber-düşünme karşıtlığı ve 'eğitime yapılan yatırım' sonucu, geleceğin eğitimle şekillendiğini gösterir; 'büyük ölçüde eğitim anlayışıyla' uygundur."
         }
       ]
     },
