@@ -24239,6 +24239,954 @@
           ],
           "dogruIndex": 4,
           "aciklama": "1991'de kurulan yapı Bağımsız Devletler Topluluğu'dur (BDT). Şanghay İşbirliği Örgütü ve Türk Konseyi sonraki tarihli farklı oluşumlardır."
+        },
+        {
+          "soru": "Türkiye ile AET arasında ortaklık ilişkisini başlatan antlaşmanın imzalandığı 1963 yılı ile Türkiye'nin Topluluğa tam üyelik için resmen başvurduğu 1987 yılı arasında geçen süre kaç yıldır?",
+          "secenekler": [
+            "21 yıl",
+            "22 yıl",
+            "23 yıl",
+            "24 yıl",
+            "25 yıl"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1987 − 1963 = 24 yıl."
+        },
+        {
+          "soru": "Türk siyasi tarihindeki ilk askeri darbenin gerçekleştiği 27 Mayıs 1960 ile son askeri darbenin yaşandığı 12 Eylül 1980 tarihleri arasında kaç yıl vardır?",
+          "secenekler": [
+            "18 yıl",
+            "19 yıl",
+            "20 yıl",
+            "21 yıl",
+            "22 yıl"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1980 − 1960 = 20 yıl."
+        },
+        {
+          "soru": "27 Mayıs sonrası hazırlanan anayasanın 1961'de halkoyuna sunulması ile 12 Eylül sonrası hazırlanan anayasanın 1982'de halkoyuna sunulması arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "17 yıl",
+            "18 yıl",
+            "19 yıl",
+            "20 yıl",
+            "21 yıl"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1982 − 1961 = 21 yıl."
+        },
+        {
+          "soru": "Türkiye'nin Helsinki Zirvesi'nde AB adaylığının resmen tanındığı 1999 ile katılım müzakerelerine başladığı 2005 yılı arasında kaç yıl vardır?",
+          "secenekler": [
+            "5 yıl",
+            "6 yıl",
+            "7 yıl",
+            "8 yıl",
+            "9 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2005 − 1999 = 6 yıl."
+        },
+        {
+          "soru": "Türkiye'nin Topluluğa tam üyelik başvurusunu yaptığı 1987 ile adaylık statüsünü kazandığı 1999 arasında kaç yıllık bir süre bulunmaktadır?",
+          "secenekler": [
+            "9 yıl",
+            "10 yıl",
+            "11 yıl",
+            "12 yıl",
+            "13 yıl"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1999 − 1987 = 12 yıl."
+        },
+        {
+          "soru": "Başbakanı istifaya götüren 12 Mart 1971 muhtırası ile 12 Eylül 1980 darbesi arasında yaklaşık kaç yıl vardır?",
+          "secenekler": [
+            "9 yıl",
+            "10 yıl",
+            "11 yıl",
+            "8 yıl",
+            "12 yıl"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1980 − 1971 = 9 yıl."
+        },
+        {
+          "soru": "Ada'da bağımsız Kıbrıs Cumhuriyeti'nin kurulduğu 1960 ile Türk Silahlı Kuvvetleri'nin adaya çıktığı 1974 arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "11 yıl",
+            "12 yıl",
+            "13 yıl",
+            "15 yıl",
+            "14 yıl"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1974 − 1960 = 14 yıl."
+        },
+        {
+          "soru": "Kıbrıs'a düzenlenen 1974 harekâtından, adanın kuzeyinde bağımsız Türk devletinin ilan edildiği 1983'e kadar kaç yıl geçmiştir?",
+          "secenekler": [
+            "8 yıl",
+            "9 yıl",
+            "10 yıl",
+            "7 yıl",
+            "11 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1983 − 1974 = 9 yıl."
+        },
+        {
+          "soru": "Kıbrıs Cumhuriyeti'nin temelini oluşturan Zürih ve Londra Antlaşmalarının imzalandığı 1959 ile Türkiye'nin adaya müdahale ettiği 1974 arasında kaç yıl vardır?",
+          "secenekler": [
+            "13 yıl",
+            "14 yıl",
+            "15 yıl",
+            "16 yıl",
+            "17 yıl"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1974 − 1959 = 15 yıl."
+        },
+        {
+          "soru": "Ankara Antlaşması'nın imzalandığı 1963 yılı ile Türkiye-AB Gümrük Birliği'nin yürürlüğe girdiği 1996 yılı arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "33 yıl",
+            "31 yıl",
+            "30 yıl",
+            "32 yıl",
+            "34 yıl"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1996 − 1963 = 33 yıl."
+        },
+        {
+          "soru": "Türkiye'nin tam üyelik başvurusunu yaptığı 1987 ile katılım müzakerelerinin fiilen başladığı 2005 arasında kaç yıllık süre vardır?",
+          "secenekler": [
+            "15 yıl",
+            "16 yıl",
+            "17 yıl",
+            "18 yıl",
+            "19 yıl"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2005 − 1987 = 18 yıl."
+        },
+        {
+          "soru": "AET ile ortaklığı kuran antlaşmanın imzalandığı 1963 ile Türkiye'nin adaylığının kabul edildiği 1999 arasında kaç yıl bulunur?",
+          "secenekler": [
+            "34 yıl",
+            "35 yıl",
+            "36 yıl",
+            "37 yıl",
+            "38 yıl"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1999 − 1963 = 36 yıl."
+        },
+        {
+          "soru": "12 Eylül 1980 darbesinden yaklaşık 26 ay sonra halkoyuyla kabul edilen yeni anayasa hangi yıla aittir?",
+          "secenekler": [
+            "1982",
+            "1981",
+            "1980",
+            "1983",
+            "1984"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "7 Kasım 1982'de kabul edildi (1980'den ~26 ay sonra)."
+        },
+        {
+          "soru": "Şu olayları kronolojik olarak sıralayınız: I. Katma Protokol'ün imzalanması  II. 1961 Anayasası'nın kabulü  III. Kıbrıs Barış Harekâtı  IV. 12 Mart Muhtırası",
+          "secenekler": [
+            "II - I - IV - III",
+            "II - IV - I - III",
+            "I - II - IV - III",
+            "II - I - III - IV",
+            "IV - II - I - III"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1961 Anayasası → Katma Protokol (1970) → 12 Mart (1971) → Kıbrıs (1974)."
+        },
+        {
+          "soru": "Türkiye-AB ilişkilerindeki şu gelişmeleri kronolojik sıralayınız: I. Gümrük Birliği'nin yürürlüğe girmesi  II. Tam üyelik başvurusu  III. Adaylık statüsünün kazanılması  IV. Müzakerelerin başlaması",
+          "secenekler": [
+            "I - II - III - IV",
+            "II - III - I - IV",
+            "II - I - IV - III",
+            "I - II - IV - III",
+            "II - I - III - IV"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Başvuru 1987 → Gümrük Birliği 1996 → Adaylık 1999 → Müzakere 2005."
+        },
+        {
+          "soru": "Aşağıdaki darbe-anayasa eşleştirmelerinden hangisi doğrudur?",
+          "secenekler": [
+            "27 Mayıs 1960 – 1982 Anayasası",
+            "12 Eylül 1980 – 1961 Anayasası",
+            "27 Mayıs 1960 – 1961 Anayasası",
+            "12 Mart 1971 – 1982 Anayasası",
+            "12 Eylül 1980 – 1924 Anayasası"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "27 Mayıs 1961 Anayasasını, 12 Eylül 1982 Anayasasını doğurdu."
+        },
+        {
+          "soru": "1961 Anayasası'nın getirdiği, yasamayı Millet Meclisi ve Cumhuriyet Senatosu olmak üzere ikiye ayıran uygulama 1982 Anayasası ile kaldırılmıştır. Buna göre 1982 Anayasası yasama açısından hangi düzeni benimsemiştir?",
+          "secenekler": [
+            "İki meclisli sistem",
+            "Üç meclisli sistem",
+            "Meclissiz sistem",
+            "Tek meclisli sistem",
+            "Federatif meclis"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1982 Anayasası tek meclisli (TBMM) yapıya döndü."
+        },
+        {
+          "soru": "27 Mayıs sonrası kurulan Milli Birlik Komitesi'nin başkanı olup daha sonra cumhurbaşkanlığına getirilen kişi kimdir?",
+          "secenekler": [
+            "Cemal Gürsel",
+            "Cevdet Sunay",
+            "Kenan Evren",
+            "Fahri Korutürk",
+            "Celal Bayar"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "MBK başkanı Cemal Gürsel cumhurbaşkanı oldu."
+        },
+        {
+          "soru": "12 Eylül 1980 darbesinin lideri olan ve 1982 Anayasası'nın yürürlüğe girmesiyle birlikte cumhurbaşkanı sıfatını da kazanan komutan kimdir?",
+          "secenekler": [
+            "Cemal Gürsel",
+            "Cevdet Sunay",
+            "Turgut Sunalp",
+            "Nurettin Ersin",
+            "Kenan Evren"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Darbe lideri Kenan Evren 1982'de cumhurbaşkanı oldu."
+        },
+        {
+          "soru": "1974 Kıbrıs Barış Harekâtı sırasında Türkiye'de başbakanlık görevini yürüten ve harekât kararında etkili olan siyasetçi kimdir?",
+          "secenekler": [
+            "Bülent Ecevit",
+            "Süleyman Demirel",
+            "Turgut Özal",
+            "Nihat Erim",
+            "Ferruh Bozbeyli"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1974'te CHP-MSP koalisyonunun başbakanı Bülent Ecevit'ti."
+        },
+        {
+          "soru": "15 Temmuz 1974'te Yunan cuntasının desteğiyle Makarios yönetiminin devrilmesi ve adayı Yunanistan'a bağlama girişimi, Türkiye'nin hangi kararına doğrudan gerekçe olmuştur?",
+          "secenekler": [
+            "Kıbrıs'a barış harekâtı düzenlemesi",
+            "AET'ye tam üyelik başvurusu yapması",
+            "NATO'dan ayrılması",
+            "Anayasa değişikliğine gitmesi",
+            "Ada'dan tamamen çekilmesi"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Enosis girişimi 20 Temmuz 1974 harekâtının gerekçesidir."
+        },
+        {
+          "soru": "Aşağıdakilerden hangisi 1961 Anayasası ile kurulan ya da öngörülen kurumlardan biri değildir?",
+          "secenekler": [
+            "Anayasa Mahkemesi",
+            "Devlet Planlama Teşkilatı",
+            "Cumhuriyet Senatosu",
+            "Cumhurbaşkanlığı Hükümet Sistemi",
+            "Milli Güvenlik Kurulu"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Cumhurbaşkanlığı Hükümet Sistemi 2017/2018'de kabul edildi, 1961 ürünü değildir."
+        },
+        {
+          "soru": "1961 Anayasası temel hak ve özgürlükler bakımından geniş güvenceler getirirken, 12 Mart 1971 muhtırasından sonra yapılan değişiklikler bu özgürlükler üzerinde nasıl bir etki yaratmıştır?",
+          "secenekler": [
+            "Özgürlükleri genişletmiştir",
+            "Hiçbir etki yapmamıştır",
+            "Anayasayı tümüyle kaldırmıştır",
+            "Özgürlükleri kısıtlamıştır",
+            "Meclisi feshetmiştir"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1971-1973 değişiklikleri özgürlükleri sınırladı."
+        },
+        {
+          "soru": "Türkiye'nin AB adaylığının resmen kabul edildiği 1999 zirvesi hangi kentte toplanmıştır?",
+          "secenekler": [
+            "Lüksemburg",
+            "Kopenhag",
+            "Maastricht",
+            "Helsinki",
+            "Nice"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1999 Helsinki Zirvesi'nde Türkiye aday ilan edildi."
+        },
+        {
+          "soru": "Türkiye-AET ilişkilerinde geçiş döneminin esaslarını düzenleyen Katma Protokol'ün imzalandığı 1970 ile Gümrük Birliği'nin yürürlüğe girdiği 1996 arasında kaç yıl vardır?",
+          "secenekler": [
+            "24 yıl",
+            "26 yıl",
+            "25 yıl",
+            "27 yıl",
+            "28 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1996 − 1970 = 26 yıl."
+        },
+        {
+          "soru": "Aşağıdaki gelişmelerden hangisi diğerlerinden daha önce gerçekleşmiştir?",
+          "secenekler": [
+            "Gümrük Birliği'nin kurulması",
+            "Helsinki'de adaylığın tanınması",
+            "Ankara Antlaşması'nın imzalanması",
+            "Tam üyelik başvurusunun yapılması",
+            "Katılım müzakerelerinin başlaması"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1963 Ankara Antlaşması en erken tarihli olaydır."
+        },
+        {
+          "soru": "Aşağıdaki askeri müdahalelerden hangisi bir muhtıra niteliğinde olup hükümeti istifaya zorlamış, ancak meclisi feshetmemiştir?",
+          "secenekler": [
+            "27 Mayıs 1960",
+            "12 Eylül 1980",
+            "28 Şubat 1997",
+            "15 Temmuz 2016",
+            "12 Mart 1971"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "12 Mart 1971 bir muhtıradır; meclis kapatılmamıştır."
+        },
+        {
+          "soru": "27 Mayıs 1960 darbesini gerçekleştiren cunta Milli Birlik Komitesi adını taşırken, 12 Eylül 1980 darbesini yöneten kurul hangi adla anılmıştır?",
+          "secenekler": [
+            "Milli Birlik Komitesi",
+            "Yurtta Sulh Konseyi",
+            "Devrim Konseyi",
+            "Milli Selamet Konseyi",
+            "Milli Güvenlik Konseyi"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "12 Eylül'ü yöneten kurul Milli Güvenlik Konseyi'dir."
+        },
+        {
+          "soru": "27 Mayıs 1960, 12 Mart 1971 ve 12 Eylül 1980 müdahaleleri arasındaki süreler karşılaştırıldığında hangisi doğrudur?",
+          "secenekler": [
+            "1960-1971 arası, 1971-1980 arasından daha uzundur",
+            "İki dönem de eşit uzunluktadır (10'ar yıl)",
+            "1971-1980 arası, 1960-1971 arasından daha uzundur",
+            "Her iki dönem de 9 yıldır",
+            "Her iki dönem de 11 yıldır"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1960-1971 arası 11 yıl, 1971-1980 arası 9 yıldır; ilki daha uzundur."
+        },
+        {
+          "soru": "1982 Anayasası'nın halkoylamasında kabul edilmesiyle birlikte hangi sonuç da otomatik olarak doğmuştur?",
+          "secenekler": [
+            "Meclisin feshedilmesi",
+            "Çok partili hayata geçilmesi",
+            "Senatonun yeniden kurulması",
+            "AET'ye başvurulması",
+            "Kenan Evren'in cumhurbaşkanı olması"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1982 halkoyundaki evet oyu Evren'in cumhurbaşkanlığını da onayladı."
+        },
+        {
+          "soru": "Kıbrıs'ta 1974 sonrası kurulan ve 1983'te bağımsızlığını ilan eden devletin kurucu cumhurbaşkanı kimdir?",
+          "secenekler": [
+            "Fazıl Küçük",
+            "Makarios",
+            "Nikos Sampson",
+            "Rauf Denktaş",
+            "Glafkos Klerides"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "KKTC'nin kurucu cumhurbaşkanı Rauf Denktaş'tır."
+        },
+        {
+          "soru": "Türkiye-AET ilişkilerinde geçiş döneminin esaslarını düzenleyen ve 1973'te yürürlüğe giren belge aşağıdakilerden hangisidir?",
+          "secenekler": [
+            "Ankara Antlaşması",
+            "Roma Antlaşması",
+            "Gümrük Birliği Kararı",
+            "Maastricht Antlaşması",
+            "Katma Protokol"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1970'te imzalanan Katma Protokol 1973'te yürürlüğe girdi."
+        },
+        {
+          "soru": "Aşağıdakilerden hangisi 1982 Anayasası'nın 1961 Anayasası'na göre öne çıkan özelliklerinden biridir?",
+          "secenekler": [
+            "İki meclisli yapının benimsenmesi",
+            "Temel hak ve özgürlüklerin genişletilmesi",
+            "Cumhuriyet Senatosu'nun kurulması",
+            "Yürütme organının ve cumhurbaşkanının güçlendirilmesi",
+            "Milli Birlik Komitesi'nin oluşturulması"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1982 Anayasası yürütmeyi ve cumhurbaşkanını güçlendirdi."
+        },
+        {
+          "soru": "AB katılım müzakerelerinin 2005'te başladığı ve bunun tam üyelik başvurusundan 18 yıl sonra gerçekleştiği bilindiğine göre başvuru hangi yılda yapılmıştır?",
+          "secenekler": [
+            "1986",
+            "1987",
+            "1985",
+            "1988",
+            "1990"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2005 − 18 = 1987."
+        },
+        {
+          "soru": "Kıbrıs Barış Harekâtı, bağımsız Kıbrıs Cumhuriyeti'nin kuruluşundan 14 yıl sonra düzenlenmiştir. Buna göre Kıbrıs Cumhuriyeti hangi yılda kurulmuştur?",
+          "secenekler": [
+            "1958",
+            "1959",
+            "1960",
+            "1963",
+            "1964"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1974 − 14 = 1960."
+        },
+        {
+          "soru": "12 Mart 1971 muhtırası üzerine istifa etmek zorunda kalan dönemin başbakanı kimdir?",
+          "secenekler": [
+            "Bülent Ecevit",
+            "İsmet İnönü",
+            "Nihat Erim",
+            "Ferit Melen",
+            "Süleyman Demirel"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "12 Mart muhtırasıyla Demirel hükümeti istifa etti."
+        },
+        {
+          "soru": "Aşağıdaki anayasalardan hangisi halkoylaması (referandum) ile kabul edilen ilk Türk anayasasıdır?",
+          "secenekler": [
+            "1921 Anayasası",
+            "1924 Anayasası",
+            "1961 Anayasası",
+            "1982 Anayasası",
+            "1876 Kanun-i Esasi"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "İlk kez 1961 Anayasası halkoyuyla kabul edilmiştir."
+        },
+        {
+          "soru": "Bir öğrenci, 'Türkiye AET'ye üyelik başvurusunu, ortaklık antlaşmasının imzalanmasından yaklaşık çeyrek asır sonra yaptı' notunu alıyor. Bu ifadedeki çeyrek asır hangi yıl aralığına karşılık gelir?",
+          "secenekler": [
+            "1959-1987",
+            "1963-1987",
+            "1970-1996",
+            "1987-1999",
+            "1963-1999"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1963 Ankara Antlaşması ile 1987 başvurusu arası yaklaşık 24 yıldır (çeyrek asır)."
+        },
+        {
+          "soru": "Kıbrıs Barış Harekâtı iki aşamada gerçekleştirilmiştir. İkinci aşamanın da tamamlandığı ay dikkate alındığında harekât hangi yıl içinde başlayıp bitmiştir?",
+          "secenekler": [
+            "1963",
+            "1971",
+            "1974",
+            "1980",
+            "1983"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Her iki harekât da 1974 yazında (Temmuz-Ağustos) gerçekleşmiştir."
+        },
+        {
+          "soru": "Berlin Duvarı 1961 yılında örülmüş, 1989 yılında yıkılmıştır. Buna göre duvar toplam kaç yıl ayakta kalmıştır?",
+          "secenekler": [
+            "24 yıl",
+            "26 yıl",
+            "28 yıl",
+            "30 yıl",
+            "32 yıl"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "1989 - 1961 = 28. Duvar 28 yıl boyunca Doğu ve Batı Berlin'i ayırmıştır."
+        },
+        {
+          "soru": "Avrupa Kömür ve Çelik Topluluğu'nun kurulduğu 1951 ile Maastricht Antlaşması'nın imzalandığı 1992 yılı arasında Avrupa bütünleşmesi kaç yıl içinde bu aşamaya ulaşmıştır?",
+          "secenekler": [
+            "38 yıl",
+            "41 yıl",
+            "43 yıl",
+            "45 yıl",
+            "40 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1992 - 1951 = 41. AKÇT'den Maastricht'e uzanan süreç 41 yıl sürmüştür."
+        },
+        {
+          "soru": "1955'te kurulan Varşova Paktı, üye devletlerin dağılmasıyla 1991'de sona ermiştir. Bu askeri ittifak kaç yıl varlığını sürdürmüştür?",
+          "secenekler": [
+            "36 yıl",
+            "38 yıl",
+            "40 yıl",
+            "34 yıl",
+            "42 yıl"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1991 - 1955 = 36. Pakt, Doğu Bloku'nun çözülmesiyle 36. yılında dağılmıştır."
+        },
+        {
+          "soru": "Batı Bloku 1949'da NATO'yu, Doğu Bloku ise buna karşılık 1955'te kendi ittifakını kurmuştur. İki askeri örgütün kuruluşu arasında kaç yıl vardır?",
+          "secenekler": [
+            "4 yıl",
+            "5 yıl",
+            "7 yıl",
+            "8 yıl",
+            "6 yıl"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1955 - 1949 = 6. Varşova Paktı, NATO'dan 6 yıl sonra kurulmuştur."
+        },
+        {
+          "soru": "Bağlantısızlar Hareketi'nin ilk resmi zirvesi 1961 yılında hangi şehirde toplanmıştır?",
+          "secenekler": [
+            "Bandung",
+            "Belgrad",
+            "Kahire",
+            "Lusaka",
+            "Cakarta"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1961 zirvesi Yugoslavya'nın başkentinde toplanmış, hareket burada kurumsallaşmıştır."
+        },
+        {
+          "soru": "Asya ve Afrika ülkelerinin sömürgeciliğe karşı ortak tutum belirlediği ve Bağlantısızlar'a zemin hazırlayan konferans hangi yılda yapılmıştır?",
+          "secenekler": [
+            "1949",
+            "1952",
+            "1960",
+            "1955",
+            "1961"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Endonezya'daki bu konferans, Bağlantısızlar Hareketi'nin fikri temelini oluşturmuştur."
+        },
+        {
+          "soru": "1960 yılı, dekolonizasyon sürecinde çok sayıda ülkenin bağımsızlığını kazanması nedeniyle 'Afrika Yılı' olarak anılır. Bu yıl kaç Afrika ülkesi bağımsız olmuştur?",
+          "secenekler": [
+            "17",
+            "15",
+            "14",
+            "16",
+            "19"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1960'ta 17 Afrika ülkesi bağımsızlığını ilan etmiş, bu yıla 'Afrika Yılı' denmiştir."
+        },
+        {
+          "soru": "SSCB dağıldığında ortaya çıkan 15 cumhuriyetten kaç tanesi Türk kökenli halkların oluşturduğu devletlerdir?",
+          "secenekler": [
+            "3",
+            "4",
+            "6",
+            "7",
+            "5"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Azerbaycan, Kazakistan, Kırgızistan, Özbekistan ve Türkmenistan olmak üzere 5 Türk cumhuriyeti bağımsız olmuştur."
+        },
+        {
+          "soru": "Avrupa Ekonomik Topluluğu'nu kuran Roma Antlaşması hangi yılda imzalanmıştır?",
+          "secenekler": [
+            "1951",
+            "1957",
+            "1958",
+            "1960",
+            "1954"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Roma Antlaşması 1957'de imzalanmış, AET'yi kurmuştur."
+        },
+        {
+          "soru": "Berlin Duvarı'nın yıkıldığı 1989 ile iki Almanya'nın tek devlet çatısında birleştiği 1990 arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "3 yıl",
+            "2 yıl",
+            "4 yıl",
+            "1 yıl",
+            "5 yıl"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1990 - 1989 = 1. Duvarın yıkılışından yalnızca bir yıl sonra Almanya birleşmiştir."
+        },
+        {
+          "soru": "Berlin Duvarı'nın yıkıldığı yıl (1989) doğan bir çocuk, SSCB'nin resmen dağıldığı yıl kaç yaşında olur?",
+          "secenekler": [
+            "4",
+            "3",
+            "2",
+            "1",
+            "5"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "SSCB 1991'de dağılmıştır; 1991 - 1989 = 2. Çocuk 2 yaşındadır."
+        },
+        {
+          "soru": "Körfez Savaşı sırasında koalisyon güçlerinin Irak'a karşı başlattığı hava harekatına verilen ad nedir?",
+          "secenekler": [
+            "Çöl Fırtınası",
+            "Çöl Kalkanı",
+            "Sonsuz Özgürlük",
+            "Şafak Vakti",
+            "Kararlı Kartal"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1991'deki hava harekatı bu kod adıyla yürütülmüştür; 'Çöl Kalkanı' ise öncesindeki yığınak aşamasıdır."
+        },
+        {
+          "soru": "1990 yılında Irak'ın işgal etmesiyle Körfez Savaşı'nı başlatan komşu ülke hangisidir?",
+          "secenekler": [
+            "İran",
+            "Suudi Arabistan",
+            "Kuveyt",
+            "Katar",
+            "Umman"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Irak, petrol zengini bu küçük komşusunu işgal edince uluslararası koalisyon devreye girmiştir."
+        },
+        {
+          "soru": "Gorbaçov döneminde SSCB'de basın ve düşünce üzerindeki denetimi gevşeten 'açıklık' politikasının adı nedir?",
+          "secenekler": [
+            "Perestroyka",
+            "Glasnost",
+            "Kolektifleştirme",
+            "Detant",
+            "Kominform"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Açıklık anlamına gelen bu politika, sistemin sorunlarının tartışılmasının önünü açmıştır."
+        },
+        {
+          "soru": "Gorbaçov'un ekonomik ve idari alanda başlattığı 'perestroyka' politikası Türkçede hangi anlama gelir?",
+          "secenekler": [
+            "Açıklık",
+            "Serbestleşme",
+            "Yeniden yapılanma",
+            "Merkezileşme",
+            "Kolektifleşme"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Perestroyka, ekonomiyi ve yönetimi yeniden düzenlemeyi ifade eder."
+        },
+        {
+          "soru": "Türk Keneşi'nin kurulduğu 2009 ile bu yapının Türk Devletleri Teşkilatı adını aldığı 2021 arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "14 yıl",
+            "13 yıl",
+            "10 yıl",
+            "12 yıl",
+            "11 yıl"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2021 - 2009 = 12. Örgüt 12 yıl sonra yeni adını almıştır."
+        },
+        {
+          "soru": "1922'de kurulan Sovyetler Birliği, 1991'de dağılana kadar kaç yıl varlığını sürdürmüştür?",
+          "secenekler": [
+            "67 yıl",
+            "69 yıl",
+            "71 yıl",
+            "73 yıl",
+            "65 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1991 - 1922 = 69. SSCB 69 yıllık varlığının ardından dağılmıştır."
+        },
+        {
+          "soru": "Avrupa Kömür ve Çelik Topluluğu'nu kuran devletlerin sayısı kaçtır?",
+          "secenekler": [
+            "4",
+            "5",
+            "6",
+            "7",
+            "9"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Fransa, Almanya, İtalya, Belçika, Hollanda ve Lüksemburg olmak üzere 6 kurucu üye vardır."
+        },
+        {
+          "soru": "Türk Keneşi'nin temelini oluşturan 2009 tarihli anlaşma hangi şehirde imzalanmıştır?",
+          "secenekler": [
+            "Bakü",
+            "Astana",
+            "Nahçıvan",
+            "Semerkant",
+            "Bişkek"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Türk Keneşi, 2009'da imzalanan Nahçıvan Anlaşması ile kurulmuştur."
+        },
+        {
+          "soru": "Mısır'ın kanalı millileştirmesiyle patlak veren ve İngiltere, Fransa ve İsrail'in müdahalesine yol açan Süveyş Krizi hangi yılda yaşanmıştır?",
+          "secenekler": [
+            "1952",
+            "1956",
+            "1960",
+            "1948",
+            "1967"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Süveyş Krizi 1956'da yaşanmış, sömürgeci güçlerin gerilemesinin bir işareti olmuştur."
+        },
+        {
+          "soru": "Dekolonizasyon sürecinde Cezayir, uzun bir bağımsızlık savaşının ardından 1962'de hangi devletten bağımsızlığını kazanmıştır?",
+          "secenekler": [
+            "İngiltere",
+            "Belçika",
+            "Fransa",
+            "İtalya",
+            "Portekiz"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Cezayir, 1962'de sömürgeci Fransa'dan bağımsızlığını elde etmiştir."
+        },
+        {
+          "soru": "Dekolonizasyonun önemli adımlarından biri olan Hindistan'ın İngiltere'den bağımsızlığı hangi yılda gerçekleşmiştir?",
+          "secenekler": [
+            "1945",
+            "1947",
+            "1950",
+            "1960",
+            "1962"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hindistan 1947'de bağımsız olmuş, sömürgeciliğin çözülüşünün erken örneklerinden biri olmuştur."
+        },
+        {
+          "soru": "Roma Antlaşması'nın imzalandığı 1957 ile Maastricht Antlaşması'nın imzalandığı 1992 arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "37 yıl",
+            "35 yıl",
+            "33 yıl",
+            "30 yıl",
+            "40 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1992 - 1957 = 35. AET'den Avrupa Birliği'ne uzanan süreç 35 yıl sürmüştür."
+        },
+        {
+          "soru": "Kuzey ve Güney olarak bölünmüş olan Vietnam, savaşın sona ermesiyle hangi yılda tek devlet altında birleşmiştir?",
+          "secenekler": [
+            "1978",
+            "1976",
+            "1975",
+            "1973",
+            "1980"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Vietnam 1976'da resmen birleşerek tek bir sosyalist cumhuriyet olmuştur."
+        },
+        {
+          "soru": "Küreselleşme sürecinde dünya ticaretini düzenlemek üzere GATT'ın yerine kurulan Dünya Ticaret Örgütü hangi yılda faaliyete geçmiştir?",
+          "secenekler": [
+            "1995",
+            "1993",
+            "1998",
+            "1990",
+            "2001"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Dünya Ticaret Örgütü 1995'te kurularak küresel ticaretin kurumsal çerçevesini oluşturmuştur."
+        },
+        {
+          "soru": "Maastricht Antlaşması'nın imzalandığı 1992 ile ortak para Euro'nun banknot ve madeni para olarak tedavüle girdiği 2002 arasında kaç yıl geçmiştir?",
+          "secenekler": [
+            "8 yıl",
+            "10 yıl",
+            "12 yıl",
+            "6 yıl",
+            "14 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2002 - 1992 = 10. Euro, Maastricht'ten 10 yıl sonra fiziki olarak dolaşıma girmiştir."
+        },
+        {
+          "soru": "Bağlantısızlar Hareketi'nin öncü liderlerinden Josip Broz Tito hangi ülkenin devlet başkanıdır?",
+          "secenekler": [
+            "Mısır",
+            "Hindistan",
+            "Yugoslavya",
+            "Endonezya",
+            "Gana"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Tito, Yugoslavya lideri olarak hareketin kurucularından biri olmuştur."
+        },
+        {
+          "soru": "Bağlantısızlar Hareketi'nin kurucu liderlerinden Cevahirlal Nehru hangi ülkeyi temsil etmiştir?",
+          "secenekler": [
+            "Hindistan",
+            "Mısır",
+            "Endonezya",
+            "Gana",
+            "Yugoslavya"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Nehru, Hindistan başbakanı olarak hareketin öncülerindendir."
+        },
+        {
+          "soru": "Bağlantısızlar Hareketi'nin önde gelen liderlerinden Cemal Abdülnasır hangi ülkenin devlet başkanıdır?",
+          "secenekler": [
+            "Cezayir",
+            "Libya",
+            "Suriye",
+            "Mısır",
+            "Irak"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Nasır, Mısır lideri olarak Süveyş Krizi ve Bağlantısızlar'da önemli rol oynamıştır."
+        },
+        {
+          "soru": "SSCB'nin dağılması sürecinde eski Sovyet cumhuriyetlerinin bir kısmını bir araya getiren Bağımsız Devletler Topluluğu hangi yılda kurulmuştur?",
+          "secenekler": [
+            "1991",
+            "1990",
+            "1989",
+            "1993",
+            "1995"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "BDT, SSCB'nin dağıldığı 1991'de kurulmuştur."
+        },
+        {
+          "soru": "Dekolonizasyon öncesinde dünya genelinde en geniş sömürge imparatorluğuna sahip olan devlet hangisidir?",
+          "secenekler": [
+            "Fransa",
+            "İngiltere",
+            "Belçika",
+            "Portekiz",
+            "İspanya"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Üzerinde güneş batmayan imparatorluk' olarak anılan İngiltere en geniş sömürge ağına sahipti."
+        },
+        {
+          "soru": "Irak'ın Kuveyt'i işgal ederek Körfez Savaşı'nı başlattığı yıl hangisidir?",
+          "secenekler": [
+            "1990",
+            "1991",
+            "1989",
+            "1988",
+            "1992"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İşgal 1990'da başlamış, koalisyonun harekatı ise 1991'de gerçekleşmiştir."
+        },
+        {
+          "soru": "Doğu ve Batı Almanya'nın tek devlet çatısı altında yeniden birleşmesi hangi yılda gerçekleşmiştir?",
+          "secenekler": [
+            "1989",
+            "1990",
+            "1991",
+            "1992",
+            "1988"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Almanya 3 Ekim 1990'da resmen birleşmiştir."
+        },
+        {
+          "soru": "Türk Keneşi, 2021 yılındaki zirvede hangi yeni adı alarak yapısını güçlendirmiştir?",
+          "secenekler": [
+            "Türk Konseyi",
+            "Türk Birliği",
+            "Türk Devletleri Teşkilatı",
+            "Türk İşbirliği Örgütü",
+            "Orta Asya Birliği"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Örgüt 2021'de İstanbul Zirvesi'nde bu yeni adı almıştır."
+        },
+        {
+          "soru": "SSCB'nin dağılmasına giden reform sürecini başlatan ve birliğin son devlet başkanı olan lider kimdir?",
+          "secenekler": [
+            "Brejnev",
+            "Yeltsin",
+            "Gorbaçov",
+            "Kruşçev",
+            "Andropov"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Gorbaçov, glasnost ve perestroyka politikalarını uygulayan son SSCB liderdir."
+        },
+        {
+          "soru": "SSCB'nin dağılmasından sonra bağımsız Rusya Federasyonu'nun ilk cumhurbaşkanı kim olmuştur?",
+          "secenekler": [
+            "Yeltsin",
+            "Putin",
+            "Gorbaçov",
+            "Medvedev",
+            "Brejnev"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Boris Yeltsin, bağımsız Rusya'nın ilk cumhurbaşkanıdır."
+        },
+        {
+          "soru": "Berlin Duvarı'nın yıkıldığı 1989 ile Türkiye Cumhuriyeti'nin kurulduğu 1923 arasında kaç yıl vardır?",
+          "secenekler": [
+            "64 yıl",
+            "66 yıl",
+            "68 yıl",
+            "70 yıl",
+            "62 yıl"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1989 - 1923 = 66. İki olay arasında 66 yıl bulunmaktadır."
+        },
+        {
+          "soru": "SSCB'den bağımsızlığını kazanan 15 cumhuriyetten Türk kökenli 5 devlet çıkarıldığında geriye kaç cumhuriyet kalır?",
+          "secenekler": [
+            "12",
+            "11",
+            "10",
+            "9",
+            "8"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "15 - 5 = 10. Geriye Türk kökenli olmayan 10 cumhuriyet kalır."
+        },
+        {
+          "soru": "Türk Devletleri Teşkilatı'nın tam üye devletlerinin sayısı kaçtır?",
+          "secenekler": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Azerbaycan, Kazakistan, Kırgızistan, Türkiye ve Özbekistan olmak üzere 5 tam üye vardır."
+        },
+        {
+          "soru": "Maastricht Antlaşması 1992'de imzalanmış, Avrupa Birliği'ni kuran bu antlaşma bir yıl sonra yürürlüğe girmiştir. Buna göre antlaşma hangi yıl yürürlüğe girmiştir?",
+          "secenekler": [
+            "1993",
+            "1994",
+            "1991",
+            "1995",
+            "1990"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1992 + 1 = 1993. Antlaşma imzalanmasının ardından 1993'te yürürlüğe girmiştir."
         }
       ]
     }

@@ -41931,6 +41931,606 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Güneşin doğması gibi doğal bir olay, 'seni görmek' gibi hayalî ve güzel bir nedene bağlandığından hüsn-i talil vardır."
+        },
+        {
+          "soru": "\"Bir hilâl uğruna ya Rab ne güneşler batıyor\" dizesinde altı çizili sözlerin çağrıştırdığı asıl anlam düşünüldüğünde, şehit düşen askerlerin 'güneş'e benzetilerek yalnızca benzetildiği unsurla anılması hangi sanatı örnekler?",
+          "secenekler": [
+            "Açık istiare",
+            "Mecaz-ı mürsel",
+            "Teşhis",
+            "Tenasüp",
+            "Cinas"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Askerler söylenmeden yalnızca benzetilen 'güneş' söylendiği için açık istiare vardır."
+        },
+        {
+          "soru": "\"Bütün sınıf ayağa kalktı, alkışlarla karşıladı öğretmeni\" cümlesinde 'sınıf' sözüyle o mekândaki öğrencilerin kastedilmesi hangi sanata örnektir?",
+          "secenekler": [
+            "Kinaye",
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Tezat",
+            "Mübalağa"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "İçinde bulunan (öğrenciler) yerine bulunduğu yer (sınıf) söylendiği için mecaz-ı mürsel (ad aktarması) vardır."
+        },
+        {
+          "soru": "\"Ağlarım hatıra geldikçe gülüştüklerimiz\" dizesinde birbirine karşıt iki durumun bir arada verilmesi hangi sanatı doğurur?",
+          "secenekler": [
+            "Tenasüp",
+            "Tezat",
+            "Telmih",
+            "Hüsn-i talil",
+            "İntak"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'Ağlamak' ile 'gülüşmek' karşıt kavramları bir arada kullanıldığı için tezat (karşıtlık) vardır."
+        },
+        {
+          "soru": "\"Ay, camımıza dokunup usulca fısıldadı geceyi\" cümlesinde aya ait olmayan davranışların ona yüklenmesi hangi sanatı ortaya çıkarır?",
+          "secenekler": [
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Kinaye",
+            "Kişileştirme",
+            "Tevriye"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Cansız varlık aya insana özgü 'dokunma, fısıldama' verildiği için teşhis (kişileştirme) vardır."
+        },
+        {
+          "soru": "\"Dişi kurt gibi gelir üstümüze, bakışıyla insanı yakar\" ifadesinde belirgin olarak birbirine benzetilen iki unsurun 'gibi' ile verilmesi hangi sanatı gösterir?",
+          "secenekler": [
+            "Benzetme",
+            "İstiare",
+            "Kinaye",
+            "Aliterasyon",
+            "İntak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Benzeyen, benzetilen ve edat ('gibi') birlikte bulunduğu için teşbih (benzetme) vardır."
+        },
+        {
+          "soru": "\"Sana dar gelmeyecek makberi kimler kazsın\" dizesinde Namık Kemal ve Vatan Kasidesi geleneğine değil de, bilinen bir tarihsel/kültürel olguya gönderme yapılarak anlam zenginleştirilirse buna ne denir? Aşağıdaki dizelerden hangisi bu sanatı içerir?",
+          "secenekler": [
+            "\"Sular karardı, ufuk mora boyandı yavaş yavaş\"",
+            "\"Vefasız Aslı'ya yol gösteren bu\" diyerek Kerem'i anması",
+            "\"Kar beyaz gömleğiyle geldi kış\"",
+            "\"Deniz kükredi, dağları devirdi\"",
+            "\"Bahçemde açan güller kokladı beni\""
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kerem ile Aslı hikâyesine gönderme yapıldığı için telmih vardır."
+        },
+        {
+          "soru": "\"Yüz bin okka sözü bir pula satar\" ifadesinde bir şeyin olduğundan çok abartılı biçimde anlatılması hangi sanatı örnekler?",
+          "secenekler": [
+            "Tenasüp",
+            "Mecaz-ı mürsel",
+            "Abartma",
+            "Tezat",
+            "Cinas"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "'Yüz bin okka' gibi ölçüsüz büyütme yapıldığı için mübalağa (abartma) vardır."
+        },
+        {
+          "soru": "\"Ok, yay, kılıç ve kalkanla donandı meydan\" dizesinde aynı konuyla (savaş araçları) ilgili sözcüklerin bir arada anılması hangi sanata örnektir?",
+          "secenekler": [
+            "Uygunluk (tenasüp)",
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Hüsn-i talil",
+            "Kinaye"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Anlamca ilgili sözcükler (ok, yay, kılıç, kalkan) bir arada kullanıldığı için tenasüp vardır."
+        },
+        {
+          "soru": "\"Baban geldiğinde ayaklarım geri geri gitti\" cümlesinde sözün gerçek anlamının yanında 'çekinmek/korkmak' anlamının da sezdirilmesi hangi sanatı gösterir?",
+          "secenekler": [
+            "Mübalağa",
+            "Değinmece (kinaye)",
+            "Açık istiare",
+            "İntak",
+            "Tenasüp"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hem gerçek hem mecazi anlam kastedilip asıl mecaz kastedildiği için kinaye vardır."
+        },
+        {
+          "soru": "\"Tilki, karganın ağzındaki peyniri görünce: 'Ne güzel sesin var, bir öt de dinleyeyim' dedi\" cümlesinde hayvana söz söyletilmesi hangi sanatı ortaya koyar?",
+          "secenekler": [
+            "Teşhis",
+            "Konuşturma (intak)",
+            "Telmih",
+            "Tezat",
+            "Tevriye"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İnsan dışı varlığa (tilki) söz söyletildiği için intak (konuşturma) vardır."
+        },
+        {
+          "soru": "\"Gökyüzü boz bulanık, ağlıyor sanki bütün gün\" dizesinde gökyüzünün insana özgü bir eylemle anılması ağırlıklı olarak hangi sanatı barındırır?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Kişileştirme",
+            "Tenasüp",
+            "Cinas",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Gökyüzüne 'ağlamak' insan eylemi verildiği için teşhis (kişileştirme) vardır."
+        },
+        {
+          "soru": "\"Her nefeste eyledik yüz bin günah / Bir günaha bin peşimanız hele\" beytinde günahların 'yüz bin' diye sayısız gösterilmesi hangi sanata dayanır?",
+          "secenekler": [
+            "Abartma",
+            "Kinaye",
+            "Teşbih",
+            "Telmih",
+            "İntak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Sayının ölçüsüzce büyütülmesi mübalağadır."
+        },
+        {
+          "soru": "\"Karadır kaşların ferman yazdırır\" dizesinde 'ferman yazdırmak' sözüyle kaşların çok etkileyici/güçlü oluşunun anlatılması hangi sanata örnektir?",
+          "secenekler": [
+            "Tenasüp",
+            "Kinaye",
+            "Tevriye",
+            "Hüsn-i talil",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Doğrudan söylenmeyip dolaylı anlatımla kaşların etkileyiciliği sezdirildiği için kinaye vardır."
+        },
+        {
+          "soru": "\"Sabahleyin güneş ağardığında pencereden içeri güldü\" cümlesinde güneşe 'gülmek' fiilinin yüklenmesi hangi sanata örnektir?",
+          "secenekler": [
+            "Teşbih",
+            "Teşhis",
+            "Mecaz-ı mürsel",
+            "Tezat",
+            "Telmih"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Güneşe insan davranışı 'gülmek' verildiği için kişileştirme vardır."
+        },
+        {
+          "soru": "\"Kısmetindir gezdiren yer yer seni / Arşa çıksan akıbet yer yer seni\" beytinde 'yer yer' sözcüklerinin yazılışça aynı, anlamca farklı oluşu hangi sanatı doğurur?",
+          "secenekler": [
+            "Cinas",
+            "Tevriye",
+            "Tenasüp",
+            "Aliterasyon",
+            "Tezat"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yazılışı aynı, anlamı ayrı sözcüklerin (yeryüzü / yemek fiili) kullanımı cinastır."
+        },
+        {
+          "soru": "\"Sokakta yürürken bir çift ayakkabı aldım, aile de onu çok sevdi\" bağlamına benzer biçimde \"Kırk yıllık dostumu sofrada üç kadeh devirirken gördüm\" cümlesinde 'kadeh' ile içindekinin kastedilmesi hangi sanattır?",
+          "secenekler": [
+            "Teşbih",
+            "Ad aktarması (mecaz-ı mürsel)",
+            "Kinaye",
+            "İntak",
+            "Mübalağa"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kap (kadeh) söylenip içindeki içki kastedildiği için mecaz-ı mürsel vardır."
+        },
+        {
+          "soru": "\"Aşkın ateşiyle yanan gönül, saçından bir tel ister\" dizesinde 'gönlün yanması' düşünüldüğünde asıl vurgulanan sanat aşağıdakilerden hangisidir? ('yanan gönül' somut ateşe benzetilerek benzetilen düşürülmüştür)",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Kapalı istiare",
+            "Tenasüp",
+            "Telmih",
+            "Tezat"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Gönül, ateşe benzetilip benzetilen söylenmeyip yalnızca özelliği (yanmak) verildiğinden kapalı istiare vardır."
+        },
+        {
+          "soru": "\"Güller açmış bülbül şakır bahçede / Sanki yâr geleceği için süslenmiş her yer\" dizelerinde doğanın süslenmesinin sevgilinin gelişine bağlanması hangi sanatı örnekler?",
+          "secenekler": [
+            "Hüsn-i talil (güzel nedene bağlama)",
+            "Kinaye",
+            "Cinas",
+            "İntak",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Gerçek dışı ama güzel bir nedene (yârin gelişi) bağlandığı için hüsn-i talil vardır."
+        },
+        {
+          "soru": "\"Dadaloğlu'm bir gün kavga kurulur / Öter tüfek davlumbazlar vurulur\" dizelerindeki 'tüfek, davlumbaz, kavga' sözcüklerinin aynı savaş çağrışımında toplanması hangi sanattır?",
+          "secenekler": [
+            "Tenasüp",
+            "Tezat",
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Tevriye"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Aynı anlam alanına ait sözcükler bir arada kullanıldığı için tenasüp vardır."
+        },
+        {
+          "soru": "\"Bir berber bir berbere bre berber gel beraber\" cümlesinde 'b' ve 'r' seslerinin sık yinelenmesiyle oluşan ahenk hangi sanata örnektir?",
+          "secenekler": [
+            "Cinas",
+            "Ses yinelemesi (aliterasyon)",
+            "Tenasüp",
+            "Kinaye",
+            "Tezat"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Aynı ünsüzlerin (b, r) tekrarıyla ahenk sağlandığı için aliterasyon vardır."
+        },
+        {
+          "soru": "\"Deniz öfkeyle kabardı, kayaları dövdü sabaha kadar\" cümlesinde denize öfke ve dövme gibi insani nitelikler yüklenmesi hangi sanatı gösterir?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Kişileştirme",
+            "Teşbih",
+            "Telmih",
+            "Cinas"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Denize insana özgü 'öfke, dövme' verildiği için teşhis vardır."
+        },
+        {
+          "soru": "\"O, bu mahallede eli uzun biri olarak bilinir\" cümlesinde 'eli uzun' sözünün hem gerçek hem de 'hırsız/aşırmacı' anlamını sezdirmesi hangi sanata örnektir?",
+          "secenekler": [
+            "Kinaye",
+            "Teşbih",
+            "Tenasüp",
+            "Hüsn-i talil",
+            "İntak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Gerçek anlam mümkün olsa da asıl kastedilen mecaz (hırsızlık) olduğu için kinaye vardır."
+        },
+        {
+          "soru": "\"Gökten yağan rahmet, çiftçinin yüzünü güldürdü\" cümlesinde 'rahmet' sözcüğüyle yağmurun kastedilmesi hangi sanata dayanır?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Teşbih",
+            "Tezat",
+            "Aliterasyon",
+            "Cinas"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Sebep-sonuç/ilgi yoluyla 'rahmet' denip yağmur kastedildiği için ad aktarması vardır."
+        },
+        {
+          "soru": "\"Ne efsunkâr imişsin ah ey didar-ı hürriyet\" gibi soyut bir kavramın kişi gibi seslenilerek anılması bir yana; \"Ey mavi göklerin beyaz ve kızıl süsü\" dizesinde bayrağa seslenilip cansıza hitap edilmesi öncelikle hangi sanatı içerir?",
+          "secenekler": [
+            "Teşbih",
+            "Kişileştirme",
+            "Mecaz-ı mürsel",
+            "Telmih",
+            "Tevriye"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Cansız bayrağa insana seslenir gibi hitap edildiği için teşhis (nida ile) vardır."
+        },
+        {
+          "soru": "\"Bağa girdim gül dermeye / Gül eğildi elim aldı\" örneğine benzer biçimde \"Bahçende Gül açtı, herkes ona hayran\" cümlesinde 'Gül' sözcüğünün hem çiçek hem kişi adı olacak biçimde iki anlama gelmesi hangi sanattır?",
+          "secenekler": [
+            "Cinas",
+            "İki anlamlılık (tevriye)",
+            "Kinaye",
+            "Tenasüp",
+            "Mübalağa"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Bir sözcüğün (Gül) yakın ve uzak iki anlamının birlikte sezdirilmesi tevriyedir."
+        },
+        {
+          "soru": "\"Yollarına serptim yüreğimi, bin parça oldu ayak izlerinde\" dizesinde yüreğin bin parçaya ayrılması abartısı bir yana, 'yüreğin serpilmesi' düşünüldüğünde vurgulu sanat hangisidir?",
+          "secenekler": [
+            "Abartma",
+            "Tenasüp",
+            "Cinas",
+            "İntak",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Bin parça' ve 'yüreğini yollara serpme' ölçüsüz büyütme olduğundan mübalağa öne çıkar."
+        },
+        {
+          "soru": "\"Bir avuç toprak için can veren yiğitler\" dizesinde 'bir avuç toprak' sözüyle vatanın bütününün kastedilmesi hangi sanata örnektir?",
+          "secenekler": [
+            "Parça-bütün ilgisiyle mecaz-ı mürsel",
+            "Teşbih",
+            "Tezat",
+            "Telmih",
+            "Hüsn-i talil"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Parça (bir avuç toprak) söylenip bütün (vatan) kastedildiği için mecaz-ı mürsel vardır."
+        },
+        {
+          "soru": "\"Yavuz Sultan Selim gibi cesurdu, ama Karun kadar da cimriydi\" cümlesinde birbirine karşıt iki niteliğin (cesaret-cimrilik değil, aslında övgü-yergi) bir arada anılmasından çok, aynı kişide zıt izlenimlerin verilmesi hangi sanatı çağrıştırır? Doğru seçilen dizedeki asıl belirgin sanat hangisidir? (Karun'a gönderme)",
+          "secenekler": [
+            "Tezat",
+            "Anıştırma (telmih)",
+            "Kinaye",
+            "İntak",
+            "Cinas"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Zenginliğiyle bilinen Karun'a gönderme yapıldığı için telmih vardır."
+        },
+        {
+          "soru": "\"Alnından öptü seher yeli, uyandı papatyalar\" cümlesinde rüzgârın öpmesi ve papatyaların uyanması hangi sanatı bir arada örnekler?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Kişileştirme",
+            "Cinas",
+            "Tezat",
+            "Tenasüp"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Rüzgâra 'öpmek', papatyalara 'uyanmak' insan eylemleri verildiği için teşhis vardır."
+        },
+        {
+          "soru": "\"Aslan yürekli komutan, düşmanın üzerine atıldı\" ifadesinde komutanın yalnızca benzetildiği hayvanla ('aslan') anılıp cesaretinin verilmesi hangi sanatı gösterir?",
+          "secenekler": [
+            "Açık istiare",
+            "Mecaz-ı mürsel",
+            "Kinaye",
+            "Tezat",
+            "İntak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Benzeyen (komutan) yerine yalnızca benzetilen (aslan) söylendiği için açık istiare vardır."
+        },
+        {
+          "soru": "\"Ekmek parası için sabahtan akşama koşan bir ömür\" ifadesinde 'ekmek' sözcüğüyle geçim/rızkın tümünün kastedilmesi hangi sanata girer?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Teşbih",
+            "Hüsn-i talil",
+            "Aliterasyon",
+            "Cinas"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Ekmek' denip geçim/rızık kastedildiği için ad aktarması (mecaz-ı mürsel) vardır."
+        },
+        {
+          "soru": "\"Karlı dağların ardında karlar, kışlar, kargalar\" dizesinde tekrarlanan 'k' sesinin sağladığı ahenk hangi sanattır?",
+          "secenekler": [
+            "Cinas",
+            "Aliterasyon",
+            "Tenasüp",
+            "Teşhis",
+            "Kinaye"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "'K' ünsüzünün yinelenmesiyle ahenk oluştuğundan aliterasyon vardır."
+        },
+        {
+          "soru": "\"Gündüzün ışığında karanlık gözlerin / Yakın durdukça uzaksın bana sen\" dizelerinde 'ışık-karanlık', 'yakın-uzak' karşıtlıklarının kullanımı hangi sanattır?",
+          "secenekler": [
+            "Tenasüp",
+            "Karşıtlık (tezat)",
+            "Telmih",
+            "İntak",
+            "Tevriye"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Zıt anlamlı kavramların bilinçli kullanımı tezat (zıtlık) sanatıdır."
+        },
+        {
+          "soru": "\"Bir kılıç, bir at, bir de doludizgin yürek istedi meydan\" ifadesinde savaş ve yiğitlikle ilgili sözcüklerin bir arada anılması hangi sanata örnektir?",
+          "secenekler": [
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Tenasüp",
+            "Cinas",
+            "Hüsn-i talil"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Anlamca ilişkili sözcükler (kılıç, at, yürek/meydan) bir araya getirildiği için tenasüp vardır."
+        },
+        {
+          "soru": "\"Solmuş yaprak, düşerken dala dedi: 'Beni unutma, baharda dönerim'\" cümlesinde yaprağa söz söyletilmesi hangi sanatı örnekler?",
+          "secenekler": [
+            "Konuşturma (intak)",
+            "Teşhis",
+            "Mecaz-ı mürsel",
+            "Kinaye",
+            "Tezat"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İnsan dışı varlık yaprağa söz söyletildiği için intak vardır (aynı zamanda teşhis içerir, asıl belirteç konuşmadır)."
+        },
+        {
+          "soru": "\"Yıldızlar utandı onun güzelliğinden, saklandı bulutlara\" cümlesinde yıldızların sönük görünmesinin sevgilinin güzelliğine bağlanması hangi sanatı örnekler?",
+          "secenekler": [
+            "Hüsn-i talil",
+            "Kinaye",
+            "Cinas",
+            "Aliterasyon",
+            "Mecaz-ı mürsel"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Doğal bir durum (yıldızların görünmemesi) hayali güzel bir nedene bağlandığı için hüsn-i talil vardır."
+        },
+        {
+          "soru": "\"Şu karşıki dağda kar var, duman var; yüreğimde ise sensiz koca bir yangın\" ifadesinde yüreğin ateş/yangına benzetilip benzetilenin verilip benzeyenin kaldırılması hangi sanatı örnekler?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Açık istiare",
+            "Teşbih",
+            "Tezat",
+            "Telmih"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Sevgisizliğin acısı yalnızca 'yangın' (benzetilen) ile anıldığından açık istiare vardır."
+        },
+        {
+          "soru": "\"Yemende yatan gizli şehitleri de bilir, gönlünü aç Fuzûlî'yi de andı\" örneğine benzer olarak \"Ben Mecnun'um, çölleri dolandım o yüzden\" dizesinde geçmişteki bir hikâye kişisine gönderme yapılması hangi sanattır?",
+          "secenekler": [
+            "Telmih",
+            "Teşbih",
+            "İntak",
+            "Tenasüp",
+            "Cinas"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Leylâ ile Mecnun hikâyesindeki kişiye gönderme yapıldığı için telmih vardır."
+        },
+        {
+          "soru": "\"Adam o kadar cömert ki eli açık, kimseyi geri çevirmez\" cümlesinde 'eli açık' deyimiyle cömertliğin dolaylı anlatılması hangi sanata örnektir?",
+          "secenekler": [
+            "Kinaye",
+            "Teşbih",
+            "Mecaz-ı mürsel",
+            "Tevriye",
+            "Mübalağa"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Cömertlik doğrudan değil deyim yoluyla ('eli açık') dolaylı verildiği için kinaye vardır."
+        },
+        {
+          "soru": "\"Gözlerinden döktüğü yaşlar, önce bir dere, sonra taşkın bir ırmak oldu, evleri götürdü\" ifadesinde gözyaşının ırmak olup evleri götürmesi hangi sanattır?",
+          "secenekler": [
+            "Teşbih",
+            "Abartma",
+            "Tenasüp",
+            "Telmih",
+            "İntak"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Gözyaşının ırmak olup evleri götürmesi olağanüstü büyütme olduğundan mübalağa vardır."
+        },
+        {
+          "soru": "\"Fındık gibi dişleri, ceylan gibi bakışları vardı yârin\" dizesinde benzeyen, benzetilen ve 'gibi' edatının birlikte bulunması hangi sanattır?",
+          "secenekler": [
+            "İstiare",
+            "Benzetme (teşbih)",
+            "Kinaye",
+            "Tevriye",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Benzeyen (diş, bakış), benzetilen (fındık, ceylan) ve edat ('gibi') açıkça bulunduğundan teşbih vardır."
+        },
+        {
+          "soru": "\"Kalem, mürekkebini son damlasına dek verdi de yazdı bu destanı\" cümlesinde kaleme insana özgü fedakârlık yüklenmesi ağırlıklı hangi sanattır?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Kişileştirme",
+            "Cinas",
+            "Tezat",
+            "Hüsn-i talil"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Cansız kaleme 'vermek/fedakârlık' insani nitelik yüklendiği için teşhis vardır."
+        },
+        {
+          "soru": "\"Beyaz Türk atları koşarken meydanda / Al bayrak dalgalandı burçlarda\" ifadesinde 'al bayrak' ile milletin ve devletin varlığının çağrıştırılması hangi sanata örnektir?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Teşbih",
+            "Kinaye",
+            "İntak",
+            "Cinas"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Somut simge (bayrak) ile soyut kavramın (millet/devlet) kastedilmesi ad aktarmasıdır."
+        },
+        {
+          "soru": "\"Ne içindeyim zamanın / Ne de büsbütün dışında\" dizelerinde 'içinde-dışında' karşıtlığının bir arada verilmesi hangi sanata örnektir?",
+          "secenekler": [
+            "Tezat",
+            "Tenasüp",
+            "Telmih",
+            "Kinaye",
+            "Aliterasyon"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'İçinde' ile 'dışında' zıt kavramları bilinçle bir arada kullanıldığından tezat vardır."
+        },
+        {
+          "soru": "\"Sararmış yapraklara bakıp 'yaşlandık artık' dedi ihtiyar çınar, iç geçirdi\" cümlesinde çınara söz söyletilip iç geçirtilmesi hangi sanatları içerir?",
+          "secenekler": [
+            "Yalnız teşbih",
+            "İntak ve teşhis",
+            "Yalnız mecaz-ı mürsel",
+            "Cinas",
+            "Tevriye"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Çınara insan eylemi (iç geçirme) verildiği için teşhis, söz söyletildiği için intak birlikte bulunur."
+        },
+        {
+          "soru": "\"Gül gülse dâim ağlasa bülbül aceb değil\" dizesinde 'gül' ve 'bülbül' ile aynı çağrışım alanının; ayrıca 'gül' sözcüğünün çiçek ve 'gülmek' fiili çağrışımının kullanımı öncelikle hangi sanatı işaret eder?",
+          "secenekler": [
+            "Cinas / tevriyeli kullanım",
+            "Yalnız mecaz-ı mürsel",
+            "Yalnız hüsn-i talil",
+            "Yalnız telmih",
+            "Yalnız aliterasyon"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "'Gül' hem çiçek hem gülme çağrışımıyla, sesteşliğe dayalı cinaslı/tevriyeli bir kullanım oluşturur."
+        },
+        {
+          "soru": "\"Bir baş soğan olsa evde, o da yok; yine de sofrada gülüşürüz\" cümlesinde yoksulluk ile neşenin karşıtlığı bir yana, 'baş soğan' ile azıcık yiyeceğin bütününün çağrıştırılması hangi sanata yakındır?",
+          "secenekler": [
+            "Mecaz-ı mürsel",
+            "Teşbih",
+            "Kinaye",
+            "Aliterasyon",
+            "İntak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Parça/az bir öğe (baş soğan) ile evdeki tüm azığın kastedilmesi ilgi yoluyla ad aktarmasıdır."
+        },
+        {
+          "soru": "\"Sen bir ceylan olsan ben de bir avcı / Dağ senin, ben senin, orman benim\" dizelerinde sevgilinin doğrudan 'ceylan' diye anılıp benzetme edatının kullanılmaması hangi sanata örnek olabilir?",
+          "secenekler": [
+            "Açık istiare veya teşbih-i beliğ",
+            "Mecaz-ı mürsel",
+            "Kinaye",
+            "Tevriye",
+            "Tenasüp"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Benzetme yönü ve edat düşürülüp yalnızca benzetilen unsurla anıldığından istiare/teşbih-i beliğ oluşur."
+        },
+        {
+          "soru": "\"Baht uykuda, talih ağlar, felek güler bana inatla\" dizesinde 'baht, talih, felek' soyut kavramlarına uyuma, ağlamaya ve gülmeye elverişli insani durumların yüklenmesi ağırlıklı hangi sanattır?",
+          "secenekler": [
+            "Kişileştirme",
+            "Mecaz-ı mürsel",
+            "Cinas",
+            "Telmih",
+            "Tezat"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Soyut kavramlara (baht, talih, felek) insani eylemler (uyumak, ağlamak, gülmek) verildiği için teşhis vardır."
+        },
+        {
+          "soru": "\"Davul dengi dengine derler; bu dünyada her yiğit dengini bulur\" ifadesinde 'davul, denk, dengine' sözcüklerinin ses ve anlam oyunuyla art arda kullanılması hangi sanata örnektir?",
+          "secenekler": [
+            "Cinaslı/ses benzeşmesine dayalı kullanım",
+            "Yalnız teşbih",
+            "Yalnız mecaz-ı mürsel",
+            "Yalnız hüsn-i talil",
+            "Yalnız intak"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Sesçe benzeşen 'denk/dengine' sözcüklerinin anlam farkıyla yinelenmesi cinasa dayalı bir söz oyunudur."
         }
       ]
     }

@@ -55365,6 +55365,1086 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Hipotenüs = √(81+144) = 15 cm. Dik üçgende hipotenüse ait kenarortay hipotenüsün yarısıdır: 15/2 = 7,5 cm."
+        },
+        {
+          "soru": "Bir üçgenin iç açıları sırasıyla 2x, 3x ve 4x ölçüsündedir. Bu üçgenin en büyük açısı kaç derecedir?",
+          "secenekler": [
+            "80",
+            "70",
+            "60",
+            "90",
+            "100"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2x+3x+4x=180, x=20; en büyük açı 4x=80°."
+        },
+        {
+          "soru": "Bir üçgende C köşesindeki dış açı 130°, A açısı ise 45°'dir. B açısı kaç derecedir?",
+          "secenekler": [
+            "75",
+            "80",
+            "85",
+            "90",
+            "95"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Dış açı komşu olmayan iki iç açının toplamıdır: 130=45+B, B=85°."
+        },
+        {
+          "soru": "Dik kenarları 9 ve 12 birim olan bir dik üçgenin hipotenüsü kaç birimdir?",
+          "secenekler": [
+            "13",
+            "14",
+            "16",
+            "15",
+            "18"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "9-12-15 üçlüsü (3-4-5 katı): √(81+144)=15."
+        },
+        {
+          "soru": "30-60-90 üçgeninde hipotenüs 20 birim ise 30° açının karşısındaki kenar kaç birimdir?",
+          "secenekler": [
+            "8",
+            "12",
+            "15",
+            "18",
+            "10"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "30° karşısındaki kenar hipotenüsün yarısıdır: 20/2=10."
+        },
+        {
+          "soru": "Bir dik kenarı 7 birim olan ikizkenar dik üçgenin hipotenüsü kaç birimdir?",
+          "secenekler": [
+            "7",
+            "14",
+            "7√2",
+            "14√2",
+            "49"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "45-45-90'da hipotenüs = dik kenar·√2 = 7√2."
+        },
+        {
+          "soru": "Dik kenarları 5 ve 12 birim olan bir dik üçgenin çevresi kaç birimdir?",
+          "secenekler": [
+            "30",
+            "25",
+            "28",
+            "32",
+            "60"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Hipotenüs 13 (5-12-13); çevre 5+12+13=30."
+        },
+        {
+          "soru": "İki kenarı 7 ve 10 birim olan bir üçgenin üçüncü kenarı kaç farklı tam sayı değeri alabilir?",
+          "secenekler": [
+            "11",
+            "12",
+            "14",
+            "13",
+            "15"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "3<x<17 aralığında 4-16 arası 13 tam sayı vardır."
+        },
+        {
+          "soru": "Kenarları 5, 8 ve x birim olan bir üçgende x'in alabileceği en büyük tam sayı değeri kaçtır?",
+          "secenekler": [
+            "12",
+            "11",
+            "13",
+            "14",
+            "15"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "3<x<13 olduğundan en büyük tam sayı 12'dir."
+        },
+        {
+          "soru": "Benzer iki üçgenin kenar oranı 2/3 ise alanları oranı kaçtır?",
+          "secenekler": [
+            "2/3",
+            "4/9",
+            "3/2",
+            "9/4",
+            "8/27"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan oranı benzerlik oranının karesidir: (2/3)²=4/9."
+        },
+        {
+          "soru": "Benzer iki üçgenin alanları oranı 16/25 ise benzerlik (kenar) oranı kaçtır?",
+          "secenekler": [
+            "16/25",
+            "3/5",
+            "5/4",
+            "4/5",
+            "2/5"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Benzerlik oranı alan oranının kareköküdür: √(16/25)=4/5."
+        },
+        {
+          "soru": "Bir dik üçgende hipotenüs 26 birim ise hipotenüse ait kenarortay kaç birimdir?",
+          "secenekler": [
+            "12",
+            "14",
+            "13",
+            "15",
+            "26"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hipotenüse ait kenarortay hipotenüsün yarısıdır: 26/2=13."
+        },
+        {
+          "soru": "Tabanı 12 birim, bu tabana ait yüksekliği 9 birim olan üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "48",
+            "60",
+            "54",
+            "108",
+            "27"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan = (12·9)/2 = 54."
+        },
+        {
+          "soru": "Bir kenarı 6 birim olan eşkenar üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "6√3",
+            "12√3",
+            "9√3",
+            "18√3",
+            "36√3"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Eşkenar alan = (√3/4)·6² = 9√3."
+        },
+        {
+          "soru": "Paralel iki doğru arasında kırık bir çizgi vardır; üstteki açı 40°, alttaki açı 30°'dir. Ortadaki kırılma açısı kaç derecedir?",
+          "secenekler": [
+            "60",
+            "65",
+            "75",
+            "70",
+            "80"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Yardımcı paralelle iki iç ters açı toplanır: 40+30=70°."
+        },
+        {
+          "soru": "Bir üçgenin C açısı 40°'dir. A ve B iç açıortaylarının kesiştiği açı kaç derecedir?",
+          "secenekler": [
+            "100",
+            "110",
+            "105",
+            "115",
+            "120"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "İç açıortaylar arasındaki açı = 90+C/2 = 90+20 = 110°."
+        },
+        {
+          "soru": "Bir üçgende iki iç açıortay arasındaki açı 120° ise, açıortayları çizilmeyen köşedeki iç açı kaç derecedir?",
+          "secenekler": [
+            "50",
+            "55",
+            "65",
+            "60",
+            "70"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "90+C/2=120 → C=60°."
+        },
+        {
+          "soru": "Tepe açısı 40° olan ikizkenar üçgenin taban açılarından biri kaç derecedir?",
+          "secenekler": [
+            "65",
+            "70",
+            "68",
+            "72",
+            "75"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "(180-40)/2 = 70°."
+        },
+        {
+          "soru": "Taban açısı 50° olan ikizkenar bir üçgende tepe açısı kaç derecedir?",
+          "secenekler": [
+            "70",
+            "75",
+            "85",
+            "90",
+            "80"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "180-(50+50)=80°."
+        },
+        {
+          "soru": "Bir üçgende A ile B açılarının farkı 20°, C açısı 60°'dir. A açısı kaç derecedir?",
+          "secenekler": [
+            "60",
+            "70",
+            "65",
+            "75",
+            "80"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "A+B=120, A-B=20 → A=70°."
+        },
+        {
+          "soru": "Kenarları 6 ve 8 birim olan bir dikdörtgenin köşegeni kaç birimdir?",
+          "secenekler": [
+            "9",
+            "12",
+            "10",
+            "14",
+            "16"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Köşegen = √(6²+8²)=√100=10."
+        },
+        {
+          "soru": "Bir dik kenarı 8, diğer dik kenarı 15 birim olan dik üçgenin hipotenüsü kaç birimdir?",
+          "secenekler": [
+            "17",
+            "16",
+            "18",
+            "19",
+            "20"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "8-15-17 üçlüsü: √(64+225)=17."
+        },
+        {
+          "soru": "Hipotenüsü 25 birim, bir dik kenarı 7 birim olan dik üçgenin diğer dik kenarı kaç birimdir?",
+          "secenekler": [
+            "20",
+            "24",
+            "22",
+            "25",
+            "26"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "7-24-25 üçlüsü: √(625-49)=24."
+        },
+        {
+          "soru": "Dik kenarları 6 ve 8 birim olan bir dik üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "20",
+            "28",
+            "24",
+            "48",
+            "12"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan = (6·8)/2 = 24."
+        },
+        {
+          "soru": "Bir üçgende bir kenarortay 18 birimdir. Ağırlık merkezinin bu kenarortayı böldüğü, köşeye yakın parça kaç birimdir?",
+          "secenekler": [
+            "6",
+            "9",
+            "15",
+            "18",
+            "12"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Ağırlık merkezi 2:1 böler; köşe tarafı 2/3·18=12."
+        },
+        {
+          "soru": "Paralel iki doğruyu bir kesen kesmiştir. İç ters açıların ölçüleri (3x+10) ve (2x+40) olduğuna göre bu açıların her biri kaç derecedir?",
+          "secenekler": [
+            "90",
+            "100",
+            "95",
+            "105",
+            "110"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "3x+10=2x+40 → x=30; açı 2·30+40=100°."
+        },
+        {
+          "soru": "Paralel iki doğrunun aynı taraf iç açılarından biri 110° ise diğeri kaç derecedir?",
+          "secenekler": [
+            "70",
+            "60",
+            "65",
+            "75",
+            "110"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Aynı taraf iç açılar bütünlerdir: 180-110=70°."
+        },
+        {
+          "soru": "Bir üçgenin dış açılarından ikisi 130° ve 120°'dir. Üçüncü dış açı kaç derecedir?",
+          "secenekler": [
+            "100",
+            "110",
+            "105",
+            "115",
+            "120"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Dış açılar toplamı 360°; 360-250=110°."
+        },
+        {
+          "soru": "Bir üçgende DE // BC olacak şekilde çizilmiştir. AD/DB = 2/3 ise AE/EC oranı kaçtır?",
+          "secenekler": [
+            "2/3",
+            "3/2",
+            "2/5",
+            "3/5",
+            "4/9"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Temel orantı (Thales) gereği AE/EC=AD/DB=2/3."
+        },
+        {
+          "soru": "Bir üçgende DE // BC'dir. AD=4, DB=6, AE=6 birim olduğuna göre EC kaç birimdir?",
+          "secenekler": [
+            "7",
+            "8",
+            "10",
+            "9",
+            "12"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "AD/DB=AE/EC → 4/6=6/EC → EC=9."
+        },
+        {
+          "soru": "Benzer iki üçgenden küçüğünün alanı 12 birimkaredir. Benzerlik oranı 1/2 ise büyük üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "24",
+            "36",
+            "60",
+            "96",
+            "48"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Alan oranı (1/2)²=1/4; büyük alan 12·4=48."
+        },
+        {
+          "soru": "30-60-90 üçgeninde hipotenüs 12 birim ise 60° açının karşısındaki kenar kaç birimdir?",
+          "secenekler": [
+            "6",
+            "6√3",
+            "6√2",
+            "12",
+            "4√3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "60° karşısı = hipotenüs·(√3/2)=6√3."
+        },
+        {
+          "soru": "Bir kenarı 10 birim olan eşkenar üçgenin yüksekliği kaç birimdir?",
+          "secenekler": [
+            "5√2",
+            "10",
+            "5√3",
+            "10√3",
+            "15"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Yükseklik = kenar·(√3/2)=5√3."
+        },
+        {
+          "soru": "Bir dik üçgende dik kenarlar 9 ve 40 birim ise hipotenüs kaç birimdir?",
+          "secenekler": [
+            "40",
+            "41",
+            "42",
+            "43",
+            "44"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "9-40-41 üçlüsü: √(81+1600)=41."
+        },
+        {
+          "soru": "Kenar uzunlukları 13, 14 ve 15 birim olan üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "80",
+            "82",
+            "86",
+            "84",
+            "90"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Heron: s=21, √(21·8·7·6)=√7056=84."
+        },
+        {
+          "soru": "Bir üçgende bir dış açı, komşu iç açının 4 katıdır. Bu iç açı kaç derecedir?",
+          "secenekler": [
+            "36",
+            "30",
+            "32",
+            "40",
+            "45"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "iç+dış=180, dış=4·iç → 5·iç=180 → iç=36°."
+        },
+        {
+          "soru": "Bir üçgende A ve B açıları eşittir; C açısı ise A açısından 30° fazladır. C açısı kaç derecedir?",
+          "secenekler": [
+            "70",
+            "75",
+            "80",
+            "85",
+            "90"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "A+A+(A+30)=180 → A=50, C=80°."
+        },
+        {
+          "soru": "Kenarları 4, 9 ve x birim (x tam sayı) olan bir üçgenin çevresi en az kaç birim olabilir?",
+          "secenekler": [
+            "17",
+            "18",
+            "20",
+            "19",
+            "21"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "x>5 olduğundan en küçük x=6; çevre 4+9+6=19."
+        },
+        {
+          "soru": "Benzerlik oranı 3/5 olan iki üçgenden küçüğünün bir yüksekliği 9 birimdir. Büyük üçgenin karşılık gelen yüksekliği kaç birimdir?",
+          "secenekler": [
+            "12",
+            "18",
+            "21",
+            "27",
+            "15"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Yükseklikler benzerlik oranıyla orantılı: 9·(5/3)=15."
+        },
+        {
+          "soru": "Dik kenarları 6 ve 8 birim olan bir dik üçgende hipotenüse ait yükseklik kaç birimdir?",
+          "secenekler": [
+            "4",
+            "4.8",
+            "5",
+            "5.6",
+            "6"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan iki yolla: (6·8)/2=(10·h)/2 → h=48/10=4.8."
+        },
+        {
+          "soru": "Bir dik üçgende hipotenüse ait yükseklik, hipotenüsü 4 ve 9 birimlik iki parçaya ayırmaktadır. Bu yükseklik kaç birimdir?",
+          "secenekler": [
+            "6",
+            "5",
+            "6.5",
+            "7",
+            "13"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Öklid: yükseklik = √(4·9)=√36=6."
+        },
+        {
+          "soru": "Eşit kenarları 13, tabanı 10 birim olan ikizkenar üçgende tabana ait yükseklik kaç birimdir?",
+          "secenekler": [
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "√(13²-5²)=√144=12."
+        },
+        {
+          "soru": "Tabanı 15 birim, bu tabana ait yüksekliği 8 birim olan üçgenin alanı kaç birimkaredir?",
+          "secenekler": [
+            "50",
+            "60",
+            "55",
+            "65",
+            "120"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan = (15·8)/2 = 60."
+        },
+        {
+          "soru": "Hipotenüsü 8 birim olan 30-60-90 üçgeninin alanı kaç birimkaredir?",
+          "secenekler": [
+            "6√3",
+            "10√3",
+            "16√3",
+            "4√3",
+            "8√3"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kısa kenar 4, uzun kenar 4√3; alan (4·4√3)/2=8√3."
+        },
+        {
+          "soru": "Dik kenarları 5 ve 12 birim olan bir dik üçgende hipotenüse ait kenarortay kaç birimdir?",
+          "secenekler": [
+            "5",
+            "6",
+            "6.5",
+            "7",
+            "13"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hipotenüs 13; kenarortay yarısı: 13/2=6.5."
+        },
+        {
+          "soru": "Benzer iki üçgenin çevreleri oranı 2/3'tür. Küçük üçgenin çevresi 16 birim ise büyük üçgenin çevresi kaç birimdir?",
+          "secenekler": [
+            "20",
+            "22",
+            "26",
+            "24",
+            "32"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Çevreler benzerlik oranıyla orantılı: 16·(3/2)=24."
+        },
+        {
+          "soru": "Bir dik üçgende, dik açının köşesinden hipotenüse çizilen yükseklik hipotenüsü 4 cm ve 9 cm uzunluğunda iki parçaya ayırıyor. Bu yüksekliğin uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "5",
+            "7",
+            "8",
+            "10"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Öklid bağıntısı: h=√(4·9)=√36=6 cm."
+        },
+        {
+          "soru": "Dik üçgende hipotenüse ait yükseklik, hipotenüsü 9 cm ve 16 cm uzunluğunda iki parçaya böler. Üçgenin uzun dik kenarı kaç cm'dir?",
+          "secenekler": [
+            "15",
+            "20",
+            "18",
+            "24",
+            "25"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hipotenüs 25; uzun kenar²=16·25=400, kenar=20 cm."
+        },
+        {
+          "soru": "Dik kenarları 6 cm ve 8 cm olan bir dik üçgende, hipotenüse ait yüksekliğin uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "3.6",
+            "4",
+            "4.8",
+            "5",
+            "6"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hipotenüs 10; h=(6·8)/10=4.8 cm."
+        },
+        {
+          "soru": "Dik kenarları 9 cm ve 12 cm olan dik üçgende hipotenüse indirilen yükseklik kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "6.8",
+            "7.5",
+            "7.2",
+            "8"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hipotenüs 15; h=(9·12)/15=7.2 cm."
+        },
+        {
+          "soru": "Dik kenarları 15 cm ve 20 cm olan dik üçgende, 15 cm'lik kenarın hipotenüs üzerindeki dik izdüşümü kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "12",
+            "15",
+            "16",
+            "9"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Hipotenüs 25; izdüşüm=15²/25=225/25=9 cm."
+        },
+        {
+          "soru": "Bir dik üçgende hipotenüse ait yükseklik 12 cm, bu yüksekliğin hipotenüs üzerinde ayırdığı parçalardan biri 9 cm'dir. Hipotenüsün uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "25",
+            "20",
+            "21",
+            "24",
+            "28"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Diğer parça=12²/9=16; hipotenüs=9+16=25 cm."
+        },
+        {
+          "soru": "Dik üçgende bir dik kenar 6 cm, bu kenarın hipotenüs üzerindeki izdüşümü 4 cm'dir. Hipotenüs kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "9",
+            "10",
+            "12",
+            "13"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kenar²=izdüşüm·hipotenüs; 36=4·h, h=9 cm."
+        },
+        {
+          "soru": "Dik üçgende hipotenüse ait yükseklik, hipotenüsü 3 cm ve 12 cm uzunluğunda parçalara ayırıyor. Üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "36",
+            "40",
+            "45",
+            "54",
+            "60"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "h=√(3·12)=6, hipotenüs=15; alan=(15·6)/2=45 cm²."
+        },
+        {
+          "soru": "İkizkenar bir üçgende tepe açısının ölçüsü, taban açılarından birinin ölçüsünün 2/3'ü kadardır. Tepe açısının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "36",
+            "40",
+            "54",
+            "45",
+            "60"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Taban=x, tepe=2x/3; 2x+2x/3=180, x=67.5, tepe=45°."
+        },
+        {
+          "soru": "Bir kenarının uzunluğu 6 cm olan eşkenar üçgenin yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "2√3",
+            "4√3",
+            "6√3",
+            "3√2",
+            "3√3"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Eşkenar yükseklik=a√3/2=6√3/2=3√3 cm."
+        },
+        {
+          "soru": "Bir kenarı 8 cm olan eşkenar üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "16√3",
+            "8√3",
+            "12√3",
+            "24√3",
+            "32√3"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan=a²√3/4=64√3/4=16√3 cm²."
+        },
+        {
+          "soru": "Alanı 9√3 cm² olan eşkenar üçgenin bir kenarının uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "3",
+            "6",
+            "4",
+            "9",
+            "12"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "a²√3/4=9√3 → a²=36 → a=6 cm."
+        },
+        {
+          "soru": "İkizkenar bir üçgende tepe açısı, taban açısından 30° fazladır. Taban açılarından birinin ölçüsü kaç derecedir?",
+          "secenekler": [
+            "40",
+            "45",
+            "50",
+            "55",
+            "65"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Taban=x, tepe=x+30; 3x+30=180, x=50°."
+        },
+        {
+          "soru": "Yüksekliği 6√3 cm olan eşkenar üçgenin çevresi kaç cm'dir?",
+          "secenekler": [
+            "18",
+            "24",
+            "30",
+            "36",
+            "48"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "a√3/2=6√3 → a=12; çevre=3·12=36 cm."
+        },
+        {
+          "soru": "Tabanı 10 cm ve bu tabana ait yüksekliği 12 cm olan ikizkenar üçgenin eş kenarlarından birinin uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "11",
+            "12",
+            "14",
+            "15",
+            "13"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Yükseklik tabanı ikiye böler: √(5²+12²)=√169=13 cm."
+        },
+        {
+          "soru": "Eş kenarları 13 cm ve tabanı 10 cm olan ikizkenar üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "30",
+            "48",
+            "65",
+            "78"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yükseklik=√(13²-5²)=12; alan=(10·12)/2=60 cm²."
+        },
+        {
+          "soru": "Dik kenarları 6 cm ve 8 cm olan bir dik üçgende, hipotenüse ait kenarortayın uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "4",
+            "5",
+            "4.8",
+            "6",
+            "7"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hipotenüs 10; hipotenüse ait kenarortay=hipotenüs/2=5 cm."
+        },
+        {
+          "soru": "Dik kenarları 5 cm ve 12 cm olan dik üçgende hipotenüse ait kenarortay kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "7",
+            "6.5",
+            "7.5",
+            "8"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hipotenüs 13; kenarortay=13/2=6.5 cm."
+        },
+        {
+          "soru": "Kenar uzunlukları 5 cm, 5 cm ve 6 cm olan üçgende, 6 cm'lik kenara ait kenarortayın uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "3",
+            "3.5",
+            "4.5",
+            "4",
+            "5"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "İkizkenarda tabana ait kenarortay yüksekliğe eşittir: √(25-9)=4 cm."
+        },
+        {
+          "soru": "Bir üçgende bir kenarortayın uzunluğu 9 cm'dir. Ağırlık merkezinin, bu kenarortayı çıkaran köşeye olan uzaklığı kaç cm'dir?",
+          "secenekler": [
+            "3",
+            "4.5",
+            "7.5",
+            "9",
+            "6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Ağırlık merkezi kenarortayı 2:1 böler; köşeye uzaklık=(2/3)·9=6 cm."
+        },
+        {
+          "soru": "Bir üçgenin bir kenarortayının uzunluğu 12 cm'dir. Ağırlık merkezinin, bu kenarortayın ait olduğu kenarın orta noktasına olan uzaklığı kaç cm'dir?",
+          "secenekler": [
+            "4",
+            "3",
+            "6",
+            "8",
+            "9"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Orta noktaya uzaklık=(1/3)·12=4 cm."
+        },
+        {
+          "soru": "Bir dik üçgende hipotenüse ait kenarortayın uzunluğu 7 cm ise hipotenüsün uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "14",
+            "12",
+            "16",
+            "3.5"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hipotenüse ait kenarortay hipotenüsün yarısıdır; hipotenüs=2·7=14 cm."
+        },
+        {
+          "soru": "Benzer iki üçgenin alanları oranı 4/9'dur. Küçük üçgende bir kenar 8 cm ise büyük üçgende buna karşılık gelen kenar kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "14",
+            "12",
+            "16",
+            "18"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan oranı 4/9 → benzerlik oranı 2/3; 8·(3/2)=12 cm."
+        },
+        {
+          "soru": "Bir ABC üçgeninde [DE]∥[BC] olacak şekilde D∈[AB], E∈[AC] alınıyor. AD=4 cm, DB=6 cm ve AE=6 cm ise EC uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "4",
+            "7.5",
+            "8",
+            "9",
+            "10"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "AD/DB=AE/EC → 4/6=6/EC, EC=9 cm."
+        },
+        {
+          "soru": "ABC üçgeninde [DE]∥[BC], D∈[AB], E∈[AC]. AD=4 cm, AB=10 cm ve BC=15 cm ise DE kaç cm'dir?",
+          "secenekler": [
+            "5",
+            "7.5",
+            "9",
+            "10",
+            "6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "DE=BC·(AD/AB)=15·(4/10)=6 cm."
+        },
+        {
+          "soru": "Benzerlik oranı 3/5 olan iki benzer üçgenden küçüğünün çevresi 24 cm ise büyüğünün çevresi kaç cm'dir?",
+          "secenekler": [
+            "40",
+            "32",
+            "36",
+            "45",
+            "60"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Çevreler oranı benzerlik oranına eşittir; 24·(5/3)=40 cm."
+        },
+        {
+          "soru": "Benzer iki üçgende karşılıklı yükseklikler 6 cm ve 9 cm'dir. Küçük üçgende bir kenar 10 cm ise büyük üçgende karşılık gelen kenar kaç cm'dir?",
+          "secenekler": [
+            "12",
+            "15",
+            "13.5",
+            "16",
+            "18"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Benzerlik oranı 6/9=2/3; 10·(3/2)=15 cm."
+        },
+        {
+          "soru": "İki benzer üçgenin karşılıklı kenarları 2 cm ve 5 cm'dir. Küçük üçgenin alanı 16 cm² ise büyük üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "40",
+            "64",
+            "100",
+            "80",
+            "120"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan oranı kenar oranının karesidir; 16·(5/2)²=16·25/4=100 cm²."
+        },
+        {
+          "soru": "ABC üçgeninde [DE]∥[BC]. AD=6 cm, DE=8 cm ve BC=12 cm ise AB kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "10",
+            "12",
+            "9",
+            "16"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "AD/AB=DE/BC → AB=AD·BC/DE=6·12/8=9 cm."
+        },
+        {
+          "soru": "Benzer iki üçgende karşılıklı kenarortaylar 8 cm ve 12 cm'dir. Küçük üçgenin alanı 20 cm² ise büyük üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "30",
+            "40",
+            "60",
+            "80",
+            "45"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Benzerlik oranı 8/12=2/3; alan=20·(3/2)²=45 cm²."
+        },
+        {
+          "soru": "Alanı 48 cm² olan bir üçgende bir kenarortay çizildiğinde oluşan iki üçgenden birinin alanı kaç cm²'dir?",
+          "secenekler": [
+            "24",
+            "12",
+            "16",
+            "32",
+            "36"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Kenarortay üçgeni eşit alanlı iki parçaya böler; 48/2=24 cm²."
+        },
+        {
+          "soru": "ABC üçgeninde D∈[BC] olmak üzere BD/DC=2/3'tür. Üçgenin alanı 30 cm² ise ABD üçgeninin alanı kaç cm²'dir?",
+          "secenekler": [
+            "10",
+            "12",
+            "15",
+            "18",
+            "20"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Aynı yükseklik; alanlar taban oranıyla; 30·(2/5)=12 cm²."
+        },
+        {
+          "soru": "ABC üçgeninde [DE]∥[BC], AD/DB=1/2'dir. ABC üçgeninin alanı 90 cm² ise ADE üçgeninin alanı kaç cm²'dir?",
+          "secenekler": [
+            "9",
+            "15",
+            "10",
+            "20",
+            "30"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "AD/AB=1/3; alan oranı=(1/3)²=1/9; 90/9=10 cm²."
+        },
+        {
+          "soru": "ABC üçgeninde [DE]∥[BC] ve AD/AB=1/3'tür. ABC üçgeninin alanı 90 cm² ise DBCE dörtgeninin alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "70",
+            "72",
+            "80",
+            "81"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "ADE alanı=(1/3)²·90=10; dörtgen=90-10=80 cm²."
+        },
+        {
+          "soru": "Bir üçgenin üç kenarortayı çizildiğinde üçgen 6 eş alanlı parçaya ayrılır. Üçgenin alanı 60 cm² ise bu parçalardan birinin alanı kaç cm²'dir?",
+          "secenekler": [
+            "6",
+            "8",
+            "12",
+            "15",
+            "10"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kenarortaylar 6 eş alana böler; 60/6=10 cm²."
+        },
+        {
+          "soru": "Ortak tabana sahip iki üçgenin yükseklikleri 4 cm ve 6 cm'dir. Birinci üçgenin alanı 16 cm² ise ikinci üçgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "24",
+            "20",
+            "22",
+            "28",
+            "32"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Aynı taban; alanlar yükseklik oranıyla; 16·(6/4)=24 cm²."
+        },
+        {
+          "soru": "İki benzer üçgenin alanları 16 cm² ve 25 cm²'dir. Küçük üçgende bir kenar 12 cm ise büyük üçgende karşılık gelen kenar kaç cm'dir?",
+          "secenekler": [
+            "13.5",
+            "15",
+            "14",
+            "16",
+            "18.75"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Benzerlik oranı=√(25/16)=5/4; 12·(5/4)=15 cm."
+        },
+        {
+          "soru": "G, ABC üçgeninin ağırlık merkezidir. ABC üçgeninin alanı 54 cm² ise GBC üçgeninin alanı kaç cm²'dir?",
+          "secenekler": [
+            "9",
+            "12",
+            "18",
+            "24",
+            "27"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Ağırlık merkezi üçgeni 3 eş alana böler; 54/3=18 cm²."
+        },
+        {
+          "soru": "Bir üçgenin iç açılarından ikisi 50° ve 70°'dir. Üçüncü köşedeki dış açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "110",
+            "115",
+            "125",
+            "120",
+            "130"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Dış açı uzak iki iç açı toplamıdır; 50+70=120°."
+        },
+        {
+          "soru": "İkizkenar bir ABC üçgeninde AB=AC'dir. B köşesindeki dış açı 130° ise A açısının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "70",
+            "75",
+            "100",
+            "130",
+            "80"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İç B=180-130=50=C; A=180-100=80°."
+        },
+        {
+          "soru": "Bir ABC üçgeninde A açısı 40°'dir. B ve C iç açıortaylarının kesişiminde oluşan ve A'yı gören açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "110",
+            "100",
+            "105",
+            "115",
+            "120"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İç açıortay açısı=90+A/2=90+20=110°."
+        },
+        {
+          "soru": "Bir üçgenin iç açılarının ölçüleri 2, 3 ve 4 sayıları ile orantılıdır. En büyük iç açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "60",
+            "80",
+            "70",
+            "90",
+            "100"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2k+3k+4k=180, k=20; en büyük=4·20=80°."
+        },
+        {
+          "soru": "Bir üçgenin iç açılarından biri 70°, diğeri 60°'dir. Kalan iç açıya ait dış açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "120",
+            "125",
+            "130",
+            "135",
+            "140"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Üçüncü iç açı=50; dış açı=180-50=130°."
+        },
+        {
+          "soru": "Bir üçgenin bir iç açısı 60°'dir. Diğer iki iç açıdan biri ötekinin 2 katı ise bu açılardan büyük olanının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "70",
+            "75",
+            "90",
+            "80",
+            "100"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "x+2x+60=180, x=40; büyük=2·40=80°."
+        },
+        {
+          "soru": "Bir üçgenin dış açılarından ikisi 140° ve 130°'dir. Üçüncü dış açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "80",
+            "85",
+            "95",
+            "100",
+            "90"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Dış açılar toplamı 360; 360-140-130=90°."
         }
       ]
     },
@@ -56342,6 +57422,1074 @@
           ],
           "dogruIndex": 1,
           "aciklama": "İç açı ve dış açı bütünlerdir: 180-40 = 140°. (Kenar sayısı da 360/40 = 9'dur.)"
+        },
+        {
+          "soru": "Bir düzgün çokgenin bir iç açısının ölçüsü 144° ise bu çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "8",
+            "9",
+            "12",
+            "15",
+            "10"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "(n−2)·180/n=144 ⇒ 180n−360=144n ⇒ 36n=360 ⇒ n=10."
+        },
+        {
+          "soru": "Kenar sayısı 12 olan bir çokgenin köşegen sayısı kaçtır?",
+          "secenekler": [
+            "54",
+            "48",
+            "44",
+            "60",
+            "66"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "n(n−3)/2=12·9/2=54."
+        },
+        {
+          "soru": "Bir çokgenin iç açıları ölçüleri toplamı 1980° ise kenar sayısı kaçtır?",
+          "secenekler": [
+            "12",
+            "11",
+            "14",
+            "13",
+            "15"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "(n−2)·180=1980 ⇒ n−2=11 ⇒ n=13."
+        },
+        {
+          "soru": "Bir düzgün çokgenin her bir dış açısı 24° ise bu çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "12",
+            "15",
+            "18",
+            "20",
+            "10"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "n=360/24=15."
+        },
+        {
+          "soru": "Köşegen sayısı 35 olan bir çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "7",
+            "8",
+            "9",
+            "10",
+            "14"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "n(n−3)/2=35 ⇒ n(n−3)=70 ⇒ n=10."
+        },
+        {
+          "soru": "Bir düzgün on ikigenin (12 kenarlı) bir iç açısının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "120",
+            "135",
+            "144",
+            "150",
+            "160"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "(12−2)·180/12=1800/12=150."
+        },
+        {
+          "soru": "Bir düzgün çokgende bir iç açı ile bir dış açının ölçüleri arasındaki fark 90° ise çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "iç+dış=180, iç−dış=90 ⇒ dış=45 ⇒ n=360/45=8."
+        },
+        {
+          "soru": "Bir paralelkenarın taban uzunluğu 12 cm, bu tabana ait yüksekliği 7 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "72",
+            "78",
+            "84",
+            "96",
+            "108"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan=taban·yükseklik=12·7=84."
+        },
+        {
+          "soru": "Köşegen uzunlukları 10 cm ve 24 cm olan bir eşkenar dörtgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "120",
+            "100",
+            "240",
+            "130",
+            "110"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan=d₁·d₂/2=10·24/2=120."
+        },
+        {
+          "soru": "Köşegen uzunlukları 10 cm ve 24 cm olan bir eşkenar dörtgenin bir kenarı kaç cm'dir?",
+          "secenekler": [
+            "11",
+            "12",
+            "14",
+            "26",
+            "13"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Yarı köşegenler 5 ve 12 ⇒ kenar=√(5²+12²)=13."
+        },
+        {
+          "soru": "Bir karenin köşegen uzunluğu 8√2 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "32",
+            "48",
+            "64",
+            "128",
+            "72"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Köşegen=kenar√2 ⇒ kenar=8 ⇒ alan=8²=64."
+        },
+        {
+          "soru": "Bir karenin köşegen uzunluğu 10 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "25",
+            "50",
+            "100",
+            "75",
+            "200"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan=köşegen²/2=100/2=50."
+        },
+        {
+          "soru": "Paralel kenarlarının uzunlukları 8 cm ve 14 cm, yüksekliği 6 cm olan bir yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "66",
+            "72",
+            "84",
+            "48"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan=(a+b)/2·h=(8+14)/2·6=11·6=66."
+        },
+        {
+          "soru": "Bir yamuğun alanı 90 cm², yüksekliği 9 cm ve paralel kenarlarından biri 12 cm ise diğer paralel kenar kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "(12+b)/2·9=90 ⇒ 12+b=20 ⇒ b=8."
+        },
+        {
+          "soru": "Köşegenleri birbirine dik olan bir deltoidin köşegen uzunlukları 12 cm ve 9 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "48",
+            "54",
+            "60",
+            "108",
+            "72"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan=d₁·d₂/2=12·9/2=54."
+        },
+        {
+          "soru": "Bir eşkenar dörtgenin alanı 84 cm² ve köşegenlerinden biri 12 cm ise diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "12",
+            "16",
+            "7",
+            "14"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "12·d₂/2=84 ⇒ d₂=14."
+        },
+        {
+          "soru": "Bir dikdörtgenin çevresi 34 cm ve kısa kenarı 6 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "66",
+            "72",
+            "54",
+            "48"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2(6+u)=34 ⇒ u=11 ⇒ alan=6·11=66."
+        },
+        {
+          "soru": "Bir karenin alanı 144 cm² ise köşegen uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "12",
+            "12√2",
+            "24",
+            "6√2",
+            "144√2"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kenar=12 ⇒ köşegen=12√2."
+        },
+        {
+          "soru": "Bir kenarı 6 cm olan düzgün altıgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "36√3",
+            "54√3",
+            "72√3",
+            "18√3",
+            "108√3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan=(3√3/2)·a²=(3√3/2)·36=54√3."
+        },
+        {
+          "soru": "Çevresi 48 cm olan düzgün bir altıgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "64√3",
+            "128√3",
+            "48√3",
+            "192√3",
+            "96√3"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kenar=48/6=8 ⇒ alan=(3√3/2)·64=96√3."
+        },
+        {
+          "soru": "Bir çokgenin kenar sayısı 5 artırılırsa iç açıları toplamı kaç derece artar?",
+          "secenekler": [
+            "720",
+            "900",
+            "540",
+            "1080",
+            "360"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Her kenar 180° ekler ⇒ 5·180=900."
+        },
+        {
+          "soru": "Kenar sayısı 8 olan bir çokgenin kenar sayısı 9'a çıkarılırsa köşegen sayısı kaç artar?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "5"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "8 kenarlıda 20, 9 kenarlıda 27 köşegen ⇒ fark=7."
+        },
+        {
+          "soru": "İç açıları ölçüleri toplamı, dış açıları ölçüleri toplamının 4 katı olan çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "8",
+            "9",
+            "10",
+            "12",
+            "6"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "İç toplam=4·360=1440 ⇒ (n−2)180=1440 ⇒ n=10."
+        },
+        {
+          "soru": "Bir düzgün çokgende bir iç açının ölçüsü, bir dış açının ölçüsünün 5 katı ise çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "9",
+            "10",
+            "11",
+            "12",
+            "15"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "iç=5·dış, iç+dış=180 ⇒ dış=30 ⇒ n=12."
+        },
+        {
+          "soru": "Bir paralelkenarın alanı 120 cm² ve bir kenarı 15 cm ise bu kenara ait yükseklik kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "h=alan/taban=120/15=8."
+        },
+        {
+          "soru": "Bir eşkenar dörtgenin bir kenarı 10 cm ve köşegenlerinden biri 12 cm ise diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "12",
+            "14",
+            "16",
+            "20"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Yarı köşegen 6 ⇒ diğer yarı=√(100−36)=8 ⇒ diğer köşegen=16."
+        },
+        {
+          "soru": "Bir karenin çevresi 28 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "42",
+            "49",
+            "56",
+            "64",
+            "36"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kenar=28/4=7 ⇒ alan=49."
+        },
+        {
+          "soru": "Uzun kenarı kısa kenarının 2 katı olan bir dikdörtgenin çevresi 36 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "54",
+            "64",
+            "72",
+            "96",
+            "48"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "6x=36 ⇒ x=6 ⇒ kenarlar 6 ve 12 ⇒ alan=72."
+        },
+        {
+          "soru": "Paralel kenarları 10 cm ve 16 cm olan bir yamuğun alanı 91 cm² ise yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "5"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "(10+16)/2·h=91 ⇒ 13h=91 ⇒ h=7."
+        },
+        {
+          "soru": "Bir deltoidin alanı 72 cm² ve simetri köşegeni 16 cm ise diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "8",
+            "9",
+            "12",
+            "18"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "16·d/2=72 ⇒ d=9."
+        },
+        {
+          "soru": "Bir düzgün çokgenin her bir dış açısı 40° ise iç açıları ölçüleri toplamı kaç derecedir?",
+          "secenekler": [
+            "1080",
+            "1260",
+            "1440",
+            "1160",
+            "900"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "n=360/40=9 ⇒ (9−2)180=1260."
+        },
+        {
+          "soru": "20 kenarlı bir çokgenin bir köşesinden kaç köşegen çizilebilir?",
+          "secenekler": [
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Bir köşeden n−3=20−3=17 köşegen çizilir."
+        },
+        {
+          "soru": "Bir çokgenin bir köşesinden çizilen köşegenler çokgeni 8 üçgene ayırıyorsa çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Üçgen sayısı n−2=8 ⇒ n=10."
+        },
+        {
+          "soru": "Bir paralelkenarda ardışık iki açının ölçüleri arasındaki fark 40° ise büyük açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "100",
+            "110",
+            "120",
+            "130",
+            "70"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Komşu açılar toplamı 180, fark 40 ⇒ büyük=(180+40)/2=110."
+        },
+        {
+          "soru": "Bir açısının ölçüsü 30° ve kenarı 8 cm olan bir eşkenar dörtgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "16",
+            "24",
+            "32",
+            "48",
+            "64"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan=a²·sin30°=64·0,5=32."
+        },
+        {
+          "soru": "Bir açısının ölçüsü 120° ve kenarı 6 cm olan bir eşkenar dörtgenin uzun köşegeni kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "6√2",
+            "6√3",
+            "12",
+            "3√3"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "120°'lik açıyı gören uzun köşegen=a√3=6√3."
+        },
+        {
+          "soru": "Alanı 96 cm² olan bir eşkenar dörtgenin köşegenlerinden biri diğerinin 3 katı ise küçük köşegen kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "8",
+            "12",
+            "16",
+            "24"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "d·3d/2=96 ⇒ 3d²=192 ⇒ d²=64 ⇒ d=8."
+        },
+        {
+          "soru": "Bir dikdörtgenin köşegen uzunluğu 13 cm ve bir kenarı 5 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "55",
+            "60",
+            "65",
+            "78",
+            "72"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Diğer kenar=√(169−25)=12 ⇒ alan=5·12=60."
+        },
+        {
+          "soru": "Bir karenin alanının sayısal değeri, çevresinin sayısal değerine eşit ise kenar uzunluğu kaç birimdir?",
+          "secenekler": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "a²=4a ⇒ a=4."
+        },
+        {
+          "soru": "Bir düzgün sekizgenin iç açıları ölçüleri toplamı kaç derecedir?",
+          "secenekler": [
+            "900",
+            "1080",
+            "1260",
+            "1440",
+            "720"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "(8−2)·180=1080."
+        },
+        {
+          "soru": "Bir paralelkenarın bir kenarı 8 cm ve bu kenara ait yüksekliği 9 cm'dir. Diğer kenara ait yükseklik 6 cm ise diğer kenar kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan=8·9=72 ⇒ diğer kenar=72/6=12."
+        },
+        {
+          "soru": "Alt tabanı 20 cm, üst tabanı 12 cm olan bir yamuğun orta tabanı (medyanı) kaç cm'dir?",
+          "secenekler": [
+            "14",
+            "15",
+            "16",
+            "18",
+            "32"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Orta taban=(20+12)/2=16."
+        },
+        {
+          "soru": "Çevresi 40 cm olan bir eşkenar dörtgenin bir köşegeni 12 cm ise alanı kaç cm²'dir?",
+          "secenekler": [
+            "72",
+            "84",
+            "96",
+            "120",
+            "48"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Kenar=10, yarı köşegen 6 ⇒ diğer yarı=8 ⇒ köşegen 16 ⇒ alan=12·16/2=96."
+        },
+        {
+          "soru": "Bir düzgün çokgenin köşegen sayısı, kenar sayısının 2 katı ise çokgen kaç kenarlıdır?",
+          "secenekler": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "n(n−3)/2=2n ⇒ n−3=4 ⇒ n=7."
+        },
+        {
+          "soru": "Bir yamuğun paralel kenarları 16 cm ve 28 cm'dir. Bu yamuğun orta tabanının uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "22",
+            "24",
+            "26",
+            "28",
+            "30"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Orta taban = (paralel kenarlar toplamı)/2 = (16+28)/2 = 22."
+        },
+        {
+          "soru": "Paralel kenarları 11 cm ve 19 cm, yüksekliği 10 cm olan bir yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "140",
+            "150",
+            "160",
+            "170",
+            "180"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan = ((11+19)/2)·10 = 15·10 = 150."
+        },
+        {
+          "soru": "Köşegenleri 16 cm ve 22 cm olan bir deltoidin alanı kaç cm²'dir?",
+          "secenekler": [
+            "168",
+            "172",
+            "176",
+            "180",
+            "184"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Deltoid alanı = (köşegen·köşegen)/2 = (16·22)/2 = 176."
+        },
+        {
+          "soru": "Orta tabanı 21 cm, yüksekliği 14 cm olan bir yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "280",
+            "286",
+            "290",
+            "294",
+            "300"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = orta taban·yükseklik = 21·14 = 294."
+        },
+        {
+          "soru": "Alanı 126 cm² ve yüksekliği 12 cm olan bir yamukta paralel kenarların uzunlukları toplamı kaç cm'dir?",
+          "secenekler": [
+            "15",
+            "17",
+            "19",
+            "20",
+            "21"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Alan = (toplam/2)·h → 126 = (toplam/2)·12 → toplam = 21."
+        },
+        {
+          "soru": "Alanı 210 cm² olan bir deltoidin köşegenlerinden biri 14 cm ise diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "30",
+            "32",
+            "34",
+            "36",
+            "38"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = (d1·d2)/2 → 210 = (14·d2)/2 → d2 = 420/14 = 30."
+        },
+        {
+          "soru": "İkizkenar bir yamuğun paralel kenarları 12 cm ve 24 cm, yüksekliği 8 cm'dir. Bu yamuğun çevresi kaç cm'dir?",
+          "secenekler": [
+            "52",
+            "56",
+            "60",
+            "64",
+            "68"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yatay fark (24-12)/2=6, yan kenar=√(6²+8²)=10; çevre=12+24+10+10=56."
+        },
+        {
+          "soru": "Kenar uzunlukları 9 cm ve 13 cm olan bir deltoidin çevresi kaç cm'dir?",
+          "secenekler": [
+            "40",
+            "42",
+            "44",
+            "46",
+            "48"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Deltoidde iki çift eş kenar vardır: çevre = 2·(9+13) = 44."
+        },
+        {
+          "soru": "Köşegenleri 18 cm ve 24 cm olan bir eşkenar dörtgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "204",
+            "208",
+            "212",
+            "216",
+            "220"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = (d1·d2)/2 = (18·24)/2 = 216."
+        },
+        {
+          "soru": "Köşegenleri 12 cm ve 16 cm olan bir eşkenar dörtgenin bir kenarı kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Köşegenler yarısı 6 ve 8; kenar=√(6²+8²)=√100=10."
+        },
+        {
+          "soru": "Tabanı 15 cm, bu tabana ait yüksekliği 9 cm olan bir paralelkenarın alanı kaç cm²'dir?",
+          "secenekler": [
+            "135",
+            "140",
+            "145",
+            "150",
+            "155"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Paralelkenar alanı = taban·yükseklik = 15·9 = 135."
+        },
+        {
+          "soru": "Alanı 168 cm² ve bir kenarı 14 cm olan paralelkenarda bu kenara ait yükseklik kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "12",
+            "14",
+            "16",
+            "18"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan = kenar·yükseklik → 168 = 14·h → h = 12."
+        },
+        {
+          "soru": "Paralel kenarları 13 cm ve 21 cm, bunlara dik olan yan kenarı 10 cm olan bir dik yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "160",
+            "165",
+            "170",
+            "175",
+            "180"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Dik kenar yüksekliktir: Alan = ((13+21)/2)·10 = 17·10 = 170."
+        },
+        {
+          "soru": "Alanı 120 cm², paralel kenarları 8 cm ve 12 cm olan bir yamuğun yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "10",
+            "11",
+            "12",
+            "14"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = ((8+12)/2)·h → 120 = 10·h → h = 12."
+        },
+        {
+          "soru": "Kenarı 12 cm olan bir karenin bir kenarını taban alıp karşı kenarın orta noktasına birleşen bir üçgen çiziliyor. Karede üçgen dışında kalan (taralı) alan kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "64",
+            "68",
+            "70",
+            "72"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Kare alanı 144, üçgen alanı=(12·12)/2=72, taralı=144-72=72."
+        },
+        {
+          "soru": "Bir yamuğun alanı 96 cm², yüksekliği 8 cm ve paralel kenarlarından biri 10 cm'dir. Diğer paralel kenarı kaç cm'dir?",
+          "secenekler": [
+            "14",
+            "16",
+            "18",
+            "20",
+            "22"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "96 = ((10+x)/2)·8 → 10+x = 24 → x = 14."
+        },
+        {
+          "soru": "Bir deltoidin köşegenlerinden biri diğerinin 3 katıdır. Kısa köşegen 8 cm ise deltoidin alanı kaç cm²'dir?",
+          "secenekler": [
+            "88",
+            "96",
+            "104",
+            "112",
+            "120"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Uzun köşegen=24; Alan=(8·24)/2=96."
+        },
+        {
+          "soru": "Bir kenarı 13 cm ve bu kenara ait yüksekliği 6 cm olan bir eşkenar dörtgenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "72",
+            "75",
+            "78",
+            "81",
+            "84"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Eşkenar dörtgen alanı = kenar·yükseklik = 13·6 = 78."
+        },
+        {
+          "soru": "Orta tabanı 16 cm olan bir yamukta uzun paralel kenar, kısa paralel kenarın 3 katıdır. Uzun paralel kenar kaç cm'dir?",
+          "secenekler": [
+            "18",
+            "20",
+            "22",
+            "24",
+            "26"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Paralel kenarlar toplamı=32; x+3x=32→x=8, uzun=3·8=24."
+        },
+        {
+          "soru": "Köşegenleri toplamı 30 cm olan bir deltoidde uzun köşegen kısa köşegenin 2 katıdır. Deltoidin alanı kaç cm²'dir?",
+          "secenekler": [
+            "80",
+            "85",
+            "90",
+            "95",
+            "100"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "x+2x=30→x=10, köşegenler 10 ve 20; Alan=(10·20)/2=100."
+        },
+        {
+          "soru": "Bir dik yamukta paralel kenarların uzunlukları 8 cm ve 20 cm, eğik yan kenarı 13 cm'dir. Bu yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "70",
+            "74",
+            "78",
+            "82",
+            "86"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yükseklik=√(13²-12²)=5; Alan=((8+20)/2)·5=14·5=70."
+        },
+        {
+          "soru": "Bir paralelkenarın alanı 84 cm²'dir. Bir köşegeni paralelkenarı iki eş üçgene ayırır. Bu üçgenlerden birinin alanı kaç cm²'dir?",
+          "secenekler": [
+            "40",
+            "42",
+            "44",
+            "46",
+            "48"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Köşegen paralelkenarı iki eş üçgene böler: 84/2 = 42."
+        },
+        {
+          "soru": "Bir deltoidin alanı 90 cm²'dir. Köşegenlerinden uzun olanı 18 cm ise kısa köşegeni kaç cm'dir?",
+          "secenekler": [
+            "6",
+            "8",
+            "10",
+            "12",
+            "14"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "90 = (18·d)/2 → d = 180/18 = 10."
+        },
+        {
+          "soru": "Bir yamuğun alanı 252 cm² ve yüksekliği 14 cm'dir. Bu yamuğun orta tabanı kaç cm'dir?",
+          "secenekler": [
+            "12",
+            "15",
+            "16",
+            "18",
+            "20"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = orta taban·yükseklik → 252 = orta taban·14 → 18."
+        },
+        {
+          "soru": "Kenarları 16 cm ve 10 cm olan bir dikdörtgenin köşegenleri çizildiğinde oluşan 4 üçgenden birinin alanı kaç cm²'dir?",
+          "secenekler": [
+            "20",
+            "28",
+            "32",
+            "36",
+            "40"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Dikdörtgen alanı=160; köşegenler 4 eş alanlı üçgen oluşturur: 160/4=40."
+        },
+        {
+          "soru": "Çevresi 52 cm olan bir eşkenar dörtgenin bir kenarı kaç cm'dir?",
+          "secenekler": [
+            "13",
+            "14",
+            "16",
+            "20",
+            "26"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Eşkenar dörtgenin dört kenarı eşittir: 52/4 = 13."
+        },
+        {
+          "soru": "Bir yamukta alt taban üst tabanın 3 katıdır. Yükseklik 8 cm ve alan 192 cm² ise üst taban kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "12",
+            "14",
+            "16",
+            "18"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Tabanlar x ve 3x; 192=((4x)/2)·8=16x → x=12."
+        },
+        {
+          "soru": "Köşegenleri 12 cm ve 10 cm olan bir deltoidin kısa köşegeni 2 katına çıkarılırsa yeni alanı kaç cm² olur?",
+          "secenekler": [
+            "100",
+            "110",
+            "120",
+            "130",
+            "140"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Kısa köşegen 10→20 olur; yeni alan=(12·20)/2=120."
+        },
+        {
+          "soru": "Bir karenin köşegen uzunluğu 12 cm'dir. Bu karenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "64",
+            "68",
+            "72",
+            "80"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Kare alanı = köşegen²/2 = 12²/2 = 144/2 = 72."
+        },
+        {
+          "soru": "Bir eşkenar dörtgenin alanı 84 cm² ve bir köşegeni 12 cm'dir. Diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "7",
+            "9",
+            "11",
+            "13",
+            "14"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "84 = (12·d)/2 → d = 168/12 = 14."
+        },
+        {
+          "soru": "Paralel kenarları 17 cm ve 23 cm, yüksekliği 6 cm olan bir yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "120",
+            "126",
+            "132",
+            "138",
+            "144"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = ((17+23)/2)·6 = 20·6 = 120."
+        },
+        {
+          "soru": "Alt tabanı 20 cm, üst tabanı 12 cm, yüksekliği 9 cm olan bir yamuğun içine üst tabanı taban alan ve alt tabana değen bir üçgen çiziliyor. Yamukta üçgen dışında kalan taralı alan kaç cm²'dir?",
+          "secenekler": [
+            "84",
+            "90",
+            "96",
+            "102",
+            "108"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yamuk alanı=((20+12)/2)·9=144; üçgen=(12·9)/2=54; taralı=144-54=90."
+        },
+        {
+          "soru": "Bir paralelkenarın köşegenleri çizildiğinde oluşan 4 üçgenin her birinin alanı 15 cm²'dir. Paralelkenarın alanı kaç cm²'dir?",
+          "secenekler": [
+            "30",
+            "45",
+            "60",
+            "75",
+            "90"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Köşegenler paralelkenarı 4 eş alanlı üçgene böler: 4·15=60."
+        },
+        {
+          "soru": "Bir deltoidin simetri ekseni olan uzun köşegeni 20 cm, diğer köşegeni 14 cm'dir. Deltoidin alanı kaç cm²'dir?",
+          "secenekler": [
+            "126",
+            "130",
+            "134",
+            "140",
+            "154"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = (20·14)/2 = 140."
+        },
+        {
+          "soru": "Bir yamuğun orta tabanı, kısa paralel kenarından 5 cm fazla, uzun paralel kenarından 5 cm eksiktir. Kısa paralel kenar 14 cm ise uzun paralel kenar kaç cm'dir?",
+          "secenekler": [
+            "16",
+            "18",
+            "19",
+            "22",
+            "24"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Orta taban=14+5=19; uzun kenar=19+5=24."
+        },
+        {
+          "soru": "Bir eşkenar dörtgenin çevresi 40 cm ve bir köşegeni 16 cm'dir. Diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "12",
+            "13",
+            "14",
+            "18",
+            "20"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Kenar=10; köşegen yarısı 8; diğer yarım=√(10²-8²)=6, diğer köşegen=12."
+        },
+        {
+          "soru": "Paralel kenarları 15 cm ve 25 cm, yüksekliği 12 cm olan bir yamuğun alanı kaç cm²'dir?",
+          "secenekler": [
+            "220",
+            "240",
+            "260",
+            "280",
+            "300"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan = ((15+25)/2)·12 = 20·12 = 240."
+        },
+        {
+          "soru": "Kenar uzunluğu 10 cm olan bir karenin kenarlarının orta noktaları birleştirilerek bir iç kare oluşturuluyor. İç karenin alanı kaç cm²'dir?",
+          "secenekler": [
+            "25",
+            "40",
+            "50",
+            "60",
+            "75"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Orta noktalar karesinin alanı, büyük karenin yarısıdır: 100/2=50."
+        },
+        {
+          "soru": "Alanı 154 cm² olan bir deltoidin bir köşegeni 11 cm ise diğer köşegeni kaç cm'dir?",
+          "secenekler": [
+            "22",
+            "24",
+            "26",
+            "28",
+            "30"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "154 = (11·d)/2 → d = 308/11 = 28."
+        },
+        {
+          "soru": "Bir yamuğun alanı 220 cm², yüksekliği 11 cm ve uzun paralel kenarı 26 cm'dir. Kısa paralel kenarı kaç cm'dir?",
+          "secenekler": [
+            "8",
+            "10",
+            "12",
+            "13",
+            "14"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Orta taban=220/11=20; toplam=40; kısa kenar=40-26=14."
+        },
+        {
+          "soru": "Tabanı 22 cm ve bu tabana ait yüksekliği 9 cm olan bir paralelkenarın alanı kaç cm²'dir?",
+          "secenekler": [
+            "198",
+            "204",
+            "210",
+            "216",
+            "220"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = taban·yükseklik = 22·9 = 198."
+        },
+        {
+          "soru": "Köşegenleri 30 cm ve 16 cm olan bir eşkenar dörtgenin bir kenarı kaç cm'dir?",
+          "secenekler": [
+            "15",
+            "17",
+            "18",
+            "20",
+            "25"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Köşegenler yarısı 15 ve 8; kenar=√(15²+8²)=√289=17."
+        },
+        {
+          "soru": "Yükseklikleri eşit iki yamuktan birincinin orta tabanı 12 cm, ikincinin 18 cm'dir. İkinci yamuğun alanının birinci yamuğun alanına oranı kaçtır?",
+          "secenekler": [
+            "1",
+            "1,25",
+            "1,5",
+            "1,75",
+            "2"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Yükseklikler eşit olduğundan alanlar orta tabanlarla orantılıdır: 18/12=1,5."
+        },
+        {
+          "soru": "Kenar uzunlukları 7 cm ve 11 cm olan bir deltoidin çevresi kaç cm'dir?",
+          "secenekler": [
+            "28",
+            "32",
+            "34",
+            "36",
+            "40"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Deltoidde iki çift eş kenar vardır: çevre=2·(7+11)=36."
+        },
+        {
+          "soru": "Bir yamuğun paralel kenarları 13 cm ve 29 cm'dir. Bu yamuğun orta tabanı kaç cm'dir?",
+          "secenekler": [
+            "15",
+            "17",
+            "18",
+            "19",
+            "21"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Orta taban = (13+29)/2 = 42/2 = 21."
         }
       ]
     },
@@ -57331,6 +59479,1086 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Yarım daire çevresi = yarım yay + çap = πr + 2r = 3·6 + 12 = 18 + 12 = 30 cm. Çapı unutmak 18 verir."
+        },
+        {
+          "soru": "Bir çemberde AB yayını gören merkez açının ölçüsü 110°'dir. Aynı yayı gören çevre açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "45°",
+            "50°",
+            "55°",
+            "60°",
+            "70°"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Çevre açı merkez açının yarısıdır: 110/2 = 55°."
+        },
+        {
+          "soru": "Bir çemberde bir çevre açının ölçüsü 42°'dir. Bu açının gördüğü yayı gören merkez açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "78°",
+            "84°",
+            "88°",
+            "90°",
+            "96°"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Merkez açı çevre açının iki katıdır: 2·42 = 84°."
+        },
+        {
+          "soru": "AB bir çemberin çapı, C ise çember üzerinde bir noktadır. ACB üçgeninde m(CAB)=27° ise m(ABC) kaç derecedir?",
+          "secenekler": [
+            "43°",
+            "53°",
+            "58°",
+            "63°",
+            "73°"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Çapı gören ACB açısı 90°'dir; 180-90-27 = 63°."
+        },
+        {
+          "soru": "Bir çemberde iki kiriş çemberin içinde kesişiyor. Kesişme noktasında oluşan açının gördüğü yay 70°, karşı yay 50°'dir. Bu açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "60°",
+            "55°",
+            "65°",
+            "50°",
+            "72°"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İç açı kesişen yayların yarısıdır: (70+50)/2 = 60°."
+        },
+        {
+          "soru": "Bir çemberin dışındaki bir noktadan çizilen iki kesenin ayırdığı yaylar 100° ve 30°'dir. Bu iki kesen arasındaki açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "25°",
+            "40°",
+            "45°",
+            "65°",
+            "35°"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Dış açı yayların farkının yarısıdır: (100-30)/2 = 35°."
+        },
+        {
+          "soru": "Bir çembere teğet olan doğru ile teğet noktasından çizilen bir kiriş arasındaki açı 65°'dir. Bu açının gördüğü yayın ölçüsü kaç derecedir?",
+          "secenekler": [
+            "100°",
+            "115°",
+            "130°",
+            "145°",
+            "150°"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Teğet-kiriş açısı gördüğü yayın yarısıdır: yay = 2·65 = 130°."
+        },
+        {
+          "soru": "Bir çemberin dışındaki P noktasından çembere bir teğet ve bir kesen çiziliyor. Kesenin ayırdığı uzak yay 140°, yakın yay 50°'dir. P'deki açının ölçüsü kaç derecedir?",
+          "secenekler": [
+            "30°",
+            "35°",
+            "40°",
+            "45°",
+            "55°"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Dış açı = (uzak yay - yakın yay)/2 = (140-50)/2 = 45°."
+        },
+        {
+          "soru": "Bir çemberde AB ve CD kirişleri çemberin içinde E noktasında kesişiyor. AE=4 cm, EB=6 cm ve CE=3 cm ise ED kaç cm'dir?",
+          "secenekler": [
+            "4 cm",
+            "6 cm",
+            "9 cm",
+            "12 cm",
+            "8 cm"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "AE·EB = CE·ED → 24 = 3·ED → ED = 8 cm."
+        },
+        {
+          "soru": "Bir çemberin dışındaki P noktasından çizilen teğetin uzunluğu 12 cm'dir. Aynı noktadan çizilen kesenin çembere yakın parçası 8 cm ise kesenin tamamı kaç cm'dir?",
+          "secenekler": [
+            "16 cm",
+            "18 cm",
+            "20 cm",
+            "22 cm",
+            "24 cm"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Teğet² = yakın·tam → 144 = 8·tam → tam = 18 cm."
+        },
+        {
+          "soru": "Bir dış P noktasından çembere iki teğet çiziliyor ve teğetler arasındaki açı 50°'dir. Değme noktalarını birleştiren küçük yaya ait merkez açı kaç derecedir?",
+          "secenekler": [
+            "130°",
+            "120°",
+            "140°",
+            "150°",
+            "65°"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Teğetler arası açı ile merkez açı bütünlerdir: 180-50 = 130°."
+        },
+        {
+          "soru": "Yarıçapı 6 cm olan bir dairede merkez açısı 60° olan dairesel sektörün alanı kaç cm²'dir?",
+          "secenekler": [
+            "3π cm²",
+            "4π cm²",
+            "6π cm²",
+            "9π cm²",
+            "12π cm²"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan = (60/360)·π·6² = (1/6)·36π = 6π cm²."
+        },
+        {
+          "soru": "Yarıçapı 12 cm ve merkez açısı 90° olan bir dairesel dilimin alanı kaç cm²'dir?",
+          "secenekler": [
+            "18π cm²",
+            "24π cm²",
+            "30π cm²",
+            "36π cm²",
+            "48π cm²"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Alan = (90/360)·π·12² = (1/4)·144π = 36π cm²."
+        },
+        {
+          "soru": "Yarıçapı 8 cm olan bir dairede alanı 8π cm² olan dairesel sektörün merkez açısı kaç derecedir?",
+          "secenekler": [
+            "30°",
+            "36°",
+            "60°",
+            "72°",
+            "45°"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "(α/360)·π·64 = 8π → α/360 = 1/8 → α = 45°."
+        },
+        {
+          "soru": "Merkez açısı 120° olan bir dairesel sektörün alanı 27π cm²'dir. Dairenin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "9 cm",
+            "6 cm",
+            "12 cm",
+            "18 cm",
+            "27 cm"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "(120/360)·π·r² = 27π → r²/3 = 27 → r² = 81 → r = 9 cm."
+        },
+        {
+          "soru": "Yarıçapı 10 cm olan bir çemberde 72°'lik yaya karşılık gelen yay uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "2π cm",
+            "4π cm",
+            "5π cm",
+            "8π cm",
+            "10π cm"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yay = (72/360)·2π·10 = (1/5)·20π = 4π cm."
+        },
+        {
+          "soru": "Çevresi 24π cm olan bir çemberde 90°'lik yayın uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "3π cm",
+            "4π cm",
+            "6π cm",
+            "9π cm",
+            "12π cm"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "90° tam çemberin 1/4'üdür: (1/4)·24π = 6π cm."
+        },
+        {
+          "soru": "Bir çemberde 45°'lik yayın uzunluğu 3π cm'dir. Çemberin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "6 cm",
+            "8 cm",
+            "9 cm",
+            "12 cm",
+            "24 cm"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "(45/360)·2πr = 3π → r/4 = 3 → r = 12 cm."
+        },
+        {
+          "soru": "Yarıçapı 9 cm olan bir çemberde uzunluğu 6π cm olan yayın merkez açısı kaç derecedir?",
+          "secenekler": [
+            "60°",
+            "90°",
+            "100°",
+            "150°",
+            "120°"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "(α/360)·18π = 6π → α/360 = 1/3 → α = 120°."
+        },
+        {
+          "soru": "Dış yarıçapı 10 cm, iç yarıçapı 6 cm olan bir daire halkasının alanı kaç cm²'dir?",
+          "secenekler": [
+            "64π cm²",
+            "48π cm²",
+            "36π cm²",
+            "100π cm²",
+            "28π cm²"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = π(R²-r²) = π(100-36) = 64π cm²."
+        },
+        {
+          "soru": "İç yarıçapı 5 cm ve halka kalınlığı 2 cm olan bir daire halkasının alanı kaç cm²'dir?",
+          "secenekler": [
+            "20π cm²",
+            "24π cm²",
+            "28π cm²",
+            "49π cm²",
+            "14π cm²"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Dış yarıçap 7 cm; alan = π(49-25) = 24π cm²."
+        },
+        {
+          "soru": "Bir daire halkasının alanı 33π cm²'dir. Dış yarıçap 7 cm ise iç yarıçap kaç cm'dir?",
+          "secenekler": [
+            "2 cm",
+            "3 cm",
+            "4 cm",
+            "5 cm",
+            "6 cm"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "π(49-r²) = 33π → r² = 16 → r = 4 cm."
+        },
+        {
+          "soru": "Yarıçaplarının oranı 2/5 olan iç içe iki dairenin arasında kalan halkanın alanı, küçük dairenin alanının kaç katıdır?",
+          "secenekler": [
+            "17/4",
+            "19/4",
+            "21/4",
+            "23/4",
+            "25/4"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Küçük 4k²π, büyük 25k²π; halka 21k²π; oran 21/4."
+        },
+        {
+          "soru": "Ayrıtları 3 cm, 4 cm ve 5 cm olan dikdörtgenler prizmasının hacmi kaç cm³'tür?",
+          "secenekler": [
+            "12 cm³",
+            "20 cm³",
+            "47 cm³",
+            "60 cm³",
+            "120 cm³"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hacim = 3·4·5 = 60 cm³."
+        },
+        {
+          "soru": "Bir küpün hacmi 125 cm³ olduğuna göre yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "100 cm²",
+            "120 cm²",
+            "125 cm²",
+            "250 cm²",
+            "150 cm²"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Ayrıt = 5 cm; yüzey = 6·5² = 150 cm²."
+        },
+        {
+          "soru": "Taban ayrıtı 6 cm, yüksekliği 10 cm olan kare dik prizmanın yanal alanı kaç cm²'dir?",
+          "secenekler": [
+            "240 cm²",
+            "144 cm²",
+            "360 cm²",
+            "216 cm²",
+            "480 cm²"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yanal alan = taban çevresi·h = 24·10 = 240 cm²."
+        },
+        {
+          "soru": "Dikdörtgenler prizmasının boyutları 2 cm, 3 cm ve 6 cm'dir. Cisim köşegeninin uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "6 cm",
+            "7 cm",
+            "8 cm",
+            "9 cm",
+            "11 cm"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Köşegen = √(4+9+36) = √49 = 7 cm."
+        },
+        {
+          "soru": "Taban alanı 15 cm², yüksekliği 8 cm olan dik üçgen prizmanın hacmi kaç cm³'tür?",
+          "secenekler": [
+            "60 cm³",
+            "90 cm³",
+            "100 cm³",
+            "120 cm³",
+            "240 cm³"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hacim = taban alanı·yükseklik = 15·8 = 120 cm³."
+        },
+        {
+          "soru": "Taban yarıçapı 5 cm, yüksekliği 8 cm olan dik dairesel silindirin hacmi kaç cm³'tür?",
+          "secenekler": [
+            "100π cm³",
+            "160π cm³",
+            "200π cm³",
+            "250π cm³",
+            "400π cm³"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hacim = πr²h = π·25·8 = 200π cm³."
+        },
+        {
+          "soru": "Taban yarıçapı 4 cm, yüksekliği 9 cm olan silindirin yan yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "36π cm²",
+            "48π cm²",
+            "96π cm²",
+            "144π cm²",
+            "72π cm²"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Yan alan = 2πrh = 2π·4·9 = 72π cm²."
+        },
+        {
+          "soru": "Yarıçapı 3 cm, yüksekliği 7 cm olan silindirin toplam yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "60π cm²",
+            "42π cm²",
+            "48π cm²",
+            "90π cm²",
+            "30π cm²"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = 2πr(r+h) = 2π·3·10 = 60π cm²."
+        },
+        {
+          "soru": "Hacmi 108π cm³ olan bir silindirin taban yarıçapı 6 cm ise yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "2 cm",
+            "3 cm",
+            "4 cm",
+            "5 cm",
+            "6 cm"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "36π·h = 108π → h = 3 cm."
+        },
+        {
+          "soru": "Bir silindirin taban yarıçapı iki katına, yüksekliği ise yarıya indirilirse hacmi kaç katına çıkar?",
+          "secenekler": [
+            "1 katı",
+            "1,5 katı",
+            "2 katı",
+            "3 katı",
+            "4 katı"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "π(2r)²(h/2) = 2πr²h; hacim 2 katına çıkar."
+        },
+        {
+          "soru": "Taban yarıçapı 3 cm, yüksekliği 4 cm olan dik koninin hacmi kaç cm³'tür?",
+          "secenekler": [
+            "6π cm³",
+            "9π cm³",
+            "10π cm³",
+            "12π cm³",
+            "36π cm³"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hacim = (1/3)πr²h = (1/3)π·9·4 = 12π cm³."
+        },
+        {
+          "soru": "Taban yarıçapı 6 cm, ana doğrusu 10 cm olan koninin yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "4 cm",
+            "5 cm",
+            "6 cm",
+            "7 cm",
+            "8 cm"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "h = √(10²-6²) = √64 = 8 cm."
+        },
+        {
+          "soru": "Taban yarıçapı 5 cm, ana doğrusu 12 cm olan koninin yanal alanı kaç cm²'dir?",
+          "secenekler": [
+            "60π cm²",
+            "30π cm²",
+            "72π cm²",
+            "120π cm²",
+            "65π cm²"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yanal alan = πrl = π·5·12 = 60π cm²."
+        },
+        {
+          "soru": "Taban yarıçapı 8 cm, yüksekliği 6 cm olan koninin toplam yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "128π cm²",
+            "144π cm²",
+            "160π cm²",
+            "80π cm²",
+            "200π cm²"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Ana doğru = √(64+36) = 10; alan = πr(r+l) = π·8·18 = 144π cm²."
+        },
+        {
+          "soru": "Hacmi 48π cm³ olan bir koninin yüksekliği 9 cm ise taban yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "2 cm",
+            "3 cm",
+            "4 cm",
+            "5 cm",
+            "6 cm"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "(1/3)πr²·9 = 48π → r² = 16 → r = 4 cm."
+        },
+        {
+          "soru": "Taban ayrıtı 6 cm olan kare tabanlı bir piramidin yüksekliği 10 cm'dir. Hacmi kaç cm³'tür?",
+          "secenekler": [
+            "60 cm³",
+            "100 cm³",
+            "110 cm³",
+            "120 cm³",
+            "360 cm³"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hacim = (1/3)·36·10 = 120 cm³."
+        },
+        {
+          "soru": "Taban alanı 60 cm² ve hacmi 80 cm³ olan bir piramidin yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "2 cm",
+            "3 cm",
+            "5 cm",
+            "6 cm",
+            "4 cm"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "(1/3)·60·h = 80 → 20h = 80 → h = 4 cm."
+        },
+        {
+          "soru": "Bir kare piramidin taban ayrıtı 8 cm, cismin yüksekliği 3 cm'dir. Yan yüzey üçgenlerinin yüksekliği (yan yükseklik) kaç cm'dir?",
+          "secenekler": [
+            "5 cm",
+            "4 cm",
+            "6 cm",
+            "7 cm",
+            "√13 cm"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yan yükseklik = √(3²+4²) = √25 = 5 cm."
+        },
+        {
+          "soru": "Yarıçapı 3 cm olan bir kürenin hacmi kaç cm³'tür?",
+          "secenekler": [
+            "27π cm³",
+            "36π cm³",
+            "12π cm³",
+            "108π cm³",
+            "9π cm³"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hacim = (4/3)π·3³ = (4/3)·27π = 36π cm³."
+        },
+        {
+          "soru": "Yarıçapı 5 cm olan bir kürenin yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "25π cm²",
+            "50π cm²",
+            "100π cm²",
+            "125π cm²",
+            "75π cm²"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Alan = 4πr² = 4π·25 = 100π cm²."
+        },
+        {
+          "soru": "Yüzey alanı 64π cm² olan bir kürenin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "2 cm",
+            "3 cm",
+            "6 cm",
+            "4 cm",
+            "8 cm"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "4πr² = 64π → r² = 16 → r = 4 cm."
+        },
+        {
+          "soru": "Bir kürenin yarıçapı iki katına çıkarılırsa hacmi kaç katına çıkar?",
+          "secenekler": [
+            "2 katı",
+            "4 katı",
+            "6 katı",
+            "16 katı",
+            "8 katı"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Hacim yarıçapın küpüyle orantılıdır: 2³ = 8 katı."
+        },
+        {
+          "soru": "Yarıçapı 6 cm olan bir kürenin hacminin yüzey alanına oranı kaçtır? (birim cm)",
+          "secenekler": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "V/A = r/3 = 6/3 = 2."
+        },
+        {
+          "soru": "Yarıçapı 7 cm olan bir dairenin alanı kaç cm²'dir? (π = 22/7)",
+          "secenekler": [
+            "154",
+            "44",
+            "308",
+            "98",
+            "22"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Alan = πr² = (22/7)·49 = 154 cm²."
+        },
+        {
+          "soru": "Çevresi 44 cm olan bir çemberin yarıçapı kaç cm'dir? (π = 22/7)",
+          "secenekler": [
+            "14",
+            "11",
+            "7",
+            "22",
+            "4"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "C = 2πr → 44 = (44/7)r → r = 7 cm."
+        },
+        {
+          "soru": "İç içe iki dairenin dış yarıçapı 10 cm, iç yarıçapı 6 cm ise aralarındaki halkanın alanı kaç π cm²'dir?",
+          "secenekler": [
+            "16π",
+            "36π",
+            "40π",
+            "64π",
+            "100π"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Halka = π(R²−r²) = π(100−36) = 64π."
+        },
+        {
+          "soru": "Bir ayrıtı 5 cm olan küpün tüm yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "125",
+            "150",
+            "100",
+            "25",
+            "30"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Yüzey = 6a² = 6·25 = 150 cm²."
+        },
+        {
+          "soru": "Bir ayrıtı 4 cm olan küpün hacmi kaç cm³'tür?",
+          "secenekler": [
+            "16",
+            "12",
+            "48",
+            "24",
+            "64"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Hacim = a³ = 4³ = 64 cm³."
+        },
+        {
+          "soru": "Ayrıtları oranı 2/3 olan benzer iki küpün hacimleri oranı kaçtır?",
+          "secenekler": [
+            "8/27",
+            "4/9",
+            "2/3",
+            "6/9",
+            "27/8"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Hacim oranı = k³ = (2/3)³ = 8/27."
+        },
+        {
+          "soru": "Taban yarıçapı 3 cm, yüksekliği 10 cm olan silindirin hacmi kaç π cm³'tür?",
+          "secenekler": [
+            "30π",
+            "60π",
+            "90π",
+            "180π",
+            "9π"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "V = πr²h = π·9·10 = 90π."
+        },
+        {
+          "soru": "Yarıçapı 3 cm olan kürenin yüzey alanı kaç π cm²'dir?",
+          "secenekler": [
+            "9π",
+            "12π",
+            "27π",
+            "36π",
+            "48π"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Yüzey = 4πr² = 4π·9 = 36π."
+        },
+        {
+          "soru": "Yarıçapı 6 cm olan kürenin hacmi kaç π cm³'tür?",
+          "secenekler": [
+            "144π",
+            "288π",
+            "216π",
+            "72π",
+            "96π"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "V = (4/3)πr³ = (4/3)π·216 = 288π."
+        },
+        {
+          "soru": "Taban yarıçapı 3 cm, yüksekliği 4 cm olan koninin yanal yüzey alanı kaç π cm²'dir?",
+          "secenekler": [
+            "9π",
+            "12π",
+            "20π",
+            "24π",
+            "15π"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Yan doğru l = √(3²+4²) = 5; yanal = πrl = π·3·5 = 15π."
+        },
+        {
+          "soru": "Kenar uzunluğu 14 cm olan bir karenin içine kenarlara teğet bir daire çizilirse, karenin daire dışında kalan bölgesinin alanı kaç cm²'dir? (π = 22/7)",
+          "secenekler": [
+            "42",
+            "154",
+            "196",
+            "98",
+            "56"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Kare 196, daire (r=7) 154; fark = 42 cm²."
+        },
+        {
+          "soru": "Yarıçapı 10 cm olan bir çeyrek dairenin alanı kaç π cm²'dir?",
+          "secenekler": [
+            "100π",
+            "50π",
+            "25π",
+            "10π",
+            "20π"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "(1/4)πr² = (1/4)π·100 = 25π."
+        },
+        {
+          "soru": "İç içe iki çemberin yarıçapları 8 cm ve 3 cm ise çevreleri farkı kaç π cm'dir?",
+          "secenekler": [
+            "5π",
+            "22π",
+            "11π",
+            "10π",
+            "16π"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2π·8 − 2π·3 = 16π − 6π = 10π."
+        },
+        {
+          "soru": "Ayrıtları 3 cm, 4 cm ve 5 cm olan dikdörtgenler prizmasının yüzey alanı kaç cm²'dir?",
+          "secenekler": [
+            "60",
+            "94",
+            "47",
+            "120",
+            "64"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2(3·4+4·5+3·5) = 2·47 = 94 cm²."
+        },
+        {
+          "soru": "Ayrıtları 2 cm, 3 cm ve 6 cm olan dikdörtgenler prizmasının hacmi kaç cm³'tür?",
+          "secenekler": [
+            "11",
+            "22",
+            "18",
+            "44",
+            "36"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "V = 2·3·6 = 36 cm³."
+        },
+        {
+          "soru": "Yüzey alanları oranı 9/16 olan benzer iki silindirin hacimleri oranı kaçtır?",
+          "secenekler": [
+            "27/64",
+            "3/4",
+            "9/16",
+            "81/256",
+            "64/27"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Yüzey k²=9/16 → k=3/4; hacim k³=27/64."
+        },
+        {
+          "soru": "Bir kürenin yarıçapı 2 katına çıkarılırsa hacmi kaç katına çıkar?",
+          "secenekler": [
+            "2",
+            "4",
+            "8",
+            "6",
+            "16"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Hacim k³ ile değişir: 2³ = 8 kat."
+        },
+        {
+          "soru": "Bir kürenin yarıçapı 3 katına çıkarılırsa yüzey alanı kaç katına çıkar?",
+          "secenekler": [
+            "3",
+            "6",
+            "12",
+            "9",
+            "27"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Yüzey k² ile değişir: 3² = 9 kat."
+        },
+        {
+          "soru": "2,5 m² kaç cm²'dir?",
+          "secenekler": [
+            "250",
+            "25000",
+            "2500",
+            "250000",
+            "25"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1 m² = 10000 cm² → 2,5·10000 = 25000 cm²."
+        },
+        {
+          "soru": "3 litre kaç cm³'tür?",
+          "secenekler": [
+            "30",
+            "300",
+            "30000",
+            "3",
+            "3000"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1 litre = 1000 cm³ → 3·1000 = 3000 cm³."
+        },
+        {
+          "soru": "5 dm³ kaç cm³'tür?",
+          "secenekler": [
+            "5000",
+            "500",
+            "50",
+            "50000",
+            "5"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1 dm³ = 1000 cm³ → 5·1000 = 5000 cm³."
+        },
+        {
+          "soru": "Hacmi 1000 cm³ olan bir küpün ayrıt uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "100",
+            "30",
+            "10",
+            "20",
+            "50"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "a³ = 1000 → a = 10 cm."
+        },
+        {
+          "soru": "Hacmi 100π cm³ ve taban yarıçapı 5 cm olan silindirin yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "2",
+            "20",
+            "10",
+            "4",
+            "8"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "h = V/(πr²) = 100π/(25π) = 4 cm."
+        },
+        {
+          "soru": "Bir dairenin alanı 4 katına çıkarılırsa yarıçapı kaç katına çıkar?",
+          "secenekler": [
+            "4",
+            "2",
+            "8",
+            "16",
+            "3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Alan r² ile orantılı; 4 kat alan → r 2 katına çıkar."
+        },
+        {
+          "soru": "Yarıçapı 12 cm olan çemberde 90°'lik merkez açıya karşılık gelen yayın uzunluğu kaç π cm'dir?",
+          "secenekler": [
+            "24π",
+            "12π",
+            "3π",
+            "18π",
+            "6π"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Çevre 24π; çeyreği (90/360) = 6π."
+        },
+        {
+          "soru": "Yarıçapı 6 cm olan dairede 60°'lik merkez açının belirlediği daire diliminin alanı kaç π cm²'dir?",
+          "secenekler": [
+            "6π",
+            "12π",
+            "36π",
+            "3π",
+            "18π"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "(60/360)πr² = (1/6)·36π = 6π."
+        },
+        {
+          "soru": "Dış çapı 20 cm, iç çapı 12 cm olan iç içe iki dairenin arasındaki halkanın alanı kaç π cm²'dir?",
+          "secenekler": [
+            "36π",
+            "100π",
+            "64π",
+            "80π",
+            "16π"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "R=10, r=6 → π(100−36) = 64π."
+        },
+        {
+          "soru": "Bir ayrıtı 3 cm olan küpün tüm ayrıtlarının uzunlukları toplamı kaç cm'dir?",
+          "secenekler": [
+            "9",
+            "27",
+            "18",
+            "36",
+            "54"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Küpün 12 ayrıtı vardır: 12·3 = 36 cm."
+        },
+        {
+          "soru": "Hacimleri oranı 8/125 olan benzer iki koninin yanal yüzey alanları oranı kaçtır?",
+          "secenekler": [
+            "2/5",
+            "4/25",
+            "8/125",
+            "16/25",
+            "25/4"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Hacim k³=8/125 → k=2/5; alan k²=4/25."
+        },
+        {
+          "soru": "Tabanı 4 cm × 5 cm olan ve hacmi 120 cm³ olan dikdörtgenler prizmasının yüksekliği kaç cm'dir?",
+          "secenekler": [
+            "3",
+            "4",
+            "12",
+            "24",
+            "6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "h = 120/(4·5) = 120/20 = 6 cm."
+        },
+        {
+          "soru": "Yarıçapı 6 cm olan yarım kürenin (kavisli yüzey ve taban dairesi dahil) toplam yüzey alanı kaç π cm²'dir?",
+          "secenekler": [
+            "108π",
+            "72π",
+            "36π",
+            "144π",
+            "96π"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2πr² + πr² = 3πr² = 3π·36 = 108π."
+        },
+        {
+          "soru": "Hacmi 972π cm³ olan bir kürenin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "27",
+            "81",
+            "9",
+            "18",
+            "3"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "(4/3)πr³ = 972π → r³ = 729 → r = 9 cm."
+        },
+        {
+          "soru": "Bir silindirin taban yarıçapı 2 katına çıkarılıp yüksekliği yarıya indirilirse hacmi kaç katına çıkar?",
+          "secenekler": [
+            "4",
+            "1",
+            "3",
+            "2",
+            "8"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "V ∝ r²h → 2²·(1/2) = 4·0,5 = 2 kat."
+        },
+        {
+          "soru": "Bir karenin içine kenarlarına teğet çizilen dairenin alanının, karenin alanına oranı kaçtır?",
+          "secenekler": [
+            "π/2",
+            "π/4",
+            "π",
+            "π/3",
+            "π/6"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "r=a/2 → π(a/2)²/a² = π/4."
+        },
+        {
+          "soru": "Çevresi 12π cm olan bir dairenin alanı kaç π cm²'dir?",
+          "secenekler": [
+            "12π",
+            "144π",
+            "72π",
+            "6π",
+            "36π"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2πr=12π → r=6; alan = 36π."
+        },
+        {
+          "soru": "400 cm² kaç dm²'dir?",
+          "secenekler": [
+            "4",
+            "40",
+            "0,4",
+            "400",
+            "0,04"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1 dm² = 100 cm² → 400/100 = 4 dm²."
+        },
+        {
+          "soru": "Taban yarıçapı 3 cm, yüksekliği 6 cm olan koninin hacmi kaç π cm³'tür?",
+          "secenekler": [
+            "54π",
+            "36π",
+            "18π",
+            "9π",
+            "27π"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "V = (1/3)πr²h = (1/3)π·9·6 = 18π."
+        },
+        {
+          "soru": "Taban yarıçapı 2 cm, yüksekliği 5 cm olan silindirin tüm yüzey alanı kaç π cm²'dir?",
+          "secenekler": [
+            "20π",
+            "8π",
+            "40π",
+            "28π",
+            "14π"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2πr²+2πrh = 8π+20π = 28π."
+        },
+        {
+          "soru": "Bir ayrıtı 10 cm olan küpün içine sığan en büyük kürenin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "10",
+            "5",
+            "20",
+            "2,5",
+            "15"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Kürenin çapı küpün ayrıtına eşittir: r = 10/2 = 5 cm."
+        },
+        {
+          "soru": "İç içe iki çemberde dış yarıçap 9 cm, halka genişliği 2 cm ise halkanın alanı kaç π cm²'dir?",
+          "secenekler": [
+            "16π",
+            "4π",
+            "64π",
+            "81π",
+            "32π"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "İç r = 7 → π(81−49) = 32π."
+        },
+        {
+          "soru": "Yüzey alanı 100π cm² olan bir kürenin yarıçapı kaç cm'dir?",
+          "secenekler": [
+            "5",
+            "10",
+            "25",
+            "2,5",
+            "50"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "4πr² = 100π → r² = 25 → r = 5 cm."
+        },
+        {
+          "soru": "Yüzey alanları oranı 16/25 olan benzer iki dikdörtgenler prizmasının hacimleri oranı kaçtır?",
+          "secenekler": [
+            "4/5",
+            "16/25",
+            "64/125",
+            "8/10",
+            "125/64"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Yüzey k²=16/25 → k=4/5; hacim k³=64/125."
+        },
+        {
+          "soru": "Yarıçapı 5 cm olan bir dairenin alanının yaklaşık değeri kaç cm²'dir? (π = 3,14)",
+          "secenekler": [
+            "31,4",
+            "15,7",
+            "25",
+            "78,5",
+            "157"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "πr² = 3,14·25 = 78,5 cm²."
+        },
+        {
+          "soru": "Taban yarıçapı 7 cm, yüksekliği 10 cm olan silindir biçimli bir deponun hacmi kaç cm³'tür? (π = 22/7)",
+          "secenekler": [
+            "770",
+            "1540",
+            "1078",
+            "220",
+            "308"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "V = (22/7)·49·10 = 22·7·10 = 1540 cm³."
+        },
+        {
+          "soru": "Bir ayrıtı 4 cm olan küpün cisim köşegeninin uzunluğu kaç cm'dir?",
+          "secenekler": [
+            "4",
+            "4√2",
+            "8",
+            "12",
+            "4√3"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Cisim köşegeni = a√3 = 4√3 cm."
         }
       ]
     },
@@ -58308,6 +61536,1062 @@
           ],
           "dogruIndex": 2,
           "aciklama": "İşlem (a+1)(b+1) - 1 biçiminde yazılabilir. Birim eleman e için (a+1)(e+1) - 1 = a olmalı, yani (a+1)(e+1) = a+1, buradan e+1 = 1 ve e = 0 bulunur."
+        },
+        {
+          "soru": "a ∗ b = a + b − a·b olarak tanımlanıyor. Buna göre 3 ∗ 4 işleminin sonucu kaçtır?",
+          "secenekler": [
+            "-5",
+            "7",
+            "19",
+            "-1",
+            "-11"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "3 + 4 − (3·4) = 7 − 12 = −5."
+        },
+        {
+          "soru": "a ∗ b = a + b + 2 ise (2 ∗ 3) ∗ 4 kaçtır?",
+          "secenekler": [
+            "11",
+            "13",
+            "9",
+            "15",
+            "7"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2∗3 = 7, sonra 7∗4 = 7+4+2 = 13."
+        },
+        {
+          "soru": "a ⊕ b = 3a − b olarak veriliyor. 5 ⊕ (2 ⊕ 1) kaçtır?",
+          "secenekler": [
+            "8",
+            "15",
+            "10",
+            "5",
+            "12"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "2⊕1 = 6−1 = 5, sonra 5⊕5 = 15−5 = 10."
+        },
+        {
+          "soru": "a ∗ b = a·b − a − b ise 4 ∗ 5 kaçtır?",
+          "secenekler": [
+            "9",
+            "13",
+            "7",
+            "11",
+            "15"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "20 − 4 − 5 = 11."
+        },
+        {
+          "soru": "a ∗ b = a + 2b olarak tanımlı. (3 ∗ 1) ∗ 2 kaçtır?",
+          "secenekler": [
+            "9",
+            "7",
+            "8",
+            "10",
+            "11"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "3∗1 = 3+2 = 5, sonra 5∗2 = 5+4 = 9."
+        },
+        {
+          "soru": "a ♦ b = a² − b ise 3 ♦ (2 ♦ 3) kaçtır?",
+          "secenekler": [
+            "4",
+            "6",
+            "10",
+            "5",
+            "8"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2♦3 = 4−3 = 1, sonra 3♦1 = 9−1 = 8."
+        },
+        {
+          "soru": "a ∗ b = 2a + b − 1 olsun. 4 ∗ (3 ∗ 2) kaçtır?",
+          "secenekler": [
+            "12",
+            "13",
+            "16",
+            "14",
+            "15"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "3∗2 = 6+2−1 = 7, sonra 4∗7 = 8+7−1 = 14."
+        },
+        {
+          "soru": "a ∗ b = a + b + a·b ise (1 ∗ 2) ∗ 3 kaçtır?",
+          "secenekler": [
+            "17",
+            "20",
+            "26",
+            "29",
+            "23"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "1∗2 = 1+2+2 = 5, sonra 5∗3 = 5+3+15 = 23."
+        },
+        {
+          "soru": "a ∆ b = |a − b| + 2 olarak tanımlanıyor. (5 ∆ 2) ∆ 4 kaçtır?",
+          "secenekler": [
+            "4",
+            "5",
+            "6",
+            "7",
+            "3"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "5∆2 = 3+2 = 5, sonra 5∆4 = 1+2 = 3."
+        },
+        {
+          "soru": "a ∗ b = 3·a·b ise (1 ∗ 2) ∗ 1 kaçtır?",
+          "secenekler": [
+            "12",
+            "15",
+            "9",
+            "18",
+            "24"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "1∗2 = 3·1·2 = 6, sonra 6∗1 = 3·6·1 = 18."
+        },
+        {
+          "soru": "a ∗ b = a − b + 3 olsun. 10 ∗ (2 ∗ 5) kaçtır?",
+          "secenekler": [
+            "13",
+            "10",
+            "11",
+            "15",
+            "9"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2∗5 = 2−5+3 = 0, sonra 10∗0 = 10−0+3 = 13."
+        },
+        {
+          "soru": "a ∗ b = a·b + 4 ise (2 ∗ 1) ∗ 3 kaçtır?",
+          "secenekler": [
+            "18",
+            "20",
+            "22",
+            "24",
+            "16"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "2∗1 = 2+4 = 6, sonra 6∗3 = 18+4 = 22."
+        },
+        {
+          "soru": "a ⋆ b = a + b² olarak veriliyor. 2 ⋆ (1 ⋆ 2) kaçtır?",
+          "secenekler": [
+            "27",
+            "11",
+            "25",
+            "7",
+            "29"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "1⋆2 = 1+4 = 5, sonra 2⋆5 = 2+25 = 27."
+        },
+        {
+          "soru": "a ∗ b = 4a − 2b ise 3 ∗ (1 ∗ 2) kaçtır?",
+          "secenekler": [
+            "8",
+            "12",
+            "10",
+            "14",
+            "6"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1∗2 = 4−4 = 0, sonra 3∗0 = 12−0 = 12."
+        },
+        {
+          "soru": "a ∗ b = a + b − 1 olsun. ((1 ∗ 2) ∗ 3) ∗ 4 kaçtır?",
+          "secenekler": [
+            "4",
+            "7",
+            "5",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1∗2 = 2, 2∗3 = 4, 4∗4 = 7."
+        },
+        {
+          "soru": "a ♥ b = 2·(a + b) ise 1 ♥ (2 ♥ 3) kaçtır?",
+          "secenekler": [
+            "22",
+            "16",
+            "18",
+            "20",
+            "24"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2♥3 = 2·5 = 10, sonra 1♥10 = 2·11 = 22."
+        },
+        {
+          "soru": "a ∗ b = a·b − 3 olarak tanımlı. 5 ∗ (2 ∗ 4) kaçtır?",
+          "secenekler": [
+            "19",
+            "20",
+            "21",
+            "23",
+            "22"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2∗4 = 8−3 = 5, sonra 5∗5 = 25−3 = 22."
+        },
+        {
+          "soru": "a ∗ b = a + 3b ise (2 ∗ 0) ∗ 1 kaçtır?",
+          "secenekler": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "2∗0 = 2+0 = 2, sonra 2∗1 = 2+3 = 5."
+        },
+        {
+          "soru": "a ∗ b = a + b + 3 işleminin birim (etkisiz) elemanı kaçtır?",
+          "secenekler": [
+            "3",
+            "0",
+            "-3",
+            "-6",
+            "6"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "a+e+3 = a → e = −3."
+        },
+        {
+          "soru": "a ∗ b = a + b + 3 işlemine göre 4 elemanının tersi kaçtır?",
+          "secenekler": [
+            "-7",
+            "-10",
+            "10",
+            "-4",
+            "3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Birim −3; 4+x+3 = −3 → x = −10."
+        },
+        {
+          "soru": "a ∗ b = a + b − a·b işleminin birim elemanı kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "-1",
+            "2",
+            "3"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "a+e−ae = a → e(1−a) = 0 → e = 0."
+        },
+        {
+          "soru": "a ∗ b = a + b + 5 işlemine göre 2 elemanının tersi kaçtır?",
+          "secenekler": [
+            "12",
+            "-8",
+            "8",
+            "-12",
+            "-2"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Birim −5; 2+x+5 = −5 → x = −12."
+        },
+        {
+          "soru": "a ∗ b = a + b + 9 işleminin etkisiz elemanı kaçtır?",
+          "secenekler": [
+            "9",
+            "0",
+            "-9",
+            "-3",
+            "3"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "a+e+9 = a → e = −9."
+        },
+        {
+          "soru": "a ∗ b = a + b + 9 işlemine göre 5 elemanının tersi kaçtır?",
+          "secenekler": [
+            "-14",
+            "23",
+            "14",
+            "-5",
+            "-23"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Birim −9; 5+x+9 = −9 → x = −23."
+        },
+        {
+          "soru": "a ∗ b = 3·a·b işleminin birim elemanı kaçtır?",
+          "secenekler": [
+            "3",
+            "1",
+            "1/3",
+            "0",
+            "Birim eleman yoktur"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "3·a·e = a → e = 1/3."
+        },
+        {
+          "soru": "a ∗ b = a + b − 4 işlemine göre 6 elemanının tersi kaçtır?",
+          "secenekler": [
+            "2",
+            "-2",
+            "4",
+            "6",
+            "0"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Birim 4; 6+x−4 = 4 → x = 2."
+        },
+        {
+          "soru": "a ∗ b = a + b − a·b işlemine göre 3 elemanının tersi kaçtır?",
+          "secenekler": [
+            "2",
+            "3/2",
+            "-3",
+            "1/3",
+            "2/3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Birim 0; 3+x−3x = 0 → 3−2x = 0 → x = 3/2."
+        },
+        {
+          "soru": "a ∗ b = a·b − 2a − 2b + 6 işleminin birim elemanı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "6",
+            "3",
+            "1"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "İşlem (a−2)(b−2)+2 biçiminde; e−2 = 1 → e = 3."
+        },
+        {
+          "soru": "a ∗ b = a + b − 6 işlemine göre 10 elemanının tersi kaçtır?",
+          "secenekler": [
+            "-2",
+            "4",
+            "2",
+            "8",
+            "12"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Birim 6; 10+x−6 = 6 → x = 2."
+        },
+        {
+          "soru": "{a, b, c} kümesinde ∗ işlemi şöyle tanımlı: a∗a=b, a∗b=a, a∗c=c, b∗a=c, b∗b=b, b∗c=a, c∗a=a, c∗b=c, c∗c=b. Bu işlemin birim elemanı için ne söylenebilir?",
+          "secenekler": [
+            "a",
+            "b",
+            "c",
+            "Birim eleman yoktur",
+            "İşlem tanımsızdır"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Hiçbir eleman tüm elemanlar için e∗x = x = x∗e koşulunu sağlamaz."
+        },
+        {
+          "soru": "a ∗ b = a + b + 1 işlemine göre 4 elemanının tersi kaçtır?",
+          "secenekler": [
+            "6",
+            "-4",
+            "-2",
+            "2",
+            "-6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Birim −1; 4+x+1 = −1 → x = −6."
+        },
+        {
+          "soru": "a ∗ b = a + b + a·b işlemine göre 2 elemanının tersi kaçtır?",
+          "secenekler": [
+            "-1/3",
+            "-2/3",
+            "2/3",
+            "-2",
+            "-3"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "Birim 0; 2+x+2x = 0 → 3x = −2 → x = −2/3."
+        },
+        {
+          "soru": "a ∗ b = 3a + b işleminde |3 ∗ 5 − 5 ∗ 3| değeri kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "0",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "3∗5 = 14, 5∗3 = 18; |14−18| = 4."
+        },
+        {
+          "soru": "a ∗ b = a + 2b işleminde (1 ∗ 2) ∗ 3 ile 1 ∗ (2 ∗ 3) sonuçlarının farkı kaçtır?",
+          "secenekler": [
+            "0",
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Sol: 5∗3 = 11; sağ: 1∗8 = 17; birleşme yok, fark 6."
+        },
+        {
+          "soru": "a ∗ b = a − b işleminde (5 ∗ 8) ∗ 2 ile 5 ∗ (8 ∗ 2) sonuçlarının farkının mutlak değeri kaçtır?",
+          "secenekler": [
+            "0",
+            "2",
+            "4",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Sol: (−3)∗2 = −5; sağ: 5∗6 = −1; |−5−(−1)| = 4."
+        },
+        {
+          "soru": "Aşağıdaki işlemlerden hangisi değişme (komütatif) özelliğine sahiptir?",
+          "secenekler": [
+            "a∗b = a − b",
+            "a∗b = 2a − b",
+            "a∗b = a + 2b",
+            "a∗b = a·b − a − b",
+            "a∗b = 3a + b"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "a·b − a − b ifadesi a ile b yer değiştirdiğinde aynı kalır; diğerleri değişir."
+        },
+        {
+          "soru": "a ∗ b = a² − b işleminde (2 ∗ 3) ∗ 1 ile 2 ∗ (3 ∗ 1) sonuçlarının farkının mutlak değeri kaçtır?",
+          "secenekler": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Sol: 1∗1 = 0; sağ: 2∗8 = −4; |0−(−4)| = 4."
+        },
+        {
+          "soru": "a ∗ b = a·b + 1 işleminde 2 ∗ 5 − 5 ∗ 2 farkı kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "2",
+            "5",
+            "10"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "İşlem değişmeli; 2∗5 = 11, 5∗2 = 11; fark 0."
+        },
+        {
+          "soru": "a ∗ b = 2a + 3b işleminde |4 ∗ 1 − 1 ∗ 4| değeri kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "3",
+            "5",
+            "7"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "4∗1 = 11, 1∗4 = 14; |11−14| = 3."
+        },
+        {
+          "soru": "a ∗ b = a + b + a·b işleminde (1 ∗ 1) ∗ 2 ile 1 ∗ (1 ∗ 2) sonuçlarının farkı kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "2",
+            "5",
+            "11"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Sol: 3∗2 = 11; sağ: 1∗5 = 11; birleşmeli, fark 0."
+        },
+        {
+          "soru": "Aşağıdaki işlemlerden hangisi değişme özelliğine sahip DEĞİLdir?",
+          "secenekler": [
+            "a∗b = a + b",
+            "a∗b = a·b",
+            "a∗b = a + b + a·b",
+            "a∗b = 2a − b",
+            "a∗b = a² + b²"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2a − b'de a ve b yer değiştirince sonuç değişir; diğerleri simetriktir."
+        },
+        {
+          "soru": "a ∗ b = 3a − 2b işleminde |2 ∗ 4 − 4 ∗ 2| değeri kaçtır?",
+          "secenekler": [
+            "0",
+            "4",
+            "6",
+            "8",
+            "10"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2∗4 = −2, 4∗2 = 8; |−2−8| = 10."
+        },
+        {
+          "soru": "a ∗ b = a·b − 3b işleminde |4 ∗ 2 − 2 ∗ 4| değeri kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "6",
+            "8",
+            "10"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "4∗2 = 2, 2∗4 = −4; |2−(−4)| = 6."
+        },
+        {
+          "soru": "a ∗ b = a·b + a işleminde (3 ∗ 4) ∗ 1 ile 3 ∗ (4 ∗ 1) sonuçlarının farkının mutlak değeri kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "Sol: 15∗1 = 30; sağ: 3∗8 = 27; |30−27| = 3."
+        },
+        {
+          "soru": "{a, b, c} kümesinde ∗ işlemi: a∗a=a, a∗b=c, a∗c=b, b∗a=a, b∗b=b, b∗c=a, c∗a=b, c∗b=a, c∗c=c. Bu işlem için aşağıdakilerden hangisi doğrudur?",
+          "secenekler": [
+            "İşlem değişmelidir",
+            "Değişme özelliği yoktur",
+            "Birim eleman a'dır",
+            "Her elemanın tersi kendisidir",
+            "İşlem birleşmelidir"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "a∗b = c iken b∗a = a olduğundan tablo simetrik değildir, değişme yoktur."
+        },
+        {
+          "soru": "Bugün Salı ise, bugünden 100 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Perşembe",
+            "Çarşamba",
+            "Cuma",
+            "Cumartesi",
+            "Pazar"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "100 = 7·14 + 2, yani kalan 2. Salı'dan 2 gün ileri gidilirse Perşembe bulunur."
+        },
+        {
+          "soru": "3^24 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "3",
+            "1",
+            "7",
+            "9",
+            "0"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "3'ün kuvvetlerinin birler basamağı 3-9-7-1 diye 4'lü tekrar eder. 24, 4'ün katı olduğundan son basamak 1'dir."
+        },
+        {
+          "soru": "24 saatlik gösterimde şu an saat 21:00. 50 saat sonra saat kaç olur?",
+          "secenekler": [
+            "19:00",
+            "20:00",
+            "23:00",
+            "22:00",
+            "01:00"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "21 + 50 = 71, 71 mod 24 = 23. Saat 23:00 olur."
+        },
+        {
+          "soru": "2^50 sayısının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "6"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2'nin kuvvetleri mod 7'de 2-4-1 diye 3'lü tekrar eder. 50 mod 3 = 2 olduğundan kalan 4'tür."
+        },
+        {
+          "soru": "2^2023 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "6",
+            "0",
+            "8"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "2'nin kuvvetlerinin son basamağı 2-4-8-6 diye tekrarlar. 2023 mod 4 = 3, dizinin 3. terimi 8'dir."
+        },
+        {
+          "soru": "4^50 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "6",
+            "2",
+            "4",
+            "8",
+            "0"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "4'ün kuvvetlerinin son basamağı çift üste 6, tek üste 4'tür. 50 çift olduğundan 6 bulunur."
+        },
+        {
+          "soru": "9^2024 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "3",
+            "1",
+            "5",
+            "7",
+            "9"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "9'un kuvvetlerinin son basamağı çift üste 1, tek üste 9'dur. 2024 çift olduğundan 1'dir."
+        },
+        {
+          "soru": "Bugün Cuma ise, 2^30 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Perşembe",
+            "Cuma",
+            "Cumartesi",
+            "Pazar",
+            "Pazartesi"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "2^3 = 8 ≡ 1 (mod 7), dolayısıyla 2^30 ≡ 1. Cuma'dan 1 gün ileri Cumartesi'dir."
+        },
+        {
+          "soru": "8^15 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "4",
+            "6",
+            "8",
+            "2",
+            "0"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "8'in kuvvetlerinin son basamağı 8-4-2-6 diye tekrarlar. 15 mod 4 = 3, dizinin 3. terimi 2'dir."
+        },
+        {
+          "soru": "Bugün Pazar ise, 365 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Pazartesi",
+            "Cumartesi",
+            "Pazar",
+            "Salı",
+            "Çarşamba"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "365 = 7·52 + 1, kalan 1. Pazar'dan 1 gün ileri Pazartesi'dir."
+        },
+        {
+          "soru": "7^54 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "1",
+            "9",
+            "3",
+            "7",
+            "5"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "7'nin kuvvetlerinin son basamağı 7-9-3-1 diye tekrarlar. 54 mod 4 = 2, dizinin 2. terimi 9'dur."
+        },
+        {
+          "soru": "12^2023 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "8",
+            "6",
+            "0"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Son basamak 12'nin son basamağı 2'ye bağlıdır: 2-4-8-6. 2023 mod 4 = 3, dizinin 3. terimi 8'dir."
+        },
+        {
+          "soru": "12 saatlik gösterimde şu an saat 8. 75 saat sonra saat kaç olur?",
+          "secenekler": [
+            "9",
+            "10",
+            "12",
+            "11",
+            "1"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "8 + 75 = 83, 83 mod 12 = 11. Saat 11 olur."
+        },
+        {
+          "soru": "13^38 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "1",
+            "3",
+            "7",
+            "5",
+            "9"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Son basamak 3'e bağlıdır: 3-9-7-1. 38 mod 4 = 2, dizinin 2. terimi 9'dur."
+        },
+        {
+          "soru": "22^30 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "4",
+            "2",
+            "6",
+            "8",
+            "0"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Son basamak 2'ye bağlıdır: 2-4-8-6. 30 mod 4 = 2, dizinin 2. terimi 4'tür."
+        },
+        {
+          "soru": "Bugün Perşembe ise, 1000 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Salı",
+            "Çarşamba",
+            "Perşembe",
+            "Cuma",
+            "Cumartesi"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "1000 = 7·142 + 6, kalan 6. Perşembe'den 6 gün ileri Çarşamba'dır."
+        },
+        {
+          "soru": "24 saatlik gösterimde şu an saat 08:00. 200 saat sonra saat kaç olur?",
+          "secenekler": [
+            "14:00",
+            "15:00",
+            "16:00",
+            "18:00",
+            "20:00"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "8 + 200 = 208, 208 mod 24 = 16. Saat 16:00 olur."
+        },
+        {
+          "soru": "3^2025 sayısının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "1",
+            "2",
+            "4",
+            "6",
+            "5"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "3'ün kuvvetleri mod 7'de 3-2-6-4-5-1 diye 6'lı tekrarlar. 2025 mod 6 = 3, dizinin 3. terimi 6'dır."
+        },
+        {
+          "soru": "5! + 6! + 7! + ... + 77! toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "5",
+            "3",
+            "0"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "5! ve sonraki tüm faktöriyeller 10'a bölündüğünden birler basamakları sıfırdır; toplamın son basamağı 0'dır."
+        },
+        {
+          "soru": "7^2026 sayısının 5 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "4",
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "7 ≡ 2 (mod 5) ve 2'nin kuvvetleri mod 5'te 2-4-3-1 tekrarlar. 2026 mod 4 = 2, kalan 4'tür."
+        },
+        {
+          "soru": "2^2024 sayısının 3 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "2 ≡ -1 (mod 3), çift kuvvette (-1)^2024 = 1. Kalan 1'dir."
+        },
+        {
+          "soru": "4^333 + 3^444 toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "1",
+            "3",
+            "7",
+            "5",
+            "9"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "4^333 tek üste son basamak 4; 3^444'te 444 mod 4 = 0 olduğundan son basamak 1. 4 + 1 = 5."
+        },
+        {
+          "soru": "24 saatlik gösterimde şu an saat 15:00. En az kaç saat sonra saat 07:00 olur?",
+          "secenekler": [
+            "14",
+            "15",
+            "18",
+            "20",
+            "16"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "07 - 15 = -8 ≡ 16 (mod 24). En erken 16 saat sonra 07:00 olur."
+        },
+        {
+          "soru": "2^101 sayısının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "4",
+            "1",
+            "2",
+            "3",
+            "5"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2'nin kuvvetleri mod 7'de 2-4-1 tekrarlar. 101 mod 3 = 2, kalan 4'tür."
+        },
+        {
+          "soru": "3^1 + 3^2 + 3^3 + ... + 3^16 toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "0",
+            "4",
+            "6",
+            "8"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "3'ün kuvvetlerinin son basamakları 3-9-7-1 (toplamı 20) diye tekrarlar. 16 terim tam 4 tur; toplamın son basamağı 0'dır."
+        },
+        {
+          "soru": "7^2027 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "1",
+            "9",
+            "3",
+            "7",
+            "5"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Son basamak 7-9-3-1 tekrarlar. 2027 mod 4 = 3, dizinin 3. terimi 3'tür."
+        },
+        {
+          "soru": "Bugün Çarşamba ise, 2^100 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Perşembe",
+            "Cumartesi",
+            "Pazar",
+            "Cuma",
+            "Salı"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "2^100 mod 7: 100 mod 3 = 1 olduğundan kalan 2. Çarşamba'dan 2 gün ileri Cuma'dır."
+        },
+        {
+          "soru": "8^2024 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "8",
+            "0",
+            "6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "8'in kuvvetlerinin son basamağı 8-4-2-6 tekrarlar. 2024 mod 4 = 0, dizinin son terimi 6'dır."
+        },
+        {
+          "soru": "24 saatlik gösterimde şu an saat 23:00. 1000 saat sonra saat kaç olur?",
+          "secenekler": [
+            "15:00",
+            "13:00",
+            "14:00",
+            "16:00",
+            "17:00"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "23 + 1000 = 1023, 1023 mod 24 = 15. Saat 15:00 olur."
+        },
+        {
+          "soru": "5^2024 sayısının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "1",
+            "4",
+            "2",
+            "5",
+            "6"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "5'in kuvvetleri mod 7'de 5-4-6-2-3-1 diye 6'lı tekrarlar. 2024 mod 6 = 2, kalan 4'tür."
+        },
+        {
+          "soru": "2^1 + 2^2 + 2^3 + ... + 2^10 toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "0",
+            "2",
+            "6",
+            "4",
+            "8"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "Son basamaklar 2-4-8-6 (toplamı 20) tekrarlar. 10 terim: 2 tam tur (0) + 2^9,2^10 son basamakları 2 ve 4; toplam son basamak 6'dır."
+        },
+        {
+          "soru": "Bugün Salı. Her 10 günde bir yapılan ve bugün de yapılan toplantının 6. tekrarı haftanın hangi günüdür?",
+          "secenekler": [
+            "Salı",
+            "Perşembe",
+            "Cuma",
+            "Çarşamba",
+            "Pazar"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "6. toplantı bugünden 5·10 = 50 gün sonradır. 50 mod 7 = 1, Salı'dan 1 gün ileri Çarşamba'dır."
+        },
+        {
+          "soru": "3^2023 sayısının birler basamağı kaçtır?",
+          "secenekler": [
+            "1",
+            "3",
+            "9",
+            "5",
+            "7"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "Son basamaklar 3-9-7-1 tekrarlar. 2023 mod 4 = 3, dizinin 3. terimi 7'dir."
+        },
+        {
+          "soru": "2^2024 + 3^2024 toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "7",
+            "3",
+            "5",
+            "9",
+            "1"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "2^2024 son basamağı 6, 3^2024 son basamağı 1. 6 + 1 = 7."
+        },
+        {
+          "soru": "8^100 sayısının 9 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "2",
+            "4",
+            "8"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "8 ≡ -1 (mod 9), çift kuvvette (-1)^100 = 1. Kalan 1'dir."
+        },
+        {
+          "soru": "Bir sayının 7 ile bölümünden kalan 3'tür. Bu sayının 4 katının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "1",
+            "2",
+            "5",
+            "4",
+            "6"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "4·3 = 12, 12 mod 7 = 5. Kalan 5'tir."
+        },
+        {
+          "soru": "İki tam sayının 5 ile bölümünden kalanları sırasıyla 3 ve 4'tür. Bu sayıların çarpımının 5 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "0",
+            "1",
+            "4",
+            "2",
+            "3"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "3·4 = 12, 12 mod 5 = 2. Çarpımın kalanı 2'dir."
+        },
+        {
+          "soru": "Bugün Cumartesi ise, 7^7 + 3 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Cuma",
+            "Pazar",
+            "Pazartesi",
+            "Çarşamba",
+            "Salı"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "7^7 ≡ 0 (mod 7), yani sadece 3 gün ilerlenir. Cumartesi'den 3 gün ileri Salı'dır."
+        },
+        {
+          "soru": "1'den 100'e kadar olan doğal sayıların toplamının 7 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "3",
+            "1",
+            "2",
+            "5",
+            "6"
+          ],
+          "dogruIndex": 0,
+          "aciklama": "Toplam 100·101/2 = 5050. 5050 mod 7 = 3'tür."
+        },
+        {
+          "soru": "24 saatlik gösterimde şu an saat 18:00. 500 saat sonra saat kaç olur?",
+          "secenekler": [
+            "12:00",
+            "14:00",
+            "13:00",
+            "15:00",
+            "16:00"
+          ],
+          "dogruIndex": 1,
+          "aciklama": "18 + 500 = 518, 518 mod 24 = 14. Saat 14:00 olur."
+        },
+        {
+          "soru": "5^2024 sayısının 6 ile bölümünden kalan kaçtır?",
+          "secenekler": [
+            "0",
+            "3",
+            "1",
+            "2",
+            "5"
+          ],
+          "dogruIndex": 2,
+          "aciklama": "5 ≡ -1 (mod 6), çift kuvvette (-1)^2024 = 1. Kalan 1'dir."
+        },
+        {
+          "soru": "Bugün Çarşamba ise, 3^50 gün sonrası haftanın hangi günüdür?",
+          "secenekler": [
+            "Perşembe",
+            "Cumartesi",
+            "Pazar",
+            "Cuma",
+            "Salı"
+          ],
+          "dogruIndex": 3,
+          "aciklama": "3'ün kuvvetleri mod 7'de 6'lı tekrarlar; 50 mod 6 = 2 olduğundan kalan 2. Çarşamba'dan 2 gün ileri Cuma'dır."
+        },
+        {
+          "soru": "9^45 + 7^45 toplamının birler basamağı kaçtır?",
+          "secenekler": [
+            "2",
+            "4",
+            "8",
+            "0",
+            "6"
+          ],
+          "dogruIndex": 4,
+          "aciklama": "9^45 tek üste son basamak 9; 7^45'te 45 mod 4 = 1 olduğundan son basamak 7. 9 + 7 = 16, son basamak 6'dır."
         }
       ]
     }
