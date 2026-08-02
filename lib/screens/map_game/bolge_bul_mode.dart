@@ -108,10 +108,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       });
     } else {
       _flashWrong(p.id);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌ Yanlış, tekrar dene! (${kMapMaxAttempts - _attempts} hakkın kaldı)'),
-        duration: const Duration(milliseconds: 1400),
-      ));
+      haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
     }
   }
 

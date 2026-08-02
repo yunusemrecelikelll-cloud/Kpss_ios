@@ -284,11 +284,6 @@ const List<KategoriGrubu> kKategoriGruplari = [
     terimler: ['Olumlu', 'Olumsuz', 'Soru Cümlesi', 'Ünlem Cümlesi', 'Şart'],
   ),
   KategoriGrubu(
-    kategoriAdi: 'Söz Sanatları',
-    ders: 'Türkçe',
-    terimler: ['Teşbih (Benzetme)', 'İstiare (Eğretileme)', 'Mecaz-ı Mürsel (Ad Aktarması)', 'Kinaye', 'Teşhis (Kişileştirme)'],
-  ),
-  KategoriGrubu(
     kategoriAdi: 'Yazım (İmla) Kuralı Konuları',
     ders: 'Türkçe',
     terimler: [

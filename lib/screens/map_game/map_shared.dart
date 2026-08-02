@@ -26,7 +26,7 @@ const String kMapGameId = 'haritaoyunu';
 /// (İli Bul, Bölgeyi Bul, Komşu İl, Ürün/Tarih Haritası, İklim Avı) her soru
 /// için tanınan deneme hakkı — kullanıcı 3 kez yanlış dokunursa doğru cevap
 /// gösterilip bir sonraki soruya geçilir.
-const int kMapMaxAttempts = 3;
+const int kMapMaxAttempts = 2;
 
 /// Bölgelere göre ayırt edici renk paleti — Bölgeyi Bul modunda ve genel
 /// harita gösteriminde kullanılır.
@@ -41,6 +41,144 @@ const Map<String, Color> kRegionColors = {
 };
 
 Color regionColor(String bolge) => kRegionColors[bolge] ?? Colors.grey;
+
+/// Yanlış dokunuşta ALT TARAFTA çıkan yeniden tasarlanmış afiş (kullanıcı
+/// isteği). "Kalan hak: N" biçiminde bilgi verir; kırmızı aksanlı, ikonlu.
+void haritaYanlisAfis(BuildContext context, int kalanHak) {
+  final c = context.read<ThemeProvider>().colors;
+  final m = ScaffoldMessenger.of(context);
+  m.clearSnackBars();
+  m.showSnackBar(SnackBar(
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    duration: const Duration(milliseconds: 1500),
+    content: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.alphaBlend(c.danger.withValues(alpha: 0.22), c.bg2),
+            c.bg2,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: c.danger.withValues(alpha: 0.55)),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withValues(alpha: 0.28),
+              blurRadius: 16,
+              offset: const Offset(0, 6)),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 34,
+            height: 34,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: c.danger.withValues(alpha: 0.18),
+                shape: BoxShape.circle),
+            child: const Text('❌', style: TextStyle(fontSize: 16)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Yanlış! Tekrar dene.',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 13.5,
+                        color: c.text)),
+                const SizedBox(height: 2),
+                Text('Kalan hak: $kalanHak',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: c.danger)),
+              ],
+            ),
+          ),
+          // Kalan hakları nokta olarak da göster.
+          Row(
+            children: [
+              for (var i = 0; i < kMapMaxAttempts; i++)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: Icon(
+                    i < kalanHak ? Icons.favorite : Icons.favorite_border,
+                    size: 15,
+                    color: c.danger,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  ));
+}
+
+/// Yanlış işaretlemenin OLASI SEBEBİNİ açıklayan metin (kullanıcı isteği:
+/// "büyük ihtimalle şu sebepten bu illeri seçtin"). Mod ve seçilen yanlış
+/// illere göre biçimlenir.
+String haritaYanlisSebebi(
+    String modId, String dogruAd, List<String> secilenAdlar) {
+  final secilen = secilenAdlar.isEmpty
+      ? ''
+      : (secilenAdlar.length == 1
+          ? '${secilenAdlar.first} ilini'
+          : '${secilenAdlar.join(", ")} illerini');
+  switch (modId) {
+    case kIliBulGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; büyük ihtimalle bu '
+          'illerin haritadaki konumunu $dogruAd ile karıştırdın.';
+    case kBolgeBulGameId:
+      return 'Doğru cevap $dogruAd. $secilen seçtin; bu iller sorulan bölgeye '
+          'değil, başka bir coğrafi bölgeye ait olduğu için yanıldın.';
+    case kKomsuIlGameId:
+      return '$secilen seçtin; ama bu iller sorudaki ile SINIR KOMŞUSU değil. '
+          'Komşuluğu yanlış hatırlamış olabilirsin (doğru: $dogruAd).';
+    case kTarihHaritasiGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; olayın geçtiği ili '
+          'başka bir tarihî merkezle karıştırmış olabilirsin.';
+    case kIklimAviGameId:
+      return 'Doğru cevap $dogruAd. $secilen seçtin; benzer iklim özelliklerine '
+          'sahip başka illerle karıştırmış olabilirsin.';
+    case kUrunHaritasiGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; ürünün asıl '
+          'yetiştiği/çıkarıldığı ili yakın illerle karıştırdın.';
+    default:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin.';
+  }
+}
+
+/// Yanlış cevabı harita YANLIŞLARIM bankasına kaydeder.
+Future<void> haritaYanlisKaydet(
+  BuildContext context, {
+  required String soru,
+  required String dogruId,
+  required String dogruAd,
+  required List<String> secilenIds,
+  required List<String> secilenAdlar,
+  required String modId,
+  required String modAd,
+}) async {
+  if (secilenIds.isEmpty) return;
+  await context.read<StorageService>().addMapWrong({
+    'soru': soru,
+    'dogruId': dogruId,
+    'dogruAd': dogruAd,
+    'secilenIds': secilenIds,
+    'secilenAdlar': secilenAdlar,
+    'mod': modId,
+    'modAd': modAd,
+    'aciklama': haritaYanlisSebebi(modId, dogruAd, secilenAdlar),
+  });
+}
 
 /// Kullanıcının haritalarda seçebileceği vurgu renkleri (kullanıcı isteği:
 /// "haritanın rengi değiştirilebilir olsun, üst köşede renk seçeneği olsun ve

@@ -581,6 +581,82 @@ class StorageService extends ChangeNotifier {
   Future<void> setMapColorValue(int argb) async =>
       _prefs?.setInt('harita_vurgu_renk', argb);
 
+  // ── Harita YANLIŞLARIM bankası (kullanıcı isteği) ───────────────────────────
+  // Harita oyunlarında yanlış işaretlenen iller: her kayıt {soru, dogruId,
+  // dogruAd, secilenIds, secilenAdlar, mod, modAd, aciklama}. Yanlışlarım
+  // ekranında harita üzerinde gösterilir, tekrar test edilir.
+  List<Map<String, dynamic>> getMapWrongBank() {
+    final ham = _get('map_wrong_bank', <dynamic>[]) as List;
+    return ham.map((e) => Map<String, dynamic>.from(e as Map)).toList();
+  }
+
+  Future<void> addMapWrong(Map<String, dynamic> kayit) async {
+    final liste = getMapWrongBank();
+    final anahtar = '${kayit['soru']}|${kayit['dogruId']}';
+    liste.removeWhere((e) => '${e['soru']}|${e['dogruId']}' == anahtar);
+    liste.insert(0, kayit);
+    if (liste.length > 300) liste.removeRange(300, liste.length);
+    await _set('map_wrong_bank', liste);
+  }
+
+  Future<void> removeMapWrong(String soru, String dogruId) async {
+    final liste = getMapWrongBank()
+      ..removeWhere((e) => e['soru'] == soru && e['dogruId'] == dogruId);
+    await _set('map_wrong_bank', liste);
+  }
+
+  Future<void> clearMapWrongBank() async => _set('map_wrong_bank', <dynamic>[]);
+
+  // ── Oyun İSTATİSTİKLERİ (kullanıcı isteği: oyunlardaki doğru/yanlışları kaydet) ─
+  // Anahtar: "gameId|subjectId" -> {d: doğru, y: yanlış}. Böylece hem oyun bazında
+  // hem ders bazında zayıf/güçlü analiz yapılabilir (bkz. GameStatsScreen).
+  Map<String, dynamic> _getGameStatsRaw() =>
+      Map<String, dynamic>.from(_get('game_stats', <String, dynamic>{}));
+
+  Future<void> addGameAnswer(
+      String gameId, String subjectId, bool correct) async {
+    if (subjectId.isEmpty) subjectId = 'genel';
+    final m = _getGameStatsRaw();
+    final key = '$gameId|$subjectId';
+    final cur = Map<String, dynamic>.from(
+        (m[key] as Map?) ?? const {'d': 0, 'y': 0});
+    final alan = correct ? 'd' : 'y';
+    cur[alan] = ((cur[alan] as num?)?.toInt() ?? 0) + 1;
+    m[key] = cur;
+    await _set('game_stats', m);
+  }
+
+  /// Ders bazında toplam (tüm oyunlar): {subjectId: {d, y}}.
+  Map<String, Map<String, int>> getGameStatsBySubject() {
+    final out = <String, Map<String, int>>{};
+    _getGameStatsRaw().forEach((k, v) {
+      final parts = k.split('|');
+      final sid = parts.length > 1 ? parts[1] : 'genel';
+      final m = out.putIfAbsent(sid, () => {'d': 0, 'y': 0});
+      m['d'] = m['d']! + ((v['d'] as num?)?.toInt() ?? 0);
+      m['y'] = m['y']! + ((v['y'] as num?)?.toInt() ?? 0);
+    });
+    return out;
+  }
+
+  /// Oyun bazında ders dağılımı: {gameId: {subjectId: {d, y}}}.
+  Map<String, Map<String, Map<String, int>>> getGameStatsByGame() {
+    final out = <String, Map<String, Map<String, int>>>{};
+    _getGameStatsRaw().forEach((k, v) {
+      final parts = k.split('|');
+      final gid = parts[0];
+      final sid = parts.length > 1 ? parts[1] : 'genel';
+      final g = out.putIfAbsent(gid, () => {});
+      g[sid] = {
+        'd': (v['d'] as num?)?.toInt() ?? 0,
+        'y': (v['y'] as num?)?.toInt() ?? 0,
+      };
+    });
+    return out;
+  }
+
+  Future<void> clearGameStats() async => _set('game_stats', <String, dynamic>{});
+
   // ── Oyun ilerlemesi (Kart Oyunu V2 / Solitaire) — konu bazlı geçme takibi ──
   Map<String, bool> getGamePassedTopics(String gameId) =>
       Map<String, bool>.from(_get('game_passed_$gameId', <String, dynamic>{}));

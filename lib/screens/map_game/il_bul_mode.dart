@@ -119,6 +119,8 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
   bool _showResult = false;
   String? _flashWrongId;
   DateTime? _sessionStart;
+  // Bu sorudaki yanlış işaretlenen iller (yanlışlarım bankası + sebep için).
+  final List<TurkeyProvince> _yanlisSecilen = [];
 
   @override
   void initState() {
@@ -165,6 +167,8 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
     if (_showResult) return;
     context.read<SoundService>().click();
     if (p.id == _target.id) {
+      // Oyun istatistiği: doğru cevap (bu oyun coğrafya ile ilişkilendirilir).
+      context.read<StorageService>().addGameAnswer(kIliBulGameId, 'cografya', true);
       setState(() {
         _tapped = p;
         _showResult = true;
@@ -173,18 +177,32 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       return;
     }
     _attempts++;
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
+    context.read<StorageService>().addGameAnswer(kIliBulGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
       });
     } else {
       _flashWrong(p.id);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌ Yanlış, tekrar dene! (${kMapMaxAttempts - _attempts} hakkın kaldı)'),
-        duration: const Duration(milliseconds: 1400),
-      ));
+      haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
     }
+  }
+
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    haritaYanlisKaydet(
+      context,
+      soru: '"${_target.ad}" ilini haritada bul',
+      dogruId: _target.id,
+      dogruAd: _target.ad,
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kIliBulGameId,
+      modAd: 'İli Bul',
+    );
   }
 
   /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
@@ -207,6 +225,7 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       _showResult = false;
       _attempts = 0;
       _flashWrongId = null;
+      _yanlisSecilen.clear();
     });
   }
 
@@ -291,6 +310,22 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
                 : '❌ $kMapMaxAttempts hakkını da kullandın. Doğru cevap: ${_target.ad}.',
             style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
           ),
+          // Yanlış işaretlediyse OLASI SEBEP açıklaması (kullanıcı isteği).
+          if (!correct && _yanlisSecilen.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: colors.warn.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: colors.warn.withValues(alpha: 0.4)),
+              ),
+              child: Text(
+                '💡 ${haritaYanlisSebebi(kIliBulGameId, _target.ad, _yanlisSecilen.map((e) => e.ad).toList())}',
+                style: TextStyle(fontSize: 12, height: 1.4, color: colors.text),
+              ),
+            ),
+          ],
           const SizedBox(height: 10),
           Align(
             alignment: Alignment.centerRight,

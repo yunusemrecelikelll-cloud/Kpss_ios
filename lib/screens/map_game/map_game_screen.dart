@@ -8,6 +8,7 @@ import '../../theme/theme_provider.dart';
 import '../learn_map/learn_map_hub_screen.dart';
 import '../tools_hub_screen.dart' show formatPlayDuration;
 import 'bolge_bul_mode.dart';
+import 'harita_yanlislarim_screen.dart';
 import 'hiz_modu.dart';
 import 'iklim_avi_mode.dart';
 import 'il_bul_mode.dart';
@@ -72,6 +73,23 @@ class MapGameScreen extends StatelessWidget {
             onTap: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (_) => const LearnMapHubScreen())),
           ),
+          const SizedBox(height: 12),
+          // ── Harita Yanlışlarım bankası (kullanıcı isteği) ──
+          Builder(builder: (context) {
+            final yanlisSayi = storage.getMapWrongBank().length;
+            return _ModeTile(
+              gameId: kIliBulGameId,
+              icon: '❌',
+              title: 'Harita Yanlışlarım',
+              desc: yanlisSayi > 0
+                  ? '$yanlisSayi yanlış il — harita üzerinde nedeniyle gör, tekrar test et.'
+                  : 'Yanlış işaretlediğin iller burada birikir; tekrar test edebilirsin.',
+              storage: storage,
+              showTime: false,
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const HaritaYanlislarimScreen())),
+            );
+          }),
           const SizedBox(height: 20),
           _FlagshipCard(conquered: conquered, subjects: subjects, storage: storage),
           const SizedBox(height: 20),
