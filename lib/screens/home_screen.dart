@@ -235,7 +235,29 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: AnaMenu(subjects: subjects, premium: premium, name: name),
-      body: SafeArea(
+      // Kullanıcı isteği: anasayfa RENGARENK, her bölüm farklı premium renk
+      // üstünde dursun. Dikey çok renkli (mor→gül→altın→nane) düşük saydamlıklı
+      // gradyan zemin — kaydırdıkça her bölüm ayrı renk bandında görünür.
+      body: DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.alphaBlend(
+                  c.violet.withValues(alpha: c.isLight ? 0.11 : 0.18), c.bg),
+              Color.alphaBlend(
+                  c.rose.withValues(alpha: c.isLight ? 0.10 : 0.16), c.bg),
+              Color.alphaBlend(
+                  c.gold.withValues(alpha: c.isLight ? 0.10 : 0.15), c.bg),
+              Color.alphaBlend(
+                  c.mint.withValues(alpha: c.isLight ? 0.09 : 0.14), c.bg),
+              c.bg,
+            ],
+            stops: const [0.0, 0.28, 0.52, 0.76, 1.0],
+          ),
+        ),
+        child: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -467,6 +489,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -1152,20 +1175,21 @@ class _SubjectCard extends StatelessWidget {
 
 /// Anasayfadaki yan yana hızlı erişim kartı (Akılda Kalıcı Kodlama /
 /// Mentörlük). Dokununca ilgili sayfayı açar.
-/// Premium'a ÖZEL bir özellik kartına eklenen görsel işaretler (kullanıcı
-/// isteği): kartın köşesinde HER ZAMAN küçük altın "premium" rozeti bulunur;
-/// kullanıcı ücretsizse kart ayrıca SOLUK (yarı saydam) çizilir, premium açıksa
-/// kart normale döner ama rozet yine durur.
+/// Premium'a ÖZEL bir özellik kartına eklenen görsel işaretler. Kullanıcı
+/// isteği (GÜNCEL): "premium" rozeti YALNIZCA ücretsiz kullanıcıda gösterilir;
+/// kart ayrıca soluk (yarı saydam) çizilir. Premium açıldığında kart normale
+/// döner ve "premium" yazısı KALKAR.
 ///
 /// [kart]'ı sarıp döndürür. [premiumOzellik] false ise kartı aynen döndürür.
 Widget wrapPremiumKart(BuildContext context, Widget kart, bool premiumOzellik) {
   if (!premiumOzellik) return kart;
   final c = context.watch<ThemeProvider>().colors;
   final premium = context.watch<StorageService>().isPremiumUser();
-  final govde = premium ? kart : Opacity(opacity: 0.55, child: kart);
+  // Premium kullanıcıda kart normale döner ve rozet HİÇ gösterilmez.
+  if (premium) return kart;
   return Stack(
     children: [
-      govde,
+      Opacity(opacity: 0.55, child: kart),
       Positioned(
         top: 4,
         right: 4,
@@ -1258,43 +1282,86 @@ class _PremiumOzetKarti extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    final renk = premium ? c.gold : c.violet;
-    return DsCard(
-      accent: renk,
-      onTap: () {
-        context.read<SoundService>().click();
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-      },
-      child: Row(
-        children: [
-          DsIconBadge(emoji: premium ? '👑' : '💎', color: renk, size: 46),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(premium ? 'Premium aktif' : "Premium'a geç",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
-                const SizedBox(height: 3),
-                Text(
-                    premium
-                        ? 'Sınırsız erişim açık. Aboneliğini yönet.'
-                        : 'Reklamsız, sınırsız soru, oyun ve gelişmiş analiz.',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12, height: 1.3, color: c.textDim)),
-              ],
+    // Kullanıcı isteği: Premium banner ALTIN renginde ve ÖNE ÇIKAN olsun.
+    // Koyu altın degrade zemin + ışıma + altın kenarlık; her temada belirgin.
+    const altin1 = Color(0xFFE8C766);
+    const altin2 = Color(0xFFC9962E);
+    const altin3 = Color(0xFF8A6B1E);
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(kDsRadius),
+        onTap: () {
+          context.read<SoundService>().click();
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+        },
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [altin1, altin2, altin3],
             ),
+            borderRadius: BorderRadius.circular(kDsRadius),
+            border: Border.all(color: const Color(0xFFFFE9A8), width: 1.2),
+            boxShadow: [
+              BoxShadow(
+                  color: altin2.withValues(alpha: 0.45),
+                  blurRadius: 22,
+                  offset: const Offset(0, 8)),
+            ],
           ),
-          const SizedBox(width: 8),
-          Icon(Icons.chevron_right, size: 20, color: c.textDim),
-        ],
+          child: Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.22),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                ),
+                child: Text(premium ? '👑' : '💎',
+                    style: const TextStyle(fontSize: 24)),
+              ),
+              const SizedBox(width: 13),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(premium ? '👑 Premium Aktif' : "Premium'a Geç",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: Color(0xFF3A2B00),
+                            letterSpacing: 0.2)),
+                    const SizedBox(height: 3),
+                    Text(
+                        premium
+                            ? 'Sınırsız erişim açık. Aboneliğini yönet.'
+                            : 'Reklamsız, sınırsız soru, oyun ve gelişmiş analiz.',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 12,
+                            height: 1.3,
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF3A2B00).withValues(alpha: 0.8))),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.chevron_right,
+                  size: 22, color: Color(0xFF3A2B00)),
+            ],
+          ),
+        ),
       ),
     );
   }
