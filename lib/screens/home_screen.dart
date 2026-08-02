@@ -878,15 +878,20 @@ class _DraftResumeCard extends StatelessWidget {
     final answeredCount = answers.where((a) => a != null).length;
     final oran = questions.isEmpty ? 0.0 : answeredCount / questions.length;
 
+    // Kullanıcı isteği: "göz alıcı sarı" yerine daha LOŞ bir ton. Parlak
+    // uyarı sarısı, nötr gri (textDim) yönünde harmanlanarak dinlendirici,
+    // temaya uyumlu bir kehribar tonuna çekilir.
+    final Color los = Color.lerp(c.warn, c.textDim, 0.45)!;
+
     return DsCard(
-      accent: c.warn,
+      accent: los,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
-              DsIconBadge(emoji: '⏸️', color: c.warn, size: 44, glow: false),
+              DsIconBadge(emoji: '⏸️', color: los, size: 44, glow: false),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -911,7 +916,7 @@ class _DraftResumeCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          DsProgressBar(value: oran.clamp(0.0, 1.0), color: c.warn),
+          DsProgressBar(value: oran.clamp(0.0, 1.0), color: los),
           const SizedBox(height: 6),
           Text('$answeredCount / ${questions.length} soru cevaplanmış',
               style: TextStyle(fontSize: 11.5, color: c.textFaint)),
@@ -921,7 +926,7 @@ class _DraftResumeCard extends StatelessWidget {
               Expanded(
                 child: DsPillButton(
                   label: 'Devam Et',
-                  color: c.warn,
+                  color: los,
                   trailingIcon: Icons.arrow_forward,
                   onPressed: () {
                     context.read<SoundService>().click();
@@ -1017,31 +1022,49 @@ class _ProfileAvatarButton extends StatelessWidget {
         child: InkWell(
           onTap: onTap,
           child: Container(
-            width: 40,
-            height: 40,
+            width: 42,
+            height: 42,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
+              // Kullanıcı isteği: DAHA CANLI logo. Üç renkli (mor→gül→altın)
+              // köşegen sweep gradyan + belirgin çift renkli parıltı.
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [c.violet, c.rose],
+                colors: [c.violet, c.rose, c.gold],
+                stops: const [0.0, 0.55, 1.0],
               ),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.65), width: 1.5),
+              border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.85), width: 1.6),
               boxShadow: [
                 BoxShadow(
-                  color: c.violet.withValues(alpha: 0.35),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
+                  color: c.rose.withValues(alpha: 0.45),
+                  blurRadius: 12,
+                  offset: const Offset(0, 3),
+                ),
+                BoxShadow(
+                  color: c.violet.withValues(alpha: 0.30),
+                  blurRadius: 6,
+                  offset: const Offset(0, 1),
                 ),
               ],
             ),
             alignment: Alignment.center,
+            // "Farklı fontta kalın yazı tipi": başlık (Baloo2) ve gövdeden
+            // (Nunito) ayrışan güçlü display fontu Righteous.
             child: Text(
               initial,
-              style: const TextStyle(
+              style: GoogleFonts.righteous(
                 color: Colors.white,
-                fontWeight: FontWeight.w800,
-                fontSize: 17,
+                fontSize: 19,
+                height: 1.0,
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withValues(alpha: 0.28),
+                    blurRadius: 3,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
               ),
             ),
           ),

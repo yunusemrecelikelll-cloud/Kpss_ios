@@ -22,6 +22,7 @@ import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
 import 'premium_screen.dart';
 import '../utils/ust_bildirim.dart';
+import '../widgets/kodlama_notu.dart';
 
 const int kFreeMaxAttemptsPerTopic = 2;
 
@@ -92,6 +93,11 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
   Subject get subject => widget.subject;
   Topic get topic => widget.topic;
 
+  // Akılda Kalıcı Kodlama verisi TEK KEZ yüklenir ve önbelleğe alınır. Aksi
+  // hâlde her saniyelik zamanlayıcı setState'i FutureBuilder'ı yeniden
+  // tetikleyip kısa siyah ekran/titremeye yol açıyordu (kullanıcı isteği).
+  Future<Map<String, List<String>>>? _mnemonicsFuture;
+
   @override
   void initState() {
     super.initState();
@@ -101,6 +107,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
     context.read<RemoteQuestionService>().prefetch(topic.id);
     _ttsService = context.read<TtsService>();
     _storageService = context.read<StorageService>();
+    _mnemonicsFuture = context.read<DataService>().loadMnemonics();
     WidgetsBinding.instance.addObserver(this);
 
     // Başka bir konudan/ekrandan gelinmiş olabilir — orada başlatılmış bir
@@ -375,7 +382,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                 // ══════════ 1) AKILDA KALICI ══════════
                 if (_bolum == 1)
                   FutureBuilder<Map<String, List<String>>>(
-                    future: context.read<DataService>().loadMnemonics(),
+                    future: _mnemonicsFuture,
                     builder: (context, snap) {
                       final tips = snap.data?[topic.id] ?? const [];
                       if (snap.connectionState == ConnectionState.waiting) {
@@ -422,38 +429,42 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                               ),
                             )
                           else
-                            // Kullanıcı isteği: akılda kalıcı kodlamalar
-                            // anasayfadaki gibi RENKLİ NOT KÂĞITLARINDA ve BİR
-                            // SATIRDA 2 KÂĞIT olacak biçimde (2 sütunlu masonry;
-                            // farklı yükseklikler için sol/sağ sütuna dağıtılır).
+                            // Kullanıcı isteği: konu içindeki akılda kalıcı
+                            // kodlamalar ANASAYFADAKİ (mnemonics) tasarımın
+                            // AYNISI olsun — renkli yapışkan not kâğıtları,
+                            // bir satırda 2 kâğıt (2 sütunlu masonry).
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
                                       for (var i = 0; i < tips.length; i += 2) ...[
-                                        _NotSayfasi(
-                                            emoji: '🧠',
+                                        KodlamaNotu(
                                             text: tips[i],
-                                            colors: colors,
-                                            renkIndex: i),
-                                        const SizedBox(height: kDsGap),
+                                            ustEtiket: topic.baslik,
+                                            altEtiket: 'Akılda Kalıcı',
+                                            index: i,
+                                            acikTema: colors.isLight),
+                                        const SizedBox(height: 14),
                                       ],
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: kDsGap),
+                                const SizedBox(width: 12),
                                 Expanded(
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
                                     children: [
                                       for (var i = 1; i < tips.length; i += 2) ...[
-                                        _NotSayfasi(
-                                            emoji: '🧠',
+                                        KodlamaNotu(
                                             text: tips[i],
-                                            colors: colors,
-                                            renkIndex: i),
-                                        const SizedBox(height: kDsGap),
+                                            ustEtiket: topic.baslik,
+                                            altEtiket: 'Akılda Kalıcı',
+                                            index: i,
+                                            acikTema: colors.isLight),
+                                        const SizedBox(height: 14),
                                       ],
                                     ],
                                   ),
@@ -662,7 +673,7 @@ class _BolumBar extends StatelessWidget {
 
   static const _ogeler = [
     ('📚', 'Anlatım'),
-    ('🧠', 'Akılda\nKalıcı'),
+    ('🧠', 'Kodlama'),
     ('🎥', 'YouTube'),
     ('📝', 'Test'),
   ];
@@ -678,8 +689,10 @@ class _BolumBar extends StatelessWidget {
         color: colors.bg2,
         border: Border(bottom: BorderSide(color: colors.border)),
       ),
-      child: SizedBox(
-        height: 60,
+      // IntrinsicHeight: satır içeriğe göre büyür → sabit yükseklikte
+      // "BOTTOM OVERFLOWED" taşması olmaz; tüm butonlar en uzun butonla
+      // aynı yüksekliğe stretch edilir.
+      child: IntrinsicHeight(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -741,7 +754,7 @@ class _BolumButon extends StatelessWidget {
               Text(
                 etiket,
                 textAlign: TextAlign.center,
-                maxLines: 2,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontSize: 10.5,

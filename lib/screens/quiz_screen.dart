@@ -1132,11 +1132,17 @@ class _OptionTile extends StatelessWidget {
         : (showResult && selected && !isCorrectOption)
             ? c.danger
             : sikRenk;
-    // Harf rengi: rozet AÇIK (soluk) tonlardaysa beyaz harf kaybolur; bu yüzden
-    // rozetin parlaklığına göre ZIT renk seçilir (açık rozette koyu, koyu
-    // rozette beyaz harf). Kullanıcı isteği: harfler tam görünsün.
-    final Color harfRenk =
-        rozetRenk.computeLuminance() > 0.5 ? const Color(0xFF241C33) : Colors.white;
+    // Harf rengi: normal şık rozetleri paletteki SOLUK tonlar olduğundan
+    // beyaz harf kaybolur; bu yüzden onlarda DAİMA koyu mürekkep kullanılır.
+    // Sadece sonuç rozetlerinde (doygun yeşil/kırmızı) parlaklığa göre koyu/
+    // beyaz seçilir. Kullanıcı isteği: harfler her durumda tam görünsün.
+    final bool sonucRozeti =
+        showResult && (isCorrectOption || (selected && !isCorrectOption));
+    final Color harfRenk = sonucRozeti
+        ? (rozetRenk.computeLuminance() > 0.55
+            ? const Color(0xFF1A1420)
+            : Colors.white)
+        : const Color(0xFF241C33);
 
     return Opacity(
       opacity: locked && !showResult ? 0.55 : 1,
