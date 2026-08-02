@@ -657,6 +657,17 @@ class StorageService extends ChangeNotifier {
 
   Future<void> clearGameStats() async => _set('game_stats', <String, dynamic>{});
 
+  // ── Solitaire GÖRÜLEN kategoriler (kullanıcı isteği: yeniden girince aynı
+  // konular gelmesin) ─────────────────────────────────────────────────────────
+  List<String> getSolitaireSeen() =>
+      List<String>.from(_get('solitaire_seen', <dynamic>[]));
+  Future<void> addSolitaireSeen(List<String> adlar) async {
+    final s = getSolitaireSeen().toSet()..addAll(adlar);
+    await _set('solitaire_seen', s.toList());
+  }
+
+  Future<void> clearSolitaireSeen() async => _set('solitaire_seen', <dynamic>[]);
+
   // ── Oyun ilerlemesi (Kart Oyunu V2 / Solitaire) — konu bazlı geçme takibi ──
   Map<String, bool> getGamePassedTopics(String gameId) =>
       Map<String, bool>.from(_get('game_passed_$gameId', <String, dynamic>{}));

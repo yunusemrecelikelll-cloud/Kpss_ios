@@ -455,6 +455,9 @@ class KategoriEslestirmeEngine {
       deste.shuffle(_rnd);
     }
     acilanlar.add(deste.removeAt(0));
+    // Kullanıcı isteği: sağ üstteki desteden kart çekmek de bir HAMLE harcar
+    // (kalan hamle azalır).
+    hamle++;
     return true;
   }
 

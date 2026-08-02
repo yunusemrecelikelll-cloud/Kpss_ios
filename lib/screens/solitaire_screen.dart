@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../data/kategori_eslestirme_data.dart';
@@ -340,12 +341,26 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     }
     if (!mounted) return;
 
+    // Kartları HER OYUNDA karıştır; ayrıca kullanıcı yeniden girdiğinde AYNI
+    // kategorileri görmesin diye daha önce görülenler geriye atılır (görülmeyen
+    // kategoriler önce gelir). Tümü görülünce liste sıfırlanır.
     final pool = List<KategoriGrubu>.from(kKategoriGruplari)..shuffle(Random());
-    // Kategori sayısı artık ızgara kapasitesiyle SINIRLI DEĞİL: tahtada aynı
-    // anda [kHedefSlotSayisi] hedef durur, kalanlar desteden gelir.
     final int adet =
         widget.kategoriSayisi < pool.length ? widget.kategoriSayisi : pool.length;
-    final secilen = pool.take(adet).toList();
+    var gorulen = storage.getSolitaireSeen().toSet();
+    final gorulmeyen = pool.where((g) => !gorulen.contains(g.kategoriAdi)).toList();
+    // Görülmeyen kategoriler bu tur için yeterli değilse görülen kaydı sıfırla.
+    if (gorulmeyen.length < adet) {
+      storage.clearSolitaireSeen();
+      gorulen = {};
+    }
+    final sirali = [
+      ...pool.where((g) => !gorulen.contains(g.kategoriAdi)),
+      ...pool.where((g) => gorulen.contains(g.kategoriAdi)),
+    ];
+    final secilen = sirali.take(adet).toList();
+    // ignore: unawaited_futures
+    storage.addSolitaireSeen(secilen.map((e) => e.kategoriAdi).toList());
     _engine.startLevel(secilen);
     _dagitimCtrl.forward(from: 0); // kartlar sağ üstteki desteden dağıtılsın
     setState(() {
@@ -386,6 +401,10 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   /// Başarılı bir eşleştirme sonrası ortak akış: coin ver, bitiş/kayıp kontrolü.
   Future<void> _eslesmeSonrasi() async {
     context.read<SoundService>().click();
+    // Kullanıcı isteği: doğru eşleştirmede telefon TİTRESİN + kartta kısa bir
+    // "pop" animasyonu (aşağıdaki _dogruPopKategori ile kısa süre büyür).
+    HapticFeedback.mediumImpact();
+    _dogruPop();
     await _coinEkle(_engine.sonEslesenAdet * kCoinPerKart);
     if (!mounted) return;
     if (_engine.seviyeTamamlandi) {
@@ -475,7 +494,17 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     }
   }
 
+  // Doğru eşleşmede kısa "pop" (büyüyüp sönen ✓ rozeti) — build içinde overlay.
+  bool _dogruPopGoster = false;
+  void _dogruPop() {
+    setState(() => _dogruPopGoster = true);
+    Future.delayed(const Duration(milliseconds: 650), () {
+      if (mounted) setState(() => _dogruPopGoster = false);
+    });
+  }
+
   void _flashWrong(String kategoriAdi) {
+    HapticFeedback.lightImpact(); // yanlış: hafif titreşim
     setState(() => _flashKategori = kategoriAdi);
     Future.delayed(const Duration(milliseconds: 550), () {
       if (mounted && _flashKategori == kategoriAdi) setState(() => _flashKategori = null);
@@ -483,6 +512,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   }
 
   void _flashWrongSutun(int sutun) {
+    HapticFeedback.lightImpact();
     setState(() => _flashSutun = sutun);
     Future.delayed(const Duration(milliseconds: 550), () {
       if (mounted && _flashSutun == sutun) setState(() => _flashSutun = null);
@@ -490,6 +520,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   }
 
   void _flashWrongSlot(int slot) {
+    HapticFeedback.lightImpact();
     setState(() => _flashSlot = slot);
     Future.delayed(const Duration(milliseconds: 550), () {
       if (mounted && _flashSlot == slot) setState(() => _flashSlot = null);
@@ -498,7 +529,9 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
 
   void _onCekDeste() {
     if (!_engine.cekilebilir) return;
+    // Kullanıcı isteği: kart çekme sesi + hafif dokunuş geri bildirimi.
     context.read<SoundService>().click();
+    HapticFeedback.selectionClick();
     setState(() => _engine.cekDeste());
   }
 
@@ -817,7 +850,9 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
         ),
         elevation: 0,
       ),
-      body: SafeArea(
+      body: Stack(
+        children: [
+        SafeArea(
         child: Column(
           children: [
             // Üst çubuk + tahta TEK bir LayoutBuilder ile ölçülür: kullanılabilir
@@ -998,6 +1033,42 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
             ),
           ],
         ),
+      ),
+        // Doğru eşleşme "pop" rozeti (kullanıcı isteği: kartta ufak animasyon).
+        if (_dogruPopGoster)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: Center(
+                child: TweenAnimationBuilder<double>(
+                  key: const ValueKey('dogruPop'),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.elasticOut,
+                  builder: (context, t, _) => Opacity(
+                    opacity: (1.4 - t).clamp(0.0, 1.0),
+                    child: Transform.scale(
+                      scale: 0.5 + t * 0.7,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade600,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.green.withValues(alpha: 0.5),
+                                blurRadius: 24),
+                          ],
+                        ),
+                        child: const Icon(Icons.check_rounded,
+                            color: Colors.white, size: 40),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
