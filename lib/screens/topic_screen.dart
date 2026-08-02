@@ -422,13 +422,14 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                               ),
                             )
                           else
-                            for (final tip in tips) ...[
-                              DsCard(
-                                accent: colors.violet,
-                                padding: const EdgeInsets.all(14),
-                                child: Text(tip,
-                                    style: TextStyle(fontSize: 13, height: 1.5, color: colors.text)),
-                              ),
+                            // Kullanıcı isteği: akılda kalıcı kodlamalar da
+                            // anasayfadaki gibi RENKLİ NOT KÂĞITLARINDA görünsün.
+                            for (var i = 0; i < tips.length; i++) ...[
+                              _NotSayfasi(
+                                  emoji: '🧠',
+                                  text: tips[i],
+                                  colors: colors,
+                                  renkIndex: i),
                               const SizedBox(height: kDsGap),
                             ],
                         ],
