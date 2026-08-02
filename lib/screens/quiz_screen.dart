@@ -1095,12 +1095,15 @@ class _OptionTile extends StatelessWidget {
   /// Her şıkkın (A/B/C/D/E) kendine ait ayırt edici rengi (kullanıcı isteği:
   /// "şıklar farklı renkli olsun"). Her iki temada da okunur, canlı sabit
   /// renkler (madalya renkleri gibi bilerek sabit).
+  // Kullanıcı isteği: şık renkleri YEŞİL ve KIRMIZIYA yakın OLMASIN (bunlar
+  // doğru/yanlış geri bildirimine ayrılmıştır); SOLUK/pastel tonlar tercih
+  // edildi — birbirinden ayrışan ama nötr renkler.
   static const Map<String, Color> _sikRenkleri = {
-    'A': Color(0xFF8B7CF6), // mor
-    'B': Color(0xFF34D399), // yeşil-mint
-    'C': Color(0xFFF4B740), // altın
-    'D': Color(0xFFF472B6), // pembe
-    'E': Color(0xFF60A5FA), // mavi
+    'A': Color(0xFFB0A8E0), // soluk lavanta
+    'B': Color(0xFF9BB8D9), // soluk mavi
+    'C': Color(0xFFD8C08A), // soluk kum/amber
+    'D': Color(0xFFC4A4C9), // soluk erguvan
+    'E': Color(0xFFA8B0CC), // soluk gece mavisi
   };
 
   @override

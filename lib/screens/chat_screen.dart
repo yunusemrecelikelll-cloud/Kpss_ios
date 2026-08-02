@@ -91,21 +91,11 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     final auth = context.watch<AuthService>();
     final storage = context.watch<StorageService>();
-    final c = context.watch<ThemeProvider>().colors;
 
-    if (!_chat.isConfigured) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('💬 Sohbet')),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Text('Sohbet özelliği şu an kullanılamıyor.', style: TextStyle(color: c.textFaint)),
-          ),
-        ),
-      );
-    }
-
-    if (!auth.isSignedIn) {
+    // Kullanıcı isteği: sohbet kullanılamıyorsa (arka uç yapılandırılmamış YA
+    // DA giriş yapılmamış) "kullanılamıyor" ölü mesajı yerine GİRİŞ YAPMAN
+    // GEREKİYOR ekranı gösterilir ve giriş ekranına yönlendirir.
+    if (!_chat.isConfigured || !auth.isSignedIn) {
       return const _ChatLoginPrompt();
     }
 
