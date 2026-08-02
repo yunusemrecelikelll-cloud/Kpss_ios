@@ -359,7 +359,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: _MiniAksiyonKarti(
                     emoji: '🧮',
                     baslik: 'Puan Hesaplama',
-                    renk: c.mint,
+                    // Kullanıcı isteği: Akılda Kalıcı Kodlama (mint) ile AYNI
+                    // renk olmasın; her kart farklı renk.
+                    renk: c.rose,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -376,7 +378,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: _MiniAksiyonKarti(
                     emoji: '🏆',
                     baslik: 'Lig',
-                    renk: c.gold,
+                    renk: c.warn,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -389,7 +391,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: _MiniAksiyonKarti(
                     emoji: '📈',
                     baslik: 'İstatistik',
-                    renk: c.rose,
+                    renk: c.success,
                     onTap: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
@@ -878,10 +880,15 @@ class _DraftResumeCard extends StatelessWidget {
     final answeredCount = answers.where((a) => a != null).length;
     final oran = questions.isEmpty ? 0.0 : answeredCount / questions.length;
 
-    // Kullanıcı isteği: "göz alıcı sarı" yerine daha LOŞ bir ton. Parlak
-    // uyarı sarısı, nötr gri (textDim) yönünde harmanlanarak dinlendirici,
-    // temaya uyumlu bir kehribar tonuna çekilir.
-    final Color los = Color.lerp(c.warn, c.textDim, 0.45)!;
+    // Kullanıcı isteği: göz alıcı parlak sarı YERİNE daha LOŞ ama özellikle
+    // Gece Yarısı (koyu) temasında OKUNUR bir ton. Griye harmanlamak yerine
+    // uyarı renginin hue'sü korunur, parlaklık/doygunluk düşürülerek koyu
+    // zeminde net okunan dinlendirici bir altın elde edilir.
+    final bool koyuTema = !c.isLight;
+    final Color los = HSLColor.fromColor(c.warn)
+        .withSaturation(koyuTema ? 0.60 : 0.64)
+        .withLightness(koyuTema ? 0.52 : 0.44)
+        .toColor();
 
     return DsCard(
       accent: los,
@@ -937,10 +944,10 @@ class _DraftResumeCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
+              // Kullanıcı isteği: Sil butonu arkaplanı KIRMIZI (dolgulu).
               DsPillButton(
                 label: 'Sil',
-                color: c.textFaint,
-                filled: false,
+                color: c.danger,
                 onPressed: () {
                   context.read<SoundService>().click();
                   context.read<StorageService>().clearDraft(draftKey);
@@ -1246,6 +1253,23 @@ Widget wrapPremiumKart(BuildContext context, Widget kart, bool premiumOzellik) {
   );
 }
 
+/// Hızlı erişim / mini aksiyon kartlarının RENKLİ zemin gradyanı. Kullanıcı
+/// isteği: kartların arkaplan tasarımı değişsin ve renkleri BİRBİRİNDEN belirgin
+/// biçimde farklı görünsün. Kartın kendi rengi + hafif hue kaydırılmış ikinci
+/// tonla çift renkli yumuşak bir yıkama üretilir (metin okunaklı kalır).
+Gradient _kartZeminGradyani(Color renk, bool isLight) {
+  final hsl = HSLColor.fromColor(renk);
+  final renk2 = hsl.withHue((hsl.hue + 26) % 360.0).toColor();
+  return LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      renk.withValues(alpha: isLight ? 0.22 : 0.34),
+      renk2.withValues(alpha: isLight ? 0.09 : 0.15),
+    ],
+  );
+}
+
 class _HizliErisimKarti extends StatelessWidget {
   final String emoji;
   final String baslik;
@@ -1267,6 +1291,7 @@ class _HizliErisimKarti extends StatelessWidget {
       context,
       DsCard(
         accent: renk,
+        gradient: _kartZeminGradyani(renk, c.isLight),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         onTap: onTap,
         child: Row(
@@ -1413,6 +1438,7 @@ class _MiniAksiyonKarti extends StatelessWidget {
       context,
       DsCard(
         accent: renk,
+        gradient: _kartZeminGradyani(renk, c.isLight),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
         onTap: onTap,
         child: Row(

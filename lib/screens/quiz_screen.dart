@@ -1092,27 +1092,15 @@ class _OptionTile extends StatelessWidget {
     this.isCorrectOption = false,
   });
 
-  /// Her şıkkın (A/B/C/D/E) kendine ait ayırt edici rengi (kullanıcı isteği:
-  /// "şıklar farklı renkli olsun"). Her iki temada da okunur, canlı sabit
-  /// renkler (madalya renkleri gibi bilerek sabit).
-  // Kullanıcı isteği: şık renkleri YEŞİL ve KIRMIZIYA yakın OLMASIN (bunlar
-  // doğru/yanlış geri bildirimine ayrılmıştır); SOLUK/pastel tonlar tercih
-  // edildi — birbirinden ayrışan ama nötr renkler.
-  static const Map<String, Color> _sikRenkleri = {
-    'A': Color(0xFFB0A8E0), // soluk lavanta
-    'B': Color(0xFF9BB8D9), // soluk mavi
-    'C': Color(0xFFD8C08A), // soluk kum/amber
-    'D': Color(0xFFC4A4C9), // soluk erguvan
-    'E': Color(0xFFA8B0CC), // soluk gece mavisi
-  };
-
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final sikRenk = _sikRenkleri[letter] ?? c.violet;
+    // Kullanıcı isteği: şık harfleri TEK RENK olsun. Tüm şıklar (A–E) aynı
+    // tema vurgu rengini (violet) paylaşır; artık her harfe ayrı renk yok.
+    final sikRenk = c.violet;
 
     // Cevap sonrası: doğru şık YEŞİL, yanlış seçilen şık KIRMIZI vurgulanır.
-    // Cevap öncesi/nötr: her şık KENDİ rengiyle görünür; seçilen daha belirgin.
+    // Cevap öncesi/nötr: her şık aynı tema rengiyle görünür; seçilen daha belirgin.
     Color borderColor;
     Color? bgColor;
     if (showResult && isCorrectOption) {
@@ -1126,23 +1114,18 @@ class _OptionTile extends StatelessWidget {
       bgColor = sikRenk.withValues(alpha: selected ? 0.16 : 0.06);
     }
 
-    // Rozet rengi: sonuç modunda doğru/yanlışa göre, aksi halde şık rengi.
+    // Rozet rengi: sonuç modunda doğru/yanlışa göre, aksi halde tek şık rengi.
     final Color rozetRenk = (showResult && isCorrectOption)
         ? c.success
         : (showResult && selected && !isCorrectOption)
             ? c.danger
             : sikRenk;
-    // Harf rengi: normal şık rozetleri paletteki SOLUK tonlar olduğundan
-    // beyaz harf kaybolur; bu yüzden onlarda DAİMA koyu mürekkep kullanılır.
-    // Sadece sonuç rozetlerinde (doygun yeşil/kırmızı) parlaklığa göre koyu/
-    // beyaz seçilir. Kullanıcı isteği: harfler her durumda tam görünsün.
-    final bool sonucRozeti =
-        showResult && (isCorrectOption || (selected && !isCorrectOption));
-    final Color harfRenk = sonucRozeti
-        ? (rozetRenk.computeLuminance() > 0.55
-            ? const Color(0xFF1A1420)
-            : Colors.white)
-        : const Color(0xFF241C33);
+    // Harf rengi: rozet parlaklığına göre kontrast — doygun renklerde (violet/
+    // yeşil/kırmızı) beyaz, açık tonlarda koyu mürekkep. Harfler her durumda
+    // tam görünür.
+    final Color harfRenk = rozetRenk.computeLuminance() > 0.55
+        ? const Color(0xFF1A1420)
+        : Colors.white;
 
     return Opacity(
       opacity: locked && !showResult ? 0.55 : 1,
