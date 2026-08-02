@@ -293,49 +293,18 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
 
   Widget _buildFeedback(KpssColors colors) {
     final correct = _tapped?.id == _target.id;
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! Bu il ${_target.ad}.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. Doğru cevap: ${_target.ad}.',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          // Yanlış işaretlediyse OLASI SEBEP açıklaması (kullanıcı isteği).
-          if (!correct && _yanlisSecilen.isNotEmpty) ...[
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: colors.warn.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: colors.warn.withValues(alpha: 0.4)),
-              ),
-              child: Text(
-                '💡 ${haritaYanlisSebebi(kIliBulGameId, _target.ad, _yanlisSecilen.map((e) => e.ad).toList())}',
-                style: TextStyle(fontSize: 12, height: 1.4, color: colors.text),
-              ),
-            ),
-          ],
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? 'Doğru! Bu il ${_target.ad}.'
+          : 'Doğru cevap: ${_target.ad}.',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(
+              kIliBulGameId, _target.ad, _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

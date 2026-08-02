@@ -36,6 +36,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
   TurkeyProvince? _tapped;
   bool _showResult = false;
   String? _flashWrongId;
+  final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
   @override
@@ -92,8 +93,10 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
       return;
     }
     _attempts++;
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
     context.read<StorageService>().addGameAnswer(kKomsuIlGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
@@ -102,6 +105,20 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
       _flashWrong(p.id);
       haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
     }
+  }
+
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    haritaYanlisKaydet(
+      context,
+      soru: '"${_target.ad}"nin komşularından birini seç',
+      dogruId: '',
+      dogruAd: '${_target.ad}\'nin komşuları',
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kKomsuIlGameId,
+      modAd: 'Komşu İl',
+    );
   }
 
   /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
@@ -120,6 +137,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
     }
     setState(() {
       _round++;
+      _yanlisSecilen.clear();
       _tapped = null;
       _showResult = false;
       _attempts = 0;
@@ -200,35 +218,18 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
   Widget _buildFeedback(KpssColors colors) {
     final correct = _target.komsular.contains(_tapped?.id);
     final neighborNames = _target.komsular.map((id) => kTurkeyProvinces.firstWhere((p) => p.id == id).ad).join(', ');
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! ${_tapped?.ad}, ${_target.ad}\'nin komşusudur.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. ${_tapped?.ad} bir komşu değil.',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 6),
-          Text('${_target.ad}\'nin komşuları: $neighborNames', style: const TextStyle(fontSize: 12.5)),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? '${_tapped?.ad}, ${_target.ad}\'nin komşusudur.'
+          : '${_tapped?.ad} bir komşu değil. Komşular: $neighborNames',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(kKomsuIlGameId, _target.ad,
+              _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

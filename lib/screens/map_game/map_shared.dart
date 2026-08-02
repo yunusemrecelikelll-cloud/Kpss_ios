@@ -156,6 +156,97 @@ String haritaYanlisSebebi(
   }
 }
 
+/// Harita sorusu bittiğinde gösterilen SONUÇ afişi — yeni afiş diliyle
+/// (kullanıcı isteği: "en son eklediğin gibi afiş olsun, arkasındaki sonraki
+/// soru afişini kaldır"). Doğru/yanlışa göre yeşil/kırmızı gradyan, ikon,
+/// başlık, isteğe bağlı açıklama ve içinde "Sonraki Soru →" düğmesi.
+Widget haritaSonucAfisi(
+  BuildContext context, {
+  required bool dogru,
+  required String baslik,
+  String? aciklama,
+  required bool sonSoru,
+  required VoidCallback onNext,
+}) {
+  final c = context.watch<ThemeProvider>().colors;
+  final renk = dogru ? c.success : c.danger;
+  return Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color.alphaBlend(renk.withValues(alpha: 0.22), c.bg2), c.bg2],
+      ),
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: renk.withValues(alpha: 0.55)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black.withValues(alpha: 0.24),
+            blurRadius: 16,
+            offset: const Offset(0, 6)),
+      ],
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 34,
+              height: 34,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: renk.withValues(alpha: 0.18), shape: BoxShape.circle),
+              child: Text(dogru ? '✅' : '❌',
+                  style: const TextStyle(fontSize: 16)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(baslik,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.5,
+                      color: c.text)),
+            ),
+          ],
+        ),
+        if (aciklama != null && aciklama.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: c.warn.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: c.warn.withValues(alpha: 0.35)),
+            ),
+            child: Text('💡 $aciklama',
+                style: TextStyle(fontSize: 12, height: 1.4, color: c.text)),
+          ),
+        ],
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: c.violet,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              padding: const EdgeInsets.symmetric(vertical: 12),
+            ),
+            onPressed: onNext,
+            child: Text(sonSoru ? 'Bitir' : 'Sonraki Soru →',
+                style: const TextStyle(fontWeight: FontWeight.w900)),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
 /// Yanlış cevabı harita YANLIŞLARIM bankasına kaydeder.
 Future<void> haritaYanlisKaydet(
   BuildContext context, {

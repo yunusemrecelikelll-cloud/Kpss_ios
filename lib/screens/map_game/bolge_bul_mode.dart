@@ -36,6 +36,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
   TurkeyProvince? _tapped;
   bool _showResult = false;
   String? _flashWrongId;
+  final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
   @override
@@ -103,7 +104,9 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
     }
     _attempts++;
     context.read<StorageService>().addGameAnswer(kBolgeBulGameId, 'cografya', false);
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
@@ -112,6 +115,20 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       _flashWrong(p.id);
       haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
     }
+  }
+
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    haritaYanlisKaydet(
+      context,
+      soru: '"$_target" Bölgesi\'nden bir il seç',
+      dogruId: '',
+      dogruAd: '$_target Bölgesi',
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kBolgeBulGameId,
+      modAd: 'Bölgeyi Bul',
+    );
   }
 
   /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
@@ -134,6 +151,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       _showResult = false;
       _attempts = 0;
       _flashWrongId = null;
+      _yanlisSecilen.clear();
     });
   }
 
@@ -205,33 +223,18 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
 
   Widget _buildFeedback(KpssColors colors) {
     final correct = _tapped?.bolge == _target;
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! ${_tapped?.ad}, $_target Bölgesi\'ndedir.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. ${_tapped?.ad}, ${_tapped?.bolge} Bölgesi\'nde yer alır (aranan: $_target).',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? '${_tapped?.ad}, $_target Bölgesi\'ndedir.'
+          : '${_tapped?.ad}, ${_tapped?.bolge} Bölgesi\'nde (aranan: $_target).',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(kBolgeBulGameId, '$_target Bölgesi',
+              _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

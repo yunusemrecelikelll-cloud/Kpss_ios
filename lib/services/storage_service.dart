@@ -595,7 +595,8 @@ class StorageService extends ChangeNotifier {
     final anahtar = '${kayit['soru']}|${kayit['dogruId']}';
     liste.removeWhere((e) => '${e['soru']}|${e['dogruId']}' == anahtar);
     liste.insert(0, kayit);
-    if (liste.length > 300) liste.removeRange(300, liste.length);
+    // Kullanıcı isteği: yalnızca SON 20 yanlış tutulur; öncekiler otomatik silinir.
+    if (liste.length > 20) liste.removeRange(20, liste.length);
     await _set('map_wrong_bank', liste);
   }
 

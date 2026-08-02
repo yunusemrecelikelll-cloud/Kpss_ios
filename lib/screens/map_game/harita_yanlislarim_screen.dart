@@ -39,7 +39,7 @@ class _HaritaYanlislarimScreenState extends State<HaritaYanlislarimScreen> {
       appBar: AppBar(
         title: const Text('🗺️❌ Harita Yanlışlarım'),
         actions: [
-          if (_liste.isNotEmpty)
+          if (_liste.isNotEmpty) ...[
             IconButton(
               tooltip: 'Tümünü test et',
               icon: const Icon(Icons.quiz_outlined),
@@ -49,6 +49,33 @@ class _HaritaYanlislarimScreenState extends State<HaritaYanlislarimScreen> {
                 _yukle();
               },
             ),
+            IconButton(
+              tooltip: 'Yanlışları temizle',
+              icon: const Icon(Icons.delete_sweep_outlined),
+              onPressed: () async {
+                final storage = context.read<StorageService>();
+                final ok = await showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    content: const Text(
+                        'Tüm harita yanlışların temizlensin mi?'),
+                    actions: [
+                      TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: const Text('Vazgeç')),
+                      TextButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: const Text('Temizle')),
+                    ],
+                  ),
+                );
+                if (ok == true) {
+                  await storage.clearMapWrongBank();
+                  if (mounted) _yukle();
+                }
+              },
+            ),
+          ],
         ],
       ),
       body: _liste.isEmpty

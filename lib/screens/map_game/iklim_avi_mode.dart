@@ -422,6 +422,7 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
   TurkeyProvince? _tapped;
   bool _showResult = false;
   String? _flashWrongId;
+  final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
   @override
@@ -479,8 +480,10 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
       return;
     }
     _attempts++;
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
     context.read<StorageService>().addGameAnswer(kIklimAviGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
@@ -489,6 +492,24 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
       _flashWrong(p.id);
       haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
     }
+  }
+
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    final dogruId = _soru.dogruIller.isNotEmpty ? _soru.dogruIller.first : '';
+    final dogruAd = dogruId.isEmpty
+        ? ''
+        : kTurkeyProvinces.firstWhere((p) => p.id == dogruId).ad;
+    haritaYanlisKaydet(
+      context,
+      soru: _soru.soru,
+      dogruId: dogruId,
+      dogruAd: dogruAd,
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kIklimAviGameId,
+      modAd: 'İklim Avı',
+    );
   }
 
   /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
@@ -507,6 +528,7 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
     }
     setState(() {
       _round++;
+      _yanlisSecilen.clear();
       _tapped = null;
       _showResult = false;
       _attempts = 0;
@@ -581,43 +603,17 @@ class _IklimAviScreenState extends State<IklimAviScreen> {
   Widget _buildFeedback(KpssColors colors) {
     final tapped = _tapped;
     final correct = tapped != null && _uyar(tapped);
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! ${tapped.ad} bu tarife uyuyor.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. ${tapped?.ad} bu tarife uymuyor; '
-                    'haritada yeşil gösterilen iller doğru cevaplardır.',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 8),
-          Text('💡 ${_soru.aciklama}', style: const TextStyle(fontSize: 12.5, height: 1.45)),
-          if (tapped != null) ...[
-            const SizedBox(height: 6),
-            Text(
-              '${tapped.ad}: ${tapped.iklim}',
-              style: TextStyle(fontSize: 11.5, color: colors.textFaint),
-            ),
-          ],
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? '${tapped.ad} bu tarife uyuyor.'
+          : '${tapped?.ad} uymuyor. Yeşiller doğru cevaplardır.',
+      aciklama: !correct && _yanlisSecilen.isNotEmpty
+          ? '${_soru.aciklama} ${haritaYanlisSebebi(kIklimAviGameId, _soru.aciklama, _yanlisSecilen.map((e) => e.ad).toList())}'
+          : _soru.aciklama,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }
