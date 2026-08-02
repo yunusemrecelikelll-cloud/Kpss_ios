@@ -300,7 +300,30 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
           ),
         ],
       ),
-      body: Column(
+      // Kullanıcı isteği: konu anlatımının arkası SOLDAN SAĞA renk geçişli,
+      // cıvıl cıvıl olsun (ama okunur/ferah kalsın, içi daralmasın). Temanın
+      // vurgu renklerinden düşük saydamlıkta yatay bir gradyan zemin.
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color.alphaBlend(
+                  colors.violet.withValues(alpha: colors.isLight ? 0.10 : 0.16),
+                  colors.bg),
+              colors.bg,
+              Color.alphaBlend(
+                  colors.rose.withValues(alpha: colors.isLight ? 0.09 : 0.15),
+                  colors.bg),
+              Color.alphaBlend(
+                  colors.mint.withValues(alpha: colors.isLight ? 0.08 : 0.13),
+                  colors.bg),
+            ],
+            stops: const [0.0, 0.4, 0.72, 1.0],
+          ),
+        ),
+        child: Column(
         children: [
           // Konuya girince 4 bölüm butonu (kullanıcı isteği): hangisine
           // basılırsa o bölüm açılır.
@@ -554,6 +577,7 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
           ), // Expanded
         ], // Column children
       ), // Column
+      ), // Container (gradyan zemin)
     );
   }
 
