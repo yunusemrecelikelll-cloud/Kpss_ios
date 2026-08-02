@@ -258,6 +258,10 @@ Future<void> haritaYanlisKaydet(
   required String modId,
   required String modAd,
 }) async {
+  // Kullanıcı isteği: sonuç afişi çıkarken önceki "Kalan hak" afişi (SnackBar)
+  // üst üste binmesin — sonuç gösterildiği an (bu fonksiyon çağrıldığında)
+  // açık afişleri kapat.
+  ScaffoldMessenger.of(context).clearSnackBars();
   if (secilenIds.isEmpty) return;
   await context.read<StorageService>().addMapWrong({
     'soru': soru,

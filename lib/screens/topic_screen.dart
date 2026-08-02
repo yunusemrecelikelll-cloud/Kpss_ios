@@ -422,16 +422,44 @@ class _TopicScreenState extends State<TopicScreen> with WidgetsBindingObserver {
                               ),
                             )
                           else
-                            // Kullanıcı isteği: akılda kalıcı kodlamalar da
-                            // anasayfadaki gibi RENKLİ NOT KÂĞITLARINDA görünsün.
-                            for (var i = 0; i < tips.length; i++) ...[
-                              _NotSayfasi(
-                                  emoji: '🧠',
-                                  text: tips[i],
-                                  colors: colors,
-                                  renkIndex: i),
-                              const SizedBox(height: kDsGap),
-                            ],
+                            // Kullanıcı isteği: akılda kalıcı kodlamalar
+                            // anasayfadaki gibi RENKLİ NOT KÂĞITLARINDA ve BİR
+                            // SATIRDA 2 KÂĞIT olacak biçimde (2 sütunlu masonry;
+                            // farklı yükseklikler için sol/sağ sütuna dağıtılır).
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      for (var i = 0; i < tips.length; i += 2) ...[
+                                        _NotSayfasi(
+                                            emoji: '🧠',
+                                            text: tips[i],
+                                            colors: colors,
+                                            renkIndex: i),
+                                        const SizedBox(height: kDsGap),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: kDsGap),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      for (var i = 1; i < tips.length; i += 2) ...[
+                                        _NotSayfasi(
+                                            emoji: '🧠',
+                                            text: tips[i],
+                                            colors: colors,
+                                            renkIndex: i),
+                                        const SizedBox(height: kDsGap),
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                         ],
                       );
                     },
