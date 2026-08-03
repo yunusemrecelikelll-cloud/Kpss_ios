@@ -34,6 +34,43 @@ service cloud.firestore {
       return request.auth != null && request.auth.uid == 'OdTRShrgauSH2EodN5L9NzXmSpZ2';
     }
 
+    // ── Alan doğrulama yardımcıları ────────────────────────────────────────
+    // Cloud Functions olmadan (Spark planı) rekabetçi verinin SUNUCU TARAFINDA
+    // en azından TİP ve MAKUL ARALIK denetimi yapılabilmesi için. Bu, gerçek
+    // bir anti-cheat değildir (kararlı bir kullanıcı hâlâ "makul ama şişirilmiş"
+    // bir skor yazabilir), ancak değiştirilmiş bir istemcinin lig tablosuna
+    // absürt (ör. 999.999.999 puan) değerler enjekte etmesini engeller.
+    // Her alan YALNIZCA yazımda VARSA denetlenir; böylece parçalı (merge)
+    // yazımlar (ör. yalnızca {kod, displayName}) bozulmaz ve ileride eklenecek
+    // alanlar kuralı kırmaz.
+    function optNum(d, f, lo, hi) {
+      return !(f in d) || (d[f] is number && d[f] >= lo && d[f] <= hi);
+    }
+    function optStr(d, f, maxLen) {
+      return !(f in d) || (d[f] is string && d[f].size() <= maxLen);
+    }
+    function optBool(d, f) {
+      return !(f in d) || d[f] is bool;
+    }
+    function optList(d, f, maxSize) {
+      return !(f in d) || (d[f] is list && d[f].size() <= maxSize);
+    }
+    // league_scores dokümanının rekabetçi alanlarının geçerlilik denetimi.
+    function gecerliLigVerisi(d) {
+      return optStr(d, 'displayName', 60)
+          && optStr(d, 'kod', 6)
+          && optStr(d, 'weekStart', 16)
+          && optNum(d, 'rate', 0, 100)
+          && optNum(d, 'solved', 0, 5000000)
+          && optNum(d, 'correct', 0, 5000000)
+          && optNum(d, 'tests', 0, 1000000)
+          && optNum(d, 'weeklyPoints', 0, 5000000)
+          && optNum(d, 'streakCount', 0, 200000)
+          && optNum(d, 'badgeCount', 0, 2000)
+          && optBool(d, 'hideStats')
+          && optList(d, 'unlockedBadgeIds', 1000);
+    }
+
     // ── Soru bankaları: herkes okur, kimse yazamaz ─────────────────────────
     // İçerik yalnızca Firebase Console / Admin SDK üzerinden güncellenir.
     match /question_banks/{topicId} {
@@ -94,7 +131,11 @@ service cloud.firestore {
     // sahibi yazabilir/silebilir.
     match /league_scores/{uid} {
       allow read: if true;
-      allow create, update, delete: if sahip(uid);
+      // Yalnızca sahibi yazar VE yazdığı rekabetçi değerler tip/aralık
+      // denetiminden geçmek zorundadır (absürt lig puanı enjeksiyonunu önler).
+      allow create, update: if sahip(uid)
+                    && gecerliLigVerisi(request.resource.data);
+      allow delete: if sahip(uid);
     }
 
     // ── Bulut yedeği ───────────────────────────────────────────────────────
