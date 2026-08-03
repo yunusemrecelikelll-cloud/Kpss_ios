@@ -5,7 +5,31 @@
     {
       "id": "genel-tarih",
       "baslik": "Tarih ve İnkılap Tarihi",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Bu konu; Osmanlı'da yenileşme ve basın hayatı, Kurtuluş Savaşı ve Atatürk inkılapları, Cumhuriyet Dönemi'ndeki çok partili hayat ve darbeler ile Türk dış politikasını (NATO, AB, Kıbrıs) kapsar. Sorular ağırlıkla tarih-isim-olay eşleştirmesine dayanır.",
+        "icerik": [
+          "📌 Osmanlı Yenileşmesi ve Basın: İlk matbaayı İbrahim Müteferrika kurdu; ilk resmî gazete Takvim-i Vekayi, ilk özel Türkçe gazete Tercüman-ı Ahvâl'dir. İlk kâğıt para 'Kaime' Abdülmecid döneminde çıktı; Sened-i İttifak (1808) anayasal gelişmelerin ilk adımı, Bucaş Antlaşması batıda en geniş sınırı, Kasr-ı Şirin (1639) İran sınırını belirledi.",
+          "📌 Kurtuluş Savaşı: Mondros sonrası ilk işgal Musul; İzmir'de ilk kurşunu Hasan Tahsin attı. Mustafa Kemal sivil olarak ilk kez Erzurum Kongresi'ne katıldı. Doğu Cephesi ilk kapanan, Batı Cephesi Mudanya ile kapanan cephedir; Amiral Bristol Raporu ve İrade-i Millîye/Hâkimiyet-i Millîye gazeteleri mücadeleyi destekledi.",
+          "📌 Muharebeler ve Sözler: II. İnönü için 'milletin makûs talihini de yendiniz'; Sakarya Meydan Muharebesi sonrası Mustafa Kemal'e Gazilik unvanı ve Mareşallik rütbesi verildi.",
+          "📌 Cumhuriyet ve İnkılaplar: TBMM 20 Ocak 1920'de (ilk anayasa 1920), Cumhuriyet 29 Ekim 1923'te ilan edildi. İlk cumhurbaşkanı Atatürk, ilk başbakan İsmet İnönü, ilk parti CHP. Lozan 24 Temmuz 1923, Şapka Kanunu 25 Kasım 1925, laik/harf inkılabı (Gülhane Parkı'nda tanıtıldı) bu dönemin adımlarıdır; Atatürk 10 Kasım 1938'de öldü.",
+          "📌 Çok Partili Hayat ve Darbeler: 1946 ilk çok partili seçim, 1950'de Demokrat Parti iktidara geldi. 27 Mayıs 1960 darbesinde Adnan Menderes idam edildi; 12 Mart 1971'de Demirel istifa etti; 12 Eylül 1980 darbesini Kenan Evren yaptı, sonrasında 1983'te ANAP (Turgut Özal) kazandı. 28 Şubat 1997'de Refahyol istifa etti.",
+          "📌 Kıbrıs Meselesi: Kıbrıs Cumhuriyeti 1960'ta Zürih ve Londra Antlaşmaları ile kuruldu; garantörler Türkiye, Yunanistan, İngiltere. 1974 Barış Harekâtı EOKA-B darbesine karşı yapıldı; KKTC 1983'te ilan edildi. Yeşil Hat iki toplumu ayırır, Annan Planı 2004'te referanduma sunuldu.",
+          "📌 Dış Politika Kurum ve İttifaklar: Türkiye Avrupa Konseyi'ne 1949, NATO'ya 1952'de (Yunanistan ile birlikte) girdi; Kore Savaşı'na katılım NATO yolunu açtı. Balkan Antantı (1934), Bağdat Paktı/CENTO (1955), Marshall Planı ve 'Yurtta Sulh Cihanda Sulh' ilkesi önemli başlıklardır.",
+          "📌 AB Süreci ve Güncel Olaylar: Tam üyelik başvurusu 1987, Gümrük Birliği 1996, adaylık 1999 Helsinki Zirvesi, müzakereler 2005'te başladı. PKK 1978'de kuruldu, Öcalan 1999'da Kenya'da yakalandı; çözüm süreci 2013-2015. Cumhurbaşkanını halkın seçmesi 2007 referandumu ile geldi, ilk halk seçimi 2014."
+        ],
+        "anahtarNoktalar": [
+          "🔑 İlk matbaa İbrahim Müteferrika, ilk resmî gazete Takvim-i Vekayi, ilk özel gazete Tercüman-ı Ahvâl.",
+          "🔑 Sakarya sonrası Gazilik+Mareşallik; II. İnönü'de 'makûs talih' sözü; ilk kapanan cephe Doğu, Batı ise Mudanya ile kapandı.",
+          "💡 TBMM 20 Ocak 1920, Cumhuriyet 29 Ekim 1923, Lozan 24 Temmuz 1923, Şapka Kanunu 25 Kasım 1925.",
+          "🔑 İlk cumhurbaşkanı Atatürk, ilk başbakan İsmet İnönü, ilk parti CHP; Atatürk 10 Kasım 1938'de vefat etti.",
+          "💡 1946 ilk çok partili seçim, 1950 Demokrat Parti; Menderes 1960 darbesinde idam edildi.",
+          "🔑 12 Eylül 1980 darbesi Kenan Evren; 1983 seçimini ANAP/Turgut Özal kazandı; 28 Şubat 1997 Refahyol.",
+          "💡 Kıbrıs Cumhuriyeti 1960 (Zürih-Londra), garantörler Türkiye-Yunanistan-İngiltere; Barış Harekâtı 1974, KKTC 1983.",
+          "🔑 Avrupa Konseyi 1949, NATO 1952, AB başvurusu 1987, Gümrük Birliği 1996, adaylık 1999 Helsinki, müzakere 2005.",
+          "💡 PKK 1978 kuruldu, Öcalan 1999 Kenya'da yakalandı; çözüm süreci 2013-2015.",
+          "🔑 Kasr-ı Şirin (1639) İran sınırı, Bucaş batıda en geniş sınır; 'Yurtta Sulh Cihanda Sulh' Atatürk'e aittir."
+        ]
+      },
       "sorular": [
         {
           "soru": "Mustafa Kemal Atatürk'ün 'sivil' olarak (askerlikten istifa etmiş hâlde) katıldığı ilk kongre hangisidir?",
@@ -1412,7 +1436,31 @@
     {
       "id": "genel-cografya",
       "baslik": "Coğrafya, Tabiat ve Turizm",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Bu konu, Türkiye'nin fiziki coğrafyasını (en yüksek dağ, en büyük göl, en uzun nehir), yedi coğrafi bölge ve iklim tiplerini, turistik-tarihi yerler ile milli parkları ve dünya coğrafyasının en'lerini (kıta, okyanus, ülke-başkent, boğaz-kanal) kapsar. En'ler ve konumlar sınavda en çok sorulan kısımdır.",
+        "icerik": [
+          "📌 Türkiye'nin en'leri: En yüksek dağı Ağrı (2.'si Cilo/Reşko), en büyük ve en derin gölü tuzlu Van, en büyük tatlı su gölü Beyşehir (Konya-Isparta), en büyük ikinci gölü Tuz Gölü, en büyük ovası Konya, en büyük adası Gökçeada.",
+          "📌 Akarsular ve barajlar: Tamamı yurt içindeki en uzun nehir Kızılırmak, en yüksek debili Çoruh, yurttan doğup dışarıda denize dökülen en uzun nehir Fırat. GAP'ın merkezi Atatürk Barajı Fırat üzerindedir; Fırat ile Dicle Basra Körfezi'ne dökülür.",
+          "📌 Dağlar ve kıyılar: Volkanik Erciyes (Kayseri), kayak merkezleri Uludağ (Bursa) ve Palandöken (Erzurum), Kaçkarlar Doğu Karadeniz'dedir. Türkiye Anadolu (Küçük Asya) Yarımadası'nda yer alır; kuzeyi Karadeniz, batısı Ege Denizi.",
+          "📌 İklim: Karadeniz iklimi her mevsim yağışlıdır (en çok yağış Rize); Akdeniz iklimi yazları sıcak-kurak, kışları ılık-yağışlıdır. Çukurova Akdeniz Bölgesi'nin verimli tarım alanıdır.",
+          "📌 Tarihi-turistik yerler: Pamukkale/Hierapolis (Denizli), Efes (İzmir), Truva (Çanakkale), Göbeklitepe ve Harran (Şanlıurfa), Nemrut heykelleri (Adıyaman), Sümela (Trabzon), Çatalhöyük (Konya), Safranbolu (Karabük), Divriği Ulu Camii (Sivas), Ani (Kars), Aspendos (Antalya).",
+          "📌 Doğal oluşumlar: Kapadokya peri bacaları (Nevşehir) volkanik tüfün erozyonuyla oluşmuştur; Meke (Konya) 'Dünyanın Nazar Boncuğu', Salda (Burdur) 'Türkiye'nin Maldivleri', Kula-Salihli (Manisa) tek UNESCO Jeoparkı, Ulubey Kanyonu (Uşak) dünyanın 2. derin kanyonudur.",
+          "📌 Milli park ve unvanlar: İlk milli parkımız Yozgat Çamlığı; dünyada ilk milli park ABD'deki Yellowstone. İlk Cittaslow Seferihisar, ilk Biyosfer Rezervi Camili (Artvin). Diğerleri: Manyas Kuş Cenneti (Balıkesir), Yedigöller (Bolu), Köprülü Kanyon (Antalya), Munzur (Tunceli).",
+          "📌 Dünya coğrafyası: En büyük kıta Asya, en küçük Avustralya; en büyük okyanus Pasifik; en yüksek dağ Everest (Himalaya); en uzun nehir Nil, en yüksek debili Amazon; en uzun sıradağ ve en yüksek şelale (Angel) Güney Amerika'dadır. Başkentler: Kanada-Ottawa, Avustralya-Canberra, Brezilya-Brasília, İsviçre-Bern."
+        ],
+        "anahtarNoktalar": [
+          "🔑 En yüksek dağ Ağrı, en büyük göl Van, en büyük tatlı su gölü Beyşehir, en büyük ova Konya.",
+          "🔑 Tamamı yurt içi en uzun nehir Kızılırmak; en yüksek debili Çoruh; en uzun (dışarı akan) Fırat.",
+          "💡 İstanbul Boğazı Karadeniz-Marmara'yı, Çanakkale Boğazı Marmara-Ege'yi bağlar.",
+          "💡 Süveyş Kanalı Akdeniz-Kızıldeniz, Panama Kanalı Pasifik-Atlas, Cebelitarık Boğazı Atlas-Akdeniz.",
+          "🔑 Karadeniz iklimi her mevsim yağışlı (en çok yağış Rize); Akdeniz iklimi yazları kurak, kışları ılık-yağışlı.",
+          "💡 Göbeklitepe-Harran Şanlıurfa'da, Çatalhöyük Konya'da, Nemrut heykelleri Adıyaman'da.",
+          "🔑 Kapadokya peri bacaları volkanik tüfün rüzgar-su erozyonuyla oluşur; merkezi Nevşehir.",
+          "💡 Dünyada ilk milli park Yellowstone (ABD); Türkiye'de ilk milli park Yozgat Çamlığı.",
+          "🔑 En büyük kıta Asya, en küçük Avustralya; en büyük okyanus Pasifik; en yüksek dağ Everest.",
+          "💡 En uzun nehir Nil, en yüksek debili Amazon; en derin göl Baykal; en büyük çöl Büyük Sahra."
+        ]
+      },
       "sorular": [
         {
           "soru": "Dünyanın ilan edilen ilk millî parkı olarak kabul edilen, ABD'deki park hangisidir?",
@@ -2819,7 +2867,31 @@
     {
       "id": "genel-kultur-sanat",
       "baslik": "Kültür, Sanat ve Edebiyat",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Kültür, Sanat ve Edebiyat konusu Türk ve dünya edebiyatının önemli isim ve eserlerini, edebiyat dönemlerini (Divan, Halk, Tanzimat, Cumhuriyet), resim-heykel-mimari, müzik, sinema-tiyatro ile geleneksel Türk sanatlarını (hat, ebru, minyatür) kapsar. Sınavda eser-yazar eşleştirmeleri, ödüller ve öncüler sıkça sorulur.",
+        "icerik": [
+          "📚 Türk edebiyatı dönemleri: Divan (Fuzuli - Leyla ile Mecnun), Halk (Yunus Emre 13.yy, Karacaoğlan), Tanzimat (Namık Kemal - İntibah/Vatan Şairi, Şemsettin Sami - Taaşşuk-ı Talat ve Fitnat ilk yerli roman) ve Cumhuriyet dönemi başlıca kollarıdır.",
+          "✍️ Cumhuriyet dönemi ustaları: Yaşar Kemal (İnce Memed), Reşat Nuri (Çalıkuşu, Sinekli Bakkal), Sabahattin Ali (Kürk Mantolu Madonna), Ahmet Hamdi Tanpınar (Huzur), Mehmet Rauf (Eylül - ilk psikolojik roman), Yahya Kemal, Mehmet Akif Ersoy (Safahat, İstiklal Marşı).",
+          "🏆 Uluslararası başarılar: Orhan Pamuk 2006 Nobel Edebiyat Ödülü (Benim Adım Kırmızı); Elif Şafak (Baba ve Piç). Dünya edebiyatından Cervantes (Don Kişot), Victor Hugo (Sefiller), Amin Maalouf (Semerkant), Grimm Kardeşler (Almanya).",
+          "🎨 Resim ve mimari: Osman Hamdi Bey (Kaplumbağa Terbiyecisi, Sanayi-i Nefise Mektebi kurucusu), Leonardo da Vinci (Mona Lisa), Edvard Munch (Çığlık - dışavurumculuk); Mimar Sinan (Süleymaniye Camii - Kanuni), Rönesans'ın merkezi Floransa.",
+          "🎵 Müzik: Fazıl Say ve İdil Biret (klasik piyano), Leyla Gencer (La Diva Turca - opera), Ahmed Adnan Saygun (klasik Batı müziği bestecisi), Itri (klasik Osmanlı-Türk müziği), Barış Manço (Anadolu rock), Sertab Erener (2003 Eurovision).",
+          "🎬 Sinema ve tiyatro: Nuri Bilge Ceylan (Uzak - En İyi Yönetmen, Kış Uykusu - 2014 Altın Palmiye), Yılmaz Güney (Yol - Altın Palmiye), Fatih Akın (Duvara Karşı - Altın Ayı); Karagöz-Hacivat gölge oyunu Bursa ile özdeşleşir.",
+          "🕌 Tasavvuf ve müzeler: Mevlana (Mesnevi, Konya - Şeb-i Arus 17 Aralık), Ahilik teşkilatı (Ahi Evran, Kırşehir, fütüvvet ahlakı); İstanbul Arkeoloji Müzesi, Anadolu Medeniyetleri (Ankara), Zeugma Mozaik (Gaziantep), İKSV İstanbul Bienali (1987, iki yılda bir).",
+          "🖌️ Geleneksel Türk sanatları: Hüsn-i Hat (güzel yazı sanatı; Şeyh Hamdullah aklâm-ı sitte ile Osmanlı hattının kurucusu), Ebru (su üzerine boya şekillendirme sanatı), minyatür ve çini önemli el sanatlarıdır."
+        ],
+        "anahtarNoktalar": [
+          "🔑 İlk yerli roman: Taaşşuk-ı Talat ve Fitnat (Şemsettin Sami); ilk psikolojik roman: Eylül (Mehmet Rauf).",
+          "🔑 Vatan Şairi Namık Kemal (İntibah); İstiklal Marşı ve Çanakkale Şehitlerine: Mehmet Akif Ersoy (Safahat).",
+          "💡 Orhan Pamuk 2006'da Nobel alan ilk ve tek Türk yazar (Benim Adım Kırmızı); 2024'te Türk yazar almadı.",
+          "🔑 Kaplumbağa Terbiyecisi = Osman Hamdi Bey; Çığlık = Edvard Munch; Mona Lisa = Leonardo da Vinci.",
+          "💡 Süleymaniye Camii Mimar Sinan eseri, Kanuni Sultan Süleyman yaptırdı; Sinan'ın unvanı Hassa Baş Mimarı.",
+          "🔑 Cannes Altın Palmiye: Yılmaz Güney (Yol) ve Nuri Bilge Ceylan (Kış Uykusu, 2014); Fatih Akın - Berlin Altın Ayı.",
+          "💡 Mevlana'nın eseri Mesnevi, türbesi Konya; Şeb-i Arus 17 Aralık; Karagöz-Hacivat Bursa ile özdeş.",
+          "🔑 Karacaoğlan Halk edebiyatı şairidir, Divan şairi değildir; Fuzuli Divan edebiyatının (Leyla ile Mecnun).",
+          "💡 Ahilik: kurucu Ahi Evran (debbağ/derici), merkezi Kırşehir, temeli fütüvvet ahlakı.",
+          "🔑 Hüsn-i Hat kurucusu Şeyh Hamdullah (aklâm-ı sitte); Ebru = su üzerine boya sanatı; İstanbul Bienali 1987'de başladı, İKSV düzenler."
+        ]
+      },
       "sorular": [
         {
           "soru": "'Tarihçilerin Kutbu' ve 'Şeyhü'l-Müverrihîn' unvanlarıyla anılan, Osmanlı iktisat tarihinin öncüsü ünlü Türk tarihçi kimdir?",
@@ -4226,7 +4298,31 @@
     {
       "id": "genel-vatandaslik",
       "baslik": "Anayasa, Hukuk ve Devlet Teşkilatı",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "1982 Anayasası, temel hak ve özgürlükler, Cumhurbaşkanlığı Hükümet Sistemi ile yasama-yürütme-yargı organlarını kapsar. Konuda ayrıca temel ekonomi kavramları (GSYH, enflasyon), devlet biçimleri ve uluslararası hukuk kavramları da yer alır. Güncel mevzuat 2017 değişikliği ve 2018 sonrası sistemi esas alır.",
+        "icerik": [
+          "📜 1982 Anayasası: 1982'de halkoylamasıyla kabul edildi; yasama yetkisi Türk Milleti adına TBMM'ye, yürütme yetkisi ve görevi (2017 değişikliği sonrası) Cumhurbaşkanına aittir. Başbakanlık kaldırılmış, Cumhurbaşkanlığı Hükümet Sistemine geçilmiştir.",
+          "🏛️ Yasama (TBMM): Milletvekili seçilme yaşı 18'dir; TBMM 600 milletvekilinden oluşur. Karar yeter sayısı, üye tamsayısının 1/4'ünün 1 fazlası (151) olup Anayasa daha yükseğini öngörebilir. Cumhurbaşkanı, yardımcısı veya bakan seçilen milletvekilinin üyeliği kendiliğinden düşer.",
+          "⚖️ Yargı ve yüksek mahkemeler: Anayasa Mahkemesi 15 üyeden oluşur (görev süresi 12 yıl, başkanını üyeler kendi aralarından seçer) ve siyasi parti kapatma davalarına bakar. HSK 13 üyelidir, başkanı Adalet Bakanıdır ve Danıştay üyelerinin 3/4'ünü seçer.",
+          "🔍 Denetim organları: Sayıştay, TBMM adına denetim yapar. Devlet Denetleme Kurulu (DDK) Cumhurbaşkanlığına bağlıdır ama yargı organlarını denetleyemez. Kamu Başdenetçiliği (Ombudsmanlık) TBMM Başkanlığına bağlıdır. MGK'nın gündemini Cumhurbaşkanı belirler.",
+          "💰 Temel ekonomi kavramları: Ekonomik büyüme GSYH'deki niceliksel artıştır; kalkınma ise gelir dağılımı, eğitim ve sağlığı da kapsayan niteliksel gelişmedir. GSYH üretim, gelir ve harcama yöntemleriyle (üçü de eşit) hesaplanır; reel GSYH enflasyondan arındırılmıştır.",
+          "📈 Enflasyon türleri: Talep enflasyonu toplam talebin arzı aşmasından, maliyet enflasyonu girdi maliyet artışından kaynaklanır. Stagflasyon durgunluk ile yüksek enflasyonun aynı anda görülmesidir. SDR, IMF'nin 1969'da oluşturduğu rezerv varlığıdır ve para sepetine dayanır.",
+          "🌍 Uluslararası hukuk-kurumlar: UCM (Roma Statüsü) soykırım, insanlığa karşı suçlar, savaş suçları ve saldırı suçuna bakar; sadece bireyleri yargılar ve tamamlayıcılık ilkesiyle çalışır. 1961 Viyana Sözleşmesi diplomatik dokunulmazlığı, 1963 Viyana Sözleşmesi konsolosluk ilişkilerini düzenler.",
+          "🗺️ Devlet biçimleri ve kavramlar: Üniter devlette egemenlik merkezde, federal devlette merkez ile birimler arasında paylaşılır; konfederasyonda merkez zayıftır. Diğer kavramlar: teokrasi, meşruti monarşi, güç dengesi, tampon devlet, irredentizm, casus belli ve suçluların iadesinde çifte suçluluk ilkesi."
+        ],
+        "anahtarNoktalar": [
+          "🔑 Anayasa Mahkemesi: 15 üye, 12 yıl görev süresi; parti kapatma davalarına bakar.",
+          "🔑 HSK: 13 üye, başkanı Adalet Bakanı; Danıştay üyelerinin 3/4'ünü seçer.",
+          "🔑 Milletvekili seçilme yaşı 18; TBMM karar yeter sayısı en az 151.",
+          "🔑 Yasama TBMM'ye, yürütme Cumhurbaşkanına ait; başbakanlık kaldırıldı (2017 değişikliği, 2018 sistemi).",
+          "🔑 Sayıştay TBMM adına, DDK Cumhurbaşkanlığına bağlı; DDK yargıyı denetleyemez; Ombudsman TBMM'ye bağlı.",
+          "💡 GSYH'nin üç hesaplama yöntemi (üretim-gelir-harcama) teorik olarak birbirine eşittir.",
+          "💡 Reel GSYH enflasyondan arındırılmıştır; stagflasyon = durgunluk + yüksek enflasyon.",
+          "💡 UCM 4 suça bakar (soykırım, insanlığa karşı, savaş, saldırı); sadece bireyleri yargılar, ABD taraf değildir.",
+          "💡 1961 Viyana = diplomatik dokunulmazlık/persona non grata; 1963 Viyana = konsolosluk ilişkileri.",
+          "💡 Üniter-federal-konfederasyon farkı egemenliğin paylaşım derecesine dayanır; SDR IMF'nin 1969 rezerv varlığıdır."
+        ]
+      },
       "sorular": [
         {
           "soru": "1982 Anayasası'na göre Anayasa Mahkemesi kaç üyeden oluşur?",
@@ -5633,7 +5729,31 @@
     {
       "id": "genel-bilim-sahsiyet",
       "baslik": "Bilim, Şahsiyetler ve İlkler",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Bu konu; Türk-İslam bilginlerini, dünya bilim insanlarını ve buluşlarını, modern Türk bilim insanlarını, Nobel ödüllerini, uzay tarihini ve Türkiye ile dünyadaki 'ilkler'i kapsar. Sınavda ağırlıklı olarak kişi-buluş ve ilk-tarih eşleştirmeleri sorulur.",
+        "icerik": [
+          "📚 Türk-İslam bilginleri: İbn Sina (Avicenna, El-Kanun fi't-Tıbb), Farabi (Muallim-i Sânî), Harezmî (cebir), Biruni (Dünya'nın döndüğü/çevresi), İbn-i Haldun (Mukaddime, sosyoloji), El-Cezerî (sibernetik/robotik), İbnü'l Heysem (optik), İbn Nefis (küçük kan dolaşımı), Cabir bin Hayyan (kimya), Razi (çiçek-kızamık ayrımı).",
+          "🕌 Osmanlı ve astronomi: Ali Kuşçu (Semerkant'tan İstanbul'a, matematik-astronomi), Uluğ Bey (Semerkant Rasathanesi), Takiyüddin (ilk Osmanlı rasathanesi), Piri Reis (1513 haritası, Kitab-ı Bahriye), Kâtip Çelebi (Cihannüma, Keşfü'z-Zünun), Akşemseddin (mikrop fikri, Fatih'in hocası).",
+          "🔬 Dünya bilim insanları ve buluşları: Newton (yerçekimi), Einstein (görelilik), Darwin (evrim), Kopernik (güneş merkezli), Galileo (teleskop), Mendeleyev (periyodik tablo), Faraday (elektromanyetik indüksiyon), Volta (pil), Newton'dan Rutherford ve Thomson'a atom çalışmaları.",
+          "💡 Mucitler ve icatlar: Gutenberg (matbaa), Edison (ampul), Bell (telefon), Wright Kardeşler (uçak), James Watt (buhar makinesi), Karl Benz (benzinli otomobil), Morse (telgraf), Marconi (radyo), Baird (televizyon), Alfred Nobel (dinamit ve Nobel ödülleri).",
+          "🏆 Nobel ve tıp: İlk Nobel Fizik ödülü Röntgen (1901, X ışını), Marie Curie (iki alanda Nobel, ilk kadın), Fleming (penisilin), Pasteur (kuduz aşısı/pastörizasyon), Jenner (çiçek aşısı), Banting (insülin), Barnard (ilk kalp nakli), Watson-Crick (DNA çift sarmal).",
+          "🇹🇷 Modern Türk bilim insanları: Aziz Sancar (2015 Nobel Kimya), Cahit Arf (matematik, Arf değişmezi), Feza Gürsey (teorik fizik), Oktay Sinanoğlu (kuramsal kimya), Hulusi Behçet (Behçet Hastalığı), Fuat Sezgin (İslam bilim tarihi), Orhan Pamuk (2006 Nobel Edebiyat, ilk Türk Nobel).",
+          "🚀 Uzay tarihi: İlk yapay uydu Sputnik 1 (SSCB), uzaya çıkan ilk insan Yuri Gagarin (1961, Vostok 1), ilk kadın Valentina Tereşkova, Ay'a ilk ayak basan Neil Armstrong (Apollo 11, 1969), ISS ilk modülü 1998, Türksat 1B 1994.",
+          "⭐ Türkiye'de ilkler ve kurumlar: İlk kadın pilot Sabiha Gökçen, ilk kadın tiyatro oyuncusu Afife Jale, ilk kadın hekim Safiye Ali, ilk kadın kimyager Remziye Hisar; Tomris Hatun (ilk kadın hükümdar), Çaka Bey (ilk Türk denizci); TÜBİTAK 1963, ASELSAN 1975, ROKETSAN 1988."
+        ],
+        "anahtarNoktalar": [
+          "🔑 Aziz Sancar → 2015 Nobel Kimya; Orhan Pamuk → 2006 Nobel Edebiyat (ilk Türk Nobel).",
+          "🔑 İbn Sina (El-Kanun fi't-Tıbb/Avicenna), Harezmî (cebir), İbn-i Haldun (Mukaddime/sosyoloji), Farabi (2. Öğretmen).",
+          "🔑 Cahit Arf → matematik (Arf değişmezi); Feza Gürsey → teorik fizik; Hulusi Behçet → Behçet Hastalığı.",
+          "💡 Piri Reis 1513 haritasını Yavuz Sultan Selim'e sundu; eseri Kitab-ı Bahriye.",
+          "🔑 İlk Nobel Fizik → Röntgen (1901, X ışını); Marie Curie iki alanda Nobel alan ilk kadın.",
+          "💡 Newton (yerçekimi), Einstein (görelilik), Darwin (evrim/Türlerin Kökeni), Mendeleyev (periyodik tablo).",
+          "🔑 İlk insan Gagarin (1961, Vostok 1); ilk kadın Tereşkova; Ay'da ilk Armstrong (Apollo 11, 1969).",
+          "💡 İlk yapay uydu Sputnik 1 (SSCB); Türksat 1B 1994'te fırlatıldı.",
+          "🔑 TÜBİTAK 1963, ASELSAN 1975, ROKETSAN 1988; Microsoft 1975 (Gates-Allen), SpaceX 2002 (Musk).",
+          "💡 İlk kadınlar: pilot Sabiha Gökçen, tiyatrocu Afife Jale, hekim Safiye Ali, kimyager Remziye Hisar."
+        ]
+      },
       "sorular": [
         {
           "soru": "2015 yılında Nobel Kimya Ödülü'nü kazanan Türk bilim insanı kimdir?",
@@ -7040,7 +7160,31 @@
     {
       "id": "genel-unesco",
       "baslik": "UNESCO ve Tarihi Miras",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "UNESCO, eğitim, bilim ve kültür alanında çalışan BM kuruluşudur; Dünya Mirası ve Somut Olmayan Kültürel Miras listeleriyle insanlığın ortak değerlerini korur. Türkiye'nin listede yaklaşık 21 Dünya Mirası alanı ve çok sayıda kültürel miras öğesi bulunur.",
+        "icerik": [
+          "🏛️ UNESCO Dünya Mirası, kültürel/doğal değeri evrensel olan alanları koruma altına alır. Türkiye'nin listeye ilk giren alanları 1985'te İstanbul Tarihi Alanları, Divriği Ulu Camii (Sivas), Göreme-Kapadokya (Nevşehir) ve Hattuşa'dır.",
+          "🗿 Anadolu'nun tarih öncesi mirasları: Göbeklitepe (Şanlıurfa, dünyanın en eski tapınağı, 2018), Karahantepe (Şanlıurfa), Çatalhöyük (Konya, Neolitik kent), Arslantepe Höyüğü (Malatya, 2021) ve Gordion (Ankara-Polatlı, Frig başkenti, Kral Midas, 2023).",
+          "🏺 Antik kentler ve illeri: Troya (Çanakkale), Efes (İzmir-Selçuk), Bergama/Pergamon (İzmir), Afrodisyas (Aydın), Hierapolis-Pamukkale (Denizli, karma miras), Xanthos-Letoon, Nemrut Dağı (Adıyaman, Kommagene), Ani (Kars) ve Diyarbakır Kalesi-Hevsel Bahçeleri.",
+          "🕌 Osmanlı/İslam mirasları: Selimiye Camii (Edirne, Mimar Sinan'ın ustalık eseri, 2011), Bursa ve Cumalıkızık (2014), Safranbolu (Karabük, geleneksel ev mimarisi) ile listede olmasa da önemli olan Sümela Manastırı (Trabzon), Topkapı Sarayı ve İshak Paşa Sarayı (Ağrı-Doğubayazıt).",
+          "🎭 Somut Olmayan Kültürel Miras (SOKÜM): Mevlevi Sema (2008), Meddahlık (2008), Karagöz (2009), Âşıklık Geleneği (2009), Kırkpınar Yağlı Güreşi (2010), Semah ve Sohbet Toplantıları (2010), Türk Kahvesi (2013), Ebru (2014).",
+          "🌍 Ortak dosyayla giren SOKÜM öğeleri: Nevruz, Dede Korkut (Türkiye-Azerbaycan-Kazakistan, 2018), Lavaş/Yufka yapımı (5 ülke), Hıdrellez (Makedonya ile, 2017); ayrıca Geleneksel Okçuluk (2019) ve Hüsn-i Hat (2021).",
+          "🗺️ Türkiye dışı önemli dünya mirasları: Gize Piramitleri (Mısır, Yedi Harika'dan günümüze ulaşan tek yapı), Machu Picchu (Peru, İnka) ve Petra (Ürdün, Nebati).",
+          "⚔️ Antalya'nın Pamfilya kentleri Perge, Aspendos (iyi korunmuş Roma tiyatrosu) ve Side önemli ören yerleridir ancak UNESCO kesin Dünya Mirası Listesi'nde ayrı kalem olarak yer almaz."
+        ],
+        "anahtarNoktalar": [
+          "🔑 Göbeklitepe ve Karahantepe → Şanlıurfa; Göbeklitepe 2018'de listeye alındı.",
+          "🔑 Çatalhöyük → Konya (Neolitik); Gordion → Ankara-Polatlı (Frig, Midas, 2023).",
+          "💡 Troya → Çanakkale, Efes/Bergama → İzmir, Afrodisyas → Aydın, Arslantepe → Malatya.",
+          "🔑 Nemrut Dağı → Adıyaman (1987); Hattuşa → Çorum (1986); Ani → Kars (2016).",
+          "💡 Pamukkale-Hierapolis → Denizli (karma miras, 1992); Selimiye Camii → Edirne (2011).",
+          "🔑 Safranbolu → Karabük; Bursa-Cumalıkızık 2014; Divriği Ulu Camii → Sivas.",
+          "💡 İstanbul, Göreme (Nevşehir), Divriği, Hattuşa 1985'te ilk giren alanlardandır.",
+          "🔑 Sümela → Trabzon (Altındere Vadisi); İshak Paşa Sarayı → Ağrı-Doğubayazıt.",
+          "💡 SOKÜM tarihleri: Sema 2008, Karagöz 2009, Türk Kahvesi 2013, Ebru 2014.",
+          "🔑 Gize Piramitleri → Mısır, Machu Picchu → Peru, Petra → Ürdün."
+        ]
+      },
       "sorular": [
         {
           "soru": "Dünyanın bilinen en eski tapınak kompleksi kabul edilen ve Şanlıurfa'da bulunan UNESCO mirası hangisidir?",
@@ -8447,7 +8591,30 @@
     {
       "id": "genel-spor",
       "baslik": "Spor Kültürü",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Spor kültürü; Olimpiyat Oyunları'nın tarihi ve sembolleri, ünlü Türk ve dünya sporcuları, futbol-basketbol-voleybol başarıları, güreş gibi geleneksel sporlar ile temel spor terimlerini kapsar. Bu bilgiler KPSS Genel Kültür'de sık sorulur.",
+        "icerik": [
+          "🏛️ Antik Olimpiyatlar MÖ 776'da Yunanistan'ın Olympia kentinde başladı. Modern Olimpiyatlar Pierre de Coubertin öncülüğünde 1894'te kurulan IOC (merkezi Lozan) ile 1896 Atina'da başladı; beş halka beş kıtayı simgeler, slogan 'Daha Hızlı, Daha Yüksek, Daha Güçlü' (Citius, Altius, Fortius).",
+          "🥇 Türk olimpiyat başarıları: İlk altını 1936 Berlin'de Yaşar Erkan (grekoromen) kazandı; halterde Naim Süleymanoğlu ('Cep Herkülü') ve Halil Mutlu 3'er kez üst üste altın aldı. Güreşte Yaşar Doğu, Hamza Yerlikaya, Taha Akgül, Rıza Kayaalp; okçulukta Mete Gazoz (Tokyo 2020 ilk altın) öne çıkar.",
+          "⚽ Futbol: Galatasaray 2000'de Arsenal'i yenerek UEFA Kupası, Real Madrid'i yenerek Süper Kupa aldı (Fatih Terim). A Milli Takım 2002 Dünya Kupası'nda (Japonya-Güney Kore) Şenol Güneş ile 3. oldu; Hakan Şükür en hızlı golü attı. Dünyada en çok kupa Brezilya'da (5), 2022'yi Arjantin (Messi) kazandı.",
+          "🏀 Basketbol-Voleybol: Anadolu Efes 2021-2022 EuroLeague şampiyonu (Ergin Ataman), Fenerbahçe 2017'de kazandı; Milli Takım 2010 Dünya Şampiyonası'nda 2. oldu. 'Filenin Sultanları' 2023 Avrupa şampiyonu (Melissa Vargas), VakıfBank kadınlarda Şampiyonlar Ligi devi.",
+          "🤼 Geleneksel sporlar: Güreş Türklerin ata sporudur; Kırkpınar Yağlı Güreşleri Edirne'de yapılır, birinciye 'Başpehlivan' denir, pehlivanlar 'kispet' giyer. Olimpik güreşin stilleri serbest ve grekoromendir. Osmanlı okçuluğunda kompozit (Türk) yayı, menzil taşı ve Okmeydanı Tekkesi önemlidir.",
+          "🌍 Dünya sporundan isimler: Usain Bolt ('Rüzgârın Oğlu', Jamaika, 100m'de 9,58 sn), Michael Phelps (yüzme, en çok madalya), Muhammad Ali (asıl adı Cassius Clay), Pelé ve Maradona (Arjantin), tenis efsanesi Nadal, satrançta Magnus Carlsen, F1'de Schumacher ve Hamilton (7'şer şampiyonluk).",
+          "🏸 Diğer sporların kökeni ve terimler: Basketbolu James Naismith (1891), voleybolu William Morgan (1895) icat etti; judo/sumo Japonya, tekvando Kore, golf İskoçya kökenlidir. Maraton 42,195 km'dir. Türkiye'de F1 Intercity İstanbul Park'ta; Toprak Razgatlıoğlu ve Kenan Sofuoğlu motosiklette şampiyondur."
+        ],
+        "anahtarNoktalar": [
+          "🔑 Modern Olimpiyatlar: 1896 Atina, IOC 1894/Coubertin, merkez Lozan, beş halka = beş kıta.",
+          "🔑 Türkiye'nin ilk olimpiyat altını: 1936 Berlin, Yaşar Erkan (grekoromen güreş).",
+          "🔑 Naim Süleymanoğlu ve Halil Mutlu halterde 3'er kez üst üste olimpiyat şampiyonu.",
+          "💡 Mete Gazoz Tokyo 2020'de okçulukta ilk olimpiyat altınını getirdi; Nurcan Taylan ilk kadın olimpiyat şampiyonu (halter).",
+          "🔑 Galatasaray 2000 UEFA Kupası (Arsenal) ve Süper Kupa (Real Madrid) şampiyonu; A Milli 2002 Dünya Kupası 3.'sü.",
+          "🔑 Anadolu Efes 2021-2022 EuroLeague, Filenin Sultanları 2023 Avrupa şampiyonu.",
+          "💡 Maraton 42,195 km; Usain Bolt 100m dünya rekoru 9,58 sn; en çok Dünya Kupası Brezilya (5).",
+          "🔑 Kırkpınar Edirne'de; birinci 'Başpehlivan', giysi 'kispet'; güreş stilleri serbest ve grekoromen.",
+          "💡 Terimler: futbolda hat-trick (3 gol) ve ofsayt, basketbolda triple-double, voleybolda libero (savunma oyuncusu).",
+          "🔑 İcatçılar: basketbol James Naismith (1891), voleybol William Morgan (1895); saha oyuncu sayısı basketbol 5, voleybol 6."
+        ]
+      },
       "sorular": [
         {
           "soru": "Tarihte modern Olimpiyat Oyunları ilk kez hangi şehirde ve yılda düzenlenmiştir?",
@@ -9854,7 +10021,31 @@
     {
       "id": "genel-karma",
       "baslik": "Genel Kültür - Karma Bilgiler",
-      "anlatim": {},
+      "anlatim": {
+        "ozet": "Karma bilgiler; uluslararası kuruluşların merkezleri (BM, NATO, UNESCO, WHO, IMF), Avrupa Birliği'nin kuruluş ve organları, önemli antlaşmalar ile Türkiye'nin milli sembolleri ve İstiklal Marşı gibi genel kültür konularını kapsar. KPSS'de sık sorulan örgüt-merkez eşleştirmeleri kritiktir.",
+        "icerik": [
+          "🌐 Birleşmiş Milletler (BM) merkezi New York'tadır; 193 üyesi vardır, öncülü Milletler Cemiyeti'dir ve şartı 1945'te San Francisco'da imzalanmıştır. Güvenlik Konseyi 15 üyeden oluşur, 5 daimi üyesi ABD, Rusya, Çin, Fransa ve İngiltere'dir (veto hakkına sahiptir).",
+          "🏛️ BM uzmanlık kuruluşlarının merkezleri: UNESCO ve OECD Paris, WHO/ILO/ICRC Cenevre, FAO Roma, IAEA/OPEC Viyana, IMF ve Dünya Bankası Washington D.C. Ayrıca Interpol Lyon, İİT Cidde, UPU Bern, BIS Basel'dedir.",
+          "🤝 NATO 1949'da kuruldu, merkezi Brüksel'dir; Türkiye 1952'de katıldı. Madde 5 kolektif savunmayı (bir üyeye saldırı tümüne saldırı sayılır) ifade eder. Karşısında kurulan Varşova Paktı 1991'de dağıldı.",
+          "🇪🇺 Avrupa Birliği'nin temeli 1951 Schuman Planı (AKÇT), 1957 Roma Antlaşması ve 1992 Maastricht Antlaşması'dır; 27 üyesi vardır. Kopenhag Kriterleri (1993) üyelik şartlarını belirler; Schengen serbest dolaşım sağlar ama AB üyeliğinden farklıdır.",
+          "⚖️ Mahkeme ve mahkeme merkezleri: Uluslararası Adalet Divanı (BM organı) Lahey, Uluslararası Ceza Mahkemesi (Roma Statüsü, bireyleri yargılar) Lahey, Avrupa İnsan Hakları Mahkemesi Strazburg (Avrupa Konseyi çatısı altında).",
+          "📜 Önemli antlaşma/beyannameler: İnsan Hakları Evrensel Beyannamesi (10 Aralık 1948, Eleanor Roosevelt), Kyoto Protokolü (1997, sera gazı), Paris İklim Anlaşması (1,5-2°C hedefi), Montreal Protokolü (ozon), Bretton Woods (1944, IMF/Dünya Bankası).",
+          "🇹🇷 Milli semboller ve tarih: İstiklal Marşı 12 Mart 1921'de kabul edildi, Sebilürreşad ve Açıksöz'de yayımlandı, ilk bestecisi Ali Rıfat Çağatay. Cumhurbaşkanlığı forsundaki 16 yıldız 16 büyük Türk devletini simgeler; Anıtkabir mimarları Emin Onat ve Orhan Arda'dır.",
+          "🏢 Türkiye kaynaklı/ilgili örgütler: D-8 (1997, Erbakan), ECO (RCD'nin devamı; Türkiye-İran-Pakistan), Türk Konseyi (2009 Nahçıvan), KEİ (1992). WTO GATT'ın yerini aldı (1995); G7'de Rusya, G20 ise 2008 kriziyle liderler düzeyine çıktı."
+        ],
+        "anahtarNoktalar": [
+          "🔑 BM merkezi New York, 193 üye; Güvenlik Konseyi 15 üye, 5 daimi (ABD-Rusya-Çin-Fransa-İngiltere).",
+          "🔑 NATO merkezi Brüksel; Türkiye 1952'de üye; Madde 5 = kolektif savunma.",
+          "🔑 UNESCO/OECD Paris, WHO/ILO Cenevre, FAO Roma, IAEA/OPEC Viyana, IMF/Dünya Bankası Washington.",
+          "🔑 UAD ve UCM Lahey'de; AİHM Strazburg'da (Avrupa Konseyi'ne bağlı).",
+          "💡 AB'yi Maastricht Antlaşması (1992) kurdu, 27 üye; Kopenhag Kriterleri üyelik şartıdır.",
+          "🔑 İnsan Hakları Evrensel Beyannamesi 10 Aralık 1948; hazırlık komitesi başkanı Eleanor Roosevelt.",
+          "💡 İstiklal Marşı 12 Mart 1921'de kabul edildi; ilk bestecisi Ali Rıfat Çağatay.",
+          "🔑 IMF/Dünya Bankası Bretton Woods (1944); WTO, GATT'ın yerini aldı (1995).",
+          "💡 Cumhurbaşkanlığı forsundaki 16 yıldız = 16 büyük Türk devleti.",
+          "🔑 D-8 (1997, Erbakan), Türk Konseyi (2009 Nahçıvan); İİT merkezi Cidde, Interpol Lyon."
+        ]
+      },
       "sorular": [
         {
           "soru": "Avrupa İnsan Hakları Mahkemesi (AİHM) hangi şehirde yer alır?",

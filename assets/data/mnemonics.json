@@ -605,5 +605,85 @@
     "ÖZEL İŞLEM: 'Kuralı gör, yerine koy'. a∗b = 2a+b ise 3∗4 = 2·3+4 = 10. Parantez/sıraya dikkat.",
     "BİRİM ELEMAN e: 'a∗e = a'yı sağlayan e'. TERS: 'a∗x = e' yapan x. Tabloda birim = satırı başlıkla AYNI olan.",
     "MODÜLER: saat=mod 12/24, gün=mod 7. Üslü sayıda birler basamağı DEVREDER (2→2,4,8,6; 4'lü devir)."
+  ],
+  "genel-tarih": [
+    "TTİH Tekniği: Osmanlı ve Millî Mücadele basınının 'ilk'lerini (Takvim-i Vekayi, Tercüman-ı Ahvâl, İrade-i Millîye, Hâkimiyet-i Millîye) 'TTİH' kısaltmasıyla ezberle; Takvim-i Vekayi ilk resmî gazete, Tercüman-ı Ahvâl ilk özel Türkçe gazete, İrade-i Millîye Sivas Kongresi'nin yayın organı, Hâkimiyet-i Millîye ise Atatürk'ün Ankara'da 'benim gazetem' dediği yayındır.",
+    "MDE Tekniği: Darbe ve muhtıralarda görevden ayrılan başbakanları (Menderes, Demirel, Erbakan) 'MDE' ile hatırla; 27 Mayıs 1960'ta Adnan Menderes idam edildi, 12 Mart 1971 Muhtırası'nda Süleyman Demirel istifa etti, 28 Şubat 1997'de Necmettin Erbakan'ın Refahyol hükûmeti çekildi.",
+    "TYİ Tekniği: Kıbrıs Cumhuriyeti'nin garantör devletlerini (Türkiye, Yunanistan, İngiltere) 'TYİ' kısaltmasıyla ezberle; 1959-1960 Zürih ve Londra Antlaşmaları'yla kurulan cumhuriyetin üç garantörü bunlardır.",
+    "EMHB Tekniği: Millî Mücadele'nin dört 'ilk'ini (Erzurum, Musul, Hasan Tahsin, Bristol) 'EMHB' ile hatırla; Atatürk'ün sivil katıldığı ilk kongre Erzurum, Mondros sonrası işgale uğrayan ilk toprak Musul, İzmir'de ilk kurşunu atan Hasan Tahsin, işgalleri belgeleyen ilk rapor Amiral Bristol Raporu'dur.",
+    "BGHM Tekniği: Türkiye-AB sürecinin dört kilometre taşını (Başvuru, Gümrük Birliği, Helsinki, Müzakere) 'BGHM' sırasıyla ezberle; 1987 tam üyelik başvurusu, 1996 Gümrük Birliği, 1999 Helsinki'de adaylık, 2005'te müzakerelerin başlaması.",
+    "BBMN Tekniği: Türkiye'nin soğuk savaş dönemi ittifak ve yardımlarını (Balkan Antantı, Bağdat Paktı, Marshall Planı, NATO) 'BBMN' ile hatırla; 1934 Balkan Antantı, 1955 Bağdat Paktı (sonradan CENTO), Marshall Planı ekonomik yardımı ve 1952 NATO üyeliği.",
+    "LCŞA Tekniği: 1923-1938 arası dört kilit tarihi (Lozan, Cumhuriyet, Şapka, Atatürk) 'LCŞA' ile ezberle; Lozan Antlaşması 24 Temmuz 1923, Cumhuriyet'in ilanı 29 Ekim 1923, Şapka Kanunu 25 Kasım 1925, Atatürk'ün vefatı 10 Kasım 1938.",
+    "KBBM Tekniği: Sınır ve antlaşma bilgilerini (Kasr-ı Şirin, Bucaş, Batum, Mudanya) 'KBBM' ile hatırla; 1639 Kasr-ı Şirin bugünkü İran sınırını çizen en eski antlaşma, Bucaş Osmanlı'nın Batı'da en geniş sınıra ulaştığı antlaşma, Batum Misak-ı Millî'den verilen ilk taviz, Mudanya Ateşkesi ise Batı Cephesi'ni kapatan antlaşmadır."
+  ],
+  "genel-cografya": [
+    "VBT Tekniği: Türkiye'nin göl en'lerini (Van, Beyşehir, Tuz) 'VBT' ile hatırla: en büyük ve en derin göl Van, en büyük tatlı su gölü Beyşehir, en büyük ikinci ve tuzlu göl Tuz Gölü.",
+    "ÇFK Tekniği: Türkiye'nin akarsu en'lerini (Çoruh, Fırat, Kızılırmak) 'ÇFK' ile hatırla: en çok su taşıyan (debi) Çoruh, ülke dışına dökülen en uzun Fırat, tamamı Türkiye'de olan en uzun Kızılırmak.",
+    "NAB Tekniği: Dünyanın su en'lerini (Nil, Amazon, Baykal) 'NAB' ile hatırla: en uzun nehir Nil, debisi en yüksek nehir Amazon, en derin göl Baykal.",
+    "EKAM Tekniği: Kıtaların en yüksek dağlarını (Everest, Kilimanjaro, Aconcagua, Mont Blanc) 'EKAM' ile hatırla: Asya Everest, Afrika Kilimanjaro, Güney Amerika Aconcagua, Avrupa'da (Alpler) Mont Blanc.",
+    "COBB Tekniği: Yanıltıcı başkentleri (Canberra, Ottawa, Brasília, Bern) 'COBB' ile hatırla: Avustralya Canberra, Kanada Ottawa, Brezilya Brasília, İsviçre Bern.",
+    "AVE Tekniği: Ünlü şelalelerin illerini (Antalya, Van, Erzurum) 'AVE' ile hatırla: Manavgat Antalya'da, Muradiye Van'da, Tortum Erzurum'da.",
+    "ETAA Tekniği: Ünlü antik kentleri (Efes, Truva, Aspendos, Ani) 'ETAA' ile hatırla: Efes İzmir'de, Truva Çanakkale'de, Aspendos Antalya'da, Ani Harabeleri Kars'ta.",
+    "Kapadokya Hikâyesi: Peri bacalarının merkezi Nevşehir'dir; volkanik tüfün rüzgâr ve su erozyonuyla şekillenmesiyle oluşur. Kaya kiliseleriyle ünlü Ihlara Vadisi Aksaray'da, kırmızı renkli Narman Peri Bacaları ise Erzurum'dadır."
+  ],
+  "genel-kultur-sanat": [
+    "YNF Tekniği: Cannes/Berlin'de büyük ödül alan Türk yönetmenleri (Yılmaz Güney, Nuri Bilge Ceylan, Fatih Akın) baş harfleriyle hatırla; Yol ve Kış Uykusu (2014) Altın Palmiye, Duvara Karşı Berlin Altın Ayı.",
+    "AKDF Tekniği: Ahilik teşkilatının anahtarlarını (Ahi Evran, Kırşehir, Debbağlık, Fütüvvet) baş harfleriyle hatırla; kurucu Ahi Evran, merkez şehir Kırşehir, mesleği debbağlık (dericilik), temel değer sistemi fütüvvet.",
+    "YARS Tekniği: Türk romancılarını başyapıtlarıyla (Yaşar Kemal, Ahmet Hamdi Tanpınar, Reşat Nuri Güntekin, Sabahattin Ali) baş harfleriyle eşle; sırasıyla İnce Memed, Huzur, Çalıkuşu, Kürk Mantolu Madonna.",
+    "CHAG Tekniği: Dünya edebiyatı yazarlarını (Cervantes, Hugo, Amin Maalouf, Grimm Kardeşler) baş harfleriyle diz; Don Kişot İspanya, Sefiller Fransa, Semerkant Lübnan, Pamuk Prenses masalları Almanya.",
+    "HEK Tekniği: Geleneksel Türk sanatlarını (Hüsn-i Hat, Ebru, Karagöz) baş harfleriyle hatırla; hat sanatının Osmanlı öncüsü Şeyh Hamdullah, ebru suya boya serpme sanatı, Karagöz-Hacivat gölge oyunu Bursa ile özdeş.",
+    "KSİ Tekniği: Osman Hamdi Bey'in üç izini (Kaplumbağa Terbiyecisi, Sanayi-i Nefise Mektebi, İstanbul Arkeoloji Müzesi) baş harfleriyle hatırla; en ünlü tablosu, kurduğu okul ve kurduğu müze.",
+    "MKŞK Tekniği: Mevlana anahtarlarını (Mesnevi, Konya, Şeb-i Arus, Kubbe-i Hadra) baş harfleriyle hatırla; başyapıtı Mesnevi, şehri Konya, töreni 17 Aralık Şeb-i Arus, türbesi Yeşil Kubbe.",
+    "FİLA Tekniği: Uluslararası üne kavuşmuş Türk müzisyenlerini (Fazıl Say, İdil Biret, Leyla Gencer, Ahmed Adnan Saygun) baş harfleriyle hatırla; piyanist-besteci, klasik piyanist, opera divası 'La Diva Turca', klasik Batı müziği bestecisi."
+  ],
+  "genel-vatandaslik": [
+    "AYM Tekniği: Anayasa Mahkemesi'nin başlıca görevlerini hatırla (Anayasaya uygunluk denetimi, Yüce Divan-Yüksek Mahkeme sıfatı, Mecliste grubu olan siyasi partilerin kapatılması) 'AYM'. AYM 15 üyelidir ve üyeler 12 yıl görev yapar.",
+    "HAS Tekniği: HSK'yı üç anahtarla unutma (Hâkimler ve Savcılar Kurulu, Adalet Bakanı başkanıdır, Sayısı 13 üye) 'HAS'. Adalet Bakanı kurulun başkanı ve tabii üyesidir.",
+    "TCY Tekniği: 2018 Cumhurbaşkanlığı sisteminde üç erkin sahibini hatırla yasama (TBMM-Türk Milleti adına), yürütme (Cumhurbaşkanı), yargı (Yüksek/bağımsız mahkemeler) 'TCY'. Artık başbakanlık yoktur.",
+    "CBB Tekniği: Milletvekilliği kendiliğinden (re'sen) düşer eğer kişi şunlardan biri seçilirse (Cumhurbaşkanı, Başkan Yardımcısı-Cumhurbaşkanı Yardımcısı, Bakan) 'CBB'.",
+    "SOD Tekniği: Denetim organlarının bağlılığını karıştırma (Sayıştay: TBMM adına denetler, Ombudsman-Kamu Başdenetçiliği: TBMM Başkanlığına bağlı, DDK-Devlet Denetleme Kurulu: Cumhurbaşkanlığına bağlı) 'SOD'. DDK yargı organlarını denetleyemez.",
+    "DÜH Tekniği: Danıştay üye seçimini hatırla (Danıştay üyelerinin, Üçte değil dörtte üçünü, HSK seçer) 'DÜH'. Kalan 1/4'ünü Cumhurbaşkanı seçer.",
+    "MGK Hikâyesi: Milli Güvenlik Kurulu'nun gündemini Cumhurbaşkanı belirler ve kurula başkanlık eder; kararları tavsiye niteliğindedir. 'MGK = Merkezde Gündem Cumhurbaşkanının' diye hatırla.",
+    "TBMM Hikâyesi: TBMM'nin temel sayılarını zincirle milletvekili seçilme yaşı 18, üye tam sayısı 600, karar yeter sayısı en az 151 (üye tam sayısının 1/4'ünün 1 fazlası). '18-600-151' diye hatırla."
+  ],
+  "genel-bilim-sahsiyet": [
+    "BEHİC Tekniği: İslam bilginleri ve alanları — Biruni Dünya'nın döndüğünü ve çevresini hesapladı, El-Cezerî robotik-sibernetiğin (su saatleri, otomatlar) öncüsü, Harezmî cebirin kurucusu, İbnü'l Heysem optik ve 'Kitabü'l Menazir', Cabir bin Hayyan kimyanın kurucusu (Biruni, El-Cezerî, Harezmî, İbnü'l Heysem, Cabir) — ayrıca İbn-i Haldun sosyolojinin kurucusu, eseri 'Mukaddime'.",
+    "FARİS Tekniği: İslam hekim ve filozofları — Farabi 'Muallim-i Sânî' (felsefe), Akşemseddin mikrobun varlığını haber verdi (Fatih'in hocası), Razi çiçek ile kızamığı ilk kez ayırdı, İbn Nefis küçük (akciğer) kan dolaşımını buldu, İbn-i Sina 'El-Kanun fi't-Tıbb' / Avrupa'da Avicenna (Farabi, Akşemseddin, Razi, İbn Nefis, Sina) — bir yiğidi, bir 'FARİS'i düşün.",
+    "KAPUT Tekniği: Osmanlı-Türk bilginleri — Kâtip Çelebi 'Cihannüma' ve 'Keşfü'z-Zünun' (Hacı Halife), Ali Kuşçu Semerkant'tan Fatih'e geldi (astronomi-matematik), Piri Reis 1513 dünya haritasını Yavuz'a sundu ve 'Kitab-ı Bahriye', Uluğ Bey Semerkant rasathanesi, Takiyüddin İstanbul'un ilk rasathanesi (Kâtip Çelebi, Ali Kuşçu, Piri Reis, Uluğ Bey, Takiyüddin) — arabanın 'KAPUT'u gibi hatırla.",
+    "SAHİL Tekniği: Cumhuriyet'in ilk kadınları — ilk pilot Sabiha Gökçen, ilk hekim Safiye Ali, ilk kimyager Remziye Hisar, ilk arkeolog Jale İnan, ilk vali Lale Aytaman (Sabiha, Ali, Hisar, İnan, Lale) — ayrıca ilk sahne oyuncusu Afife Jale, ilk avukat Süreyya Ağaoğlu, ilk muhtar Gül Esin; tarihin ilkleri: ilk kadın hükümdar Tomris Hatun, ilk Türk denizci Çaka Bey (Türk Deniz Kuvvetleri 1081).",
+    "FOCA Tekniği (Ege'deki Foça gibi): modern Türk bilim insanları — Feza Gürsey teorik/parçacık fiziği, Oktay Sinanoğlu kuramsal kimya ve biyofizik, Cahit Arf matematik ('Arf invaryantı'), Aziz Sancar 2015 Nobel Kimya Ödülü (Feza, Oktay, Cahit, Aziz) — ayrıca Hulusi Behçet 'Behçet Hastalığı', Fuat Sezgin İslam bilim tarihi, Orhan Pamuk ilk Türk Nobel'i (2006 Edebiyat).",
+    "GATT Tekniği: uzay tarihi — Gagarin uzaya çıkan ilk insan (1961, Vostok 1), Armstrong Ay'a ilk ayak basan insan (Apollo 11, 1969), Tereşkova uzaya çıkan ilk kadın, Türksat 1B ilk Türk haberleşme uydusu (1994) (Gagarin, Armstrong, Tereşkova, Türksat) — Sputnik 1 ilk yapay uydu (SSCB, 1957), ISS ilk modülü 1998; teknoloji: WWW–Tim Berners-Lee (CERN), iPhone 2007, Microsoft 1975 (Gates-Allen), Google (Page-Brin), Amazon (Bezos), SpaceX 2002 (Musk), Linux (Torvalds), Python (van Rossum).",
+    "Mucitler Hikâyesi: Gutenberg matbaayı (Mainz'da) geliştirdi, Watt buhar makinesini (Sanayi Devrimi), Bell telefonu, Morse telgrafı ve Mors alfabesini, Edison akkor ampulü, Marconi telsiz telgrafı (radyo), Wright Kardeşler ilk motorlu uçağı, Karl Benz ilk benzinli otomobili, Volta ilk elektrik pilini, Baird televizyonu, Torricelli cıvalı barometreyi icat etti; Alfred Nobel ise dinamiti bulup servetiyle Nobel Ödülleri'ni kurdu.",
+    "Keşifler Hikâyesi: Kopernik güneş merkezli sistemi, Galileo teleskopla Jüpiter'in uydularını, Newton yerçekimi ve hareket yasalarını, Einstein göreliliği, Faraday elektromanyetik indüksiyonu, Mendeleyev periyodik tabloyu, Röntgen X ışınını (1901 ilk Nobel Fizik), Marie Curie radyoaktiviteyi (Nobel alan ilk kadın, iki dalda), Thomson elektronu, Rutherford atom çekirdeğini ortaya koydu; tıpta Harvey kan dolaşımını, Jenner çiçek aşısını, Pasteur kuduz aşısı ve pastörizasyonu, Fleming penisilini, Banting insülini, Barnard ilk kalp naklini, Watson-Crick DNA çift sarmalını, Darwin evrimi ('Türlerin Kökeni') buldu."
+  ],
+  "genel-unesco": [
+    "GÇAN Tekniği: Anadolu'nun tarih öncesi ve erken dönem UNESCO miras alanlarını illeriyle grupla (Göbeklitepe, Çatalhöyük, Arslantepe, Nemrut) — sırasıyla Şanlıurfa, Konya, Malatya, Adıyaman.",
+    "İDG Tekniği: 1985'te UNESCO'ya giren ilk Türk miraslarını hatırla (İstanbul'un Tarihi Alanları, Divriği Ulu Camii, Göreme-Kapadokya) — üçü de 1985; Divriği Sivas'ta, Göreme Nevşehir'de.",
+    "PEBA Tekniği: Batı Anadolu'nun UNESCO antik kentlerini illeriyle grupla (Pamukkale-Hierapolis, Efes, Bergama, Afrodisyas) — Denizli, İzmir, İzmir, Aydın.",
+    "MEKA Tekniği: Türkiye'nin Somut Olmayan Kültürel Miras örneklerini baş harfleriyle hatırla (Mevlevi Sema Töreni, Ebru, Karagöz, Âşıklık geleneği) — Sema 2008, Karagöz ve Âşıklık 2009, Ebru 2014.",
+    "SBS Tekniği: Osmanlı dönemi UNESCO miraslarını illeriyle grupla (Selimiye Camii, Bursa-Cumalıkızık, Safranbolu) — Edirne (2011), Bursa (2014), Karabük.",
+    "GMP Tekniği: Yurt dışındaki ünlü dünya miraslarını ülkeleriyle eşle (Gize Piramitleri, Machu Picchu, Petra) — Mısır, Peru, Ürdün.",
+    "Gordion Hikâyesi: Ankara-Polatlı'daki Frig başkenti; 'her dokunduğunu altına çeviren' Kral Midas'ın kenti ve Büyük İskender'in kestiği Gordion Düğümü'nün yeri — 2023'te UNESCO listesine alındı.",
+    "Ani Hikâyesi: Kars'ta, Arpaçay kıyısında Türkiye-Ermenistan sınırındaki 'Bin Bir Kilise Şehri'; Bagratlı Ermeni Krallığı'nın başkentiydi, 1319 depremiyle geriledi ve 2016'da UNESCO listesine girdi."
+  ],
+  "genel-spor": [
+    "ALP Tekniği: Modern olimpiyatın üç temel bilgisi — ilk oyun şehri, IOC merkezi ve kurucu (Atina, Lozan, Pierre) İlk modern olimpiyat 1896 Atina'da yapıldı, IOC merkezi Lozan'da, kurucusu Pierre de Coubertin (IOC 1894). Beş halka beş kıtayı, slogan 'Daha Hızlı, Daha Yüksek, Daha Güçlü'.",
+    "YAHT Tekniği: Türk güreş olimpiyat efsaneleri sırasıyla (Yaşar, Ahmet, Hamza, Taha) Yaşar Erkan 1936 Berlin'de Türkiye'ye ilk altını (grekoromen) getirdi, Yaşar Doğu 1948 Londra'da 'yenilmez' oldu; Ahmet Ayık 1968 Meksika serbest altını; Hamza Yerlikaya 1996-2000 grekoromen; Taha Akgül 2016 Rio serbest 125 kg altını. Rıza Kayaalp de grekoromen 130 kg dünya şampiyonu.",
+    "NHN Tekniği: Türk halter olimpiyat şampiyonları (Naim, Halil, Nurcan) Cep Herkülü Naim Süleymanoğlu 1986'da Bulgaristan'dan iltica etti, üst üste 3 olimpiyatta altın; Halil Mutlu da 1996-2000-2004 üst üste 3 altın; Nurcan Taylan 2004 Atina'da olimpiyat şampiyonu ilk Türk kadın sporcu.",
+    "ŞHÜ Tekniği: 2002 FIFA Dünya Kupası hikâyesi anahtarları (Şenol, Hakan, Üçüncü) Teknik direktör Şenol Güneş yönetiminde A Millî Takım Japonya-Güney Kore'de üçüncü oldu; Hakan Şükür 11. saniyede Dünya Kupası tarihinin en hızlı golünü attı. EURO 2008'de ise yarı finalde elendik.",
+    "FAR Tekniği: Galatasaray'ın 2000 Avrupa zaferi (Fatih, Arsenal, Real) Fatih Terim yönetiminde ilk Türk kulübü olarak UEFA Kupası'nı kazandı; finalde penaltılarla Arsenal'i, Süper Kupa'da Real Madrid'i yendi.",
+    "EFA Tekniği: Türk basketbolunun zirve isimleri (Efes, Fenerbahçe, Alperen) Anadolu Efes 2021-2022 üst üste EuroLeague şampiyonu (Ergin Ataman), Fenerbahçe 2017 EuroLeague şampiyonu; A Millî Takım 2010'da ev sahibi olarak ABD'ye finalde kaybedip ikinci oldu; Alperen Şengün NBA Houston Rockets yıldızı, Hidayet Türkoğlu 2008 En Gelişmiş Oyuncu.",
+    "FMV Tekniği: Türk kadın voleybolu 'Filenin Sultanları' (Filenin, Melissa, VakıfBank) Filenin Sultanları 2023'te CEV Avrupa Şampiyonu oldu; Melissa Vargas smaçlarıyla öne çıkan yıldız; VakıfBank CEV Şampiyonlar Ligi'ni defalarca kazandı. Sahada 6 oyuncu, savunmacı farklı formalı oyuncu Libero.",
+    "Recep–Paris Hikâyesi: Son dönem Türk olimpiyat kahramanları — Mete Gazoz Tokyo 2020'de okçulukta Türkiye'ye ilk olimpiyat altınını kazandırdı; Yusuf Dikeç Paris 2024'te havalı tabancada gümüş alıp rahat duruşuyla dünya çapında fenomen oldu; Buse Naz Çakıroğlu Tokyo'da boksta gümüş, Servet Tazegül 2012 Londra tekvando altını; Toprak Razgatlıoğlu 2021 Dünya Superbike şampiyonu, Kenan Sofuoğlu 5 kez Supersport şampiyonu."
+  ],
+  "genel-karma": [
+    "ARÇFİ Tekniği: BM Güvenlik Konseyi'nin veto hakkı olan 5 daimi üyesi (ABD, Rusya, Çin, Fransa, İngiltere) Bir kararın geçmesi için 9 olumlu oy ve bu beşinden hiçbirinin veto etmemesi şart.",
+    "SÇK Tekniği: Merkezi İsviçre'nin Cenevre şehrinde bulunan kuruluşlar (Sağlık örgütü WHO, Çalışma örgütü ILO, Kızılhaç ICRC) Üçünü de Cenevre'de topla.",
+    "TAKK Tekniği: 2009'da Nahçıvan'da Türk Konseyi adıyla kurulan teşkilatın kurucu ülkeleri (Türkiye, Azerbaycan, Kazakistan, Kırgızistan) Bugünkü adı Türk Devletleri Teşkilatı.",
+    "TİP Tekniği: RCD'nin devamı niteliğindeki Ekonomik İşbirliği Teşkilatı ECO'yu kuran üç ülke (Türkiye, İran, Pakistan) Adı TİP gibi, aklında tut.",
+    "EMFST Tekniği: ASEAN'ın (Güneydoğu Asya Uluslar Birliği) 5 kurucu üyesi (Endonezya, Malezya, Filipinler, Singapur, Tayland) Vietnam kurucu DEĞİL, sonradan katıldı.",
+    "EOOA Tekniği: Anıtkabir'in projesini çizen iki mimar (Emin, Onat, Orhan, Arda) yani Emin Onat ve Orhan Arda; Atatürk'ün naaşı buraya 10 Kasım 1953'te nakledildi.",
+    "Bretton Woods Hikâyesi: 1944 Bretton Woods Konferansı'nda doğan ikiz kardeşler IMF (Uluslararası Para Fonu) ile Dünya Bankası'dır; ikisinin de genel merkezi ABD'nin başkenti Washington D.C.'dedir. GATT'ın yerini alan WTO ise ayrı bir kuruluştur.",
+    "Merkez Şehirleri Hikâyesi: Eğitim-kültür örgütü UNESCO ile ekonomik OECD Paris'te; gıda-tarım örgütü FAO Roma'da; petrolcü OPEC ile Atom Enerjisi IAEA Viyana'da; adalet ise Hollanda'da: BM Adalet Divanı Lahey'de, Avrupa İnsan Hakları Mahkemesi AİHM ise Fransa'nın Strazburg şehrindedir."
   ]
 }
