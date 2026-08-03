@@ -452,3 +452,125 @@ class KodlamaNotu extends StatelessWidget {
     );
   }
 }
+
+/// Konu anlatımı kartı — akılda kalıcı kodlamalarla (KodlamaNotu) AYNI yapışkan
+/// not kâğıdı tasarım dilini kullanır (renkli kâğıt, üst bant, kıvrık köşe,
+/// gölge, hafif eğim) ama METNİ KISALTMADAN tam gösterir. Böylece konu
+/// anlatımı ve akılda kalıcı kodlama ekranları anasayfadaki tasarımla birebir
+/// aynı görünür. Tam genişlikli kartlarda kenar taşmasını önlemek için eğim
+/// çok hafif tutulur.
+class NotKagidiProse extends StatelessWidget {
+  final String text;
+  final String? emoji;
+  final int index;
+  final bool acikTema;
+  final bool kalin;
+
+  const NotKagidiProse({
+    super.key,
+    required this.text,
+    this.emoji,
+    required this.index,
+    required this.acikTema,
+    this.kalin = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final kagit = kodlamaKagitRengi(index, acikTema);
+    final ink = kodlamaMurekkep(acikTema);
+    final egim = ((index % 5) - 2) * 0.006;
+
+    return Transform.rotate(
+      angle: egim,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: acikTema ? 0.16 : 0.42),
+              blurRadius: 12,
+              offset: const Offset(2, 6),
+            ),
+          ],
+        ),
+        child: Material(
+          color: kagit,
+          borderRadius: BorderRadius.circular(10),
+          clipBehavior: Clip.antiAlias,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: ink.withValues(alpha: 0.10)),
+            ),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (emoji != null && emoji!.isNotEmpty) ...[
+                        Text(emoji!, style: const TextStyle(fontSize: 18)),
+                        const SizedBox(width: 10),
+                      ],
+                      Expanded(
+                        child: Text(
+                          text,
+                          style: TextStyle(
+                            fontSize: 14.5,
+                            height: 1.55,
+                            fontWeight:
+                                kalin ? FontWeight.w800 : FontWeight.w500,
+                            color: ink,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Üstteki yapışkan bant
+                Positioned(
+                  top: 4,
+                  left: 16,
+                  child: Transform.rotate(
+                    angle: -0.10,
+                    child: Container(
+                      width: 46,
+                      height: 12,
+                      decoration: BoxDecoration(
+                        color: Colors.white
+                            .withValues(alpha: acikTema ? 0.65 : 0.16),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                ),
+                // Sağ alt kıvrık köşe
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(10)),
+                    child: SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: Transform.rotate(
+                        angle: 0.785,
+                        origin: const Offset(6, 6),
+                        child: Container(
+                            color: ink.withValues(
+                                alpha: acikTema ? 0.10 : 0.18)),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

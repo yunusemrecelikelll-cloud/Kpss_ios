@@ -964,7 +964,8 @@ class _TtsListenButton extends StatelessWidget {
   }
 }
 
-/// Özet için dikkat çekici, temaya göre gradient dolgulu kart.
+/// Özet kartı — akılda kalıcı kodlama / anasayfadaki yapışkan not kâğıdı
+/// tasarımının aynısı (kullanıcı isteği: anlatım ve kodlama tasarımı aynı).
 class _SummaryBox extends StatelessWidget {
   final String text;
   final KpssColors colors;
@@ -972,13 +973,17 @@ class _SummaryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Özet de not defteri sayfası (kullanıcı isteği: bütün anlatım not defteri).
-    return _NotSayfasi(
-        emoji: '📌', text: 'ÖZET\n$text', colors: colors, kalin: true, renkIndex: 3);
+    return NotKagidiProse(
+        emoji: '📌',
+        text: 'ÖZET\n$text',
+        index: 3,
+        acikTema: colors.isLight,
+        kalin: true);
   }
 }
 
-/// Her konu anlatımı paragrafı için ayrı, hafif renkli kutucuk.
+/// Her konu anlatımı paragrafı için ayrı yapışkan not kâğıdı (anasayfadaki
+/// akılda kalıcı kodlama tasarımıyla birebir aynı dil).
 class _ParagraphCard extends StatelessWidget {
   final int index;
   final String text;
@@ -988,10 +993,8 @@ class _ParagraphCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emoji = _kParagraphEmojis[index % _kParagraphEmojis.length];
-    // Kullanıcı isteği: konu anlatımı NOT DEFTERİ sayfaları gibi olsun; yazıya
-    // göre büyür ve arka planlar RENKLİ RENKLİ. (Akılda Kalıcı ekranıyla aynı
-    // "kâğıt" dili.) Her paragraf paletten farklı bir tonda çizilir.
-    return _NotSayfasi(emoji: emoji, text: text, colors: colors, renkIndex: index);
+    return NotKagidiProse(
+        emoji: emoji, text: text, index: index, acikTema: colors.isLight);
   }
 }
 
@@ -1025,161 +1028,13 @@ class _KeyPointCard extends StatelessWidget {
     final split = _splitLeadingEmoji(text);
     final emoji = split?.$1 ?? _kKeyPointFallbackEmojis[index % _kKeyPointFallbackEmojis.length];
     final label = split?.$2 ?? text;
-    // Anahtar noktalar da renkli kâğıt; paragraflardan farklı bir başlangıç
-    // ofsetiyle (peş peşe aynı renk düşmesin) paletten seçilir.
-    return _NotSayfasi(
-        emoji: emoji, text: label, colors: colors, kalin: true, renkIndex: index + 2);
+    // Anahtar noktalar da aynı yapışkan not kâğıdı; paragraflardan farklı bir
+    // başlangıç ofsetiyle (peş peşe aynı renk düşmesin) paletten seçilir.
+    return NotKagidiProse(
+        emoji: emoji, text: label, index: index + 2, acikTema: colors.isLight, kalin: true);
   }
 }
 
-/// Anlatım not kâğıtlarının RENKLİ tonları (kullanıcı isteği: "arka planları
-/// RENKLİ RENKLİ olsun", Akılda Kalıcı ekranındaki not kâğıtlarıyla aynı dil).
-/// Mnemonics ekranıyla AYNI hue paleti kullanılır ki iki ekran tutarlı olsun.
-const _kNotKagitTonlari = <double>[48, 96, 168, 200, 256, 320, 12];
-
-Color _notKagitRengi(int i, bool acikTema) {
-  final h = _kNotKagitTonlari[i % _kNotKagitTonlari.length];
-  return HSLColor.fromAHSL(1, h, acikTema ? 0.82 : 0.30, acikTema ? 0.90 : 0.17)
-      .toColor();
-}
-
-Color _notMurekkep(bool acikTema) =>
-    acikTema ? const Color(0xFF241C33) : const Color(0xFFEFE9F7);
-
-/// Konu anlatımını NOT DEFTERİ SAYFASI gibi gösteren kart (kullanıcı isteği):
-/// kâğıt yüzey, üstte spiral delikleri, solda kırmızı marj çizgisi ve arka
-/// planda soluk çizgili satırlar. Metin uzadıkça sayfa büyür. Arka plan RENKLİ:
-/// her kâğıt [renkIndex]'e göre paletten farklı bir pastel/koyu tonda çizilir.
-class _NotSayfasi extends StatelessWidget {
-  final String emoji;
-  final String text;
-  final KpssColors colors;
-  final bool kalin;
-  final int renkIndex;
-  const _NotSayfasi({
-    required this.emoji,
-    required this.text,
-    required this.colors,
-    this.kalin = false,
-    this.renkIndex = 0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final c = colors;
-    final kagit = _notKagitRengi(renkIndex, c.isLight);
-    final ink = _notMurekkep(c.isLight);
-    // Çizgiler ve marj, renkli kâğıt üstünde okunur kalsın diye mürekkep
-    // renginin soluk tonlarıdır (temaya göre koyu/açık).
-    final cizgi = ink.withValues(alpha: c.isLight ? 0.14 : 0.18);
-    final marj = const Color(0xFFEF6C6C).withValues(alpha: 0.55);
-    const fontSize = 14.5;
-    const satir = fontSize * 1.6;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: kagit,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: c.border),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: c.isLight ? 0.10 : 0.30),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Spiral cilt: üstte küçük delikler. Kâğıt renginin biraz
-          // koyu/açık bir tonu (renkli kâğıtla uyumlu).
-          Container(
-            height: 16,
-            color: (c.isLight ? Colors.black : Colors.white)
-                .withValues(alpha: c.isLight ? 0.06 : 0.06),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                for (var i = 0; i < 12; i++)
-                  Container(
-                    width: 7,
-                    height: 7,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: c.bg.withValues(alpha: 0.9),
-                      border: Border.all(color: c.border),
-                    ),
-                  ),
-              ],
-            ),
-          ),
-          CustomPaint(
-            painter: _DefterCizgileriPainter(
-                cizgi: cizgi, marj: marj, marjX: 34, satir: satir),
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(44, 10, 14, 12),
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: fontSize,
-                      height: 1.6,
-                      fontWeight: kalin ? FontWeight.w700 : FontWeight.w500,
-                      color: ink,
-                    ),
-                  ),
-                ),
-                // Emoji, kırmızı marjın solunda küçük bir işaret gibi durur.
-                Positioned(
-                  left: 8,
-                  top: 8,
-                  child: Text(emoji, style: const TextStyle(fontSize: 16)),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// Not defteri kâğıdının arka planı: soluk yatay satır çizgileri + solda dikey
-/// kırmızı marj çizgisi.
-class _DefterCizgileriPainter extends CustomPainter {
-  final Color cizgi;
-  final Color marj;
-  final double marjX;
-  final double satir;
-  const _DefterCizgileriPainter({
-    required this.cizgi,
-    required this.marj,
-    required this.marjX,
-    required this.satir,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final p = Paint()
-      ..color = cizgi
-      ..strokeWidth = 1;
-    // İlk satırın altından başlayarak metin satır yüksekliğiyle uyumlu çizgiler.
-    for (var y = 10 + satir; y < size.height; y += satir) {
-      canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
-    }
-    final mp = Paint()
-      ..color = marj
-      ..strokeWidth = 1.4;
-    canvas.drawLine(Offset(marjX, 0), Offset(marjX, size.height), mp);
-  }
-
-  @override
-  bool shouldRepaint(covariant _DefterCizgileriPainter old) =>
-      old.cizgi != cizgi || old.marj != marj || old.marjX != marjX || old.satir != satir;
-}
 
 /// Konu ekranında ilgili dersin hocalarını gösteren kart — bir hocaya
 /// dokununca o hocanın bu konudaki videoları YouTube'da açılır.
