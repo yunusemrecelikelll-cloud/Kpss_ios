@@ -271,8 +271,8 @@ class _EkleSheetState extends State<_EkleSheet> {
   final Set<int> _gunler = {DateTime.now().weekday};
   TimeOfDay _saat = const TimeOfDay(hour: 20, minute: 0);
   String _dersId = kSubjects.last.id; // Türkçe varsayılan
-  // Varsayılan: tüm içerik türleri seçili.
-  final Set<String> _turler = {...DersBildirimService.turAnahtarlari};
+  // Kullanıcı isteği: içerik türünden yalnızca 1 tanesi seçilir (tek seçim).
+  String _tur = DersBildirimService.turAnahtarlari.first; // kodlama
 
   Future<void> _saatSec() async {
     final s = await showTimePicker(
@@ -291,16 +291,10 @@ class _EkleSheetState extends State<_EkleSheet> {
       ustBildirim('En az bir gün seç.');
       return;
     }
-    if (_turler.isEmpty) {
-      ustBildirim('En az bir içerik türü seç.');
-      return;
-    }
     context.read<SoundService>().click();
     final storage = context.read<StorageService>();
-    // Anahtar sırasını koru (kodlama, motivasyon, biliyor, anlatim).
-    final seciliTurler = DersBildirimService.turAnahtarlari
-        .where(_turler.contains)
-        .toList();
+    // Tek içerik türü (kullanıcı isteği).
+    final seciliTurler = [_tur];
     // Çakışma engeli: aynı gün+saat+dakikada başka alarm (ders bildirimi VEYA
     // çalışma planı) varsa 1'er dk ileri kaydır.
     var kaydirmaOldu = false;
@@ -453,7 +447,7 @@ class _EkleSheetState extends State<_EkleSheet> {
                           fontWeight: FontWeight.w800,
                           color: c.textDim)),
                   const SizedBox(width: 6),
-                  Text('(birden fazla seçebilirsin)',
+                  Text('(birini seç)',
                       style: TextStyle(fontSize: 11, color: c.textFaint)),
                 ],
               ),
@@ -465,15 +459,9 @@ class _EkleSheetState extends State<_EkleSheet> {
                   for (final (anahtar, emoji, ad) in DersBildirimService.turler)
                     _SecimChip(
                       etiket: '$emoji $ad',
-                      secili: _turler.contains(anahtar),
+                      secili: _tur == anahtar,
                       renk: c.violet,
-                      onTap: () => setState(() {
-                        if (_turler.contains(anahtar)) {
-                          _turler.remove(anahtar);
-                        } else {
-                          _turler.add(anahtar);
-                        }
-                      }),
+                      onTap: () => setState(() => _tur = anahtar),
                     ),
                 ],
               ),

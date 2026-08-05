@@ -271,7 +271,9 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
                           runSpacing: 6,
                           children: [
                             DsChip(
-                              label: '${kDogruYanlisOnermeler.length} ÖNERME',
+                              // Oyun yalnızca DOĞRU önermeleri kullanır (yanlış
+                              // bilgi gösterilmez); etiket de doğru sayısını verir.
+                              label: '$kDogruYanlisDogruSayisi ÖNERME',
                               color: c.violet,
                             ),
                             DsChip(
