@@ -296,19 +296,31 @@ class _EkleSheetState extends State<_EkleSheet> {
       return;
     }
     context.read<SoundService>().click();
+    final storage = context.read<StorageService>();
     // Anahtar sırasını koru (kodlama, motivasyon, biliyor, anlatim).
     final seciliTurler = DersBildirimService.turAnahtarlari
         .where(_turler.contains)
         .toList();
-    final yeni = _gunler.map((g) => DersBildirimi(
-          id: DersBildirimi.yeniId(),
-          gun: g,
-          saat: _saat.hour,
-          dakika: _saat.minute,
-          dersId: _dersId,
-          turler: seciliTurler,
-        ));
-    Navigator.of(context).pop(yeni.toList());
+    // Çakışma engeli: aynı gün+saat+dakikada başka alarm (ders bildirimi VEYA
+    // çalışma planı) varsa 1'er dk ileri kaydır.
+    var kaydirmaOldu = false;
+    final yeni = <DersBildirimi>[];
+    for (final g in _gunler) {
+      final bos = AlarmCakisma.bosDakika(storage, g, _saat.hour, _saat.minute);
+      if (bos.kaydirildi) kaydirmaOldu = true;
+      yeni.add(DersBildirimi(
+        id: DersBildirimi.yeniId(),
+        gun: g,
+        saat: bos.saat,
+        dakika: bos.dakika,
+        dersId: _dersId,
+        turler: seciliTurler,
+      ));
+    }
+    if (kaydirmaOldu) {
+      ustBildirim('Bu saatte zaten alarm var; çakışmasın diye ileri alındı ⏰');
+    }
+    Navigator.of(context).pop(yeni);
   }
 
   @override

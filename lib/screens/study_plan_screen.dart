@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../services/notification_service.dart';
 import '../services/sound_service.dart';
+import '../services/ders_bildirim_service.dart';
 import '../services/storage_service.dart';
 import '../services/study_plan_service.dart';
 import '../theme/app_theme.dart';
@@ -218,7 +219,26 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
   /// Ekleme/düzenleme sonrası ortak kayıt + geri bildirim akışı.
   Future<void> _kaydet(StudyPlanEntry entry, {required String basariMesaji}) async {
     final servis = _servis(context);
-    final sonuc = await servis.upsertSession(entry);
+    // Çakışma engeli (kullanıcı isteği): başlangıç (alarm) saati başka bir
+    // alarmla (ders bildirimi VEYA başka plan başlangıcı) çakışıyorsa 1'er dk
+    // ileri kaydırılır; bitiş de aynı kadar kaydırılıp seans süresi korunur.
+    final bos = AlarmCakisma.bosDakika(
+        context.read<StorageService>(),
+        entry.gun,
+        entry.baslangicSaat,
+        entry.baslangicDakika,
+        haricPlanId: entry.id);
+    var e = entry;
+    if (bos.kaydirildi) {
+      final bit = (entry.bitisSaat * 60 + entry.bitisDakika + bos.adim) % 1440;
+      e = entry.copyWith(
+        baslangicSaat: bos.saat,
+        baslangicDakika: bos.dakika,
+        bitisSaat: bit ~/ 60,
+        bitisDakika: bit % 60,
+      );
+    }
+    final sonuc = await servis.upsertSession(e);
     if (!mounted) return;
 
     switch (sonuc) {
@@ -226,7 +246,11 @@ class _StudyPlanScreenState extends State<StudyPlanScreen> {
         await _bildirimleriYenile();
         if (!mounted) return;
         setState(() {});
-        _mesaj(basariMesaji);
+        _mesaj(bos.kaydirildi
+            ? 'Bu saatte zaten alarm vardı; çakışmasın diye '
+                '${saatMetni(TimeOfDay(hour: e.baslangicSaat, minute: e.baslangicDakika))} '
+                'olarak ayarlandı ⏰'
+            : basariMesaji);
       case StudyPlanSaveResult.premiumGerekli:
         await _premiumBilgisiGoster();
       case StudyPlanSaveResult.gecersizSaat:

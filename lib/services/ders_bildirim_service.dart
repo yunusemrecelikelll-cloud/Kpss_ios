@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'storage_service.dart';
+import 'study_plan_service.dart';
 
 /// ─────────────────────────────────────────────────────────────────────────
 /// Ders Bildirimleri — veri katmanı (kullanıcı isteği)
@@ -165,5 +166,63 @@ class DersBildirimService {
 
   Future<void> kaydet(StorageService storage, List<DersBildirimi> list) async {
     await storage.saveSettings({_key: list.map((e) => e.toJson()).toList()});
+  }
+}
+
+/// Alarm ÇAKIŞMA yardımcısı (kullanıcı isteği): aynı gün + aynı saat + aynı
+/// dakikaya iki alarm kurulamaz. Kural HEM ders bildirimleri HEM de çalışma
+/// planı başlangıç saatleri için ORTAK geçerlidir; çakışırsa 1'er dakika ileri
+/// kaydırılıp ilk boş dakika bulunur.
+class AlarmCakisma {
+  const AlarmCakisma._();
+
+  /// [gun]'e ait DOLU alarm dakikaları: çalışma planı BAŞLANGIÇLARI + ders
+  /// bildirimleri. Düzenlenen kaydı hariç tutmak için [haricPlanId] /
+  /// [haricDersId] verilebilir.
+  static Set<int> doluDakikalar(
+    StorageService storage,
+    int gun, {
+    String? haricPlanId,
+    String? haricDersId,
+  }) {
+    final set = <int>{};
+    for (final e in StudyPlanService(storage).getPlan()) {
+      if (e.id == haricPlanId) continue;
+      if (e.gun == gun) set.add(e.baslangicDakikaToplam);
+    }
+    for (final e in DersBildirimService().getir(storage)) {
+      if (e.id == haricDersId) continue;
+      if (e.gun == gun) set.add(e.dakikaToplam);
+    }
+    return set;
+  }
+
+  /// (gün, saat, dakika) DOLU ise 1'er dakika ileri kaydırıp İLK BOŞ dakikayı
+  /// döndürür. `kaydirildi` true ise çakışma nedeniyle saat değişmiştir.
+  /// `adim` kaç dakika ileri alındığını verir (bitiş saatini de kaydırmak için).
+  static ({int saat, int dakika, bool kaydirildi, int adim}) bosDakika(
+    StorageService storage,
+    int gun,
+    int saat,
+    int dakika, {
+    String? haricPlanId,
+    String? haricDersId,
+  }) {
+    final dolu = doluDakikalar(storage, gun,
+        haricPlanId: haricPlanId, haricDersId: haricDersId);
+    final baslangic = saat * 60 + dakika;
+    var toplam = baslangic;
+    var guvenlik = 0;
+    while (dolu.contains(toplam) && guvenlik < 1440) {
+      toplam = (toplam + 1) % 1440;
+      guvenlik++;
+    }
+    final adim = (toplam - baslangic + 1440) % 1440;
+    return (
+      saat: toplam ~/ 60,
+      dakika: toplam % 60,
+      kaydirildi: adim != 0,
+      adim: adim,
+    );
   }
 }
