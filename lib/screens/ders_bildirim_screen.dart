@@ -233,7 +233,11 @@ class _BildirimKart extends StatelessWidget {
                         fontSize: 14,
                         color: c.text)),
                 const SizedBox(height: 1),
-                Text(DersBildirimService.gunUzun(bildirim.gun),
+                Text(
+                    '${DersBildirimService.gunUzun(bildirim.gun)}  •  '
+                    '${bildirim.etkinTurler.map(DersBildirimService.turEmoji).join(' ')}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 11.5, color: c.textFaint)),
               ],
             ),
@@ -267,6 +271,8 @@ class _EkleSheetState extends State<_EkleSheet> {
   final Set<int> _gunler = {DateTime.now().weekday};
   TimeOfDay _saat = const TimeOfDay(hour: 20, minute: 0);
   String _dersId = kSubjects.last.id; // Türkçe varsayılan
+  // Varsayılan: tüm içerik türleri seçili.
+  final Set<String> _turler = {...DersBildirimService.turAnahtarlari};
 
   Future<void> _saatSec() async {
     final s = await showTimePicker(
@@ -285,13 +291,22 @@ class _EkleSheetState extends State<_EkleSheet> {
       ustBildirim('En az bir gün seç.');
       return;
     }
+    if (_turler.isEmpty) {
+      ustBildirim('En az bir içerik türü seç.');
+      return;
+    }
     context.read<SoundService>().click();
+    // Anahtar sırasını koru (kodlama, motivasyon, biliyor, anlatim).
+    final seciliTurler = DersBildirimService.turAnahtarlari
+        .where(_turler.contains)
+        .toList();
     final yeni = _gunler.map((g) => DersBildirimi(
           id: DersBildirimi.yeniId(),
           gun: g,
           saat: _saat.hour,
           dakika: _saat.minute,
           dersId: _dersId,
+          turler: seciliTurler,
         ));
     Navigator.of(context).pop(yeni.toList());
   }
@@ -412,6 +427,41 @@ class _EkleSheetState extends State<_EkleSheet> {
                       secili: _dersId == s.id,
                       renk: c.violet,
                       onTap: () => setState(() => _dersId = s.id),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 18),
+
+              // ── İÇERİK TÜRÜ (çoklu seçim) ──
+              Row(
+                children: [
+                  Text('Ne gelsin?',
+                      style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w800,
+                          color: c.textDim)),
+                  const SizedBox(width: 6),
+                  Text('(birden fazla seçebilirsin)',
+                      style: TextStyle(fontSize: 11, color: c.textFaint)),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final (anahtar, emoji, ad) in DersBildirimService.turler)
+                    _SecimChip(
+                      etiket: '$emoji $ad',
+                      secili: _turler.contains(anahtar),
+                      renk: c.violet,
+                      onTap: () => setState(() {
+                        if (_turler.contains(anahtar)) {
+                          _turler.remove(anahtar);
+                        } else {
+                          _turler.add(anahtar);
+                        }
+                      }),
                     ),
                 ],
               ),

@@ -15,7 +15,7 @@ import 'storage_service.dart';
 /// altında JSON listesi (storage_service.dart'a dokunmadan). Bildirimlerin
 /// kurulması NotificationService.scheduleDersBildirimleri ile yapılır.
 
-/// Tek bir ders bildirimi (gün + saat + ders).
+/// Tek bir ders bildirimi (gün + saat + ders + içerik türleri).
 class DersBildirimi {
   final String id;
 
@@ -24,6 +24,11 @@ class DersBildirimi {
   final int saat;
   final int dakika;
   final String dersId;
+
+  /// Kullanıcının seçtiği içerik türleri (bkz. DersBildirimService.turAnahtarlari):
+  /// 'kodlama', 'motivasyon', 'biliyor', 'anlatim'. Boşsa tüm türler kullanılır.
+  final List<String> turler;
+
   final bool aktif;
 
   const DersBildirimi({
@@ -32,6 +37,7 @@ class DersBildirimi {
     required this.saat,
     required this.dakika,
     required this.dersId,
+    this.turler = const [],
     this.aktif = true,
   });
 
@@ -52,6 +58,7 @@ class DersBildirimi {
     int? saat,
     int? dakika,
     String? dersId,
+    List<String>? turler,
     bool? aktif,
   }) =>
       DersBildirimi(
@@ -60,8 +67,13 @@ class DersBildirimi {
         saat: saat ?? this.saat,
         dakika: dakika ?? this.dakika,
         dersId: dersId ?? this.dersId,
+        turler: turler ?? this.turler,
         aktif: aktif ?? this.aktif,
       );
+
+  /// Etkin türler — boşsa tüm türler.
+  List<String> get etkinTurler =>
+      turler.isEmpty ? DersBildirimService.turAnahtarlari : turler;
 
   Map<String, dynamic> toJson() => {
         'id': id,
@@ -69,6 +81,7 @@ class DersBildirimi {
         's': saat,
         'd': dakika,
         'ders': dersId,
+        't': turler,
         'aktif': aktif,
       };
 
@@ -80,12 +93,18 @@ class DersBildirimi {
       final ders = (j['ders'] as String?)?.trim();
       if (ders == null || ders.isEmpty) return null;
       final ham = (j['id'] as String?)?.trim();
+      final turHam = (j['t'] as List?)
+              ?.whereType<String>()
+              .where(DersBildirimService.turAnahtarlari.contains)
+              .toList() ??
+          const <String>[];
       return DersBildirimi(
         id: (ham == null || ham.isEmpty) ? yeniId() : ham,
         gun: gun,
         saat: (((j['s'] as num?) ?? 20).toInt()).clamp(0, 23),
         dakika: (((j['d'] as num?) ?? 0).toInt()).clamp(0, 59),
         dersId: ders,
+        turler: turHam,
         aktif: j['aktif'] != false,
       );
     } catch (_) {
@@ -96,6 +115,26 @@ class DersBildirimi {
 
 class DersBildirimService {
   static const String _key = 'dersBildirimleri';
+
+  /// İçerik türleri: (anahtar, emoji, kısa ad). Kullanıcı bildirimde hangi
+  /// içerik türlerini istediğini seçer (bkz. kBildirimIcerikleri).
+  static const List<(String, String, String)> turler = [
+    ('kodlama', '🧠', 'Kodlama'),
+    ('motivasyon', '💪', 'Motivasyon'),
+    ('biliyor', '💡', 'Bunu biliyor musun?'),
+    ('anlatim', '📌', 'Kısa bilgi'),
+  ];
+
+  static const List<String> turAnahtarlari = [
+    'kodlama', 'motivasyon', 'biliyor', 'anlatim'
+  ];
+
+  static String turAd(String anahtar) => turler
+      .firstWhere((t) => t.$1 == anahtar, orElse: () => (anahtar, '•', anahtar))
+      .$3;
+  static String turEmoji(String anahtar) => turler
+      .firstWhere((t) => t.$1 == anahtar, orElse: () => (anahtar, '•', anahtar))
+      .$2;
 
   static const List<String> _gunKisa = [
     'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'

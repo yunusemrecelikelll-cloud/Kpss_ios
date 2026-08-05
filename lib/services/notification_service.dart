@@ -372,7 +372,14 @@ class NotificationService {
         final ders = kSubjects.where((s) => s.id == e.dersId);
         final baslik =
             ders.isEmpty ? 'KPSS' : '${ders.first.icon} ${ders.first.ad}';
-        final havuz = kBildirimIcerikleri[e.dersId] ?? const <String>[];
+        // Kullanıcının SEÇTİĞİ içerik türlerinden (kodlama/motivasyon/biliyor/
+        // anlatim) rastgele bir kısa, TAM metin seçilir.
+        final dersMap =
+            kBildirimIcerikleri[e.dersId] ?? const <String, List<String>>{};
+        final havuz = <String>[];
+        for (final t in e.etkinTurler) {
+          havuz.addAll(dersMap[t] ?? const <String>[]);
+        }
         final govde = havuz.isEmpty
             ? 'Bugün birkaç soru çözmeye ne dersin?'
             : havuz[_rastgele.nextInt(havuz.length)];
