@@ -122,11 +122,12 @@ const LearnMapCategory kTarimCategory = LearnMapCategory(
     LearnMapItem(
       id: 'findik',
       title: 'Fındık',
-      subtitle: 'Dünya fındık üretiminin büyük bölümü Türkiye\'de yapılır. Üretimde 1. sırada Ordu '
-          '(~240 bin ton), onu Samsun, Sakarya ve Giresun izler.',
-      provinceIds: ['ordu', 'samsun', 'sakarya', 'giresun', 'duzce', 'trabzon'],
-      kaynak: 'TÜİK/Tarım Bakanlığı 2022 bitkisel üretim verileri (Giresun Ziraat Odası fındık '
-          'raporuna aktarılmıştır) — Ordu 1., Samsun 2., Sakarya 3., Giresun 4. sırada. Yüksek güven.',
+      subtitle: 'Dünya fındık üretiminin büyük bölümü Türkiye\'de yapılır (dünya 1.). 2025 TÜİK '
+          'verilerine göre üretimde 1. sırada Samsun yer alır; Ordu, Sakarya ve Giresun onu izler. '
+          'Üretimin ~%80\'i Karadeniz, ~%20\'si Marmara bölgesindedir.',
+      provinceIds: ['samsun', 'ordu', 'sakarya', 'giresun', 'duzce', 'trabzon'],
+      kaynak: 'TÜİK 2025 bitkisel üretim verileri — Samsun fındık üretiminde 1. sıraya yükseldi '
+          '(önceki yıllarda Ordu 1.). Yüksek güven.',
     ),
     LearnMapItem(
       id: 'cay',
@@ -140,11 +141,12 @@ const LearnMapCategory kTarimCategory = LearnMapCategory(
     LearnMapItem(
       id: 'zeytin',
       title: 'Zeytin',
-      subtitle: 'Ege kıyı şeridi zeytin üretiminde Türkiye\'nin merkezidir; İzmir, Manisa, Aydın ve '
-          'Balıkesir üretimde ilk sıralarda yer alır (2024 rekor üretim: 3,75 milyon ton).',
-      provinceIds: ['izmir', 'manisa', 'aydin', 'balikesir'],
-      kaynak: 'TÜİK verisine dayanan AA (Anadolu Ajansı) haberi, "Türkiye\'nin zeytin üretimi 2024\'te '
-          'rekora ulaştı" — İzmir, Manisa, Aydın, Balıkesir üretim lideri iller. Yüksek güven.',
+      subtitle: 'Ege kıyı şeridi zeytin üretiminde Türkiye\'nin merkezidir; 2025 güncel verilerde '
+          'il olarak Aydın 1. sıradadır (uzun süre Manisa liderdi), İzmir, Manisa ve Balıkesir onu '
+          'izler. Sofralık zeytinde ise Marmara Bölgesi 1. sıradadır.',
+      provinceIds: ['aydin', 'izmir', 'manisa', 'balikesir'],
+      kaynak: 'TÜİK 2025 verileri — zeytinde il olarak Aydın 1. sıraya yükseldi; sofralık zeytinde '
+          'Marmara Bölgesi öne çıkar. Yüksek güven.',
     ),
     LearnMapItem(
       id: 'uzum',
@@ -195,20 +197,19 @@ const LearnMapCategory kTarimCategory = LearnMapCategory(
     LearnMapItem(
       id: 'tutun',
       title: 'Tütün',
-      subtitle: 'Güncel (2023) TÜİK verisine göre Adıyaman 1. sıradadır (25.990 ton); tarihsel olarak '
-          'Manisa uzun süre lider olmuştur — bölge, Doğu Karadeniz-GAP tütün kuşağıdır.',
-      provinceIds: ['adiyaman', 'samsun', 'batman'],
-      kaynak: 'TÜİK 2023 Bitkisel Üretim İstatistikleri Bülteni verisine atıf yapan haberler — '
-          'Adıyaman güncel üretimde 1. sırada. Orta-yüksek güven (tarihsel Manisa liderliğiyle '
-          'karşılaştırma notu eklendi).',
+      subtitle: '2025 TÜİK verisine göre il olarak Denizli tütün üretiminde 1. sıradadır; üretimde '
+          'Ege Bölgesi ilk sırada yer alır (Adıyaman ve Manisa da önemli üretim merkezleridir).',
+      provinceIds: ['denizli', 'adiyaman', 'manisa', 'samsun'],
+      kaynak: 'TÜİK 2025 Bitkisel Üretim İstatistikleri — Denizli tütünde 1. sırada, Ege bölge '
+          'lideri. Yüksek güven.',
     ),
     LearnMapItem(
       id: 'aycicegi',
       title: 'Ayçiçeği',
-      subtitle: "Trakya (Tekirdağ ve Edirne) Türkiye'nin ayçiçeği (yağlık) üretim merkezidir.",
-      provinceIds: ['tekirdag', 'edirne', 'kirklareli'],
-      kaynak: 'TÜİK verisine dayanan tarım raporları — Tekirdağ 267.012 ton, Edirne 226.573 ton ile '
-          'ilk iki sırada. Orta güven (veri yılı eski ama sıralama yıllardır stabil).',
+      subtitle: "2025 TÜİK verisine göre ayçiçeği (yağlık) üretiminde il olarak Konya 1. sıradadır; "
+          "bölge olarak ise Marmara (Trakya: Tekirdağ, Edirne) 1. sıradadır.",
+      provinceIds: ['konya', 'tekirdag', 'edirne', 'kirklareli'],
+      kaynak: 'TÜİK 2025 verileri — ayçiçeğinde il 1. Konya, bölge 1. Marmara (Trakya). Yüksek güven.',
     ),
     LearnMapItem(
       id: 'antep_fistigi',
@@ -230,10 +231,10 @@ const LearnMapCategory kTarimCategory = LearnMapCategory(
     LearnMapItem(
       id: 'muz',
       title: 'Muz',
-      subtitle: "Mersin (özellikle Anamur ilçesi), muz üretiminin %70'inden fazlasını karşılayan "
-          "Türkiye'nin muz başkentidir.",
-      provinceIds: ['mersin', 'antalya'],
-      kaynak: 'TÜİK verisine dayanan akademik/resmi kaynaklar, Mersin Valiliği açıklaması. Yüksek güven.',
+      subtitle: "Muz üretimi %100 Akdeniz Bölgesi'nde yapılır; 2025 TÜİK verisine göre il olarak "
+          "Antalya 1. sıradadır, Mersin (Anamur) ikinci sırada gelir.",
+      provinceIds: ['antalya', 'mersin'],
+      kaynak: 'TÜİK 2025 verileri — muzda il olarak Antalya 1. sırada (%100 Akdeniz). Yüksek güven.',
     ),
   ],
 );
@@ -258,10 +259,11 @@ const LearnMapCategory kHayvancilikCategory = LearnMapCategory(
     LearnMapItem(
       id: 'koyun',
       title: 'Koyun',
-      subtitle: 'Van, 2022 TÜİK verisine göre koyun varlığında 1. ildir (~3,1 milyon baş); '
-          'Konya (~2,77 milyon) ve Şanlıurfa (~2,09 milyon) onu izler.',
+      subtitle: 'Van, 2025 TÜİK verisine göre koyun varlığında 1. ildir; Konya ve Şanlıurfa onu '
+          'izler (sıralama: Van, Konya, Şanlıurfa, Diyarbakır, Ankara).',
       provinceIds: ['van', 'konya', 'sanliurfa'],
-      kaynak: 'TÜİK 2022 Hayvansal Üretim İstatistikleri\'ne atıf yapan haberler. Yüksek güven.',
+      kaynak: 'TÜİK 2025 Hayvansal Üretim İstatistikleri — Koyun: Van, Konya, Şanlıurfa, Diyarbakır, '
+          'Ankara. Yüksek güven.',
     ),
     LearnMapItem(
       id: 'keci',
