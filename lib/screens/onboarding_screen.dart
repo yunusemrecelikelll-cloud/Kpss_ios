@@ -50,6 +50,79 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
+  /// Tanıtımın SON sayfası (kullanıcı isteği): Ayarlardaki güçlü özellikleri
+  /// kısaca tanıtır — böylece yeni kullanıcı bunları kaçırmaz.
+  Widget _ozellikSayfasi(KpssColors c) {
+    const ozellikler = [
+      ('⏱️', 'Soru başına süre',
+          'Her soru için süreyi kendin belirle ya da otomatik bırak.'),
+      ('🔉', 'Adaptasyon sesi',
+          'Cevaplarında yönlendiren sesler; istersen kapatabilirsin.'),
+      ('➡️', 'Soruyu nasıl geçersin',
+          'Cevaplayınca otomatik mi, "Sonraki" ile mi ilerlesin — sen seç.'),
+      ('🎨', 'Tema seçimi',
+          '9 renkli tema ile uygulamanın görünümünü değiştir.'),
+      ('📋', 'KPSS sınavı seçimi',
+          'Lisans / Önlisans / Ortaöğretim — sorular sınavına göre gelir.'),
+      ('🔄', 'Soruları güncelle',
+          'Yeni eklenen soruları tek dokunuşla indir.'),
+      ('🔔', 'Saatli konu bildirimi (Yeni)',
+          'Seçtiğin derste, seçtiğin saatte akılda kalıcı kodlama, motivasyon '
+              've "bunu biliyor musun?" bildirimi al.'),
+    ];
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 8),
+            Text('⚙️', style: TextStyle(fontSize: 40)),
+            const SizedBox(height: 10),
+            Text('Ayarlardaki güçlü özellikler',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.w900, color: c.text)),
+            const SizedBox(height: 6),
+            Text('Deneyimini kişiselleştirmek için Ayarlar\'a göz at:',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 13, color: c.textDim)),
+            const SizedBox(height: 16),
+            for (final (emoji, baslik, aciklama) in ozellikler)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(emoji, style: const TextStyle(fontSize: 20)),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(baslik,
+                              style: TextStyle(
+                                  fontSize: 13.5,
+                                  fontWeight: FontWeight.w800,
+                                  color: c.text)),
+                          const SizedBox(height: 1),
+                          Text(aciklama,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  height: 1.35,
+                                  color: c.textFaint)),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /// İlk açılışta bir kez gösterilen resmî kurum feragatı sayfası.
   Widget _feragatSayfasi(KpssColors c) {
     return Padding(
@@ -84,8 +157,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    // Son sayfa artık FERAGAT sayfası (tanıtım sayfalarının bir fazlası).
-    final sonSayfa = _sayfa == _kSayfalar.length;
+    // Sayfa düzeni: [3 tanıtım] → [feragat] → [ayarlar özellikleri (SON)].
+    // Toplam = _kSayfalar.length + 2. Son sayfa artık özellikler sayfasıdır.
+    final sonSayfa = _sayfa == _kSayfalar.length + 1;
 
     return Scaffold(
       body: SafeArea(
@@ -102,11 +176,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: _controller,
-                itemCount: _kSayfalar.length + 1,
+                itemCount: _kSayfalar.length + 2,
                 onPageChanged: (i) => setState(() => _sayfa = i),
                 itemBuilder: (_, i) {
-                  // Son sayfa: resmî kurum feragatı + ÖSYM bağlantısı.
+                  // Resmî kurum feragatı + ÖSYM bağlantısı.
                   if (i == _kSayfalar.length) return _feragatSayfasi(c);
+                  // SON sayfa: Ayarlardaki özellikler tanıtımı.
+                  if (i == _kSayfalar.length + 1) return _ozellikSayfasi(c);
                   final s = _kSayfalar[i];
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -136,7 +212,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < _kSayfalar.length + 1; i++)
+                for (var i = 0; i < _kSayfalar.length + 2; i++)
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),

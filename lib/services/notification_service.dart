@@ -6,6 +6,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../data/bildirim_icerik.dart';
+import '../models/subject.dart';
+import 'ders_bildirim_service.dart';
 import 'storage_service.dart';
 import 'study_plan_service.dart';
 
@@ -297,6 +300,111 @@ class NotificationService {
         debugPrint('NotificationService: $id iptal edilemedi: $e');
       }
     }
+  }
+
+  // ── Ders Bildirimleri (kullanıcı isteği) ─────────────────────────────────
+  /// Ders bildirimleri kimlik tabanı. Plan (9101..9184), test (9100),
+  /// motivasyon (9200..9206) ve anlık (9300..9389) aralıklarıyla ÇAKIŞMAZ.
+  static const int _kDersBaseId = 9400;
+  static const int _kDersMaxAdet = 90; // 9401..9490
+
+  static const String _kDersChannelId = 'kpss_ders_bildirim';
+  static const String _kDersChannelName = 'Ders Bildirimleri';
+  static const String _kDersChannelDesc =
+      'Seçtiğin ders ve saatte akılda kalıcı kodlama, motivasyon ve bilgi gönderir.';
+
+  NotificationDetails _dersDetaylar() {
+    const android = AndroidNotificationDetails(
+      _kDersChannelId,
+      _kDersChannelName,
+      channelDescription: _kDersChannelDesc,
+      importance: Importance.high,
+      priority: Priority.high,
+      styleInformation: BigTextStyleInformation(''),
+    );
+    const darwin = DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: true,
+    );
+    return const NotificationDetails(android: android, iOS: darwin, macOS: darwin);
+  }
+
+  /// SADECE ders bildirimlerini (9401..9490) iptal eder.
+  Future<void> cancelDersBildirimleri() async {
+    if (!destekleniyorMu || !_hazir) return;
+    for (var i = 1; i <= _kDersMaxAdet; i++) {
+      try {
+        await _plugin.cancel(_kDersBaseId + i);
+      } catch (_) {/* yut */}
+    }
+  }
+
+  /// Kullanıcının eklediği ders bildirimlerini (haftalık; seçilen gün/saat)
+  /// kurar. İçerik havuzundan (bkz. kBildirimIcerikleri) rastgele KISA bir metin
+  /// seçilir — başlık ders adı, gövde kodlama/motivasyon/"bunu biliyor musun".
+  /// Her açılışta yeniden kurulur (bkz. main.dart). İstisna fırlatmaz.
+  Future<void> scheduleDersBildirimleri(
+    List<DersBildirimi> list, {
+    required StorageService storage,
+  }) async {
+    if (!destekleniyorMu) return;
+    if (!_hazir) await initialize();
+    if (!_hazir) return;
+    await cancelDersBildirimleri();
+
+    final detaylar = _dersDetaylar();
+    final aktifler = list.where((e) => e.aktif).toList()
+      ..sort((a, b) {
+        final g = a.gun.compareTo(b.gun);
+        if (g != 0) return g;
+        return a.dakikaToplam.compareTo(b.dakikaToplam);
+      });
+    final androidMi = defaultTargetPlatform == TargetPlatform.android;
+    final esleme = androidMi ? null : DateTimeComponents.dayOfWeekAndTime;
+
+    var idx = 0;
+    for (final e in aktifler) {
+      if (idx >= _kDersMaxAdet) break;
+      idx++;
+      try {
+        final zaman = _sonrakiHaftalikAn(e.gun, e.saat, e.dakika);
+        final ders = kSubjects.where((s) => s.id == e.dersId);
+        final baslik =
+            ders.isEmpty ? 'KPSS' : '${ders.first.icon} ${ders.first.ad}';
+        final havuz = kBildirimIcerikleri[e.dersId] ?? const <String>[];
+        final govde = havuz.isEmpty
+            ? 'Bugün birkaç soru çözmeye ne dersin?'
+            : havuz[_rastgele.nextInt(havuz.length)];
+        try {
+          await _plugin.zonedSchedule(
+            _kDersBaseId + idx,
+            baslik,
+            govde,
+            zaman,
+            detaylar,
+            androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+            matchDateTimeComponents: esleme,
+            payload: 'ders_${e.dersId}',
+          );
+        } on PlatformException catch (ex) {
+          if (ex.code != 'exact_alarms_not_permitted') rethrow;
+          await _plugin.zonedSchedule(
+            _kDersBaseId + idx,
+            baslik,
+            govde,
+            zaman,
+            detaylar,
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+            matchDateTimeComponents: esleme,
+            payload: 'ders_${e.dersId}',
+          );
+        }
+      } catch (ex) {
+        debugPrint('NotificationService: ders bildirimi kurulamadı: $ex');
+      }
+    }
+    debugPrint('NotificationService: $idx ders bildirimi kuruldu.');
   }
 
   /// Bekleyen TÜM bildirimleri iptal eder.

@@ -10,6 +10,7 @@ import 'services/auth_service.dart';
 import 'services/remote_question_service.dart';
 import 'services/tts_service.dart';
 import 'services/ad_service.dart';
+import 'services/ders_bildirim_service.dart';
 import 'services/notification_service.dart';
 import 'services/study_plan_service.dart';
 import 'theme/theme_provider.dart';
@@ -73,6 +74,15 @@ Future<void> main() async {
   NotificationService.instance
       .scheduleDailyMotivation(storage: storage)
       .catchError((e) => debugPrint('Açılışta motivasyon kurulumu: $e'));
+
+  // Ders bildirimleri (kullanıcı isteği): kullanıcının eklediği ders/gün/saat
+  // alarmları da her açılışta yeniden kurulur (yeniden kurulumdan sonra
+  // Android'in sildiği alarmlar geri gelsin, çift kurulmasın).
+  // ignore: unawaited_futures
+  NotificationService.instance
+      .scheduleDersBildirimleri(DersBildirimService().getir(storage),
+          storage: storage)
+      .catchError((e) => debugPrint('Açılışta ders bildirimi kurulumu: $e'));
 
   runApp(
     MultiProvider(

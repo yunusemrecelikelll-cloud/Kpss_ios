@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../services/account_deletion_service.dart';
 import '../services/auth_service.dart';
 import '../services/in_app_notice_service.dart';
@@ -14,6 +15,7 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
+import 'ders_bildirim_screen.dart';
 import 'hak_satin_al_screen.dart';
 import 'premium_screen.dart';
 import 'quiz_screen.dart'
@@ -414,6 +416,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
         '• 20 soruluk denemede ≈ $yirmi';
   }
 
+  /// Sosyal medya hesabını açar: kullanıcının UYGULAMASI varsa (Instagram
+  /// için özel şema, Threads için app-link) doğrudan uygulamada, yoksa web'de.
+  Future<void> _sosyalAc(BuildContext context,
+      {String? appUri, required String webUrl}) async {
+    context.read<SoundService>().click();
+    // 1) Önce uygulama şeması denenir (yüklüyse uygulama açılır).
+    if (appUri != null) {
+      try {
+        final ok = await launchUrl(Uri.parse(appUri),
+            mode: LaunchMode.externalApplication);
+        if (ok) return;
+      } catch (_) {/* uygulama yok — web'e düş */}
+    }
+    // 2) Web/app-link: Instagram/Threads uygulaması kuruluysa OS bu bağlantıyı
+    // yine uygulamada açar (Android App Links / iOS Universal Links); değilse
+    // tarayıcıda açılır.
+    try {
+      await launchUrl(Uri.parse(webUrl), mode: LaunchMode.externalApplication);
+    } catch (_) {
+      if (mounted) ustBildirim('Bağlantı açılamadı.');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
@@ -504,6 +529,80 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ],
                 ],
+              ),
+            ),
+
+            // ── BİZİ TAKİP ET ───────────────────────────────────────────
+            const SizedBox(height: 20),
+            const DsSectionHeader(title: '📣 Bizi Takip Et'),
+            const SizedBox(height: 8),
+            DsCard(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Column(
+                children: [
+                  _SosyalSatir(
+                    renk: const Color(0xFFE1306C),
+                    emoji: '📸',
+                    baslik: 'Instagram',
+                    kullaniciAdi: '@kpsshazirliksorubankasi',
+                    aciklama:
+                        'Her gün 4 Akılda Kalıcı Kodlama, 4 Motivasyon, 4 "Bunu biliyor musunuz?"',
+                    onTap: () => _sosyalAc(
+                      context,
+                      appUri:
+                          'instagram://user?username=kpsshazirliksorubankasi',
+                      webUrl:
+                          'https://www.instagram.com/kpsshazirliksorubankasi?igsh=NDh4cGFlZmFlbWln&utm_source=qr',
+                    ),
+                  ),
+                  Divider(height: 1, color: c.border),
+                  _SosyalSatir(
+                    renk: c.text,
+                    emoji: '🧵',
+                    baslik: 'Threads',
+                    kullaniciAdi: '@kpsshazirliksorubankasi',
+                    aciklama:
+                        'Her gün 12 Anketli Soru, 4 Akılda Kalıcı Kodlama, 4 Motivasyon, 4 "Bunu biliyor musunuz?"',
+                    onTap: () => _sosyalAc(
+                      context,
+                      appUri: null,
+                      webUrl:
+                          'https://www.threads.com/@kpsshazirliksorubankasi?igshid=NTc4MTIwNjQ2YQ==',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // ── DERS BİLDİRİMLERİ ───────────────────────────────────────
+            const SizedBox(height: 20),
+            const DsSectionHeader(title: '🔔 Ders Bildirimleri'),
+            const SizedBox(height: 8),
+            DsCard(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: ListTile(
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const DersBildirimScreen()));
+                },
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                leading: DsIconBadge(
+                    icon: Icons.notifications_active_rounded,
+                    color: c.violet,
+                    size: 44,
+                    circle: false,
+                    glow: false),
+                title: Text('Ders Bildirimleri',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w800, color: c.text)),
+                subtitle: Text(
+                    'İstediğin dersten, istediğin gün ve saatte akılda kalıcı '
+                    'kodlama, motivasyon ve "bunu biliyor musun?" bildirimi al.',
+                    style: TextStyle(fontSize: 11.5, color: c.textFaint)),
+                trailing:
+                    Icon(Icons.chevron_right_rounded, color: c.textFaint),
               ),
             ),
 
@@ -1018,6 +1117,66 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// "Bizi Takip Et" bölümündeki tek sosyal medya satırı — ikon rozeti, ad +
+/// kullanıcı adı, kısa açıklama ve dış bağlantı oku.
+class _SosyalSatir extends StatelessWidget {
+  final Color renk;
+  final String emoji;
+  final String baslik;
+  final String kullaniciAdi;
+  final String aciklama;
+  final VoidCallback onTap;
+  const _SosyalSatir({
+    required this.renk,
+    required this.emoji,
+    required this.baslik,
+    required this.kullaniciAdi,
+    required this.aciklama,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return ListTile(
+      onTap: onTap,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      leading: Container(
+        width: 44,
+        height: 44,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: renk.withValues(alpha: 0.14),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: renk.withValues(alpha: 0.45)),
+        ),
+        child: Text(emoji, style: const TextStyle(fontSize: 20)),
+      ),
+      title: Row(
+        children: [
+          Text(baslik,
+              style: TextStyle(
+                  fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
+          const SizedBox(width: 6),
+          Flexible(
+            child: Text(kullaniciAdi,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 12, fontWeight: FontWeight.w600, color: renk)),
+          ),
+        ],
+      ),
+      subtitle: Padding(
+        padding: const EdgeInsets.only(top: 2),
+        child: Text(aciklama,
+            style: TextStyle(fontSize: 11.5, height: 1.35, color: c.textFaint)),
+      ),
+      trailing: Icon(Icons.open_in_new_rounded, size: 18, color: c.textFaint),
     );
   }
 }
