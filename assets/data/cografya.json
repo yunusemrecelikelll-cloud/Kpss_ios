@@ -11152,11 +11152,11 @@
             "A) 70 milyon",
             "B) 75 milyon",
             "C) 80 milyon",
-            "D) 85 milyon",
+            "D) 86 milyon",
             "E) 90 milyon"
           ],
           "dogruIndex": 3,
-          "aciklama": "Türkiye'nin nüfusu 2023 yılı itibarıyla yaklaşık 85 milyon kişidir."
+          "aciklama": "Türkiye'nin nüfusu 2025 yılı (TÜİK) itibarıyla yaklaşık 86,1 milyon kişidir (2024: 85,7 milyon)."
         },
         {
           "soru": "Türkiye'nin en kalabalık ili hangisidir?",
@@ -11295,12 +11295,12 @@
           "secenekler": [
             "A) 50",
             "B) 80",
-            "C) 108",
+            "C) 112",
             "D) 130",
             "E) 160"
           ],
           "dogruIndex": 2,
-          "aciklama": "Türkiye'nin toplam yüzölçümü ~783.000 km², nüfusu ~85 milyon olduğundan ortalama nüfus yoğunluğu yaklaşık 108 kişi/km² olur."
+          "aciklama": "Türkiye'nin toplam yüzölçümü ~783.562 km², nüfusu 2025'te ~86,1 milyon olduğundan ortalama (aritmetik) nüfus yoğunluğu 2025 TÜİK verilerine göre yaklaşık 112 kişi/km²'dir (2024: 111)."
         },
         {
           "soru": "Türkiye'de sanayileşmenin nüfus dağılımına etkisi nedir?",
