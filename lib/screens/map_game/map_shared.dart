@@ -122,6 +122,108 @@ void haritaYanlisAfis(BuildContext context, int kalanHak) {
   ));
 }
 
+/// İl adının Türkçe BELİRTME HÂLİ (ör. Ankara→"Ankara'yı", İzmir→"İzmir'i",
+/// İstanbul→"İstanbul'u"). Ünlü uyumuna göre ek seçilir; ünlüyle biten adlara
+/// kaynaştırma 'y'si eklenir. "Ankara'yı seçtin" gibi doğal cümle için.
+String haritaBelirtmeHali(String ad) {
+  const unluler = 'aeıioöuü';
+  final kucuk = ad.toLowerCase();
+  String sonUnlu = '';
+  for (var i = kucuk.length - 1; i >= 0; i--) {
+    if (unluler.contains(kucuk[i])) {
+      sonUnlu = kucuk[i];
+      break;
+    }
+  }
+  final String ek;
+  if ('aı'.contains(sonUnlu)) {
+    ek = 'ı';
+  } else if ('ei'.contains(sonUnlu)) {
+    ek = 'i';
+  } else if ('ou'.contains(sonUnlu)) {
+    ek = 'u';
+  } else if ('öü'.contains(sonUnlu)) {
+    ek = 'ü';
+  } else {
+    ek = 'ı';
+  }
+  final sonHarf = kucuk.isNotEmpty ? kucuk[kucuk.length - 1] : '';
+  final y = unluler.contains(sonHarf) ? 'y' : '';
+  return "$ad'$y$ek";
+}
+
+/// İlk yanlış seçimden sonra 2. seçim yapılana kadar ALT TARAFTA KALICI duran
+/// uyarı (kullanıcı isteği: "Ankara'yı seçtin. Emin misin?"). Seçilen ili ve
+/// kalan hakkı gösterir — snackbar DEĞİL, ekranda kalan bir karttır; böylece
+/// ilk yanlış işaret 2. cevaba kadar kaybolmaz.
+Widget haritaBekleyenAfis(BuildContext context,
+    {required String secilenAd, required int kalanHak}) {
+  final c = context.watch<ThemeProvider>().colors;
+  return Container(
+    width: double.infinity,
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(colors: [
+        Color.alphaBlend(c.warn.withValues(alpha: 0.22), c.bg2),
+        c.bg2,
+      ]),
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: c.warn.withValues(alpha: 0.60)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black.withValues(alpha: 0.28),
+            blurRadius: 16,
+            offset: const Offset(0, 6)),
+      ],
+    ),
+    child: Row(
+      children: [
+        Container(
+          width: 34,
+          height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: c.warn.withValues(alpha: 0.18), shape: BoxShape.circle),
+          child: const Text('🤔', style: TextStyle(fontSize: 16)),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('${haritaBelirtmeHali(secilenAd)} seçtin. Emin misin?',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.5,
+                      color: c.text)),
+              const SizedBox(height: 2),
+              Text('Yanlış işaretledin — son hakkını dikkatli kullan.',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: c.warn)),
+            ],
+          ),
+        ),
+        Row(
+          children: [
+            for (var i = 0; i < kMapMaxAttempts; i++)
+              Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Icon(
+                  i < kalanHak ? Icons.favorite : Icons.favorite_border,
+                  size: 15,
+                  color: c.danger,
+                ),
+              ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
 /// Yanlış işaretlemenin OLASI SEBEBİNİ açıklayan metin (kullanıcı isteği:
 /// "büyük ihtimalle şu sebepten bu illeri seçtin"). Mod ve seçilen yanlış
 /// illere göre biçimlenir.
@@ -535,7 +637,9 @@ Future<void> showHowToPlaySheet(BuildContext context, {required String title, re
   final colors = context.read<ThemeProvider>().colors;
   return showModalBottomSheet(
     context: context,
-    backgroundColor: colors.glass2,
+    // Kullanıcı isteği: panelin arkası OPAK olsun (yarı saydam cam arkaplandaki
+    // yazılarla çakışıyordu). Solid bg2 kullanılıyor.
+    backgroundColor: colors.bg2,
     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     builder: (ctx) => SafeArea(
       child: Padding(
@@ -770,6 +874,9 @@ class MapQuizScaffold extends StatelessWidget {
   final String statusText;
   final Widget map;
   final Widget? feedback;
+  /// İlk yanlıştan sonra, sonuç gösterilmeden önce ALT TARAFTA KALICI duran
+  /// uyarı (bkz. [haritaBekleyenAfis]). feedback null iken gösterilir.
+  final Widget? pendingNotice;
   /// Bu modun renk kimliği — verilirse Scaffold gövdesine hafif bir gradyan
   /// arka plan yıkaması uygulanır (bkz. map_shared.dart `kMapModePalettes`).
   final SubjectPalette? palette;
@@ -783,6 +890,7 @@ class MapQuizScaffold extends StatelessWidget {
     required this.statusText,
     required this.map,
     this.feedback,
+    this.pendingNotice,
     this.palette,
     this.howToPlay,
   });
@@ -816,6 +924,10 @@ class MapQuizScaffold extends StatelessWidget {
                 Text(statusText, style: TextStyle(fontSize: 12.5, color: colors.textFaint)),
                 const SizedBox(height: 10),
                 Expanded(child: map),
+                if (feedback == null && pendingNotice != null) ...[
+                  const SizedBox(height: 10),
+                  pendingNotice!,
+                ],
                 if (feedback != null) ...[
                   const SizedBox(height: 10),
                   // ÖNEMLİ (düzeltilen hata — bkz. Ürün Haritası): geri bildirim

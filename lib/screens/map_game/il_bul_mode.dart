@@ -117,7 +117,6 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
   late List<TurkeyProvince> _queue;
   TurkeyProvince? _tapped;
   bool _showResult = false;
-  String? _flashWrongId;
   DateTime? _sessionStart;
   // Bu sorudaki yanlış işaretlenen iller (yanlışlarım bankası + sebep için).
   final List<TurkeyProvince> _yanlisSecilen = [];
@@ -157,7 +156,6 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       // sonuç durumunun sızmaması için tur-bazlı alanlar burada da sıfırlanır.
       _showResult = false;
       _tapped = null;
-      _flashWrongId = null;
     });
   }
 
@@ -186,8 +184,9 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
         _showResult = true;
       });
     } else {
-      _flashWrong(p.id);
-      haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
+      // Kullanıcı isteği: ilk yanlış işaret 2. seçime kadar KALSIN;
+      // alt uyarı (haritaBekleyenAfis) pendingNotice ile gösterilir.
+      setState(() {});
     }
   }
 
@@ -205,14 +204,6 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
     );
   }
 
-  /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
-  void _flashWrong(String id) {
-    setState(() => _flashWrongId = id);
-    Future.delayed(const Duration(milliseconds: 550), () {
-      if (mounted && _flashWrongId == id) setState(() => _flashWrongId = null);
-    });
-  }
-
   void _next() {
     context.read<SoundService>().click();
     if (_round + 1 >= _queue.length) {
@@ -224,7 +215,6 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       _tapped = null;
       _showResult = false;
       _attempts = 0;
-      _flashWrongId = null;
       _yanlisSecilen.clear();
     });
   }
@@ -278,7 +268,7 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
         provinces: kTurkeyProvinces,
         colorFor: (p) {
           if (!_showResult) {
-            if (p.id == _flashWrongId) return colors.danger;
+            if (_yanlisSecilen.any((x) => x.id == p.id)) return colors.danger;
             return mapRenk.withValues(alpha: 0.32);
           }
           if (p.id == _target.id) return colors.success;
@@ -288,6 +278,11 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
         onTap: _onTapProvince,
       ),
       feedback: _showResult ? _buildFeedback(colors) : null,
+      pendingNotice: (!_showResult && _yanlisSecilen.isNotEmpty)
+          ? haritaBekleyenAfis(context,
+              secilenAd: _yanlisSecilen.last.ad,
+              kalanHak: kMapMaxAttempts - _attempts)
+          : null,
     );
   }
 

@@ -578,8 +578,14 @@ class StorageService extends ChangeNotifier {
   // 0 = "tema rengini kullan" (varsayılan). Diğer değerler ARGB renk kodudur.
   // Profil ön eki KULLANILMAZ — kullanıcı bir kez seçer, tüm profillerde geçerli.
   int getMapColorValue() => (_prefs?.getInt('harita_vurgu_renk') ?? 0);
-  Future<void> setMapColorValue(int argb) async =>
-      _prefs?.setInt('harita_vurgu_renk', argb);
+  Future<void> setMapColorValue(int argb) async {
+    await _prefs?.setInt('harita_vurgu_renk', argb);
+    // Kullanıcı isteği: seçilen harita rengi TÜM harita alanlarına ANINDA
+    // ve kalıcı yansısın. notifyListeners olmadan context.watch dinleyicileri
+    // (mapHighlightColor) yenilenmiyordu; eklenmezse renk seçimi güvenilmez
+    // biçimde uygulanıyor/geri dönüyor gibi görünüyordu.
+    notifyListeners();
+  }
 
   // ── Harita YANLIŞLARIM bankası (kullanıcı isteği) ───────────────────────────
   // Harita oyunlarında yanlış işaretlenen iller: her kayıt {soru, dogruId,

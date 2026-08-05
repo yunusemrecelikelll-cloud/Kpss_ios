@@ -35,7 +35,6 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
   late List<TurkeyProvince> _queue;
   TurkeyProvince? _tapped;
   bool _showResult = false;
-  String? _flashWrongId;
   final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
@@ -74,7 +73,6 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
       // sonuç durumunun sızmaması için tur-bazlı alanlar burada da sıfırlanır.
       _showResult = false;
       _tapped = null;
-      _flashWrongId = null;
     });
   }
 
@@ -102,8 +100,9 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
         _showResult = true;
       });
     } else {
-      _flashWrong(p.id);
-      haritaYanlisAfis(context, kMapMaxAttempts - _attempts);
+      // Kullanıcı isteği: ilk yanlış işaret 2. seçime kadar KALSIN;
+      // alt uyarı (haritaBekleyenAfis) pendingNotice ile gösterilir.
+      setState(() {});
     }
   }
 
@@ -121,14 +120,6 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
     );
   }
 
-  /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
-  void _flashWrong(String id) {
-    setState(() => _flashWrongId = id);
-    Future.delayed(const Duration(milliseconds: 550), () {
-      if (mounted && _flashWrongId == id) setState(() => _flashWrongId = null);
-    });
-  }
-
   void _next() {
     context.read<SoundService>().click();
     if (_round + 1 >= _queue.length) {
@@ -141,7 +132,6 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
       _tapped = null;
       _showResult = false;
       _attempts = 0;
-      _flashWrongId = null;
     });
   }
 
@@ -199,7 +189,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
         // görüp etraftaki illere bakarak tahmin etmesin.
         colorFor: (p) {
           if (!_showResult) {
-            if (p.id == _flashWrongId) return colors.danger;
+            if (_yanlisSecilen.any((x) => x.id == p.id)) return colors.danger;
             return mapRenk.withValues(alpha: 0.32);
           }
           if (_target.komsular.contains(p.id)) return colors.success;
@@ -212,6 +202,11 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
         },
       ),
       feedback: _showResult ? _buildFeedback(colors) : null,
+      pendingNotice: (!_showResult && _yanlisSecilen.isNotEmpty)
+          ? haritaBekleyenAfis(context,
+              secilenAd: _yanlisSecilen.last.ad,
+              kalanHak: kMapMaxAttempts - _attempts)
+          : null,
     );
   }
 
