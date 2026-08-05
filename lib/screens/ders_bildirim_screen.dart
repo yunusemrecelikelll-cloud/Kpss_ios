@@ -10,6 +10,7 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import '../utils/ust_bildirim.dart';
+import 'tools_hub_screen.dart';
 
 /// "Ders Bildirimleri" ekranı (kullanıcı isteği): kullanıcı İSTEDİĞİ DERSTEN,
 /// İSTEDİĞİ GÜN ve SAATTE, İSTEDİĞİ KADAR bildirim ekleyebilir. Bildirim içeriği
@@ -73,6 +74,16 @@ class _DersBildirimScreenState extends State<DersBildirimScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Premium'a özel özellik (kullanıcı isteği): ücretsiz kullanıcı kilitli
+    // vitrini görür, Premium'a yönlendirilir.
+    if (!context.watch<StorageService>().isPremiumUser()) {
+      return const LockedFeatureCard(
+        title: 'Ders Bildirimleri',
+        desc:
+            "Seçtiğin dersten, seçtiğin gün ve saatte akılda kalıcı kodlama, "
+            "motivasyon ve \"bunu biliyor musun?\" bildirimi almak için Premium'a geç.",
+      );
+    }
     final c = context.watch<ThemeProvider>().colors;
     final sirali = [..._liste]..sort((a, b) {
         final g = a.gun.compareTo(b.gun);

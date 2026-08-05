@@ -596,6 +596,7 @@ class _FeatureComparisonTable extends StatelessWidget {
     ('🗺️', 'Harita Oyunu', 'Günde 10 mini oyun', 'Sınırsız oyun'),
     ('🎨', 'Uygulama Temaları', '3 tema', '9 tema'),
     ('🧠', 'Akılda Kalıcı Kodlama', null, 'Tüm mnemonik teknikleri'),
+    ('🔔', 'Ders Bildirimleri', null, 'Ders/gün/saat seçmeli hatırlatmalar'),
     ('🎯', 'Sınav Puanı Tahmini', null, 'Anlık net/puan tahmini'),
     ('⏱️', 'Çalışma Kronometresi', null, 'Detaylı zaman analizi'),
     ('🎓', 'Mentörlük Seansları', null, 'Tüm seanslara erişim'),

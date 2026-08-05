@@ -15,7 +15,6 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
-import 'ders_bildirim_screen.dart';
 import 'hak_satin_al_screen.dart';
 import 'premium_screen.dart';
 import 'quiz_screen.dart'
@@ -571,38 +570,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                 ],
-              ),
-            ),
-
-            // ── DERS BİLDİRİMLERİ ───────────────────────────────────────
-            const SizedBox(height: 20),
-            const DsSectionHeader(title: '🔔 Ders Bildirimleri'),
-            const SizedBox(height: 8),
-            DsCard(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: ListTile(
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => const DersBildirimScreen()));
-                },
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                leading: DsIconBadge(
-                    icon: Icons.notifications_active_rounded,
-                    color: c.violet,
-                    size: 44,
-                    circle: false,
-                    glow: false),
-                title: Text('Ders Bildirimleri',
-                    style:
-                        TextStyle(fontWeight: FontWeight.w800, color: c.text)),
-                subtitle: Text(
-                    'İstediğin dersten, istediğin gün ve saatte akılda kalıcı '
-                    'kodlama, motivasyon ve "bunu biliyor musun?" bildirimi al.',
-                    style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-                trailing:
-                    Icon(Icons.chevron_right_rounded, color: c.textFaint),
               ),
             ),
 

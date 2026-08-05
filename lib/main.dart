@@ -78,9 +78,15 @@ Future<void> main() async {
   // Ders bildirimleri (kullanıcı isteği): kullanıcının eklediği ders/gün/saat
   // alarmları da her açılışta yeniden kurulur (yeniden kurulumdan sonra
   // Android'in sildiği alarmlar geri gelsin, çift kurulmasın).
+  // Premium'a özel: yalnızca premium kullanıcıda kurulur. Premium biterse boş
+  // liste geçilir → scheduleDersBildirimleri önce eskileri iptal eder, hiçbir
+  // ders bildirimi kurulmaz.
   // ignore: unawaited_futures
   NotificationService.instance
-      .scheduleDersBildirimleri(DersBildirimService().getir(storage),
+      .scheduleDersBildirimleri(
+          storage.isPremiumUser()
+              ? DersBildirimService().getir(storage)
+              : const [],
           storage: storage)
       .catchError((e) => debugPrint('Açılışta ders bildirimi kurulumu: $e'));
 

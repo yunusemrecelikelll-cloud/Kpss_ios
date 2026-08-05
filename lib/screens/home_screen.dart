@@ -29,6 +29,7 @@ import 'duel/duel_lobby_screen.dart';
 import 'settings_screen.dart';
 import 'placement_exam_screen.dart';
 import 'hak_satin_al_screen.dart';
+import 'ders_bildirim_screen.dart';
 import 'mentor_screen.dart';
 import 'mnemonics_screen.dart';
 import 'predictor_screen.dart';
@@ -302,6 +303,52 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: kDsGap),
             // 4) Günlük Çalışma Planı kartı.
             const StudyPlanCard(),
+            const SizedBox(height: kDsGap),
+            // Ders Bildirimleri (kullanıcı isteği: ana sayfaya taşındı, Premium'a
+            // özel). Ücretsiz kullanıcı kartı soluk + "premium" rozetli görür;
+            // dokununca DersBildirimScreen kilitli vitrini açar.
+            wrapPremiumKart(
+              context,
+              DsCard(
+                accent: c.violet,
+                onTap: () {
+                  context.read<SoundService>().click();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const DersBildirimScreen()));
+                },
+                child: Row(
+                  children: [
+                    DsIconBadge(
+                        icon: Icons.notifications_active_rounded,
+                        color: c.violet,
+                        size: 44,
+                        glow: false),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Ders Bildirimleri',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 14.5,
+                                  color: c.text)),
+                          const SizedBox(height: 2),
+                          Text(
+                            'İstediğin dersten, istediğin saatte akılda kalıcı '
+                            'kodlama, motivasyon ve "bunu biliyor musun?" bildirimi al.',
+                            style: TextStyle(fontSize: 12, color: c.textDim),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(Icons.chevron_right_rounded, color: c.textFaint),
+                  ],
+                ),
+              ),
+              true,
+            ),
             const SizedBox(height: kDsGap),
             // 5) Hızlı erişim: Akılda Kalıcı Kodlama + Mentörlük.
             Row(
