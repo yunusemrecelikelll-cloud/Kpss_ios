@@ -1,0 +1,85 @@
+# Codemagic iOS build + TestFlight yükleme + AdMob doğrulama
+# ---------------------------------------------------------------
+# ELLE YAPILACAK TEK ŞEY (bir kez):
+#   Codemagic → Teams/User settings → Integrations → App Store Connect'ten
+#   bir API key ekle (Issuer ID + Key ID + .p8). O entegrasyona verdiğin ismi
+#   aşağıdaki  integrations.app_store_connect  değeriyle BİREBİR aynı yap.
+#   (Bir credential olduğu için bunu yaml otomatik yapamaz — güvenlik gereği.)
+#
+# Bunun DIŞINDA her şeyi bu dosya kendisi yapar:
+#   - kod imzalama profilleri otomatik oluşturulur/getirilir (manuel sertifika YOK)
+#   - export_options.plist otomatik üretilir (repoda tutmana GEREK YOK)
+#   - build numarası otomatik hesaplanır (APP_APPLE_ID / env group GEREK YOK)
+#   - IPA derlenir ve TestFlight'a yüklenir
+
+workflows:
+  ios-release:
+    name: KPSS Hazırlık — iOS Release (TestFlight)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+
+    integrations:
+      app_store_connect: 4NJXFNWG7L   # Codemagic'teki App Store Connect API key ismi
+
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.kpsshazirlik.kpssTelefon
+      vars:
+        ADMOB_APP_ID: "ca-app-pub-2208830315848722~5684578652"
+
+    scripts:
+      - name: Flutter paketleri
+        script: flutter pub get
+
+      - name: Flutter analyze (hata varsa durdur)
+        script: flutter analyze
+
+      - name: AdMob App ID doğrula (yanlışsa build FAIL)
+        script: |
+          set -e
+          FOUND=$(/usr/libexec/PlistBuddy -c "Print :GADApplicationIdentifier" ios/Runner/Info.plist 2>/dev/null || echo "")
+          if [ "$FOUND" != "$ADMOB_APP_ID" ]; then
+            echo "HATA: Info.plist GADApplicationIdentifier = '$FOUND'"
+            echo "Beklenen: '$ADMOB_APP_ID' — AdMob App ID yanlış, reklam SDK'sı açılışta çöker."
+            exit 1
+          fi
+          echo "OK: AdMob App ID doğru ($FOUND)"
+
+      - name: İmzalama profillerini getir (otomatik) + export_options üret
+        script: |
+          # Bu komut Codemagic'in oluşturduğu profilleri kurar VE
+          # /Users/builder/export_options.plist dosyasını otomatik yazar.
+          xcode-project use-profiles
+
+      - name: IPA derle
+        script: |
+          # Build numarası: Codemagic'in kendi sayacı + 10 (mevcut +10'un üstünde kalsın).
+          # Böylece App Apple ID / environment group'a gerek kalmaz.
+          BUILD_NO=$(($PROJECT_BUILD_NUMBER + 10))
+          echo "Build number: $BUILD_NO"
+          flutter build ipa --release \
+            --build-name=1.2.0 \
+            --build-number=$BUILD_NO \
+            --export-options-plist=/Users/builder/export_options.plist
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - flutter_drive.log
+
+    publishing:
+      email:
+        recipients:
+          - yunusemrecelikelll@gmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration        # yukarıdaki App Store Connect API key ile
+        submit_to_testflight: true
+        # App Store incelemesine otomatik göndermez — onu App Store Connect'ten
+        # manuel gönderirsin (Marketing URL'yi de o sırada girersin).
