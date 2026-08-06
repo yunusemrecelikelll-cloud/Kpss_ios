@@ -609,12 +609,13 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
             final yeterli = _coins >= kMarketFiyat;
 
             return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                     Row(
                       children: [
                         Expanded(
@@ -669,6 +670,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
                     ),
                     const SizedBox(height: 8),
                   ],
+                  ),
                 ),
               ),
             );
