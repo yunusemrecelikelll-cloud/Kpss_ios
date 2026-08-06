@@ -734,6 +734,45 @@ class DuelService {
     }
   }
 
+  /// "Tekrar Oyna" (kullanıcı isteği): BİTMİŞ bir odayı AYNI oyuncularla
+  /// yeniden 'waiting' durumuna alır — skorlar/cevaplar/eleme sıfırlanır,
+  /// sorular aynı havuzdan YENİDEN KARIŞTIRILIR (taze sıra) ve maç yeniden
+  /// kurucunun "Başlat"masını bekler. Yalnızca oda 'finished' iken çalışır.
+  Future<void> resetRoom(String roomId) async {
+    _requireConfigured();
+    final ref = _rooms.doc(roomId);
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final data = doc.data()!;
+      if ((data['status'] as String?) != 'finished') return;
+
+      final questions = (data['questions'] as List? ?? const [])
+          .whereType<Map>()
+          .map((m) => Map<String, dynamic>.from(m))
+          .toList()
+        ..shuffle(_rnd);
+
+      final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
+      final updates = <String, dynamic>{
+        'status': 'waiting',
+        'startedAt': null,
+        'autoStartAt': null,
+        'timeShiftMs': 0,
+        'lastSkippedIndex': -1,
+        'lastElimRound': 0,
+        'questions': questions,
+      };
+      for (final uid in players.keys) {
+        updates['players.$uid.score'] = 0;
+        updates['players.$uid.answers'] = <String, dynamic>{};
+        updates['players.$uid.eliminated'] = false;
+        updates['players.$uid.eliminatedAtRound'] = FieldValue.delete();
+      }
+      tx.update(ref, updates);
+    });
+  }
+
   // ── Cevap gönderme ──
 
   /// Bir soruya verilen cevabı işler: puanı hesaplar ve SADECE ilgili oyuncunun

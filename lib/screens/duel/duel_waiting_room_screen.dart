@@ -30,7 +30,6 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
   Timer? _ticker;
   DuelRoom? _room;
   bool _navigated = false;
-  bool _startTriggered = false;
 
   @override
   void initState() {
@@ -46,19 +45,9 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
 
   void _onTick() {
     if (!mounted) return;
-    final room = _room;
-    if (room == null || room.status != 'waiting') {
-      setState(() {}); // sadece geri sayımı yenile
-      return;
-    }
-    // Auto-start: oda dolduysa ya da autoStartAt geçtiyse başlat.
-    final now = DateTime.now();
-    final full = room.isFull;
-    final expired = room.autoStartAt != null && now.isAfter(room.autoStartAt!);
-    if ((full || expired) && !_startTriggered) {
-      _startTriggered = true;
-      _duel.startRoom(widget.roomId).catchError((_) {});
-    }
+    // Kullanıcı isteği: oda oyuncular gelince OTOMATİK BAŞLAMASIN — yalnızca
+    // oda KURUCUSUNUN "Başlat" demesi beklenir. Bu yüzden auto-start (oda dolu /
+    // süre doldu) tetikleyicisi kaldırıldı; tick yalnızca ekranı tazeler.
     setState(() {});
   }
 
@@ -78,15 +67,6 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
   Future<void> _leave() async {
     await _duel.leaveRoom(widget.roomId);
     if (mounted) Navigator.of(context).pop();
-  }
-
-  String _countdownLabel(DuelRoom room) {
-    if (room.autoStartAt == null) return '';
-    final diff = room.autoStartAt!.difference(DateTime.now());
-    if (diff.isNegative) return 'Başlıyor...';
-    final m = diff.inMinutes;
-    final s = diff.inSeconds % 60;
-    return '${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
   }
 
   @override
@@ -205,10 +185,6 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 12),
-                      Text('En geç başlangıç: ${_countdownLabel(room)}',
-                          style: TextStyle(
-                              fontSize: 13, color: c.warn, fontWeight: FontWeight.w800)),
                     ],
                   ),
                 ),
@@ -271,7 +247,7 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                   ),
                 const SizedBox(height: 10),
                 Center(
-                  child: Text('Oda dolunca ya da süre bitince otomatik başlar.',
+                  child: Text('Oyun yalnızca oda kurucusu başlattığında başlar.',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: c.textFaint, fontSize: 11.5)),
                 ),

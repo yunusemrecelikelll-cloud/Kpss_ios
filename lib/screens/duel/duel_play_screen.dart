@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -99,7 +100,23 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   // Cevaplanan soruların özeti zaten sonuç ekranında gösteriliyor.
 
   // Kendi cevap durumu.
-  final Map<int, int> _mySelections = {}; // soruIndex -> seçilen şık
+  final Map<int, int> _mySelections = {}; // soruIndex -> seçilen şık (ORİJİNAL index)
+
+  // Kullanıcı isteği: her oyuncu AYNI soruyu görür ama ŞIKLARIN YERİ FARKLI
+  // olur. Bu, her soru için bu OYUNCUYA özel bir şık sıralaması (permütasyon):
+  // gösterim pozisyonu -> orijinal şık indeksi. Oyuncunun uid'i + soru indeksi
+  // ile deterministik üretilir (yeniden çizimlerde şıklar yerinden oynamaz).
+  final Map<int, List<int>> _optionPerm = {};
+
+  List<int> _permFor(int idx, int n) {
+    final cached = _optionPerm[idx];
+    if (cached != null && cached.length == n) return cached;
+    final kim = widget.isSolo ? 'solo' : (_duel.currentUid ?? 'anon');
+    final perm = List<int>.generate(n, (i) => i)
+      ..shuffle(Random(Object.hash(kim, idx)));
+    _optionPerm[idx] = perm;
+    return perm;
+  }
   int _soloScore = 0;
   int _soloCorrect = 0;
 
@@ -529,6 +546,17 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                   ],
                 ),
               ),
+              // Kullanıcı isteği: puanlar ÜST TARAFTA animasyonlu BAR YARIŞI
+              // olarak; isim + puan; öne geçen bar diğerinin üstüne kayar.
+              if (!widget.isSolo)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                  child: _TopScoreBars(
+                    players: _players,
+                    myUid: _duel.currentUid,
+                    colors: c,
+                  ),
+                ),
               Expanded(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 20),
@@ -543,15 +571,20 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                               color: c.text)),
                     ),
                     const SizedBox(height: kDsGap),
-                    for (var i = 0; i < q.secenekler.length; i++)
-                      _OptionTile(
-                        letter: i < kQuickModeOptionLetters.length ? kQuickModeOptionLetters[i] : '${i + 1}',
-                        text: q.secenekler[i],
-                        state: _optionState(answered, mySel, i, q.dogruIndex),
-                        onTap: (answered || eliminated || (widget.isSolo && _soloAdvancing))
-                            ? null
-                            : () => _answer(i),
-                      ),
+                    // Şıklar bu oyuncuya özel karışık sırada gösterilir; tıklanan
+                    // gösterim pozisyonu, ORİJİNAL şık indeksine (perm[p]) çevrilir.
+                    for (var p = 0; p < q.secenekler.length; p++)
+                      Builder(builder: (_) {
+                        final orig = _permFor(idx, q.secenekler.length)[p];
+                        return _OptionTile(
+                          letter: p < kQuickModeOptionLetters.length ? kQuickModeOptionLetters[p] : '${p + 1}',
+                          text: q.secenekler[orig],
+                          state: _optionState(answered, mySel, orig, q.dogruIndex),
+                          onTap: (answered || eliminated || (widget.isSolo && _soloAdvancing))
+                              ? null
+                              : () => _answer(orig),
+                        );
+                      }),
                     if (answered) ...[
                       const SizedBox(height: 12),
                       _AnswerFeedback(
@@ -597,7 +630,8 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                       ),
                     ],
                     const SizedBox(height: 16),
-                    if (!widget.isSolo) _LiveLeaderboard(players: _players, myUid: _duel.currentUid, colors: c),
+                    // Online skorlar artık ÜST TARAFTA bar yarışı olarak
+                    // gösteriliyor (bkz. _TopScoreBars); alttaki sıralama kaldırıldı.
                     if (widget.isSolo) _SoloScoreStrip(score: _soloScore, correct: _soloCorrect, answered: idx, colors: c),
                   ],
                 ),
@@ -828,66 +862,189 @@ class _WaitingForNextPanel extends StatelessWidget {
   }
 }
 
-/// Canlı sıralama: top 3 + kendi sıran. Diğer oyuncuların O ANKİ cevabını
-/// GÖSTERMEZ, sadece toplam skorları/sıralamayı gösterir.
-class _LiveLeaderboard extends StatelessWidget {
+/// Kullanıcı isteği: puanlar ÜST TARAFTA animasyonlu BAR YARIŞI. Her oyuncu bir
+/// bar; genişlik puanla orantılı, ÖNE GEÇEN barın satırı diğerinin ÜSTÜNE
+/// yumuşakça kayar (AnimatedPositioned) — bir yarışma hissi. İsim + puan bar
+/// üstünde yazar.
+class _TopScoreBars extends StatelessWidget {
   final Map<String, DuelPlayer> players;
   final String? myUid;
   final KpssColors colors;
-  const _LiveLeaderboard({required this.players, required this.myUid, required this.colors});
+  const _TopScoreBars(
+      {required this.players, required this.myUid, required this.colors});
+
+  static const List<Color> _palet = [
+    Color(0xFF8B5CF6), Color(0xFFF43F5E), Color(0xFFF59E0B),
+    Color(0xFF22C55E), Color(0xFF3B82F6), Color(0xFFEC4899),
+    Color(0xFF06B6D4), Color(0xFFD4AF37),
+  ];
+  Color _renk(String uid) => _palet[uid.hashCode.abs() % _palet.length];
 
   @override
   Widget build(BuildContext context) {
     final c = colors;
-    final list = players.values.toList()..sort((a, b) => b.score.compareTo(a.score));
-    if (list.isEmpty) return const SizedBox.shrink();
-    final top = list.take(3).toList();
-    final myRank = myUid == null ? -1 : list.indexWhere((p) => p.uid == myUid);
+    final tumu = players.values.toList();
+    if (tumu.isEmpty) return const SizedBox.shrink();
+    final sirali = [...tumu]..sort((a, b) => b.score.compareTo(a.score));
+    final rankOf = <String, int>{
+      for (var i = 0; i < sirali.length; i++) sirali[i].uid: i,
+    };
+    final maxScore = sirali.first.score;
+    // Çizim sırası SABİT (uid) → children yeniden sıralanmaz; yalnızca her barın
+    // `top`'u değişir ve AnimatedPositioned bunu kaydırır (öne geçme animasyonu).
+    final stabil = [...tumu]..sort((a, b) => a.uid.compareTo(b.uid));
+
+    const rowH = 34.0;
+    const gap = 8.0;
+    final yukseklik = stabil.length * rowH + (stabil.length - 1) * gap;
 
     return DsCard(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('📊 Canlı Sıralama',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 13, color: c.textDim)),
+          Row(
+            children: [
+              Text('🏁 Yarış',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900, fontSize: 12.5, color: c.textDim)),
+              const Spacer(),
+              Text('öne geç!',
+                  style: TextStyle(fontSize: 10.5, color: c.textFaint)),
+            ],
+          ),
           const SizedBox(height: 8),
-          for (var i = 0; i < top.length; i++)
-            _rankRow(i + 1, top[i], top[i].uid == myUid, c),
-          if (myRank >= 3 && myUid != null) ...[
-            Divider(color: c.border, height: 16),
-            _rankRow(myRank + 1, list[myRank], true, c),
-          ],
+          SizedBox(
+            height: yukseklik,
+            child: Stack(
+              children: [
+                for (final p in stabil)
+                  AnimatedPositioned(
+                    key: ValueKey(p.uid),
+                    duration: const Duration(milliseconds: 550),
+                    curve: Curves.easeOutCubic,
+                    top: rankOf[p.uid]! * (rowH + gap),
+                    left: 0,
+                    right: 0,
+                    height: rowH,
+                    child: _BarRow(
+                      player: p,
+                      rank: rankOf[p.uid]!,
+                      maxScore: maxScore,
+                      isMe: p.uid == myUid,
+                      barColor: _renk(p.uid),
+                      colors: c,
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _rankRow(int rank, DuelPlayer p, bool isMe, KpssColors c) {
-    final medal = rank == 1 ? '🥇' : rank == 2 ? '🥈' : rank == 3 ? '🥉' : '$rank.';
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(
-        children: [
-          SizedBox(width: 26, child: Text(medal, style: const TextStyle(fontSize: 13))),
-          Expanded(
-            child: Text(
-              isMe ? '${p.name} (sen)' : p.name,
-              style: TextStyle(
-                fontWeight: isMe ? FontWeight.w900 : FontWeight.w600,
-                fontSize: 12.5,
-                color: p.eliminated ? c.textFaint : c.text,
-                decoration: p.eliminated ? TextDecoration.lineThrough : null,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+class _BarRow extends StatelessWidget {
+  final DuelPlayer player;
+  final int rank;
+  final int maxScore;
+  final bool isMe;
+  final Color barColor;
+  final KpssColors colors;
+  const _BarRow({
+    required this.player,
+    required this.rank,
+    required this.maxScore,
+    required this.isMe,
+    required this.barColor,
+    required this.colors,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = colors;
+    final elendi = player.eliminated;
+    final frac = maxScore > 0 ? (player.score / maxScore).clamp(0.08, 1.0) : 0.08;
+    final madalya = rank == 0
+        ? '🥇'
+        : rank == 1
+            ? '🥈'
+            : rank == 2
+                ? '🥉'
+                : '${rank + 1}.';
+    // Metin, hem dolu bar hem boş ray üstünde okunur olsun diye tema metin
+    // rengi + zemin renginden bir kontrast halesi (shadow) kullanır.
+    final yaziGolge = [Shadow(color: c.bg.withValues(alpha: 0.75), blurRadius: 3)];
+
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: c.glass2,
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(
+                  color: isMe ? barColor : c.border, width: isMe ? 1.8 : 1),
             ),
           ),
-          const SizedBox(width: 8),
-          Text('${p.score}',
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12.5, color: c.text)),
-        ],
-      ),
+        ),
+        Positioned.fill(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(999),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: AnimatedFractionallySizedBox(
+                duration: const Duration(milliseconds: 550),
+                curve: Curves.easeOutCubic,
+                widthFactor: elendi ? 0.0 : frac,
+                heightFactor: 1,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      barColor.withValues(alpha: 0.9),
+                      barColor.withValues(alpha: 0.45),
+                    ]),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                Text(madalya, style: const TextStyle(fontSize: 13)),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    isMe ? '${player.name} (sen)' : player.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 12.5,
+                      color: elendi ? c.textFaint : c.text,
+                      decoration: elendi ? TextDecoration.lineThrough : null,
+                      shadows: yaziGolge,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text('${player.score}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13,
+                      color: c.text,
+                      shadows: yaziGolge,
+                    )),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -939,9 +1096,8 @@ class _RakipCevaplari extends StatelessWidget {
     final cevapladi = ans != null;
     final dogru = cevapladi && ans.idx == correctIdx;
     final renk = !cevapladi ? c.textFaint : (dogru ? c.success : c.danger);
-    final sikHarfi = (cevapladi && ans.idx >= 0 && ans.idx < kQuickModeOptionLetters.length)
-        ? kQuickModeOptionLetters[ans.idx]
-        : '?';
+    // NOT: Şıkların yeri her oyuncuda FARKLI olduğu için rakibin "hangi harfi"
+    // seçtiğini göstermek anlamsızdır; bu yüzden yalnızca DOĞRU/YANLIŞ gösterilir.
 
     return Row(
       children: [
@@ -977,25 +1133,23 @@ class _RakipCevaplari extends StatelessWidget {
               style: TextStyle(
                   fontSize: 11.5, fontStyle: FontStyle.italic, color: c.textFaint))
         else
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 26,
-                height: 26,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: renk.withValues(alpha: 0.16),
-                  border: Border.all(color: renk.withValues(alpha: 0.5)),
-                ),
-                child: Text(sikHarfi,
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              color: renk.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(999),
+              border: Border.all(color: renk.withValues(alpha: 0.5)),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(dogru ? Icons.check_circle : Icons.cancel, size: 15, color: renk),
+                const SizedBox(width: 5),
+                Text(dogru ? 'Doğru' : 'Yanlış',
                     style: TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w900, color: renk)),
-              ),
-              const SizedBox(width: 6),
-              Icon(dogru ? Icons.check_circle : Icons.cancel, size: 16, color: renk),
-            ],
+              ],
+            ),
           ),
       ],
     );

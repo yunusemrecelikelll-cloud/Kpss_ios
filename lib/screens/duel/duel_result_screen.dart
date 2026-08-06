@@ -7,6 +7,8 @@ import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
+import '../../utils/ust_bildirim.dart';
+import 'duel_waiting_room_screen.dart';
 
 /// Maç sonu ekranı — final sıralama, kazanan kutlaması, Royale'de "Şampiyon"
 /// vurgusu. Kazanılan puanlar bir kez lig/XP sistemine eklenir
@@ -41,6 +43,39 @@ class DuelResultScreen extends StatefulWidget {
 class _DuelResultScreenState extends State<DuelResultScreen> {
   final DuelService _duel = DuelService();
   bool _rewarded = false;
+  bool _returnedToWaiting = false;
+  bool _resetting = false;
+
+  /// Host "Tekrar Oyna" derse oda 'waiting'e döner; TÜM oyuncular (host +
+  /// diğerleri) bunu stream'den görüp otomatik olarak bekleme odasına döner.
+  void _maybeReturnToWaiting(DuelRoom room) {
+    if (_returnedToWaiting) return;
+    if (room.status == 'waiting') {
+      _returnedToWaiting = true;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (_) => DuelWaitingRoomScreen(roomId: widget.roomId!),
+        ));
+      });
+    }
+  }
+
+  Future<void> _tekrarOyna() async {
+    if (_resetting) return;
+    setState(() => _resetting = true);
+    context.read<SoundService>().click();
+    try {
+      await _duel.resetRoom(widget.roomId!);
+      // Başarılıysa stream 'waiting' yayınlar ve _maybeReturnToWaiting devreye
+      // girer; ayrıca burada beklemeye gerek yok.
+    } catch (e) {
+      if (mounted) {
+        setState(() => _resetting = false);
+        ustBildirim('Tekrar başlatılamadı, yeniden dene.');
+      }
+    }
+  }
 
   @override
   void initState() {
@@ -139,7 +174,11 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
             }
             return const Center(child: Text('Oda bilgisi bulunamadı.'));
           }
+          // Host "Tekrar Oyna" derse oda 'waiting'e döner → herkes bekleme
+          // odasına geri döner.
+          _maybeReturnToWaiting(room);
           final myUid = _duel.currentUid;
+          final isHost = myUid != null && myUid == room.hostUid;
           final standings = room.playersByScore;
           // Royale'de kazanan: elenmemişler arasında en yüksek skor; yoksa genel lider.
           final ranked = room.isRoyale
@@ -213,7 +252,26 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
                   ),
                 ),
               const SizedBox(height: kDsGap + 8),
-              _doneButton(context),
+              // ── Tekrar Oyna (aynı oda) + Lobiye Dön ──
+              if (isHost)
+                Center(
+                  child: DsPillButton(
+                    label: _resetting ? 'Hazırlanıyor…' : 'Tekrar Oyna (Aynı Oda)',
+                    color: c.gold,
+                    leadingIcon: Icons.replay_rounded,
+                    onPressed: _resetting ? null : _tekrarOyna,
+                  ),
+                )
+              else
+                Center(
+                  child: Text(
+                    'Kurucu "Tekrar Oyna" derse aynı odada yeniden başlarsınız.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: c.textFaint, fontSize: 12),
+                  ),
+                ),
+              const SizedBox(height: 12),
+              _doneButton(context, leaveRoom: true),
             ],
           );
         },
@@ -221,15 +279,21 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
     );
   }
 
-  Widget _doneButton(BuildContext context) {
+  Widget _doneButton(BuildContext context, {bool leaveRoom = false}) {
     final c = context.watch<ThemeProvider>().colors;
     return Center(
       child: DsPillButton(
         label: 'Lobiye Dön',
         color: c.violetL,
+        filled: false,
         trailingIcon: Icons.arrow_forward,
         onPressed: () {
           context.read<SoundService>().click();
+          // Online'da lobiye dönen oyuncu odadan da AYRILIR — böylece tekrar
+          // maçında "hiç cevaplamayan hayalet oyuncu" kalmaz.
+          if (leaveRoom && widget.roomId != null) {
+            _duel.leaveRoom(widget.roomId!);
+          }
           // Play/Waiting ekranları pushReplacement ile geldiği için tek pop
           // doğrudan lobiye döner.
           Navigator.of(context).pop();
