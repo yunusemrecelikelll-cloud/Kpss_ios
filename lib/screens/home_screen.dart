@@ -30,6 +30,8 @@ import 'settings_screen.dart';
 import 'placement_exam_screen.dart';
 import 'hak_satin_al_screen.dart';
 import 'ders_bildirim_screen.dart';
+import 'notlar_screen.dart';
+import '../services/karalama_not_service.dart';
 import 'mentor_screen.dart';
 import 'mnemonics_screen.dart';
 import 'predictor_screen.dart';
@@ -534,6 +536,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
+                // Dersler ızgarasında Türkçe'nin YANINA "Notlar" kartı
+                // (kullanıcı isteği): önizlemesi son kaydedilen not.
+                _NotlarKarti(
+                  onTap: () async {
+                    context.read<SoundService>().click();
+                    await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const NotlarScreen()));
+                    if (mounted) setState(() {});
+                  },
+                ),
               ],
             ),
           ],
@@ -1134,6 +1146,110 @@ String _fmtStudyShort(int seconds) {
   if (minutes < 1) return '0dk';
   final h = minutes ~/ 60, m = minutes % 60;
   return h > 0 ? '${h}sa ${m}dk' : '${m}dk';
+}
+
+/// Dersler ızgarasında Türkçe'nin yanındaki "Notlar" kartı — _SubjectCard ile
+/// AYNI boyutta (ızgara hücresi). Önizlemesi son kaydedilen notun içeriğidir
+/// (çizim ya da yazı).
+class _NotlarKarti extends StatelessWidget {
+  final Future<void> Function() onTap;
+  const _NotlarKarti({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final storage = context.watch<StorageService>();
+    final notlar = KaralamaNotService().getir(storage);
+    final sonNot = notlar.isNotEmpty ? notlar.first : null;
+    const palette = SubjectPalette(Color(0xFFF59E0B), Color(0xFFB45309));
+    return Container(
+      decoration: subjectCardDecoration(
+          palette: palette, isLight: c.isLight, radius: kDsRadius),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(kDsRadius),
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('📝', style: TextStyle(fontSize: 24)),
+                    const Spacer(),
+                    if (notlar.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(999),
+                          color: c.glass2,
+                          border: Border.all(color: c.border),
+                        ),
+                        child: Text('${notlar.length} not',
+                            style: TextStyle(
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w700,
+                                color: c.textDim)),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text('Notlar',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 14.5,
+                        color: c.text)),
+                const SizedBox(height: 6),
+                Expanded(
+                  child: sonNot == null
+                      ? Text(
+                          'Testlerde yaz/çiz ve "Kaydet" de; notların burada.',
+                          style: TextStyle(fontSize: 11, color: c.textFaint),
+                        )
+                      : Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.5),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: c.border),
+                          ),
+                          clipBehavior: Clip.antiAlias,
+                          child: KaralamaMiniOnizleme(not: sonNot),
+                        ),
+                ),
+                const SizedBox(height: 6),
+                Row(
+                  children: [
+                    Text(sonNot == null ? 'Boş' : 'Son not',
+                        style: TextStyle(fontSize: 11, color: c.textDim)),
+                    const Spacer(),
+                    Container(
+                      width: 30,
+                      height: 30,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: c.glass2,
+                        border: Border.all(
+                            color: palette.a.withValues(alpha: 0.55)),
+                      ),
+                      child: Icon(Icons.arrow_forward, size: 15, color: c.text),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _SubjectCard extends StatelessWidget {

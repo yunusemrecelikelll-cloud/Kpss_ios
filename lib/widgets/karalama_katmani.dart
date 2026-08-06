@@ -3,7 +3,11 @@ import 'dart:ui' show PointMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../services/karalama_not_service.dart';
+import '../services/sound_service.dart';
+import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
+import '../utils/ust_bildirim.dart';
 
 /// Test ekranlarında sorunun hemen altında açılan KARALAMA (scratchpad) katmanı
 /// (kullanıcı isteği). İçinde hem PARMAKLA ÇİZİM hem de YAZI yazılabilir; alan
@@ -50,6 +54,14 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
   Color _renk = _renkler[1];
   double _kalinlik = 3;
 
+  // Büyütme/küçültme (kullanıcı isteği): çizim tuvali bu oranla ölçeklenir.
+  double _zoom = 1.0;
+
+  // Kaydetme (Notlar) için tuvalin son ölçülen boyutu.
+  Size _tuvalBoyut = const Size(300, 200);
+
+  final KaralamaNotService _notSvc = KaralamaNotService();
+
   @override
   void dispose() {
     _yaziCtrl.dispose();
@@ -67,6 +79,42 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
   void _geriAl() {
     if (_cizgiler.isEmpty) return;
     setState(() => _cizgiler.removeLast());
+  }
+
+  void _zoomDegis(double delta) {
+    setState(() => _zoom = (_zoom + delta).clamp(0.5, 3.0));
+  }
+
+  Future<void> _kaydet() async {
+    final metin = _yaziCtrl.text;
+    if (_cizgiler.isEmpty && metin.trim().isEmpty) {
+      ustBildirim('Kaydedilecek bir şey yok.');
+      return;
+    }
+    context.read<SoundService>().click();
+    final not = KaralamaNot(
+      id: KaralamaNot.yeniId(),
+      metin: metin,
+      metinRenk: _renk.toARGB32(),
+      cizgiler: _cizgiler
+          .where((z) => z.noktalar.isNotEmpty)
+          .map((z) => KaralamaCizgi(
+                renk: z.renk.toARGB32(),
+                kalinlik: z.kalinlik,
+                noktalar: [
+                  for (final o in z.noktalar) ...[o.dx, o.dy]
+                ],
+              ))
+          .toList(),
+      w: _tuvalBoyut.width,
+      h: _tuvalBoyut.height,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+    );
+    await _notSvc.ekle(context.read<StorageService>(), not);
+    if (mounted) {
+      ustBildirim('Not kaydedildi 📝 (Anasayfa → Notlar)',
+          tur: UstBildirimTuru.basari);
+    }
   }
 
   @override
@@ -137,6 +185,20 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                         size: 19, color: c.textDim),
                     onPressed: _temizle,
                   ),
+                  // Kaydet (kullanıcı isteği): yazı+çizim Notlar'a kaydedilir.
+                  TextButton.icon(
+                    onPressed: _kaydet,
+                    style: TextButton.styleFrom(
+                      visualDensity: VisualDensity.compact,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      backgroundColor: c.violet.withValues(alpha: 0.16),
+                      foregroundColor: c.violet,
+                    ),
+                    icon: const Icon(Icons.save_rounded, size: 17),
+                    label: const Text('Kaydet',
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w900)),
+                  ),
                   IconButton(
                     tooltip: 'Kapat',
                     visualDensity: VisualDensity.compact,
@@ -146,25 +208,27 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                 ],
               ),
             ),
-            // ── Renk / kalınlık şeridi (yalnızca çizim modunda) ─────────
-            if (_cizimModu)
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                color: c.glass,
-                child: Row(
-                  children: [
-                    for (final r in _renkler) ...[
-                      _RenkNoktasi(
-                        renk: r,
-                        secili: _renk == r,
-                        onTap: () => setState(() => _renk = r),
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                    const Spacer(),
+            // ── Renk şeridi (her iki modda): çizim modunda kalem, yazı
+            // modunda YAZI rengi seçilir (kullanıcı isteği). Çizim modunda
+            // ayrıca kalınlık slider'ı ve büyütme/küçültme.
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              color: c.glass,
+              child: Row(
+                children: [
+                  for (final r in _renkler) ...[
+                    _RenkNoktasi(
+                      renk: r,
+                      secili: _renk == r,
+                      onTap: () => setState(() => _renk = r),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  const Spacer(),
+                  if (_cizimModu) ...[
                     Icon(Icons.line_weight_rounded, size: 16, color: c.textFaint),
                     SizedBox(
-                      width: 110,
+                      width: 78,
                       child: Slider(
                         value: _kalinlik,
                         min: 1,
@@ -172,63 +236,98 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                         onChanged: (v) => setState(() => _kalinlik = v),
                       ),
                     ),
-                  ],
-                ),
+                    // Büyütme / küçültme (kullanıcı isteği).
+                    _ZoomBtn(
+                        ikon: Icons.zoom_out_rounded,
+                        renk: c.textDim,
+                        onTap: () => _zoomDegis(-0.25)),
+                    Text('${(_zoom * 100).round()}%',
+                        style: TextStyle(
+                            fontSize: 10.5,
+                            fontWeight: FontWeight.w800,
+                            color: c.textFaint)),
+                    _ZoomBtn(
+                        ikon: Icons.zoom_in_rounded,
+                        renk: c.textDim,
+                        onTap: () => _zoomDegis(0.25)),
+                  ] else
+                    Text('Yazı rengi',
+                        style: TextStyle(fontSize: 11, color: c.textFaint)),
+                ],
               ),
+            ),
             // ── Çizim + yazı alanı ──────────────────────────────────────
             Expanded(
-              child: Stack(
-                children: [
-                  // Çizim yüzeyi.
-                  Positioned.fill(
-                    child: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onPanStart: _cizimModu
-                          ? (d) {
-                              setState(() {
-                                _aktif = _Cizgi(_renk, _kalinlik)
-                                  ..noktalar.add(d.localPosition);
-                                _cizgiler.add(_aktif!);
-                              });
-                            }
-                          : null,
-                      onPanUpdate: _cizimModu
-                          ? (d) => setState(
-                              () => _aktif?.noktalar.add(d.localPosition))
-                          : null,
-                      onPanEnd: _cizimModu ? (_) => _aktif = null : null,
-                      child: CustomPaint(
-                        painter: _CizimPainter(_cizgiler),
-                        size: Size.infinite,
-                      ),
-                    ),
-                  ),
-                  // Yazı alanı (yalnızca yazı modunda dokunuşları alır).
-                  Positioned.fill(
-                    child: IgnorePointer(
-                      ignoring: _cizimModu,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _yaziCtrl,
-                          maxLines: null,
-                          expands: true,
-                          textAlignVertical: TextAlignVertical.top,
-                          style: TextStyle(
-                              fontSize: 14, height: 1.4, color: c.text),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: _cizimModu
-                                ? null
-                                : 'Buraya not yazabilirsin…',
-                            hintStyle: TextStyle(color: c.textFaint),
+              child: LayoutBuilder(builder: (context, constraints) {
+                // Kaydetme/önizleme için tuval boyutunu güncel tut.
+                _tuvalBoyut = Size(constraints.maxWidth, constraints.maxHeight);
+                return Stack(
+                  children: [
+                    // Çizim yüzeyi. Zoom, painter'a Transform.scale ile
+                    // uygulanır; dokunuş koordinatları _zoom'a bölünerek TUVAL
+                    // (ölçeksiz) koordinatına çevrilir — böylece kaydedilen
+                    // noktalar zoom'dan bağımsızdır.
+                    Positioned.fill(
+                      child: ClipRect(
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onPanStart: _cizimModu
+                              ? (d) {
+                                  setState(() {
+                                    _aktif = _Cizgi(_renk, _kalinlik)
+                                      ..noktalar.add(d.localPosition / _zoom);
+                                    _cizgiler.add(_aktif!);
+                                  });
+                                }
+                              : null,
+                          onPanUpdate: _cizimModu
+                              ? (d) => setState(() =>
+                                  _aktif?.noktalar.add(d.localPosition / _zoom))
+                              : null,
+                          onPanEnd: _cizimModu ? (_) => _aktif = null : null,
+                          child: Transform.scale(
+                            scale: _zoom,
+                            alignment: Alignment.topLeft,
+                            child: CustomPaint(
+                              painter: _CizimPainter(_cizgiler),
+                              size: Size.infinite,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                    // Yazı alanı (yalnızca yazı modunda dokunuşları alır).
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        ignoring: _cizimModu,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: TextField(
+                            controller: _yaziCtrl,
+                            maxLines: null,
+                            expands: true,
+                            textAlignVertical: TextAlignVertical.top,
+                            // Yazı rengi seçilen renk (kullanıcı isteği).
+                            style: TextStyle(
+                                fontSize: 15,
+                                height: 1.4,
+                                fontWeight: FontWeight.w600,
+                                color: _renk),
+                            cursorColor: _renk,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: _cizimModu
+                                  ? null
+                                  : 'Buraya not yazabilirsin…',
+                              hintStyle: TextStyle(color: c.textFaint),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }),
             ),
           ],
         ),
@@ -266,6 +365,24 @@ class _ModCip extends StatelessWidget {
                 fontWeight: FontWeight.w800,
                 color: aktif ? Colors.white : c.textDim)),
       ),
+    );
+  }
+}
+
+class _ZoomBtn extends StatelessWidget {
+  final IconData ikon;
+  final Color renk;
+  final VoidCallback onTap;
+  const _ZoomBtn({required this.ikon, required this.renk, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      visualDensity: VisualDensity.compact,
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(minWidth: 30, minHeight: 30),
+      icon: Icon(ikon, size: 20, color: renk),
+      onPressed: onTap,
     );
   }
 }
