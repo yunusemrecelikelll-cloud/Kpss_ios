@@ -935,31 +935,41 @@ class _TtsListenButton extends StatelessWidget {
     final speaking = tts.isSpeaking;
     final accent = speaking ? colors.rose : colors.violet;
 
-    // İkincil eylem: dış çizgili hap buton.
-    return Center(
-      child: DsPillButton(
-        label: speaking ? 'Durdur' : 'Sesli Dinle',
-        color: accent,
-        filled: false,
-        leadingIcon: speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded,
-        onPressed: text.isEmpty
-            ? null
-            : () async {
-                context.read<SoundService>().click();
-                if (speaking) {
-                  context.read<TtsService>().stop();
-                  return;
-                }
-                // Seslendirme başlatılamazsa SESSİZ kalmıyoruz: TtsService
-                // sebebi Türkçe olarak bildiriyor, biz de kullanıcıya
-                // gösteriyoruz. (Eskiden hata yutuluyordu ve düğmeye basınca
-                // hiçbir şey olmuyordu.)
-                final tts = context.read<TtsService>();
-                final ok = await tts.speak(text);
-                if (ok) return;
-                ustBildirim(tts.lastError ?? 'Sesli anlatım başlatılamadı.');
-              },
-      ),
+    // İkincil eylem: dış çizgili hap buton + altında ses motoru notu.
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        DsPillButton(
+          label: speaking ? 'Durdur' : 'Sesli Dinle',
+          color: accent,
+          filled: false,
+          leadingIcon:
+              speaking ? Icons.stop_circle_outlined : Icons.volume_up_rounded,
+          onPressed: text.isEmpty
+              ? null
+              : () async {
+                  context.read<SoundService>().click();
+                  if (speaking) {
+                    context.read<TtsService>().stop();
+                    return;
+                  }
+                  // Seslendirme başlatılamazsa SESSİZ kalmıyoruz: TtsService
+                  // sebebi Türkçe olarak bildiriyor, biz de kullanıcıya
+                  // gösteriyoruz. (Eskiden hata yutuluyordu ve düğmeye basınca
+                  // hiçbir şey olmuyordu.)
+                  final tts = context.read<TtsService>();
+                  final ok = await tts.speak(text);
+                  if (ok) return;
+                  ustBildirim(tts.lastError ?? 'Sesli anlatım başlatılamadı.');
+                },
+        ),
+        const SizedBox(height: 4),
+        Text(
+          'Kendi telefonunuzdaki ses motoru ile çalışmaktadır',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 10.5, color: colors.textFaint),
+        ),
+      ],
     );
   }
 }

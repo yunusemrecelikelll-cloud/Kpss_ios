@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Eşleştirme Solitaire</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:radial-gradient(120% 90% at 50% 0%, #241a3d 0%, #0f0d17 60%);color:#efe9f7;overflow:hidden}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;padding:18px 16px}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px}
+  .brand .logo{font-size:22px}
+  .pill{margin-left:auto;font-size:11px;background:#f59e0b33;border:1px solid #f59e0b;
+    color:#ffd98a;padding:4px 10px;border-radius:999px;font-weight:700}
+  .hint{font-size:12.5px;color:#b8b0c8;margin:12px 2px 6px}
+  .cats{display:flex;gap:10px}
+  .cat{flex:1;border-radius:14px;padding:10px 8px;text-align:center;border:2px dashed #ffffff2e;
+    background:#ffffff0d;transition:.15s}
+  .cat.sel{border-style:solid}
+  .cat .t{font-weight:900;font-size:14px}
+  .cat .c{font-size:11px;color:#b8b0c8;margin-top:2px}
+  .cat.a{border-color:#8b5cf6}.cat.a.sel{background:#8b5cf622}
+  .cat.b{border-color:#22c55e}.cat.b.sel{background:#22c55e22}
+  .slotwrap{display:flex;gap:6px;justify-content:center;margin-top:6px;flex-wrap:wrap;min-height:22px}
+  .chipmini{font-size:10px;padding:2px 6px;border-radius:6px;background:#ffffff1a;color:#cfc8e0}
+  .terms{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;flex:1;align-content:flex-start}
+  .term{background:#ffffff12;border:1.5px solid #ffffff2b;border-radius:12px;padding:12px 14px;
+    font-size:15px;font-weight:800;cursor:pointer;transition:.12s}
+  .term:active{transform:scale(.96)}
+  .term.sel{border-color:#f59e0b;background:#f59e0b22;box-shadow:0 0 0 3px #f59e0b33}
+  .term.gone{display:none}
+  .shake{animation:sh .3s}
+  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .score{font-size:12px;color:#b8b0c8;text-align:center;margin-top:6px}
+  #end{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+  #end .big{font-size:40px}
+  #end h2{font-size:22px;font-weight:900}
+  #end p{color:#b8b0c8;font-size:14px;line-height:1.5;max-width:320px}
+  .btn{display:block;width:100%;max-width:340px;background:linear-gradient(90deg,#f59e0b,#ec4899);
+    color:#fff;border:none;border-radius:16px;padding:16px;font-size:17px;font-weight:900;cursor:pointer;
+    box-shadow:0 10px 26px #f59e0b55;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .install-hint{font-size:12px;color:#ffd98a;margin-top:4px}
+  .foot{text-align:center;font-size:11px;color:#7d7594;padding-top:10px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="brand"><span class="logo">🃏</span> KPSS Hazırlık
+    <span class="pill">Eşleştirme Solitaire</span></div>
+
+  <div id="game" style="display:flex;flex-direction:column;flex:1">
+    <div class="hint">Bir terime dokun, sonra doğru kategoriye dokun 👇</div>
+    <div class="cats">
+      <div class="cat a" id="catA" onclick="tapCat('A')">
+        <div class="t">🗺️ İç Anadolu İlleri</div><div class="c">dokunarak yerleştir</div>
+        <div class="slotwrap" id="slotA"></div>
+      </div>
+      <div class="cat b" id="catB" onclick="tapCat('B')">
+        <div class="t">🌊 Ege İlleri</div><div class="c">dokunarak yerleştir</div>
+        <div class="slotwrap" id="slotB"></div>
+      </div>
+    </div>
+    <div class="terms" id="terms"></div>
+    <div class="score" id="score"></div>
+  </div>
+
+  <div id="end">
+    <div class="big">🏆</div>
+    <h2>Hepsini eşleştirdin!</h2>
+    <p>Eşleştirme Solitaire, KPSS Hazırlık uygulamasındaki oyunlardan biri. Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz</b>.</p>
+    <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+    <div class="install-hint">App Store'da KPSS Hazırlık: Soru Bankası</div>
+  </div>
+
+  <div class="foot" onclick="installClick()">KPSS Hazırlık: Soru Bankası • Dokun ve indir</div>
+</div>
+
+<script>
+var STORE_URL = 'https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+var TERMS = [
+  {t:"Konya", c:"A"}, {t:"İzmir", c:"B"}, {t:"Ankara", c:"A"},
+  {t:"Aydın", c:"B"}, {t:"Sivas", c:"A"}, {t:"Muğla", c:"B"}
+];
+// karıştır
+for(var x=TERMS.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*100%(x+1));var tmp=TERMS[x];TERMS[x]=TERMS[j];TERMS[j]=tmp;}
+
+var sel=null, matched=0;
+var termsEl=document.getElementById('terms'), scoreEl=document.getElementById('score');
+
+function render(){
+  termsEl.innerHTML='';
+  TERMS.forEach(function(item,idx){
+    if(item.done) return;
+    var b=document.createElement('button');
+    b.className='term'; b.textContent=item.t; b.dataset.idx=idx;
+    b.onclick=function(){ tapTerm(idx,b); };
+    termsEl.appendChild(b);
+  });
+  scoreEl.textContent='Eşleşen: '+matched+' / '+TERMS.length;
+}
+
+function tapTerm(idx,btn){
+  sel={idx:idx,btn:btn};
+  var all=termsEl.querySelectorAll('.term');
+  all.forEach(function(e){e.classList.remove('sel');});
+  btn.classList.add('sel');
+  document.getElementById('catA').classList.add('sel');
+  document.getElementById('catB').classList.add('sel');
+}
+
+function tapCat(cat){
+  if(!sel){ return; }
+  var item=TERMS[sel.idx];
+  if(item.c===cat){
+    item.done=true; matched++;
+    var mini=document.createElement('span'); mini.className='chipmini'; mini.textContent=item.t;
+    document.getElementById(cat==='A'?'slotA':'slotB').appendChild(mini);
+    sel.btn.classList.add('gone');
+    sel=null;
+    document.getElementById('catA').classList.remove('sel');
+    document.getElementById('catB').classList.remove('sel');
+    render();
+    if(matched>=TERMS.length){ setTimeout(finish,350); }
+  } else {
+    var el=document.getElementById(cat==='A'?'catA':'catB');
+    el.classList.add('shake'); setTimeout(function(){el.classList.remove('shake');},320);
+  }
+}
+
+function finish(){
+  document.getElementById('game').style.display='none';
+  document.getElementById('end').style.display='flex';
+}
+
+render();
+</script>
+</body>
+</html>

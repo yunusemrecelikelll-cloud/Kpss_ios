@@ -239,12 +239,27 @@ class KategoriEslestirmeEngine {
     toplamKart = kategoriKartlari.fold(0, (a, l) => a + l.length);
     eslesenKart = 0;
 
-    // İlk [kHedefSlotSayisi] kategori tahtaya; kartları tableau'ya dağıtılır.
+    // İlk [kHedefSlotSayisi] kategori tahtaya konur. KOLAY'da bu hedeflerin
+    // kartlarının TAMAMI tableau'ya dağıtılır. ORTA/ZOR'da (bekleyen kategori
+    // varsa) her başlangıç kategorisinin bir KISMI desteye konur; böylece
+    // kullanıcı isteği gereği İLK hedefler için de YUKARIDAN (desteden) kart
+    // çekmek gerekir ve hedefler tableau'yla tam aynı anda bitmez.
     final aktifAdet = min(kHedefSlotSayisi, tumHedefler.length);
+    final ilkHedefeCekmeGereksin = tumHedefler.length > kHedefSlotSayisi;
     final acilisKartlar = <TerimKart>[];
+    final acilisDesteye = <TerimKart>[];
     for (var i = 0; i < aktifAdet; i++) {
       slotlar[i] = tumHedefler[i];
-      acilisKartlar.addAll(kategoriKartlari[i]);
+      final kartlar = kategoriKartlari[i];
+      if (ilkHedefeCekmeGereksin && kartlar.length >= 2) {
+        // Kategorinin ~1/3'ü (en az 1, ama tamamı değil) desteye — çekilecek.
+        final desteyeAdet =
+            (kartlar.length / 3).ceil().clamp(1, kartlar.length - 1);
+        acilisDesteye.addAll(kartlar.take(desteyeAdet));
+        acilisKartlar.addAll(kartlar.skip(desteyeAdet));
+      } else {
+        acilisKartlar.addAll(kartlar);
+      }
     }
     acilisKartlar.shuffle(_rnd);
 
@@ -259,6 +274,12 @@ class KategoriEslestirmeEngine {
     }
     for (final c in sutunlar) {
       if (c.isNotEmpty) c.last.faceUp = true;
+    }
+
+    // İlk hedeflerden desteye AYRILAN terim kartları (ORTA/ZOR) — deste tümüyle
+    // karıştırıldığı için bunlar açılan yığında bekler, çekilerek oynanır.
+    for (final t in acilisDesteye) {
+      deste.add(DesteKarti.terimKarti(t));
     }
 
     // Bekleyen kategorilerin HEDEF kartı ve terimleri desteye eklenir.
