@@ -19,7 +19,7 @@ workflows:
     instance_type: mac_mini_m2
 
     integrations:
-      app_store_connect: ASC_API_KEY   # <-- UI'da eklediğin key'in ADIYLA değiştir
+      app_store_connect: 4NJXFNWG7L   # Codemagic'teki App Store Connect API key ismi
 
     environment:
       flutter: stable
