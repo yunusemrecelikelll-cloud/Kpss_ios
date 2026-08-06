@@ -14,6 +14,7 @@ import '../../theme/app_theme.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../quick_modes/quick_modes_shared.dart' show kQuickModeOptionLetters;
+import '../quiz_screen.dart' show sikMetni;
 import '../tools_hub_screen.dart' show HowToPlayButton;
 import 'duel_lobby_screen.dart' show kDuelloGameId;
 import 'duel_result_screen.dart';
@@ -578,7 +579,10 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                         final orig = _permFor(idx, q.secenekler.length)[p];
                         return _OptionTile(
                           letter: p < kQuickModeOptionLetters.length ? kQuickModeOptionLetters[p] : '${p + 1}',
-                          text: q.secenekler[orig],
+                          // Metindeki gömülü "A) / B)" önekini at — rozet harfi
+                          // konumdan geliyor; düelloda şıklar karışık geldiği için
+                          // gömülü harf uyuşmuyor ve çift harf/kayma görünüyordu.
+                          text: sikMetni(q.secenekler[orig]),
                           state: _optionState(answered, mySel, orig, q.dogruIndex),
                           onTap: (answered || eliminated || (widget.isSolo && _soloAdvancing))
                               ? null
@@ -683,56 +687,77 @@ class _OptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    // Şık durumuna göre vurgu rengi — sabit renk YOK, hepsi tema token'ı.
-    Color? vurgu;
+    // Şık zemin + yazı renkleri (kullanıcı isteği): VARSAYILAN altın zemin +
+    // siyah okunur yazı. Cevap verilince doğru=yeşil, yanlış=kırmızı, elenen
+    // diğer şıklar soluk.
+    Color zemin;
+    Color yazi;
+    Color kenar;
     switch (state) {
       case _OptState.correct:
-        vurgu = c.success;
+        zemin = c.success;
+        yazi = Colors.white;
+        kenar = c.success;
         break;
       case _OptState.wrong:
-        vurgu = c.danger;
+        zemin = c.danger;
+        yazi = Colors.white;
+        kenar = c.danger;
         break;
       case _OptState.dim:
+        zemin = c.glass2;
+        yazi = c.textFaint;
+        kenar = c.border;
+        break;
       case _OptState.idle:
-        vurgu = null;
+        zemin = c.gold;
+        yazi = Colors.black;
+        kenar = c.gold;
         break;
     }
-    final harfRengi = vurgu ?? c.textDim;
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: DsCard(
-        accent: vurgu,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
-        onTap: onTap,
-        child: Row(
-          children: [
-            Container(
-              width: 28,
-              height: 28,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: (vurgu ?? c.glass2).withValues(alpha: vurgu == null ? 1 : 0.18),
-                border: Border.all(color: vurgu?.withValues(alpha: 0.6) ?? c.border),
-              ),
-              child: Text(letter,
-                  style: TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w900, color: harfRengi)),
+      child: Material(
+        color: zemin,
+        borderRadius: BorderRadius.circular(kDsRadius),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(kDsRadius),
+          onTap: onTap,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(kDsRadius),
+              border: Border.all(color: kenar, width: 1.3),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                text,
-                style: TextStyle(
-                  fontSize: 14,
-                  height: 1.3,
-                  color: state == _OptState.dim ? c.textFaint : c.text,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
+            child: Row(
+              children: [
+                Container(
+                  width: 28,
+                  height: 28,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: yazi.withValues(alpha: 0.14),
+                    border: Border.all(color: yazi.withValues(alpha: 0.55)),
+                  ),
+                  child: Text(letter,
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w900, color: yazi)),
                 ),
-              ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    text,
+                    style: TextStyle(fontSize: 14, height: 1.3, color: yazi),
+                  ),
+                ),
+                if (state == _OptState.correct)
+                  const Icon(Icons.check_circle, color: Colors.white, size: 20),
+                if (state == _OptState.wrong)
+                  const Icon(Icons.cancel, color: Colors.white, size: 20),
+              ],
             ),
-            if (state == _OptState.correct) Icon(Icons.check_circle, color: c.success, size: 20),
-            if (state == _OptState.wrong) Icon(Icons.cancel, color: c.danger, size: 20),
-          ],
+          ),
         ),
       ),
     );
