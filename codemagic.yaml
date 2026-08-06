@@ -57,9 +57,11 @@ workflows:
 
       - name: IPA derle
         script: |
-          # Build numarası: Codemagic'in kendi sayacı + 10 (mevcut +10'un üstünde kalsın).
-          # Böylece App Apple ID / environment group'a gerek kalmaz.
-          BUILD_NO=$(($PROJECT_BUILD_NUMBER + 10))
+          # Build numarası: Unix zaman damgası — her build'de KESİN artar ve
+          # App Store'daki mevcut build 10'un her zaman çok üstünde kalır.
+          # Böylece "409 duplicate / cfBundleVersion" çakışması bir daha olmaz;
+          # hiçbir env değişkenine ya da App Apple ID'ye bağlı değildir.
+          BUILD_NO=$(date +%s)
           echo "Build number: $BUILD_NO"
           flutter build ipa --release \
             --build-name=1.2.0 \
