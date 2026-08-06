@@ -5,134 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>KPSS Hazırlık — Eşleştirme Solitaire</title>
 <style>
-  /* Uygulama içindeki Eşleştirme Solitaire ile BİREBİR renkler:
-     keçe yeşili #0F6B3E, koyu #0A4E2C, krem kart #FAF3E4, ink #2A1D10,
-     altın kenar #F5B942, kart sırtı mavi #1E5FA8, hedef mor #6C4AB6. */
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  /* Uygulamadaki Eşleştirme Solitaire ile BİREBİR:
+     keçe #0F6B3E / koyu #0A4E2C / açık #148A4F, krem kart #FAF3E4, ink #2A1D10,
+     altın kenar #F5B942, kart sırtı #1E5FA8/#16457A, hedef mor #6C4AB6.
+     5 hedef kategori + 5 tableau sütunu + deste + Kalan Hamle/Kalan kart. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
   html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
-    background:#0F6B3E;color:#fff;overflow:hidden}
-  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+    background:#0F6B3E;color:#fff;overflow:hidden;touch-action:none}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
 
-  /* Uygulamanın AppBar'ı */
-  .bar{background:#0A4E2C;padding:12px 16px;display:flex;align-items:center;gap:8px}
+  .bar{background:#0A4E2C;padding:10px 14px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
   .bar .t{font-weight:900;font-size:16px;color:#fff}
 
-  .board{flex:1;display:flex;flex-direction:column;padding:12px;gap:10px;position:relative}
+  /* Üst çubuk: rozetler + deste */
+  .ust{display:flex;align-items:center;gap:8px;padding:8px 12px 4px}
+  .col-l{display:flex;flex-direction:column;gap:5px}
+  .badge{background:#FAF3E4;border:1.4px solid #F5B942;border-radius:10px;padding:5px 9px;
+    color:#2A1D10;font-weight:900;font-size:12px;display:flex;align-items:center;gap:5px;
+    box-shadow:0 2px 4px rgba(0,0,0,.25);white-space:nowrap}
+  .mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .flama{background:#148A4F;color:#fff;font-weight:900;font-size:12px;padding:6px 18px 6px 12px;
+    clip-path:polygon(0 0,100% 0,86% 50%,100% 100%,0 100%)}
+  .flama.az{background:#C0392B}
+  .kalan{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.38);border-radius:9px;
+    padding:3px 9px;font-size:11px;font-weight:800;color:#fff;white-space:nowrap}
+  .deste{display:flex;align-items:center;gap:6px}
+  .yuva{width:46px;height:64px;border-radius:9px;border:1.2px solid rgba(255,255,255,.38);
+    background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,.5);font-size:18px}
+  .destekart{width:46px;height:64px;border-radius:9px;border:1.2px solid rgba(255,255,255,.7);
+    background:repeating-linear-gradient(45deg,#1E5FA8 0 6px,#16457A 6px 12px);
+    box-shadow:0 3px 6px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:2px;position:relative}
+  .destekart .n{font-size:12px;font-weight:900;color:#fff;text-shadow:0 1px 2px #000}
+  .destekart .lbl{font-size:8.5px;font-weight:800;color:#F5B942}
 
-  /* Üst satır: Hedef Kategoriler + deste */
-  .top{display:flex;gap:10px;align-items:flex-start}
-  .hedefler{flex:1;display:flex;gap:8px}
-  .hedef{flex:1;background:#FAF3E4;border:2px solid #F5B942;border-radius:12px;
-    padding:8px 6px;text-align:center;color:#2A1D10;min-height:82px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    box-shadow:0 4px 10px rgba(0,0,0,.25);transition:.15s}
-  .hedef.sel{outline:3px solid #6C4AB6;outline-offset:1px}
+  .basl{font-size:12px;font-weight:900;color:#DFF3E6;padding:6px 14px 4px}
+
+  /* Hedef kategori slotları — 5 tane */
+  .hedefler{display:flex;gap:6px;padding:0 12px}
+  .hedef{flex:1;background:#FAF3E4;border:2px solid #F5B942;border-radius:11px;padding:6px 3px;
+    text-align:center;color:#2A1D10;min-height:74px;display:flex;flex-direction:column;
+    align-items:center;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:.12s}
+  .hedef.hot{outline:3px solid #6C4AB6;outline-offset:1px;transform:translateY(-2px)}
   .hedef.shake{animation:sh .3s}
-  .hedef .ico{font-size:18px}
-  .hedef .ad{font-size:11.5px;font-weight:900;line-height:1.15;margin-top:2px}
-  .hedef .say{font-size:11px;font-weight:900;color:#0F6B3E;margin-top:3px}
-  .hedef .say.tam{color:#2E9E5B}
-  .hedef .cips{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:3px}
-  .hedef .cip{font-size:8.5px;background:#6C4AB6;color:#fff;border-radius:4px;padding:1px 3px}
+  .hedef .h-ic{font-size:14px}
+  .hedef .h-ad{font-size:9px;font-weight:900;line-height:1.1;margin-top:1px}
+  .hedef .h-say{font-size:10.5px;font-weight:900;color:#0F6B3E;margin-top:auto;padding-top:2px}
+  .hedef .h-say.tam{color:#2E9E5B}
 
-  .deste{width:52px}
-  .destekart{width:52px;height:72px;border-radius:9px;background:linear-gradient(135deg,#1E5FA8,#16457A);
-    border:2px solid #F5B942;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.3)}
-  .destekart::after{content:"";position:absolute;inset:6px;border-radius:5px;
-    border:1.5px dashed rgba(255,255,255,.35)}
-  .destekart .n{position:absolute;top:3px;right:4px;font-size:10px;font-weight:900;color:#F5B942}
-  .deste .lbl{font-size:9px;color:#CDEBD8;text-align:center;margin-top:3px;font-weight:700}
+  /* Tableau — 5 sütun, kaydırılabilir */
+  .tableau{flex:1;overflow-y:auto;padding:6px 12px 8px;display:flex;gap:6px;align-items:flex-start}
+  .sutun{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
+  .kart{background:#FAF3E4;border:1.6px solid #F5B942;border-radius:9px;color:#2A1D10;
+    padding:6px 3px;font-size:9px;font-weight:800;text-align:center;line-height:1.12;
+    min-height:46px;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 5px rgba(0,0,0,.22);cursor:grab;overflow:hidden;word-break:break-word}
+  .kart.sel{outline:3px solid #6C4AB6;outline-offset:1px}
+  .kart.drag{opacity:.35}
+  .kart.gone{display:none}
 
-  .ipucu{font-size:12px;color:#DFF3E6;font-weight:700;text-align:center}
+  /* Alt araç çubuğu (dekoratif — gerçek oyundaki gibi) */
+  .alt{flex:0 0 auto;background:#0A4E2C;border-top:1px solid rgba(255,255,255,.24);
+    padding:8px 12px;display:flex;gap:8px}
+  .tool{flex:1;border:1px solid rgba(255,255,255,.4);border-radius:12px;padding:8px 4px;
+    text-align:center;font-size:11px;font-weight:800;color:#DFF3E6;opacity:.9}
 
-  /* Tableau: terim kartları */
-  .terimler{flex:1;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start;justify-content:center}
-  .terim{background:#FAF3E4;border:2px solid #F5B942;border-radius:10px;color:#2A1D10;
-    padding:10px 12px;font-size:13.5px;font-weight:800;box-shadow:0 3px 8px rgba(0,0,0,.25);
-    transition:.12s}
-  .terim:active{transform:scale(.95)}
-  .terim.sel{outline:3px solid #6C4AB6;outline-offset:1px;transform:translateY(-2px)}
-  .terim.gone{display:none}
+  /* Sürüklenen hayalet kart */
+  #ghost{position:fixed;z-index:50;pointer-events:none;width:58px;transform:translate(-50%,-70%) scale(1.06);
+    display:none}
+  #ghost .kart{min-height:64px;font-size:10px}
 
-  /* Alt reklam şeridi — uygulamaya çeken yazı */
-  .promo{background:#0A4E2C;padding:8px 12px;display:flex;align-items:center;gap:8px;
-    border-top:2px solid #F5B942}
-  .promo .badge{font-size:20px}
-  .promo .txt{flex:1;font-size:12px;line-height:1.25}
-  .promo .txt b{color:#F5B942}
-  .promo .go{background:#F5B942;color:#2A1D10;font-weight:900;font-size:12px;
-    padding:8px 12px;border-radius:999px;white-space:nowrap}
-
-  /* Bitiş ekranı */
-  #end{position:absolute;inset:0;background:rgba(10,78,44,.96);display:none;
-    flex-direction:column;align-items:center;justify-content:center;text-align:center;
-    gap:12px;padding:24px}
+  /* Bitiş */
+  #end{position:absolute;inset:0;background:rgba(10,78,44,.96);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:60}
   #end.show{display:flex}
-  #end .cup{font-size:56px}
-  #end h2{font-size:24px;font-weight:900;color:#fff}
+  #end .cup{font-size:54px}
+  #end h2{font-size:23px;font-weight:900}
   #end p{font-size:14px;line-height:1.55;color:#DFF3E6;max-width:330px}
   #end p b{color:#F5B942}
-  .btn{background:linear-gradient(90deg,#F5B942,#F59E0B);color:#2A1D10;border:none;
-    border-radius:16px;padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;
-    box-shadow:0 10px 26px rgba(245,185,66,.5);animation:pulse 1.5s infinite;width:100%;max-width:320px}
+  .btn{background:linear-gradient(90deg,#F5B942,#F59E0B);color:#2A1D10;border:none;border-radius:16px;
+    padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;width:100%;max-width:320px;
+    box-shadow:0 10px 26px rgba(245,185,66,.5);animation:pulse 1.5s infinite}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
   .store{font-size:12px;color:#CDEBD8}
-
   @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 </style>
 </head>
 <body>
 <div id="app">
-  <div class="bar"><span style="font-size:18px">🃏</span>
-    <span class="t">Eşleştirme Solitaire</span></div>
+  <div class="bar"><span style="font-size:18px">🃏</span><span class="t">Eşleştirme Solitaire</span></div>
 
-  <div class="board">
-    <div class="top">
-      <div class="hedefler">
-        <div class="hedef" id="hedef0" onclick="tapHedef(0)">
-          <div class="ico">🎯</div>
-          <div class="ad" id="ad0"></div>
-          <div class="say" id="say0">0/3</div>
-          <div class="cips" id="cips0"></div>
-        </div>
-        <div class="hedef" id="hedef1" onclick="tapHedef(1)">
-          <div class="ico">🎯</div>
-          <div class="ad" id="ad1"></div>
-          <div class="say" id="say1">0/3</div>
-          <div class="cips" id="cips1"></div>
-        </div>
-      </div>
-      <div class="deste">
-        <div class="destekart"><span class="n" id="desteN">×6</span></div>
-        <div class="lbl">Deste</div>
-      </div>
+  <div class="ust">
+    <div class="col-l">
+      <div class="badge">🎯 Karışık</div>
+      <div class="badge">🪙 <span id="coin">10</span></div>
     </div>
-
-    <div class="ipucu">Bir kartı seç, sonra doğru 🎯 kategoriye dokun</div>
-
-    <div class="terimler" id="terimler"></div>
-
-    <div id="end">
-      <div class="cup">🏆</div>
-      <h2>Kategorileri tamamladın!</h2>
-      <p>Eşleştirme Solitaire, <b>KPSS Hazırlık</b> uygulamasındaki oyunlardan sadece biri.
-         Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz.</b></p>
-      <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
-      <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+    <div class="mid">
+      <div class="flama" id="flama">Kalan Hamle: 75</div>
+      <div class="kalan" id="kalan">🎴 Kalan kart: 30/30</div>
+    </div>
+    <div class="deste">
+      <div class="yuva" id="cekilen">👆</div>
+      <div class="destekart" onclick="cekDeste()"><span class="n" id="desteN">6</span><span class="lbl">Çek</span></div>
     </div>
   </div>
 
-  <div class="promo" onclick="installClick()">
-    <span class="badge">📚</span>
-    <div class="txt"><b>KPSS Hazırlık</b> — oyunla öğren, sınavı kazan!</div>
-    <span class="go">İNDİR</span>
+  <div class="basl">🎯 Hedef Kategoriler</div>
+  <div class="hedefler" id="hedefler"></div>
+
+  <div class="basl">🂠 Kartlar — kartı tutup sürükle</div>
+  <div class="tableau" id="tableau"></div>
+
+  <div class="alt">
+    <div class="tool">💡 İpucu (2)</div>
+    <div class="tool">↩️ Geri Al (2)</div>
+    <div class="tool">🛒 Market</div>
+  </div>
+
+  <div id="end">
+    <div class="cup">🏆</div>
+    <h2>Seviye tamamlandı!</h2>
+    <p><b>Eşleştirme Solitaire</b>, KPSS Hazırlık uygulamasındaki oyunlardan sadece biri.
+       Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz.</b></p>
+    <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+    <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
   </div>
 </div>
 
+<div id="ghost"><div class="kart" id="ghostK"></div></div>
+
 <script>
-/* ── Reklam ağı CTA köprüsü: AdMob(mraid) / Google Ads(ExitApi) /
-   Meta(FbPlayableAd); olmazsa doğrudan mağaza. ── */
-var STORE_URL = 'https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
+var STORE_URL='https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
 function installClick(){
   try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
   try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
@@ -140,65 +145,136 @@ function installClick(){
   try{ window.open(STORE_URL,'_blank'); }catch(e){}
 }
 
-// İki hedef kategori + terimleri (Coğrafya — uygulamadaki eşleştirme içeriği gibi).
-var KATLAR = [
-  {ad:'İç Anadolu İlleri', terimler:['Konya','Ankara','Sivas']},
-  {ad:'Ege İlleri',        terimler:['İzmir','Aydın','Muğla']}
+/* Gerçek uygulama verisi — Kolay 5 kategori (Türkçe), toplam 30 kart. */
+var KATLAR=[
+  {ad:'Sözcük Türleri', terimler:['İsim','Fiil','Sıfat','Zamir','Zarf','Edat','Bağlaç','Ünlem']},
+  {ad:'Ses Olayları', terimler:['Ünlü Düşmesi','Ünlü Daralması','Ünsüz Yumuşaması','Ünsüz Benzeşmesi','Ünsüz Türemesi','Ulama','Kaynaştırma']},
+  {ad:'Zamir (Adıl) Çeşitleri', terimler:['Kişi','İşaret','Soru Zamiri','Belgisiz','İlgi','Dönüşlülük']},
+  {ad:'Cümlenin Ögeleri', terimler:['Özne','Yüklem','Nesne','Dolaylı Tümleç','Zarf Tümleci']},
+  {ad:'Fiil Çatısı', terimler:['Etken','Edilgen','Dönüşlü','İşteş']}
 ];
+var TOPLAM=KATLAR.reduce(function(a,k){return a+k.terimler.length;},0); // 30
+var HAMLE=Math.ceil(TOPLAM*2.5); // 75 (kHamleButceCarpani=2.5)
+var yerlesen=KATLAR.map(function(){return 0;});
+var kalanKart=TOPLAM, matched=0, coin=10;
 
-var TERIMLER = [];
-KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ TERIMLER.push({t:t,k:ki}); }); });
-// karıştır (deterministik — Math.random gerekmez)
-for(var x=TERIMLER.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));
-  var tmp=TERIMLER[x];TERIMLER[x]=TERIMLER[j];TERIMLER[j]=tmp;}
+/* Tüm terim kartları (kategori indeksiyle) */
+var KARTLAR=[];
+KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ KARTLAR.push({t:t,k:ki,done:false}); }); });
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));var tmp=a[x];a[x]=a[j];a[j]=tmp;}return a;}
+karistir(KARTLAR);
 
-var yerlesen=[0,0], toplam=[KATLAR[0].terimler.length,KATLAR[1].terimler.length];
-var sel=null, matched=0, gereken=TERIMLER.length;
-var terimlerEl=document.getElementById('terimler');
+/* Bir kısmını desteye ayır (gerçek oyundaki "Çek" hissi) */
+var DESTE=KARTLAR.splice(0,6); // 6 kart destede
 
-document.getElementById('ad0').textContent=KATLAR[0].ad;
-document.getElementById('ad1').textContent=KATLAR[1].ad;
-document.getElementById('say0').textContent='0/'+toplam[0];
-document.getElementById('say1').textContent='0/'+toplam[1];
+var hedeflerEl=document.getElementById('hedefler'), tableauEl=document.getElementById('tableau');
+var selKart=null;
 
-function render(){
-  terimlerEl.innerHTML='';
-  TERIMLER.forEach(function(item,idx){
-    if(item.done) return;
-    var b=document.createElement('div');
-    b.className='terim'; b.textContent=item.t;
-    b.onclick=function(){ tapTerim(idx,b); };
-    terimlerEl.appendChild(b);
+function renderHedefler(){
+  hedeflerEl.innerHTML='';
+  KATLAR.forEach(function(k,ki){
+    var d=document.createElement('div');
+    d.className='hedef'; d.dataset.k=ki;
+    var tam=yerlesen[ki]>=k.terimler.length;
+    d.innerHTML='<div class="h-ic">🎯</div><div class="h-ad">'+k.ad+'</div>'+
+      '<div class="h-say'+(tam?' tam':'')+'">'+yerlesen[ki]+'/'+k.terimler.length+'</div>';
+    d.onclick=function(){ if(selKart) tryPlace(ki,d); };
+    hedeflerEl.appendChild(d);
   });
-  document.getElementById('desteN').textContent='×'+(gereken-matched);
 }
 
-function tapTerim(idx,btn){
-  sel={idx:idx,btn:btn};
-  Array.prototype.forEach.call(terimlerEl.querySelectorAll('.terim'),function(e){e.classList.remove('sel');});
-  btn.classList.add('sel');
+function renderTableau(){
+  tableauEl.innerHTML='';
+  var sutunlar=[[],[],[],[],[]];
+  KARTLAR.forEach(function(c,i){ if(!c.done) sutunlar[i%5].push(c); });
+  for(var s=0;s<5;s++){
+    var col=document.createElement('div'); col.className='sutun';
+    sutunlar[s].forEach(function(c){
+      var el=document.createElement('div');
+      el.className='kart'+(c===selKart?' sel':''); el.textContent=c.t;
+      bindKart(el,c);
+      col.appendChild(el);
+    });
+    tableauEl.appendChild(col);
+  }
+  document.getElementById('desteN').textContent=DESTE.length;
 }
 
-function tapHedef(ki){
-  if(!sel){ return; }
-  var item=TERIMLER[sel.idx];
-  var hedef=document.getElementById('hedef'+ki);
-  if(item.k===ki){
-    item.done=true; matched++; yerlesen[ki]++;
-    var cip=document.createElement('span'); cip.className='cip'; cip.textContent=item.t;
-    document.getElementById('cips'+ki).appendChild(cip);
-    var say=document.getElementById('say'+ki);
-    say.textContent=yerlesen[ki]+'/'+toplam[ki];
-    if(yerlesen[ki]>=toplam[ki]) say.classList.add('tam');
-    sel=null;
-    render();
-    if(matched>=gereken){ setTimeout(function(){document.getElementById('end').classList.add('show');},420); }
+function updateHud(){
+  document.getElementById('coin').textContent=coin;
+  var kh=HAMLE; // hamle bütçesi sabit gösterim; her yerleştirmede düşürelim
+  document.getElementById('kalan').textContent='🎴 Kalan kart: '+kalanKart+'/'+TOPLAM;
+}
+var kalanHamle=HAMLE;
+function setHamle(){
+  var f=document.getElementById('flama');
+  f.textContent='Kalan Hamle: '+kalanHamle;
+  if(kalanHamle<=5) f.classList.add('az');
+}
+
+function tryPlace(ki,hedefEl){
+  if(!selKart) return;
+  var c=selKart;
+  if(c.k===ki){
+    c.done=true; matched++; kalanKart--; yerlesen[ki]++; coin++; kalanHamle--;
+    selKart=null;
+    renderHedefler(); renderTableau(); updateHud(); setHamle();
+    if(matched>=TOPLAM){ setTimeout(function(){document.getElementById('end').classList.add('show');},400); }
   } else {
-    hedef.classList.add('shake'); setTimeout(function(){hedef.classList.remove('shake');},320);
+    kalanHamle--; setHamle();
+    hedefEl.classList.add('shake'); setTimeout(function(){hedefEl.classList.remove('shake');},320);
   }
 }
 
-render();
+/* Çek: desteden bir kart tableau'ya ekle */
+function cekDeste(){
+  if(DESTE.length===0) return;
+  KARTLAR.push(DESTE.shift());
+  renderTableau();
+}
+
+/* ── Sürükle-bırak (pointer) + dokun-seç yedeği ── */
+var ghost=document.getElementById('ghost'), ghostK=document.getElementById('ghostK');
+var dragC=null, dragEl=null, moved=false, sx=0, sy=0;
+
+function bindKart(el,c){
+  el.addEventListener('pointerdown',function(e){
+    dragC=c; dragEl=el; moved=false; sx=e.clientX; sy=e.clientY;
+    el.setPointerCapture&&el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener('pointermove',function(e){
+    if(dragC!==c) return;
+    if(!moved && Math.hypot(e.clientX-sx,e.clientY-sy)<6) return;
+    moved=true; el.classList.add('drag');
+    ghostK.textContent=c.t; ghost.style.display='block';
+    ghost.style.left=e.clientX+'px'; ghost.style.top=e.clientY+'px';
+    hotHedef(e.clientX,e.clientY);
+  });
+  el.addEventListener('pointerup',function(e){
+    if(dragC!==c) return;
+    el.classList.remove('drag'); ghost.style.display='none';
+    clearHot();
+    if(moved){
+      var h=hedefUnder(e.clientX,e.clientY);
+      if(h!=null){ selKart=c; tryPlace(h, hedeflerEl.children[h]); }
+    } else {
+      // dokunma = seç/seçimi kaldır
+      selKart=(selKart===c)?null:c; renderTableau();
+    }
+    dragC=null; dragEl=null; moved=false;
+  });
+  el.addEventListener('pointercancel',function(){ el.classList.remove('drag'); ghost.style.display='none'; clearHot(); dragC=null; moved=false; });
+}
+
+function hedefUnder(x,y){
+  var els=document.elementsFromPoint(x,y);
+  for(var i=0;i<els.length;i++){ var h=els[i].closest&&els[i].closest('.hedef'); if(h) return +h.dataset.k; }
+  return null;
+}
+function hotHedef(x,y){ clearHot(); var k=hedefUnder(x,y); if(k!=null) hedeflerEl.children[k].classList.add('hot'); }
+function clearHot(){ Array.prototype.forEach.call(hedeflerEl.children,function(h){h.classList.remove('hot');}); }
+
+renderHedefler(); renderTableau(); updateHud(); setHamle();
 </script>
 </body>
 </html>

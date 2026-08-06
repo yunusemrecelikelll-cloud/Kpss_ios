@@ -5,15 +5,21 @@ oynayabileceği** kendi kendine yeten (self-contained) HTML5 mini oyunlar.
 Tasarımları uygulamanın içindeki oyunlarla **birebir aynıdır** (aynı renkler,
 kart stilleri, yerleşim). Sadece **Apple (App Store)** hedefi içindir; Android sonra.
 
+Tasarım, boyut, kart sayısı, sayaçlar ve içerik uygulamadaki oyunlarla **birebir aynıdır**.
+
 ## Dosyalar
-- `kpss_solitaire_reklam.html` — **Eşleştirme Solitaire** reklamı.
-  Uygulamadaki gibi yeşil keçe masa (#0F6B3E), krem + altın kenarlı kartlar
-  (#FAF3E4 / #F5B942), 🎯 hedef kategori slotları ve mavi kart sırtı destesi.
-  Oyna: bir terim kartını seç, doğru kategoriye dokun → hepsi yerleşince CTA.
+- `kpss_solitaire_reklam.html` — **Eşleştirme Solitaire** (Kolay) reklamı.
+  Yeşil keçe masa (#0F6B3E), krem + altın kenarlı kartlar (#FAF3E4/#F5B942),
+  mavi kart sırtı destesi. **5 gerçek Türkçe kategori** (Sözcük Türleri, Ses
+  Olayları, Zamir Çeşitleri, Cümlenin Ögeleri, Fiil Çatısı) = **30 kart**,
+  **75 hamle** bütçesi. Üstte gerçek sayaçlar: 🎯 Karışık, 🪙 coin, Kalan Hamle,
+  🎴 Kalan kart. 5 hedef slot + 5 tableau sütunu + "Çek" destesi + alt araç
+  çubuğu (İpucu/Geri Al/Market). Kartı tutup sürükle ya da dokun-seç.
 - `kpss_kartoyunu_v2_reklam.html` — **Kart Oyunu V2** reklamı.
-  Uygulamadaki gibi Pembe Rüya teması (#FFF0F6), iki sütun (terim ↔ tanım);
-  doğru eşleşen çiftler **renkli bir okla** birleşir, yanlış = kırmızı sarsıntı.
-  İçerik: Güncel Bilgiler eşleştirmeleri.
+  Pembe Rüya teması (#FFF0F6), iki sütun **8'er kart** (kSabitCiftSayisi=8),
+  başlıkta "Eşleşen: 0/8 • Yanlış: 0/3" (3 yanlış hakkı). Doğru eşleşme **renkli
+  okla** birleşir, yanlış = kırmızı sarsıntı. İçerik: gerçek **Güncel Bilgiler**
+  çiftleri (Yapay Zekâ↔Makine Öğrenmesi, NATO↔1949, TCMB↔Merkez Bankası…).
 
 Her ikisi de tek HTML dosyasıdır: tüm CSS/JS gömülü, **dış ağ isteği yok**
 (playable ad kuralı). Dikey (portrait), mobil dokunmatik. Üzerlerinde uygulamaya
