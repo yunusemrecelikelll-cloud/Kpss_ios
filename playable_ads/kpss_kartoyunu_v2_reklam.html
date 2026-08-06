@@ -114,9 +114,12 @@ var CIFTLER=[
 ];
 var MAX_YANLIS=3;
 
-function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
+// Gerçek rastgele karıştırma (Fisher-Yates) — her açılışta sorular karışık gelir.
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
 var sol=CIFTLER.map(function(c,i){return{text:c.sol,pid:i};});
 var sag=CIFTLER.map(function(c,i){return{text:c.sag,pid:i};});
+// Sol ve sağ AYRI AYRI karıştırılır — böylece çiftler karşılıklı hizalanmaz,
+// terim ile tanımı farklı satırlara düşer.
 karistir(sol); karistir(sag);
 
 var colL=document.getElementById('colL'), colR=document.getElementById('colR'), linesSvg=document.getElementById('lines');

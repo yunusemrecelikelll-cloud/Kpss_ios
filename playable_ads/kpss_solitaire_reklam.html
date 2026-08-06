@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>KPSS Hazırlık — Eşleştirme Solitaire</title>
 <style>
-  /* Uygulamadaki Eşleştirme Solitaire ile BİREBİR:
-     keçe #0F6B3E / koyu #0A4E2C / açık #148A4F, krem kart #FAF3E4, ink #2A1D10,
-     altın kenar #F5B942, kart sırtı #1E5FA8/#16457A, hedef mor #6C4AB6.
-     5 hedef kategori + 5 tableau sütunu + deste + Kalan Hamle/Kalan kart. */
+  /* Uygulamadaki Eşleştirme Solitaire ile BİREBİR renkler + GERÇEK İSKAMBİL
+     kartı oranı (2.5:3.5). Sütunlarda sadece EN ÖNDEKİ kart açık; arkasındakiler
+     kart sırtı (kapalı). 5 hedef kategori + deste + Kalan Hamle/Kalan kart. */
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
     -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
   html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
@@ -16,9 +15,8 @@
   #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
 
   .bar{background:#0A4E2C;padding:10px 14px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
-  .bar .t{font-weight:900;font-size:16px;color:#fff}
+  .bar .t{font-weight:900;font-size:16px}
 
-  /* Üst çubuk: rozetler + deste */
   .ust{display:flex;align-items:center;gap:8px;padding:8px 12px 4px}
   .col-l{display:flex;flex-direction:column;gap:5px}
   .badge{background:#FAF3E4;border:1.4px solid #F5B942;border-radius:10px;padding:5px 9px;
@@ -29,24 +27,14 @@
     clip-path:polygon(0 0,100% 0,86% 50%,100% 100%,0 100%)}
   .flama.az{background:#C0392B}
   .kalan{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.38);border-radius:9px;
-    padding:3px 9px;font-size:11px;font-weight:800;color:#fff;white-space:nowrap}
-  .deste{display:flex;align-items:center;gap:6px}
-  .yuva{width:46px;height:64px;border-radius:9px;border:1.2px solid rgba(255,255,255,.38);
-    background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;
-    color:rgba(255,255,255,.5);font-size:18px}
-  .destekart{width:46px;height:64px;border-radius:9px;border:1.2px solid rgba(255,255,255,.7);
-    background:repeating-linear-gradient(45deg,#1E5FA8 0 6px,#16457A 6px 12px);
-    box-shadow:0 3px 6px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;
-    justify-content:center;gap:2px;position:relative}
-  .destekart .n{font-size:12px;font-weight:900;color:#fff;text-shadow:0 1px 2px #000}
-  .destekart .lbl{font-size:8.5px;font-weight:800;color:#F5B942}
+    padding:3px 9px;font-size:11px;font-weight:800;white-space:nowrap}
+  .deste{display:flex;align-items:flex-start;gap:6px}
 
   .basl{font-size:12px;font-weight:900;color:#DFF3E6;padding:6px 14px 4px}
 
-  /* Hedef kategori slotları — 5 tane */
   .hedefler{display:flex;gap:6px;padding:0 12px}
   .hedef{flex:1;background:#FAF3E4;border:2px solid #F5B942;border-radius:11px;padding:6px 3px;
-    text-align:center;color:#2A1D10;min-height:74px;display:flex;flex-direction:column;
+    text-align:center;color:#2A1D10;min-height:70px;display:flex;flex-direction:column;
     align-items:center;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:.12s}
   .hedef.hot{outline:3px solid #6C4AB6;outline-offset:1px;transform:translateY(-2px)}
   .hedef.shake{animation:sh .3s}
@@ -55,29 +43,53 @@
   .hedef .h-say{font-size:10.5px;font-weight:900;color:#0F6B3E;margin-top:auto;padding-top:2px}
   .hedef .h-say.tam{color:#2E9E5B}
 
-  /* Tableau — 5 sütun, kaydırılabilir */
-  .tableau{flex:1;overflow-y:auto;padding:6px 12px 8px;display:flex;gap:6px;align-items:flex-start}
-  .sutun{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
-  .kart{background:#FAF3E4;border:1.6px solid #F5B942;border-radius:9px;color:#2A1D10;
-    padding:6px 3px;font-size:9px;font-weight:800;text-align:center;line-height:1.12;
-    min-height:46px;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 2px 5px rgba(0,0,0,.22);cursor:grab;overflow:hidden;word-break:break-word}
-  .kart.sel{outline:3px solid #6C4AB6;outline-offset:1px}
-  .kart.drag{opacity:.35}
-  .kart.gone{display:none}
+  .tableau{flex:1;overflow-y:auto;padding:8px 12px 10px;display:flex;gap:6px;align-items:flex-start}
+  .sutun{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
 
-  /* Alt araç çubuğu (dekoratif — gerçek oyundaki gibi) */
+  /* Gerçek iskambil kartı — oran 2.5:3.5, boyut JS ile hesaplanır (--cw/--ch) */
+  .isk{width:var(--cw);height:var(--ch);border-radius:calc(var(--cw)*0.12);position:relative;
+    flex:0 0 auto;box-shadow:0 2px 5px rgba(0,0,0,.30)}
+  .isk.kapali{margin-top:calc(-1 * var(--ch) + var(--sliver))}
+  .isk.acik{margin-top:calc(-1 * var(--ch) + var(--sliver))}
+  .sutun .isk:first-child{margin-top:0}
+
+  /* Kapalı kart (sırt) */
+  .isk.kapali .yuz{position:absolute;inset:0;border-radius:inherit;border:1.4px solid rgba(255,255,255,.75);
+    background:repeating-linear-gradient(45deg,#1E5FA8 0 7px,#16457A 7px 14px)}
+  .isk.kapali .yuz::after{content:"";position:absolute;inset:14%;border-radius:6px;
+    border:1.5px solid rgba(255,255,255,.35)}
+
+  /* Açık kart (krem, altın kenar, ink yazı, köşe pip'leri) */
+  .isk.acik .yuz{position:absolute;inset:0;border-radius:inherit;background:#FAF3E4;
+    border:1.6px solid #F5B942;display:flex;align-items:center;justify-content:center;
+    padding:12% 6%;cursor:grab}
+  .isk.acik .txt{font-size:var(--fs);font-weight:800;color:#2A1D10;text-align:center;line-height:1.12;
+    word-break:break-word}
+  .isk.acik .pip{position:absolute;font-size:calc(var(--cw)*0.13);color:#B07A1E;font-weight:900}
+  .isk.acik .pip.tl{top:4%;left:7%}
+  .isk.acik .pip.br{bottom:4%;right:7%;transform:rotate(180deg)}
+  .isk.acik.sel .yuz{outline:3px solid #6C4AB6;outline-offset:1px}
+  .isk.drag .yuz{opacity:.35}
+
+  /* Deste (kapalı, "Çek") + çekilen yuva */
+  .yuva{width:var(--cw);height:var(--ch);border-radius:calc(var(--cw)*0.12);
+    border:1.2px dashed rgba(255,255,255,.4);background:rgba(255,255,255,.05);
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:16px}
+  .destekart{width:var(--cw);height:var(--ch);border-radius:calc(var(--cw)*0.12);
+    border:1.4px solid rgba(255,255,255,.75);
+    background:repeating-linear-gradient(45deg,#1E5FA8 0 7px,#16457A 7px 14px);
+    box-shadow:0 3px 6px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:2px;position:relative}
+  .destekart .n{font-size:13px;font-weight:900;text-shadow:0 1px 2px #000}
+  .destekart .lbl{font-size:9px;font-weight:800;color:#F5B942}
+
   .alt{flex:0 0 auto;background:#0A4E2C;border-top:1px solid rgba(255,255,255,.24);
     padding:8px 12px;display:flex;gap:8px}
   .tool{flex:1;border:1px solid rgba(255,255,255,.4);border-radius:12px;padding:8px 4px;
     text-align:center;font-size:11px;font-weight:800;color:#DFF3E6;opacity:.9}
 
-  /* Sürüklenen hayalet kart */
-  #ghost{position:fixed;z-index:50;pointer-events:none;width:58px;transform:translate(-50%,-70%) scale(1.06);
-    display:none}
-  #ghost .kart{min-height:64px;font-size:10px}
+  #ghost{position:fixed;z-index:50;pointer-events:none;display:none;transform:translate(-50%,-60%) scale(1.05)}
 
-  /* Bitiş */
   #end{position:absolute;inset:0;background:rgba(10,78,44,.96);display:none;flex-direction:column;
     align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:60}
   #end.show{display:flex}
@@ -107,7 +119,7 @@
       <div class="kalan" id="kalan">🎴 Kalan kart: 30/30</div>
     </div>
     <div class="deste">
-      <div class="yuva" id="cekilen">👆</div>
+      <div id="cekSlot"></div>
       <div class="destekart" onclick="cekDeste()"><span class="n" id="desteN">6</span><span class="lbl">Çek</span></div>
     </div>
   </div>
@@ -115,7 +127,7 @@
   <div class="basl">🎯 Hedef Kategoriler</div>
   <div class="hedefler" id="hedefler"></div>
 
-  <div class="basl">🂠 Kartlar — kartı tutup sürükle</div>
+  <div class="basl">🂠 Kartlar — öndeki açık kartı tut ve sürükle</div>
   <div class="tableau" id="tableau"></div>
 
   <div class="alt">
@@ -134,7 +146,7 @@
   </div>
 </div>
 
-<div id="ghost"><div class="kart" id="ghostK"></div></div>
+<div id="ghost"></div>
 
 <script>
 var STORE_URL='https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
@@ -154,127 +166,163 @@ var KATLAR=[
   {ad:'Fiil Çatısı', terimler:['Etken','Edilgen','Dönüşlü','İşteş']}
 ];
 var TOPLAM=KATLAR.reduce(function(a,k){return a+k.terimler.length;},0); // 30
-var HAMLE=Math.ceil(TOPLAM*2.5); // 75 (kHamleButceCarpani=2.5)
+var kalanHamle=Math.ceil(TOPLAM*2.5); // 75
 var yerlesen=KATLAR.map(function(){return 0;});
 var kalanKart=TOPLAM, matched=0, coin=10;
 
-/* Tüm terim kartları (kategori indeksiyle) */
-var KARTLAR=[];
-KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ KARTLAR.push({t:t,k:ki,done:false}); }); });
-function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));var tmp=a[x];a[x]=a[j];a[j]=tmp;}return a;}
-karistir(KARTLAR);
+/* Fisher-Yates — kartlar her açılışta KARIŞIK gelir. */
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
 
-/* Bir kısmını desteye ayır (gerçek oyundaki "Çek" hissi) */
-var DESTE=KARTLAR.splice(0,6); // 6 kart destede
+var TUM=[];
+KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ TUM.push({t:t,k:ki}); }); });
+karistir(TUM);
+
+/* 24 kart tableau'ya (5 sütun), 6 kart desteye. */
+var DESTE=TUM.splice(0,6);
+var SUTUNLAR=[[],[],[],[],[]];
+TUM.forEach(function(c,i){ SUTUNLAR[i%5].push(c); });
+var cekilen=null; // desteden açılan, oynanabilir kart
 
 var hedeflerEl=document.getElementById('hedefler'), tableauEl=document.getElementById('tableau');
-var selKart=null;
+var cekSlotEl=document.getElementById('cekSlot');
+var sel=null; // {c, from:'col'|'draw', col?}
+
+/* Kart boyutunu ekrana göre hesapla (gerçek iskambil oranı 2.5:3.5). */
+function boyutla(){
+  var w=Math.min(window.innerWidth,520);
+  var cw=Math.floor((w-24-4*6)/5);            // 5 sütun, 6px boşluk, 12px kenar
+  cw=Math.max(46,Math.min(cw,86));
+  var ch=Math.round(cw/(2.5/3.5));            // oran
+  document.documentElement.style.setProperty('--cw',cw+'px');
+  document.documentElement.style.setProperty('--ch',ch+'px');
+  document.documentElement.style.setProperty('--sliver',Math.round(ch*0.30)+'px');
+  document.documentElement.style.setProperty('--fs',Math.max(8,Math.round(cw*0.13))+'px');
+}
 
 function renderHedefler(){
   hedeflerEl.innerHTML='';
   KATLAR.forEach(function(k,ki){
-    var d=document.createElement('div');
-    d.className='hedef'; d.dataset.k=ki;
+    var d=document.createElement('div'); d.className='hedef'; d.dataset.k=ki;
     var tam=yerlesen[ki]>=k.terimler.length;
     d.innerHTML='<div class="h-ic">🎯</div><div class="h-ad">'+k.ad+'</div>'+
       '<div class="h-say'+(tam?' tam':'')+'">'+yerlesen[ki]+'/'+k.terimler.length+'</div>';
-    d.onclick=function(){ if(selKart) tryPlace(ki,d); };
+    d.onclick=function(){ if(sel) tryPlace(ki,d); };
     hedeflerEl.appendChild(d);
   });
 }
 
+function kartAcikEl(c){
+  var el=document.createElement('div'); el.className='isk acik';
+  el.innerHTML='<div class="yuz"><span class="pip tl">🃟</span><span class="txt">'+c.t+
+    '</span><span class="pip br">🃟</span></div>';
+  return el;
+}
+function kartKapaliEl(){
+  var el=document.createElement('div'); el.className='isk kapali';
+  el.innerHTML='<div class="yuz"></div>'; return el;
+}
+
 function renderTableau(){
   tableauEl.innerHTML='';
-  var sutunlar=[[],[],[],[],[]];
-  KARTLAR.forEach(function(c,i){ if(!c.done) sutunlar[i%5].push(c); });
   for(var s=0;s<5;s++){
     var col=document.createElement('div'); col.className='sutun';
-    sutunlar[s].forEach(function(c){
-      var el=document.createElement('div');
-      el.className='kart'+(c===selKart?' sel':''); el.textContent=c.t;
-      bindKart(el,c);
+    var kartlar=SUTUNLAR[s];
+    kartlar.forEach(function(c,idx){
+      var onde=(idx===kartlar.length-1); // EN ÖNDEKİ (son) kart AÇIK, arkası KAPALI
+      var el=onde?kartAcikEl(c):kartKapaliEl();
+      if(onde){ bindKart(el,c,'col',s); if(sel&&sel.c===c) el.classList.add('sel'); }
       col.appendChild(el);
     });
     tableauEl.appendChild(col);
   }
   document.getElementById('desteN').textContent=DESTE.length;
+  // Çekilen kart yuvası — her seferinde TAZE eleman (dinleyici birikmesin).
+  cekSlotEl.innerHTML='';
+  if(cekilen){
+    var el=kartAcikEl(cekilen); el.style.marginTop='0';
+    if(sel&&sel.c===cekilen) el.classList.add('sel');
+    bindKart(el,cekilen,'draw',-1);
+    cekSlotEl.appendChild(el);
+  } else {
+    var bos=document.createElement('div'); bos.className='yuva'; bos.textContent='👆';
+    cekSlotEl.appendChild(bos);
+  }
 }
 
-function updateHud(){
+function hud(){
   document.getElementById('coin').textContent=coin;
-  var kh=HAMLE; // hamle bütçesi sabit gösterim; her yerleştirmede düşürelim
   document.getElementById('kalan').textContent='🎴 Kalan kart: '+kalanKart+'/'+TOPLAM;
+  var f=document.getElementById('flama'); f.textContent='Kalan Hamle: '+kalanHamle;
+  f.classList.toggle('az',kalanHamle<=5);
 }
-var kalanHamle=HAMLE;
-function setHamle(){
-  var f=document.getElementById('flama');
-  f.textContent='Kalan Hamle: '+kalanHamle;
-  if(kalanHamle<=5) f.classList.add('az');
+
+function kartCikar(sel){
+  if(sel.from==='col'){ SUTUNLAR[sel.col].pop(); }
+  else { cekilen=null; }
 }
 
 function tryPlace(ki,hedefEl){
-  if(!selKart) return;
-  var c=selKart;
+  if(!sel) return;
+  var c=sel.c;
   if(c.k===ki){
-    c.done=true; matched++; kalanKart--; yerlesen[ki]++; coin++; kalanHamle--;
-    selKart=null;
-    renderHedefler(); renderTableau(); updateHud(); setHamle();
+    kartCikar(sel);
+    matched++; kalanKart--; yerlesen[ki]++; coin++; kalanHamle--;
+    sel=null;
+    renderHedefler(); renderTableau(); hud();
     if(matched>=TOPLAM){ setTimeout(function(){document.getElementById('end').classList.add('show');},400); }
   } else {
-    kalanHamle--; setHamle();
+    kalanHamle--; hud();
     hedefEl.classList.add('shake'); setTimeout(function(){hedefEl.classList.remove('shake');},320);
   }
 }
 
-/* Çek: desteden bir kart tableau'ya ekle */
 function cekDeste(){
-  if(DESTE.length===0) return;
-  KARTLAR.push(DESTE.shift());
-  renderTableau();
+  if(DESTE.length===0){ return; }
+  if(cekilen){ // önceki çekileni geri destenin altına koymak yerine bir sütuna ekle
+    SUTUNLAR[0].push(cekilen);
+  }
+  cekilen=DESTE.shift();
+  sel=null; renderTableau(); hud();
 }
 
-/* ── Sürükle-bırak (pointer) + dokun-seç yedeği ── */
-var ghost=document.getElementById('ghost'), ghostK=document.getElementById('ghostK');
-var dragC=null, dragEl=null, moved=false, sx=0, sy=0;
+/* ── Sürükle-bırak (pointer) + dokun-seç ── */
+var ghost=document.getElementById('ghost');
+var dragInfo=null, moved=false, sx=0, sy=0;
 
-function bindKart(el,c){
+function bindKart(el,c,from,col){
+  var info={c:c,from:from,col:col,el:el};
   el.addEventListener('pointerdown',function(e){
-    dragC=c; dragEl=el; moved=false; sx=e.clientX; sy=e.clientY;
+    dragInfo=info; moved=false; sx=e.clientX; sy=e.clientY;
     el.setPointerCapture&&el.setPointerCapture(e.pointerId);
   });
   el.addEventListener('pointermove',function(e){
-    if(dragC!==c) return;
+    if(dragInfo!==info) return;
     if(!moved && Math.hypot(e.clientX-sx,e.clientY-sy)<6) return;
-    moved=true; el.classList.add('drag');
-    ghostK.textContent=c.t; ghost.style.display='block';
+    if(!moved){ moved=true; el.classList.add('drag');
+      ghost.innerHTML=''; var g=kartAcikEl(c); g.style.margin='0'; ghost.appendChild(g); ghost.style.display='block'; }
     ghost.style.left=e.clientX+'px'; ghost.style.top=e.clientY+'px';
     hotHedef(e.clientX,e.clientY);
   });
   el.addEventListener('pointerup',function(e){
-    if(dragC!==c) return;
-    el.classList.remove('drag'); ghost.style.display='none';
-    clearHot();
+    if(dragInfo!==info) return;
+    el.classList.remove('drag'); ghost.style.display='none'; clearHot();
     if(moved){
       var h=hedefUnder(e.clientX,e.clientY);
-      if(h!=null){ selKart=c; tryPlace(h, hedeflerEl.children[h]); }
+      if(h!=null){ sel=info; tryPlace(h,hedeflerEl.children[h]); }
+      else { sel=null; renderTableau(); }
     } else {
-      // dokunma = seç/seçimi kaldır
-      selKart=(selKart===c)?null:c; renderTableau();
+      sel=(sel&&sel.c===c)?null:info; renderTableau();
     }
-    dragC=null; dragEl=null; moved=false;
+    dragInfo=null; moved=false;
   });
-  el.addEventListener('pointercancel',function(){ el.classList.remove('drag'); ghost.style.display='none'; clearHot(); dragC=null; moved=false; });
+  el.addEventListener('pointercancel',function(){ el.classList.remove('drag'); ghost.style.display='none'; clearHot(); dragInfo=null; moved=false; });
 }
+function hedefUnder(x,y){var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var h=els[i].closest&&els[i].closest('.hedef');if(h)return +h.dataset.k;}return null;}
+function hotHedef(x,y){clearHot();var k=hedefUnder(x,y);if(k!=null)hedeflerEl.children[k].classList.add('hot');}
+function clearHot(){Array.prototype.forEach.call(hedeflerEl.children,function(h){h.classList.remove('hot');});}
 
-function hedefUnder(x,y){
-  var els=document.elementsFromPoint(x,y);
-  for(var i=0;i<els.length;i++){ var h=els[i].closest&&els[i].closest('.hedef'); if(h) return +h.dataset.k; }
-  return null;
-}
-function hotHedef(x,y){ clearHot(); var k=hedefUnder(x,y); if(k!=null) hedeflerEl.children[k].classList.add('hot'); }
-function clearHot(){ Array.prototype.forEach.call(hedeflerEl.children,function(h){h.classList.remove('hot');}); }
-
-renderHedefler(); renderTableau(); updateHud(); setHamle();
+window.addEventListener('resize',function(){ boyutla(); });
+boyutla(); renderHedefler(); renderTableau(); hud();
 </script>
 </body>
 </html>
