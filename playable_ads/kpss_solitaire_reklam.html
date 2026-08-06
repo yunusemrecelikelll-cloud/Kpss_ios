@@ -5,79 +5,133 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>KPSS Hazırlık — Eşleştirme Solitaire</title>
 <style>
+  /* Uygulama içindeki Eşleştirme Solitaire ile BİREBİR renkler:
+     keçe yeşili #0F6B3E, koyu #0A4E2C, krem kart #FAF3E4, ink #2A1D10,
+     altın kenar #F5B942, kart sırtı mavi #1E5FA8, hedef mor #6C4AB6. */
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
-    background:radial-gradient(120% 90% at 50% 0%, #241a3d 0%, #0f0d17 60%);color:#efe9f7;overflow:hidden}
-  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;padding:18px 16px}
-  .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px}
-  .brand .logo{font-size:22px}
-  .pill{margin-left:auto;font-size:11px;background:#f59e0b33;border:1px solid #f59e0b;
-    color:#ffd98a;padding:4px 10px;border-radius:999px;font-weight:700}
-  .hint{font-size:12.5px;color:#b8b0c8;margin:12px 2px 6px}
-  .cats{display:flex;gap:10px}
-  .cat{flex:1;border-radius:14px;padding:10px 8px;text-align:center;border:2px dashed #ffffff2e;
-    background:#ffffff0d;transition:.15s}
-  .cat.sel{border-style:solid}
-  .cat .t{font-weight:900;font-size:14px}
-  .cat .c{font-size:11px;color:#b8b0c8;margin-top:2px}
-  .cat.a{border-color:#8b5cf6}.cat.a.sel{background:#8b5cf622}
-  .cat.b{border-color:#22c55e}.cat.b.sel{background:#22c55e22}
-  .slotwrap{display:flex;gap:6px;justify-content:center;margin-top:6px;flex-wrap:wrap;min-height:22px}
-  .chipmini{font-size:10px;padding:2px 6px;border-radius:6px;background:#ffffff1a;color:#cfc8e0}
-  .terms{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;flex:1;align-content:flex-start}
-  .term{background:#ffffff12;border:1.5px solid #ffffff2b;border-radius:12px;padding:12px 14px;
-    font-size:15px;font-weight:800;cursor:pointer;transition:.12s}
-  .term:active{transform:scale(.96)}
-  .term.sel{border-color:#f59e0b;background:#f59e0b22;box-shadow:0 0 0 3px #f59e0b33}
-  .term.gone{display:none}
-  .shake{animation:sh .3s}
-  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-  .score{font-size:12px;color:#b8b0c8;text-align:center;margin-top:6px}
-  #end{display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
-  #end .big{font-size:40px}
-  #end h2{font-size:22px;font-weight:900}
-  #end p{color:#b8b0c8;font-size:14px;line-height:1.5;max-width:320px}
-  .btn{display:block;width:100%;max-width:340px;background:linear-gradient(90deg,#f59e0b,#ec4899);
-    color:#fff;border:none;border-radius:16px;padding:16px;font-size:17px;font-weight:900;cursor:pointer;
-    box-shadow:0 10px 26px #f59e0b55;animation:pulse 1.6s infinite}
+    background:#0F6B3E;color:#fff;overflow:hidden}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+
+  /* Uygulamanın AppBar'ı */
+  .bar{background:#0A4E2C;padding:12px 16px;display:flex;align-items:center;gap:8px}
+  .bar .t{font-weight:900;font-size:16px;color:#fff}
+
+  .board{flex:1;display:flex;flex-direction:column;padding:12px;gap:10px;position:relative}
+
+  /* Üst satır: Hedef Kategoriler + deste */
+  .top{display:flex;gap:10px;align-items:flex-start}
+  .hedefler{flex:1;display:flex;gap:8px}
+  .hedef{flex:1;background:#FAF3E4;border:2px solid #F5B942;border-radius:12px;
+    padding:8px 6px;text-align:center;color:#2A1D10;min-height:82px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.25);transition:.15s}
+  .hedef.sel{outline:3px solid #6C4AB6;outline-offset:1px}
+  .hedef.shake{animation:sh .3s}
+  .hedef .ico{font-size:18px}
+  .hedef .ad{font-size:11.5px;font-weight:900;line-height:1.15;margin-top:2px}
+  .hedef .say{font-size:11px;font-weight:900;color:#0F6B3E;margin-top:3px}
+  .hedef .say.tam{color:#2E9E5B}
+  .hedef .cips{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:3px}
+  .hedef .cip{font-size:8.5px;background:#6C4AB6;color:#fff;border-radius:4px;padding:1px 3px}
+
+  .deste{width:52px}
+  .destekart{width:52px;height:72px;border-radius:9px;background:linear-gradient(135deg,#1E5FA8,#16457A);
+    border:2px solid #F5B942;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+  .destekart::after{content:"";position:absolute;inset:6px;border-radius:5px;
+    border:1.5px dashed rgba(255,255,255,.35)}
+  .destekart .n{position:absolute;top:3px;right:4px;font-size:10px;font-weight:900;color:#F5B942}
+  .deste .lbl{font-size:9px;color:#CDEBD8;text-align:center;margin-top:3px;font-weight:700}
+
+  .ipucu{font-size:12px;color:#DFF3E6;font-weight:700;text-align:center}
+
+  /* Tableau: terim kartları */
+  .terimler{flex:1;display:flex;flex-wrap:wrap;gap:7px;align-content:flex-start;justify-content:center}
+  .terim{background:#FAF3E4;border:2px solid #F5B942;border-radius:10px;color:#2A1D10;
+    padding:10px 12px;font-size:13.5px;font-weight:800;box-shadow:0 3px 8px rgba(0,0,0,.25);
+    transition:.12s}
+  .terim:active{transform:scale(.95)}
+  .terim.sel{outline:3px solid #6C4AB6;outline-offset:1px;transform:translateY(-2px)}
+  .terim.gone{display:none}
+
+  /* Alt reklam şeridi — uygulamaya çeken yazı */
+  .promo{background:#0A4E2C;padding:8px 12px;display:flex;align-items:center;gap:8px;
+    border-top:2px solid #F5B942}
+  .promo .badge{font-size:20px}
+  .promo .txt{flex:1;font-size:12px;line-height:1.25}
+  .promo .txt b{color:#F5B942}
+  .promo .go{background:#F5B942;color:#2A1D10;font-weight:900;font-size:12px;
+    padding:8px 12px;border-radius:999px;white-space:nowrap}
+
+  /* Bitiş ekranı */
+  #end{position:absolute;inset:0;background:rgba(10,78,44,.96);display:none;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    gap:12px;padding:24px}
+  #end.show{display:flex}
+  #end .cup{font-size:56px}
+  #end h2{font-size:24px;font-weight:900;color:#fff}
+  #end p{font-size:14px;line-height:1.55;color:#DFF3E6;max-width:330px}
+  #end p b{color:#F5B942}
+  .btn{background:linear-gradient(90deg,#F5B942,#F59E0B);color:#2A1D10;border:none;
+    border-radius:16px;padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;
+    box-shadow:0 10px 26px rgba(245,185,66,.5);animation:pulse 1.5s infinite;width:100%;max-width:320px}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-  .install-hint{font-size:12px;color:#ffd98a;margin-top:4px}
-  .foot{text-align:center;font-size:11px;color:#7d7594;padding-top:10px}
+  .store{font-size:12px;color:#CDEBD8}
+
+  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 </style>
 </head>
 <body>
 <div id="app">
-  <div class="brand"><span class="logo">🃏</span> KPSS Hazırlık
-    <span class="pill">Eşleştirme Solitaire</span></div>
+  <div class="bar"><span style="font-size:18px">🃏</span>
+    <span class="t">Eşleştirme Solitaire</span></div>
 
-  <div id="game" style="display:flex;flex-direction:column;flex:1">
-    <div class="hint">Bir terime dokun, sonra doğru kategoriye dokun 👇</div>
-    <div class="cats">
-      <div class="cat a" id="catA" onclick="tapCat('A')">
-        <div class="t">🗺️ İç Anadolu İlleri</div><div class="c">dokunarak yerleştir</div>
-        <div class="slotwrap" id="slotA"></div>
+  <div class="board">
+    <div class="top">
+      <div class="hedefler">
+        <div class="hedef" id="hedef0" onclick="tapHedef(0)">
+          <div class="ico">🎯</div>
+          <div class="ad" id="ad0"></div>
+          <div class="say" id="say0">0/3</div>
+          <div class="cips" id="cips0"></div>
+        </div>
+        <div class="hedef" id="hedef1" onclick="tapHedef(1)">
+          <div class="ico">🎯</div>
+          <div class="ad" id="ad1"></div>
+          <div class="say" id="say1">0/3</div>
+          <div class="cips" id="cips1"></div>
+        </div>
       </div>
-      <div class="cat b" id="catB" onclick="tapCat('B')">
-        <div class="t">🌊 Ege İlleri</div><div class="c">dokunarak yerleştir</div>
-        <div class="slotwrap" id="slotB"></div>
+      <div class="deste">
+        <div class="destekart"><span class="n" id="desteN">×6</span></div>
+        <div class="lbl">Deste</div>
       </div>
     </div>
-    <div class="terms" id="terms"></div>
-    <div class="score" id="score"></div>
+
+    <div class="ipucu">Bir kartı seç, sonra doğru 🎯 kategoriye dokun</div>
+
+    <div class="terimler" id="terimler"></div>
+
+    <div id="end">
+      <div class="cup">🏆</div>
+      <h2>Kategorileri tamamladın!</h2>
+      <p>Eşleştirme Solitaire, <b>KPSS Hazırlık</b> uygulamasındaki oyunlardan sadece biri.
+         Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz.</b></p>
+      <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+      <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+    </div>
   </div>
 
-  <div id="end">
-    <div class="big">🏆</div>
-    <h2>Hepsini eşleştirdin!</h2>
-    <p>Eşleştirme Solitaire, KPSS Hazırlık uygulamasındaki oyunlardan biri. Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz</b>.</p>
-    <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
-    <div class="install-hint">App Store'da KPSS Hazırlık: Soru Bankası</div>
+  <div class="promo" onclick="installClick()">
+    <span class="badge">📚</span>
+    <div class="txt"><b>KPSS Hazırlık</b> — oyunla öğren, sınavı kazan!</div>
+    <span class="go">İNDİR</span>
   </div>
-
-  <div class="foot" onclick="installClick()">KPSS Hazırlık: Soru Bankası • Dokun ve indir</div>
 </div>
 
 <script>
+/* ── Reklam ağı CTA köprüsü: AdMob(mraid) / Google Ads(ExitApi) /
+   Meta(FbPlayableAd); olmazsa doğrudan mağaza. ── */
 var STORE_URL = 'https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
 function installClick(){
   try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
@@ -86,59 +140,62 @@ function installClick(){
   try{ window.open(STORE_URL,'_blank'); }catch(e){}
 }
 
-var TERMS = [
-  {t:"Konya", c:"A"}, {t:"İzmir", c:"B"}, {t:"Ankara", c:"A"},
-  {t:"Aydın", c:"B"}, {t:"Sivas", c:"A"}, {t:"Muğla", c:"B"}
+// İki hedef kategori + terimleri (Coğrafya — uygulamadaki eşleştirme içeriği gibi).
+var KATLAR = [
+  {ad:'İç Anadolu İlleri', terimler:['Konya','Ankara','Sivas']},
+  {ad:'Ege İlleri',        terimler:['İzmir','Aydın','Muğla']}
 ];
-// karıştır
-for(var x=TERMS.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*100%(x+1));var tmp=TERMS[x];TERMS[x]=TERMS[j];TERMS[j]=tmp;}
 
-var sel=null, matched=0;
-var termsEl=document.getElementById('terms'), scoreEl=document.getElementById('score');
+var TERIMLER = [];
+KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ TERIMLER.push({t:t,k:ki}); }); });
+// karıştır (deterministik — Math.random gerekmez)
+for(var x=TERIMLER.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));
+  var tmp=TERIMLER[x];TERIMLER[x]=TERIMLER[j];TERIMLER[j]=tmp;}
+
+var yerlesen=[0,0], toplam=[KATLAR[0].terimler.length,KATLAR[1].terimler.length];
+var sel=null, matched=0, gereken=TERIMLER.length;
+var terimlerEl=document.getElementById('terimler');
+
+document.getElementById('ad0').textContent=KATLAR[0].ad;
+document.getElementById('ad1').textContent=KATLAR[1].ad;
+document.getElementById('say0').textContent='0/'+toplam[0];
+document.getElementById('say1').textContent='0/'+toplam[1];
 
 function render(){
-  termsEl.innerHTML='';
-  TERMS.forEach(function(item,idx){
+  terimlerEl.innerHTML='';
+  TERIMLER.forEach(function(item,idx){
     if(item.done) return;
-    var b=document.createElement('button');
-    b.className='term'; b.textContent=item.t; b.dataset.idx=idx;
-    b.onclick=function(){ tapTerm(idx,b); };
-    termsEl.appendChild(b);
+    var b=document.createElement('div');
+    b.className='terim'; b.textContent=item.t;
+    b.onclick=function(){ tapTerim(idx,b); };
+    terimlerEl.appendChild(b);
   });
-  scoreEl.textContent='Eşleşen: '+matched+' / '+TERMS.length;
+  document.getElementById('desteN').textContent='×'+(gereken-matched);
 }
 
-function tapTerm(idx,btn){
+function tapTerim(idx,btn){
   sel={idx:idx,btn:btn};
-  var all=termsEl.querySelectorAll('.term');
-  all.forEach(function(e){e.classList.remove('sel');});
+  Array.prototype.forEach.call(terimlerEl.querySelectorAll('.terim'),function(e){e.classList.remove('sel');});
   btn.classList.add('sel');
-  document.getElementById('catA').classList.add('sel');
-  document.getElementById('catB').classList.add('sel');
 }
 
-function tapCat(cat){
+function tapHedef(ki){
   if(!sel){ return; }
-  var item=TERMS[sel.idx];
-  if(item.c===cat){
-    item.done=true; matched++;
-    var mini=document.createElement('span'); mini.className='chipmini'; mini.textContent=item.t;
-    document.getElementById(cat==='A'?'slotA':'slotB').appendChild(mini);
-    sel.btn.classList.add('gone');
+  var item=TERIMLER[sel.idx];
+  var hedef=document.getElementById('hedef'+ki);
+  if(item.k===ki){
+    item.done=true; matched++; yerlesen[ki]++;
+    var cip=document.createElement('span'); cip.className='cip'; cip.textContent=item.t;
+    document.getElementById('cips'+ki).appendChild(cip);
+    var say=document.getElementById('say'+ki);
+    say.textContent=yerlesen[ki]+'/'+toplam[ki];
+    if(yerlesen[ki]>=toplam[ki]) say.classList.add('tam');
     sel=null;
-    document.getElementById('catA').classList.remove('sel');
-    document.getElementById('catB').classList.remove('sel');
     render();
-    if(matched>=TERMS.length){ setTimeout(finish,350); }
+    if(matched>=gereken){ setTimeout(function(){document.getElementById('end').classList.add('show');},420); }
   } else {
-    var el=document.getElementById(cat==='A'?'catA':'catB');
-    el.classList.add('shake'); setTimeout(function(){el.classList.remove('shake');},320);
+    hedef.classList.add('shake'); setTimeout(function(){hedef.classList.remove('shake');},320);
   }
-}
-
-function finish(){
-  document.getElementById('game').style.display='none';
-  document.getElementById('end').style.display='flex';
 }
 
 render();

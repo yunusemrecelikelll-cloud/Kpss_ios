@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Kart Oyunu V2</title>
+<style>
+  /* Uygulama içindeki Kart Oyunu V2 ile BİREBİR: Pembe Rüya teması
+     bg #FFF0F6, kart zemini beyaz, ink #3B0A2A, çift renkleri palet.
+     Eşleşen çiftler renkli okla birleşir; yanlış = kırmızı #E53935 sarsıntı. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(180deg,#FFF0F6 0%,#FFE4F0 100%);color:#3B0A2A;overflow:hidden}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+
+  /* Uygulamanın AppBar'ı (pembe tema) */
+  .bar{background:#FFE4F0;padding:12px 16px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid #F6C6DD}
+  .bar .t{font-weight:900;font-size:16px;color:#3B0A2A}
+
+  .info{font-size:12.5px;color:#89576E;padding:10px 16px 4px;font-weight:600}
+  .info b{color:#9333EA}
+
+  .board{flex:1;position:relative;padding:8px 14px 6px}
+  .grid{display:flex;gap:34px;height:100%}
+  .col{flex:1;display:flex;flex-direction:column;gap:8px;justify-content:space-around}
+  .card{background:#fff;border:1.5px solid #F0C4D8;border-radius:10px;padding:9px 8px;
+    text-align:center;font-size:12.5px;font-weight:700;color:#3B0A2A;cursor:pointer;
+    box-shadow:0 2px 6px rgba(150,40,90,.10);transition:.15s;min-height:44px;
+    display:flex;align-items:center;justify-content:center;line-height:1.2}
+  .card:active{transform:scale(.97)}
+  .card.sel{border-color:#9333EA;background:#F7ECFE;box-shadow:0 0 0 3px rgba(147,51,234,.18)}
+  .card.matched{cursor:default}
+  .card.wrong{border-color:#E53935;background:#FDECEA;animation:sh .4s}
+
+  svg.lines{position:absolute;inset:8px 14px 6px;pointer-events:none;width:calc(100% - 28px)}
+
+  /* Alt reklam şeridi */
+  .promo{background:#9333EA;padding:9px 12px;display:flex;align-items:center;gap:8px}
+  .promo .badge{font-size:20px}
+  .promo .txt{flex:1;font-size:12px;line-height:1.25;color:#fff}
+  .promo .txt b{color:#FDE68A}
+  .promo .go{background:#FDE68A;color:#3B0A2A;font-weight:900;font-size:12px;
+    padding:8px 12px;border-radius:999px;white-space:nowrap}
+
+  /* Bitiş ekranı */
+  #end{position:absolute;inset:0;background:rgba(255,240,246,.97);display:none;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    gap:12px;padding:24px}
+  #end.show{display:flex}
+  #end .cup{font-size:56px}
+  #end h2{font-size:23px;font-weight:900;color:#3B0A2A}
+  #end p{font-size:14px;line-height:1.55;color:#6B2349;max-width:330px}
+  #end p b{color:#9333EA}
+  .btn{background:linear-gradient(90deg,#9333EA,#E11D48);color:#fff;border:none;
+    border-radius:16px;padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;
+    box-shadow:0 10px 26px rgba(147,51,234,.4);animation:pulse 1.5s infinite;width:100%;max-width:320px}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .store{font-size:12px;color:#89576E}
+  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bar"><span style="font-size:18px">🃏</span>
+    <span class="t">Kart Oyunu V2</span></div>
+
+  <div class="info">Soldaki <b>terimi</b> sağdaki doğru <b>tanımıyla</b> eşleştir 👇</div>
+
+  <div class="board">
+    <svg class="lines" id="lines"></svg>
+    <div class="grid">
+      <div class="col" id="colL"></div>
+      <div class="col" id="colR"></div>
+    </div>
+
+    <div id="end">
+      <div class="cup">🎉</div>
+      <h2>Hepsini eşleştirdin!</h2>
+      <p>Bu, <b>KPSS Hazırlık</b>'taki eğlenceli oyunlardan biri. Güncel Bilgiler,
+         konu anlatımları, denemeler ve <b>16.000+ soru</b> — tamamı ücretsiz.</p>
+      <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+      <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+    </div>
+  </div>
+
+  <div class="promo" onclick="installClick()">
+    <span class="badge">📚</span>
+    <div class="txt"><b>KPSS Hazırlık</b> — eşleştir, öğren, sınavı kazan!</div>
+    <span class="go">İNDİR</span>
+  </div>
+</div>
+
+<script>
+var STORE_URL = 'https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+// Uygulamadaki çift renk paleti.
+var RENKLER=['#2E9E5B','#7C4DFF','#F57C00','#1E88E5','#E91E63'];
+
+// Terim ↔ tanım çiftleri (Güncel Bilgiler).
+var CIFTLER=[
+  {sol:'6 Şubat 2023 Depremi', sag:'Merkez üssü Kahramanmaraş'},
+  {sol:'Cumhuriyetin 100. Yılı', sag:'29 Ekim 2023'},
+  {sol:'Türkiye\'nin İl Sayısı', sag:'81'},
+  {sol:'Türkiye Varlık Fonu', sag:'2016\'da kuruldu'}
+];
+
+function karistir(arr){for(var x=arr.length-1;x>0;x--){var j=Math.floor((x+1)*0.61803398*997%(x+1));
+  var t=arr[x];arr[x]=arr[j];arr[j]=t;}return arr;}
+
+var sol=CIFTLER.map(function(c,i){return {text:c.sol,pid:i};});
+var sag=CIFTLER.map(function(c,i){return {text:c.sag,pid:i};});
+karistir(sol); karistir(sag);
+
+var colL=document.getElementById('colL'), colR=document.getElementById('colR');
+var linesSvg=document.getElementById('lines');
+var selL=null, selR=null, matched=0, locked=false;
+
+function build(col,arr,side){
+  arr.forEach(function(item,idx){
+    var d=document.createElement('div');
+    d.className='card'; d.textContent=item.text;
+    d.dataset.pid=item.pid; d.dataset.side=side; d.dataset.idx=idx;
+    d.onclick=function(){ pick(side,idx,d,item); };
+    col.appendChild(d);
+  });
+}
+build(colL,sol,'L'); build(colR,sag,'R');
+
+function pick(side,idx,el,item){
+  if(locked || el.classList.contains('matched')) return;
+  if(side==='L'){ if(selL) selL.el.classList.remove('sel'); selL={idx:idx,el:el,pid:item.pid}; }
+  else { if(selR) selR.el.classList.remove('sel'); selR={idx:idx,el:el,pid:item.pid}; }
+  el.classList.add('sel');
+  if(selL && selR){ locked=true; setTimeout(kontrol,180); }
+}
+
+function kontrol(){
+  var l=selL, r=selR;
+  if(l.pid===r.pid){
+    var renk=RENKLER[l.pid%RENKLER.length];
+    l.el.classList.remove('sel'); r.el.classList.remove('sel');
+    l.el.classList.add('matched'); r.el.classList.add('matched');
+    boya(l.el,renk); boya(r.el,renk);
+    cizOk(l.el,r.el,renk);
+    matched++;
+    selL=selR=null; locked=false;
+    if(matched>=CIFTLER.length){ setTimeout(function(){document.getElementById('end').classList.add('show');},450); }
+  } else {
+    l.el.classList.add('wrong'); r.el.classList.add('wrong');
+    setTimeout(function(){
+      l.el.classList.remove('wrong','sel'); r.el.classList.remove('wrong','sel');
+      selL=selR=null; locked=false;
+    },430);
+  }
+}
+
+function boya(el,renk){
+  el.style.borderColor=renk;
+  el.style.background=hexA(renk,0.16);
+  el.style.color='#3B0A2A';
+  el.style.boxShadow='none';
+}
+
+// Eşleşen iki kartı soldan sağa renkli ok ile birleştir (uygulamadaki gibi).
+function cizOk(lEl,rEl,renk){
+  var board=linesSvg.getBoundingClientRect();
+  var a=lEl.getBoundingClientRect(), b=rEl.getBoundingClientRect();
+  var x1=a.right-board.left, y1=a.top-board.top+a.height/2;
+  var x2=b.left-board.left,  y2=b.top-board.top+b.height/2;
+  var ns='http://www.w3.org/2000/svg';
+  var line=document.createElementNS(ns,'line');
+  line.setAttribute('x1',x1);line.setAttribute('y1',y1);
+  line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+  line.setAttribute('stroke',renk);line.setAttribute('stroke-width','2.6');
+  line.setAttribute('stroke-linecap','round');
+  var len=Math.hypot(x2-x1,y2-y1);
+  line.setAttribute('stroke-dasharray',len);
+  line.setAttribute('stroke-dashoffset',len);
+  linesSvg.appendChild(line);
+  // ok başı
+  var ang=Math.atan2(y2-y1,x2-x1);
+  var poly=document.createElementNS(ns,'polygon');
+  var s=7;
+  var p1=(x2)+','+(y2);
+  var p2=(x2-s*Math.cos(ang-0.5))+','+(y2-s*Math.sin(ang-0.5));
+  var p3=(x2-s*Math.cos(ang+0.5))+','+(y2-s*Math.sin(ang+0.5));
+  poly.setAttribute('points',p1+' '+p2+' '+p3);
+  poly.setAttribute('fill',renk); poly.style.opacity='0';
+  linesSvg.appendChild(poly);
+  // animasyon
+  requestAnimationFrame(function(){
+    line.style.transition='stroke-dashoffset .5s ease';
+    line.setAttribute('stroke-dashoffset','0');
+    setTimeout(function(){poly.style.transition='opacity .2s';poly.style.opacity='1';},400);
+  });
+  var c1=document.createElementNS(ns,'circle');
+  c1.setAttribute('cx',x1);c1.setAttribute('cy',y1);c1.setAttribute('r','3');c1.setAttribute('fill',renk);
+  linesSvg.appendChild(c1);
+}
+
+function hexA(hex,a){
+  var n=parseInt(hex.slice(1),16);
+  return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';
+}
+</script>
+</body>
+</html>
