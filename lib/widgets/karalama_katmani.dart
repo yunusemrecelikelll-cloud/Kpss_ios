@@ -39,6 +39,8 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
   final List<_Cizgi> _cizgiler = [];
   _Cizgi? _aktif;
   final TextEditingController _yaziCtrl = TextEditingController();
+  // Yazı alanının odağı — panel kapanınca / çizime geçince klavyeyi kapatmak için.
+  final FocusNode _yaziFocus = FocusNode();
 
   // Mod: true => çizim (parmakla çiz), false => yazı (klavye).
   bool _cizimModu = true;
@@ -64,8 +66,17 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
 
   @override
   void dispose() {
+    _yaziFocus.dispose();
     _yaziCtrl.dispose();
     super.dispose();
+  }
+
+  // Klavyeyi kapatır (yazı alanının odağını bırakır). Panel ağaçtan silinmediği
+  // (AnimatedSlide) için odak elle bırakılmalı; yoksa panel kapansa da klavye
+  // açık kalır.
+  void _klavyeKapat() {
+    _yaziFocus.unfocus();
+    FocusScope.of(context).unfocus();
   }
 
   void _temizle() {
@@ -162,7 +173,10 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                     label: 'Çiz',
                     aktif: _cizimModu,
                     renk: c.violet,
-                    onTap: () => setState(() => _cizimModu = true),
+                    onTap: () {
+                      _klavyeKapat(); // çizime geçince klavye kapansın
+                      setState(() => _cizimModu = true);
+                    },
                   ),
                   const SizedBox(width: 6),
                   _ModCip(
@@ -203,7 +217,10 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                     tooltip: 'Kapat',
                     visualDensity: VisualDensity.compact,
                     icon: Icon(Icons.close_rounded, size: 20, color: c.text),
-                    onPressed: widget.onKapat,
+                    onPressed: () {
+                      _klavyeKapat(); // panel kapanınca klavye de kapansın
+                      widget.onKapat();
+                    },
                   ),
                 ],
               ),
@@ -304,6 +321,7 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                           padding: const EdgeInsets.all(10),
                           child: TextField(
                             controller: _yaziCtrl,
+                            focusNode: _yaziFocus,
                             maxLines: null,
                             expands: true,
                             textAlignVertical: TextAlignVertical.top,
@@ -325,6 +343,44 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                         ),
                       ),
                     ),
+                    // Yaz modunda sağ altta yüzen "Klavyeyi kapat" butonu
+                    // (kullanıcı isteği).
+                    if (!_cizimModu)
+                      Positioned(
+                        right: 12,
+                        bottom: 12,
+                        child: GestureDetector(
+                          onTap: _klavyeKapat,
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: c.violet,
+                              borderRadius: BorderRadius.circular(999),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.25),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.keyboard_hide_rounded,
+                                    size: 16, color: Colors.white),
+                                SizedBox(width: 6),
+                                Text('Klavyeyi kapat',
+                                    style: TextStyle(
+                                        fontSize: 11.5,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.white)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                   ],
                 );
               }),

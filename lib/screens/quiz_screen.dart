@@ -686,7 +686,11 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
         backgroundColor: c.violet,
         foregroundColor: Colors.white,
         tooltip: _karalamaAcik ? 'Karalamayı kapat' : 'Karalama defteri',
-        onPressed: () => setState(() => _karalamaAcik = !_karalamaAcik),
+        onPressed: () {
+          final aciliyor = !_karalamaAcik;
+          if (!aciliyor) FocusScope.of(context).unfocus(); // kapanırken klavye de kapansın
+          setState(() => _karalamaAcik = aciliyor);
+        },
         child: Icon(_karalamaAcik ? Icons.close_rounded : Icons.edit_rounded),
       ),
       // Madde 5: Önceki / Sonraki / Testi Bitir butonları ekranın ALT KISMINDA
