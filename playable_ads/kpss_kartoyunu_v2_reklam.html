@@ -73,8 +73,7 @@
   <div class="bar"><span style="font-size:18px">🃏</span><span class="t">Kart Oyunu V2</span></div>
 
   <div class="info">Sol <b>terimi</b> sağdaki <b>tanımıyla</b> eşleştir.
-     <b id="bolum" style="color:#9333EA">Bölüm 1/3</b> • Eşleşen: <span class="say" id="say">0/8</span>
-     • Yanlış: <span class="yanlis" id="yanlis">0/3</span></div>
+     <b id="bolum" style="color:#9333EA">Bölüm 1/3</b> • Eşleşen: <span class="say" id="say">0/8</span></div>
 
   <div class="board">
     <svg class="lines" id="lines"></svg>
@@ -103,7 +102,7 @@
 </div>
 
 <script>
-var STORE_URL='https://apps.apple.com/app/id0000000000'; /* TODO: gerçek App Store linki */
+var STORE_URL='https://apps.apple.com/tr/app/kpss-haz%C4%B1rl%C4%B1k-soru-bankas%C4%B1/id6792403982?l=tr';
 function installClick(){
   try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
   try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
@@ -161,7 +160,6 @@ var bolum=0, ciftler=[], selL=null, selR=null, matched=0, yanlis=0, locked=false
 function hud(){
   document.getElementById('bolum').textContent='Bölüm '+(bolum+1)+'/'+BOLUM_SAYISI;
   document.getElementById('say').textContent=matched+'/'+ciftler.length;
-  document.getElementById('yanlis').textContent=yanlis+'/'+MAX_YANLIS;
 }
 function build(col,arr,side){
   arr.forEach(function(item,idx){
@@ -202,12 +200,11 @@ function kontrol(){
     matched++; selL=selR=null; locked=false; hud();
     if(matched>=ciftler.length){ bolumBitti(); }
   } else {
-    yanlis++; hud();
+    // Yanlış eşleşme: sadece kısa kırmızı uyarı; oyun BİTMEZ, sınırsız denenir.
     l.el.classList.add('wrong'); r.el.classList.add('wrong');
     setTimeout(function(){
       l.el.classList.remove('wrong','sel'); r.el.classList.remove('wrong','sel');
       selL=selR=null; locked=false;
-      if(yanlis>=MAX_YANLIS) bitis(false);
     },430);
   }
 }
