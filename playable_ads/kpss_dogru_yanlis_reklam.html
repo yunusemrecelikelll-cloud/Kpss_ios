@@ -39,8 +39,10 @@
   .stack{position:absolute;inset:14px 16px 6px}
   .bgc{position:absolute;inset:0;background:#fff;border:1px solid #ECD1E0;border-radius:20px;
     box-shadow:0 6px 18px rgba(147,51,234,.10)}
-  .bgc.b1{transform:scale(.95) translateY(10px)}
-  .bgc.b2{transform:scale(.90) translateY(20px)}
+  .bgc.b2{transform:scale(.92) translateY(16px)}
+  /* Alttaki (sıradaki) gerçek kart — üstteki çekilince görünür */
+  .kart.arka{transform:scale(.955) translateY(9px);pointer-events:none;
+    box-shadow:0 6px 18px rgba(147,51,234,.10)}
 
   .kart{position:absolute;inset:0;background:#fff;border:1.5px solid #ECD1E0;border-radius:20px;
     box-shadow:0 10px 26px rgba(147,51,234,.16);display:flex;flex-direction:column;padding:18px;
@@ -113,7 +115,12 @@
   <div class="alan">
     <div class="stack">
       <div class="bgc b2"></div>
-      <div class="bgc b1"></div>
+      <!-- Alttaki (sıradaki) kart — üstteki çekilirken görünür -->
+      <div class="kart arka" id="kart2">
+        <div class="krow"><span class="ders" id="ders2">TARİH</span><span class="em">🤔</span></div>
+        <div class="metin" id="metin2"></div>
+        <div class="ipuc">← YANLIŞ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOĞRU →</div>
+      </div>
       <div class="kart anim" id="kart">
         <div class="krow"><span class="ders" id="ders">TARİH</span><span class="em">🤔</span></div>
         <div class="metin" id="metin"></div>
@@ -172,19 +179,52 @@ var ONERMELER=[
   {metin:"Anayasa'nın ilk üç maddesi değiştirilemez.", dogru:true, ders:"Vatandaşlık", aciklama:"Anayasa'nın 4. maddesi ilk üç maddenin değiştirilemeyeceğini belirtir."},
   {metin:"Devlet Memurları Kanunu 4857 sayılı kanundur.", dogru:false, ders:"Vatandaşlık", aciklama:"DMK 657 sayılıdır; 4857 sayılı kanun İş Kanunu'dur."},
   {metin:"\"Anne\" kelimesi büyük ünlü uyumuna uymaz.", dogru:true, ders:"Türkçe", aciklama:"\"Anne\"de a kalın, e incedir; büyük ünlü uyumu bozulur."},
-  {metin:"Türkçe, Hint-Avrupa dil ailesine mensuptur.", dogru:false, ders:"Türkçe", aciklama:"Türkçe, Ural-Altay grubunun Altay koluna dâhil edilir."}
+  {metin:"Türkçe, Hint-Avrupa dil ailesine mensuptur.", dogru:false, ders:"Türkçe", aciklama:"Türkçe, Ural-Altay grubunun Altay koluna dâhil edilir."},
+  {metin:"İstanbul Boğazı Karadeniz ile Marmara'yı bağlar.", dogru:true, ders:"Coğrafya", aciklama:"İstanbul Boğazı Karadeniz ile Marmara'yı bağlar."},
+  {metin:"Göbeklitepe Şanlıurfa'dadır.", dogru:true, ders:"Genel Kültür", aciklama:"Göbeklitepe, Şanlıurfa'daki tarih öncesi tapınak alanıdır."},
+  {metin:"Türk alfabesinde 29 harf bulunur.", dogru:true, ders:"Türkçe", aciklama:"Latin kökenli Türk alfabesinde 29 harf vardır."},
+  {metin:"Bir üçgenin iç açıları toplamı 180 derecedir.", dogru:true, ders:"Matematik", aciklama:"Her üçgende iç açılar toplamı 180 derecedir."},
+  {metin:"Türkiye'de seçmen olabilme yaşı 18'dir.", dogru:true, ders:"Vatandaşlık", aciklama:"18 yaşını dolduran her vatandaş oy kullanabilir."},
+  {metin:"Kutadgu Bilig'i Yusuf Has Hacip yazmıştır.", dogru:true, ders:"Tarih", aciklama:"Kutadgu Bilig, Karahanlılar döneminde Yusuf Has Hacip'e aittir."},
+  {metin:"Ekvator'un uzunluğu yaklaşık 40.000 km'dir.", dogru:true, ders:"Coğrafya", aciklama:"Ekvator çevresi yaklaşık 40.000 km'dir."},
+  {metin:"2, hem asal hem çift olan tek sayıdır.", dogru:true, ders:"Matematik", aciklama:"2, çift olan tek asal sayıdır."},
+  {metin:"Van Gölü'nün suları tatlıdır.", dogru:false, ders:"Coğrafya", aciklama:"Van Gölü sodalı (acı) sulu kapalı havza gölüdür."},
+  {metin:"\"Herkes\"in doğru yazımı \"herkez\"dir.", dogru:false, ders:"Türkçe", aciklama:"Doğru yazım \"herkes\"tir."},
+  {metin:"1 sayısı asal sayıdır.", dogru:false, ders:"Matematik", aciklama:"1 asal değildir; en küçük asal sayı 2'dir."},
+  {metin:"Efes Antik Kenti Muğla ilindedir.", dogru:false, ders:"Genel Kültür", aciklama:"Efes Antik Kenti İzmir (Selçuk) ilindedir."},
+  {metin:"Türkiye'nin başkenti İstanbul'dur.", dogru:false, ders:"Vatandaşlık", aciklama:"Anayasa'nın 3. maddesine göre başkent Ankara'dır."},
+  {metin:"Göktürk Devleti'ni Mete Han kurmuştur.", dogru:false, ders:"Tarih", aciklama:"Göktürk'ü Bumin Kağan kurmuştur; Mete Han Asya Hun hükümdarıdır."},
+  {metin:"Kızılırmak Akdeniz'e dökülür.", dogru:false, ders:"Coğrafya", aciklama:"Kızılırmak Karadeniz'e dökülür."},
+  {metin:"9 sayısı bir asal sayıdır.", dogru:false, ders:"Matematik", aciklama:"9 = 3×3 olduğu için asal değildir."}
 ];
+// HAVUZ = 34 önerme; her reklam gösteriminde KARIŞTIRIP farklı bir alt küme
+// (GOSTER kadar) seçilir → her impression'da farklı kartlar çıkar.
+var HAVUZ=ONERMELER, GOSTER=14;
 
 var ESIK=92; // swipe eşiği (px)
 var kart=document.getElementById('kart'), metinEl=document.getElementById('metin'),
     dersEl=document.getElementById('ders'), damgaD=document.getElementById('damgaD'),
-    damgaY=document.getElementById('damgaY'), sonEl=document.getElementById('son');
+    damgaY=document.getElementById('damgaY'), sonEl=document.getElementById('son'),
+    kart2=document.getElementById('kart2'), metin2El=document.getElementById('metin2'),
+    ders2El=document.getElementById('ders2');
 var idx=0, dogru=0, yanlis=0, dx=0, dy=0, dragging=false, sx=0, sy=0, ipucuAktif=true, kilit=false;
 
 function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
-karistir(ONERMELER);
+// Her gösterimde farklı kartlar: havuzu karıştır, GOSTER kadarını al.
+ONERMELER=karistir(HAVUZ.slice()).slice(0,GOSTER);
 
 function punto(n){ return n>130?17:n>90?19:n>55?22:25; }
+
+// Alttaki (sıradaki) kartı doldur — üstteki çekilirken görünür.
+function ikinciKartDoldur(){
+  if(idx+1<ONERMELER.length){
+    var n=ONERMELER[idx+1];
+    ders2El.textContent=n.ders.toUpperCase();
+    metin2El.textContent=n.metin;
+    metin2El.style.fontSize=punto(n.metin.length)+'px';
+    kart2.style.display='flex';
+  } else { kart2.style.display='none'; }
+}
 
 function goster(){
   if(idx>=ONERMELER.length){ bitir(); return; }
@@ -192,10 +232,16 @@ function goster(){
   dersEl.textContent=o.ders.toUpperCase();
   metinEl.textContent=o.metin;
   metinEl.style.fontSize=punto(o.metin.length)+'px';
+  ikinciKartDoldur();
   document.getElementById('kn').textContent='Kart '+(idx+1)+'/'+ONERMELER.length;
   document.getElementById('bar').style.width=(idx/ONERMELER.length*100)+'%';
-  setTransform(0,0,true); setDamga(0);
-  kart.classList.remove('dogruTint','yanlisTint');
+  // ANINDA merkeze koy — çekilen kart geri GELMESİN (slide animasyonu yok).
+  kart.classList.remove('anim','dogruTint','yanlisTint');
+  kart.style.transform='translate(0px,0px)';
+  kart.style.opacity='1';
+  setDamga(0);
+  void kart.offsetWidth; // reflow
+  kart.classList.add('anim');
 }
 
 function setTransform(x,y,anim){
@@ -255,7 +301,6 @@ function isle(dediDogru){
     '</div><div class="ac">'+o.aciklama+'</div></div>';
   sonEl.classList.add('show');
   idx++;
-  kart.style.opacity='1';
   kilit=false;
   goster();
 }
@@ -272,10 +317,12 @@ var ipTimers=[];
 function durIpucu(){ if(!ipucuAktif) return; ipucuAktif=false; ipTimers.forEach(clearTimeout);
   setTransform(0,0,true); setDamga(0); }
 function ipucuOyna(){
+  // Daha YAVAŞ tanıtım: sağa (DOĞRU) ve sola (YANLIŞ) yumuşak hareket,
+  // aralar geniş tutuldu (damga daha uzun görünür).
   var seq=[
-    [420,  70,'r'], [900,   0,'0'],   // sağa (DOĞRU) → merkez
-    [1380,-70,'l'], [1860,  0,'0'],   // sola (YANLIŞ) → merkez
-    [2340, 70,'r'], [2820,  0,'0']    // bir kez daha sağa
+    [800,  74], [1900,  0],   // sağa (DOĞRU) → merkez
+    [3000,-74], [4100,  0],   // sola (YANLIŞ) → merkez
+    [5200, 74], [6300,  0]    // bir kez daha sağa
   ];
   seq.forEach(function(s){
     ipTimers.push(setTimeout(function(){
