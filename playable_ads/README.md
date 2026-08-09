@@ -16,10 +16,18 @@ Tasarım, boyut, kart sayısı, sayaçlar ve içerik uygulamadaki oyunlarla **bi
   🎴 Kalan kart. 5 hedef slot + 5 tableau sütunu + "Çek" destesi + alt araç
   çubuğu (İpucu/Geri Al/Market). Kartı tutup sürükle ya da dokun-seç.
 - `kpss_kartoyunu_v2_reklam.html` — **Kart Oyunu V2** reklamı.
-  Pembe Rüya teması (#FFF0F6), iki sütun **8'er kart** (kSabitCiftSayisi=8),
-  başlıkta "Eşleşen: 0/8 • Yanlış: 0/3" (3 yanlış hakkı). Doğru eşleşme **renkli
-  okla** birleşir, yanlış = kırmızı sarsıntı. İçerik: gerçek **Güncel Bilgiler**
-  çiftleri (Yapay Zekâ↔Makine Öğrenmesi, NATO↔1949, TCMB↔Merkez Bankası…).
+  Pembe Rüya teması (#FFF0F6), iki sütun **8'er kart**, **3 zor bölüm**
+  (Tarih / Coğrafya / İnkılap), bölüm bitince sıradaki gelir. Doğru eşleşme
+  **renkli okla** birleşir. Sınırsız (yanlış/bitiş yok).
+- `kpss_dogru_yanlis_reklam.html` — **Doğru mu Yanlış mı?** reklamı.
+  Tinder tarzı kaydırmalı: kartı **sağa = DOĞRU** (teal), **sola = YANLIŞ**
+  (kırmızı); eğilme + damga + son-cevap şeridi + alt DOĞRU/YANLIŞ butonları.
+  İlk açılışta kartın sağa/sola hareket ettiği **ipucu animasyonu** oynar.
+  16 gerçek önerme (8 doğru + 8 yanlış). Üstte ve altta CTA yazıları.
+- `kpss_yazim_yanlislari_reklam.html` — **Yazım Yanlışları** reklamı.
+  8 sn **geri sayım halkası**, "Doğru yazımı seç", 2 seçenek (doğru ↔ yaygın
+  yanlış). Yanlış/süre dolunca doğrusu kırmızı panelde. 16 gerçek TDK çifti
+  (yalnız/yanlız, herkes/herkez, Türkiye'de/Türkiyede…).
 
 Her ikisi de tek HTML dosyasıdır: tüm CSS/JS gömülü, **dış ağ isteği yok**
 (playable ad kuralı). Dikey (portrait), mobil dokunmatik. Üzerlerinde uygulamaya

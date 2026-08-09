@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Yazım Yanlışları</title>
+<style>
+  /* Uygulamadaki "Yazım Yanlışları" oyunuyla BİREBİR (Pembe Rüya teması):
+     violet #9333EA (geri sayım), doğru=teal #0D9488, yanlış=kırmızı #E11D48,
+     ink #3B0A2A. 8 sn geri sayım, 2 seçenekten doğru yazımı seç. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(180deg,#FFF0F6 0%,#FFE4F0 100%);color:#3B0A2A;overflow:hidden}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
+
+  .bar{background:#FFE4F0;padding:10px 16px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid #F6C6DD;flex:0 0 auto}
+  .bar .t{font-weight:900;font-size:16px;color:#3B0A2A}
+
+  .ctaTop{background:#0891B2;color:#fff;text-align:center;font-size:11.5px;font-weight:800;
+    padding:5px 10px;line-height:1.25}
+  .ctaTop b{color:#FDE68A}
+
+  .strip{padding:9px 16px 0}
+  .strow{display:flex;align-items:center;gap:6px;font-size:12px}
+  .kn{font-weight:800;color:#6B2349}
+  .sp{flex:1}
+  .chip{font-size:11.5px;font-weight:900;padding:3px 9px;border-radius:999px}
+  .chip.ok{background:rgba(13,148,136,.14);color:#0D9488}
+  .chip.no{background:rgba(225,29,72,.14);color:#E11D48}
+  .prog{height:6px;background:#F3D9E6;border-radius:999px;overflow:hidden;margin-top:8px}
+  .prog>i{display:block;height:100%;width:0;background:#9333EA;border-radius:999px;transition:width .3s}
+
+  /* Geri sayım halkası */
+  .ring{display:flex;justify-content:center;padding:14px 0 4px}
+  .ring svg{transform:rotate(-90deg)}
+  .ringwrap{position:relative;width:66px;height:66px}
+  .ringwrap .n{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-size:20px;font-weight:900;color:#9333EA}
+  .ringwrap.az .n{color:#E11D48}
+
+  .talimat{text-align:center;font-size:13px;font-weight:800;color:#89576E;padding:2px 16px 10px}
+
+  .kelime{margin:0 20px 14px;text-align:center;font-size:15px;color:#6B2349}
+
+  .secenekler{padding:0 16px;display:flex;flex-direction:column;gap:12px}
+  .sec{border:1.4px solid #ECD1E0;background:#fff;border-radius:12px;padding:15px;text-align:center;
+    font-size:16.5px;font-weight:800;color:#3B0A2A;cursor:pointer;transition:.12s;
+    box-shadow:0 2px 6px rgba(150,40,90,.08)}
+  .sec:active{transform:scale(.99)}
+  .sec.dogru{border-color:#0D9488;background:rgba(13,148,136,.12);color:#0D9488}
+  .sec.yanlis{border-color:#E11D48;background:rgba(225,29,72,.12);color:#E11D48}
+
+  /* Yanlış/süre paneli */
+  .panel{margin:14px 16px 0;padding:11px 14px;border-radius:12px;display:none;
+    background:rgba(225,29,72,.12);border:1px solid rgba(225,29,72,.40)}
+  .panel.show{display:block}
+  .panel .p1{font-size:13px;font-weight:900;color:#E11D48}
+  .panel .p2{font-size:11.5px;color:#6B2349;margin-top:2px}
+
+  .spacer{flex:1}
+
+  .promo{background:#0891B2;padding:9px 12px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .promo .badge{font-size:20px}
+  .promo .txt{flex:1;font-size:12px;line-height:1.25;color:#fff}
+  .promo .txt b{color:#FDE68A}
+  .promo .go{background:#FDE68A;color:#083344;font-weight:900;font-size:12px;padding:8px 12px;
+    border-radius:999px;white-space:nowrap}
+
+  #end{position:absolute;inset:0;background:rgba(255,240,246,.97);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:20}
+  #end.show{display:flex}
+  #end .cup{font-size:54px}
+  #end h2{font-size:23px;font-weight:900;color:#3B0A2A}
+  #end p{font-size:14px;line-height:1.55;color:#6B2349;max-width:330px}
+  #end p b{color:#0891B2}
+  .btn{background:linear-gradient(90deg,#0891B2,#0D9488);color:#fff;border:none;border-radius:16px;
+    padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;width:100%;max-width:320px;
+    box-shadow:0 10px 26px rgba(8,145,178,.4);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .store{font-size:12px;color:#89576E}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bar"><span style="font-size:18px">✍️</span><span class="t">Yazım Yanlışları</span></div>
+  <div class="ctaTop">Doğru yazımı bul, süre dolmadan seç! — <b>KPSS Hazırlık</b></div>
+
+  <div class="strip">
+    <div class="strow"><span class="kn" id="kn">1/16</span><span class="sp"></span>
+      <span class="chip ok" id="cok">✓ 0</span><span class="chip no" id="cno">✗ 0</span></div>
+    <div class="prog"><i id="bar"></i></div>
+  </div>
+
+  <div class="ring">
+    <div class="ringwrap" id="ringwrap">
+      <svg width="66" height="66"><circle cx="33" cy="33" r="29" fill="none" stroke="#F3D9E6" stroke-width="5"/>
+        <circle id="ringc" cx="33" cy="33" r="29" fill="none" stroke="#9333EA" stroke-width="5"
+          stroke-linecap="round" stroke-dasharray="182.2" stroke-dashoffset="0"/></svg>
+      <div class="n" id="ringn">8</div>
+    </div>
+  </div>
+
+  <div class="talimat">Doğru yazımı seç</div>
+  <div class="secenekler" id="secenekler"></div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="spacer"></div>
+
+  <div class="promo" onclick="installClick()">
+    <span class="badge">✍️</span>
+    <div class="txt"><b>KPSS Hazırlık</b> — yazımını geliştir, sınavı kazan!</div>
+    <span class="go">İNDİR</span>
+  </div>
+
+  <div id="end">
+    <div class="cup">🏆</div>
+    <h2 id="endh">Tur bitti!</h2>
+    <p><b>Yazım Yanlışları</b>, KPSS Hazırlık'taki oyunlardan biri. Türkçe, Tarih, Coğrafya
+       ve daha fazlası — <b>16.000+ soru</b>, tamamı ücretsiz.</p>
+    <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+    <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+  </div>
+</div>
+
+<script>
+var STORE_URL='https://apps.apple.com/tr/app/kpss-haz%C4%B1rl%C4%B1k-soru-bankas%C4%B1/id6792403982?l=tr';
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+/* Gerçek uygulama verisi (TDK) — doğru yazılış ↔ yaygın yanlış yazılış. */
+var CIFTLER=[
+  {dogru:'yalnız', yanlis:'yanlız'},
+  {dogru:'herkes', yanlis:'herkez'},
+  {dogru:'her şey', yanlis:'herşey'},
+  {dogru:'hiçbir', yanlis:'hiç bir'},
+  {dogru:'ben de', yanlis:'bende'},
+  {dogru:"Türkiye'de", yanlis:'Türkiyede'},
+  {dogru:'başlıyor', yanlis:'başlayor'},
+  {dogru:'kitapçı', yanlis:'kitapcı'},
+  {dogru:'orijinal', yanlis:'orjinal'},
+  {dogru:'var mı', yanlis:'varmı'},
+  {dogru:'maalesef', yanlis:'malesef'},
+  {dogru:'sürpriz', yanlis:'sürpiriz'},
+  {dogru:'laboratuvar', yanlis:'laboratuar'},
+  {dogru:'yalnızca', yanlis:'yanlızca'},
+  {dogru:'şoför', yanlis:'şöför'},
+  {dogru:'egzoz', yanlis:'eksoz'}
+];
+var SURE=8;               // kYazimYanlislariSureSn
+var YANLIS_BEKLE=1800;    // kYazimYanlislariYanlisBekleme
+
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
+karistir(CIFTLER);
+
+var idx=0, dogruSay=0, yanlisSay=0, kalan=SURE, timer=null, kilit=false;
+var secEl=document.getElementById('secenekler'), panelEl=document.getElementById('panel');
+var ringc=document.getElementById('ringc'), ringn=document.getElementById('ringn'), ringwrap=document.getElementById('ringwrap');
+var CEV=182.2; // 2*pi*29
+
+function hud(){
+  document.getElementById('kn').textContent=(idx+1)+'/'+CIFTLER.length;
+  document.getElementById('cok').textContent='✓ '+dogruSay;
+  document.getElementById('cno').textContent='✗ '+yanlisSay;
+  document.getElementById('bar').style.width=(idx/CIFTLER.length*100)+'%';
+}
+
+function ringGuncelle(){
+  var oran=kalan/SURE;
+  ringc.setAttribute('stroke-dashoffset',(CEV*(1-oran)).toFixed(1));
+  ringn.textContent=Math.ceil(kalan);
+  var az=kalan<=3;
+  ringc.setAttribute('stroke',az?'#E11D48':'#9333EA');
+  ringwrap.classList.toggle('az',az);
+}
+
+function soruGoster(){
+  if(idx>=CIFTLER.length){ bitir(); return; }
+  kilit=false; panelEl.classList.remove('show');
+  var c=CIFTLER[idx];
+  var opts=[{t:c.dogru,d:true},{t:c.yanlis,d:false}];
+  karistir(opts);
+  secEl.innerHTML='';
+  opts.forEach(function(o){
+    var d=document.createElement('div'); d.className='sec'; d.textContent=o.t;
+    d.onclick=function(){ sec(o.d,d); };
+    secEl.appendChild(d);
+  });
+  hud();
+  kalan=SURE; ringGuncelle();
+  clearInterval(timer);
+  timer=setInterval(function(){
+    kalan-=0.1;
+    if(kalan<=0){ kalan=0; ringGuncelle(); clearInterval(timer); cevapVerildi(null,null); }
+    else ringGuncelle();
+  },100);
+}
+
+function sec(dogruMu,el){ if(kilit) return; cevapVerildi(dogruMu,el); }
+
+function cevapVerildi(dogruMu,el){
+  if(kilit) return; kilit=true; clearInterval(timer);
+  var c=CIFTLER[idx];
+  // doğru seçeneği yeşille, yanlış seçildiyse kırmızıla
+  Array.prototype.forEach.call(secEl.children,function(s){
+    if(s.textContent===c.dogru) s.classList.add('dogru');
+  });
+  if(dogruMu===true){
+    dogruSay++; hud();
+    setTimeout(function(){ idx++; soruGoster(); },420); // doğruda hızlı geç
+    return;
+  }
+  // yanlış ya da süre doldu
+  yanlisSay++; hud();
+  if(el) el.classList.add('yanlis');
+  var sureBitti=(dogruMu===null);
+  panelEl.innerHTML='<div class="p1">'+(sureBitti?'⏰ Süre doldu!':'❌ Yanlış')+
+    ' Doğru yazım: "'+c.dogru+'"</div><div class="p2">'+
+    (idx>=CIFTLER.length-1?'Test bitiyor…':'Sonraki soruya geçiliyor…')+'</div>';
+  panelEl.classList.add('show');
+  setTimeout(function(){ idx++; soruGoster(); },YANLIS_BEKLE);
+}
+
+function bitir(){
+  clearInterval(timer);
+  var toplam=CIFTLER.length||1, yuzde=Math.round(dogruSay*100/toplam);
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('endh').textContent='Tur bitti — %'+yuzde+' isabet!';
+  document.getElementById('end').classList.add('show');
+}
+
+soruGoster();
+</script>
+</body>
+</html>
