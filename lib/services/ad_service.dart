@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
@@ -108,19 +109,34 @@ class AdService {
     if (ad == null) return false;
     _reklam = null; // tek kullanımlık
 
+    // ÖNEMLİ (düzeltilen hata): `ad.show(...)` reklam KAPANMADAN, sadece
+    // gösterilir gösterilmez geri döner. Ödül callback'i (onUserEarnedReward)
+    // ise reklamın sonuna doğru tetiklenir. Eskiden `show`'dan hemen sonra
+    // `odulKazanildi` okunduğu için değer HÂLÂ false oluyordu → kullanıcı
+    // reklamı izlese de HAK VERİLMİYORDU. Artık reklam KAPANANA (dismiss)
+    // kadar bir Completer ile beklenir ve ödül bayrağı o an okunur.
+    final tamamlandi = Completer<bool>();
     var odulKazanildi = false;
     ad.fullScreenContentCallback = FullScreenContentCallback(
       onAdDismissedFullScreenContent: (ad) {
         ad.dispose();
         _onYukle(); // sonraki için hazırla
+        if (!tamamlandi.isCompleted) tamamlandi.complete(odulKazanildi);
       },
       onAdFailedToShowFullScreenContent: (ad, err) {
         ad.dispose();
         _onYukle();
+        if (!tamamlandi.isCompleted) tamamlandi.complete(false);
       },
     );
 
-    await ad.show(onUserEarnedReward: (ad, reward) => odulKazanildi = true);
-    return odulKazanildi;
+    try {
+      await ad.show(onUserEarnedReward: (ad, reward) => odulKazanildi = true);
+    } catch (e) {
+      debugPrint('AdService: reklam gösterilemedi: $e');
+      if (!tamamlandi.isCompleted) tamamlandi.complete(false);
+    }
+    // Reklam kapanınca (dismiss/fail) tetiklenen sonucu bekle.
+    return tamamlandi.future;
   }
 }
