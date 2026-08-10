@@ -171,16 +171,14 @@ class _RotaGozlemcisi extends NavigatorObserver {
   void didReplace({Route? newRoute, Route? oldRoute}) => onDegisim();
 }
 
-/// Alt navigasyon çubuğu — Material `NavigationBar` yerine elle çizilmiş
-/// sürüm.
+/// Alt navigasyon çubuğu — ANİMASYONLU özel sürüm.
 ///
-/// Neden özel: `NavigationBar`, seçili sekmenin ikonunun arkasına kendi
-/// "indicator" hapını koyar, ikon boyutunu ve seçili rengi tema üzerinden
-/// dolaylı belirler. İstenen davranış ise net:
-///   • ikonlar SABİT dursun (seçilince yer değiştirmesin/zıplamasın)
-///   • ikonlar biraz daha BÜYÜK olsun
-///   • seçili sekme ALTIN renkte olsun
-/// Bunları elle çizmek, tema hilelerine boğulmaktan daha okunur.
+/// Tasarım (kullanıcı isteği "animasyonlu güzel bişey"):
+///   • Seçili sekmenin arkasında yumuşakça KAYAN altın "pill" göstergesi
+///     (sekme değişince yatayda süzülür).
+///   • Seçili ikon hafifçe büyüyüp "zıplar" (elasticOut bounce) ve dolgulu
+///     hâline geçer.
+///   • Etiket rengi/kalınlığı yumuşak geçer; seçili sekmede altın parıltı.
 class _AltMenu extends StatelessWidget {
   final List<String> ids;
   final Map<String, (String, IconData, IconData)> labels;
@@ -197,6 +195,7 @@ class _AltMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
+    final n = ids.length;
 
     return Container(
       decoration: BoxDecoration(
@@ -213,21 +212,60 @@ class _AltMenu extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: SizedBox(
-          height: 68,
-          child: Row(
-            children: [
-              for (var i = 0; i < ids.length; i++)
-                Expanded(
-                  child: _AltMenuOgesi(
-                    label: labels[ids[i]]!.$1,
-                    icon: labels[ids[i]]!.$2,
-                    selectedIcon: labels[ids[i]]!.$3,
-                    secili: i == index,
-                    onTap: () => onSelect(i),
+          height: 70,
+          child: LayoutBuilder(builder: (context, con) {
+            final itemW = con.maxWidth / n;
+            final pillW = (itemW - 14).clamp(40.0, 64.0);
+            return Stack(
+              children: [
+                // ── Kayan altın pill göstergesi (seçili sekmenin arkasında) ──
+                AnimatedPositioned(
+                  duration: const Duration(milliseconds: 340),
+                  curve: Curves.easeOutCubic,
+                  left: index * itemW + (itemW - pillW) / 2,
+                  top: 8,
+                  width: pillW,
+                  height: 40,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          c.gold.withValues(alpha: 0.28),
+                          c.gold.withValues(alpha: 0.12),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: c.gold.withValues(alpha: 0.45)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: c.gold.withValues(alpha: 0.30),
+                          blurRadius: 14,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-            ],
-          ),
+                // ── Sekmeler ──
+                Row(
+                  children: [
+                    for (var i = 0; i < n; i++)
+                      Expanded(
+                        child: _AltMenuOgesi(
+                          label: labels[ids[i]]!.$1,
+                          icon: labels[ids[i]]!.$2,
+                          selectedIcon: labels[ids[i]]!.$3,
+                          secili: i == index,
+                          onTap: () => onSelect(i),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            );
+          }),
         ),
       ),
     );
@@ -252,42 +290,38 @@ class _AltMenuOgesi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    // Seçili sekme altın; seçili olmayanlar soluk. Altın her iki temada da
-    // KpssColors.gold üzerinden geldiği için açık temada da okunur kalıyor.
     final renk = secili ? c.gold : c.textFaint;
 
     return Material(
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // İkon boyutu seçili/seçili değil fark etmeksizin AYNI (28) —
-            // böylece sekmeler arası geçişte ikonlar yerinde sabit kalıyor.
-            Icon(secili ? selectedIcon : icon, size: 28, color: renk),
+            // İkon: seçilince elasticOut ile hafif büyüyüp "zıplar" ve dolgulu
+            // hâline geçer. TweenAnimationBuilder her seçim değişiminde 1→hedef
+            // ölçek animasyonunu tekrar oynatır.
+            TweenAnimationBuilder<double>(
+              tween: Tween(begin: 1.0, end: secili ? 1.18 : 1.0),
+              duration: const Duration(milliseconds: 420),
+              curve: Curves.elasticOut,
+              builder: (context, scale, child) =>
+                  Transform.scale(scale: scale, child: child),
+              child: Icon(secili ? selectedIcon : icon, size: 26, color: renk),
+            ),
             const SizedBox(height: 4),
-            Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            // Etiket: renk/kalınlık yumuşak geçişli.
+            AnimatedDefaultTextStyle(
+              duration: const Duration(milliseconds: 260),
+              curve: Curves.easeOut,
               style: TextStyle(
-                fontSize: 11,
-                fontWeight: secili ? FontWeight.w800 : FontWeight.w600,
+                fontSize: secili ? 11.5 : 11,
+                fontWeight: secili ? FontWeight.w900 : FontWeight.w600,
                 color: renk,
               ),
-            ),
-            // Seçili sekmenin altındaki ince altın çizgi. Yüksekliği her
-            // durumda 3 px yer kaplar (seçili değilken şeffaf) ki metin
-            // aşağı yukarı oynamasın.
-            const SizedBox(height: 3),
-            Container(
-              height: 3,
-              width: 22,
-              decoration: BoxDecoration(
-                color: secili ? c.gold : Colors.transparent,
-                borderRadius: BorderRadius.circular(999),
-              ),
+              child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
             ),
           ],
         ),
