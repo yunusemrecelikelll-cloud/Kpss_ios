@@ -3267,7 +3267,7 @@
             "Selçukluların kurucusu, Kutalmışoğlu Süleyman Şah'dır.",
             "Selçukluların kurucusu, Alp Arslan'dır.",
             "Selçukluların kurucusu, Melikşah'dır.",
-            "Selçukluların kurucusu, Alparslan'dır."
+            "Selçukluların kurucusu, Sultan Sencer'dir."
           ],
           "dogruIndex": 0,
           "aciklama": "Bu statement doğru bir bilgi vermektedir. Çağrı Bey, Selçukluların kurucusudur."
@@ -3279,7 +3279,7 @@
             "Büyük Selçuklu Devletinin en büyük hükümdarı, Melikşah'dır.",
             "Büyük Selçuklu Devletinin en büyük hükümdarı, II. Kılıç Arslan'dır.",
             "Büyük Selçuklu Devletinin en büyük hükümdarı, I. Alp Arslan'dır.",
-            "Büyük Selçuklu Devletinin en büyük hükümdarı, I. Alparslan'dır."
+            "Büyük Selçuklu Devletinin en büyük hükümdarı, Sultan Sencer'dir."
           ],
           "dogruIndex": 1,
           "aciklama": "Bu statement doğru bir bilgi vermektedir. Melikşah, Büyük Selçuklu Devletinin en büyük hükümdarıdır."
@@ -13662,7 +13662,7 @@
             "Sultan Alp Arslan",
             "Sultan Melikşah",
             "Sultan Keykavus",
-            "Sultan Alparslan",
+            "Sultan Sencer",
             "Selçuk Bey"
           ],
           "dogruIndex": 4,

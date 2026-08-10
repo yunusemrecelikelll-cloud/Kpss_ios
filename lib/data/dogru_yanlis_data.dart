@@ -61,15 +61,15 @@ int get kDogruYanlisYanlisSayisi =>
 /// ekranla karşılaşmaması için TÜM havuza düşülür. Böylece bir seviyede yeterli
 /// içerik yoksa oyun yine de dolu bir desteyle oynanır (kullanıcının isteği).
 List<DogruYanlisOnerme> seviyeyeGoreOnermeler(String seviye, {int enAz = 10}) {
-  // Kullanıcı isteği: oyunda kullanıcıya YANLIŞ bilgi gösterilmesin — havuz
-  // yalnızca DOĞRU önermelerden oluşur (öğrenci gördüğü her ifadenin doğru
-  // olduğundan emin olur). Yanlış (dogru == false) önermeler dışlanır.
-  final dogrular = kDogruYanlisOnermeler.where((o) => o.dogru).toList();
-  if (seviye.isEmpty) return dogrular;
-  final suzulmus = dogrular
+  // Oyun HEM doğru HEM yanlış önermeleri gösterir — aksi halde "hepsine doğru
+  // de" ile tam puan alınır (oyun anlamını yitirir). Yanlış önermelerin doğrusu
+  // [aciklama]'da yazılı olduğu için öğrenci yine doğru bilgiyi öğrenir.
+  final tum = kDogruYanlisOnermeler;
+  if (seviye.isEmpty) return List<DogruYanlisOnerme>.of(tum);
+  final suzulmus = tum
       .where((o) => o.seviye.isEmpty || o.seviye == seviye)
       .toList();
-  if (suzulmus.length < enAz) return dogrular;
+  if (suzulmus.length < enAz) return List<DogruYanlisOnerme>.of(tum);
   return suzulmus;
 }
 

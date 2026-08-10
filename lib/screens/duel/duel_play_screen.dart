@@ -118,6 +118,34 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     _optionPerm[idx] = perm;
     return perm;
   }
+  // Her rakip kullanıcıya özel, sabit renk paleti (uid'den türer).
+  static const List<Color> _rakipRenkleri = [
+    Color(0xFF2E9E5B), Color(0xFF1E88E5), Color(0xFFF57C00),
+    Color(0xFF8E24AA), Color(0xFF00897B), Color(0xFFD81B60),
+    Color(0xFF5E35B1), Color(0xFF3949AB),
+  ];
+  Color _uidRenk(String uid) =>
+      _rakipRenkleri[uid.hashCode.abs() % _rakipRenkleri.length];
+
+  /// [qIdx] sorusunda [orig] şıkkını seçen RAKİP oyuncuların rozetleri.
+  /// Kendi cevabımız gösterilmez; çağıran yalnızca biz cevaplayınca çağırır.
+  List<_RakipRozet> _rakipRozetleri(int qIdx, int orig) {
+    if (widget.isSolo) return const [];
+    final myUid = _duel.currentUid;
+    final list = <_RakipRozet>[];
+    _players.forEach((uid, p) {
+      if (uid == myUid) return;
+      final a = p.answers[qIdx];
+      if (a != null && a.idx == orig) {
+        list.add(_RakipRozet(
+          harf: p.name.isNotEmpty ? p.name[0].toUpperCase() : '?',
+          renk: _uidRenk(uid),
+        ));
+      }
+    });
+    return list;
+  }
+
   int _soloScore = 0;
   int _soloCorrect = 0;
 
@@ -584,6 +612,10 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                           // gömülü harf uyuşmuyor ve çift harf/kayma görünüyordu.
                           text: sikMetni(q.secenekler[orig]),
                           state: _optionState(answered, mySel, orig, q.dogruIndex),
+                          // Rakip cevap rozetleri: SADECE sen cevap verdiysen
+                          // görünür (kullanıcı isteği). Her rakip, seçtiği şıkkın
+                          // üzerinde baş harfi + kendine özel renkte yuvarlak rozet.
+                          rozetler: answered ? _rakipRozetleri(idx, orig) : const [],
                           onTap: (answered || eliminated || (widget.isSolo && _soloAdvancing))
                               ? null
                               : () => _answer(orig),
@@ -677,12 +709,25 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
 enum _OptState { idle, correct, wrong, dim }
 
+/// Bir rakibin bir şıkka verdiği cevabı temsil eden rozet (baş harf + renk).
+class _RakipRozet {
+  final String harf;
+  final Color renk;
+  const _RakipRozet({required this.harf, required this.renk});
+}
+
 class _OptionTile extends StatelessWidget {
   final String letter;
   final String text;
   final _OptState state;
   final VoidCallback? onTap;
-  const _OptionTile({required this.letter, required this.text, required this.state, required this.onTap});
+  final List<_RakipRozet> rozetler;
+  const _OptionTile(
+      {required this.letter,
+      required this.text,
+      required this.state,
+      required this.onTap,
+      this.rozetler = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -715,7 +760,7 @@ class _OptionTile extends StatelessWidget {
         kenar = c.gold;
         break;
     }
-    return Padding(
+    final tile = Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Material(
         color: zemin,
@@ -751,6 +796,8 @@ class _OptionTile extends StatelessWidget {
                     style: TextStyle(fontSize: 14, height: 1.3, color: yazi),
                   ),
                 ),
+                // Rakip rozetleri varsa ✓/✗ ikonuna yer bırakmak için küçük boşluk.
+                if (rozetler.isNotEmpty) const SizedBox(width: 4),
                 if (state == _OptState.correct)
                   const Icon(Icons.check_circle, color: Colors.white, size: 20),
                 if (state == _OptState.wrong)
@@ -760,6 +807,43 @@ class _OptionTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+
+    if (rozetler.isEmpty) return tile;
+    // Rakiplerin bu şıkka verdiği cevaplar: sağ üstte, baş harf + kişiye özel
+    // renkte yuvarlak rozetler. Şıkkın ÜSTÜNDE durur, cevap metnini kapatmaz.
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        tile,
+        Positioned(
+          top: -5,
+          right: 10,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final r in rozetler)
+                Container(
+                  margin: const EdgeInsets.only(left: 3),
+                  width: 22,
+                  height: 22,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: r.renk,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 1.5),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black26, blurRadius: 3, offset: Offset(0, 1)),
+                    ],
+                  ),
+                  child: Text(r.harf,
+                      style: const TextStyle(
+                          color: Colors.white, fontSize: 11, fontWeight: FontWeight.w900)),
+                ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

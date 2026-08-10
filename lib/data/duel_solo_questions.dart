@@ -57,7 +57,7 @@ final List<Question> kDuelSoloQuestions = <Question>[
       ['Geldimi?', 'Geldi mi?', 'Gelmi di?', 'Geldi-mi?', 'Geldimî?'], 1,
       'Soru eki "mi/mı/mu/mü" kendinden önceki sözcükten her zaman AYRI yazılır: "Geldi mi?"'),
   _q('Türkçe', 'Aşağıdaki sözcüklerden hangisinin yazımı doğrudur?',
-      ['Herkez', 'Herkes', 'Herkez', 'Her kez', 'Herkés'], 1,
+      ['Herkez', 'Herkes', 'Herkeş', 'Her kez', 'Herkés'], 1,
       'Doğru yazım "herkes"tir; "herkez" yaygın bir yazım yanlışıdır.'),
   _q('Türkçe', 'Aşağıdaki sözcüklerden hangisinin yazımı doğrudur?',
       ['Yanlız', 'Yalnız', 'Yalnışlık', 'Yannız', 'Yalınız'], 1,

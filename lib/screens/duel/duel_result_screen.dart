@@ -271,7 +271,7 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
                   ),
                 ),
               const SizedBox(height: 12),
-              _doneButton(context, leaveRoom: true),
+              _doneButton(context, leaveRoom: true, isHost: isHost),
             ],
           );
         },
@@ -279,7 +279,7 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
     );
   }
 
-  Widget _doneButton(BuildContext context, {bool leaveRoom = false}) {
+  Widget _doneButton(BuildContext context, {bool leaveRoom = false, bool isHost = false}) {
     final c = context.watch<ThemeProvider>().colors;
     return Center(
       child: DsPillButton(
@@ -289,10 +289,15 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
         trailingIcon: Icons.arrow_forward,
         onPressed: () {
           context.read<SoundService>().click();
-          // Online'da lobiye dönen oyuncu odadan da AYRILIR — böylece tekrar
-          // maçında "hiç cevaplamayan hayalet oyuncu" kalmaz.
           if (leaveRoom && widget.roomId != null) {
-            _duel.leaveRoom(widget.roomId!);
+            // Kullanıcı isteği: maç bitip ODA KURUCUSU lobiye dönerse (odadan
+            // çıkarsa) oda TAMAMEN silinir. Kurucu değilse yalnızca kendisi
+            // ayrılır — böylece tekrar maçında "hayalet oyuncu" kalmaz.
+            if (isHost) {
+              _duel.deleteRoom(widget.roomId!);
+            } else {
+              _duel.leaveRoom(widget.roomId!);
+            }
           }
           // Play/Waiting ekranları pushReplacement ile geldiği için tek pop
           // doğrudan lobiye döner.

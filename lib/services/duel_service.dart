@@ -60,6 +60,10 @@ class DuelPlayer {
   final int? eliminatedAtRound;
   final DateTime? joinedAt;
 
+  /// Bekleme odasında oyuncunun "Hazır" işaretleyip işaretlemediği (host'un
+  /// kimlerin hazır olduğunu görmesi için). Host için anlamsızdır.
+  final bool ready;
+
   const DuelPlayer({
     required this.uid,
     required this.name,
@@ -68,6 +72,7 @@ class DuelPlayer {
     required this.eliminated,
     required this.eliminatedAtRound,
     required this.joinedAt,
+    this.ready = false,
   });
 
   factory DuelPlayer.fromMap(String uid, Map data) {
@@ -86,6 +91,7 @@ class DuelPlayer {
       eliminated: data['eliminated'] == true,
       eliminatedAtRound: (data['eliminatedAtRound'] as num?)?.toInt(),
       joinedAt: ts is Timestamp ? ts.toDate() : null,
+      ready: data['ready'] == true,
     );
   }
 }
@@ -932,6 +938,32 @@ class DuelService {
       });
     } catch (e) {
       debugPrint('DuelService.checkAndEliminate başarısız: $e');
+    }
+  }
+
+  /// Bekleme odasında oyuncunun "Hazır" durumunu ayarlar (host kimlerin hazır
+  /// olduğunu görsün diye). Sadece ilgili oyuncunun kendi alanını günceller.
+  Future<void> setReady(String roomId, bool ready) async {
+    if (!isConfigured) return;
+    final uid = currentUid;
+    if (uid == null) return;
+    try {
+      await _rooms.doc(roomId).update({'players.$uid.ready': ready});
+    } catch (e) {
+      debugPrint('DuelService.setReady başarısız: $e');
+    }
+  }
+
+  /// Odayı TAMAMEN siler. Yalnızca oda kurucusu (host) çağırmalı (UI kısıtlar):
+  /// kurucu odayı kapatmak istediğinde ya da maç bitip kurucu ana sayfaya
+  /// döndüğünde çağrılır. Silme, dinleyen tüm istemcilerde odayı `null`'a
+  /// düşürür ve onları da ekrandan çıkarır.
+  Future<void> deleteRoom(String roomId) async {
+    if (!isConfigured) return;
+    try {
+      await _rooms.doc(roomId).delete();
+    } catch (e) {
+      debugPrint('DuelService.deleteRoom başarısız: $e');
     }
   }
 

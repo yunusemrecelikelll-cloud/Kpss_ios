@@ -30,6 +30,7 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
   Timer? _ticker;
   DuelRoom? _room;
   bool _navigated = false;
+  bool _closed = false;
 
   @override
   void initState() {
@@ -45,9 +46,16 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
 
   void _onTick() {
     if (!mounted) return;
-    // Kullanıcı isteği: oda oyuncular gelince OTOMATİK BAŞLAMASIN — yalnızca
-    // oda KURUCUSUNUN "Başlat" demesi beklenir. Bu yüzden auto-start (oda dolu /
-    // süre doldu) tetikleyicisi kaldırıldı; tick yalnızca ekranı tazeler.
+    // Oda kurucusu VARSA: sadece kurucunun "Başlat"ı beklenir (auto-start yok).
+    // Oda kurucusu YOKSA (ayrılmış) ve yeterli (>=2) oyuncu varsa: sınav
+    // OTOMATİK başlar (startRoom transaction'ı çift-başlatmayı engeller).
+    final room = _room;
+    if (room != null && room.status == 'waiting') {
+      final hostPresent = room.players.containsKey(room.hostUid);
+      if (!hostPresent && room.players.length >= 2) {
+        _duel.startRoom(widget.roomId);
+      }
+    }
     setState(() {});
   }
 
@@ -65,8 +73,40 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
   }
 
   Future<void> _leave() async {
-    await _duel.leaveRoom(widget.roomId);
+    // Kurucu bekleme odasından çıkarsa odayı TAMAMEN siler (oda kurucusuz
+    // kalmasın diye). Kurucu değilse sadece kendini oyunculardan çıkarır.
+    final room = _room;
+    final myUid = _duel.currentUid;
+    if (room != null && myUid != null && myUid == room.hostUid) {
+      await _duel.deleteRoom(widget.roomId);
+    } else {
+      await _duel.leaveRoom(widget.roomId);
+    }
     if (mounted) Navigator.of(context).pop();
+  }
+
+  /// Kurucu için: onaylı "Odayı sil" — odayı siler ve ekrandan çıkar.
+  Future<void> _confirmDeleteRoom() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (dc) => AlertDialog(
+        title: const Text('Odayı sil?'),
+        content: const Text('Oda kapatılır ve tüm oyuncular çıkarılır.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(dc, false), child: const Text('Vazgeç')),
+          TextButton(onPressed: () => Navigator.pop(dc, true), child: const Text('Sil')),
+        ],
+      ),
+    );
+    if (ok == true) {
+      await _duel.deleteRoom(widget.roomId);
+      if (mounted) Navigator.of(context).pop();
+    }
+  }
+
+  Future<void> _toggleReady(bool ready) async {
+    context.read<SoundService>().click();
+    await _duel.setReady(widget.roomId, ready);
   }
 
   @override
@@ -83,6 +123,15 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
         appBar: AppBar(
           title: const Text('Oda Bekleniyor'),
           leading: IconButton(icon: const Icon(Icons.close), onPressed: _leave),
+          actions: [
+            // Kurucu için "Odayı sil" (yalnızca host görür).
+            if (_room != null && _duel.currentUid == _room!.hostUid)
+              IconButton(
+                icon: const Icon(Icons.delete_outline),
+                tooltip: 'Odayı sil',
+                onPressed: _confirmDeleteRoom,
+              ),
+          ],
         ),
         body: StreamBuilder<DuelRoom?>(
           stream: _duel.watchRoom(widget.roomId),
@@ -92,6 +141,14 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
             }
             final room = snap.data;
             if (room == null) {
+              // Oda silinmiş/kapatılmış. Daha önce yüklendiyse (kurucu sildi)
+              // oyuncuyu otomatik geri gönder.
+              if (_room != null && !_closed) {
+                _closed = true;
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  if (mounted) Navigator.of(context).maybePop();
+                });
+              }
               return Center(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
@@ -104,6 +161,12 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w800, color: c.text)),
+                      const SizedBox(height: 14),
+                      DsPillButton(
+                        label: 'Geri Dön',
+                        color: c.violetL,
+                        onPressed: () => Navigator.of(context).maybePop(),
+                      ),
                     ],
                   ),
                 ),
@@ -215,6 +278,12 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                             ),
                           ),
                           const SizedBox(width: 8),
+                          // Hazır olan (host olmayan) oyuncular için HAZIR rozeti
+                          // — kurucu kimlerin hazır olduğunu görür.
+                          if (p.uid != room.hostUid && p.ready) ...[
+                            DsChip(label: '✓ HAZIR', color: c.success),
+                            const SizedBox(width: 6),
+                          ],
                           if (p.uid == room.hostUid)
                             DsChip(label: 'KURUCU', color: c.gold)
                           else if (p.uid == myUid)
@@ -240,14 +309,36 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
                             },
                     ),
                   )
-                else
+                else ...[
+                  // Kurucu olmayan oyuncu için HAZIR butonu — bastığında kurucu
+                  // onun hazır olduğunu görür.
+                  Builder(builder: (_) {
+                    final meReady =
+                        myUid != null && (room.players[myUid]?.ready ?? false);
+                    return Center(
+                      child: DsPillButton(
+                        label: meReady ? 'Hazırım ✓ (iptal)' : 'Hazırım',
+                        leadingIcon: meReady
+                            ? Icons.check_circle
+                            : Icons.check_circle_outline,
+                        color: meReady ? c.success : c.violetL,
+                        filled: meReady,
+                        onPressed: () => _toggleReady(!meReady),
+                      ),
+                    );
+                  }),
+                  const SizedBox(height: 10),
                   Center(
                     child: Text('Kurucunun başlatması bekleniyor...',
                         style: TextStyle(color: c.textFaint, fontSize: 12.5)),
                   ),
+                ],
                 const SizedBox(height: 10),
                 Center(
-                  child: Text('Oyun yalnızca oda kurucusu başlattığında başlar.',
+                  child: Text(
+                      isHost
+                          ? 'Oyunu sen başlatırsın; oyuncuların "Hazırım" demesini bekleyebilirsin.'
+                          : 'Kurucu yoksa yeterli oyuncu olunca oyun otomatik başlar.',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: c.textFaint, fontSize: 11.5)),
                 ),
