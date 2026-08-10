@@ -214,7 +214,30 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('KPSS Hazırlık', style: GoogleFonts.baloo2(fontWeight: FontWeight.w700, fontSize: 22)),
+        // Renkli gradyan başlık (kullanıcı isteği): okul rozeti + "KPSS Hazırlık"
+        // mor→gül→altın gradyanıyla boyanır (ShaderMask, srcIn).
+        title: ShaderMask(
+          blendMode: BlendMode.srcIn,
+          shaderCallback: (rect) => LinearGradient(
+            colors: [c.violet, c.roseL, c.gold],
+          ).createShader(rect),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.school_rounded, size: 23, color: Colors.white),
+              const SizedBox(width: 7),
+              Text(
+                'KPSS Hazırlık',
+                style: GoogleFonts.baloo2(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 22,
+                  letterSpacing: 0.2,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
         actions: [
           // Üstte hak sayısı + "＋" (Hak Satın Al'a yönlendirir). Premium'da
           // hak sistemi tümüyle gizli (sınırsız) — bu çip de gösterilmez.

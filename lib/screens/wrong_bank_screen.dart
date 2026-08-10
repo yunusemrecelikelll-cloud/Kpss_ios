@@ -3,11 +3,15 @@ import 'package:provider/provider.dart';
 import '../models/question.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
 import 'premium_screen.dart';
 
-/// JS karşılığı: renderWrongBank() (src/js/app.js).
+/// "Yanlışlarım" — kullanıcının yanlış yaptığı soruların bankası. Tasarım
+/// sistemine (DsCard/DsPillButton/DsIllustration) ve tema renklerine uygun,
+/// renkli gradyanlı yenilenmiş sürüm.
 class WrongBankScreen extends StatefulWidget {
   const WrongBankScreen({super.key});
 
@@ -16,6 +20,18 @@ class WrongBankScreen extends StatefulWidget {
 }
 
 class _WrongBankScreenState extends State<WrongBankScreen> {
+  // Ders adına göre emoji (rozet için); bulunamazsa ❓.
+  static const Map<String, String> _dersEmoji = {
+    'Türkçe': '📘',
+    'Matematik': '🔢',
+    'Tarih': '🏛️',
+    'Coğrafya': '🌍',
+    'Vatandaşlık': '⚖️',
+    'Genel Kültür': '🧠',
+    'Güncel Bilgiler': '📰',
+    'Diğer': '📌',
+  };
+
   void _startWrongTest(BuildContext context, List<Map<String, dynamic>> bank) {
     final shuffled = List<Map<String, dynamic>>.of(bank)..shuffle();
     final qs = shuffled.take(20).map((w) => Question(
@@ -39,36 +55,89 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
     ));
   }
 
+  /// Renkli gradyanlı AppBar başlığı — kırmızı hedef rozeti + "Yanlışlarım".
+  PreferredSizeWidget _appBar(BuildContext context, KpssColors c) {
+    return AppBar(
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 30,
+            height: 30,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [c.rose, c.roseL]),
+              borderRadius: BorderRadius.circular(9),
+              boxShadow: [
+                BoxShadow(color: c.rose.withValues(alpha: 0.45), blurRadius: 10),
+              ],
+            ),
+            child: const Icon(Icons.gps_fixed_rounded, size: 17, color: Colors.white),
+          ),
+          const SizedBox(width: 9),
+          ShaderMask(
+            blendMode: BlendMode.srcIn,
+            shaderCallback: (rect) =>
+                LinearGradient(colors: [c.roseL, c.violet]).createShader(rect),
+            child: const Text(
+              'Yanlışlarım',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 0.3,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
 
+    // ── Premium değil: kilit ekranı ──
     if (!premium) {
       return Scaffold(
-        appBar: AppBar(title: const Text('🔒 Yanlışlarım')),
-        body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        appBar: _appBar(context, c),
+        body: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(16),
             children: [
-              const Text('Bu bölüm sadece Premium kullanıcılar için aktif.',
-                  style: TextStyle(fontSize: 14.5)),
-              const SizedBox(height: 14),
-              Text(
-                'Yanlış sorularının özel testlerine erişmek, hatalarını hedeflemek ve '
-                'hata analizini derinleştirmek için Premium planına geç.',
-                style: TextStyle(color: c.textFaint, height: 1.6),
-              ),
-              const SizedBox(height: 18),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                },
-                child: const Text("Premium'a Geç"),
+              DsCard(
+                accent: c.gold,
+                padding: const EdgeInsets.all(22),
+                child: Column(
+                  children: [
+                    DsIllustration(emoji: '🔒', glowColor: c.gold, size: 84),
+                    const SizedBox(height: 12),
+                    Text('Yanlışlarım — Premium',
+                        style: TextStyle(
+                            fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Yanlış sorularını biriktir, onlara özel testlerle eksiklerini '
+                      'kapat. Bu bölüm Premium ile açılır.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
+                    ),
+                    const SizedBox(height: 18),
+                    DsPillButton(
+                      label: "Premium'a Geç",
+                      color: c.gold,
+                      leadingIcon: Icons.workspace_premium_rounded,
+                      onPressed: () {
+                        context.read<SoundService>().click();
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                      },
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -77,87 +146,224 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
     }
 
     final bank = storage.getWrongBank();
+
+    // ── Banka boş: kutlama ──
     if (bank.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: const Text('❌ Yanlışlarım')),
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.all(24),
-            child: Text('🌟 Yanlış sorular bankan boş! Harika gidiyorsun.',
-                textAlign: TextAlign.center),
+        appBar: _appBar(context, c),
+        body: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              DsCard(
+                accent: c.mint,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    DsIllustration(emoji: '🌟', glowColor: c.mint, size: 92),
+                    const SizedBox(height: 12),
+                    Text('Bankan tertemiz!',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w900, color: c.text)),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Henüz biriken yanlış sorun yok. Test çözdükçe yanlışların '
+                      'burada toplanır ve onlara özel sınav yapabilirsin.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       );
     }
 
+    // ── Dolu banka ──
     final grouped = <String, List<Map<String, dynamic>>>{};
     for (final q in bank) {
       final ad = q['subjectAd'] as String? ?? 'Diğer';
       (grouped[ad] ??= []).add(q);
     }
+    // En çok yanlış olan ders en üstte.
+    final entries = grouped.entries.toList()
+      ..sort((a, b) => b.value.length.compareTo(a.value.length));
+
+    // Ders kartlarına dönüşümlü renkler.
+    final renkler = [c.rose, c.violet, c.mint, c.gold, c.roseL, c.violetL];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('❌ Yanlışlarım')),
+      appBar: _appBar(context, c),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Text('${bank.length} soru birikmiş', style: TextStyle(color: c.textFaint)),
-            const SizedBox(height: 12),
-            for (final entry in grouped.entries)
-              Card(
-                child: ListTile(
-                  title: Text(entry.key, style: const TextStyle(fontWeight: FontWeight.w700)),
-                  trailing: Text('${entry.value.length} yanlış',
-                      style: TextStyle(color: c.danger, fontWeight: FontWeight.w700)),
-                ),
+            // ── Hero banner (gradyan) ──
+            DsCard(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [c.roseL, c.violet],
               ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<SoundService>().click();
-                      _startWrongTest(context, bank);
-                    },
-                    child: const Text('Yanlışlarımı Sına →'),
+              padding: const EdgeInsets.all(18),
+              child: Row(
+                children: [
+                  Container(
+                    width: 62,
+                    height: 62,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.18),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                    ),
+                    child: const Text('🎯', style: TextStyle(fontSize: 30)),
                   ),
-                ),
-                const SizedBox(width: 10),
-                OutlinedButton(
-                  onPressed: () async {
-                    context.read<SoundService>().click();
-                    final ok = await showDialog<bool>(
-                      context: context,
-                      builder: (ctx) => AlertDialog(
-                        content: const Text('Tüm yanlış soru bankasını temizlemek istiyor musun?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              context.read<SoundService>().click();
-                              Navigator.pop(ctx, false);
-                            },
-                            child: const Text('Vazgeç'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              context.read<SoundService>().click();
-                              Navigator.pop(ctx, true);
-                            },
-                            child: const Text('Temizle'),
-                          ),
-                        ],
-                      ),
-                    );
-                    if (ok == true) await storage.clearWrongBank();
-                  },
-                  child: const Text('Bankayı Temizle'),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('${bank.length} yanlış soru',
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white)),
+                        const SizedBox(height: 4),
+                        Text(
+                          '${entries.length} derste birikti — hatalarını hedefle, eksiklerini kapat.',
+                          style: TextStyle(
+                              fontSize: 12.5,
+                              height: 1.35,
+                              color: Colors.white.withValues(alpha: 0.9)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: kDsGap + 6),
+            const DsSectionHeader(title: 'Derslere Göre'),
+            const SizedBox(height: kDsGap - 2),
+
+            // ── Ders kartları ──
+            for (var i = 0; i < entries.length; i++) ...[
+              _DersSatiri(
+                ad: entries[i].key,
+                adet: entries[i].value.length,
+                toplam: bank.length,
+                emoji: _dersEmoji[entries[i].key] ?? '❓',
+                renk: renkler[i % renkler.length],
+              ),
+              const SizedBox(height: kDsGap - 2),
+            ],
+
+            const SizedBox(height: 8),
+            // ── Aksiyonlar ──
+            DsPillButton(
+              label: 'Yanlışlarımı Sına',
+              color: c.rose,
+              trailingIcon: Icons.arrow_forward_rounded,
+              gradient: LinearGradient(colors: [c.rose, c.violet]),
+              onPressed: () {
+                context.read<SoundService>().click();
+                _startWrongTest(context, bank);
+              },
+            ),
+            const SizedBox(height: 10),
+            DsPillButton(
+              label: 'Bankayı Temizle',
+              color: c.danger,
+              filled: false,
+              leadingIcon: Icons.delete_outline_rounded,
+              onPressed: () async {
+                context.read<SoundService>().click();
+                final ok = await showDialog<bool>(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    title: const Text('Bankayı temizle?'),
+                    content: const Text(
+                        'Tüm yanlış soru bankası silinsin mi? Bu işlem geri alınamaz.'),
+                    actions: [
+                      TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: const Text('Vazgeç')),
+                      TextButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: const Text('Temizle')),
+                    ],
+                  ),
+                );
+                if (ok == true) await storage.clearWrongBank();
+              },
+            ),
+            const SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Bir dersin yanlış özeti — emoji rozeti, ad, oransal çubuk ve "N yanlış" çipi.
+class _DersSatiri extends StatelessWidget {
+  final String ad;
+  final int adet;
+  final int toplam;
+  final String emoji;
+  final Color renk;
+
+  const _DersSatiri({
+    required this.ad,
+    required this.adet,
+    required this.toplam,
+    required this.emoji,
+    required this.renk,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final oran = toplam == 0 ? 0.0 : adet / toplam;
+
+    return DsCard(
+      accent: renk,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      child: Row(
+        children: [
+          DsIconBadge(emoji: emoji, color: renk, size: 44),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(ad,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 14.5, fontWeight: FontWeight.w800, color: c.text)),
+                const SizedBox(height: 7),
+                // Oransal çubuk (bu dersin toplam içindeki payı).
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(999),
+                  child: LinearProgressIndicator(
+                    value: oran.clamp(0.05, 1.0),
+                    minHeight: 6,
+                    backgroundColor: renk.withValues(alpha: 0.15),
+                    valueColor: AlwaysStoppedAnimation(renk),
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          const SizedBox(width: 12),
+          DsChip(label: '$adet yanlış', color: renk),
+        ],
       ),
     );
   }
