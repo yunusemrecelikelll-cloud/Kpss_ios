@@ -5143,42 +5143,6 @@
           "aciklama": "Kabile devleti, Osmanlı Devleti'nin başlangıcında idi."
         },
         {
-          "soru": "Osmanlı İmparatorluğu'nun kuruluşunu anlatan bir bölümde, 'Osman Gazi'nin kurucusu olduğu' ifadesine karşı çıkarsak, neden çıkabiliriz?",
-          "secenekler": [
-            "Osman Gazi, İslamiyeti kabul etmemiş ve Türkler arasında bir lider olarak kabul edilmiş bir kişidir.",
-            "Osman Gazi, Türkler kadar Müslüman olarak kabul edilmemiştir.",
-            "Osman Gazi, İmparatorluğun kuruluşundan sonra önemli bir rol oynamamıştır.",
-            "Osman Gazi, İslamiyeti kabul etmesine rağmen, Türkler arasında bir lider olarak kabul edilmemiştir.",
-            "Osman Gazi, Türkler arasında bir lider olarak kabul edilmemiştir."
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Bu seçeneğin doğru olduğu neden, Osman Gazi'nin İslamiyeti kabul etmesine rağmen, Türkler arasında bir lider olarak kabul edilmemiş olmasıdır."
-        },
-        {
-          "soru": "Osmanlı İmparatorluğu'nun yükselmesinde, 'Selçuklu Hanedanı'nın rolü nedir?",
-          "secenekler": [
-            "Selçuklu Hanedanı, Osmanlı İmparatorluğu'nun kurulmasından önce Türklerin lideri olarak kabul edilmemiştir.",
-            "Selçuklu Hanedanı, Osmanlı İmparatorluğu'nun kurulmasından önce Türklerin lideri olarak kabul edilmiştir.",
-            "Selçuklu Hanedanı, Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamamıştır.",
-            "Selçuklu Hanedanı, Osmanlı İmparatorluğu'nun kurulmasından sonra Türklerin lideri olarak kabul edilmiştir.",
-            "Selçuklu Hanedanı, Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamıştır."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bu seçeneğin doğru olduğu neden, Selçuklu Hanedanı'nın Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamış olmasıdır."
-        },
-        {
-          "soru": "Osmanlı İmparatorluğu'nun yükselmesinde, 'İslamiyet'in rolü nedir?",
-          "secenekler": [
-            "İslamiyet, Osmanlı İmparatorluğu'nun kurulmasından önce Türklerin lideri olarak kabul edilmemiştir.",
-            "İslamiyet, Osmanlı İmparatorluğu'nun kurulmasından önce Türklerin lideri olarak kabul edilmiştir.",
-            "İslamiyet, Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamamıştır.",
-            "İslamiyet, Osmanlı İmparatorluğu'nun kurulmasından sonra Türklerin lideri olarak kabul edilmiştir.",
-            "İslamiyet, Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamıştır."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bu seçeneğin doğru olduğu neden, İslamiyet'in Osmanlı İmparatorluğu'nun yükselmesinde önemli bir rol oynamış olmasıdır."
-        },
-        {
           "soru": "Osmanlı Devleti'nin kuruluşu ve yükselmesinde en önemli etkenlerden biri aşağıdakilerden hangisidir?",
           "secenekler": [
             "Selçuklu ve Beylikler Dönemi'nin sosyal ve ekonomik gelişmeleri",
@@ -11756,52 +11720,16 @@
           "aciklama": "Devletçilik, Türk milletinin uluslararası ilişkilerde daha güçlü bir konuma gelmesini sağlamıştır."
         },
         {
-          "soru": "Atatürk'ün 6 Ekim 1923'te TBMM'de yaptığı konuşmada 'Türkiye Büyük Millet Meclisi Reisince verilecek olan milletimize hitapnamesi ne olacaktır?' sorusuna verdikleri cevaplardan hangisi doğru değildi?",
+          "soru": "6 Ekim 1923 tarihi Türk tarihinde hangi olayla anılır?",
           "secenekler": [
-            "Cumhuriyet",
-            "Halk Cumhuriyeti",
-            "Cumhuriyet Halk Partisi",
-            "Cumhuriyet Halk Cemiyeti",
-            "Cumhuriyet Halk Cemaati"
+            "Cumhuriyet'in ilanı",
+            "İstanbul'un işgalden kurtuluşu",
+            "Ankara'nın başkent oluşu",
+            "Saltanatın kaldırılması",
+            "Lozan Antlaşması'nın imzalanması"
           ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek yanlış cevaptır. Atatürk'ün 6 Ekim 1923'te TBMM'de yaptığı konuşmada 'Türkiye Büyük Millet Meclisi Reisince verilecek olan milletimize hitapnamesi ne olacaktır?' sorusuna 'Cumhuriyet Halk Partisi' değil 'Cumhuriyet' cevabı verilmiştir."
-        },
-        {
-          "soru": "Atatürk'ün 6 Ekim 1923'te TBMM'de yaptığı 'Bir Millet, Bir Devlet, Bir Milletvelet' nutku hangi amacın gerçekleştirilmesi için verildi?",
-          "secenekler": [
-            "Cumhuriyetin ilanı",
-            "Milli Mücadele'nin zaferi",
-            "Laiklik ve cumhuriyetin yerleştirilmesi",
-            "Türk milletinin birleşmesi",
-            "Devletin tek partili hale getirilmesi"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Laiklik ve cumhuriyetin yerleştirilmesi ile ilgili nutku vardır ve bu amaç için verilmiştir."
-        },
-        {
-          "soru": "Atatürk'ün 'Milli Savaşçı' unvanını kimlere vermiştir?",
-          "secenekler": [
-            "Milli Mücadele'nin kahramanı olan 23 kişiye",
-            "Milli Mücadele'nin kahramanlarından 40 kişiye",
-            "Milli Mücadele'nin kahramanı olan 40 kişiye",
-            "Milli Mücadele'nin kahramanlarından 23 kişiye",
-            "Milli Mücadele'nin kahramanlarından 50 kişiye"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Atatürk bu kişilere vermiştir. 40 kişiden bahsetmiştir."
-        },
-        {
-          "soru": "Atatürk'ün 'İnkılap' kelimesini hangi anlamdaki kullanmıştır?",
-          "secenekler": [
-            "Değişim",
-            "Revizyon",
-            "İnkılap ile değişim kelimesi aynı anlamdadır",
-            "Yenilik",
-            "Reform"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Atatürk bu kelimeyi bu anlamda kullanmıştır."
+          "dogruIndex": 1,
+          "aciklama": "6 Ekim 1923'te İtilaf Devletleri'nin işgal kuvvetleri İstanbul'dan ayrılmış, Türk birlikleri şehre girerek İstanbul işgalden kurtulmuştur."
         },
         {
           "soru": "Atatürk'ün en önemli hizmeti nedir?",
@@ -11814,78 +11742,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Laiklik ve cumhuriyetin yerleştirilmesi en önemli hizmeti olan Atatürk'ün hizmetidir."
-        },
-        {
-          "soru": "Atatürk'ün 'Hürriyetin 24 saat' nutku hangi amaç için verilmiştir?",
-          "secenekler": [
-            "Cumhuriyetin ilanı",
-            "Laiklik ve cumhuriyetin yerleştirilmesi",
-            "Türk milletinin birleşmesi",
-            "Türk dilinin Latin alfabesine dönüştürülmesi",
-            "Hürriyetin 24 saat verilmesi"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Hürriyetin 24 saat verilmesi ile ilgili nutku vardır. Atatürk bu amaç için bu nutku vermiştir."
-        },
-        {
-          "soru": "Atatürk'ün 'Güneş Dil Teorisi'ne göre dilin kökeni nedir?",
-          "secenekler": [
-            "Türk milletinin atası Oğuz Kağan'dan",
-            "Doğu Asya'dan",
-            "Batı Asya'dan",
-            "Balkan Yarımadası'ndan",
-            "Kafkaslar'dan"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Atatürk bu teoriye göre dilin kökeni Doğu Asya'dandır. Bu seçeneğe göre Atatürk bu teoriyi vermiştir."
-        },
-        {
-          "soru": "Atatürk'ün ilkeleri arasında yer alan 'Milli Münasibet' ilkesinin temelinde yatan neden nedir?",
-          "secenekler": [
-            "Milli münasibet ilkesi, Türk milletinin birbirine karşı dayanışması ve kardeşliği temeline dayanır.",
-            "Milli münasibet ilkesi, Atatürk'ün liderliği altında Türk milletinin bir araya gelerek bağımsızlığını kazanmasına dayanır.",
-            "Milli münasibet ilkesi, Atatürk'ün vefat etmesinden sonra Türk milletinin farklı gruplara ayrılması üzerine dayanır.",
-            "Milli münasibet ilkesi, Türkiye'nin coğrafi konumunun değişmesinden dolayı ortaya çıkmıştır.",
-            "Milli münasibet ilkesi, Atatürk'ün ilkelerinin tümünü temel alır."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için, kullanıcılar muhtemelen doğru cevabı seçtiler. Ancak, diğer seçenekler genellikle yanlış nedenlerle seçilebilir."
-        },
-        {
-          "soru": "Atatürk'ün 'Milli İnkılap' kavramını nasıl tanımlar?",
-          "secenekler": [
-            "Milli inkılap, Atatürk'ün liderliği altında Türk milletinin bağımsızlığını kazanmasıyla ilgili bir kavramdır.",
-            "Milli inkılap, Atatürk'ün vefat etmesinden sonra Türk milletinin farklı gruplara ayrılmasıyla ilgili bir kavramdır.",
-            "Milli inkılap, Atatürk'ün liderliği altında Türk milletinin birbirine karşı dayanışması ve kardeşliğiyle ilgili bir kavramdır.",
-            "Milli inkılap, Türkiye'nin coğrafi konumunun değişmesiyle ilgili bir kavramdır.",
-            "Milli inkılap, Atatürk'ün ilkelerinin tümünü temel alan bir kavramdır."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için, kullanıcılar muhtemelen doğru cevabı seçtiler."
-        },
-        {
-          "soru": "Atatürk'ün 'Gerekçe' kavramını nasıl tanımlar?",
-          "secenekler": [
-            "Gerekçe, Atatürk'ün liderliği altında Türk milletinin birbirine karşı dayanışması ve kardeşliğiyle ilgili bir kavramdır.",
-            "Gerekçe, Atatürk'ün ilkelerinin tümünü temel alan bir kavramdır.",
-            "Gerekçe, Atatürk'ün liderliği altında Türk milletinin bağımsızlığını kazanmasıyla ilgili bir kavramdır.",
-            "Gerekçe, Atatürk'ün vefat etmesinden sonra Türk milletinin farklı gruplara ayrılmasıyla ilgili bir kavramdır.",
-            "Gerekçe, Türkiye'nin coğrafi konumunun değişmesiyle ilgili bir kavramdır."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için, kullanıcılar muhtemelen doğru cevabı seçtiler."
-        },
-        {
-          "soru": "Atatürk'ün 6 Ocak 1934'te açıkladığı 6 Armağanı nelerdir?",
-          "secenekler": [
-            "İnkılapçılık, Milli İnkılap, İnkılapçılık ve Milliyetçilik, Çağdaşlık, Halkçılık, Devletçilik",
-            "Milliyetçilik, Çağdaşlık, Halkçılık, Devletçilik, İnkılapçılık",
-            "İnkılapçılık, Milliyetçilik, Çağdaşlık, Halkçılık, Devletçilik",
-            "Milliyetçilik, Halkçılık, Çağdaşlık, İnkılapçılık, Devletçilik",
-            "Halkçılık, Çağdaşlık, Devletçilik, İnkılapçılık, Milliyetçilik"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçenekte doğru olan 6 Armağan, Atatürk'ün 6 Ocak 1934'te açıkladığı ve Türk halkının tümü tarafından benimsenen temel değerlerdir."
         },
         {
           "soru": "Atatürk'ün Milliyetçiliği ne anlama gelir?",
@@ -11910,54 +11766,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Atatürk'ün Halkçılığı, ülkemizde yaşayan tüm halkın hak ve hakları eşit olmalıdır."
-        },
-        {
-          "soru": "Atatürk'ün ilkeleri arasında yer alan 'Milli Mücadele'ye katılma' ilkesi, diğer ilkeler ile ilişkili olarak ne anlama gelmektedir?",
-          "secenekler": [
-            "Atatürk'ün milli mücadele ile ilgili ilkeleri diğer ilkeleri etkilememektedir.",
-            "Milli mücadele Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkileyen bir ilkedir.",
-            "Milli mücadele Atatürk'ün ilkelerinden biri değildir.",
-            "Milli mücadele Atatürk'ün ilkelerinden birisidir fakat diğer ilkeleri etkilememektedir.",
-            "Milli mücadele Atatürk'ün ilkelerinden biri değildir ve diğer ilkeleri etkilememektedir."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Eğer doğru seçtiniz ise milli mücadeleyi Atatürk'ün diğer ilkelerinden biri olarak gördünüz ve diğer ilkeleri etkileyen bir ilke olarak algıladınız."
-        },
-        {
-          "soru": "Atatürk'ün ilkelerinden 'Gümrük Birliği' ne anlama gelmektedir?",
-          "secenekler": [
-            "Atatürk'ün ilkelerinden biri değildir.",
-            "Gümrük birliği Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilememektedir.",
-            "Gümrük birliği Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkiler.",
-            "Gümrük birliği Atatürk'ün ilkelerinden birisidir.",
-            "Gümrük birliği Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilemektedir."
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Eğer doğru seçtiniz ise Atatürk'ün ilkelerinden 'Gümrük Birliği' kavramını bilmiyorsunuz ve diğer ilkelerinden birisidir."
-        },
-        {
-          "soru": "Atatürk'ün ilkelerinden 'İnsan hak ve hürriyetlerini her alanda teminat altına alma' ilkesi hangi diğer ilkeyle ilişkili olarak gösterilmektedir?",
-          "secenekler": [
-            "Atatürk'ün diğer ilkeleri ile ilişkili değildir.",
-            "İnsan hak ve hürriyetlerini her alanda teminat altına alma Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilememektedir.",
-            "İnsan hak ve hürriyetlerini her alanda teminat altına alma Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkiler.",
-            "İnsan hak ve hürriyetlerini her alanda teminat altına alma Atatürk'ün ilkelerinden birisidir.",
-            "İnsan hak ve hürriyetlerini her alanda teminat altına alma Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilemektedir."
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Eğer doğru seçtiniz ise Atatürk'ün diğer ilkelerinden 'İnsan hak ve hürriyetlerini her alanda teminat altına alma' kavramını bilmiyorsunuz ve diğer ilkelerinden birisidir."
-        },
-        {
-          "soru": "Atatürk'ün ilkelerinden 'Devletçilik' ne anlama gelmektedir?",
-          "secenekler": [
-            "Atatürk'ün ilkelerinden biri değildir.",
-            "Devletçilik Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilememektedir.",
-            "Devletçilik Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkiler.",
-            "Devletçilik Atatürk'ün ilkelerinden birisidir.",
-            "Devletçilik Atatürk'ün ilkelerinden birisidir ve diğer ilkeleri etkilemektedir."
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Eğer doğru seçtiniz ise Atatürk'ün ilkelerinden 'Devletçilik' kavramını bilmiyorsunuz ve diğer ilkelerinden birisidir."
         },
         {
           "soru": "Atatürk ilkeleri ve inkılaplarından 'Laiklik' ilkesi hangi kanun ile getirilmiştir?",
@@ -12126,18 +11934,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Bu seçenek doğru çünkü Atatürk'ün 3 Mart 1924'te kadınların seçme ve seçilme haklarını sağlayan neden, kadınların Türk milletinin siyasi hayata katılmak istemesiydi."
-        },
-        {
-          "soru": "Atatürk'ün 6 Armağanı nelerdir?",
-          "secenekler": [
-            "Millî Birlik, Cumhuriyeti Koruma, Hilafetin Kaldırılması, Türk Dilinin Kabulü, İnkılapçılık ve Devrimcilik",
-            "Millî Birlik, Cumhuriyet, İnkılapçılık, Hilafet, Türk Dilinin Kabulü",
-            "Cumhuriyet, İnkılapçılık, Türk Dilinin Kabulü, Devrimcilik, İslâmiyet",
-            "İnkılapçılık, Devrimcilik, Cumhuriyet, Türk Dilinin Kabulü, Millî Birlik",
-            "Millî Birlik, Cumhuriyet, Türk Dilinin Kabulü, İnkılapçılık, Hilafet"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Dikkatli okuyan ve Atatürk'ün 6 Armağanı ile ilgili bilgi sahibi öğrenci bu seçeneği doğru olarak seçer."
         },
         {
           "soru": "Atatürk'ün inkılaplarından hangisi 1928 yılında gerçekleşmiştir?",
