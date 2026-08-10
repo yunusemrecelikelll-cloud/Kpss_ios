@@ -192,39 +192,67 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
           if (me != null && room.status == 'finished') {
             WidgetsBinding.instance.addPostFrameCallback((_) => _awardOnce(me.score));
           }
-          final winner = ranked.isNotEmpty ? ranked.first : null;
+          // BERABERLİK: en yüksek skoru BİRDEN ÇOK oyuncu paylaşıyorsa maç
+          // beraberedir — kimse "kazanan" gösterilmez (aksi halde her istemci
+          // kendini kazanan sanıyordu). Royale'de eleme sonrası ayakta kalanlar
+          // arasında bakılır.
+          final adaylar = room.isRoyale
+              ? ranked.where((p) => !p.eliminated).toList()
+              : ranked;
+          final enYuksekSkor = adaylar.isEmpty ? 0 : adaylar.first.score;
+          final tepedekiler =
+              adaylar.where((p) => p.score == enYuksekSkor).toList();
+          final berabere = tepedekiler.length > 1;
+          final winner =
+              berabere ? null : (ranked.isNotEmpty ? ranked.first : null);
           final iAmWinner = winner != null && winner.uid == myUid;
+          final iAmDraw =
+              berabere && myUid != null && tepedekiler.any((p) => p.uid == myUid);
 
-          final vurgu = iAmWinner ? c.gold : (room.isRoyale ? c.roseL : c.violetL);
+          final vurgu = iAmWinner
+              ? c.gold
+              : (berabere ? c.mint : (room.isRoyale ? c.roseL : c.violetL));
 
           return ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              // ── Kazanan kutlaması ──
+              // ── Kazanan / beraberlik kutlaması ──
               DsCard(
                 accent: vurgu,
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
                     DsIllustration(
-                      emoji: iAmWinner ? '🏆' : (room.isRoyale ? '👑' : '🎉'),
+                      emoji: berabere
+                          ? '🤝'
+                          : (iAmWinner ? '🏆' : (room.isRoyale ? '👑' : '🎉')),
                       glowColor: vurgu,
                       size: 96,
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      winner == null
-                          ? 'Maç Bitti'
-                          : (room.isRoyale
-                              ? '${winner.name} Şampiyon!'
-                              : '${winner.name} Kazandı!'),
+                      berabere
+                          ? 'Berabere!'
+                          : (winner == null
+                              ? 'Maç Bitti'
+                              : (room.isRoyale
+                                  ? '${winner.name} Şampiyon!'
+                                  : '${winner.name} Kazandı!')),
                       textAlign: TextAlign.center,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 19, fontWeight: FontWeight.w900, color: c.text),
                     ),
-                    if (iAmWinner) ...[
+                    if (berabere) ...[
+                      const SizedBox(height: 8),
+                      DsChip(
+                        label: iAmDraw
+                            ? 'BERABERE KALDINIZ ($enYuksekSkor puan)'
+                            : 'EŞİT SKOR — BERABERE',
+                        color: c.mint,
+                      ),
+                    ] else if (iAmWinner) ...[
                       const SizedBox(height: 8),
                       DsChip(label: 'TEBRİKLER, KAZANAN SENSİN', color: c.gold),
                     ],
@@ -244,7 +272,8 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: kDsGap - 4),
                   child: _StandingRow(
-                    rank: i + 1,
+                    // Eşit skorlar AYNI sırayı alır (berabere yanıltmasın).
+                    rank: 1 + ranked.where((p) => p.score > ranked[i].score).length,
                     player: ranked[i],
                     isMe: ranked[i].uid == myUid,
                     showEliminationNote: room.isRoyale,
