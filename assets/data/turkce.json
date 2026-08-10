@@ -2767,18 +2767,6 @@
           "aciklama": "Yapısal kelimesi, cümlelerin birbirine eklenerek uzun cümleler oluşturabilmesinden bahsetmektedir. Bu nedenle doğru cevaptır."
         },
         {
-          "soru": "Mehmet'in annesinin babası kaç yaşındaydı?",
-          "secenekler": [
-            "Mehmet'in annesinin babası 40 yaşındaydı.",
-            "Mehmet'in annesinin babası 50 yaşındaydı.",
-            "Mehmet'in annesinin babası 60 yaşındaydı.",
-            "Bilgi yok.",
-            "Bilinmiyor."
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Eğer bu seçeneği seçen kişi, paragrafın içinde Mehmet'in annesinin babası ile ilgili bir bilgi olmadığının farkında ise bu seçeneği seçmiş olabilir."
-        },
-        {
           "soru": "Aşağıdaki paragrafın genel anlamı nedir? Türk dilinin zenginleşmesi ve gelişmesi için dilbilgisi kurallarının yanı sıra yazım kuralları da büyük önem taşımaktadır. Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar. Bu kurallar olmadan, dilin anlamı ve yapısı bozulur. Örneğin, nokta ve virgül gibi noktalama işaretlerinin doğru kullanımı, cümlelerin anlamını değiştirebilir. Aynı şekilde, büyük ve küçük harflerin doğru kullanımı da önemlidir. Büyük harfler, cümlelerin başlangıcını ve özel isimlerin başını gösterirken, küçük harfler cümlelerin geri kalan kısmını oluşturur. Bu nedenle, yazım kurallarına uymak, dilin doğru ve etkili bir şekilde kullanılmasını sağlar.",
           "secenekler": [
             "Türkçenin zenginleşmesi için yazım kurallarına uymak önemlidir.",

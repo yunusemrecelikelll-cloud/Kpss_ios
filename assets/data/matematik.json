@@ -13569,30 +13569,6 @@
           "aciklama": "Bu seçenek doğru cevaptır."
         },
         {
-          "soru": "Bir fabrikada 15 işçi var ve her işçi 8 saat çalışıyor. Toplam çalışma saatleri 120 saatti. Her işçi 1 saatte ne kadar iş yapar?",
-          "secenekler": [
-            "10 saat",
-            "8 saat",
-            "6 saat",
-            "12 saat",
-            "5 saat"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için, bu seçeneği seçen kullanıcı doğru cevabı seçmiştir."
-        },
-        {
-          "soru": "Bir işçi 2 saatte 15 metre yol alıyor. 1 saatte ne kadar yol alır?",
-          "secenekler": [
-            "7,5 metre",
-            "10 metre",
-            "5 metre",
-            "15 metre",
-            "20 metre"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için, bu seçeneği seçen kullanıcı doğru cevabı seçmiştir."
-        },
-        {
           "soru": "175 km'lik bir yolu 7 saatte alan bir motosikletin hızı kaç km/saattir?",
           "secenekler": [
             "4",
@@ -19606,54 +19582,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Üçgenin alanını hesaplamak için, üçgenin taban uzunluğu ve yüksekliği kullanılır. Üçgenin bir kenar uzunluğu 10 cm, diğer iki kenar uzunluğu 8 cm ve 12 cm olduğu için, doğru cevap (1/2) x 10 x (8+12) dir."
-        },
-        {
-          "soru": "Bir dairenin yarıçapı 5 cm ve bir açısı 60° ise, odağının koordinatları:",
-          "secenekler": [
-            "(-5, 5√3)",
-            "(5, -5√3)",
-            "(5, 5√3)",
-            "(-5, -5√3)",
-            "(5√3, 5)"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için kullanıcılar, açının 60° olduğu için dairenin 30-60-90 derece üçgeni ile ilişkisini doğru olarak yorumlayabilir."
-        },
-        {
-          "soru": "Bir dik üçgenin iki kenarı 5 cm ve 12 cm uzunluğunda ise, üçüncü kenarın uzunluğu:",
-          "secenekler": [
-            "8 cm",
-            "15 cm",
-            "13 cm",
-            "9 cm",
-            "16 cm"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için kullanıcılar, dik üçgenin iki kenarı 5 cm ve 12 cm uzunluğunda olduğu için, üçüncü kenarın uzunluğunu doğru olarak hesaplayabilir."
-        },
-        {
-          "soru": "Bir paralelkenarın bir kenarı 8 cm uzunluğunda ise, diğer kenarların uzunlukları:",
-          "secenekler": [
-            "4 cm, 4 cm, 4 cm, 4 cm",
-            "6 cm, 6 cm, 6 cm, 6 cm",
-            "8 cm, 8 cm, 8 cm, 8 cm",
-            "3 cm, 3 cm, 3 cm, 3 cm",
-            "2 cm, 2 cm, 2 cm, 2 cm"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için kullanıcılar, paralelkenarın bir kenarı 8 cm uzunluğunda olduğu için, diğer kenarların uzunluğunu doğru olarak hesaplayabilir."
-        },
-        {
-          "soru": "Bir dikdörtgenin iki kenarı 6 cm ve 8 cm uzunluğunda ise, alanın ölçüsü:",
-          "secenekler": [
-            "48 cm²",
-            "60 cm²",
-            "80 cm²",
-            "90 cm²",
-            "120 cm²"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için kullanıcılar, dikdörtgenin iki kenarı 6 cm ve 8 cm uzunluğunda olduğu için, alanın ölçüsünü doğru olarak hesaplayabilir."
         },
         {
           "soru": "Bir üçgenin açılardan birinin ölçüsü 60 derece ise, diğer iki açının ölçüleri kaç derecedir?",
@@ -46099,18 +46027,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu seçeneği seçmek, kümedeki elemanların sırasını doğru olarak hesapladığından kaynaklanabilir. 2'nin 3'lü kümede yer değiştirmesi 2, 1, 4, 3 olarak temsil edilir."
-        },
-        {
-          "soru": "Bir küme iki elemandan oluşur. Kümeye 2 ve 4 sayıları eklenirse küme ne olur?",
-          "secenekler": [
-            "Küme 2 ve 4 sayılarından oluşur.",
-            "Küme 2, 4 ve 6 sayılarından oluşur.",
-            "Küme 2, 4 ve 8 sayılarından oluşur.",
-            "Küme 4 ve 6 sayılarından oluşur.",
-            "Küme 2 ve 8 sayılarından oluşur."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Kullanıcı, 2 ve 4 sayılarının eklenmesiyle küme 2, 4, 6 sayılarından oluşur. Bu seçeneğin doğru olduğu için bu nedene dayanır."
         },
         {
           "soru": "Bir kümede 5 sayının yer alması zorunludur. Kümeye 7 sayısı eklenirse küme ne olur?",

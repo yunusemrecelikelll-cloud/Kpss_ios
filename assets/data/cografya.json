@@ -1365,30 +1365,6 @@
           "aciklama": "Bu seçeneği seçen, Türkiye'nin coğrafi yapısını doğru olarak belirlemiş olabilir."
         },
         {
-          "soru": "Türkiye'nin coğrafi konumu ne tür etkiler yaratır?",
-          "secenekler": [
-            "Türkiye'nin coğrafi konumu, ekonomisinin gelişmesine ve siyasi yapısına etkisi olur.",
-            "Türkiye'nin coğrafi konumu, kültürel yapısına ve tarihi olaylarına etkisi olmaz.",
-            "Türkiye'nin coğrafi konumu, iklimine ve bitki örtüsüne etkisi olmaz.",
-            "Türkiye'nin coğrafi konumu, jeolojik yapısına etkisi olmaz.",
-            "Türkiye'nin coğrafi konumu, coğrafi olaylarına etkisi olmaz."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz. Çünkü Türkiye'nin coğrafi konumu, ekonomisinin gelişmesine ve siyasi yapısına etkisi olan bir faktördür."
-        },
-        {
-          "soru": "Türkiye'nin coğrafi konumu ne tür avantajlar sunar?",
-          "secenekler": [
-            "Türkiye'nin coğrafi konumu, ekonomisinin gelişmesine ve siyasi yapısına avantajlar sunar.",
-            "Türkiye'nin coğrafi konumu, kültürel yapısına ve tarihi olaylarına avantajlar sunmaz.",
-            "Türkiye'nin coğrafi konumu, iklimine ve bitki örtüsüne avantajlar sunmaz.",
-            "Türkiye'nin coğrafi konumu, jeolojik yapısına avantajlar sunmaz.",
-            "Türkiye'nin coğrafi konumu, coğrafi olaylarına avantajlar sunmaz."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz. Çünkü Türkiye'nin coğrafi konumu, ekonomisinin gelişmesine ve siyasi yapısına avantajlar sunan bir faktördür."
-        },
-        {
           "soru": "Türkiye, Asya ve Avrupa kıtalarının birleştiği noktada yer alır. Bu konum itibariyle hangi özelliğe sahiptir?",
           "secenekler": [
             "Sadece Asya kıtasında yer alır",
@@ -5154,42 +5130,6 @@
           "aciklama": "Bu seçeneği seçenler, bölgelerin coğrafi özelliklerinin iklimi doğru olarak etkilediğini algılamış olabilirler."
         },
         {
-          "soru": "Türkiye'nin iklimi genel olarak neye benzeyen bir yapıya sahiptir?",
-          "secenekler": [
-            "Karasal iklim",
-            "İklimin değişkenliği yüksek, farklı bölgelerde farklı iklimler vardır",
-            "Sicaktaki iklim",
-            "Kurak iklim",
-            "Tropikal iklim"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama boş olacaktır."
-        },
-        {
-          "soru": "Türkiye'nin ikliminin en önemli özelliği nedir?",
-          "secenekler": [
-            "İklimin değişkenliği az, her yer aynı iklimi sahiptir",
-            "İklimin değişkenliği yüksek, farklı bölgelerde farklı iklimler vardır",
-            "Sıcaklık derecesinin yüksek olması",
-            "Yağışın az olması",
-            "Kuraklık"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama boş olacaktır."
-        },
-        {
-          "soru": "Türkiye'nin en soğuk iklimi nerededir?",
-          "secenekler": [
-            "İç Anadolu Bölgesi",
-            "Doğu Anadolu Bölgesi",
-            "Kuzeydoğu Anadolu Bölgesi",
-            "Kuzeybatı Anadolu Bölgesi",
-            "Güneydoğu Anadolu Bölgesi"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama boş olacaktır."
-        },
-        {
           "soru": "Türkiye'nin ikliminde en önemli etken ne olabilir?",
           "secenekler": [
             "Denizlerin etkisi",
@@ -5200,30 +5140,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Bütün bu faktörlerin etkisi, Türkiye'nin ikliminde en önemli etken olabilir."
-        },
-        {
-          "soru": "Türkiye'nin ikliminin en önemli farklılaşması nerededir?",
-          "secenekler": [
-            "İç Anadolu Bölgesi",
-            "Doğu Anadolu Bölgesi",
-            "Kuzeydoğu Anadolu Bölgesi",
-            "Kuzeybatı Anadolu Bölgesi",
-            "Güneydoğu Anadolu Bölgesi"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama boş olacaktır."
-        },
-        {
-          "soru": "Türkiye'nin iklimi genel olarak nerede daha nóngtur?",
-          "secenekler": [
-            "Doğu Anadolu Bölgesi",
-            "Batı Anadolu Bölgesi",
-            "Güneydoğu Anadolu Bölgesi",
-            "İç Anadolu Bölgesi",
-            "Kuzeydoğu Anadolu Bölgesi"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama boş olacaktır."
         },
         {
           "soru": "Türkiye'nin iklimi, coğrafi konumu ve topografyası neye göre sınıflandırılır?",

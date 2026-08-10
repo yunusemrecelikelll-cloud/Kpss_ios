@@ -1782,18 +1782,6 @@
           "aciklama": "Bu seçeneği seçenler, hukuk kurallarının toplumun temel değerlerine ve normlarına uygun olarak oluşturulan kurallardan yola çıkmış olabilirler."
         },
         {
-          "soru": "Hukukun temel kavramları arasında yer alan 'Hukukun Kaynakları'ndan biri de 'İnsan Hakları'dır. Bu kavram, hukukun temel ilkelerinden biridir. İnsan hakları, bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-          "secenekler": [
-            "İnsan hakları, devletlerin vatandaşlarına tanıdığı hak ve özgürlüklerdir.",
-            "İnsan hakları, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır.",
-            "İnsan hakları, uluslararası hukuk tarafından belirlenir ve devletlerin vatandaşlarına tanıdığı hak ve özgürlüklerdir.",
-            "İnsan hakları, hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır, fakat devletlerin vatandaşlarına tanıdığı hak ve özgürlükler değildir.",
-            "İnsan hakları, hukukun temel ilkelerinden biridir, fakat bireylerin temel özgürlük ve haklarını koruma amacını taşır."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneğin doğru olduğunu tahmin edebiliriz, çünkü insan hakları hukukun temel ilkelerinden biridir ve bireylerin temel özgürlük ve haklarını koruma amacını taşır."
-        },
-        {
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ndan biri hangisidir?",
           "secenekler": [
             "Yasama organının verdiği kararlar",
@@ -2380,18 +2368,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu seçeneğin doğru olduğunu anlayan kullanıcı, bu seçeneği büyük ihtimalle hukukun temel kavramlarından biri olduğunu düşünerek seçmiştir."
-        },
-        {
-          "soru": "Hukukun temel kavramlarından biri olan 'Hukuki Nitelik' tanımı nedir?",
-          "secenekler": [
-            "Hukuki nitelik, bir davranışın hukuki sonuçlar doğurmasını sağlar.",
-            "Hukuki nitelik, bir davranışın hukuki sonuçlar doğurmasını engeller.",
-            "Hukuki nitelik, bir davranışın hukuki sonuçlar doğurmamasını sağlar.",
-            "Hukuki nitelik, bir davranışın hukuki sonuçlar doğurmamasını engeller.",
-            "Hukuki nitelik, bir davranışın hukuki sonuçlar doğurmasını ve engellediğini sağlar."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için neden seçilebilir."
         },
         {
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ndan hangisi devletin yetkisini sınırlayan bir kaynaktır?",
@@ -24717,42 +24693,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Doğru cevap"
-        },
-        {
-          "soru": "İdarenin temel özelliklerinden biri nedir?",
-          "secenekler": [
-            "Kanunlara uymak ve kamu yararı için çalışmak.",
-            "Kanunlara uymak ve özel yararı için çalışmak.",
-            "Kanunlara uymamak ve kamu yararı için çalışmak.",
-            "Kanunlara uymamak ve özel yararı için çalışmak.",
-            "Kanunlara uymamak ve kamu yararı için çalışmamak."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama yok."
-        },
-        {
-          "soru": "İdarenin temel kaynakları nelerdir?",
-          "secenekler": [
-            "Kanunlar, yönetmelikler ve idari kararlar.",
-            "Kanunlar, yönetmelikler ve idari kararlar, yargı kararları.",
-            "Kanunlar, yönetmelikler ve idari kararlar, yargı kararları ve uluslararası anlaşmalar.",
-            "Kanunlar, yönetmelikler ve idari kararlar, yargı kararları ve kamuoyu.",
-            "Kanunlar, yönetmelikler ve idari kararlar, yargı kararları ve özel sektör."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama yok."
-        },
-        {
-          "soru": "İdareye karşı denetimler nelerdir?",
-          "secenekler": [
-            "Kanunlar, yargı ve kamuoyu.",
-            "Kanunlar, yargı ve kamuoyu, özel sektör.",
-            "Kanunlar, yargı ve kamuoyu, yargı.",
-            "Kanunlar, yargı ve kamuoyu, idari denetim.",
-            "Kanunlar, yargı ve kamuoyu, idari denetim ve özel sektör."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin doğru olduğu için bu açıklama yok."
         },
         {
           "soru": "İdare hukuku ve yönetim kavramı ile ilgili olarak aşağıdakilerden hangisi doğrudur?",

@@ -13885,30 +13885,6 @@
           "aciklama": "Doğru cevaptır, Qin Shi Huang Çin'in ilk imparatorudur."
         },
         {
-          "soru": "I. Dünya Savaşı'nın çıkmasıyla birlikte Osmanlı İmparatorluğu'nun yıkılması ve Türkiye'nin kurulması arasında bağlantı nedir?",
-          "secenekler": [
-            "Osmanlı İmparatorluğu'nun çöküşü ve Türkiye'nin kurulması I. Dünya Savaşı'ndan bağımsız bir olaydır.",
-            "I. Dünya Savaşı'ndan sonra Osmanlı İmparatorluğu'nun yenilgisi ve Türkiye'nin kurulması arasında yakın bir bağlantı vardır.",
-            "I. Dünya Savaşı'ndan önce Osmanlı İmparatorluğu'nun çöküşü ve Türkiye'nin kurulması arasında bir bağlantı yoktur.",
-            "I. Dünya Savaşı'ndan sonra Türkiye'nin kurulmasıyla Osmanlı İmparatorluğu'nun yıkılması arasında bir bağlantı yoktur.",
-            "I. Dünya Savaşı'ndan önce Türkiye'nin kurulmasıyla Osmanlı İmparatorluğu'nun yıkılması arasında bir bağlantı yoktur."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneği seçen kullanıcı doğru cevabı seçmiştir. I. Dünya Savaşı'ndan sonra Osmanlı İmparatorluğu'nun yenilgisi ve Türkiye'nin kurulması arasında yakın bir bağlantı vardır."
-        },
-        {
-          "soru": "Birinci Dünya Savaşı'nın çıkmasıyla birlikte Çarlık Rusyası'nın çöküşü ve Rusya'nın devrimi arasında bağlantı nedir?",
-          "secenekler": [
-            "Çarlık Rusyası'nın çöküşü ve Rusya'nın devrimi Birinci Dünya Savaşı'ndan bağımsız bir olaydır.",
-            "Birinci Dünya Savaşı'ndan sonra Çarlık Rusyası'nın çöküşü ve Rusya'nın devrimi arasında yakın bir bağlantı vardır.",
-            "Birinci Dünya Savaşı'ndan önce Çarlık Rusyası'nın çöküşü ve Rusya'nın devrimi arasında bir bağlantı yoktur.",
-            "Birinci Dünya Savaşı'ndan sonra Rusya'nın devrimi ile Çarlık Rusyası'nın çöküşü arasında bir bağlantı yoktur.",
-            "Birinci Dünya Savaşı'ndan önce Rusya'nın devrimi ile Çarlık Rusyası'nın çöküşü arasında bir bağlantı yoktur."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneği seçen kullanıcı doğru cevabı seçmiştir. Birinci Dünya Savaşı'ndan sonra Çarlık Rusyası'nın çöküşü ve Rusya'nın devrimi arasında yakın bir bağlantı vardır."
-        },
-        {
           "soru": "Antik Yunanistan'da demokrasi ilk olarak hangi şehre kurulmuştur?",
           "secenekler": [
             "Atina",
