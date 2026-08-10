@@ -6224,6 +6224,177 @@
           "aciklama": "1915 Çanakkale Köprüsü, 2.023 metrelik orta açıklığıyla dünyanın en uzun orta açıklıklı asma köprüsüdür.",
           "distractorAciklama": "İstanbul ve Osmangazi köprüleri de asma köprülerdir ama orta açıklıkları daha kısadır.",
           "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "7-8 Temmuz 2026'da düzenlenen 36. NATO Zirvesi hangi şehirde yapılmıştır?",
+          "secenekler": ["A) İstanbul", "B) Brüksel", "C) Ankara", "D) Lahey"],
+          "dogruIndex": 2,
+          "aciklama": "36. NATO Devlet ve Hükümet Başkanları Zirvesi 2026'da Ankara'da yapılmıştır.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "NATO'ya en son katılarak 32. üye olan ülke hangisidir?",
+          "secenekler": ["A) Finlandiya", "B) İsveç", "C) Ukrayna", "D) Gürcistan"],
+          "dogruIndex": 1,
+          "aciklama": "İsveç 7 Mart 2024'te katılarak NATO'nun 32. üyesi olmuştur.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Mekke Ortak Savunma Anlaşması aşağıdaki devletlerden hangisini taraf olarak KAPSAMAZ?",
+          "secenekler": ["A) Türkiye", "B) Suudi Arabistan", "C) Pakistan", "D) Mısır"],
+          "dogruIndex": 3,
+          "aciklama": "Anlaşmanın tarafları Türkiye, Suudi Arabistan ve Pakistan'dır (7 Ağustos 2026).",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Türkiye'nin 2025'te aktif hizmete alınan ilk yerli ve millî haberleşme uydusu hangisidir?",
+          "secenekler": ["A) GÖKTÜRK-2", "B) RASAT", "C) TÜRKSAT 6A", "D) TÜRKSAT 5A"],
+          "dogruIndex": 2,
+          "aciklama": "TÜRKSAT 6A, Türkiye'nin ilk yerli ve millî haberleşme uydusudur.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Yerli otomobil TOGG'un seri üretimi hangi yıl başlamıştır?",
+          "secenekler": ["A) 2021", "B) 2022", "C) 2023", "D) 2024"],
+          "dogruIndex": 2,
+          "aciklama": "TOGG'un seri üretimi 2023'te Bursa'da başlamıştır.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "13 Mart 2026'da vefat eden ünlü tarihçi kimdir?",
+          "secenekler": ["A) Halil İnalcık", "B) İlber Ortaylı", "C) Kemal Karpat", "D) Feridun Emecen"],
+          "dogruIndex": 1,
+          "aciklama": "13 Mart 2026'da tarihçi İlber Ortaylı vefat etmiştir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "2026 Dünya Kitap Başkenti seçilen Rabat hangi ülkenin başkentidir?",
+          "secenekler": ["A) Tunus", "B) Cezayir", "C) Fas", "D) Mısır"],
+          "dogruIndex": 2,
+          "aciklama": "Rabat, Fas'ın başkentidir ve 2026 Dünya Kitap Başkenti seçilmiştir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Ocak 2026'da Euro para birimine geçen ve Euro bölgesinin 21. üyesi olan ülke hangisidir?",
+          "secenekler": ["A) Bulgaristan", "B) Romanya", "C) Polonya", "D) Macaristan"],
+          "dogruIndex": 0,
+          "aciklama": "Bulgaristan, Euro bölgesine dâhil olan 21. ülkedir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Nisan 2026'da Türkiye'de sosyal medya uygulamalarına getirilen yaş sınırı kaçtır?",
+          "secenekler": ["A) 13", "B) 14", "C) 15", "D) 18"],
+          "dogruIndex": 2,
+          "aciklama": "Sosyal medya kullanımına 15 yaş sınırı getirilmiştir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK verilerine göre Türkiye'nin nüfusu yaklaşık kaçtır?",
+          "secenekler": ["A) 82 milyon", "B) 84 milyon", "C) 86 milyon", "D) 90 milyon"],
+          "dogruIndex": 2,
+          "aciklama": "2025 ADNKS sonuçlarına göre nüfus 86 milyon 92 bin 168'dir.",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK'e göre Türkiye'de nüfusu ilk kez 1 milyonu aşan ilçe hangisidir?",
+          "secenekler": ["A) Bağcılar", "B) Esenyurt", "C) Küçükçekmece", "D) Keçiören"],
+          "dogruIndex": 1,
+          "aciklama": "İstanbul Esenyurt, 1 milyon 3 bin 905 kişiyle nüfusu 1 milyonu aşan ilk ilçedir.",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK verilerine göre koyun varlığında ilk sırada yer alan il hangisidir?",
+          "secenekler": ["A) Konya", "B) Van", "C) Şanlıurfa", "D) Erzurum"],
+          "dogruIndex": 1,
+          "aciklama": "Koyun varlığında ilk sırada Van, ardından Konya ve Şanlıurfa gelir.",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "Zeugma Mozaik Müzesi (Çingene Kızı mozaiği) hangi ilimizdedir?",
+          "secenekler": ["A) Hatay", "B) Gaziantep", "C) Şanlıurfa", "D) Kayseri"],
+          "dogruIndex": 1,
+          "aciklama": "Zeugma Mozaik Müzesi Gaziantep'tedir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Balta Limanı Ticaret Antlaşması (1838) ile gümrük vergileri nasıl belirlenmiştir?",
+          "secenekler": ["A) İhracat %5, ithalat %12", "B) İhracat %12, ithalat %5", "C) İkisi de %8", "D) İkisi de %3"],
+          "dogruIndex": 1,
+          "aciklama": "Tersine gümrük tarifesiyle ihracat %12, ithalat %5 yapılmış; yerli üretici zarar görmüştür.",
+          "kaynak": "Tarih"
+        },
+        {
+          "soru": "Kudüs Fatihi olarak bilinen komutan kimdir?",
+          "secenekler": ["A) Yavuz Sultan Selim", "B) Selahaddin Eyyubi", "C) Nureddin Zengi", "D) Kılıç Arslan"],
+          "dogruIndex": 1,
+          "aciklama": "1187 Hıttin Zaferi sonrası Kudüs'ü Selahaddin Eyyubi fethetmiştir.",
+          "kaynak": "Tarih"
+        }
+      ]
+    },
+    {
+      "id": "guncel-2026-tuik",
+      "baslik": "2026 Güncel Olaylar ve 2025 TÜİK Verileri",
+      "anlatim": {
+        "ozet": "🗓️ 2026'nın öne çıkan güncel gündemi (NATO Zirvesi, savunma sanayii, uluslararası atamalar) ile 2025 TÜİK Adrese Dayalı Nüfus Kayıt Sistemi ve tarım-hayvancılık verilerinin özeti. KPSS güncel bilgiler için sık sorulan başlıklar bir arada.",
+        "icerik": [
+          "📌 2026 uluslararası gündem: 7-8 Temmuz 2026'da 36. NATO Devlet ve Hükümet Başkanları Zirvesi Ankara'da (Cumhurbaşkanlığı Külliyesi) yapıldı. NATO'ya en son katılan 32. üye İsveç'tir (7 Mart 2024); Finlandiya 31. üyedir. NATO'nun siyasi merkezi Brüksel, Genel Sekreteri Mark Rutte'dir. Türkiye NATO'ya 18 Şubat 1952'de (Yunanistan ile birlikte) üye olmuştur.",
+          "📎 7 Ağustos 2026'da imzalanan Mekke Ortak Savunma Anlaşması'nın tarafları Türkiye, Suudi Arabistan ve Pakistan'dır; anlaşma kolektif savunma (birine saldırı hepsine saldırı) esasına dayanır. Savunma sanayii: ilk yerli haberleşme uydusu TÜRKSAT 6A, millî muharip uçak KAAN (üretici TUSAŞ), insansız savaş uçağı KIZILELMA, Gökbey helikopteri motoru TS1400, sondaj gemisi Abdülhamid Han. Yerli otomobil TOGG'un seri üretimi 2023'te Bursa'da başladı.",
+          "📎 2026 diğer güncel: 13 Mart 2026'da tarihçi İlber Ortaylı vefat etti. 2026 Dünya Kitap Başkenti Rabat (Fas). Ocak 2026'da Euro bölgesine geçen 21. ülke Bulgaristan. Nisan 2026'da sosyal medya uygulamalarına 15 yaş sınırı getirildi. TEKNOFEST 2026 Şanlıurfa'da düzenlendi.",
+          "📌 2025 TÜİK nüfus verileri: Türkiye nüfusu 86 milyon 92 bin 168 kişi; yıllık artış hızı binde 5. Nüfusu en fazla ilk beş il: İstanbul, Ankara, İzmir, Bursa, Antalya. Nüfusu en az ilk beş il: Bayburt, Tunceli, Ardahan, Gümüşhane, Kilis. Nüfusu ilk kez 1 milyonu aşan ilçe Esenyurt (İstanbul) oldu. Nüfusun ortanca yaşı 34,9; ortanca yaşı en yüksek il Sinop, en düşük il Şanlıurfa.",
+          "📎 2025 TÜİK yoğunluk ve tarım-hayvancılık: Nüfus yoğunluğu Türkiye genelinde 112 kişi/km²; en yüksek İstanbul (2.943), en az Tunceli (11). Tarım/hayvancılıkta öne çıkan iller: çay-Rize, zeytin-Aydın, incir-Aydın, üzüm-Manisa, muz-Antalya, Antep fıstığı-Şanlıurfa, buğday ve şeker pancarı-Konya; koyun-Van, sığır-Konya, tiftik keçisi-Ankara, bal-Ordu, ipek böcekçiliği-Diyarbakır."
+        ],
+        "anahtarNoktalar": [
+          "🔑 36. NATO Zirvesi: 7-8 Temmuz 2026, Ankara. NATO 32. üye İsveç (2024), merkez Brüksel.",
+          "💡 Mekke Ortak Savunma Anlaşması (7 Ağustos 2026): Türkiye-Suudi Arabistan-Pakistan, kolektif savunma.",
+          "🔑 Yerli teknoloji: TÜRKSAT 6A (uydu), KAAN (TUSAŞ), KIZILELMA, TS1400, Abdülhamid Han, TOGG (2023).",
+          "💡 2025 TÜİK nüfus: 86 milyon; en fazla İstanbul, en az Bayburt; ilk 1 milyonluk ilçe Esenyurt; ortanca yaş 34,9.",
+          "🔑 2025 TÜİK yoğunluk: 112 kişi/km²; en yüksek İstanbul (2.943), en az Tunceli (11).",
+          "💡 2025 tarım/hayvancılık: çay-Rize, zeytin-Aydın, koyun-Van, sığır-Konya, bal-Ordu, ipek böceği-Diyarbakır."
+        ]
+      },
+      "sorular": [
+        {
+          "soru": "2025 TÜİK verilerine göre Türkiye'de nüfus yoğunluğu (kişi/km²) en yüksek olan il hangisidir?",
+          "secenekler": ["A) Ankara", "B) İzmir", "C) İstanbul", "D) Kocaeli"],
+          "dogruIndex": 2,
+          "aciklama": "İstanbul kilometrekareye 2.943 kişiyle en yüksek; en az yoğunluk Tunceli'dedir (11).",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK'e göre Türkiye nüfusunun ortanca yaşı kaçtır?",
+          "secenekler": ["A) 32,4", "B) 33,5", "C) 34,9", "D) 36,1"],
+          "dogruIndex": 2,
+          "aciklama": "Ortanca yaş 34,9'a yükselmiştir; en yüksek Sinop, en düşük Şanlıurfa'dadır.",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "NATO'nun mevcut Genel Sekreteri kimdir?",
+          "secenekler": ["A) Jens Stoltenberg", "B) Mark Rutte", "C) Ursula von der Leyen", "D) Josep Borrell"],
+          "dogruIndex": 1,
+          "aciklama": "1 Ekim 2024'ten itibaren NATO Genel Sekreteri Mark Rutte'dir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "Türk savunma sanayiinde millî muharip uçak KAAN'ı geliştiren kuruluş hangisidir?",
+          "secenekler": ["A) ASELSAN", "B) ROKETSAN", "C) TUSAŞ", "D) HAVELSAN"],
+          "dogruIndex": 2,
+          "aciklama": "KAAN, TUSAŞ (Türk Havacılık ve Uzay Sanayii) tarafından geliştirilmektedir.",
+          "kaynak": "2026-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK verilerine göre sığır varlığında ilk sırada yer alan il hangisidir?",
+          "secenekler": ["A) Erzurum", "B) Konya", "C) Sivas", "D) Balıkesir"],
+          "dogruIndex": 1,
+          "aciklama": "Sığır varlığında ilk sırada Konya yer alır.",
+          "kaynak": "2025-Güncel"
+        },
+        {
+          "soru": "2025 TÜİK'e göre bal üretiminde ilk sırada yer alan il hangisidir?",
+          "secenekler": ["A) Muğla", "B) Adana", "C) Ordu", "D) Bingöl"],
+          "dogruIndex": 2,
+          "aciklama": "Bal üretiminde ilk sırada Ordu, ardından Adana ve Muğla gelir.",
+          "kaynak": "2025-Güncel"
         }
       ]
     }

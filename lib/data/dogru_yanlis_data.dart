@@ -5847,4 +5847,213 @@ const List<DogruYanlisOnerme> kDogruYanlisOnermeler = [
     ders: 'Güncel Bilgiler',
     aciklama: "Dünya Sağlık Örgütü'nün kısaltması WHO (DSÖ)'dür; UNESCO eğitim-kültür örgütüdür.",
   ),
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // 2026 GÜNCEL + 2025 TÜİK + TARİH EK ÖNERMELER (sınav notlarından derlendi)
+  // ═══════════════════════════════════════════════════════════════════════
+  DogruYanlisOnerme(
+    metin: "Mekke Ortak Savunma Anlaşması Türkiye, Suudi Arabistan ve Pakistan arasında imzalanmıştır.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "7 Ağustos 2026'da imzalanan anlaşma kolektif savunma esasına dayanır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Mekke Ortak Savunma Anlaşması 7 Ağustos 2025'te imzalanmıştır.",
+    dogru: false, ders: 'Güncel Bilgiler',
+    aciklama: "Doğru tarih 7 Ağustos 2026'dır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2026 NATO Zirvesi Ankara'da düzenlenmiştir.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "7-8 Temmuz 2026'daki 36. NATO Zirvesi Ankara'da yapılmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "NATO'ya en son katılan (32.) üye İsveç'tir.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "İsveç 7 Mart 2024'te katılmıştır; Finlandiya 31. üyedir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "NATO'nun siyasi merkezi Paris'tedir.",
+    dogru: false, ders: 'Güncel Bilgiler',
+    aciklama: "NATO'nun siyasi merkezi Brüksel'dir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Türkiye NATO'ya 1952 yılında üye olmuştur.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "Türkiye, Yunanistan ile birlikte 18 Şubat 1952'de NATO'ya katılmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "NATO'yu kuran Kuzey Atlantik Antlaşması 1949'da Washington'da imzalanmıştır.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "4 Nisan 1949'da imzalanmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Türkiye'nin ilk yerli ve millî haberleşme uydusu TÜRKSAT 6A'dır.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "2025'te aktif hizmete alınmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "TOGG Türkiye'nin yerli otomobil markasıdır ve Bursa'da üretilmektedir.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "Seri üretimi 2023'te başlamıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "13 Mart 2026'da vefat eden ünlü tarihçi Halil İnalcık'tır.",
+    dogru: false, ders: 'Güncel Bilgiler',
+    aciklama: "13 Mart 2026'da vefat eden tarihçi İlber Ortaylı'dır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2026 Dünya Kitap Başkenti seçilen Rabat, Fas'ın başkentidir.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "UNESCO tarafından 2026 Dünya Kitap Başkenti seçilmiştir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Euro para birimine geçen 21. ülke Bulgaristan olmuştur.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "Ocak 2026'da Euro bölgesine dâhil olmuştur.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK verilerine göre Türkiye nüfusu 86 milyonu aşmıştır.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "2025 ADNKS sonuçlarına göre nüfus 86 milyon 92 bin 168'dir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK'e göre nüfusu en fazla il İstanbul'dur.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "İstanbul, Ankara, İzmir, Bursa ve Antalya ilk beştedir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK'e göre nüfusu en az il Tunceli'dir.",
+    dogru: false, ders: 'Coğrafya',
+    aciklama: "En az nüfuslu il Bayburt'tur; Tunceli nüfus yoğunluğu en az ildir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Türkiye'de nüfusu 1 milyonu ilk kez aşan ilçe Esenyurt'tur.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "2025 TÜİK: İstanbul Esenyurt 1 milyon 3 bin 905 kişiyle ilk sırada.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK'e göre nüfus yoğunluğu en yüksek il İstanbul'dur.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "İstanbul kilometrekareye 2.943 kişi; en az yoğunluk Tunceli (11).",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK'e göre koyun varlığında ilk sırada Konya yer alır.",
+    dogru: false, ders: 'Coğrafya',
+    aciklama: "İlk sırada Van vardır; Konya ikinci sıradadır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK verilerine göre çay üretiminde ilk sıradaki il Rize'dir.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "Doğu Karadeniz'in nemli iklimi çay tarımına elverişlidir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "2025 TÜİK'e göre zeytin üretiminde ilk sıradaki il Aydın'dır.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "Ege Bölgesi zeytin üretiminde öndedir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Cennet-Cehennem obrukları Mersin ilimizdedir.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "Karstik erime şekilleridir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Türkiye'nin en büyük maar gölü Nemrut Krater Gölü'dür.",
+    dogru: false, ders: 'Coğrafya',
+    aciklama: "Nemrut krater (kaldera) gölüdür; en büyük maar gölü Meke değil, maar örneği farklıdır. Nemrit Bitlis'te krater gölüdür.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Türkiye'de yıllık yağışın en fazla olduğu il Rize'dir.",
+    dogru: true, ders: 'Coğrafya',
+    aciklama: "En az yağış alan il ise Iğdır'dır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Balta Limanı Antlaşması (1838) II. Mahmut döneminde imzalanmıştır.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "Sadrazam Mustafa Reşit Paşa'nın girişimiyle İngiltere ile imzalanmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Osmanlı Devleti'ndeki ilk kadı Dursun Fakih'tir.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "Kuruluş döneminde görev yapmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Osmanlı Devleti'nin ilk başkenti Bursa'dır.",
+    dogru: false, ders: 'Tarih',
+    aciklama: "İlk başkent Söğüt'tür; Bursa daha sonra başkent olmuştur.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Yeniçeri Ocağı I. Murat döneminde kurulmuştur.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "Devşirme sistemine dayanan Kapıkulu piyade ocağıdır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Divan-ı Hümayun'u kaldıran padişah Fatih Sultan Mehmet'tir.",
+    dogru: false, ders: 'Tarih',
+    aciklama: "Divan-ı Hümayun'u II. Mahmut kaldırmıştır; kuran Orhan Bey'dir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Osmanlı'da ilk altın parayı Fatih Sultan Mehmet bastırmıştır.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "İstanbul'un fethinden sonra bastırılmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Mimar Sinan'ın ustalık eseri Süleymaniye Camii'dir.",
+    dogru: false, ders: 'Tarih',
+    aciklama: "Ustalık eseri Edirne'deki Selimiye Camii'dir; Süleymaniye kalfalık eseridir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Kudüs Fatihi olarak bilinen komutan Selahaddin Eyyubi'dir.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "1187 Hıttin Savaşı sonrası Kudüs'ü fethetmiştir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Sultanahmet Camii Mimar Sinan tarafından yapılmıştır.",
+    dogru: false, ders: 'Tarih',
+    aciklama: "Sultanahmet Camii Sedefkâr Mehmed Ağa'nın eseridir; Sinan'a ait değildir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Hattı müdafaa yoktur, sathı müdafaa vardır sözü Sakarya Meydan Muharebesi'nde söylenmiştir.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "Mustafa Kemal'in Sakarya Savaşı'ndaki savunma stratejisini anlatır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Ordular! İlk hedefiniz Akdeniz, ileri! sözü Sakarya Meydan Muharebesi'nde söylenmiştir.",
+    dogru: false, ders: 'Tarih',
+    aciklama: "Bu söz Başkomutanlık Meydan Muharebesi'nde söylenmiştir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "İmza tarihi bakımından Küçük Kaynarca Antlaşması'nda ilk kez savaş tazminatı ödenmiştir.",
+    dogru: true, ders: 'Tarih',
+    aciklama: "1774 Küçük Kaynarca'da halifelik ilk kez siyasi amaçla da kullanılmıştır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Anayasa Mahkemesi üye sayısı 13'tür.",
+    dogru: false, ders: 'Vatandaşlık',
+    aciklama: "Anayasa Mahkemesi 15 üyelidir; 13 olan HSK'dir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "HSK (Hâkimler ve Savcılar Kurulu) toplam 13 üyeden oluşur.",
+    dogru: true, ders: 'Vatandaşlık',
+    aciklama: "Başkanı Adalet Bakanı'dır.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Cumhurbaşkanı seçilebilmek için en az 40 yaşını doldurmuş olmak gerekir.",
+    dogru: true, ders: 'Vatandaşlık',
+    aciklama: "Milletvekili/belediye başkanı/muhtar için ise 18 yaş yeterlidir.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Belediye kurulabilmesi için gereken en az nüfus 2000'dir.",
+    dogru: false, ders: 'Vatandaşlık',
+    aciklama: "Belediye için 5000 nüfus gerekir; 2000 köy olma nüfusudur.",
+  ),
+  DogruYanlisOnerme(
+    metin: "Sosyal medya uygulamalarına 2026'da getirilen yaş sınırı 15'tir.",
+    dogru: true, ders: 'Güncel Bilgiler',
+    aciklama: "Nisan 2026'da uygulamaya konulmuştur.",
+  ),
+  DogruYanlisOnerme(
+    metin: "İnsan Hakları Evrensel Beyannamesi 1948'de kabul edilmiş olup 30 maddeden oluşur.",
+    dogru: true, ders: 'Vatandaşlık',
+    aciklama: "10 Aralık 1948'de BM Genel Kurulu'nca kabul edilmiştir.",
+  ),
 ];

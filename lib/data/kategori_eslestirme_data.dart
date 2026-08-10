@@ -817,6 +817,14 @@ const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
     EslestirmeCifti('Yazılım Dili', 'Python'),
     EslestirmeCifti('Açık Kaynak', 'Linux'),
     EslestirmeCifti('Uydu', 'Türksat'),
+    // — 2026 yerli/millî teknoloji (sınav notları) —
+    EslestirmeCifti('İlk Yerli Haberleşme Uydusu', 'TÜRKSAT 6A'),
+    EslestirmeCifti('Millî Muharip Uçak', 'KAAN'),
+    EslestirmeCifti('KAAN Üreticisi', 'TUSAŞ'),
+    EslestirmeCifti('İnsansız Savaş Uçağı', 'KIZILELMA'),
+    EslestirmeCifti('Gökbey Helikopteri Motoru', 'TS1400'),
+    EslestirmeCifti('Sondaj Gemisi', 'Abdülhamid Han'),
+    EslestirmeCifti('İlk Nükleer Santral', 'Akkuyu'),
   ],
 
   // ── GÜNCEL: Dünya Siyaseti ve Uluslararası Örgütler ──
@@ -831,6 +839,14 @@ const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
     EslestirmeCifti('UNICEF', 'Çocuk'),
     EslestirmeCifti('BM Genel Merkezi', 'New York'),
     EslestirmeCifti('Avrupa Konseyi', 'Strazburg'),
+    // — 2026 güncel dünya/NATO (sınav notları) —
+    EslestirmeCifti('36. NATO Zirvesi', 'Ankara'),
+    EslestirmeCifti('NATO 32. Üye', 'İsveç'),
+    EslestirmeCifti('NATO Merkezi', 'Brüksel'),
+    EslestirmeCifti('NATO Genel Sekreteri', 'Mark Rutte'),
+    EslestirmeCifti('Mekke Savunma Anlaşması', '2026'),
+    EslestirmeCifti('UNESCO Merkezi', 'Paris'),
+    EslestirmeCifti('Euro Bölgesi 21. Ülke', 'Bulgaristan'),
   ],
 
   // ── GÜNCEL: Ekonomi ve Kamu Kurumları ──
@@ -859,6 +875,14 @@ const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
     EslestirmeCifti('Aşı', 'Bağışıklık'),
     EslestirmeCifti('DNA', 'Genetik Şifre'),
     EslestirmeCifti('Kâşif', 'James Webb Teleskobu'),
+    // — 2026 güncel kültür/coğrafya (sınav notları) —
+    EslestirmeCifti('2026 Dünya Kitap Başkenti', 'Rabat'),
+    EslestirmeCifti('Nemrut Dağı', 'Adıyaman'),
+    EslestirmeCifti('Göbeklitepe', 'Şanlıurfa'),
+    EslestirmeCifti('Efes Antik Kenti', 'İzmir'),
+    EslestirmeCifti('Zeugma Mozaik Müzesi', 'Gaziantep'),
+    EslestirmeCifti('En Uzun Köprü', '1915 Çanakkale'),
+    EslestirmeCifti('En Yüksek Baraj', 'Yusufeli'),
   ],
 
   // ── GÜNCEL: Türkiye'nin Yakın Tarihi ──
@@ -873,6 +897,13 @@ const Map<String, List<EslestirmeCifti>> kKonuEslestirmeleri = {
     EslestirmeCifti('Anayasa Mahkemesi', '1961'),
     EslestirmeCifti('Türkiye Başkenti', 'Ankara'),
     EslestirmeCifti('TBMM Açılışı', '1920'),
+    // — 2025 TÜİK / 2026 güncel (sınav notları) —
+    EslestirmeCifti('2025 Türkiye Nüfusu', '86 Milyon'),
+    EslestirmeCifti('En Kalabalık İlçe (2025)', 'Esenyurt'),
+    EslestirmeCifti('Nüfusu En Az İl (2025)', 'Bayburt'),
+    EslestirmeCifti('TEKNOFEST 2026', 'Şanlıurfa'),
+    EslestirmeCifti('Koyun Varlığı 1. (2025)', 'Van'),
+    EslestirmeCifti('Çay Üretimi 1.', 'Rize'),
   ],
 
   // ─────────────────────────── MATEMATİK ───────────────────────────
