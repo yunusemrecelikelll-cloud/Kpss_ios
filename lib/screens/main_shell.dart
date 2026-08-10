@@ -171,14 +171,12 @@ class _RotaGozlemcisi extends NavigatorObserver {
   void didReplace({Route? newRoute, Route? oldRoute}) => onDegisim();
 }
 
-/// Alt navigasyon çubuğu — ANİMASYONLU özel sürüm.
+/// Alt navigasyon çubuğu — GENİŞLEYEN ETİKETLİ HAP (kullanıcı isteği).
 ///
-/// Tasarım (kullanıcı isteği "animasyonlu güzel bişey"):
-///   • Seçili sekmenin arkasında yumuşakça KAYAN altın "pill" göstergesi
-///     (sekme değişince yatayda süzülür).
-///   • Seçili ikon hafifçe büyüyüp "zıplar" (elasticOut bounce) ve dolgulu
-///     hâline geçer.
-///   • Etiket rengi/kalınlığı yumuşak geçer; seçili sekmede altın parıltı.
+/// Tasarım: Seçili olmayan sekmeler yalnızca ikon; SEÇİLİ sekme yumuşakça
+/// yatay bir "hap"a dönüşür ve ikonun yanında ETİKETİ belirir. Sekme
+/// değişiminde eski hap daralıp kapanır, yeni sekme genişleyip açılır
+/// (AnimatedContainer + AnimatedSize ile akıcı geçiş).
 class _AltMenu extends StatelessWidget {
   final List<String> ids;
   final Map<String, (String, IconData, IconData)> labels;
@@ -211,61 +209,30 @@ class _AltMenu extends StatelessWidget {
       ),
       child: SafeArea(
         top: false,
-        child: SizedBox(
-          height: 70,
-          child: LayoutBuilder(builder: (context, con) {
-            final itemW = con.maxWidth / n;
-            final pillW = (itemW - 14).clamp(40.0, 64.0);
-            return Stack(
+        child: Container(
+          height: 66,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          alignment: Alignment.center,
+          // FittedBox: içerik (özellikle uzun "Yanlışlarım" hapı) dar ekrana
+          // sığmazsa TÜM çubuğu orantılı küçültür — taşma olmaz.
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                // ── Kayan altın pill göstergesi (seçili sekmenin arkasında) ──
-                AnimatedPositioned(
-                  duration: const Duration(milliseconds: 340),
-                  curve: Curves.easeOutCubic,
-                  left: index * itemW + (itemW - pillW) / 2,
-                  top: 8,
-                  width: pillW,
-                  height: 40,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          c.gold.withValues(alpha: 0.28),
-                          c.gold.withValues(alpha: 0.12),
-                        ],
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: c.gold.withValues(alpha: 0.45)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: c.gold.withValues(alpha: 0.30),
-                          blurRadius: 14,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
+                for (var i = 0; i < n; i++) ...[
+                  if (i > 0) const SizedBox(width: 6),
+                  _AltMenuOgesi(
+                    label: labels[ids[i]]!.$1,
+                    icon: labels[ids[i]]!.$2,
+                    selectedIcon: labels[ids[i]]!.$3,
+                    secili: i == index,
+                    onTap: () => onSelect(i),
                   ),
-                ),
-                // ── Sekmeler ──
-                Row(
-                  children: [
-                    for (var i = 0; i < n; i++)
-                      Expanded(
-                        child: _AltMenuOgesi(
-                          label: labels[ids[i]]!.$1,
-                          icon: labels[ids[i]]!.$2,
-                          selectedIcon: labels[ids[i]]!.$3,
-                          secili: i == index,
-                          onTap: () => onSelect(i),
-                        ),
-                      ),
-                  ],
-                ),
+                ],
               ],
-            );
-          }),
+            ),
+          ),
         ),
       ),
     );
@@ -296,34 +263,56 @@ class _AltMenuOgesi extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // İkon: seçilince elasticOut ile hafif büyüyüp "zıplar" ve dolgulu
-            // hâline geçer. TweenAnimationBuilder her seçim değişiminde 1→hedef
-            // ölçek animasyonunu tekrar oynatır.
-            TweenAnimationBuilder<double>(
-              tween: Tween(begin: 1.0, end: secili ? 1.18 : 1.0),
-              duration: const Duration(milliseconds: 420),
-              curve: Curves.elasticOut,
-              builder: (context, scale, child) =>
-                  Transform.scale(scale: scale, child: child),
-              child: Icon(secili ? selectedIcon : icon, size: 26, color: renk),
-            ),
-            const SizedBox(height: 4),
-            // Etiket: renk/kalınlık yumuşak geçişli.
-            AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 260),
-              curve: Curves.easeOut,
-              style: TextStyle(
-                fontSize: secili ? 11.5 : 11,
-                fontWeight: secili ? FontWeight.w900 : FontWeight.w600,
-                color: renk,
+        borderRadius: BorderRadius.circular(999),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOutCubic,
+          padding: EdgeInsets.symmetric(
+              horizontal: secili ? 15 : 11, vertical: 9),
+          decoration: BoxDecoration(
+            gradient: secili
+                ? LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      c.gold.withValues(alpha: 0.26),
+                      c.gold.withValues(alpha: 0.12),
+                    ],
+                  )
+                : null,
+            borderRadius: BorderRadius.circular(999),
+            border: secili
+                ? Border.all(color: c.gold.withValues(alpha: 0.45))
+                : null,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(secili ? selectedIcon : icon, size: 25, color: renk),
+              // Etiket YALNIZCA seçiliyken; genişliği AnimatedSize ile yumuşak
+              // açılır/kapanır.
+              AnimatedSize(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOutCubic,
+                child: secili
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(
+                          label,
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w900,
+                            color: c.gold,
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
-              child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
