@@ -9452,7 +9452,7 @@
           "secenekler": [
             "A) Hayır, hiçbir şekilde mümkün değildir",
             "B) Evet, İçtüzükte öngörülen istisnai ve ivedilik hâllerinde mümkündür",
-            "C) Yalnızca Cumhurbaşkanı'nın izniyle mümkündür",
+            "C) Yalnızca Cumhurbaşkanı'nın yazılı izni ve onayı alınmak suretiyle mümkündür",
             "D) Yalnızca Anayasa değişikliği tekliflerinde mümkündür",
             "E) Yalnızca bütçe kanununda mümkündür"
           ],
@@ -9465,7 +9465,7 @@
             "A) Hayır, aynı yasama döneminde bir daha hiçbir şekilde teklif edilemez",
             "B) Evet, milletvekilleri yeni bir teklifle konuyu yeniden TBMM gündemine getirebilir",
             "C) Yalnızca Cumhurbaşkanı yeniden teklif verebilir",
-            "D) Yalnızca beş yıl sonra yeniden teklif edilebilir",
+            "D) Yalnızca yasama yılının sonunda, beş yıllık süre dolduktan sonra yeniden teklif edilebilir",
             "E) Reddedilen teklifler otomatik olarak kanunlaşır"
           ],
           "dogruIndex": 1,
@@ -9488,7 +9488,7 @@
           "secenekler": [
             "A) Milletvekilleri vergi ödemekten tamamen muaftır",
             "B) Milletvekilleri de diğer vatandaşlar gibi vergi ödemekle yükümlüdür, herhangi bir vergi muafiyetleri yoktur",
-            "C) Milletvekilleri yalnızca gelir vergisinden muaftır",
+            "C) Milletvekilleri yalnızca gelir vergisi ile motorlu taşıtlar vergisinden muaf tutulmuş olup diğer vergileri öderler",
             "D) Milletvekilleri yalnızca yurt dışı gelirlerinden vergi öder",
             "E) Vergi muafiyeti yalnızca TBMM Başkanına tanınmıştır"
           ],
@@ -9538,7 +9538,7 @@
             "B) Söz alma, TBMM Başkanının yönetiminde İçtüzükte belirlenen sıra ve sürelere göre gerçekleşir",
             "C) Söz alma hakkı yalnızca TBMM Başkanına aittir",
             "D) Söz alma hakkı yalnızca bakanlara tanınmıştır",
-            "E) Söz alma hakkı Cumhurbaşkanının iznine bağlıdır"
+            "E) Söz alma hakkı, Cumhurbaşkanının yazılı izni ve TBMM Başkanvekilinin onayı alındıktan sonra kullanılabilir"
           ],
           "dogruIndex": 1,
           "aciklama": "TBMM Genel Kurulunda söz alma; oturumu yöneten Başkanın gözetiminde, İçtüzükte belirlenen sıra, süre ve usul kurallarına göre gerçekleşir."
@@ -9559,7 +9559,7 @@
           "soru": "TBMM'de bir kanun teklifinin kabulünden sonra hangi makam bu metni Resmî Gazete'de yayımlanmak üzere gönderir?",
           "secenekler": [
             "A) TBMM Başkanlığı, kabul edilen metni Cumhurbaşkanına gönderir; Cumhurbaşkanı yayımlar",
-            "B) Doğrudan Resmî Gazete Müdürlüğü yayımlar, başka onay gerekmez",
+            "B) Doğrudan Resmî Gazete Müdürlüğü, TBMM Başkanının talimatıyla kanunu Cumhurbaşkanı onayı aranmaksızın yayımlar",
             "C) Yargıtay Cumhuriyet Başsavcılığı yayımlar",
             "D) Anayasa Mahkemesi yayımlar",
             "E) İlgili bakanlık doğrudan yayımlar"
@@ -9583,7 +9583,7 @@
           "soru": "TBMM üyelerinin, meclis çalışmaları dışında kişisel olarak işledikleri ve yasama faaliyetiyle hiçbir ilgisi olmayan bir suç bakımından yasama dokunulmazlığı geçerli midir?",
           "secenekler": [
             "A) Yasama dokunulmazlığı, milletvekilinin işlediği iddia edilen tüm suçları (kapsam ve nitelik ayrımı yapılmaksızın) kapsar, TBMM kararı olmadıkça yargılama yapılamaz",
-            "B) Yasama dokunulmazlığı yalnızca meclis çalışmalarıyla ilgili suçları kapsar",
+            "B) Yasama dokunulmazlığı yalnızca milletvekilinin meclis çalışmaları sırasında ve bunlarla doğrudan bağlantılı biçimde işlediği suçları kapsamakta olup kişisel suçları kapsamaz",
             "C) Yasama dokunulmazlığı yalnızca trafik suçlarını kapsamaz",
             "D) Yasama dokunulmazlığı hiçbir suçu kapsamaz",
             "E) Yasama dokunulmazlığı yalnızca ekonomik suçları kapsar"
@@ -9597,7 +9597,7 @@
             "A) Önce teklifin tümü üzerinde genel görüşme yapılır, ardından maddeler ayrı ayrı görüşülüp oylanır, son olarak teklifin tümü oylanır",
             "B) Yalnızca maddeler görüşülür, tümü üzerinde görüşme yapılmaz",
             "C) Yalnızca tümü üzerinde görüşme yapılır, maddeler ayrıca görüşülmez",
-            "D) Görüşme usulü tamamen komisyonun takdirine bırakılmıştır, sabit bir kural yoktur",
+            "D) Görüşme usulü tamamen ilgili komisyonun ve TBMM Başkanının ortak takdirine bırakılmıştır; Anayasa'da ya da İçtüzükte bu konuda bağlayıcı sabit bir kural bulunmaz",
             "E) Kanun teklifleri görüşülmeden doğrudan oylanır"
           ],
           "dogruIndex": 0,
@@ -9620,7 +9620,7 @@
           "secenekler": [
             "A) Evet, bağımsızlar bir araya gelerek grup kurabilir",
             "B) Hayır, meclis grubu kurabilmek bir siyasi partiye mensup olmayı gerektirir; bağımsızlar grup kuramaz",
-            "C) Bağımsızlar yalnızca Cumhurbaşkanı'nın izniyle grup kurabilir",
+            "C) Bağımsızlar yalnızca Cumhurbaşkanı'nın yazılı izni ve TBMM Başkanlık Divanının onayıyla bir meclis grubu kurabilir",
             "D) Bağımsızlar otomatik olarak en büyük partinin grubuna dahil olur",
             "E) Bu konuda İçtüzükte hiçbir düzenleme yoktur"
           ],
@@ -9632,7 +9632,7 @@
           "secenekler": [
             "A) Evet, Anayasa'da ayrıca düzenlenmiş resmi bir makamdır",
             "B) Hayır, bu, TBMM'de en çok sandalyeye sahip ikinci büyük partinin genel başkanı için kullanılan gayri resmi bir adlandırmadır",
-            "C) Muhalefet lideri, TBMM Başkanvekili anlamına gelir",
+            "C) Muhalefet lideri, Anayasa'ya göre TBMM Başkanvekilleri arasından seçilen ve hükümeti resmen denetlemekle görevlendirilen anayasal bir makamı ifade eder",
             "D) Muhalefet lideri, Anayasa Mahkemesi tarafından atanır",
             "E) Muhalefet lideri kavramı Türk siyasi hayatında hiç kullanılmaz"
           ],
@@ -9668,7 +9668,7 @@
           "secenekler": [
             "A) Teklif kesin olarak reddedilmiş sayılır, bir daha hiçbir işlem yapılamaz",
             "B) Komisyonun ret raporu da Genel Kurul gündemine gelebilir; nihai karar Genel Kurulundur",
-            "C) Komisyon kararı kesindir, Genel Kurul bu kararı değiştiremez",
+            "C) Komisyonun ret kararı kesin ve bağlayıcı olup Genel Kurul bu kararı hiçbir biçimde değiştiremez veya yeniden görüşemez",
             "D) Teklif doğrudan Cumhurbaşkanına gönderilir",
             "E) Teklif otomatik olarak kanunlaşır"
           ],
@@ -9691,7 +9691,7 @@
           "soru": "TBMM üyelerinin, meclis çalışmaları sırasında birbirlerine veya üçüncü kişilere yönelik hakaret niteliğindeki sözlerinden dolayı hukuki ya da cezai olarak sorumlu tutulamaması hangi ilkeyle açıklanır?",
           "secenekler": [
             "A) Yasama sorumsuzluğu (kürsü dokunulmazlığı)",
-            "B) Yasama dokunulmazlığı",
+            "B) Yasama dokunulmazlığı (soruşturma ve kovuşturma bağışıklığı)",
             "C) Hak arama hürriyeti",
             "D) Kanun önünde eşitlik",
             "E) Ölçülülük ilkesi"
@@ -9705,7 +9705,7 @@
             "A) Bazı önemli kanun tekliflerinin (örneğin Anayasa değişiklikleri gibi) usulüne göre birden fazla kez görüşülüp oylanmasını",
             "B) Her kanun teklifinin yalnızca bir kez görüşüldüğünü",
             "C) İkinci görüşmenin yalnızca bütçe kanununda uygulandığını",
-            "D) İkinci görüşmenin Cumhurbaşkanı tarafından talep edilmesi gerektiğini",
+            "D) İkinci görüşmenin yalnızca Cumhurbaşkanı ya da Bakanlar Kurulu tarafından yazılı olarak talep edilmesi hâlinde ve bütçe kanunlarında yapılabileceğini",
             "E) İkinci görüşmenin yalnızca komisyon düzeyinde yapıldığını"
           ],
           "dogruIndex": 0,
@@ -9862,7 +9862,7 @@
             "Gizli oylama",
             "Açık ve gizli oylama",
             "Salt çoğunluk",
-            "Nisbi çoğunluk"
+            "Nisbi çoğunlukla gizli oylama"
           ],
           "dogruIndex": 2,
           "aciklama": "Doğru cevap budur. TBMM İçtüzüğü'ne göre Genel Kurul'daki oylamalar kural olarak açık yapılır; ancak seçimlerde ve bazı özel kararlarda (ör. yasama dokunulmazlığının kaldırılması gibi hallerde) gizli oylama usulü de uygulanabilir; dolayısıyla Meclis hem açık hem gizli oylama yöntemini kullanır."
@@ -10087,7 +10087,7 @@
           "soru": "Türkiye Büyük Millet Meclisi üye sayısının belirlenmesinde hangi kriterlere dikkat edilir?",
           "secenekler": [
             "Nüfus ve coğrafi durum",
-            "Ekonomik durum",
+            "Ekonomik gelir ve kalkınma durumu",
             "Sosyal durum",
             "Kültürel durum",
             "Tarihi durum"
@@ -10195,7 +10195,7 @@
           "soru": "Meclis üyeleri hangi yaşa kadar görev yapabilirler?",
           "secenekler": [
             "65 yaş",
-            "70 yaş",
+            "En fazla yetmiş yaşını dolduruncaya kadar",
             "75 yaş",
             "80 yaş",
             "Görev süresinin bitimine kadar"
@@ -10290,7 +10290,7 @@
         {
           "soru": "Meclis başkanının görevi nedir?",
           "secenekler": [
-            "Yürütme yetkisini kullanmak",
+            "Yürütme yetkisini bakanlar aracılığıyla kullanmak",
             "Yargı yetkisini kullanmak",
             "Meclisi temsil etmek ve çalışmasını düzenlemek",
             "Kanunları yapmak",
@@ -10303,7 +10303,7 @@
           "soru": "Meclis üyelerinin hak ve yükümlülükleri nelerdir?",
           "secenekler": [
             "Meclis üyeleri, hiçbir yükümlülüğe sahip değildir.",
-            "Meclis üyeleri, sadece kanunları yapmakla yükümlüdür.",
+            "Meclis üyeleri, yalnızca kanun teklif etmek ve kabul edilen kanunları bizzat uygulamakla yükümlüdür.",
             "Meclis üyeleri, kanunları yapmak, meclisi temsil etmek ve çalışmasını düzenlemekle yükümlüdür.",
             "Meclis üyeleri, hükümeti kurmakla yükümlüdür.",
             "Meclis üyeleri, yargı yetkisini kullanmakla yükümlüdür."
@@ -10470,7 +10470,7 @@
         {
           "soru": "TBMM'nin görevleri arasında hangi işlev bulunmaz?",
           "secenekler": [
-            "Yürütme yetkisini denetlemek",
+            "Yürütme yetkisini soru ve genel görüşme gibi yollarla denetlemek",
             "Tüzük ve yasaları hazırlamak",
             "Yasama yetkisini denetlemek",
             "Bütçe tasarlamak",
@@ -10686,7 +10686,7 @@
         {
           "soru": "TBMM, hangi yetkiyi sahiptir?",
           "secenekler": [
-            "Yasama yetkisini tek başına kullanır.",
+            "Yasama yetkisini hiçbir organla paylaşmadan tamamen tek başına kullanır.",
             "Yasama yetkisini, Bakanlar Kurulu ile birlikte kullanır.",
             "İdari yetkiyi kullanır.",
             "Yürütme yetkisini kullanır.",
@@ -10830,7 +10830,7 @@
         {
           "soru": "TBMM'nin üyelerinden hangisi 5 yıllık bir dönem için seçilir?",
           "secenekler": [
-            "Bakanlar",
+            "Cumhurbaşkanı tarafından atanan bakanlar ve yardımcıları",
             "Cumhurbaşkanı",
             "Meclis Başkanı",
             "Genel Seçimle seçilen milletvekilleri",
@@ -11142,7 +11142,7 @@
         {
           "soru": "TBMM'nin hangi özelliklerinden biri, üyelerinin seçimi için genel oy kullanılmasıdır?",
           "secenekler": [
-            "Yıllık toplantılar",
+            "Her yıl düzenli olarak yapılan olağan yıllık toplantılar",
             "Üyelerin seçimi",
             "Üyelerin görev süresi",
             "Üyelerin seçimi için genel oy kullanılması",
@@ -11311,7 +11311,7 @@
           "soru": "TBMM'nin bir bölümü hangi adla anılır?",
           "secenekler": [
             "Cumhurbaşkanı Divanı",
-            "Başkanlık Divanı",
+            "Başkanlık ve Yönetim Divanı",
             "Yürütme Divanı",
             "Yasama Divanı",
             "Yargı Divanı"
@@ -11360,7 +11360,7 @@
           "secenekler": [
             "A) Zimmet, ihtilas, irtikap, rüşvet, hırsızlık, dolandırıcılık, sahtecilik, inancı kötüye kullanma, hileli iflas gibi yüz kızartıcı suçlardan hüküm giyenler affa uğramış olsalar bile milletvekili seçilemez",
             "B) Bu suçlardan hüküm giyenler her zaman aday olabilir",
-            "C) Bu kural yalnızca cumhurbaşkanı adayları için geçerlidir",
+            "C) Bu kural yalnızca cumhurbaşkanı adayları ve belediye başkan adayları için geçerli olup milletvekili adaylarını, il genel meclisi üyelerini ve diğer seçilmiş kamu görevlilerini hiçbir biçimde kapsamaz ve onları etkilemez",
             "D) Affa uğrayan kişiler otomatik olarak yeniden aday olabilir",
             "E) Bu tür suçlar milletvekilliğini etkilemez"
           ],
@@ -11457,7 +11457,7 @@
             "A) Devlet ve diğer kamu tüzel kişilerinde ve bunlara bağlı kuruluşlarda herhangi bir görev üstlenmek",
             "B) Kitap yazmak",
             "C) Bilimsel makale yayımlamak",
-            "D) Öğretim üyesi olarak yalnızca ders vermek (kanunda belirtilen istisnai haller saklı)",
+            "D) Bir yükseköğretim kurumunda öğretim üyesi olarak yalnızca ders vermek ve akademik danışmanlık yapmak (kanunda belirtilen istisnai haller saklıdır)",
             "E) Sivil toplum kuruluşlarına üye olmak"
           ],
           "dogruIndex": 0,
@@ -11467,7 +11467,7 @@
           "soru": "Anayasa'nın 83. maddesine göre yasama sorumsuzluğu kapsamında korunan husus nedir?",
           "secenekler": [
             "A) Milletvekillerinin Meclis çalışmalarındaki oy ve sözlerinden, Mecliste ileri sürdüğü düşüncelerden, o oturumdaki başkanlık divanının teklifi üzerine Meclisce başka türlü karar alınmadıkça bunları Meclis dışında tekrarlamak ve açığa vurmaktan sorumlu tutulamaması",
-            "B) Milletvekillerinin trafik kurallarına uymama serbestisi",
+            "B) Milletvekillerinin trafik kurallarına, karayolları düzenlemelerine ve idari kolluk emirlerine hiçbir sınır olmaksızın uymama serbestisi ile bu ihlaller nedeniyle haklarında hiçbir idari para cezası, ehliyet tedbiri veya adli soruşturma işleminin uygulanamaması güvencesi",
             "C) Milletvekillerinin vergi ödememesi",
             "D) Milletvekillerinin her türlü özel hukuk borcundan muaf tutulması",
             "E) Milletvekillerinin seçim bölgesinde her türlü ticari faaliyette bağışıklığı"
@@ -11479,7 +11479,7 @@
           "soru": "Anayasa'nın 83. maddesine göre yasama dokunulmazlığının istisnası olan 'ağır cezayı gerektiren suçüstü hali' ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Bu halde, seçimden önce veya sonra soruşturma ve kovuşturma yapılabilmesi için Meclis kararı aranmaz",
-            "B) Bu halde dahi Meclis kararı zorunludur",
+            "B) Bu halde dahi, seçimden önce veya sonra soruşturma ve kovuşturma yapılabilmesi için mutlaka TBMM Genel Kurulunun kararı zorunludur",
             "C) Suçüstü hali yasama dokunulmazlığını hiçbir şekilde etkilemez",
             "D) Bu istisna yalnızca Anayasa değişikliği teklifleriyle ilgilidir",
             "E) Bu istisna kaldırılmıştır"
@@ -11491,7 +11491,7 @@
           "soru": "Yasama dokunulmazlığının kaldırılması için Anayasa'ya göre nasıl bir usul izlenir?",
           "secenekler": [
             "A) TBMM'nin ilgili komisyon raporunun ardından Genel Kurulda alacağı bir kararla dokunulmazlık kaldırılabilir",
-            "B) Yalnızca Cumhurbaşkanı kararıyla kaldırılabilir",
+            "B) Yalnızca Cumhurbaşkanının önerisi üzerine Anayasa Mahkemesinin vereceği kesin bir kararla dokunulmazlık kaldırılabilir",
             "C) Yalnızca Anayasa Mahkemesi kararıyla kaldırılabilir",
             "D) Dokunulmazlık hiçbir şekilde kaldırılamaz",
             "E) Yalnızca ilgili milletvekilinin kendi isteğiyle kaldırılabilir"
@@ -11505,7 +11505,7 @@
             "A) Karar tarihinden itibaren yedi gün içinde Anayasa Mahkemesi'ne iptal başvurusunda bulunulabilir",
             "B) Hiçbir başvuru yolu yoktur, karar kesindir ve denetlenemez",
             "C) Yalnızca yeniden TBMM'ye başvurulabilir",
-            "D) Danıştay'a iptal davası açılabilir",
+            "D) Karar tarihinden itibaren altmış gün içinde Danıştay'a iptal davası açılarak kararın kaldırılması istenebilir",
             "E) Yargıtay'a itiraz edilebilir"
           ],
           "dogruIndex": 0,
@@ -11540,7 +11540,7 @@
           "secenekler": [
             "A) Bu milletvekilinin milletvekilliği, Anayasa Mahkemesi'nin kararının Resmi Gazetede gerekçeli olarak yayımlandığı tarihte sona erer",
             "B) Milletvekilliği hiçbir şekilde etkilenmez",
-            "C) Konu yalnızca TBMM'nin takdirine bırakılır ve TBMM isterse üyeliği düşürebilir",
+            "C) Konu yalnızca TBMM Genel Kurulunun takdirine bırakılır; TBMM üye tam sayısının salt çoğunluğuyla isterse bu üyenin milletvekilliğini düşürebilir",
             "D) Bu durum yalnızca parti grubunu etkiler, milletvekilliğini etkilemez",
             "E) Bu konuda Anayasa'da hüküm yoktur"
           ],
@@ -11563,7 +11563,7 @@
           "soru": "Anayasa'nın 87. maddesine göre genel ve özel af ilanına karar verme yetkisi kime aittir ve hangi çoğunlukla kullanılır?",
           "secenekler": [
             "A) TBMM'ye aittir ve üye tam sayısının beşte üç çoğunluğuyla kullanılır",
-            "B) Cumhurbaşkanı'na aittir ve tek başına kullanılır",
+            "B) Cumhurbaşkanı'na aittir ve Bakanlar Kurulunun önerisi üzerine tek başına kullanılır",
             "C) Anayasa Mahkemesi'ne aittir",
             "D) Adalet Bakanlığına aittir",
             "E) Yargıtay Genel Kuruluna aittir"
@@ -11587,7 +11587,7 @@
           "soru": "2017 sonrası TBMM'de kanun teklifleri kaç kez okunarak kabul edilir?",
           "secenekler": [
             "A) Yalnızca bir kez, komisyon raporunun ardından Genel Kurulda tek okumayla",
-            "B) İki kez okunması zorunludur",
+            "B) Komisyon raporunun ardından Genel Kurulda birbirini izleyen iki ayrı oturumda iki kez okunması zorunludur",
             "C) Üç kez okunması zorunludur",
             "D) Okuma usulü tamamen kaldırılmıştır",
             "E) Beş kez okunması zorunludur"
@@ -11624,7 +11624,7 @@
           "secenekler": [
             "A) Hayır; TBMM'nin geri gönderilen kanunu aynen kabul etmesi halinde Cumhurbaşkanı bu kanunu yayımlamak zorundadır",
             "B) Evet, sınırsız sayıda geri gönderebilir",
-            "C) Yalnızca bütçe kanunlarında tekrar geri gönderebilir",
+            "C) Yalnızca bütçe kanunları ile uluslararası andlaşmaların onaylanmasına ilişkin kanunlarda söz konusu metni tekrar geri gönderebilir",
             "D) Yalnızca üç kez geri gönderebilir",
             "E) Bu konuda Anayasa'da hüküm yoktur"
           ],
@@ -11635,7 +11635,7 @@
           "soru": "2017 anayasa değişikliği sonrasında TBMM'nin denetim yolları arasından hangisi tamamen kaldırılmıştır?",
           "secenekler": [
             "A) Gensoru (Bakanlar Kurulu veya bir bakan hakkında güvensizlik oylaması)",
-            "B) Yazılı soru",
+            "B) Yazılı soru (milletvekillerinin Cumhurbaşkanı yardımcıları ve bakanlara yazılı olarak yönelttiği ve yazılı yanıt istenen denetim yolu)",
             "C) Meclis araştırması",
             "D) Genel görüşme",
             "E) Meclis soruşturması"
@@ -11674,7 +11674,7 @@
             "B) Yalnızca kapalı oturumda yapılabilir",
             "C) Sonucunda mutlaka bir kanun çıkarılması zorunludur",
             "D) Yalnızca yılda bir kez yapılabilir",
-            "E) Yalnızca muhalefet partileri tarafından talep edilebilir"
+            "E) Yalnızca muhalefet partilerinin grup önerisiyle ve Cumhurbaşkanının onayı alınarak talep edilip görüşülebilir"
           ],
           "dogruIndex": 0,
           "aciklama": "Genel görüşme, toplumu ve devlet faaliyetlerini ilgilendiren belli bir konunun TBMM Genel Kurulunda görüşülmesini sağlayan bir denetim yoludur."
@@ -11685,7 +11685,7 @@
             "A) Cumhurbaşkanı yardımcıları ve bakanlar hakkında, görevleriyle ilgili suç işledikleri iddiasıyla",
             "B) Yalnızca milletvekilleri hakkında",
             "C) Yalnızca yerel yönetim başkanları hakkında",
-            "D) Yalnızca yargı mensupları hakkında",
+            "D) Yalnızca Yargıtay, Danıştay ve Anayasa Mahkemesi üyeleri gibi yüksek yargı mensupları hakkında, görevleriyle ilgili olarak",
             "E) Yalnızca kamu görevlisi olmayan sivil vatandaşlar hakkında"
           ],
           "dogruIndex": 0,
@@ -11734,7 +11734,7 @@
             "B) Her zaman üye tam sayısının üçte ikisi gerekir",
             "C) Karar yeter sayısı için toplantı yeter sayısıyla aynı oran (1/3) yeterlidir",
             "D) Karar yeter sayısı aranmaz, tek bir milletvekilinin oyu yeterlidir",
-            "E) Karar yeter sayısı her zaman üye tam sayısının salt çoğunluğudur"
+            "E) Karar yeter sayısı her durumda ve istisnasız olarak üye tam sayısının salt çoğunluğu, yani en az üç yüz bir milletvekilinin oyudur"
           ],
           "dogruIndex": 0,
           "aciklama": "96. madde, kararların toplantıya katılanların salt çoğunluğu ile alınacağını, ancak bu sayının üye tam sayısının dörtte birinin bir fazlasından (600 üyeli mecliste en az 151) az olamayacağını düzenler."
@@ -11758,7 +11758,7 @@
             "B) Yalnızca Meclis Başkanından",
             "C) Yalnızca komisyon başkanlarından",
             "D) Yalnızca parti grup başkanvekillerinden",
-            "E) Yalnızca en yaşlı ve en genç üyelerden"
+            "E) Yalnızca meclisteki en yaşlı üye ile en genç iki milletvekili ve grup başkanvekillerinden"
           ],
           "dogruIndex": 0,
           "aciklama": "94. madde, TBMM Başkanlık Divanının Meclis Başkanı, başkanvekilleri, katip üyeler ve idare amirlerinden oluştuğunu ve bunların Meclis üyeleri arasından seçileceğini düzenler."
@@ -11768,7 +11768,7 @@
           "secenekler": [
             "A) Bir yasama döneminde iki seçim yapılır; ilk seçilenler iki, ikinci devre seçilenler kalan süre için görev yapar",
             "B) Başkanlık Divanı üyeleri süresiz olarak seçilir",
-            "C) Başkanlık Divanı her ay yeniden seçilir",
+            "C) Başkanlık Divanı, her yasama yılının başında ve gerekli görüldüğünde her ay yeniden seçilerek oluşturulur ve görevlendirilir",
             "D) Başkanlık Divanı üyeliği kalıtsaldır",
             "E) Bu konuda Anayasa'da hüküm yoktur"
           ],
@@ -11793,7 +11793,7 @@
             "A) En çok oy alan iki aday arasında yeniden oylama yapılır ve en fazla oyu alan seçilmiş olur",
             "B) Seçim tamamen iptal edilir ve TBMM feshedilir",
             "C) Cumhurbaşkanı doğrudan atama yapar",
-            "D) Kura ile belirlenir",
+            "D) Üçüncü oylamada en çok oyu alan iki aday arasında ad çekme yöntemiyle kura çekilir ve kurada adı çıkan aday seçilmiş sayılır",
             "E) Dördüncü oylama yapılmaz, üçüncü tur sonucu geçerli sayılır"
           ],
           "dogruIndex": 0,
@@ -11803,7 +11803,7 @@
           "soru": "Anayasa'nın 95. maddesine göre TBMM'nin tatilde veya ara vermede iken toplantıya çağrılması ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Doğrudan veya TBMM üyelerinin en az beşte biri tarafından istenmesi üzerine, Cumhurbaşkanınca TBMM toplantıya çağrılır",
-            "B) Yalnızca TBMM Başkanı tek başına çağırabilir",
+            "B) Yalnızca TBMM Başkanı, kendi takdiriyle veya başkanvekillerinin ortak talebi üzerine tek başına Meclisi toplantıya çağırabilir",
             "C) Ara verme veya tatil sırasında TBMM hiçbir şekilde toplanamaz",
             "D) Yalnızca Anayasa Mahkemesi kararıyla toplantıya çağrılabilir",
             "E) Bu yetki hiçbir organa ait değildir"
@@ -11827,7 +11827,7 @@
           "soru": "TBMM'nin ilk kez açıldığı tarih olan 23 Nisan 1920 ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Bu tarih, Türkiye Büyük Millet Meclisi'nin Ankara'da ilk kez toplandığı tarihtir",
-            "B) Bu tarih 1982 Anayasası'nın kabul tarihidir",
+            "B) Bu tarih, halkoylamasıyla kabul edilen 1982 Anayasası'nın yürürlüğe girdiği kabul tarihidir",
             "C) Bu tarih Cumhuriyetin ilan tarihidir",
             "D) Bu tarih 1924 Anayasası'nın kabul tarihidir",
             "E) Bu tarih ilk çok partili seçimin yapıldığı tarihtir"
@@ -11889,7 +11889,7 @@
             "A) Genel seçimlerden önceki bir yıl içinde ara seçime gidilemez",
             "B) Ara seçim hiçbir zaman yapılamaz",
             "C) Ara seçim her ay düzenli olarak yapılır",
-            "D) Ara seçim yalnızca Cumhurbaşkanı isterse yapılır",
+            "D) Ara seçim yalnızca Cumhurbaşkanının talebi ve Bakanlar Kurulunun kararıyla yapılır",
             "E) Ara seçimde sadece bağımsız adaylar yarışabilir"
           ],
           "dogruIndex": 0,
@@ -11924,7 +11924,7 @@
           "secenekler": [
             "A) Bütçe kanun teklifi, mali yıl başından yeterli bir süre önce Cumhurbaşkanınca TBMM'ye sunulur ve Bütçe Komisyonunda görüşülür",
             "B) Bütçe teklifi hiçbir süreye tabi değildir",
-            "C) Bütçe teklifini sunma yetkisi TBMM Başkanına aittir",
+            "C) Bütçe kanun teklifini hazırlama ve mali yıl başından önce Meclise sunma yetkisi, Anayasa uyarınca doğrudan TBMM Başkanına ve Plan ve Bütçe Komisyonuna aittir",
             "D) Bütçe kanunu teklifi Anayasa Mahkemesi'nce hazırlanır",
             "E) Bütçe teklifi yalnızca sözlü olarak sunulabilir"
           ],
@@ -11936,7 +11936,7 @@
           "secenekler": [
             "A) Geçici bütçe kanunu çıkarılır ya da bir önceki yıl bütçesi yeniden değerleme oranına göre artırılarak uygulanır",
             "B) Devlet hiçbir harcama yapamaz",
-            "C) Cumhurbaşkanı tek başına yeni bütçeyi ilan eder",
+            "C) Cumhurbaşkanı, TBMM'nin onayını almaksızın kendi kararnamesiyle yeni yıl bütçesini tek başına hazırlar ve doğrudan yürürlüğe koyar",
             "D) Bir önceki bütçe hiçbir değişiklik yapılmadan sonsuza dek uygulanır",
             "E) Anayasa Mahkemesi geçici bütçeyi hazırlar"
           ],
@@ -11949,7 +11949,7 @@
             "A) Kesin hesap kanun teklifleri, yeni yıl bütçe kanun teklifiyle birlikte TBMM'ye sunulur ve Sayıştay'ın raporu da aynı süre içinde gönderilir",
             "B) Kesin hesap kanunu hiçbir denetime tabi değildir",
             "C) Kesin hesap kanununu Anayasa Mahkemesi hazırlar",
-            "D) Kesin hesap kanunu bütçeden tamamen bağımsız, ilgisiz bir süreçtir",
+            "D) Kesin hesap kanunu, bütçe kanunundan tamamen bağımsız ve ilgisiz bir süreç olup Sayıştay denetimi ile hiçbir biçimde bağlantısı bulunmayan ayrı bir işlemdir",
             "E) Kesin hesap kanunu yalnızca 10 yılda bir çıkarılır"
           ],
           "dogruIndex": 0,
@@ -11961,7 +11961,7 @@
             "A) Bazı kanun teklifleri, İçtüzükte belirlenen usule uygun olarak normal süreler beklenmeksizin öncelikli ve hızlandırılmış biçimde görüşülebilir",
             "B) İvedilik talebi hiçbir kanun için mümkün değildir",
             "C) İvedilik yalnızca anayasa değişikliği tekliflerinde uygulanır",
-            "D) İvedilik kararı yalnızca Cumhurbaşkanı tarafından alınabilir",
+            "D) Bir kanun teklifinin ivedilikle görüşülmesine ilişkin karar, yalnızca Cumhurbaşkanı tarafından ve Bakanlar Kurulunun yazılı önerisi üzerine alınabilir",
             "E) İvedilikle görüşülen kanunlar komisyona hiç gitmez"
           ],
           "dogruIndex": 0,
@@ -11971,7 +11971,7 @@
           "soru": "Kanunların yürürlüğe girmesi için Anayasa'ya göre temel kural nedir?",
           "secenekler": [
             "A) Kanunlar, Cumhurbaşkanınca yayımlandıktan sonra Resmi Gazetede yayımlanmalarıyla, metinlerinde ayrıca bir yürürlük tarihi gösterilmemişse yayım tarihinde yürürlüğe girer",
-            "B) Kanunlar TBMM'de kabul edildikleri anda yürürlüğe girer",
+            "B) Kanunlar, TBMM Genel Kurulunda kabul edildikleri anda, Cumhurbaşkanınca yayımlanmalarına ve Resmi Gazetede ilan edilmelerine gerek kalmaksızın kendiliğinden yürürlüğe girer",
             "C) Kanunlar hiçbir zaman yayımlanmaz",
             "D) Kanunlar yalnızca halkoylamasıyla yürürlüğe girer",
             "E) Kanunların yürürlüğe girmesi için Anayasa Mahkemesi onayı gerekir"
@@ -11984,7 +11984,7 @@
           "secenekler": [
             "A) Bütçe kanunu ile kesin hesap kanunu tekliflerini ve kalkınma planlarını incelemek",
             "B) Yalnızca dış politika konularını görüşmek",
-            "C) Yalnızca yargı mensuplarının atamalarını incelemek",
+            "C) Yalnızca yüksek yargı organlarının üyelerinin atanması ve terfilerine ilişkin işlemleri incelemek",
             "D) Yalnızca yerel yönetimlerin bütçesini onaylamak",
             "E) Yalnızca Anayasa değişikliği tekliflerini görüşmek"
           ],
@@ -11997,7 +11997,7 @@
             "A) Vatandaşlardan ve karşılıklılık esası çerçevesinde yabancılardan gelen dilekçeleri incelemek",
             "B) Yalnızca bütçe tekliflerini incelemek",
             "C) Yalnızca Anayasa değişikliği tekliflerini görüşmek",
-            "D) Yalnızca yargı kararlarını denetlemek",
+            "D) Yalnızca mahkemelerce verilen kesinleşmiş yargı kararlarını ve bunların uygulanmasını denetleyerek raporlamak",
             "E) Yalnızca uluslararası andlaşmaları onaylamak"
           ],
           "dogruIndex": 0,
@@ -12043,7 +12043,7 @@
           "soru": "TBMM'nin kanun yapma sürecinde bir kanun teklifinin komisyonlardan geçtikten sonra izlediği yol hangisidir?",
           "secenekler": [
             "A) Genel Kurulda maddeler halinde görüşülüp oylanır, kabul edilirse tümü üzerinde oylamaya sunulur",
-            "B) Doğrudan Resmi Gazetede yayımlanır, Genel Kurul görüşmesi gerekmez",
+            "B) Komisyon aşaması tamamlandıktan sonra teklif doğrudan Resmi Gazetede yayımlanır ve ayrıca Genel Kurul görüşmesine hiç gerek kalmaz",
             "C) Doğrudan Cumhurbaşkanına gider, Genel Kurul aşaması atlanır",
             "D) Halkoyuna sunulması zorunludur",
             "E) Yalnızca ilgili bakanlığın onayına tabidir"
@@ -12056,7 +12056,7 @@
           "secenekler": [
             "A) Anayasa'nın bazı maddelerinde (örneğin anayasa değişikliği teklifinin kabulü) daha yüksek nitelikli çoğunluklar ayrıca öngörülmüştür",
             "B) Hiçbir istisna yoktur, kural her zaman aynen uygulanır",
-            "C) İstisnalar yalnızca bütçe kanunu için geçerlidir",
+            "C) Belirtilen istisnalar yalnızca bütçe kanununun ve kesin hesap kanununun görüşülmesi sırasında geçerli olup diğer bütün oylamalarda kural aynen uygulanır",
             "D) İstisnalar yalnızca af kanunları için geçerlidir",
             "E) İstisna kavramı Anayasa'da yer almaz"
           ],
@@ -12068,7 +12068,7 @@
           "secenekler": [
             "A) Her il, esas itibarıyla bir seçim çevresi sayılır; nüfusu fazla olan iller birden fazla seçim çevresine ayrılabilir",
             "B) Türkiye tek bir seçim çevresinden oluşur",
-            "C) Seçim çevreleri yalnızca ilçe esasına göre belirlenir",
+            "C) Seçim çevreleri il değil yalnızca ilçe ve belde esasına göre belirlenir; her ilçe kendi başına ayrı bir seçim çevresi olarak kabul edilir",
             "D) Seçim çevresi sayısı sabit olarak 20'dir",
             "E) Seçim çevreleri her seçimde kura ile belirlenir"
           ],
@@ -12092,7 +12092,7 @@
           "secenekler": [
             "A) Kural olarak hayır; Meclisin kararı olmadıkça tutuklanamaz, sorguya çekilemez",
             "B) Her zaman serbestçe tutuklanabilir",
-            "C) Yalnızca trafik suçlarında tutuklanabilir",
+            "C) Milletvekili yalnızca trafik suçlarında ve kabahat niteliğindeki fiillerde Meclis kararı olmaksızın serbestçe tutuklanabilir",
             "D) Sadece yabancı bir devletin talebiyle tutuklanabilir",
             "E) Bu konuda Anayasa'da hüküm yoktur"
           ],
@@ -12103,7 +12103,7 @@
           "soru": "TBMM'nin komisyonlarında görüşülen bir kanun teklifinin Genel Kurul gündemine alınmadan önceki aşaması nedir?",
           "secenekler": [
             "A) İlgili ihtisas komisyonunda (gerekirse birden fazla komisyonda) görüşülüp bir rapora bağlanması",
-            "B) Doğrudan halkoyuna sunulması",
+            "B) Herhangi bir komisyon görüşmesi yapılmaksızın teklifin doğrudan halkoyuna sunulması ve çıkan sonucun kesin kabul edilmesi",
             "C) Yalnızca TBMM Başkanının onayının alınması",
             "D) Yalnızca Cumhurbaşkanının ön onayının alınması",
             "E) Sayıştay denetiminden geçirilmesi"
@@ -12116,7 +12116,7 @@
           "secenekler": [
             "A) Bakanlar Kurulu kaldırıldığından, TBMM'nin denetim yetkisi Cumhurbaşkanı yardımcıları ve bakanları kapsayacak şekilde yeniden düzenlenmiştir",
             "B) TBMM'nin denetim yetkisi tamamen kaldırılmıştır",
-            "C) Denetim yetkisi yalnızca Anayasa Mahkemesi'ne geçmiştir",
+            "C) TBMM'nin sahip olduğu bütün denetim yetkileri tümüyle kaldırılarak münhasıran Anayasa Mahkemesi ile Danıştay Genel Kurulu arasında paylaştırılmıştır",
             "D) Denetim yetkisi Danıştay'a devredilmiştir",
             "E) Hiçbir değişiklik olmamıştır"
           ],
@@ -12129,7 +12129,7 @@
             "A) Kanun ve karar oylamalarının çoğu açık oyla, kişilerle ilgili bazı özel oylamalar (seçim, dokunulmazlığın kaldırılması gibi) gizli oyla yapılır",
             "B) Bütün oylamalar mutlaka gizli yapılır",
             "C) Bütün oylamalar mutlaka açık yapılır",
-            "D) Oylama usulü tamamen milletvekilinin kendi tercihine bırakılmıştır",
+            "D) Oylamanın açık mı yoksa gizli mi yapılacağı hususu tamamen her bir milletvekilinin kendi kişisel tercihine bırakılmış olup Başkanlık Divanının bu konuda belirleme yapma yetkisi yoktur",
             "E) TBMM'de oylama yapılmaz, kararlar oybirliğiyle alınmış sayılır"
           ],
           "dogruIndex": 0,
@@ -12152,7 +12152,7 @@
           "secenekler": [
             "A) Kanun tasarısı kavramı, hükümetin (Bakanlar Kurulu'nun) kanun önerisini ifade ederdi; 2017'de Bakanlar Kurulu kaldırıldığından bu kavram fiilen ortadan kalkmış, yalnızca 'kanun teklifi' kavramı kalmıştır",
             "B) İki kavram arasında hiçbir zaman fark olmamıştır",
-            "C) Kanun tasarısı milletvekillerine, kanun teklifi hükümete aitti",
+            "C) Kanun tasarısı kavramı milletvekillerinin sunduğu önerileri, kanun teklifi kavramı ise hükümetin sunduğu önerileri ifade ederdi ve bu ayrım 2017 değişikliğinden sonra bile aynı biçimde günümüzde geçerliliğini korumaktadır",
             "D) Bu ayrım günümüzde de aynen geçerlidir",
             "E) Kanun tasarısı yalnızca anayasa değişiklikleri için kullanılan bir terimdir"
           ],
@@ -12165,7 +12165,7 @@
             "A) Kamu iktisadi teşebbüslerinin faaliyetlerini ve hesaplarını TBMM adına incelemek ve denetlemek",
             "B) Yalnızca anayasa değişikliği tekliflerini incelemek",
             "C) Yalnızca dış politika konularını görüşmek",
-            "D) Yalnızca yerel yönetim bütçelerini onaylamak",
+            "D) Yalnızca il özel idarelerinin ve belediyelerin yıllık yerel yönetim bütçelerini ayrıntılı biçimde inceleyip onaylamak",
             "E) Yalnızca yargı atamalarını onaylamak"
           ],
           "dogruIndex": 0,
@@ -12187,7 +12187,7 @@
           "soru": "TBMM'de 'İnsan Haklarını İnceleme Komisyonu' hangi işlevi görür?",
           "secenekler": [
             "A) İnsan hakları ihlali iddialarını incelemek ve bu konuda TBMM'yi bilgilendirmek",
-            "B) Yalnızca uluslararası andlaşmaları onaylamak",
+            "B) Yalnızca ülkemizin taraf olduğu uluslararası insan hakları andlaşmalarını resmen onaylamak ve yürürlüğe koymak",
             "C) Yalnızca bütçe tekliflerini incelemek",
             "D) Yalnızca Anayasa Mahkemesi kararlarını denetlemek",
             "E) Yalnızca yerel seçimleri düzenlemek"
@@ -12200,7 +12200,7 @@
           "secenekler": [
             "A) Yasama dokunulmazlığının kaldırılması ve milletvekilliğinin düşürülmesi kararlarına karşı",
             "B) Her türlü TBMM kararına karşı genel bir yoldur",
-            "C) Yalnızca bütçe kanununa karşı",
+            "C) Yalnızca bütçe kanununun ve kesin hesap kanununun TBMM'de kabul edilmesine ilişkin kararlara karşı açılabilen özel bir yoldur",
             "D) Yalnızca af kararlarına karşı",
             "E) Yalnızca meclis araştırması kararlarına karşı"
           ],
@@ -12224,7 +12224,7 @@
           "secenekler": [
             "A) Kısıtlılar ve taksirli suçlar hariç hükümlüler kural olarak oy kullanamaz",
             "B) Herkes istisnasız oy kullanabilir",
-            "C) Yalnızca kısıtlılar oy kullanabilir, hükümlüler kullanamaz",
+            "C) Yalnızca kısıtlılık altındaki kişiler oy kullanabilir, taksirli suçtan hüküm giymiş olanlar dâhil bütün hükümlüler oy kullanamaz",
             "D) Yalnızca hükümlüler oy kullanabilir, kısıtlılar kullanamaz",
             "E) Bu konuda hiçbir kısıtlama yoktur"
           ],
@@ -12238,7 +12238,7 @@
             "B) Bakanların aynı zamanda milletvekili olması zorunludur",
             "C) Bu konuda hiçbir anayasal kural yoktur",
             "D) Bakanlık ve milletvekilliği her zaman birlikte yürütülebilir",
-            "E) Yalnızca başbakan aynı zamanda milletvekili olabilir"
+            "E) 2017 sonrası sistemde yalnızca Cumhurbaşkanı yardımcıları milletvekilliğini koruyabilir, bakan olarak atananların ise milletvekilliği devam eder"
           ],
           "dogruIndex": 0,
           "aciklama": "2017 sonrası Cumhurbaşkanlığı hükümet sisteminde, milletvekili olmayan kişiler de bakan olarak atanabilir; bir milletvekilinin bakan olarak atanması halinde milletvekilliği sıfatı sona erer, bakanlık ile milletvekilliği birlikte yürütülemez."
@@ -12261,7 +12261,7 @@
             "A) Genel Kurul oturumlarını yönetmek ve TBMM'yi temsil etmek",
             "B) Bakanları atamak",
             "C) Kanunları veto etmek",
-            "D) Anayasa Mahkemesi üyelerini seçmek",
+            "D) Anayasa Mahkemesinin bütün üyelerini tek başına seçmek ve görev sürelerini belirlemek",
             "E) Milletlerarası andlaşmaları imzalamak"
           ],
           "dogruIndex": 0,
@@ -12271,7 +12271,7 @@
           "soru": "TBMM İçtüzüğü hangi usulle kabul edilir?",
           "secenekler": [
             "A) TBMM'nin kendi iç işleyişini düzenleyen İçtüzük, TBMM tarafından kanunlara benzer bir usulle kabul edilir",
-            "B) İçtüzük, Cumhurbaşkanlığı kararnamesiyle çıkarılır",
+            "B) TBMM'nin çalışma düzenini gösteren İçtüzük, Cumhurbaşkanlığı kararnamesiyle hazırlanıp yürürlüğe konulur ve Meclisin onayına sunulmaz",
             "C) İçtüzük halkoylamasıyla kabul edilir",
             "D) İçtüzük Anayasa Mahkemesi'nce hazırlanır",
             "E) İçtüzük hiçbir zorunlu usule tabi değildir"
@@ -12283,7 +12283,7 @@
           "soru": "Anayasa Mahkemesi'nin, bir kanunun 'şekil bakımından' Anayasaya uygunluk denetimi neyi kapsar?",
           "secenekler": [
             "A) Son oylamanın, öngörülen çoğunlukla yapılıp yapılmadığının denetimini (kanunlarda), teklif ve oylama çoğunluğuna ilişkin denetimi (anayasa değişikliklerinde)",
-            "B) Kanunun içeriğinin adil olup olmadığının denetimini",
+            "B) Kanun metninin içeriğinin adil, ölçülü ve toplum yararına olup olmadığının esas yönünden ayrıntılı biçimde incelenmesini ve maddi bakımdan tam kapsamlı denetimini kapsar",
             "C) Kanunun ekonomik etkilerinin denetimini",
             "D) Kanunun siyasi isabetinin denetimini",
             "E) Kanunun uluslararası ilişkilere etkisinin denetimini"
@@ -12310,7 +12310,7 @@
             "B) Kanunları doğrudan yürürlüğe koymak",
             "C) Anayasa Mahkemesi üyelerini seçmek",
             "D) Cumhurbaşkanını azletmek",
-            "E) Bütçe kanununu tek başına kabul etmek"
+            "E) Genel Kurulda diğer grupların katılımına gerek olmaksızın bütçe kanununu ve kesin hesap kanununu tek başına kabul etmek"
           ],
           "dogruIndex": 0,
           "aciklama": "Siyasi parti grupları, İçtüzükte tanınan haklarla (gündem önerisi, söz alma, önerge verme gibi) Genel Kurul çalışmalarına katılarak parti politikalarını yasama sürecine yansıtan örgütlü yapılardır."
@@ -12319,7 +12319,7 @@
           "soru": "TBMM Genel Kurulunda muhalefet partilerine tanınan denetim araçlarından biri olan 'gündem dışı konuşma' neyi ifade eder?",
           "secenekler": [
             "A) Genel Kurul gündeminde yer almayan güncel bir konuda söz alarak görüş açıklama imkanı",
-            "B) Kanun teklifi vermek",
+            "B) Genel Kurul gündemindeki maddelerle ilgili yeni bir kanun teklifi hazırlayıp Başkanlığa sunma imkânı",
             "C) Bütçe kanununu veto etmek",
             "D) Cumhurbaşkanını azletmek",
             "E) Anayasa değişikliği teklif etmek"
@@ -12334,7 +12334,7 @@
             "B) Yalnızca Dışişleri Komisyonu",
             "C) Yalnızca Plan ve Bütçe Komisyonu",
             "D) Yalnızca KİT Komisyonu",
-            "E) Yalnızca Dilekçe Komisyonu"
+            "E) Yalnızca Dilekçe Komisyonu ile İnsan Haklarını İnceleme Komisyonundan oluşan ortak kurul"
           ],
           "dogruIndex": 0,
           "aciklama": "Dokunulmazlığın kaldırılması talepleri, Anayasa Komisyonu ile Adalet Komisyonu üyelerinden oluşan Karma Komisyonda incelenip bir rapora bağlanarak Genel Kurula sunulur."
@@ -12345,7 +12345,7 @@
             "A) TBMM'nin kanun koyma, bütçe kabul etme, andlaşma onaylama gibi yetkileri, Cumhurbaşkanının kararname çıkarma yetkisiyle sınırlanır ve aralarında fren-denge ilişkisi vardır",
             "B) TBMM'nin hiçbir yetkisi Cumhurbaşkanının yetkileriyle kesişmez",
             "C) Cumhurbaşkanı TBMM'nin tüm yetkilerini tek başına kullanabilir",
-            "D) TBMM, Cumhurbaşkanının kararnamelerini onaylamak zorundadır",
+            "D) TBMM, Cumhurbaşkanının çıkardığı bütün kararnameleri yürürlüğe girmeden önce görüşerek onaylamak zorundadır ve onaylamadığı takdirde bu kararnameler kendiliğinden geçersiz sayılır",
             "E) Aralarında hiçbir hukuki ilişki yoktur"
           ],
           "dogruIndex": 0,
@@ -12358,7 +12358,7 @@
             "B) Bu uygulama 1982 Anayasası'nda hiçbir zaman yer almamıştır",
             "C) Bu uygulama günümüzde de aynen devam etmektedir",
             "D) Bu yetki yalnızca Anayasa Mahkemesi'ne verilebiliyordu",
-            "E) Bu yetki yalnızca savaş halinde kullanılabiliyordu"
+            "E) Bu KHK çıkarma yetkisi yalnızca savaş, seferberlik ve olağanüstü hâl dönemlerinde kullanılabiliyor, olağan dönemlerde ise hiçbir biçimde başvurulamıyordu"
           ],
           "dogruIndex": 0,
           "aciklama": "2017 öncesi parlamenter sistemde TBMM, belirli konularda ve süreyle sınırlı bir yetki kanunu çıkararak Bakanlar Kuruluna kanun hükmünde kararname çıkarma yetkisi verebiliyordu; bu olağan KHK rejimi 2017'de tamamen kaldırılmıştır."
@@ -12368,7 +12368,7 @@
           "secenekler": [
             "A) Ödenek ve yolluk miktarlarının, TBMM üyeliğiyle bağdaşmayan başka bir kaynaktan aynı amaçla ikinci bir ödeme yapılamayacağı şeklinde düzenlenmesi",
             "B) Milletvekillerine hiçbir ödenek verilmez",
-            "C) Ödenek miktarı her milletvekili için farklı belirlenir",
+            "C) Milletvekillerine ödenecek ödenek ve yolluk miktarı, her bir milletvekilinin kıdemine, mesleğine ve seçim bölgesine göre ayrı ayrı ve farklı biçimde belirlenir",
             "D) Ödenek miktarını yalnızca TBMM Başkanı belirler",
             "E) Bu konuda Anayasa'da hüküm yoktur"
           ],
@@ -12392,7 +12392,7 @@
           "secenekler": [
             "A) Durum, TBMM Başkanlık Divanının teklifi üzerine Genel Kurulca karara bağlanır ve üyeliğin düşmesine karar verilebilir",
             "B) Otomatik olarak üyelik düşer, herhangi bir karara gerek yoktur",
-            "C) Konu yalnızca Anayasa Mahkemesi'nce karara bağlanır",
+            "C) Bu konudaki karar yalnızca Anayasa Mahkemesi tarafından, Başkanlık Divanının başvurusu olmaksızın resen incelenerek kesin biçimde karara bağlanır",
             "D) Konu yalnızca Cumhurbaşkanı'nın takdirine bırakılmıştır",
             "E) Bu durumda hiçbir işlem yapılamaz"
           ],
@@ -12403,7 +12403,7 @@
           "soru": "Anayasa'nın 87. maddesine göre TBMM'nin 'bütçe kanun tekliflerini görüşüp kabul etmek' yetkisi hangi ilkeyle doğrudan ilişkilidir?",
           "secenekler": [
             "A) Mali alanda yasama organının denetim ve onay yetkisini yansıtan 'bütçe hakkı' ilkesiyle",
-            "B) Yargı bağımsızlığı ilkesiyle",
+            "B) Mahkemelerin ve hâkimlerin hiçbir organdan emir almadan karar vermesini güvence altına alan yargı bağımsızlığı ilkesiyle",
             "C) Basın hürriyeti ilkesiyle",
             "D) Yerel yönetimlerin özerkliği ilkesiyle",
             "E) Diplomatik dokunulmazlık ilkesiyle"
@@ -12415,7 +12415,7 @@
           "soru": "TBMM Genel Kurulunda bir kanun teklifinin maddeleri üzerinde önerge (değişiklik önergesi) verilmesiyle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Milletvekilleri, görüşülmekte olan maddelerde değişiklik yapılmasını önerge vererek talep edebilir",
-            "B) Önerge verme hakkı yalnızca komisyon başkanına aittir",
+            "B) Görüşülen maddelerde değişiklik önergesi verme hakkı yalnızca ilgili ihtisas komisyonunun başkanına ve sözcüsüne aittir",
             "C) Önerge yalnızca Cumhurbaşkanı tarafından verilebilir",
             "D) Önerge verilmesi tamamen yasaktır",
             "E) Önergeler yalnızca yazılı değil, sözlü olarak da geçerli sayılır"
@@ -12430,7 +12430,7 @@
             "B) Yalnızca bütçe tekliflerini",
             "C) Yalnızca uluslararası andlaşmaları",
             "D) Yalnızca yerel yönetim kanunlarını",
-            "E) Yalnızca ceza kanunu değişikliklerini"
+            "E) Yalnızca Türk Ceza Kanunu ile Ceza Muhakemesi Kanununda yapılacak değişiklik tekliflerini münhasıran incelemek"
           ],
           "dogruIndex": 0,
           "aciklama": "Anayasa Komisyonu, Anayasa değişikliği teklifleri başta olmak üzere Anayasa ile doğrudan ilgili kanun tekliflerini inceleyen başlıca ihtisas komisyonudur; dokunulmazlık dosyalarında da Adalet Komisyonuyla birlikte Karma Komisyon oluşturur."
@@ -12441,7 +12441,7 @@
             "A) Belirli bir yaşın üzerindeki her vatandaşın, ayrım gözetilmeksizin oy kullanma hakkına sahip olması",
             "B) Yalnızca mülk sahiplerinin oy kullanabilmesi",
             "C) Yalnızca vergi mükelleflerinin oy kullanabilmesi",
-            "D) Yalnızca belirli bir eğitim seviyesindeki kişilerin oy kullanabilmesi",
+            "D) Yalnızca belirli bir öğrenim düzeyine ve okuryazarlık belgesine sahip olan vatandaşların oy kullanma hakkına sahip olması",
             "E) Oy kullanmanın isteğe değil zorunluluğa bağlı olmaması"
           ],
           "dogruIndex": 0,
@@ -12453,7 +12453,7 @@
             "A) Her seçmenin yalnızca bir oy hakkına sahip olması ve oyların eşit ağırlıkta sayılması",
             "B) Herkesin birden fazla oy kullanabilmesi",
             "C) Sadece belirli meslek gruplarının oy kullanabilmesi",
-            "D) Oyların ağırlıklarının gelir düzeyine göre değişmesi",
+            "D) Her seçmenin kullandığı oyun ağırlığının, o kişinin gelir düzeyine ve ödediği vergi miktarına göre değişmesi",
             "E) Bu ilkenin Anayasa'da yer almaması"
           ],
           "dogruIndex": 0,
@@ -12464,7 +12464,7 @@
           "secenekler": [
             "A) Teklif sahibi, İçtüzükte belirlenen usule göre teklifini komisyon veya Genel Kurul aşamasında geri çekebilir",
             "B) Bir kanun teklifi hiçbir zaman geri çekilemez",
-            "C) Geri çekme yalnızca Cumhurbaşkanının onayıyla mümkündür",
+            "C) Bir kanun teklifinin geri çekilmesi yalnızca Cumhurbaşkanının yazılı onayı ve TBMM Başkanlık Divanının oybirliğiyle vereceği kararla mümkündür",
             "D) Geri çekme kararını yalnızca TBMM Başkanı verebilir",
             "E) Geri çekilen teklif otomatik olarak kanunlaşır"
           ],
@@ -12477,7 +12477,7 @@
             "A) Oylama ve karar alma süreçlerinde, yeter sayının bulunmaması kararın alınmasını engeller",
             "B) Yalnızca Meclisin açılış törenlerinde önemlidir",
             "C) Toplantı yeter sayısı hiçbir zaman denetlenmez",
-            "D) Toplantı yeter sayısı yalnızca bütçe görüşmelerinde aranır",
+            "D) Toplantı yeter sayısının bulunup bulunmadığı yalnızca bütçe ve kesin hesap kanunu görüşmeleri sırasında aranır, diğer oylamalarda hiç aranmaz",
             "E) Bu kavramın karar süreciyle hiçbir ilgisi yoktur"
           ],
           "dogruIndex": 0,
@@ -12487,7 +12487,7 @@
           "soru": "TBMM'de 'komisyonlarda azınlıkta kalan görüşün' (muhalefet şerhi) Genel Kurul sürecindeki işlevi nedir?",
           "secenekler": [
             "A) Komisyon raporuna eklenerek Genel Kurul üyelerinin farklı görüşlerden haberdar olmasını sağlamak",
-            "B) Kanunun yürürlüğe girmesini otomatik olarak engellemek",
+            "B) Rapora eklenen muhalefet şerhi, ilgili kanunun Genel Kurulda kabul edilse dahi yürürlüğe girmesini otomatik olarak engeller",
             "C) Komisyon kararını geçersiz kılmak",
             "D) Yalnızca sembolik bir işlevi vardır, hiçbir yere eklenmez",
             "E) Muhalefet şerhi Anayasa'da yasaklanmıştır"
@@ -12512,7 +12512,7 @@
           "secenekler": [
             "A) Yasama dönemi, bir genel seçimden diğerine kadar geçen (5 yıllık) süreyi; yasama yılı ise bu dönem içindeki her bir yıllık çalışma dilimini ifade eder",
             "B) Bu iki kavram tamamen aynı anlama gelir",
-            "C) Yasama dönemi bir aylık, yasama yılı beş yıllık bir süreyi ifade eder",
+            "C) Yasama dönemi yalnızca bir aylık kısa bir süreyi, yasama yılı ise iki genel seçim arasında geçen tam beş yıllık uzun süreyi ifade eder ve bunlar hiçbir zaman yer değiştiremez",
             "D) Yasama yılı kavramı Anayasa'da yer almaz",
             "E) Yasama dönemi kavramı yalnızca Cumhurbaşkanı için kullanılır"
           ],
@@ -12524,7 +12524,7 @@
           "secenekler": [
             "A) Genel Kurulda kabul edilen kanun metni, Cumhurbaşkanının incelemesi ve yayımlaması için resmi olarak gönderilir",
             "B) Kanun, TBMM'de kabul edildikten sonra hiçbir yere gönderilmeden doğrudan yürürlüğe girer",
-            "C) Kanun yalnızca Anayasa Mahkemesi'ne gönderilir",
+            "C) Genel Kurulda kabul edilen kanun metni, yayımlanmadan önce anayasaya uygunluk denetimi yapılması amacıyla yalnızca Anayasa Mahkemesine gönderilir",
             "D) Kanun yalnızca Sayıştay'a gönderilir",
             "E) Kanun, halkoyuna sunulmadan yürürlüğe giremez"
           ],
@@ -12536,7 +12536,7 @@
           "secenekler": [
             "A) Bu uygulama, hükümetin yasama organından güven almasını gerektiren parlamenter sistem aracıydı ve Cumhurbaşkanlığı hükümet sisteminde kaldırılmıştır",
             "B) Güvenoyu uygulaması günümüzde de aynen devam etmektedir",
-            "C) Güvenoyu yalnızca bakanlar için değil, milletvekilleri için de uygulanır",
+            "C) Güvenoyu uygulaması yalnızca bakanlar için değil, aynı zamanda tek tek her bir milletvekili ve Cumhurbaşkanı yardımcıları için de düzenli olarak uygulanır",
             "D) Güvenoyu kavramı 1982 Anayasası'nda hiç yer almamıştır",
             "E) Güvenoyu, Anayasa Mahkemesi tarafından verilir"
           ],
@@ -12548,7 +12548,7 @@
           "secenekler": [
             "A) Kamu görevi veya kamu kaynaklı ticari ilişkiler milletvekilliğiyle bağdaşmaz biçimde sınırlanırken, serbest meslek faaliyetlerinin sürdürülmesi konusunda farklı kurallar uygulanabilir",
             "B) Milletvekilleri hiçbir mesleki faaliyeti sürdüremez, dahil oldukları her alan yasaktır",
-            "C) Milletvekilleri her türlü kamu görevini serbestçe sürdürebilir",
+            "C) Milletvekilleri, seçilmeden önce yürüttükleri her türlü kamu görevini ve kamu iktisadi teşebbüslerindeki yönetim görevlerini hiçbir yasal sınırlamaya tabi olmaksızın serbestçe sürdürebilir",
             "D) Bu konuda Anayasa'da hiçbir düzenleme yoktur",
             "E) Yalnızca doktorlar bu kısıtlamadan muaftır"
           ],
@@ -12584,7 +12584,7 @@
           "secenekler": [
             "A) Milletvekilliği sıfatı devam eder, yalnızca parti grubu üyeliği sona erer",
             "B) Milletvekilliği otomatik olarak düşer",
-            "C) Milletvekili derhal yeni bir seçime girmek zorundadır",
+            "C) Partisinden istifa eden veya çıkarılan milletvekili, sıfatını koruyabilmek için derhal ara seçime girmek ve yeniden seçilmek zorundadır",
             "D) Milletvekili artık TBMM'ye giremez",
             "E) Bu durumda milletvekili bağımsız dahi sayılamaz"
           ],
@@ -12595,7 +12595,7 @@
           "soru": "TBMM'de 'bağımsız milletvekili' kavramı neyi ifade eder?",
           "secenekler": [
             "A) Herhangi bir siyasi parti grubuna üye olmayan milletvekilini",
-            "B) Yalnızca yurt dışında yaşayan milletvekilini",
+            "B) Yurt dışı seçim çevresinden seçilmiş ve sürekli olarak yurt dışında yaşayan milletvekilini ifade eder",
             "C) Sadece Meclis Başkanını",
             "D) Cumhurbaşkanı yardımcısı olan milletvekilini",
             "E) Anayasa Mahkemesi üyesi olan milletvekilini"
@@ -12609,7 +12609,7 @@
             "A) TBMM görüşmeleri kural olarak açık yapılır ve tutanaklar yayımlanır; belirli konularda İçtüzükte öngörülen usulle gizli oturum da yapılabilir",
             "B) TBMM'nin tüm oturumları gizlidir",
             "C) Hiçbir zaman gizli oturum yapılamaz",
-            "D) Tutanaklar hiçbir zaman kamuoyuyla paylaşılmaz",
+            "D) TBMM oturumlarına ilişkin tutanaklar, milli güvenlik gerekçesiyle hiçbir zaman kamuoyuyla paylaşılmaz ve yalnızca milletvekillerinin erişimine açık tutulur",
             "E) Aleniyet ilkesi yalnızca bütçe görüşmelerinde uygulanır"
           ],
           "dogruIndex": 0,
@@ -12632,7 +12632,7 @@
           "secenekler": [
             "A) Tatil, yasama yılının belirli bir döneminde (yaz aylarında) TBMM'nin çalışmalarına genel olarak son vermesini; ara verme ise TBMM'nin kendi kararıyla verdiği daha kısa süreli çalışmaya duraklamaları ifade eder",
             "B) Bu iki kavram birbirinin tam eş anlamlısıdır",
-            "C) Tatil yalnızca kış aylarında, ara verme yalnızca yaz aylarında uygulanır",
+            "C) Tatil uygulaması yalnızca kış aylarında ve yılbaşı döneminde, ara verme ise yalnızca yaz aylarında ve resmî bayramların bulunduğu haftalarda uygulanır; bu iki dönem dışında Meclis kesintisiz biçimde çalışmak zorundadır",
             "D) Ara verme kavramı Anayasa'da yer almaz",
             "E) Tatil kavramı yalnızca Cumhurbaşkanı için kullanılır"
           ],
@@ -12644,7 +12644,7 @@
           "secenekler": [
             "A) Birden fazla siyasi partinin, seçimde ortak hareket ederek oy ve milletvekili dağılımını birlikte hesaplatması",
             "B) Yalnızca bağımsız adayların bir araya gelmesini",
-            "C) Partilerin birleşerek tek bir parti haline gelmesini",
+            "C) Seçime katılan birden fazla siyasi partinin tüzel kişiliklerini sona erdirerek hukuken birleşip tek bir parti hâline gelmesini ifade eder",
             "D) Yalnızca Cumhurbaşkanlığı seçiminde kullanılan bir terimdir, milletvekili seçimiyle ilgisi yoktur",
             "E) TBMM içinde geçici komisyon kurulmasını"
           ],
@@ -12655,7 +12655,7 @@
           "soru": "TBMM'nin 87. maddede sayılan yetkilerinden 'kanun koymak, değiştirmek ve kaldırmak' yetkisinin devredilemezliği ilkesiyle ilişkisi nedir?",
           "secenekler": [
             "A) Bu yetki, 7. maddede düzenlenen yasama yetkisinin devredilemezliği ilkesinin somut bir görünümüdür",
-            "B) Bu yetki tamamen Cumhurbaşkanına devredilebilir",
+            "B) Kanun koyma, değiştirme ve kaldırma yetkisi, TBMM tarafından bir yetki kanunuyla tamamen ve süresiz biçimde Cumhurbaşkanına devredilebilir",
             "C) Bu yetki yalnızca geçici olarak kullanılabilir",
             "D) Bu yetki mahkemelerce de kullanılabilir",
             "E) Bu yetkinin devredilemezlik ilkesiyle hiçbir ilgisi yoktur"
@@ -12667,7 +12667,7 @@
           "soru": "Anayasa'nın 87. maddesinde yer alan 'Cumhurbaşkanı Yardımcıları ile bakanlar hakkında Meclis soruşturması açılmasına karar vermek' yetkisiyle ilgili olarak bu yetkinin denetim işlevi nedir?",
           "secenekler": [
             "A) Yürütme organının üst düzey görevlilerinin görev suçlarını yasama organı eliyle denetlemeyi sağlar",
-            "B) Yalnızca ekonomik politikaları denetler",
+            "B) Yalnızca hükümetin uyguladığı ekonomik politikaları ve bütçe hedeflerinin tutturulup tutturulmadığını denetlemeyi sağlar",
             "C) Yalnızca dış politika kararlarını denetler",
             "D) Yalnızca yerel yönetimleri denetler",
             "E) Bu yetkinin denetim işleviyle hiçbir ilgisi yoktur"
@@ -12681,7 +12681,7 @@
             "A) Hayır, dokunulmazlık her iki durumda da aynı şekilde uygulanır; önemli olan yargılamanın milletvekilliği süresine denk gelmesidir",
             "B) Yalnızca seçimden önceki suçlar dokunulmazlık kapsamındadır",
             "C) Yalnızca göreve başladıktan sonraki suçlar dokunulmazlık kapsamındadır",
-            "D) Seçimden önceki suçlarda dokunulmazlık hiç uygulanmaz",
+            "D) Seçimden önce işlenmiş olan suçlarda yasama dokunulmazlığı hiçbir biçimde uygulanmaz, bu suçlarda milletvekili doğrudan yargılanabilir ve tutuklanabilir",
             "E) Bu ayrım Anayasa'da hiç yapılmamıştır"
           ],
           "dogruIndex": 0,
@@ -12692,7 +12692,7 @@
           "secenekler": [
             "A) Cumhurbaşkanı, kanunun kendisine gönderilmesinden itibaren 15 gün içinde bu yetkisini kullanmalıdır",
             "B) Bu yetkinin kullanılması için herhangi bir süre sınırı yoktur",
-            "C) Süre 30 gündür",
+            "C) Cumhurbaşkanı bu geri gönderme yetkisini, kanunun kendisine ulaşmasından itibaren tam 30 gün içinde kullanmak zorundadır",
             "D) Süre 60 gündür",
             "E) Süre 7 gündür"
           ],
@@ -12703,7 +12703,7 @@
           "soru": "Anayasa'da düzenlenen 'yasama dokunulmazlığı' kurumunun temel amacı nedir?",
           "secenekler": [
             "A) Milletvekillerinin, keyfi veya siyasi amaçlı soruşturma ve kovuşturmalara karşı görevlerini özgürce yapabilmelerini güvence altına almak",
-            "B) Milletvekillerine sınırsız bir ayrıcalık ve dokunulmazlık sağlamak",
+            "B) Milletvekillerine görevleriyle ilgili olsun olmasın her konuda sınırsız ve kaldırılması mümkün olmayan mutlak bir ayrıcalık ve kişisel dokunulmazlık sağlamak",
             "C) Milletvekillerinin vergi yükümlülüğünü ortadan kaldırmak",
             "D) Milletvekillerinin özel hukuk borçlarından muaf tutulmasını sağlamak",
             "E) Yalnızca iktidar partisi milletvekillerini korumak"
@@ -12753,7 +12753,7 @@
             "A) Genel-özel norm ilişkisinde özel hükmün genel hükme üstün tutulması ilkesini",
             "B) Kanunların geriye yürümezliği ilkesini",
             "C) Kazanılmış haklara saygı ilkesini",
-            "D) Suçta ve cezada kanunilik ilkesini",
+            "D) Suçların ve cezaların yalnızca kanunla düzenlenebileceğini öngören suçta ve cezada kanunilik ilkesini",
             "E) Laiklik ilkesini"
           ],
           "dogruIndex": 0,
@@ -12765,7 +12765,7 @@
             "A) Yazılı soru önergeleri, İçtüzükte öngörülen süre içinde ilgili makam tarafından yazılı olarak cevaplandırılır",
             "B) Yazılı sorulara hiçbir zaman cevap verilmesi zorunlu değildir",
             "C) Yazılı sorular yalnızca sözlü olarak cevaplandırılabilir",
-            "D) Yazılı soru önergeleri yalnızca Cumhurbaşkanına yöneltilir",
+            "D) Yazılı soru önergeleri yalnızca Cumhurbaşkanına ve Cumhurbaşkanı yardımcılarına yöneltilebilir, bakanlara bu yolla soru sorulamaz",
             "E) Yazılı sorular yalnızca yılda bir kez sorulabilir"
           ],
           "dogruIndex": 0,
@@ -12775,7 +12775,7 @@
           "soru": "TBMM'nin kanun yapım sürecinde 'redaksiyon' (madde metninin dil ve teknik açıdan düzeltilmesi) yetkisi kime aittir?",
           "secenekler": [
             "A) İlgili komisyona veya TBMM Başkanlığına bağlı ilgili birimlere",
-            "B) Yalnızca Cumhurbaşkanına",
+            "B) Kabul edilen kanun metninin dil ve teknik yönden düzeltilmesi yalnızca Cumhurbaşkanına ve Cumhurbaşkanlığı hukuk birimlerine aittir",
             "C) Yalnızca Anayasa Mahkemesi'ne",
             "D) Yalnızca Resmi Gazete Müdürlüğüne",
             "E) Bu işlem hiçbir organ tarafından yapılmaz"
@@ -12787,7 +12787,7 @@
           "soru": "Milletvekili genel seçimlerinde 'oy pusulası' ve 'sandık kurulu' uygulamalarının genel denetimi kime aittir?",
           "secenekler": [
             "A) Yüksek Seçim Kurulu ve bağlı seçim kurullarına",
-            "B) İçişleri Bakanlığına münhasıran",
+            "B) Oy pusulalarının basımı ve sandık kurullarının denetimi münhasıran İçişleri Bakanlığına ve valiliklere aittir",
             "C) Cumhurbaşkanlığına",
             "D) TBMM Başkanlığına",
             "E) Anayasa Mahkemesi'ne"
@@ -12801,7 +12801,7 @@
             "A) Milletlerarası andlaşmaların uygun bulunmasına ilişkin kanun tekliflerini incelemek",
             "B) Yalnızca bütçe kanununu incelemek",
             "C) Yalnızca yerel yönetim seçimlerini düzenlemek",
-            "D) Yalnızca Anayasa değişikliği tekliflerini incelemek",
+            "D) Yalnızca Anayasa değişikliği tekliflerini ve temel hak ve hürriyetlere ilişkin kanun tekliflerini öncelikli olarak incelemek",
             "E) Yalnızca ceza infaz kurumlarını denetlemek"
           ],
           "dogruIndex": 0,
@@ -12848,7 +12848,7 @@
           "secenekler": [
             "A) Evet; seçimin yenilenmesine kendisi karar veren Cumhurbaşkanı bir kez daha aday olabilir, bu durum onun iki dönem sınırını istisnai olarak etkileyebilir",
             "B) Hayır, hiçbir özel kural yoktur",
-            "C) Seçim yenileme kararı veren Cumhurbaşkanı bir daha asla aday olamaz",
+            "C) Seçim yenileme kararı veren Cumhurbaşkanı, görev süresi henüz dolmamış olsa dahi Anayasa gereği bir daha hiçbir seçimde kesinlikle aday gösterilemez ve adaylığı düşer",
             "D) Bu konuda Anayasa'da hüküm yoktur",
             "E) Seçim yenileme kararı Cumhurbaşkanının görevini derhal sona erdirir"
           ],
@@ -12862,7 +12862,7 @@
             "B) Bu yetki günümüzde hiçbir şekilde kullanılmamaktadır",
             "C) Bu yetki tamamen özel bankalara devredilmiştir",
             "D) Bu yetki belediyelere aittir",
-            "E) Bu yetki yalnızca Hazine'ye aittir, Merkez Bankasının rolü yoktur"
+            "E) Para basma yetkisi yalnızca Hazine ve Maliye Bakanlığına aittir; Merkez Bankasının banknot ihracında hiçbir görevi ve rolü bulunmamaktadır"
           ],
           "dogruIndex": 0,
           "aciklama": "TBMM'nin anayasal para basma yetkisi, ilgili kanunlarla Türkiye Cumhuriyet Merkez Bankası'na banknot çıkarma imtiyazı olarak somutlaştırılmıştır."
@@ -12872,7 +12872,7 @@
           "secenekler": [
             "A) Meclis araştırması bilgi edinme amaçlı olup hukuki yaptırım sonucu doğurmazken, meclis soruşturması görev suçu iddiasına dayanır ve Yüce Divan'a sevkle sonuçlanabilir",
             "B) İkisi de aynı sonucu doğurur",
-            "C) Meclis araştırması yalnızca Cumhurbaşkanı hakkında yapılır",
+            "C) Meclis araştırması yalnızca Cumhurbaşkanı ve bakanlar hakkında yürütülen, sonunda doğrudan Yüce Divan'a sevkle biten cezai nitelikli bir soruşturma yöntemidir ve bilgi edinme amacı taşımaz",
             "D) Meclis soruşturması yalnızca milletvekilleri hakkında yapılır",
             "E) Aralarında hiçbir fark yoktur, ikisi de aynı komisyonda görüşülür"
           ],
@@ -12883,7 +12883,7 @@
           "soru": "TBMM'nin 92. maddede düzenlenen savaş hali ilanına karar verme yetkisi hangi çoğunlukla kullanılır?",
           "secenekler": [
             "A) Anayasa özel bir nitelikli çoğunluk öngörmez, 96. maddedeki genel toplantı ve karar yeter sayısı kuralı uygulanır",
-            "B) Her zaman üye tam sayısının 2/3'ü gerekir",
+            "B) Savaş hali ilanı kararı, her durumda TBMM üye tam sayısının en az üçte ikisinin oyu ile ve gizli oylama yapılması şartıyla alınabilen özel bir karardır",
             "C) Her zaman oy birliği gerekir",
             "D) Bu karar yalnızca Cumhurbaşkanınca alınır, TBMM'nin rolü yoktur",
             "E) Bu karar yalnızca halkoylamasıyla alınabilir"
@@ -12907,7 +12907,7 @@
           "soru": "TBMM Genel Kurulunda bir kanun teklifinin oylanmasında 'işaretle oylama' usulü ne şekilde uygulanır?",
           "secenekler": [
             "A) Milletvekillerinin el kaldırma, ayağa kalkma gibi yollarla açık oy kullanmasıdır",
-            "B) Yalnızca yazılı oy pusulasıyla yapılan gizli oylamadır",
+            "B) Milletvekillerinin özel olarak basılmış yazılı oy pusulalarını kutuya atmasıyla yapılan ve sonucu gizli tutulan bir oylama biçimidir",
             "C) Yalnızca elektronik sistemle yapılan gizli oylamadır",
             "D) Bu usul yalnızca Başkanlık Divanı seçiminde kullanılır",
             "E) Bu usul Anayasa'da hiç yer almaz"
@@ -12919,7 +12919,7 @@
           "soru": "Anayasa'nın 87. maddesinde TBMM'nin yetkileri arasında sayılan 'kesin hesap kanun tekliflerini görüşüp kabul etmek' işleminin amacı nedir?",
           "secenekler": [
             "A) Bir önceki mali yılda gerçekleşen gelir ve giderlerin bütçeyle uygunluğunu TBMM adına denetlemek",
-            "B) Gelecek yılın bütçesini hazırlamak",
+            "B) Gelecek mali yıla ait bütçe tasarısını kalem kalem hazırlayıp gelir ve gider tahminlerini önceden belirlemek ve Genel Kurula sunmak",
             "C) Yalnızca vergi oranlarını belirlemek",
             "D) Yalnızca kamu personeli maaşlarını belirlemek",
             "E) Bu işlemin bütçeyle hiçbir ilgisi yoktur"
@@ -12932,7 +12932,7 @@
           "secenekler": [
             "A) TBMM'nin güvensizlik oyu vermesi halinde Bakanlar Kurulu veya ilgili bakan düşebiliyordu",
             "B) Gensoru hiçbir zaman bir sonuç doğurmuyordu",
-            "C) Gensoru yalnızca Cumhurbaşkanı hakkında uygulanıyordu",
+            "C) Gensoru yalnızca Cumhurbaşkanı ve Cumhurbaşkanı yardımcıları hakkında uygulanan, sonucunda doğrudan görevden alma sonucu doğuran bir denetim yoluydu",
             "D) Gensoru sonucu her zaman yeni seçim gerektiriyordu",
             "E) Gensoru yalnızca yerel yönetimler için uygulanıyordu"
           ],
@@ -13002,7 +13002,7 @@
           "secenekler": [
             "A) Her konuda çıkarılabilir.",
             "B) Anayasa'da münhasıran kanunla düzenleneceği belirtilen konularda çıkarılamaz.",
-            "C) Temel haklar yalnızca kararname ile düzenlenebilir.",
+            "C) Temel haklar ve ödevlerin tamamı yalnızca Cumhurbaşkanlığı kararnamesiyle düzenlenir; bu konuda kanun çıkarılamaz.",
             "D) Kararname her zaman kanundan üstündür.",
             "E) Kararname TBMM onayı olmadan geçerli olamaz."
           ],
@@ -13042,7 +13042,7 @@
         {
           "soru": "Cumhurbaşkanı'nın cezai sorumluluğu hangi mahkemede yargılanır?",
           "secenekler": [
-            "A) Yargıtay Ceza Genel Kurulu",
+            "A) Yargıtay Ceza Genel Kurulu, Cumhurbaşkanını ilk derece mahkemesi sıfatıyla yargılar",
             "B) Anayasa Mahkemesi (Yüce Divan sıfatıyla)",
             "C) Danıştay",
             "D) Ağır Ceza Mahkemesi",
@@ -13112,7 +13112,7 @@
         {
           "soru": "Cumhurbaşkanlığı seçiminde hiçbir aday salt çoğunluğu sağlayamazsa ne olur?",
           "secenekler": [
-            "A) TBMM Cumhurbaşkanı'nı seçer.",
+            "A) Cumhurbaşkanını, TBMM üye tam sayısının salt çoğunluğuyla yaptığı özel oturumda seçer",
             "B) Seçim iptal edilir ve yenilenir.",
             "C) En çok oy alan iki aday arasında ikinci tur yapılır.",
             "D) Anayasa Mahkemesi belirleme yapar.",
@@ -13202,7 +13202,7 @@
           "secenekler": [
             "A) Temel haklar, kişi hakları ve siyasi haklar CBK ile düzenlenemez.",
             "B) Cumhurbaşkanı her konuda CBK çıkarabilir.",
-            "C) CBK yalnızca bütçe konusunda çıkarılamaz.",
+            "C) Cumhurbaşkanlığı kararnamesi yalnızca bütçe ve kesin hesap konularında çıkarılamaz; bunun dışındaki tüm alanlarda serbestçe çıkarılabilir",
             "D) CBK ekonomi alanında çıkarılamaz.",
             "E) CBK yalnızca yargı alanında kısıtlıdır."
           ],
@@ -13236,7 +13236,7 @@
         {
           "soru": "Cumhurbaşkanı'nın cezai sorumluluğu hangi koşulda gündeme gelebilir?",
           "secenekler": [
-            "A) TBMM üye tam sayısının salt çoğunluğunun istemiyle",
+            "A) TBMM üye tam sayısının salt çoğunluğunun tek başına vereceği doğrudan yargılama kararıyla, ayrıca soruşturma komisyonu kurulmaksızın",
             "B) Anayasa Mahkemesi'nin resen harekete geçmesiyle",
             "C) TBMM'nin üçte iki çoğunluğuyla Yüce Divan'a sevk kararı almasıyla",
             "D) Başsavcının iddianame düzenlemesiyle",
@@ -13248,7 +13248,7 @@
         {
           "soru": "Cumhurbaşkanı'nın yargı alanındaki yetkileri arasında hangisi yer alır?",
           "secenekler": [
-            "A) Hâkim atamak",
+            "A) Adli ve idari yargıdaki tüm hâkim ve savcıları doğrudan kendisi atamak ve gerektiğinde görevden almak",
             "B) Anayasa Mahkemesi üyelerinin bir kısmını atamak",
             "C) Mahkeme kararlarını bozmak",
             "D) Savcıları yargılamak",
@@ -13308,7 +13308,7 @@
         {
           "soru": "Olağanüstü hal ilan etme yetkisi kime aittir?",
           "secenekler": [
-            "A) TBMM",
+            "A) Cumhurbaşkanı yardımcılarının ortak önerisi üzerine toplanan Bakanlar Kurulu",
             "B) Cumhurbaşkanı (TBMM onayıyla)",
             "C) Bakanlar Kurulu",
             "D) Milli Güvenlik Kurulu",
@@ -13320,7 +13320,7 @@
         {
           "soru": "Cumhurbaşkanlığı Hükümet Sistemi'nde Milli Güvenlik Kurulu'nun işlevi nedir?",
           "secenekler": [
-            "A) Bağlayıcı güvenlik kararları alır.",
+            "A) Aldığı güvenlik kararları Cumhurbaşkanı ve tüm devlet organları için doğrudan bağlayıcı niteliktedir",
             "B) Tavsiye kararları alır ve Cumhurbaşkanı'na sunar.",
             "C) Yargı kararlarını denetler.",
             "D) Bütçe hazırlar.",
@@ -13368,7 +13368,7 @@
         {
           "soru": "Cumhurbaşkanlığı makamının boşalması halinde ne yapılır?",
           "secenekler": [
-            "A) TBMM Başkanı 90 gün içinde seçim kararı alır.",
+            "A) TBMM Başkanı, en geç doksan gün içinde yeni Cumhurbaşkanı seçimi için karar alır ve bu süre boyunca yürütme yetkisi Meclise geçer",
             "B) TBMM Başkanı Cumhurbaşkanlığı görevini üstlenir ve 45 gün içinde seçim yapılır.",
             "C) Başbakan görevi devralır.",
             "D) Anayasa Mahkemesi Başkanı görevi yürütür.",
@@ -13384,7 +13384,7 @@
             "B) Son genel seçimlerde tek başına veya birlikte toplam geçerli oyların en az %5'ini almış olmaları",
             "C) TBMM'de grup kurmuş olmaları yeterlidir",
             "D) Son yerel seçimlerde en az bir belediye kazanmış olmaları",
-            "E) En az 50 milletvekiline sahip olmaları"
+            "E) Son milletvekili genel seçimlerinde tek başlarına en az elli milletvekilliği kazanmış ve TBMM'de resmen grup kurmuş olmaları"
           ],
           "dogruIndex": 1,
           "aciklama": "Anayasa'ya göre Cumhurbaşkanlığına, en son yapılan genel seçimlerde toplam geçerli oyların tek başına veya birlikte en az %5'ini almış olan siyasi partiler aday gösterebilir."
@@ -13464,7 +13464,7 @@
         {
           "soru": "Cumhurbaşkanının bireysel af yetkisi hangi hâllerle sınırlıdır?",
           "secenekler": [
-            "A) Her türlü suç için genel af ilan edebilir",
+            "A) İşlenen her türlü suç bakımından, TBMM'nin onayına gerek olmaksızın dilediği zaman genel af veya özel af ilan etme konusunda sınırsız bir yetkiye sahiptir",
             "B) Yalnızca sürekli hastalık, sakatlık ve kocama (yaşlılık) nedeniyle belirli kişilerin cezasını hafifletebilir veya kaldırabilir",
             "C) Yalnızca siyasi suçlarda af yetkisi vardır",
             "D) Af yetkisi tamamen TBMM'ye aittir, Cumhurbaşkanının hiçbir af yetkisi yoktur",
@@ -13488,7 +13488,7 @@
         {
           "soru": "Devlet Denetleme Kurulu (DDK) hangi makama bağlı olarak çalışır?",
           "secenekler": [
-            "A) TBMM'ye bağlıdır",
+            "A) Doğrudan TBMM Başkanlığına bağlı olarak faaliyet gösteren bir denetim kuruludur",
             "B) Yargıtay'a bağlıdır",
             "C) Cumhurbaşkanlığı'na bağlıdır",
             "D) Sayıştay'a bağlıdır",
@@ -13536,7 +13536,7 @@
         {
           "soru": "Cumhurbaşkanlığı İdari İşler Başkanlığı'nın temel işlevi nedir?",
           "secenekler": [
-            "A) Kanunları Anayasa'ya uygunluk bakımından denetlemek",
+            "A) Yürürlükteki kanunları ve kararnameleri Anayasa'ya uygunluk yönünden inceleyip gerektiğinde iptal etme yetkisine sahip olmak",
             "B) Cumhurbaşkanına ve Cumhurbaşkanlığı teşkilatına idari ve büro hizmetleri sunmak",
             "C) Yerel yönetimleri denetlemek",
             "D) Milletvekili seçimlerini yönetmek",
@@ -13564,7 +13564,7 @@
             "B) Yalnızca yürütmenin başı sıfatını",
             "C) Hem devlet başkanlığı hem de yürütme organının başı sıfatını",
             "D) Yalnızca yasama organının başı sıfatını",
-            "E) Hem yargı hem yasama organının başı sıfatını"
+            "E) Aynı anda hem yüksek yargı organlarının hem de yasama organı olan TBMM'nin başkanlığı sıfatını birlikte taşır"
           ],
           "dogruIndex": 2,
           "aciklama": "Cumhurbaşkanlığı hükümet sisteminde Cumhurbaşkanı hem devletin başı hem de yürütme organının başı sıfatını birlikte taşır; bu iki sıfat tek bir makamda birleşmiştir."
@@ -13610,7 +13610,7 @@
           "secenekler": [
             "A) Milletvekili seçimlerini denetlemek",
             "B) Yabancı devlet temsilcilerini kabul etmek ve milletlerarası andlaşmaları onaylayıp yayımlamak",
-            "C) Yerel yönetimleri feshetmek",
+            "C) Belediye meclisleri ile il genel meclislerini gerekli gördüğünde doğrudan feshetme ve yerlerine yenilerini atama",
             "D) Kanun tekliflerini TBMM'ye sunmak",
             "E) Bütçe kanununu Genel Kurulda savunmak"
           ],
@@ -13646,7 +13646,7 @@
           "secenekler": [
             "A) Evet, her konuda kararname çıkarılabilir",
             "B) Hayır, münhasıran kanunla düzenlenmesi öngörülen konularda kararname çıkarılamaz",
-            "C) Evet, ancak TBMM'nin onayı şartıyla çıkarılabilir",
+            "C) Evet, ancak çıkarılan kararnamenin otuz gün içinde TBMM'nin onayına sunulması ve salt çoğunlukla kabul edilmesi şartıyla geçerli olur",
             "D) Evet, yalnızca olağanüstü hallerde çıkarılabilir",
             "E) Hayır, hiçbir konuda kararname çıkarılamaz"
           ],
@@ -13682,7 +13682,7 @@
           "secenekler": [
             "A) Kanunla ve Cumhurbaşkanlığı kararnamesiyle belirlenen usullere göre",
             "B) Yalnızca sözlü talimatla",
-            "C) Sadece Bakanlar Kurulu kararıyla",
+            "C) Yalnızca Bakanlar Kurulunun oy birliğiyle aldığı ve Resmî Gazete'de yayımlanan atama kararnameleri aracılığıyla",
             "D) Yalnızca il valiliklerinin önerisiyle",
             "E) Meclis kararıyla"
           ],
@@ -13692,7 +13692,7 @@
         {
           "soru": "Cumhurbaşkanının imzaladığı hangi tür kararlar yargı denetimi dışında tutulmuştur?",
           "secenekler": [
-            "A) Tüm Cumhurbaşkanlığı kararnameleri",
+            "A) Cumhurbaşkanının imzaladığı bütün kararnameler ile bakanların imzaladığı tüm idari işlemler, istisnasız biçimde yargı denetiminin tamamen dışında bırakılmıştır",
             "B) Cumhurbaşkanının tek başına yapacağı belirtilen ve yargı denetimine tabi olmadığı Anayasa'da açıkça belirtilen bazı işlemler",
             "C) Bakanların tüm işlemleri",
             "D) TBMM'nin tüm kararları",
@@ -13731,7 +13731,7 @@
             "A) Asliye Ceza Mahkemesi",
             "B) Yüce Divan sıfatıyla Anayasa Mahkemesi",
             "C) Danıştay",
-            "D) Yargıtay Ceza Genel Kurulu",
+            "D) Yargıtay Ceza Genel Kurulunda, ilgili bakanın yargılanmasına ilk derece mahkemesi sıfatıyla bakılır",
             "E) Sayıştay"
           ],
           "dogruIndex": 1,
@@ -13742,7 +13742,7 @@
           "secenekler": [
             "A) TBMM'nin varlığının sona ermesi",
             "B) Yürütmenin yasama içinden çıkan ve meclise karşı sorumlu bir Bakanlar Kurulu yerine, halk tarafından seçilen ve meclise siyaseten sorumlu olmayan Cumhurbaşkanı'na verilmesi",
-            "C) Yargı bağımsızlığının kaldırılması",
+            "C) Yargı bağımsızlığının anayasal güvenceden çıkarılarak tamamen yürütme organının denetimine bırakılması ve mahkeme kararlarının Cumhurbaşkanınca değiştirilebilmesi ilkesinin benimsenmesi",
             "D) Türkiye'nin üniter yapıdan federal yapıya geçmesi",
             "E) Anayasa Mahkemesi'nin kapatılması"
           ],
@@ -13755,7 +13755,7 @@
             "A) TBMM'nin doğrudan bu kişileri görevden alma yetkisiyle",
             "B) Meclis soruşturması ve denetim yollarının yalnızca Cumhurbaşkanı yardımcıları ile bakanlara yönelik işletilmesiyle, diğer üst düzey görevlilerin idari/yargısal denetime tabi olmasıyla",
             "C) Bu kişiler hiçbir şekilde denetlenemez",
-            "D) Yalnızca basın denetimiyle",
+            "D) Bu görevlilerin hesap verebilirliği yalnızca bağımsız basın kuruluşlarının yaptığı haber ve yayınlar yoluyla sağlanır; herhangi bir idari, adli veya parlamenter denetim mekanizması bu kişiler bakımından işletilemez",
             "E) Yalnızca uluslararası kuruluşların denetimiyle"
           ],
           "dogruIndex": 1,
@@ -13764,7 +13764,7 @@
         {
           "soru": "Cumhurbaşkanlığı kararnamesi Resmî Gazete'de yayımlandıktan sonra hangi organ tarafından denetlenebilir?",
           "secenekler": [
-            "A) Yalnızca Sayıştay tarafından",
+            "A) Yalnızca Sayıştay tarafından, harcamaların mali yönden hesap denetimi kapsamında incelenmek suretiyle denetlenir",
             "B) Anayasa Mahkemesi tarafından, iptal davası veya itiraz yoluyla",
             "C) Yalnızca Cumhurbaşkanı'nın kendisi tarafından",
             "D) Hiçbir organ tarafından denetlenemez",
@@ -13778,7 +13778,7 @@
           "secenekler": [
             "A) Kesin veto; TBMM bir daha o kanunu görüşemez",
             "B) Süspansif (geciktirici) veto; TBMM kanunu aynen kabul ederse Cumhurbaşkanı yayımlamak zorundadır",
-            "C) Mutlak veto; hiçbir koşulda aşılamaz",
+            "C) Mutlak (kesin) veto; Cumhurbaşkanının geri gönderdiği bir kanun, TBMM tarafından hiçbir çoğunlukla yeniden kabul edilemez ve kesin olarak düşer",
             "D) Anayasa Mahkemesi onayı gereken bir işlemdir",
             "E) Yalnızca bütçe kanunlarında kullanılabilir"
           ],
@@ -13790,7 +13790,7 @@
           "secenekler": [
             "A) Bu kararnameler hiçbir konu sınırlamasına tabi değildir ve Anayasa Mahkemesi'nin şekil ve esas denetimine kapalıdır",
             "B) Bu kararnameler olağan dönem kararnameleriyle tamamen aynı kurallara tabidir",
-            "C) Bu kararnameler yalnızca Danıştay tarafından denetlenir",
+            "C) Olağanüstü hal kararnameleri yalnızca Danıştay İdari Dava Daireleri Kurulu tarafından, yayımlandıktan sonraki altmış gün içinde açılacak iptal davası yoluyla denetlenir",
             "D) Bu kararnameler yalnızca Sayıştay tarafından denetlenir",
             "E) Bu kararnameler TBMM tarafından hiçbir şekilde onaylanmaz"
           ],
@@ -13803,7 +13803,7 @@
             "A) TBMM'nin onayına tabidir",
             "B) Herhangi bir onaya tabi değildir, doğrudan Cumhurbaşkanı'nın yetkisindedir",
             "C) Anayasa Mahkemesi'nin onayına tabidir",
-            "D) Dışişleri Komisyonu'nun onayına tabidir",
+            "D) TBMM Dışişleri Komisyonunun uygun görüş bildirmesi ve ardından Genel Kurulun onaylamasına tabidir",
             "E) Yalnızca Cumhurbaşkanı yardımcısının onayına tabidir"
           ],
           "dogruIndex": 1,
@@ -13826,7 +13826,7 @@
           "secenekler": [
             "A) Hiçbir özel nitelik aranmaz",
             "B) Cumhurbaşkanlığına aday olabilme (milletvekili seçilme yeterliliği ve 40 yaş gibi) niteliklerini taşıması",
-            "C) Daha önce milletvekili olmuş olması zorunludur",
+            "C) Daha önce en az bir dönem milletvekili veya bakan olarak görev yapmış olması ve hâlen TBMM üyesi bulunması zorunludur",
             "D) Sadece hukuk mezunu olması yeterlidir",
             "E) TBMM üyesi olması zorunludur"
           ],
@@ -13838,7 +13838,7 @@
           "secenekler": [
             "A) İkisi de aynı hukuki bağlayıcılığa sahiptir",
             "B) Kararname üçüncü kişileri bağlayan genel-soyut bir düzenleyici işlemken, genelge çoğunlukla idare içi bir yazışma ve yönlendirme aracıdır",
-            "C) Genelge kanundan daha üstündür",
+            "C) Genelge, hukuki değer bakımından hem kanunların hem de Cumhurbaşkanlığı kararnamelerinin üzerinde yer alan ve onları ilga edebilen üstün bir düzenleyici işlemdir",
             "D) Kararname yalnızca sözlü olarak yayımlanır",
             "E) Genelge Resmî Gazete'de hiçbir zaman yayımlanmaz"
           ],
@@ -13848,7 +13848,7 @@
         {
           "soru": "Cumhurbaşkanlığı hükümet sisteminde bakanların atanması için TBMM'nin onayı gerekir mi?",
           "secenekler": [
-            "A) Evet, her bakan atamasından önce TBMM güvenoyu vermelidir",
+            "A) Evet, atanan her bakanın göreve başlayabilmesi için TBMM Genel Kurulunda ayrı ayrı güvenoyu alması ve salt çoğunlukla onaylanması zorunludur",
             "B) Hayır, bakanlar doğrudan Cumhurbaşkanı tarafından atanır ve görevden alınır, TBMM onayı aranmaz",
             "C) Evet, ancak yalnızca ekonomiyle ilgili bakanlıklar için TBMM onayı gerekir",
             "D) Hayır, bakanları TBMM Başkanı atar",
@@ -13862,7 +13862,7 @@
           "secenekler": [
             "A) 1/3'ünün",
             "B) Salt çoğunluğunun (301)",
-            "C) 3/5'inin (360)",
+            "C) Üye tam sayısının beşte üçünün, yani en az üç yüz altmış milletvekilinin",
             "D) 2/3'ünün (400)",
             "E) Tamamının"
           ],
@@ -13922,7 +13922,7 @@
           "secenekler": [
             "A) TBMM'nin bu kararnamelerle hiçbir ilgisi yoktur",
             "B) Bu kararnameler Resmî Gazete'de yayımlandığı gün TBMM'nin onayına sunulur",
-            "C) Bu kararnameler yalnızca beş yılda bir TBMM'de görüşülür",
+            "C) Bu kararnameler ancak beş yılda bir yapılan olağan genel görüşmelerde TBMM gündemine alınarak topluca değerlendirilir",
             "D) Bu kararnameler TBMM tarafından hiçbir zaman reddedilemez",
             "E) Bu kararnameler doğrudan halkoyuna sunulur"
           ],
@@ -13935,7 +13935,7 @@
             "A) Karar alma sürecini hızlandırmak ve yürütmede istikrar sağlamak",
             "B) Yargı bağımsızlığını ortadan kaldırmak",
             "C) TBMM'yi tamamen işlevsiz kılmak",
-            "D) Yerel yönetimleri güçlendirmek",
+            "D) Merkezi idarenin yetkilerini azaltarak yerel yönetimlere geniş özerklik tanımak ve karar yetkisini belediyelere devretmek",
             "E) Anayasa Mahkemesi'ni kapatmak"
           ],
           "dogruIndex": 0,
@@ -13968,7 +13968,7 @@
         {
           "soru": "Cumhurbaşkanının 'milli güvenlik politikalarını belirleme' yetkisini kullanırken başvurduğu danışma organı hangisidir?",
           "secenekler": [
-            "A) Danıştay",
+            "A) İdari uyuşmazlıklara bakan yüksek mahkeme olan Danıştay",
             "B) Milli Güvenlik Kurulu",
             "C) Sayıştay",
             "D) Yargıtay",
@@ -13982,7 +13982,7 @@
           "secenekler": [
             "A) Hiçbir ön koşula bağlı değildir, tamamen serbesttir",
             "B) Kural olarak TBMM'nin bu andlaşmayı bir kanunla uygun bulmuş olmasına bağlıdır",
-            "C) Yalnızca Dışişleri Bakanlığının onayına bağlıdır",
+            "C) Yalnızca Dışişleri Bakanlığının hazırladığı gerekçeli raporun Cumhurbaşkanınca uygun bulunmasına bağlıdır",
             "D) Yalnızca Anayasa Mahkemesi'nin ön iznine bağlıdır",
             "E) Yalnızca halkoylamasına bağlıdır"
           ],
@@ -14030,7 +14030,7 @@
           "secenekler": [
             "A) Yürütmenin, yasama organınca onaylanan bütçeye bağlı kalarak harcama yapması gerekliliği (bütçe hakkına saygı ilkesi)",
             "B) Cumhurbaşkanının bütçeyi dilediği gibi değiştirebilmesi",
-            "C) Bütçenin yalnızca tavsiye niteliğinde olması",
+            "C) TBMM'ce kabul edilen bütçenin yürütme organı için yalnızca tavsiye niteliği taşıması ve Cumhurbaşkanının bu rakamlara uymak zorunda olmaması ilkesi",
             "D) Bütçenin yürütmeyi hiçbir şekilde bağlamaması",
             "E) Bütçenin yalnızca yerel yönetimleri ilgilendirmesi"
           ],
@@ -14042,7 +14042,7 @@
           "secenekler": [
             "A) Atama sürecinin keyfilikten uzak, önceden belirlenmiş objektif kriterlere dayanmasını sağlamak",
             "B) Cumhurbaşkanının atama yetkisini tamamen ortadan kaldırmak",
-            "C) Atama sürecini yalnızca TBMM'ye devretmek",
+            "C) Kamu görevlilerinin atanmasına ilişkin tüm yetkiyi Cumhurbaşkanından alıp doğrudan TBMM Genel Kuruluna devretmek ve seçimle belirlemek",
             "D) Atamaların hiçbir denetime tabi olmamasını sağlamak",
             "E) Atama sürecini gizli tutmak"
           ],
@@ -14078,7 +14078,7 @@
           "secenekler": [
             "A) Yürütme organının başı sıfatıyla kullandığı üst düzey atama yetkileri kapsamında",
             "B) Yargı yetkisi kapsamında",
-            "C) Yasama yetkisi kapsamında",
+            "C) TBMM ile paylaşılan yasama yetkisi kapsamında, Meclisin önerdiği adaylar arasından seçim yapılarak kullanılan bir atama yetkisidir",
             "D) Anayasa yargısı kapsamında",
             "E) Yerel yönetimler kapsamında"
           ],
@@ -14090,7 +14090,7 @@
           "secenekler": [
             "A) Cumhurbaşkanının bazı bağımsız/özerk kurumların oluşumuna katılabilmesi",
             "B) Cumhurbaşkanının yargı bağımsızlığını ortadan kaldırması",
-            "C) Cumhurbaşkanının yasama yetkisini kullanması",
+            "C) Cumhurbaşkanının, TBMM'ye ait olan yasama yetkisini kararname yoluyla doğrudan kullanabilmesinin somut bir görünümü",
             "D) Cumhurbaşkanının yerel yönetimleri feshetmesi",
             "E) Cumhurbaşkanının Anayasa Mahkemesi'ni kapatması"
           ],
@@ -14100,7 +14100,7 @@
         {
           "soru": "Cumhurbaşkanının 'kamuoyunu bilgilendirme' amacıyla yaptığı açıklamaların hukuki niteliği nedir?",
           "secenekler": [
-            "A) Her açıklama otomatik olarak kanun hükmündedir",
+            "A) Cumhurbaşkanının kamuoyuna yaptığı her açıklama, Resmî Gazete'de yayımlanmasa dahi kendiliğinden kanun hükmünde sayılır ve herkesi bağlar",
             "B) Bu açıklamalar siyasi niteliktedir ve tek başlarına bağlayıcı bir hukuki işlem oluşturmaz",
             "C) Bu açıklamalar Anayasa Mahkemesi kararı niteliğindedir",
             "D) Bu açıklamalar doğrudan Resmî Gazete'de kanun olarak yayımlanır",
@@ -14114,7 +14114,7 @@
           "secenekler": [
             "A) TBMM'nin meclis soruşturması yoluyla Cumhurbaşkanı yardımcıları ve bakanları denetleyebilmesi",
             "B) Cumhurbaşkanının TBMM'yi hiçbir şekilde etkileyememesi",
-            "C) Yargının yürütmeye tamamen bağlı olması",
+            "C) Yargı organlarının, verecekleri her kararda yürütmenin talimatlarına tamamen bağlı olması ve bağımsız hareket edememesi ilkesi",
             "D) TBMM'nin yürütmeyi hiçbir şekilde denetleyememesi",
             "E) Cumhurbaşkanının yasama yetkisini doğrudan kullanması"
           ],
@@ -14126,7 +14126,7 @@
           "secenekler": [
             "A) Yalnızca sözlü talimatla",
             "B) Kanunla veya kanunun verdiği yetkiye dayanılarak çıkarılan düzenleyici işlemlerle",
-            "C) Yalnızca kişisel kararla, hiçbir hukuki dayanağa gerek olmadan",
+            "C) Yalnızca Cumhurbaşkanının kişisel takdirine dayanan sözlü bir kararla, herhangi bir kanuni dayanağa veya yazılı işleme gerek olmaksızın",
             "D) Yalnızca halkoylamasıyla",
             "E) Bu yetki Cumhurbaşkanına ait değildir, yalnızca TBMM'ye aittir"
           ],
@@ -14138,7 +14138,7 @@
           "secenekler": [
             "A) Yürütmenin, meclis içindeki kırılgan koalisyon dengelerine bağlı olmaksızın belirlenmesi",
             "B) Yargının yürütmeye bağlanması",
-            "C) TBMM'nin tamamen kapatılması",
+            "C) Yasama organı olan TBMM'nin tamamen kapatılarak yasama yetkisinin de doğrudan Cumhurbaşkanına devredilmesi ve tek meclisli yapıya son verilmesi",
             "D) Yerel seçimlerin kaldırılması",
             "E) Anayasa Mahkemesi'nin yetkisizleştirilmesi"
           ],
@@ -14149,7 +14149,7 @@
           "soru": "Cumhurbaşkanlığı kararnamesiyle düzenlenen bir konuda sonradan kanun çıkarılırsa, kararnamenin akıbeti ne olur?",
           "secenekler": [
             "A) Kararname, kanunla çelişen hükümleri bakımından zımnen yürürlükten kalkar; kanun hükümleri uygulanır",
-            "B) Kanun geçersiz sayılır, kararname geçerliliğini korur",
+            "B) Sonradan çıkarılan kanun kendiliğinden geçersiz sayılır ve daha önce yürürlüğe giren Cumhurbaşkanlığı kararnamesi üstün tutularak uygulanmaya devam eder",
             "C) İkisi birlikte eşit ağırlıkta uygulanır",
             "D) Anayasa Mahkemesi'nin ayrıca bir karar vermesi gerekir, aksi hâlde kararname geçerlidir",
             "E) Kararname otomatik olarak kanuna dönüşür"
@@ -14174,7 +14174,7 @@
           "secenekler": [
             "A) Bakanlıklar ve bağlı/ilgili kamu kurum ve kuruluşları",
             "B) Yalnızca yabancı hükümetlerle",
-            "C) Yalnızca siyasi partilerle",
+            "C) Yalnızca TBMM'de grubu bulunan siyasi partiler ve onların oluşturduğu meclis komisyonlarıyla iş birliği içinde",
             "D) Yalnızca yerel yönetimlerle",
             "E) Yalnızca sivil toplum kuruluşlarıyla"
           ],
@@ -14256,7 +14256,7 @@
         {
           "soru": "Cumhurbaşkanı ve hükümetin görev ve yetkileri arasındaki ilişki hangi hükümet sisteminden alınmıştır?",
           "secenekler": [
-            "Parlamenter sistem",
+            "Yarı başkanlık ve parlamenter karma sistem",
             "Cumhurbaşkanılık hükümet sistemi",
             "Kongresçi sistem",
             "İhtilaf sistem",
@@ -14292,7 +14292,7 @@
         {
           "soru": "Cumhurbaşkanı, hükümet sisteminin hangi yapısından sorumludur?",
           "secenekler": [
-            "Federal",
+            "Federal (eyaletlere dayalı yönetim yapısından)",
             "Parlamenter",
             "Yürütme",
             "Yargı",
@@ -14580,7 +14580,7 @@
         {
           "soru": "Cumhurbaşkanı'nın görevine son verilmesi nasıl olur?",
           "secenekler": [
-            "Meclis tarafından görevden alınır.",
+            "Yalnızca Meclisin salt çoğunluğunun alacağı güvensizlik oyuyla görevden alınır.",
             "Mahkeme kararıyla görevden alınır.",
             "Hastalık veya engellilik nedeniyle görevden alınır.",
             "Görev süresinin dolmasıyla görevden alınır.",
@@ -14592,7 +14592,7 @@
         {
           "soru": "Cumhurbaşkanı'nın seçiminde kullanılan sistem hangisidir?",
           "secenekler": [
-            "Nisbi temsil sistemi.",
+            "Nisbi temsil ve d'Hondt usulü sistemi.",
             "Kapalı liste sistemi.",
             "Açık liste sistemi.",
             "Çoklu temsil sistemi.",
@@ -14679,7 +14679,7 @@
             "Her zaman",
             "Gerekli olduğunda",
             "Anayasa mahkemesinin kararıyla",
-            "Meclisin kararıyla",
+            "Meclisin üçte iki çoğunlukla aldığı kararla",
             "Seçimden sonra"
           ],
           "dogruIndex": 2,
@@ -14736,7 +14736,7 @@
         {
           "soru": "Cumhurbaşkanlığı hükümet sisteminde, hangi kurumun görevi, cumhurbaşkanı ve bakanları denetlemektir?",
           "secenekler": [
-            "Anayasa Mahkemesi",
+            "Anayasa Mahkemesi Genel Kurulu",
             "Yargıtay",
             "Danıştay",
             "Türkiye Büyük Millet Meclisi",
@@ -14760,7 +14760,7 @@
         {
           "soru": "Cumhurbaşkanlığı hükümet sisteminde, cumhurbaşkanı tarafından atanacak olan bakanlar, hangi kurumun üyeliklerine aday gösterilemez?",
           "secenekler": [
-            "Anayasa Mahkemesi",
+            "Anayasa Mahkemesi ve Hakimler Savcılar Kurulu üyeliklerine",
             "Yargıtay",
             "Danıştay",
             "Sayıştay",
@@ -14917,7 +14917,7 @@
           "soru": "Anayasa'nın 101. maddesine göre Cumhurbaşkanı adayı gösterilebilmek için siyasi partiler bakımından aranan şart nedir?",
           "secenekler": [
             "A) TBMM'de grubu bulunan veya son genel seçimlerde toplam geçerli oyların belirli bir oranını almış olan siyasi partiler aday gösterebilir",
-            "B) Her siyasi parti sınırsız sayıda aday gösterebilir",
+            "B) TBMM'de grubu bulunsun bulunmasın her siyasi parti ile bağımsız her vatandaş, hiçbir oy oranı şartı aranmaksızın sınırsız sayıda aday gösterebilir",
             "C) Yalnızca iktidar partisi aday gösterebilir",
             "D) Yalnızca TBMM'de en fazla üyeye sahip parti aday gösterebilir",
             "E) Siyasi partilerin aday gösterme hakkı yoktur, yalnızca bağımsız adaylar yarışabilir"
@@ -15001,7 +15001,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının yürütmeye ilişkin yetkileri arasında aşağıdakilerden hangisi sayılır?",
           "secenekler": [
             "A) Üst kademe kamu yöneticilerini atamak, görevlerine son vermek ve bunların atanmalarına ilişkin usul ve esasları Cumhurbaşkanlığı kararnamesiyle düzenlemek",
-            "B) TBMM'de kanun teklifi vermek yasaktır",
+            "B) Milletvekillerinin özlük haklarını, dokunulmazlıklarını ve TBMM İçtüzüğünü doğrudan Cumhurbaşkanlığı kararnamesiyle tek başına belirleyip yürürlüğe koymak ve uygulamak",
             "C) Bütçe kanununu tek başına kabul etmek",
             "D) Anayasa Mahkemesi kararlarını denetlemek",
             "E) Milletvekili seçimlerini iptal etmek"
@@ -15013,7 +15013,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının af yetkisi hangi kapsamla sınırlıdır?",
           "secenekler": [
             "A) Sürekli hastalık, sakatlık ve kocama sebebiyle belirli kişilerin cezalarını hafifletmek veya kaldırmak",
-            "B) Her türlü suçu genel olarak affetmek",
+            "B) İşlenen her türlü suç bakımından, hiçbir şart aranmaksızın genel ve süresiz olarak toplu af ilan etmek ve verilen cezaları tümüyle kaldırmak",
             "C) Yalnızca ekonomik suçları affetmek",
             "D) Yalnızca trafik cezalarını affetmek",
             "E) Bu yetki Anayasa'da yer almaz"
@@ -15025,7 +15025,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının yargıyla ilgili yetkilerinden biri aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Anayasa Mahkemesi üyelerinin bir kısmını, Yargıtay Cumhuriyet Başsavcısı ve Başsavcıvekilini seçmek",
-            "B) Yargıtay ve Danıştay'ın tüm kararlarını onaylamak",
+            "B) Yargıtay, Danıştay ve Bölge Adliye Mahkemelerinin verdiği tüm kesin kararları bizzat gözden geçirip onaylamak veya bozmak",
             "C) Mahkemelerin verdiği kararları değiştirmek",
             "D) Anayasa Mahkemesi'ni kapatmak",
             "E) Yargı bağımsızlığını doğrudan kısıtlamak"
@@ -15040,7 +15040,7 @@
             "B) Onda biri",
             "C) Beşte biri",
             "D) Dörtte biri",
-            "E) Üçte biri"
+            "E) Üye tam sayısının beşte üçünün oyuyla"
           ],
           "dogruIndex": 0,
           "aciklama": "2017 sonrası düzenlemede, Cumhurbaşkanı hakkında bir suç işlediği iddiası, TBMM üye tam sayısının salt çoğunluğunun vermesi üzerine gündeme gelir."
@@ -15061,7 +15061,7 @@
           "soru": "Cumhurbaşkanı hakkında Yüce Divan'a sevk kararı verilmesi halinde bu yargılamayı hangi organ yürütür?",
           "secenekler": [
             "A) Anayasa Mahkemesi (Yüce Divan sıfatıyla)",
-            "B) Yargıtay Ceza Genel Kurulu",
+            "B) Yargıtay Ceza Genel Kurulu (Yüce Divan sıfatıyla toplanan)",
             "C) Danıştay",
             "D) Askeri Yargıtay",
             "E) Uyuşmazlık Mahkemesi"
@@ -15073,7 +15073,7 @@
           "soru": "Anayasa'nın 105. maddesine göre görevi sona eren Cumhurbaşkanı hakkında görevleriyle ilgili suç işlediği iddiasıyla yargılama yapılabilir mi?",
           "secenekler": [
             "A) Evet; görevi bitmiş olsa dahi görevde bulunduğu dönemle ilgili işlediği iddia edilen suçlar bakımından Yüce Divan yargılaması yapılabilir",
-            "B) Hayır, görev bitince tüm sorumluluk ortadan kalkar",
+            "B) Hayır; görevi sona erdiği anda hem cezai hem hukuki hem de mali her türlü sorumluluk kendiliğinden ve tümüyle ortadan kalkar, hiçbir yargılama yapılamaz",
             "C) Yalnızca göreve devam ederken yargılanabilir",
             "D) Bu konuda Anayasa'da hüküm yoktur",
             "E) Yalnızca af çıkarsa yargılanabilir"
@@ -15085,7 +15085,7 @@
           "soru": "2017 anayasa değişikliği öncesinde olağanüstü hal ilan etme yetkisi kime aitti?",
           "secenekler": [
             "A) Cumhurbaşkanı başkanlığında toplanan Bakanlar Kurulu'na",
-            "B) Yalnızca TBMM'ye",
+            "B) Yalnızca Genelkurmay Başkanının önerisiyle toplanan Milli Güvenlik Kuruluna",
             "C) Yalnızca Genelkurmay Başkanlığına",
             "D) Yalnızca İçişleri Bakanlığına",
             "E) Yalnızca Milli Güvenlik Kurulu'na"
@@ -15100,7 +15100,7 @@
             "B) Yalnızca TBMM tarafından",
             "C) Yalnızca Anayasa Mahkemesi'nce",
             "D) Yalnızca Sayıştay'ca",
-            "E) Bakanlar Kurulu'nca (halen mevcut olduğundan)"
+            "E) Cumhurbaşkanı başkanlığında toplanan Bakanlar Kurulunca, TBMM'nin ön onayı alındıktan sonra"
           ],
           "dogruIndex": 0,
           "aciklama": "119. madde uyarınca 2017 sonrası sistemde olağanüstü hali Cumhurbaşkanı, Milli Güvenlik Kurulunun görüşünü aldıktan sonra ilan eder."
@@ -15110,7 +15110,7 @@
           "secenekler": [
             "A) Karar, Resmi Gazetede yayımlanır ve aynı gün TBMM onayına sunulur",
             "B) TBMM onayı hiçbir zaman aranmaz",
-            "C) Onay süresi bir yıldır",
+            "C) Karar Resmi Gazetede yayımlanır, ancak TBMM onayına en geç üç ay içinde sunulması yeterlidir",
             "D) Onay yalnızca Anayasa Mahkemesi'nce verilir",
             "E) Onay süresi belirsizdir, hiçbir zaman sınırı yoktur"
           ],
@@ -15134,7 +15134,7 @@
           "secenekler": [
             "A) Bu kararnameler, olağan dönem CB kararnamelerinden farklı olarak temel haklara ilişkin konularda da olağanüstü halin gerektirdiği ölçüde düzenleme yapabilir",
             "B) Olağanüstü hal döneminde hiçbir kararname çıkarılamaz",
-            "C) Bu kararnameler TBMM onayına tabi değildir ve hiçbir denetime tabi değildir",
+            "C) Bu kararnameler yürürlüğe girdikten sonra hiçbir şekilde TBMM onayına sunulmaz, Resmî Gazetede yayımlanması dahi gerekmeksizin süresiz olarak ve her türlü yargı denetiminden bağışık biçimde yürürlükte kalır",
             "D) Bu kararnameler yalnızca ekonomik konularla sınırlıdır",
             "E) Bu kararnameler süresiz olarak yürürlükte kalır"
           ],
@@ -15157,7 +15157,7 @@
           "soru": "Milli Güvenlik Kurulu'nun görevi Anayasa'nın 118. maddesine göre nedir?",
           "secenekler": [
             "A) Devletin milli güvenlik siyasetinin tayini, tespiti ve uygulanmasıyla ilgili alınan tavsiye kararları ile gerekli koordinasyonun sağlanması konusundaki görüşlerini Cumhurbaşkanına bildirmek",
-            "B) Doğrudan kanun yapmak",
+            "B) Devletin milli güvenlik ve savunma siyasetini bizzat belirleyip yürürlüğe koymak, Türk Silahlı Kuvvetlerine doğrudan emir vermek ve bu konularda bağlayıcı kanun hükmünde kararnameler çıkararak uygulamak",
             "C) Yargı kararlarını denetlemek",
             "D) Bütçe kanununu onaylamak",
             "E) Milletvekili seçimlerini yönetmek"
@@ -15193,7 +15193,7 @@
           "soru": "Anayasa'nın 131. maddesine göre Yükseköğretim Kurulu'nun (YÖK) temel işlevi nedir?",
           "secenekler": [
             "A) Yükseköğretim kurumlarının öğretimini planlamak, düzenlemek, yönetmek, denetlemek ve bu kurumlar arasında eşgüdümü sağlamak",
-            "B) Yalnızca öğrenci harçlarını belirlemek",
+            "B) Yalnızca üniversite öğrencilerinin harç miktarlarını, burs ve kredi tutarlarını belirlemek ve yurt yerleştirme işlemlerini tek elden yürütmek",
             "C) Yalnızca üniversite rektörlerini seçmek",
             "D) Yalnızca burs dağıtımını yapmak",
             "E) Bu kurul yalnızca özel üniversiteleri denetler"
@@ -15205,7 +15205,7 @@
           "soru": "Anayasa'nın 130. maddesine göre üniversitelerin özerkliği ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Üniversiteler, bilimsel özerkliğe ve kamu tüzel kişiliğine sahip kurumlar olarak düzenlenmiştir",
-            "B) Üniversiteler hiçbir özerkliğe sahip değildir",
+            "B) Üniversiteler idari ve mali bakımdan tümüyle İçişleri Bakanlığına bağlı, hiçbir bilimsel ya da yönetsel özerkliği bulunmayan kuruluşlardır",
             "C) Üniversiteler tamamen özel hukuk tüzel kişisidir",
             "D) Üniversiteler yalnızca belediyelere bağlıdır",
             "E) Bu madde yalnızca özel üniversiteleri düzenler"
@@ -15217,7 +15217,7 @@
           "soru": "Anayasa'nın 124. maddesine göre yönetmelik çıkarma yetkisi kimlere aittir?",
           "secenekler": [
             "A) Cumhurbaşkanı, bakanlıklar ve kamu tüzel kişileri",
-            "B) Yalnızca TBMM'ye",
+            "B) Yalnızca Türkiye Büyük Millet Meclisi ile Anayasa Mahkemesine",
             "C) Yalnızca belediyelere",
             "D) Yalnızca Anayasa Mahkemesi'ne",
             "E) Yalnızca valiliklere"
@@ -15229,7 +15229,7 @@
           "soru": "Kanun, Cumhurbaşkanlığı kararnamesi ve yönetmelik arasındaki normlar hiyerarşisi nasıldır?",
           "secenekler": [
             "A) Kanun, kararnameden; kararname de yönetmelikten üstündür",
-            "B) Yönetmelik her zaman kararnameden üstündür",
+            "B) Yönetmelik, hem Cumhurbaşkanlığı kararnamesinden hem de kanundan her zaman daha üstün bir normdur",
             "C) Kararname her zaman kanundan üstündür",
             "D) Üçü de eşit düzeydedir",
             "E) Yönetmelik kanunla eşit düzeydedir"
@@ -15256,7 +15256,7 @@
             "B) Belediye Başkanı; halk tarafından seçilir",
             "C) İl Genel Meclisi Başkanı; halk tarafından seçilir",
             "D) Kaymakam; halk tarafından seçilir",
-            "E) Vali; halk tarafından seçilir"
+            "E) Vali; il seçmenlerinin katıldığı doğrudan halk oylamasıyla beş yıllığına seçilerek göreve gelir"
           ],
           "dogruIndex": 0,
           "aciklama": "Vali, ilin merkezi idare adına en üst yöneticisi olup atamayla (seçimle değil) göreve gelir; bu, merkezden yönetim ilkesinin bir yansımasıdır."
@@ -15265,7 +15265,7 @@
           "soru": "Anayasa'nın 103. maddesine göre Cumhurbaşkanı göreve başlarken TBMM önünde ettiği yeminde neyi taahhüt eder?",
           "secenekler": [
             "A) Devletin varlığı ve bağımsızlığını, vatanın ve milletin bölünmez bütünlüğünü, milletin kayıtsız ve şartsız egemenliğini koruyacağına, Anayasaya, hukukun üstünlüğüne, demokrasiye bağlı kalacağına ant içer",
-            "B) Yalnızca kendi partisine sadık kalacağına yemin eder",
+            "B) Yalnızca kendisini aday gösteren siyasi partiye ve o partinin genel başkanına sadık kalacağına, parti programını eksiksiz uygulayacağına ve milletvekillerinden sürekli emir alacağına dair TBMM Genel Kurulu huzurunda ant içer",
             "C) Yemin töreni yalnızca sembolik olup hiçbir hukuki değeri yoktur",
             "D) Yemin, TBMM dışında bir yerde edilir",
             "E) Yemin metni her Cumhurbaşkanınca farklı belirlenir"
@@ -15277,7 +15277,7 @@
           "soru": "Anayasa'nın 106. maddesine göre bakanların atanması ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Bakanlar, milletvekili olan veya milletvekili seçilme yeterliliğine sahip olanlar arasından Cumhurbaşkanınca atanır ve görevden alınır",
-            "B) Bakanlar TBMM tarafından seçilir",
+            "B) Bakanlar, Türkiye Büyük Millet Meclisi üye tam sayısının salt çoğunluğunun gizli oyuyla, milletvekilleri arasından beş yıllığına seçilerek göreve getirilir",
             "C) Bakanlar yalnızca milletvekilleri arasından atanabilir",
             "D) Bakanların atanması için TBMM onayı gereklidir",
             "E) Bakanlık görevi kalıtsaldır"
@@ -15313,7 +15313,7 @@
           "soru": "Anayasa'nın 136. maddesine göre Diyanet İşleri Başkanlığı'nın konumu nedir?",
           "secenekler": [
             "A) Genel idare içinde yer alan, laiklik ilkesi doğrultusunda görev yapan, özel kanununda gösterilen görevleri yerine getiren bir kurumdur",
-            "B) Bağımsız bir yargı organıdır",
+            "B) Yasama, yürütme ve yargıdan bağımsız, kendi bütçesini oluşturan ve kararları hiçbir merci tarafından denetlenemeyen özerk bir anayasal yargı organıdır",
             "C) Bir sivil toplum kuruluşudur",
             "D) Yalnızca bir vakıf olarak faaliyet gösterir",
             "E) TBMM'ye bağlı bir yasama organıdır"
@@ -15325,7 +15325,7 @@
           "soru": "Cumhurbaşkanlığına bağlı olarak kurulan ve stratejik politika geliştirme, bütçe hazırlık süreçlerine katkı gibi görevler üstlenen kurum aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Cumhurbaşkanlığı Strateji ve Bütçe Başkanlığı",
-            "B) Danıştay",
+            "B) Cumhurbaşkanlığı Strateji Geliştirme ve Denetleme Kurulu Başkanlığı",
             "C) Sayıştay",
             "D) Yargıtay",
             "E) Anayasa Mahkemesi"
@@ -15337,7 +15337,7 @@
           "soru": "2017 sonrası Cumhurbaşkanlığı bünyesinde kurulan 'politika kurulları' ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Belirli alanlarda (ekonomi, eğitim, sağlık, güvenlik ve dış politika gibi) Cumhurbaşkanına danışmanlık ve politika geliştirme desteği sağlarlar",
-            "B) Bu kurullar yasama yetkisi kullanır",
+            "B) Bu kurullar, kendi alanlarında doğrudan bağlayıcı kanun ve kararname çıkarma yetkisini kullanır, TBMM'nin yasama tekelini bu konularda tamamen ortadan kaldırır",
             "C) Bu kurullar yargı kararı verebilir",
             "D) Bu kurullar TBMM'ye bağlıdır",
             "E) Bu kurulların hiçbir görevi yoktur"
@@ -15361,7 +15361,7 @@
           "soru": "1924 Anayasası ile Cumhurbaşkanlığı makamının kuruluşu arasındaki ilişki nedir?",
           "secenekler": [
             "A) Cumhurbaşkanlığı makamı ilk kez 1924 Anayasası ile kurulmuş, Cumhurbaşkanı TBMM tarafından kendi üyeleri arasından seçilmiştir",
-            "B) Cumhurbaşkanlığı makamı 1982 Anayasası ile ilk kez kurulmuştur",
+            "B) Cumhurbaşkanlığı makamı ilk kez 1982 Anayasası ile kurulmuş, Cumhurbaşkanı doğrudan halk tarafından yedi yıllığına seçilerek göreve gelmiştir",
             "C) Cumhurbaşkanlığı makamı 1921 Anayasası'nda zaten mevcuttu",
             "D) 1924 Anayasası'nda Cumhurbaşkanlığı makamına hiç yer verilmemiştir",
             "E) Cumhurbaşkanı 1924'te halk tarafından seçilirdi"
@@ -15373,7 +15373,7 @@
           "soru": "1961 Anayasası döneminde yürütme organının yapısı nasıldı?",
           "secenekler": [
             "A) Cumhurbaşkanı (TBMM tarafından seçilen, tarafsız bir devlet başkanı) ve Bakanlar Kurulundan oluşan ikili (düalist) bir yürütme yapısı vardı",
-            "B) Yürütme yetkisi tamamen TBMM'de toplanmıştı",
+            "B) Yürütme yetkisi tümüyle TBMM'de toplanmış, ayrı bir Cumhurbaşkanı ya da Bakanlar Kurulu bulunmaksızın meclis hükümeti sistemi tekil (monist) biçimde uygulanmıştı",
             "C) Yürütme yetkisi doğrudan halk tarafından seçilen Cumhurbaşkanına aitti",
             "D) Bu dönemde Bakanlar Kurulu yoktu",
             "E) Yürütme yetkisi yalnızca Cumhurbaşkanına aitti, Bakanlar Kurulu yoktu"
@@ -15385,7 +15385,7 @@
           "soru": "1982 Anayasası'nın ilk halinde (2017 öncesi) yürütme yetkisinin niteliği nasıl tanımlanmıştı?",
           "secenekler": [
             "A) Yürütme yetkisi ve görevi, Cumhurbaşkanı ve Bakanlar Kurulu tarafından, Anayasaya ve kanunlara uygun olarak kullanılır ve yerine getirilirdi",
-            "B) Yürütme yetkisi yalnızca Cumhurbaşkanına aitti",
+            "B) Yürütme yetkisi yalnızca doğrudan halk tarafından seçilen Cumhurbaşkanına ait olup, Bakanlar Kurulu tümüyle ona bağlı bir danışma organı niteliğindeydi",
             "C) Yürütme yetkisi TBMM'ye aitti",
             "D) Yürütme yetkisi yalnızca Bakanlar Kuruluna aitti, Cumhurbaşkanının hiçbir yürütme yetkisi yoktu",
             "E) Bu dönemde yürütme organı tanımlanmamıştı"
@@ -15421,7 +15421,7 @@
           "soru": "Cumhurbaşkanlığı kararnamesi ile daha önce kanunla düzenlenmiş bir konuda düzenleme yapılabilir mi?",
           "secenekler": [
             "A) Hayır; Anayasa'da kararname ile düzenleneceği belirtilmeyen, daha önce kanunla düzenlenmiş konularda kararname çıkarılamaz",
-            "B) Evet, her zaman serbestçe yapılabilir",
+            "B) Evet; Cumhurbaşkanı daha önce kanunla düzenlenmiş her konuda, TBMM'nin onayına gerek olmaksızın dilediği zaman serbestçe kararname çıkarabilir",
             "C) Yalnızca TBMM izin verirse yapılabilir",
             "D) Yalnızca olağanüstü hallerde yapılabilir, olağan dönemde asla yapılamaz",
             "E) Bu konuda Anayasa'da hiçbir kısıtlama yoktur"
@@ -15433,7 +15433,7 @@
           "soru": "Anayasa Mahkemesi'nin Cumhurbaşkanlığı kararnameleri üzerindeki denetim yetkisiyle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Cumhurbaşkanlığı kararnameleri de kanunlar gibi Anayasaya uygunluk denetimine (iptal davası, itiraz yolu) tabidir",
-            "B) Kararnameler hiçbir yargısal denetime tabi değildir",
+            "B) Cumhurbaşkanlığı kararnameleri hiçbir yargısal denetime tabi olmayıp, yalnızca çıkaran Cumhurbaşkanının kendi takdiriyle yürürlükten kaldırılabilir",
             "C) Kararnameler yalnızca Danıştay'ca denetlenir",
             "D) Kararnameler yalnızca TBMM'ce denetlenir",
             "E) Kararnameler yalnızca Sayıştay'ca denetlenir"
@@ -15445,7 +15445,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının 'yürürlükteki kanunları uygulamak' görevi hangi ilkeyle ilişkilidir?",
           "secenekler": [
             "A) Yürütmenin, yasama organının koyduğu kanunlara bağlılığını ifade eden hukuk devleti ilkesiyle",
-            "B) Yargı bağımsızlığı ilkesiyle",
+            "B) Yargı organlarının hiçbir makamdan emir almamasını güvence altına alan yargı bağımsızlığı ve tarafsızlığı ilkesiyle",
             "C) Federal devlet ilkesiyle",
             "D) Laiklik ilkesiyle",
             "E) Bu görevin hiçbir ilkeyle ilgisi yoktur"
@@ -15469,7 +15469,7 @@
           "soru": "Cumhurbaşkanının 'milletlerarası andlaşmaları onaylamak ve yayımlamak' yetkisi ile TBMM'nin bu konudaki yetkisi arasındaki ilişki nedir?",
           "secenekler": [
             "A) TBMM andlaşmayı uygun bulma kanunuyla onaylar, ardından Cumhurbaşkanı bu andlaşmayı onaylayıp yayımlar",
-            "B) Cumhurbaşkanı TBMM'nin onayına gerek kalmadan her andlaşmayı tek başına onaylayabilir",
+            "B) Cumhurbaşkanı, TBMM'nin uygun bulma kanununa hiçbir surette gerek kalmaksızın her türlü milletlerarası andlaşmayı tek başına onaylayıp yürürlüğe koyabilir",
             "C) TBMM'nin bu konuda hiçbir rolü yoktur",
             "D) Andlaşmalar yalnızca Dışişleri Bakanlığınca onaylanır",
             "E) Bu süreçte hiçbir sıra veya işbirliği yoktur"
@@ -15481,7 +15481,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının 'Genelkurmay Başkanını atamak' yetkisi hangi organla ilişkilidir?",
           "secenekler": [
             "A) Cumhurbaşkanının Türk Silahlı Kuvvetlerinin Başkomutanlığını Türkiye Büyük Millet Meclisi adına temsil etmesi ilkesiyle",
-            "B) Yalnızca TBMM Başkanı ile",
+            "B) Türk Silahlı Kuvvetlerinin Başkomutanlığını doğrudan üstlenen ve orduya bizzat emir veren TBMM Başkanının yürütmedeki konumu ilkesiyle",
             "C) Yalnızca Anayasa Mahkemesi ile",
             "D) Yalnızca belediye başkanlarıyla",
             "E) Bu yetkinin hiçbir kurumsal bağlantısı yoktur"
@@ -15493,7 +15493,7 @@
           "soru": "Cumhurbaşkanının 'kanunları yayımlamak' görevi ile 'kararname çıkarmak' yetkisi arasındaki temel fark nedir?",
           "secenekler": [
             "A) Kanunları yayımlama, TBMM'nin ürettiği bir metni yürürlüğe koyma işlemiyken; kararname çıkarma, Cumhurbaşkanının bizzat kendi düzenleyici işlemini oluşturmasıdır",
-            "B) İkisi de aynı işlemi ifade eder",
+            "B) İkisi de birbirinin tamamen aynısı olan, Cumhurbaşkanının TBMM'ye ait yasama yetkisini onun yerine kullanarak kanun metni oluşturması işlemini ifade eden özdeş süreçlerdir",
             "C) Kanun yayımlama yalnızca TBMM'nin, kararname çıkarma yalnızca yargının yetkisidir",
             "D) Kanunları yayımlama yetkisi Cumhurbaşkanına ait değildir",
             "E) Kararname çıkarma yetkisi TBMM'ye aittir"
@@ -15517,7 +15517,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının yasamaya ilişkin yetki ve görevleri arasında aşağıdakilerden hangisi sayılır?",
           "secenekler": [
             "A) Gerekli gördüğü takdirde yasama yılının ilk günü TBMM'de açılış konuşmasını yapmak",
-            "B) Bakan atamak",
+            "B) Bakanları ve bakan yardımcılarını atamak ve gerektiğinde bunların görevlerine son vermek",
             "C) Üst kademe kamu yöneticilerini atamak",
             "D) Milli güvenlik politikalarını belirlemek",
             "E) Yabancı devlet temsilcilerini kabul etmek"
@@ -15565,7 +15565,7 @@
           "soru": "Cumhurbaşkanının 'Yargıtay üyelerini seçmek' gibi bir yetkisi var mıdır?",
           "secenekler": [
             "A) Hayır; Cumhurbaşkanı doğrudan Yargıtay üyelerini seçmez, bu üyeler Hakimler ve Savcılar Kurulunca seçilir",
-            "B) Evet, tüm Yargıtay üyelerini Cumhurbaşkanı seçer",
+            "B) Evet; Yargıtay üyelerinin tamamı, Hakimler ve Savcılar Kurulunun önerisine gerek olmaksızın doğrudan Cumhurbaşkanı tarafından seçilip atanır",
             "C) Yargıtay üyelerinin yarısını Cumhurbaşkanı seçer",
             "D) Yargıtay üyelerini TBMM seçer",
             "E) Yargıtay üyelerini Danıştay seçer"
@@ -15577,7 +15577,7 @@
           "soru": "Cumhurbaşkanının 'Milli Güvenlik Kurulunu toplantıya çağırmak' yetkisi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Bu, Cumhurbaşkanının MGK'ya başkanlık etmesiyle doğrudan bağlantılı, yürütmeye ilişkin bir yetkisidir",
-            "B) Bu yetki TBMM Başkanına aittir",
+            "B) Milli Güvenlik Kurulunu toplantıya çağırma ve ona başkanlık etme yetkisi, Cumhurbaşkanına değil doğrudan TBMM Başkanına aittir",
             "C) Bu yetki Genelkurmay Başkanına aittir",
             "D) MGK kendiliğinden, çağrı olmadan toplanır",
             "E) Bu yetki Anayasa'da yer almaz"
@@ -15589,7 +15589,7 @@
           "soru": "Anayasa'nın 104. maddesindeki Cumhurbaşkanı yetkilerinin üçlü tasnifi (yasama, yürütme, yargı) neden önemlidir?",
           "secenekler": [
             "A) Kuvvetler ayrılığı ilkesinin, tek bir organda toplanan Cumhurbaşkanlığı makamı içinde dahi hangi yetkinin hangi işlev alanına ait olduğunu ayırt etmeye yaramasından dolayı",
-            "B) Bu tasnifin hiçbir pratik önemi yoktur",
+            "B) Bu üçlü tasnifin uygulamada hiçbir pratik önemi bulunmadığı gibi, Anayasa metninde de yer almayan, yalnızca öğretide dile getirilmiş, tümüyle kuramsal ve bağlayıcılıktan yoksun bir sınıflandırmadan ibaret olmasından dolayı",
             "C) Bu tasnif yalnızca akademik bir tartışmadır, Anayasa metninde yer almaz",
             "D) Bu tasnif yalnızca tarihi bir uygulamadır, günümüzde geçerli değildir",
             "E) Bu tasnif yalnızca yerel yönetimler için geçerlidir"
@@ -15601,7 +15601,7 @@
           "soru": "Cumhurbaşkanının 'yabancı devletlerle ve milletlerarası kuruluşlarla yapılacak andlaşmaları onaylamak ve yayımlamak' yetkisinin hukuki sınırı nedir?",
           "secenekler": [
             "A) Bu yetki, TBMM'nin ilgili andlaşmayı uygun bulma kanunuyla onaylamış olması şartına bağlıdır (istisnai andlaşmalar hariç)",
-            "B) Bu yetki hiçbir sınıra tabi değildir",
+            "B) Bu yetki hiçbir hukuki sınıra tabi olmayıp, Cumhurbaşkanı TBMM'nin uygun bulmasına gerek kalmaksızın dilediği andlaşmayı tek başına onaylayabilir",
             "C) Bu yetki yalnızca ekonomik andlaşmalarla sınırlıdır",
             "D) Bu yetki yalnızca savaş andlaşmalarıyla sınırlıdır",
             "E) Bu yetki Anayasa Mahkemesi'nin ön iznine tabidir"
@@ -15637,7 +15637,7 @@
           "soru": "Cumhurbaşkanlığı ve TBMM genel seçimlerinin aynı gün yapılması ilkesinin amacı nedir?",
           "secenekler": [
             "A) Yürütme ile yasamanın meşruiyet kaynağının aynı seçmen iradesine dayanmasını ve görev sürelerinin senkronize kalmasını sağlamak",
-            "B) Seçim masraflarını tamamen ortadan kaldırmak",
+            "B) Seçimlerin bir arada yapılmasıyla Devletin bütün seçim masraflarını tümüyle ortadan kaldırmak ve oy verme işlemini yalnızca tek bir sandıkla sınırlamak",
             "C) Yalnızca aynı adayın her iki göreve seçilmesini sağlamak",
             "D) TBMM'nin yürütmeyi tamamen kontrol etmesini sağlamak",
             "E) Bu ilkenin hiçbir amacı yoktur"
@@ -15650,7 +15650,7 @@
           "secenekler": [
             "A) Önergenin verilmesinden itibaren bir ay içinde",
             "B) Herhangi bir süre öngörülmemiştir",
-            "C) Bir yıl içinde",
+            "C) Önergenin verildiği tarihten itibaren en geç üç ay içinde",
             "D) Bir hafta içinde",
             "E) Üç yıl içinde"
           ],
@@ -15673,7 +15673,7 @@
           "soru": "Cumhurbaşkanının görevi kötüye kullanmasına karşı en ağır anayasal yaptırım nedir?",
           "secenekler": [
             "A) Yüce Divan'da yargılanıp mahkum olması halinde görevinin sona ermesi",
-            "B) Yalnızca kamuoyu eleştirisi",
+            "B) Yalnızca kamuoyunun ve basının eleştirileriyle sınırlı kalan, hukuki hiçbir sonucu bulunmayan siyasi bir tepki",
             "C) Yalnızca TBMM'nin kınama kararı",
             "D) Yalnızca bir sonraki seçimde aday olamaması",
             "E) Hiçbir yaptırım yoktur"
@@ -15685,7 +15685,7 @@
           "soru": "2017 anayasa değişikliği sonrası Cumhurbaşkanının bir kanun teklifini bizzat TBMM'ye sunması uygulaması hangi ilkeyle açıklanır?",
           "secenekler": [
             "A) Cumhurbaşkanlığı hükümet sisteminde yürütmenin de yasama sürecine milletvekilleri gibi doğrudan katılabilmesi ilkesiyle",
-            "B) Bu uygulama Anayasa'da yasaktır",
+            "B) Bu uygulama Anayasa tarafından açıkça yasaklanmış olup, Cumhurbaşkanının yasama sürecine herhangi bir biçimde katılması kesinlikle mümkün değildir",
             "C) Bu uygulama yalnızca bütçe kanunu için geçerlidir",
             "D) Bu uygulama yalnızca anayasa değişiklikleri için geçerlidir",
             "E) Cumhurbaşkanının kanun teklif etmesi imkansızdır"
@@ -15721,7 +15721,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının 'yükseköğretim kurumlarına rektör atamak' benzeri üst düzey atama yetkilerinin sınırı nedir?",
           "secenekler": [
             "A) Bu yetkiler Anayasa ve ilgili kanunlarda gösterilen usul ve esaslara göre, Cumhurbaşkanlığı kararnamesiyle somutlaştırılan çerçevede kullanılır",
-            "B) Bu yetkiler sınırsızdır, hiçbir usule tabi değildir",
+            "B) Bu atama yetkileri tümüyle sınırsız olup, Anayasada ya da herhangi bir kanunda gösterilen hiçbir usul ve esasa bağlı olmaksızın serbestçe kullanılır",
             "C) Bu yetkiler yalnızca TBMM onayıyla kullanılabilir",
             "D) Bu yetkiler Anayasa Mahkemesi'nin ön iznine tabidir",
             "E) Bu yetkiler hiçbir zaman kullanılamaz"
@@ -15746,7 +15746,7 @@
           "secenekler": [
             "A) Klasik parlamenter anlamda Başbakan başkanlığında toplanan bir kabine artık mevcut değildir; bakanlar doğrudan Cumhurbaşkanına karşı sorumludur",
             "B) Kabine kavramı hiçbir zaman kullanılmamıştır",
-            "C) Kabine günümüzde de Başbakan başkanlığında toplanır",
+            "C) Kabine günümüzde de klasik parlamenter sistemdeki gibi Başbakanın başkanlığında toplanmakta ve kararlarından TBMM'ye karşı topluca sorumlu olmaktadır",
             "D) Kabine yalnızca TBMM Başkanınca yönetilir",
             "E) Kabine kavramı yalnızca yerel yönetimlerde kullanılır"
           ],
