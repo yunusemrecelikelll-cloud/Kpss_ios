@@ -32,7 +32,7 @@
         {
           "soru": "Aşağıdakilerden hangisi hukuk kurallarını diğer sosyal düzen kurallarından ayıran temel özelliktir?",
           "secenekler": [
-            "A) Toplumda genel kabul görmesi",
+            "A) Toplumda genel ahlaki kabul görüp vicdanlara dayanması",
             "B) Yazılı olması zorunluluğu",
             "C) Yaptırımının devlet tarafından uygulanması",
             "D) Ahlaki değerlere dayanması",
@@ -106,7 +106,7 @@
             "B) Cebri icra",
             "C) Vicdani kınama",
             "D) İptal",
-            "E) Para cezası"
+            "E) Adli para cezası veya idari nitelikli para cezası"
           ],
           "dogruIndex": 2,
           "aciklama": "Vicdani kınama, ahlak kurallarının yaptırımıdır; hukuki bir yaptırım değildir. Hukuki yaptırımlar: ceza, tazminat, cebri icra, iptal ve butlandır.",
@@ -130,7 +130,7 @@
         {
           "soru": "Hukuk kurallarının özelliklerine ilişkin aşağıdaki ifadelerden hangisi yanlıştır?",
           "secenekler": [
-            "A) Hukuk kuralları genel ve soyuttur.",
+            "A) Hukuk kuralları genel ve soyut nitelikte olup aynı durumda bulunan herkese uygulanır ve belli bir kişiyi hedef almaz.",
             "B) Hukuk kuralları süreklilik taşır.",
             "C) Hukuk kuralları kişisel nitelik taşır ve yalnızca belirli kişilere yöneliktir.",
             "D) Hukuk kuralları yaptırıma bağlıdır.",
@@ -186,7 +186,7 @@
         {
           "soru": "Anayasa Mahkemesi'nin bir kanunu iptal etmesi hangi tür hukuki yaptırımın örneğidir?",
           "secenekler": [
-            "A) Cebri icra",
+            "A) Cebri icra yoluyla borcun zorla tahsil edilmesi yaptırımı",
             "B) Tazminat",
             "C) Butlan (hükümsüzlük)",
             "D) Para cezası",
@@ -272,7 +272,7 @@
         {
           "soru": "Aşağıdaki yaptırım türlerinden hangisi ceza hukukuna özgüdür?",
           "secenekler": [
-            "A) Tazminat",
+            "A) Maddi ve manevi zararları giderici tazminat yaptırımı",
             "B) Hapis cezası",
             "C) İptal",
             "D) Butlan",
@@ -380,7 +380,7 @@
         {
           "soru": "Nisbi hak ile mutlak hak arasındaki temel fark nedir?",
           "secenekler": [
-            "A) Mutlak haklar para ile ölçülebilir, nisbi haklar ölçülemez.",
+            "A) Mutlak haklar yalnızca para ile ölçülebilen ekonomik değerlerdir, nisbi haklar ise hiçbir biçimde parayla ölçülemez ve değerlendirilemez.",
             "B) Nisbi haklar yalnızca belirli kişilere karşı ileri sürülebilirken mutlak haklar herkese karşı ileri sürülebilir.",
             "C) Mutlak haklar yalnızca gerçek kişilere tanınır.",
             "D) Nisbi haklar devlet tarafından sağlanan haklardır.",
@@ -456,7 +456,7 @@
             "B) Kişinin evli olmasını",
             "C) Kişinin makul biçimde hareket edip davranışlarının sonucunu değerlendirebilme yeteneğini",
             "D) Kişinin bir mesleğe sahip olmasını",
-            "E) Kişinin vasi atanmamış olmasını"
+            "E) Kişinin herhangi bir kısıtlama altında bulunmayıp kendisine vasi veya kayyım atanmamış olmasını"
           ],
           "dogruIndex": 2,
           "aciklama": "Ayırt etme gücü; yaş küçüklüğü, akıl hastalığı, akıl zayıflığı, sarhoşluk gibi hâllerin bulunmaması durumunda kişinin davranışlarının anlam ve sonuçlarını değerlendirebilme yeteneğidir."
@@ -478,7 +478,7 @@
           "secenekler": [
             "A) Alacak tamamen ortadan kalkar",
             "B) Alacak dava edilemez hâle gelir, ancak borçlu isterse ifa edebilir (doğal borca dönüşür)",
-            "C) Alacak otomatik olarak mahkeme kararıyla iptal edilir",
+            "C) Alacak, herhangi bir talebe gerek olmaksızın mahkeme tarafından resen ve kesin biçimde iptal edilerek ortadan kaldırılır",
             "D) Alacak kamu alacağına dönüşür",
             "E) Alacak miktarı yarıya iner"
           ],
@@ -492,7 +492,7 @@
             "B) Belirli bir olaya değil, aynı durumda bulunan herkese uygulanır",
             "C) Yalnızca kamu görevlilerini bağlar",
             "D) Sadece yazılı metinlerde yer alır",
-            "E) Zamanla değişmeyen kurallardır"
+            "E) Yürürlüğe girdikten sonra hiçbir biçimde değiştirilemeyen ve zamanla asla değişmeyen kurallar olması"
           ],
           "dogruIndex": 1,
           "aciklama": "Hukuk kurallarının genel ve soyut olması, belirli bir kişi veya olaya değil, aynı koşullarda bulunan herkese ve her olaya uygulanabilir nitelikte olması demektir."
@@ -512,7 +512,7 @@
         {
           "soru": "Ceza hukukunda kural olarak kıyas yapılması neden yasaktır?",
           "secenekler": [
-            "A) Kıyas yalnızca özel hukukta uygulanabildiği için",
+            "A) Kıyas yönteminin yalnızca özel hukuk alanında ve borç ilişkilerinde uygulanabilen bir yorum aracı olması nedeniyle",
             "B) Kanunda düzenlenmeyen bir fiilin kıyas yoluyla suç sayılması, kanunilik ilkesini ihlal edeceği için",
             "C) Kıyas sadece hâkimlerin yetkisinde olmadığı için",
             "D) Kıyas yazılı kaynaklarla sınırlı olduğu için",
@@ -610,7 +610,7 @@
           "secenekler": [
             "A) Kanun",
             "B) Cumhurbaşkanlığı kararnamesi",
-            "C) Örf ve adet",
+            "C) Örf ve adet ile yerleşmiş toplumsal gelenek kuralları",
             "D) Doktrin (bilimsel görüşler) ve yargısal içtihat",
             "E) Yönetmelik"
           ],
@@ -620,7 +620,7 @@
         {
           "soru": "Yargıtay İçtihadı Birleştirme Kararları hakkında aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Sadece tavsiye niteliğindedir, bağlayıcı değildir",
+            "A) Sadece yol gösterici ve tavsiye niteliğinde olup hiçbir mahkeme için bağlayıcılık taşımaması",
             "B) Yalnızca verildiği somut davada bağlayıcıdır",
             "C) Aynı konuda karar veren mahkemeleri ve Yargıtay dairelerini bağlar",
             "D) Anayasa Mahkemesi kararlarından üstündür",
@@ -668,7 +668,7 @@
         {
           "soru": "Kişilik haklarının (yaşam, vücut bütünlüğü, ad, şeref gibi haklar) temel özelliği aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Devredilebilir ve miras yoluyla geçebilir",
+            "A) Serbestçe devredilebilir, satılabilir ve miras yoluyla mirasçılara geçebilir",
             "B) Kişiye sıkı sıkıya bağlıdır, devredilemez ve vazgeçilemez",
             "C) Yalnızca sözleşmeyle kazanılır",
             "D) Belirli bir süreyle sınırlıdır",
@@ -680,7 +680,7 @@
         {
           "soru": "Bir kanunun yürürlüğe girmesi kural olarak hangi işlemle gerçekleşir?",
           "secenekler": [
-            "A) TBMM Genel Kurulu'nda kabul edilmesiyle",
+            "A) Yalnızca TBMM Genel Kurulu'nda oylanıp kabul edilmesiyle, ayrıca yayım gerekmeksizin",
             "B) Resmî Gazete'de yayımlanmasıyla veya yayımlandığı kanunda belirtilen tarihte",
             "C) Cumhurbaşkanı'nın imzalamasıyla",
             "D) Anayasa Mahkemesi'nin onayıyla",
@@ -707,7 +707,7 @@
             "A) Eski kanun geçerliliğini korur",
             "B) Her iki kanun da uygulanamaz hâle gelir",
             "C) Çelişen hükümler bakımından zımni (örtülü) ilga gerçekleşir",
-            "D) Anayasa Mahkemesi'nin kararı beklenir",
+            "D) Çelişki giderilinceye kadar Anayasa Mahkemesi'nin vereceği iptal kararının beklenmesi gerekir",
             "E) Uygulama Cumhurbaşkanı'nın takdirine bırakılır"
           ],
           "dogruIndex": 2,
@@ -716,7 +716,7 @@
         {
           "soru": "İdare hukukunun temel konusu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Bireyler arası borç ilişkileri",
+            "A) Bireyler arasındaki borç, sözleşme ve alacak ilişkilerinin tümünün düzenlenmesi",
             "B) Kamu yönetiminin (idarenin) örgütlenişi ve işleyişi ile idare-birey ilişkileri",
             "C) Suç ve ceza ilişkileri",
             "D) Devletler arası ilişkiler",
@@ -731,7 +731,7 @@
             "A) Vergi ilişkisinin taraflarından birinin her zaman devlet olması ve kamu gücüne dayanması",
             "B) Vergi kanunlarının çok sık değişmesi",
             "C) Vergi mahkemelerinin ayrı olması",
-            "D) Vergi borcunun sözleşmeyle doğması",
+            "D) Vergi borcunun taraflar arasında serbestçe yapılan bir sözleşmeyle karşılıklı olarak doğması",
             "E) Verginin yalnızca tüzel kişilerden alınması"
           ],
           "dogruIndex": 0,
@@ -752,7 +752,7 @@
         {
           "soru": "Devletler özel hukukunun temel konusu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Devletler arasındaki savaş ve barış hukuku",
+            "A) Devletler arasındaki savaş, barış ve diplomatik ilişkilerin bütününü düzenleyen kurallar",
             "B) Uluslararası örgütlerin kuruluşu",
             "C) Yabancılık unsuru taşıyan özel hukuk ilişkilerinde uygulanacak hukukun belirlenmesi",
             "D) Devletin bireyle olan vergi ilişkisi",
@@ -765,7 +765,7 @@
           "soru": "İş hukukunun 'karma nitelikli' bir hukuk dalı olarak kabul edilmesinin temel nedeni nedir?",
           "secenekler": [
             "A) Hem işçi-işveren arası özel hukuk ilişkilerini hem de devletin emredici kurallarla iş ilişkisine müdahalesini (kamu düzeni) içermesi",
-            "B) Sadece kamu çalışanlarını kapsaması",
+            "B) Yalnızca kamu kurumlarında çalışan memur ve diğer kamu görevlilerinin özlük hakları ile statülerini düzenleyen bir hukuk dalı olması nedeniyle",
             "C) Yalnızca toplu sözleşmeleri düzenlemesi",
             "D) Uluslararası bir hukuk dalı olması",
             "E) Yalnızca özel sektörde uygulanması"
@@ -800,7 +800,7 @@
         {
           "soru": "Eşya hukukunun temel konusu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Kişilerin isim ve nüfus kayıtları",
+            "A) Kişilerin isim, soyisim ve nüfus kütüğündeki kayıtlarının tutulması",
             "B) Mülkiyet ve sınırlı ayni haklar gibi eşya üzerindeki haklar",
             "C) Evlilik ve boşanma ilişkileri",
             "D) Miras paylaşımı usulleri",
@@ -815,7 +815,7 @@
             "A) Evlenme ve boşanma",
             "B) Velayet",
             "C) Nafaka",
-            "D) Mal rejimleri",
+            "D) Eşler arasındaki edinilmiş mallara katılma ve diğer mal rejimleri",
             "E) Ticari şirket ortaklığı"
           ],
           "dogruIndex": 4,
@@ -824,7 +824,7 @@
         {
           "soru": "Kişiler hukuku aşağıdaki konulardan hangisini düzenler?",
           "secenekler": [
-            "A) Ticari işletmelerin devri",
+            "A) Ticari işletmelerin kuruluşu, devri ve tasfiyesine ilişkin usuller",
             "B) Hak ve fiil ehliyeti, kişilik, yerleşim yeri gibi konuları",
             "C) Suçun unsurlarını",
             "D) Vergi yükümlülüğünü",
@@ -836,7 +836,7 @@
         {
           "soru": "Özel hukukta, tarafların sözleşmeyle aksini kararlaştırabildiği ve ancak taraflarca farklı bir düzenleme yapılmadığında uygulanan kurallara ne ad verilir?",
           "secenekler": [
-            "A) Emredici hukuk kuralı",
+            "A) Tarafların aksini kararlaştıramayacağı emredici hukuk kuralı",
             "B) Tamamlayıcı (yedek) hukuk kuralı",
             "C) Kamu düzeni kuralı",
             "D) Anayasal kural",
@@ -852,7 +852,7 @@
             "B) Kamu hukukunun yalnızca yazılı olması",
             "C) Kamu hukukunun uluslararası nitelik taşıması",
             "D) Kamu hukukunun sadece cezai yaptırım içermesi",
-            "E) Kamu hukukunun tarafların anlaşmasıyla oluşması"
+            "E) Kamu hukuku kurallarının tümüyle tarafların karşılıklı anlaşması ve serbest iradeleriyle oluşturulması"
           ],
           "dogruIndex": 0,
           "aciklama": "Kamu hukuku kuralları kamu düzenini ve toplumsal yararı korumayı amaçladığından emredicidir; taraflar bu kuralların aksini kararlaştıramaz."
@@ -872,7 +872,7 @@
         {
           "soru": "Cebri icra yaptırımına aşağıdakilerden hangisi örnek gösterilebilir?",
           "secenekler": [
-            "A) Bir kişinin hapis cezasına çarptırılması",
+            "A) Suç işleyen bir kişinin mahkeme kararıyla hapis cezasına çarptırılması",
             "B) Borcunu ödemeyen borçlunun malına icra yoluyla haciz konulması",
             "C) Bir sözleşmenin butlanla sakat olması",
             "D) Bir idari işlemin iptal edilmesi",
@@ -884,7 +884,7 @@
         {
           "soru": "Maddi ve manevi tazminat arasındaki temel fark nedir?",
           "secenekler": [
-            "A) Maddi tazminat sadece devlete, manevi tazminat sadece bireye ödenir",
+            "A) Maddi tazminat yalnızca devlet hazinesine, manevi tazminat ise yalnızca zarar gören bireyin kendisine ödenen bir bedeldir",
             "B) Maddi tazminat parasal zararı, manevi tazminat kişilik haklarına yönelik acı ve elemi karşılamayı amaçlar",
             "C) Manevi tazminat yalnızca ceza davalarında istenebilir",
             "D) Maddi tazminat yalnızca sözleşmelerde söz konusu olur",
@@ -896,7 +896,7 @@
         {
           "soru": "Yönetmelik çıkarma yetkisi kural olarak kimlere aittir?",
           "secenekler": [
-            "A) Yalnızca TBMM'ye",
+            "A) Yalnızca Türkiye Büyük Millet Meclisi'ne ait olup başka hiçbir organca kullanılamayan bir yetki olması",
             "B) Yalnızca Cumhurbaşkanı'na",
             "C) Cumhurbaşkanlığı, bakanlıklar ve kamu tüzel kişilerine, kendi görev alanlarını ilgilendiren konularda",
             "D) Yalnızca Anayasa Mahkemesi'ne",
@@ -908,7 +908,7 @@
         {
           "soru": "Örf ve adet hukuku kuralının uygulanabilmesi için genel olarak hangi durumun varlığı gerekir?",
           "secenekler": [
-            "A) Yazılı hâle getirilmiş olması",
+            "A) Örf ve adet kuralının mutlaka resmî olarak yazılı hâle getirilmiş ve ilan edilmiş olması",
             "B) Konuyu düzenleyen yazılı bir kanun hükmünün bulunmaması (kanun boşluğu)",
             "C) Yalnızca uluslararası ilişkilerde geçerli olması",
             "D) Anayasa Mahkemesi'nce onaylanmış olması",
@@ -936,7 +936,7 @@
             "B) Meşru müdafaa (meşru savunma)",
             "C) Zamanaşımı",
             "D) Butlan",
-            "E) Cebri icra"
+            "E) Borcun zorla tahsili anlamına gelen cebri icra yolu"
           ],
           "dogruIndex": 1,
           "aciklama": "Meşru müdafaa, kişinin kendisine veya başkasına yönelen haksız bir saldırıyı bertaraf etmek amacıyla zorunlu ve orantılı güç kullanmasını hukuka uygun hâle getiren bir nedendir."
@@ -969,7 +969,7 @@
           "soru": "Bir hukuki işlemin kanunda öngörülen bir eksiklik nedeniyle geçersiz olması, ancak bu geçersizliğin yalnızca menfaati olan tarafça mahkemeden istenebildiği hükümsüzlük türüne ne ad verilir?",
           "secenekler": [
             "A) Yokluk",
-            "B) Kesin butlan",
+            "B) Herkesçe ileri sürülebilen ve işlemi baştan geçersiz kılan kesin butlan",
             "C) İptal edilebilirlik (nispi butlan)",
             "D) Zamanaşımı",
             "E) Hak düşürücü süre"
@@ -984,7 +984,7 @@
             "B) Hukuk kuralı, yürürlükten kaldırılıncaya kadar uygulanmaya devam eder",
             "C) Hukuk kuralı yalnızca olağanüstü hâllerde uygulanır",
             "D) Hukuk kuralı her yıl yeniden kabul edilmelidir",
-            "E) Hukuk kuralı yalnızca kamu görevlileri için süreklidir"
+            "E) Hukuk kuralının süreklilik özelliğinin yalnızca kamu görevlilerini bağlayan hükümler için geçerli olması"
           ],
           "dogruIndex": 1,
           "aciklama": "Süreklilik, bir hukuk kuralının yürürlüğe girdikten sonra usulüne uygun biçimde yürürlükten kaldırılıncaya (ilga edilinceye) kadar uygulanmaya devam etmesi anlamına gelir."
@@ -1005,7 +1005,7 @@
           "soru": "Aşağıdakilerden hangisi 'hukuki işlem özgürlüğü' (sözleşme serbestisi) ilkesinin bir sonucudur?",
           "secenekler": [
             "A) Taraflar kamu düzenine aykırı olmamak kaydıyla sözleşmenin içeriğini serbestçe belirleyebilir",
-            "B) Sözleşmeler yalnızca devletin belirlediği şekilde yapılabilir",
+            "B) Sözleşmelerin hem içeriği hem de şekli yalnızca devletin önceden belirlediği kalıplara göre yapılabilir",
             "C) Her sözleşme resmi şekle tabidir",
             "D) Taraflar sözleşme yapıp yapmama konusunda serbest değildir",
             "E) Sözleşme içeriği yalnızca kanunla belirlenir"
@@ -1016,7 +1016,7 @@
         {
           "soru": "Hukuk kurallarının konuluş amacı temelde nedir?",
           "secenekler": [
-            "A) Bireylerin ahlaki gelişimini sağlamak",
+            "A) Yalnızca bireylerin ahlaki ve vicdani gelişimini sağlayarak erdemli olmalarını temin etmek",
             "B) Toplumsal düzeni ve güvenliği sağlamak, çıkar çatışmalarını adil biçimde çözmek",
             "C) Yalnızca devlet gelirini artırmak",
             "D) Sadece kamu görevlilerinin yetkisini genişletmek",
@@ -1042,7 +1042,7 @@
           "secenekler": [
             "A) Maddi hukuk hak ve borçların içeriğini, usul hukuku ise bu hakların mahkemede ne şekilde ileri sürüleceğini düzenler",
             "B) İkisi arasında hiçbir fark yoktur",
-            "C) Maddi hukuk yalnızca ceza hukukunu kapsar",
+            "C) Maddi hukuk yalnızca ceza hukukunu kapsar, usul hukuku ise sadece özel hukuk uyuşmazlıklarını ilgilendirir ve düzenler",
             "D) Usul hukuku yalnızca özel hukuku ilgilendirir",
             "E) Maddi hukuk sadece yazısız kurallardan oluşur"
           ],
@@ -1052,7 +1052,7 @@
         {
           "soru": "Aşağıdakilerden hangisi bir 'usul (yargılama) kanunu'na örnektir?",
           "secenekler": [
-            "A) Türk Medeni Kanunu",
+            "A) Kişiler ve aile ilişkilerini düzenleyen Türk Medeni Kanunu",
             "B) Türk Ceza Kanunu",
             "C) Hukuk Muhakemeleri Kanunu",
             "D) Borçlar Kanunu",
@@ -1076,7 +1076,7 @@
         {
           "soru": "Ceza hukukunda 'mülkilik ilkesi' neyi ifade eder?",
           "secenekler": [
-            "A) Suçun yalnızca taşınmaz mallara karşı işlenebileceğini",
+            "A) Ceza kanunlarının yalnızca taşınmaz mallara ve gayrimenkullere yönelik olarak işlenen suçlar bakımından uygulanabileceğini ifade etmesini",
             "B) Bir ülkenin ceza kanunlarının, failin uyruğuna bakılmaksızın kural olarak o ülke sınırları içinde işlenen suçlara uygulanmasını",
             "C) Suçun yalnızca kamu mallarına karşı işlenmesini",
             "D) Cezaların yalnızca mülk sahiplerine uygulanmasını",
@@ -1088,7 +1088,7 @@
         {
           "soru": "Devletler özel hukukunda bazı konularda kişinin hangi ülke hukukuna tabi olacağının belirlenmesinde esas alınan 'şahsilik (uyruk) esası' neyi ifade eder?",
           "secenekler": [
-            "A) Kişinin bulunduğu ülkenin hukukunun uygulanmasını",
+            "A) Kişinin o an fiilen bulunduğu veya ikamet ettiği ülkenin hukukunun tüm meselelerinde uygulanmasını",
             "B) Kişinin vatandaşı olduğu ülkenin hukukunun, o kişiyle ilgili bazı hukuki meselelerde uygulanmasını",
             "C) Yalnızca ticari uyuşmazlıklarda uygulanan bir ilkeyi",
             "D) Kişinin dini inancına göre hukuk seçilmesini",
@@ -1100,7 +1100,7 @@
         {
           "soru": "Kıta Avrupası hukuk sisteminde bir yerel mahkemenin verdiği karar, aynı konudaki başka bir davada başka bir mahkemeyi bağlar mı?",
           "secenekler": [
-            "A) Evet, tüm mahkeme kararları diğer mahkemeleri otomatik olarak bağlar",
+            "A) Evet, bir mahkemenin verdiği tüm kararlar aynı konudaki diğer bütün mahkemeleri kendiliğinden ve otomatik olarak bağlar",
             "B) Hayır, kural olarak bağlamaz; yalnızca içtihadı birleştirme kararları gibi istisnai kararlar bağlayıcıdır",
             "C) Yalnızca aynı ilde verilen kararlar bağlayıcıdır",
             "D) Yalnızca Danıştay kararları bağlayıcıdır",
@@ -1112,7 +1112,7 @@
         {
           "soru": "Bir kanunun, olası tüm somut durumları tek tek sayarak düzenleme yöntemine ne ad verilir ve bu yöntem hangi hukuk sisteminde daha yaygındır?",
           "secenekler": [
-            "A) Genel-soyut düzenleme; Kıta Avrupası sisteminde yaygındır",
+            "A) Genel ve soyut düzenleme yöntemi olup daha çok Kıta Avrupası hukuk sisteminde yaygın biçimde kullanılır",
             "B) Kazuistik (sayma yoluyla) düzenleme; Anglo-Sakson sisteminde daha yaygındır",
             "C) Örf-adet düzenlemesi; her iki sistemde de yoktur",
             "D) Yorumlayıcı düzenleme; yalnızca ceza hukukunda kullanılır",
@@ -1126,7 +1126,7 @@
           "secenekler": [
             "A) Hukuk mahkemeleri özel hukuk uyuşmazlıklarına, ceza mahkemeleri suç ve ceza davalarına bakar",
             "B) İkisi de yalnızca kamu davalarına bakar",
-            "C) Hukuk mahkemeleri yalnızca ticari davalara bakar",
+            "C) Hukuk mahkemeleri yalnızca ticari uyuşmazlıklara, ceza mahkemeleri ise yalnızca idari davalara bakar",
             "D) Ceza mahkemeleri yalnızca idari uyuşmazlıklara bakar",
             "E) İkisi arasında görev ayrımı yoktur, aynı davalara bakarlar"
           ],
@@ -1186,7 +1186,7 @@
           "secenekler": [
             "A) Genellik, kuralın belirli bir kişiye değil herkese uygulanmasını; objektiflik ise kuralın kişisel duygulardan bağımsız, herkes için aynı şekilde yorumlanabilir olmasını ifade eder",
             "B) İkisi birbirinin tam zıttıdır",
-            "C) Genellik yalnızca kamu hukukunda, objektiflik yalnızca özel hukukta geçerlidir",
+            "C) Genellik ilkesi yalnızca kamu hukuku alanında, objektiflik ilkesi ise yalnızca özel hukuk alanında geçerli olup bu iki kavram birbirinden tamamen bağımsız ve hiçbir biçimde bir arada bulunamaz",
             "D) Objektiflik yalnızca yazılı kurallarda aranır",
             "E) Genellik ilkesi Türk hukukunda uygulanmaz"
           ],
@@ -1196,7 +1196,7 @@
         {
           "soru": "Bir kanunun kabulünden sonra, o kanunun uygulanmasını göstermek amacıyla idare tarafından çıkarılan ve kanuna aykırı olamayan düzenleyici işleme genel olarak ne ad verilir?",
           "secenekler": [
-            "A) İçtihat",
+            "A) Mahkeme kararlarıyla zaman içinde oluşan yol gösterici içtihat birikimi",
             "B) İkincil (alt) düzenleyici işlem (örneğin yönetmelik)",
             "C) Örf ve adet",
             "D) Doktrin",
@@ -1260,7 +1260,7 @@
             "B) Usulüne uygun biçimde yürürlükten kaldırılana (ilga edilene) kadar uygulanmaya devam eder",
             "C) Sadece ilgili bakanlığın onayıyla her yıl yenilenmesi gerekir",
             "D) Uygulama alanı bulmazsa bir yıl sonra kendiliğinden geçersiz olur",
-            "E) Ancak halkoylamasıyla yeniden onaylanırsa geçerliliğini korur"
+            "E) Ancak belirli aralıklarla halkoylamasına sunulup her seferinde yeniden onaylandığı sürece geçerliliğini koruyabilir"
           ],
           "dogruIndex": 1,
           "aciklama": "Süreklilik ilkesi gereği bir hukuk kuralı, açık (yeni bir kanunla) veya zımni (çelişen düzenlemeyle) biçimde yürürlükten kaldırılıncaya kadar uygulanmaya devam eder."
@@ -1389,7 +1389,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'hukuk devleti' terimi, hangi anlamı taşır?",
           "secenekler": [
             "Hukukun üstünlüğüne dayanan, bireylerin hak ve özgürlüklerini koruyan devlet",
-            "Hukukun yerine güç ve otoritenin kullanıldığı devlet",
+            "Hukuk kurallarının yerine tamamen güç, baskı ve otoritenin kullanıldığı devlet",
             "Hukukun ancak belirli bir bölgede geçerli olduğu devlet",
             "Hukukun ancak belirli bir zaman diliminde geçerli olduğu devlet",
             "Hukukun absence edildiği devlet"
@@ -1424,7 +1424,7 @@
         {
           "soru": "Hangi kavram, bir hakkın veya yükümlülüğün hukuken bağlayıcı olmasını ifade eder?",
           "secenekler": [
-            "Hukukun üstünlüğü",
+            "Devletin tüm işlem ve eylemlerinde bağlı olduğu hukukun üstünlüğü ilkesi",
             "Hukuki güvenlik",
             "Hukuk devleti",
             "Meydana gelen bir olayın hukuki sonuçlarını doğurması",
@@ -1486,7 +1486,7 @@
           "secenekler": [
             "Hukukun üstünlüğü",
             "Hukuki güvenlik",
-            "Hukuk devleti",
+            "Hukukun üstünlüğüne dayanan yönetim biçimi olarak hukuk devleti",
             "Kanun önünde eşitlik",
             "Temel hak ve özgürlüklerin korunması"
           ],
@@ -1510,7 +1510,7 @@
           "secenekler": [
             "Yasama, Yürütme ve Yargı organlarından oluşur.",
             "İnsanların ortak yaşayışlarından, adet ve geleneklerden, uluslararası anlaşmalardan ve anayasal düzenlemelerden oluşur.",
-            "Hukukun kaynakları sadece yasama organı tarafından çıkarılan yasa metinleridir.",
+            "Hukukun kaynakları yalnızca yasama organının çıkardığı yasa metinleri ile bu metinleri açıklayan idari genelgelerden ve iç yönetmeliklerden oluşur.",
             "Hukukun kaynakları sadece uluslararası anlaşmalardır.",
             "Hukukun kaynakları sadece anayasal düzenlemelerdir."
           ],
@@ -1532,7 +1532,7 @@
         {
           "soru": "Hukukun temel kavramları nelerdir?",
           "secenekler": [
-            "Hukukun temel kavramları: Hukuk, Adalet, Özgürlük ve Hukukun üstünlüğüdür.",
+            "Hukukun temel kavramları: Hukuk, Adalet, Özgürlük ve Hukukun üstünlüğü ile yalnızca yürütme yetkisidir.",
             "Hukukun temel kavramları: Hukuk, Adalet, Özgürlük ve Hukukun üstünlüğü, Hak ve Hürriyetlerdir.",
             "Hukukun temel kavramları: Adalet, Özgürlük ve Hukukun üstünlüğüdür.",
             "Hukukun temel kavramları: Hukuk, Hak ve Hürriyetlerdir.",
@@ -1545,7 +1545,7 @@
           "soru": "Hukukun üstünlüğü nedir?",
           "secenekler": [
             "Hukukun üstünlüğü, bir devletin yargı mekanizmasının kararlarını en üst seviyede kabul etmesidir.",
-            "Hukukun üstünlüğü, bir devletin yasalarını uygulamasıdır.",
+            "Hukukun üstünlüğü, bir devletin yalnızca yürürlükteki yasalarını hiçbir denetime tabi olmadan uygulamasıdır.",
             "Hukukun üstünlüğü, bir devletin anayasasını uygulamasıdır.",
             "Hukukun üstünlüğü, bir devletin yargı kararlarını uygulamasıdır.",
             "Hukukun üstünlüğü, bir devletin yasalarını değiştirmesidir."
@@ -1568,7 +1568,7 @@
         {
           "soru": "Hak ve özgürlükler nelerdir?",
           "secenekler": [
-            "Hak ve özgürlükler, bir devletin yasalarını uygulamasıdır.",
+            "Hak ve özgürlükler, bir devletin yürürlükteki yasalarını ve idari yönetmeliklerini uygulama biçimidir.",
             "Hak ve özgürlükler, bir devletin anayasasını uygulamasıdır.",
             "Hak ve özgürlükler, bir devletin yargı kararlarını uygulamasıdır.",
             "Hak ve özgürlükler, hakların korunması ve özgürlüklerin teminat altına alınmasıdır.",
@@ -1700,7 +1700,7 @@
         {
           "soru": "İnsan haklarından biridir. Bu hak, bir bireyin yaşamını, özgürlüğünü ve güvenliğini korumak için kullanılır.",
           "secenekler": [
-            "Özgürlük",
+            "Kişisel Dokunulmazlık Hakkı",
             "Hayat Hakkı",
             "Güvenlik",
             "Adalet",
@@ -1761,7 +1761,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ne göre, hukukun kaynaklarından biri olan 'İnsan Aklı' ne demektir?",
           "secenekler": [
             "Hukukun temel ilkelerini ve kavramlarını oluşturan akıl yürütme ve mantık kurallarının toplamıdır.",
-            "Hukukun kaynaklarından biri olan yargı kararlarının toplamıdır.",
+            "Hukukun kaynaklarından biri olan yargı kararları ile idari mahkeme içtihatlarının bir bütün hâlindeki toplamıdır.",
             "Hukukun kaynaklarından biri olan yasa ve yönetmeliklerin toplamıdır.",
             "Hukukun kaynaklarından biri olan gelenek ve göreneklerin toplamıdır.",
             "Hukukun kaynaklarından biri olan anayasal düzenlemelerin toplamıdır."
@@ -1772,7 +1772,7 @@
         {
           "soru": "Hukukun temel kavramlarından biri olan 'Hukuk Kuralları' nelerdir?",
           "secenekler": [
-            "Hukuk kuralları, devletin yasalarıdır.",
+            "Hukuk kuralları, yalnızca devletin çıkardığı yasalar ile bu yasalara bağlı idari genelgelerin bütünüdür.",
             "Hukuk kuralları, toplumun temel değerlerine ve normlarına uygun olarak oluşturulan kurallardır.",
             "Hukuk kuralları, bir devletin yasalarını oluşturan kurallardır.",
             "Hukuk kuralları, bir toplumun tarihinde oluşan geleneksel kurallardır.",
@@ -2001,7 +2001,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ndan hangisi 'İnsan hak ve özgürlükleri' ile ilgilidir?",
           "secenekler": [
             "İnsan hak ve özgürlükleri, toplumun temel hak ve özgürlüklerini belirleyen ve koruyan hukuksal düzenlemelerdir.",
-            "İnsan hak ve özgürlükleri, devletin bireylerin hak ve özgürlüklerini koruma yükümlülüğüdür.",
+            "İnsan hak ve özgürlükleri, devletin yalnızca kendi belirlediği sınırlar içinde bireylere tanıdığı ve dilediğinde geri alabildiği ayrıcalıklardır.",
             "İnsan hak ve özgürlükleri, bireylerin hak ve özgürlüklerini kendileri belirler.",
             "İnsan hak ve özgürlükleri, toplumun genel refahını korumak için gerekli hukuksal düzenlemelerdir.",
             "İnsan hak ve özgürlükleri, devletin bireylerin hak ve özgürlüklerini kısıtlama yetkisi değildir."
@@ -2049,7 +2049,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'Hukuk' ile hangi kavramın ilişkisi yoktur?",
           "secenekler": [
             "Siyaset",
-            "Ekonomi",
+            "Ekonomi ile hukuk arasında yakın ve doğrudan bir ilişki bulunmaktadır.",
             "Sosyal",
             "Diplomasi",
             "Hukuk, siyasetin bir parçasıdır."
@@ -2219,7 +2219,7 @@
             "Kanunlar ve yargı kararları",
             "Politika ve idare kararları",
             "İfade özgürlüğü ve örgütlenme özgürlüğü",
-            "Hukukun üstünlüğü ilkesi, yargı kararlarının üstünlüğünü ifade eder.",
+            "Hukukun üstünlüğü ilkesi, yalnızca yargı kararlarının diğer tüm normlar üzerindeki mutlak üstünlüğünü ifade eder.",
             "Hukukun üstünlüğü ilkesi, kanunların ve yargı kararlarının üstünlüğünü ifade eder."
           ],
           "dogruIndex": 4,
@@ -2325,7 +2325,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Kaynakları'ndan hangisi, hukuki düzenlemelerin temelidir?",
           "secenekler": [
             "Yürürlükteki kanunlar",
-            "Mesleki kurallar",
+            "Mesleki teamül ve uygulama kuralları",
             "İnsan hakları",
             "Düzenlemeler",
             "Hukuki belgeler"
@@ -2424,7 +2424,7 @@
             "İnsan doğası",
             "Toplumsal sözleşmeler",
             "İnsan hakları ve özgürlükler",
-            "Din ve ahlak kuralları"
+            "Din, gelenek ve ahlak kurallarının bütünü"
           ],
           "dogruIndex": 3,
           "aciklama": "İnsan hakları ve özgürlükler, hukukun temelini oluşturan bir kavramdır."
@@ -2445,7 +2445,7 @@
           "soru": "Hukukun temel kavramlarından biri olan 'Hukukun Niteliği' ne ifade eder?",
           "secenekler": [
             "Hukukun niteliği, hukukun genel olarak toplumun ihtiyaçlarına cevap vermeyi amaçladığını ifade eder.",
-            "Hukukun niteliği, hukukun sadece zengin ve güçlü insanların lehine olduğunu ifade eder.",
+            "Hukukun niteliği, hukukun yalnızca zengin ve siyasi bakımdan güçlü kesimlerin çıkarları lehine işlediğini ifade eder.",
             "Hukukun niteliği, hukukun sadece yargı organlarınca uygulanmasını ifade eder.",
             "Hukukun niteliği, hukukun sadece resmi metinlerde yer alan hükümlerini ifade eder.",
             "Hukukun niteliği, hukukun sadece maddi cezayı içerdiğini ifade eder."
@@ -2648,7 +2648,7 @@
         {
           "soru": "Hukukun temel kavramlarından birisi olan 'Taraflar' kavramı hangi hakka dayalı olarak kurulur?",
           "secenekler": [
-            "Kanunlara dayalı olarak",
+            "Yalnızca yürürlükteki yazılı kanun hükümlerine ve idari sözleşme şartlarına dayalı olarak",
             "Hukuk devleti ilkesine dayalı olarak",
             "Adalet ilkesine dayalı olarak",
             "Hukuki işlem ilkesine dayalı olarak",
@@ -2974,7 +2974,7 @@
           "secenekler": [
             "A) Bakanlıkların kurulması, kaldırılması ve görevleri",
             "B) Temel haklar, kişi hakları ve ödevleri ile siyasi haklar ve ödevler",
-            "C) Üst kademe kamu yöneticilerinin atanma usulleri",
+            "C) Üst kademe kamu yöneticilerinin atanması ve görevlerine son verilmesine ilişkin usul ve esaslar",
             "D) Cumhurbaşkanlığı teşkilatının yapısı",
             "E) Kamu tüzel kişiliğinin kurulması usulü"
           ],
@@ -2988,7 +2988,7 @@
             "B) Anayasa ile kanun arasında",
             "C) Kanun ve Cumhurbaşkanlığı kararnamesinin altında, hiyerarşinin en alt sırasında",
             "D) Milletlerarası andlaşmalarla eşit düzeyde",
-            "E) Anayasa'nın üstünde, çünkü uygulamayı doğrudan somutlaştırır"
+            "E) Anayasa'nın da üstünde yer alır, çünkü uygulamayı doğrudan somutlaştıran en önemli düzenleyici işlemdir"
           ],
           "dogruIndex": 2,
           "aciklama": "Yönetmelik, kanun ve Cumhurbaşkanlığı kararnamesinin uygulanmasını göstermek üzere çıkarılan alt düzenleyici işlemdir; hiyerarşide en alt sırada yer alır ve üst normlara aykırı olamaz."
@@ -3020,7 +3020,7 @@
         {
           "soru": "Usulüne göre yürürlüğe konulmuş bir milletlerarası andlaşmanın Türk iç hukukunda bağlayıcı hâle gelmesi için izlenen yol aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Sadece Cumhurbaşkanı'nın imzasıyla doğrudan yürürlüğe girer",
+            "A) TBMM'nin onayına hiç gerek olmaksızın yalnızca Cumhurbaşkanı'nın imzası ve Dışişleri Bakanlığı'nın onayıyla doğrudan yürürlüğe girer",
             "B) TBMM'nin uygun bulma kanunuyla onaylanması ve Cumhurbaşkanınca yürürlüğe konulması",
             "C) Anayasa Mahkemesi'nin ön onayının alınması",
             "D) Yönetmelikle iç hukuka aktarılması",
@@ -3032,7 +3032,7 @@
         {
           "soru": "Anayasa'nın 'üstünlüğü ve bağlayıcılığı' ilkesinin doğal bir sonucu olarak aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "A) Yalnızca yürütme organı Anayasa hükümleriyle bağlıdır",
+            "A) Yalnızca yürütme ve yargı organları Anayasa hükümleriyle bağlıdır, yasama organı ise bu bağdan muaftır",
             "B) Yasama organı da dâhil olmak üzere hiçbir devlet organı Anayasa'ya aykırı işlem tesis edemez",
             "C) Anayasa, ancak Cumhurbaşkanlığı kararnameleriyle değiştirilebilir",
             "D) Anayasa hükümleri yalnızca yargı organını bağlar",
@@ -3082,7 +3082,7 @@
           "secenekler": [
             "A) En son yürürlüğe giren yazılı kaynak olması",
             "B) Kurucu iktidarın ürünü olup devletin temel yapısını ve diğer tüm normların dayanağını oluşturması",
-            "C) İçeriğinin en ayrıntılı ve en uzun metin olması",
+            "C) İçeriğinin diğer tüm hukuk metinlerinden daha ayrıntılı, en uzun ve en teknik biçimde kaleme alınmış olması",
             "D) Sadece yürütme organını bağlaması",
             "E) Halkoylamasına hiçbir zaman sunulmamış olması"
           ],
@@ -3093,7 +3093,7 @@
           "soru": "Aşağıdakilerden hangisi, kanunun 'genel ve soyut' olması ile Cumhurbaşkanlığı kararnamesi arasındaki ilişkiye ilişkin doğru bir tespittir?",
           "secenekler": [
             "A) CB kararnameleri de tıpkı kanunlar gibi genel ve soyut kurallar içerebilen düzenleyici işlemlerdir",
-            "B) CB kararnameleri yalnızca somut ve bireysel olaylara ilişkin olabilir",
+            "B) CB kararnameleri kanunlardan farklı olarak yalnızca somut, bireysel ve tek bir olaya özgü düzenlemeler içerebilir",
             "C) CB kararnameleri kanundan farklı olarak yalnızca tek bir kişiye yönelik olabilir",
             "D) CB kararnamesi hiçbir zaman genel bir kural içeremez",
             "E) Genel ve soyut olma özelliği yalnızca Anayasa'ya özgüdür"
@@ -3105,7 +3105,7 @@
           "soru": "Hukukun tali (yardımcı) kaynakları ile asli kaynakları arasındaki temel fark aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Tali kaynaklar hâkimi doğrudan bağlamaz, sadece yol gösterici niteliktedir; asli kaynaklar ise doğrudan bağlayıcı hukuk kuralı niteliği taşır",
-            "B) Tali kaynaklar yalnızca ceza hukukunda uygulanır",
+            "B) Tali kaynaklar yalnızca ceza hukuku alanında ve sadece ağır ceza mahkemelerinin görevine giren davalarda uygulanabilen, diğer hukuk dallarında hiçbir geçerliliği bulunmayan kaynaklardır",
             "C) Asli kaynaklar hiçbir zaman yazılı değildir",
             "D) Tali kaynaklar Resmi Gazete'de yayımlanarak yürürlüğe girer",
             "E) Asli kaynaklar sadece uluslararası hukukta geçerlidir"
@@ -3116,7 +3116,7 @@
         {
           "soru": "Yargıtay İçtihadı Birleştirme Kararlarının bağlayıcılığı hakkında aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Sadece kararı veren Yargıtay dairesini bağlar, diğer daireleri bağlamaz",
+            "A) Sadece kararı veren Yargıtay dairesini bağlar; diğer daireleri, kurulları ve alt derece mahkemelerini hiçbir biçimde bağlamaz ve yalnızca tavsiye niteliği taşır",
             "B) Yargıtay daireleri ile alt derece mahkemelerini bağlar; bu yönüyle tali kaynaklar arasında istisnai bir bağlayıcılığa sahiptir",
             "C) Hiçbir mahkemeyi bağlamaz, yalnızca bilgilendirme amacı taşır",
             "D) Yalnızca Anayasa Mahkemesi'ni bağlar",
@@ -3128,7 +3128,7 @@
         {
           "soru": "İçtihadı birleştirme kararına başvurulmasını gerekli kılan tipik durum aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Bir kanunun Resmi Gazete'de yayımlanmamış olması",
+            "A) Bir kanunun Resmi Gazete'de hiç yayımlanmamış olması ve bu nedenle yürürlük tarihinin belirsiz kalmış olması durumu",
             "B) Yargıtay'ın farklı dairelerinin veya kurullarının aynı hukuki konuda birbiriyle çelişen kararlar vermiş olması",
             "C) Bir yönetmeliğin kanuna aykırı olması",
             "D) Anayasa Mahkemesi'nin bir kanunu iptal etmiş olması",
@@ -3164,7 +3164,7 @@
         {
           "soru": "Kıta Avrupası hukuk sisteminde mahkeme kararlarının (içtihadın) genel olarak tali kaynak sayılmasının temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Mahkeme kararlarının hiçbir hukuki değer taşımaması",
+            "A) Mahkeme kararlarının Kıta Avrupası sisteminde hiçbir hukuki değer taşımaması ve hâkimlerin verdikleri kararların yayımlanmasının dahi yasak olması",
             "B) Bir mahkeme kararının kural olarak yalnızca o davanın taraflarını bağlaması, genel ve soyut bir kural koyma yetkisinin mahkemelere ait olmaması",
             "C) Mahkemelerin kanun koyma yetkisine sahip olması",
             "D) İçtihatların Resmi Gazete'de yayımlanmaması",
@@ -3176,7 +3176,7 @@
         {
           "soru": "Tali kaynakların hukuk uygulamasındaki asıl işlevi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Kanunun yerini almak ve onu yürürlükten kaldırmak",
+            "A) Kanunun yerini tümüyle almak, onu yürürlükten kaldırmak ve hâkimi doğrudan bağlayan asli bir kural hâline gelmek",
             "B) Kanunda açık boşluk veya belirsizlik bulunan durumlarda hâkime yorum ve değerlendirmede yardımcı olmak",
             "C) Anayasa değişikliği yapmak",
             "D) Yönetmelikleri iptal etmek",
@@ -3188,7 +3188,7 @@
         {
           "soru": "Doktrinde bir kanun hükmünün yorumu konusunda görüş ayrılığı bulunmasının hukuki sonucu nedir?",
           "secenekler": [
-            "A) Kanun hükmü otomatik olarak yürürlükten kalkar",
+            "A) Görüş ayrılığına konu olan kanun hükmü, doktrindeki tartışma sürdüğü müddetçe kendiliğinden yürürlükten kalkar ve uygulanamaz hâle gelir",
             "B) Hâkim, görüş ayrılıklarından herhangi birini benimsemek zorunda değildir; kararını serbestçe, kanuna ve hukuka göre oluşturur",
             "C) Yargıtay derhal içtihadı birleştirme kararı almak zorundadır",
             "D) Anayasa Mahkemesi'ne başvurulması zorunlu hâle gelir",
@@ -3212,7 +3212,7 @@
         {
           "soru": "Bir Yargıtay dairesinin verdiği bireysel bir kararın, aynı daire içinde sonraki başka bir davada mutlaka aynı yönde karar verilmesini zorunlu kılıp kılmadığı konusunda Kıta Avrupası sistemindeki genel yaklaşım nedir?",
           "secenekler": [
-            "A) Zorunlu kılar; ilk karar tüm sonraki davalar için kesin emsal sayılır",
+            "A) Zorunlu kılar; verilen ilk karar, aynı daire ile tüm alt derece mahkemeleri için sonraki bütün davalarda değiştirilemez ve kesin bir emsal sayılır",
             "B) Zorunlu kılmaz; hâkim önceki kararla bağlı olmaksızın hukuki kanaatini oluşturabilir, ancak içtihadı birleştirme kararı istisnadır",
             "C) Zorunlu kılar; aksi hâlde karar kesinlikle bozulur",
             "D) Zorunlu kılmaz; çünkü Yargıtay kararları hiçbir zaman dikkate alınmaz",
@@ -3225,7 +3225,7 @@
           "soru": "Hukukun tali kaynaklarının 'yardımcı' olarak nitelendirilmesinin gerekçesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Hukuk kurallarının doğrudan ve asıl kaynağı olmamaları, ancak hukukun anlaşılması ve uygulanmasına katkı sağlamaları",
-            "B) Anayasa'dan önce yürürlüğe girmiş olmaları",
+            "B) Tarihsel olarak Anayasa'dan ve tüm yazılı kanunlardan çok daha önce yürürlüğe girmiş, en eski ve en köklü hukuk kaynağı olmaları",
             "C) Sadece uluslararası hukukta kullanılmaları",
             "D) Yalnızca özel hukuk alanında geçerli olmaları",
             "E) Kanunlardan daha üstün bir hiyerarşik konuma sahip olmaları"
@@ -3236,7 +3236,7 @@
         {
           "soru": "Örf ve adet hukuku kuralının oluşabilmesi için aranan 'maddi unsur' aşağıdakilerden hangisini ifade eder?",
           "secenekler": [
-            "A) Kuralın bir mahkeme kararıyla onaylanmış olması",
+            "A) Kuralın en az bir üst derece mahkemesinin kesinleşmiş kararıyla açıkça onaylanmış ve tescil edilmiş olması",
             "B) Kuralın belirli bir çevrede uzun süredir kesintisiz ve yeknesak biçimde uygulanıyor olması",
             "C) Kuralın Resmi Gazete'de yayımlanmış olması",
             "D) Kuralın Anayasa'da açıkça sayılmış olması",
@@ -3248,7 +3248,7 @@
         {
           "soru": "Örf ve adet hukuku kuralının 'manevi unsuru' aşağıdakilerden hangisiyle açıklanır?",
           "secenekler": [
-            "A) Kuralın devlet tarafından yazılı hâle getirilmiş olması",
+            "A) Kuralın yetkili devlet organları tarafından yazılı bir metne dökülüp Resmi Gazete'de yayımlanmış olması",
             "B) Toplulukta, o kurala uyulmasının hukuki bir zorunluluk olduğuna dair yerleşik bir inancın bulunması",
             "C) Kuralın yalnızca ahlaki bir öneri niteliği taşıması",
             "D) Kuralın uygulanmasının isteğe bağlı olması",
@@ -3320,7 +3320,7 @@
         {
           "soru": "Ticaret hukukunda, sözleşmede boşluk bulunan bir konuda 'ticari örf ve adete' başvurulması, örf ve adet hukukunun hangi işlevini gösterir?",
           "secenekler": [
-            "A) Asli ve öncelikli kaynak olarak kanunun yerine geçme işlevini",
+            "A) Kanundan dahi üstün, asli ve öncelikli bir kaynak olarak yürürlükteki kanun hükmünün yerine doğrudan geçme işlevini",
             "B) Kanunda ve sözleşmede hüküm bulunmayan hâllerde boşluğu dolduran tamamlayıcı kaynak işlevini",
             "C) Anayasa'yı değiştirme işlevini",
             "D) Yargıtay içtihadını bağlayıcı hâle getirme işlevini",
@@ -3333,7 +3333,7 @@
           "soru": "Örf ve adet hukuku kuralının varlığının bir uyuşmazlıkta ileri sürülmesi hâlinde, genel olarak nasıl bir yaklaşım benimsenir?",
           "secenekler": [
             "A) Örf ve adet kuralının varlığı ve içeriği, gerektiğinde araştırılıp somut olayda ispatlanması gereken bir husustur",
-            "B) Örf ve adet kuralları hiçbir şekilde ispatlanamaz, sadece varsayılır",
+            "B) Örf ve adet kuralları hiçbir biçimde araştırılamaz ve ispatlanamaz; mahkemece her zaman var olduğu kendiliğinden varsayılır",
             "C) Örf ve adet kuralının varlığı için mutlaka bir kanun maddesi gösterilmesi gerekir",
             "D) Örf ve adet kuralları yalnızca yabancı hukuk düzenlerinde ispatlanabilir",
             "E) Örf ve adet kuralının varlığı otomatik olarak Resmi Gazete'de ilan edilmiş sayılır"
@@ -3380,7 +3380,7 @@
         {
           "soru": "TBMM Genel Kurulu'nda kabul edilen bir kanun metninin yürürlüğe girme sürecindeki bir sonraki aşaması aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Doğrudan Resmi Gazete'de yayımlanır, başka bir işleme gerek yoktur",
+            "A) Cumhurbaşkanı'na hiç gönderilmeksizin doğrudan Resmi Gazete'de yayımlanır ve başka herhangi bir onay işlemine gerek kalmaz",
             "B) Anayasa Mahkemesi'nin ön onayına sunulur",
             "C) Cumhurbaşkanı'na gönderilir; Cumhurbaşkanı yayımlar veya bir daha görüşülmek üzere TBMM'ye geri gönderir",
             "D) Halkoylamasına sunulur",
@@ -3406,7 +3406,7 @@
           "secenekler": [
             "A) İptal",
             "B) Veto (geri gönderme) yetkisinin kullanılması",
-            "C) Yürürlüğü durdurma",
+            "C) Kanunun yürürlüğünü süresiz olarak durdurma yetkisi",
             "D) Fesih",
             "E) Ret oyu kullanma"
           ],
@@ -3440,7 +3440,7 @@
         {
           "soru": "Kanunların Resmi Gazete'de yayımlanmasının temel işlevi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Kanunun içeriğini gizli tutmak",
+            "A) Kanunun içeriğini yalnızca uygulamakla görevli kamu kurumlarına duyurup geniş halk kitlelerinden gizli tutmak",
             "B) Kanunu herkesçe bilinebilir kılmak ve 'kanunu bilmemenin mazeret sayılmaması' ilkesine dayanak oluşturmak",
             "C) Kanunun sadece ilgili bakanlıkça uygulanmasını sağlamak",
             "D) Kanunun Anayasa'ya uygunluğunu kesinleştirmek",
@@ -3452,7 +3452,7 @@
         {
           "soru": "Bir kanunun 'yürürlüğe girmesi' ile 'yayımlanması' arasındaki ilişki için aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Bu iki kavram her zaman aynı anı ifade eder, aralarında hiçbir fark yoktur",
+            "A) Bu iki kavram hukuken her zaman aynı anı ifade eder; yayım ile yürürlük arasında hiçbir zaman ve hiçbir koşulda fark bulunmaz",
             "B) Yayım tarihi ile yürürlük tarihi farklı olabilir; kanun koyucu farklı bir yürürlük tarihi öngörebilir",
             "C) Yürürlük her zaman yayımdan önce gerçekleşir",
             "D) Yayımlanmayan bir kanun da yürürlüğe girebilir",
@@ -3488,7 +3488,7 @@
         {
           "soru": "Bir kanunun yürürlük maddesinde, kanunun bazı hükümlerinin yayım tarihinde, bazı hükümlerinin ise ileri bir tarihte yürürlüğe gireceğinin öngörülmesi mümkün müdür?",
           "secenekler": [
-            "A) Hayır, bir kanunun tüm hükümleri aynı anda yürürlüğe girmek zorundadır",
+            "A) Hayır; bir kanunun bütün hükümleri istisnasız olarak aynı anda ve aynı tarihte yürürlüğe girmek zorundadır",
             "B) Evet; kanun koyucu, kanunun farklı maddeleri için farklı yürürlük tarihleri belirleyebilir",
             "C) Hayır, bu yalnızca Anayasa değişiklikleri için mümkündür",
             "D) Evet, ama sadece ceza kanunları için mümkündür",
@@ -3512,7 +3512,7 @@
         {
           "soru": "Bir yönetmelik hükmünün, dayandığı kanun hükmüne aykırı olduğunun tespit edilmesi hâlinde hukuki sonuç ne olur?",
           "secenekler": [
-            "A) Yönetmelik hükmü otomatik olarak kanun hükmünü değiştirir",
+            "A) Yönetmelik hükmü, kendisinden üstün olan kanun hükmünü kendiliğinden ve otomatik biçimde değiştirir ve yürürlükten kaldırır",
             "B) Yönetmelik hükmü, yargısal denetim yoluyla iptal edilebilir veya uygulanmaz",
             "C) Kanun hükmü yürürlükten kalkar",
             "D) Sorun yalnızca TBMM'nin siyasi kararıyla çözülür",
@@ -3560,7 +3560,7 @@
         {
           "soru": "Bir Cumhurbaşkanlığı kararnamesi hükmünün bir yönetmelikle değiştirilmesi mümkün müdür?",
           "secenekler": [
-            "A) Evet, yönetmelikler her zaman kararnameleri değiştirebilir",
+            "A) Evet; yönetmelikler hiyerarşik konumları ne olursa olsun her zaman ve her koşulda kararnameleri değiştirebilir",
             "B) Hayır; yönetmelik hiyerarşik olarak kararnamenin altında yer aldığından onu değiştiremez",
             "C) Evet, ama sadece Cumhurbaşkanının izniyle mümkündür",
             "D) Evet, çünkü yönetmelikler daha ayrıntılı düzenlemeler içerir",
@@ -3572,7 +3572,7 @@
         {
           "soru": "Normlar hiyerarşisinde, kanun ile usulüne göre yürürlüğe konulmuş milletlerarası andlaşmaların konumu için aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "A) Andlaşmalar her zaman kanundan üstündür",
+            "A) Usulüne göre yürürlüğe konulmuş milletlerarası andlaşmalar, konusu ne olursa olsun her zaman ve istisnasız biçimde iç hukuktaki tüm kanunlardan hiyerarşik olarak üstündür",
             "B) Kural olarak eşdeğer kabul edilirler; ancak temel hak ve özgürlüklere ilişkin andlaşmalarla kanun çatışırsa andlaşma hükümleri esas alınır",
             "C) Andlaşmalar kanundan sonra hiçbir zaman uygulanamaz",
             "D) Andlaşmalar CB kararnamesinden daha alt bir konumdadır",
@@ -3596,7 +3596,7 @@
         {
           "soru": "Bir idari yargı organının, iptali istenen bir yönetmeliği denetlerken esas aldığı ölçüt aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Yönetmeliğin yalnızca kamuoyunda ne kadar tartışıldığı",
+            "A) Yönetmeliğin yayımından önce kamuoyunda ve basında ne kadar geniş biçimde tartışılıp eleştirildiği ve ne ölçüde ilgi gördüğü",
             "B) Yönetmeliğin üst normlara (Anayasa, kanun, varsa ilgili Cumhurbaşkanlığı kararnamesi) uygun olup olmadığı",
             "C) Yönetmeliğin yayımlandığı gazetenin tirajı",
             "D) Yönetmeliğin kaç sayfa olduğu",
@@ -3620,7 +3620,7 @@
         {
           "soru": "Aşağıdakilerden hangisi normlar hiyerarşisinde 'eşit düzeyde' kabul edilen iki kaynağa örnektir?",
           "secenekler": [
-            "A) Yönetmelik ve Cumhurbaşkanlığı kararnamesi",
+            "A) Yönetmelik ve Cumhurbaşkanlığı kararnamesi ile bunlara bağlı idari genelge ve tebliğler",
             "B) Kanun ve usulüne göre yürürlüğe konulmuş milletlerarası andlaşma (kural olarak)",
             "C) Anayasa ve kanun",
             "D) Örf ve adet hukuku ve Anayasa",
@@ -3632,7 +3632,7 @@
         {
           "soru": "Kıta Avrupası (Roma-Cermen) hukuk sisteminin en belirgin özelliği aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Hukukun temel kaynağının mahkeme içtihatları olması",
+            "A) Hukukun tek ve en temel kaynağının, yazılı kanunlar değil mahkemelerin verdiği bağlayıcı içtihatlar olması",
             "B) Hukukun büyük ölçüde yazılı ve sistematik biçimde kanunlaştırılmış kurallara dayanması",
             "C) Yazılı anayasanın bulunmaması",
             "D) Mahkeme kararlarının kesin ve değişmez emsal teşkil etmesi",
@@ -3656,7 +3656,7 @@
         {
           "soru": "'Stare decisis' ilkesi aşağıdakilerden hangisini ifade eder?",
           "secenekler": [
-            "A) Kanunların geriye yürümezliği ilkesini",
+            "A) Ceza kanunlarının, kişilerin lehine olan durumlar dışında geçmişe yönelik olarak uygulanamaması, yani geriye yürümezliği ilkesini",
             "B) Bir mahkemenin önceki kararlarının, sonraki benzer davalarda bağlayıcı emsal teşkil etmesi ilkesini",
             "C) Suçun kanunla tanımlanması zorunluluğunu",
             "D) Anayasa'nın üstünlüğü ilkesini",
@@ -3681,7 +3681,7 @@
           "soru": "Kıta Avrupası hukuk sisteminde hâkimin rolü ile Anglo-Sakson sistemindeki hâkimin rolü karşılaştırıldığında aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
             "A) Kıta Avrupası'nda hâkim genel-soyut kanun kuralını somut olaya uygular; Anglo-Sakson'da hâkim kararlarıyla fiilen hukuk yaratabilir",
-            "B) İki sistemde de hâkimin rolü birebir aynıdır",
+            "B) İki hukuk sisteminde de hâkimin üstlendiği rol, yetkileri ve karar verme yöntemi birebir aynıdır; aralarında hiçbir yapısal fark bulunmaz",
             "C) Kıta Avrupası'nda hâkimler hiçbir yorum yetkisine sahip değildir",
             "D) Anglo-Sakson sisteminde hâkimler yalnızca örf ve adet hukukunu uygular, karar veremezler",
             "E) Kıta Avrupası'nda hâkim kararları hiçbir zaman gerekçelendirilmez"
@@ -3704,7 +3704,7 @@
         {
           "soru": "Anglo-Sakson hukuk sisteminde kanunlaştırma (yazılı kanunlar çıkarma) faaliyetinin Kıta Avrupası sistemine kıyasla durumu için aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "A) Anglo-Sakson sisteminde hiçbir zaman yazılı kanun çıkarılmaz",
+            "A) Anglo-Sakson hukuk sisteminde parlamento tarafından hiçbir zaman yazılı kanun çıkarılmaz ve tüm hukuk yalnızca sözlü geleneklere dayanır",
             "B) Anglo-Sakson sisteminde de yazılı kanunlar bulunur, ancak hukukun ana gövdesi geleneksel olarak içtihatlar üzerine kuruludur",
             "C) İki sistemde de kanunlaştırma tamamen aynı ağırlıktadır",
             "D) Kıta Avrupası sisteminde yazılı kanun hiç yoktur",
@@ -3717,7 +3717,7 @@
           "soru": "Kıta Avrupası hukuk sisteminde tipik olan 'tümdengelim' yöntemi ile Anglo-Sakson sisteminde daha belirgin olan 'tümevarım' yöntemi arasındaki fark aşağıdakilerden hangisiyle açıklanabilir?",
           "secenekler": [
             "A) Tümdengelimde genel-soyut kanun kuralından somut olaya gidilir; tümevarımda somut olaylardan genel bir ilkeye ulaşılır",
-            "B) İkisi de aynı sırayı izler, fark yalnızca isimlendirmededir",
+            "B) İki yöntem de tümüyle aynı mantıksal sırayı ve akıl yürütme yolunu izler; aralarındaki tek fark yalnızca kullanılan isimlendirmeden ibarettir",
             "C) Tümevarım yalnızca ceza hukukunda kullanılır",
             "D) Tümdengelim yalnızca sözlü hukuk sistemlerinde geçerlidir",
             "E) Tümevarım yönteminde kanun hiç kullanılmaz"
@@ -3728,7 +3728,7 @@
         {
           "soru": "Aşağıdaki ülkelerden hangisi klasik olarak Anglo-Sakson (common law) hukuk ailesine örnek gösterilir?",
           "secenekler": [
-            "A) Fransa",
+            "A) Fransa Cumhuriyeti",
             "B) Almanya",
             "C) İngiltere",
             "D) İtalya",
@@ -3740,7 +3740,7 @@
         {
           "soru": "Kıta Avrupası hukuk sisteminde kanunların sistematik, genel ve soyut kurallar hâlinde bir araya getirilmesinin (kanunlaştırma/kodifikasyon) sağladığı temel yarar aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Hukuk kurallarının sürekli ve öngörülemez biçimde değişmesi",
+            "A) Hukuk kurallarının sürekli, ani ve önceden hiç kestirilemez biçimde değişerek belirsiz ve uygulanamaz hâle gelmesi",
             "B) Hukuki güvenlik ve öngörülebilirliğin artması, kuralların herkes için önceden bilinebilir hâle gelmesi",
             "C) Mahkeme kararlarının artık hiçbir önem taşımaması",
             "D) Hâkimlerin kanunu tamamen görmezden gelebilmesi",
@@ -3756,7 +3756,7 @@
             "B) İki sistemde de mahkeme kararları eşit derecede asli kaynak sayılır",
             "C) Kıta Avrupası'nda mahkeme kararlarının hiçbir hukuki etkisi yoktur",
             "D) Anglo-Sakson'da mahkeme kararları hiçbir zaman değiştirilemez",
-            "E) Kıta Avrupası'nda mahkeme kararları kanundan daha üstün kabul edilir"
+            "E) Kıta Avrupası hukuk sisteminde mahkeme kararları, yazılı kanun hükümlerinden dahi daha üstün ve doğrudan bağlayıcı asli bir hukuk kaynağı olarak kabul edilir"
           ],
           "dogruIndex": 0,
           "aciklama": "Kıta Avrupası hukuk sisteminde mahkeme kararları tali kaynak sayılırken, Anglo-Sakson sisteminde içtihat kanunla birlikte doğrudan asli bir hukuk kaynağı olarak kabul edilir; bu iki sistem arasındaki en temel yapısal farklardan biridir."
@@ -3778,7 +3778,7 @@
           "secenekler": [
             "A) Bu ölçütün hiçbir hukuk sisteminde kullanılmamış olması",
             "B) Pek çok hukuk kuralının aynı anda hem kamusal hem bireysel yararı koruyabilmesi, dolayısıyla kesin bir ayrım yapmaya elverişli olmaması",
-            "C) Kamu hukukunun hiçbir zaman bireysel yararı ilgilendirmemesi",
+            "C) Kamu hukukunun hiçbir zaman bireysel yararı ilgilendirmediği, tümüyle yalnızca soyut devlet çıkarını koruduğu ve bireyi hiç gözetmediği gerekçesiyle",
             "D) Özel hukukun toplumsal yararla hiçbir ilgisinin bulunmaması",
             "E) Bu ölçütün yalnızca ceza hukukunda geçerli olması"
           ],
@@ -3789,7 +3789,7 @@
           "soru": "Kamu-özel hukuk ayrımında kullanılan 'subordinasyon (üstünlük-eşitlik) ölçütü'ne göre kamu hukuku ilişkisi nasıl tanımlanır?",
           "secenekler": [
             "A) Taraflardan birinin, kamu gücüne dayanarak diğeri üzerinde üstün/hâkim bir konumda bulunduğu ilişki",
-            "B) Tarafların her zaman tam eşit konumda olduğu ilişki",
+            "B) Tarafların her durumda birbirine karşı tam anlamıyla eşit ve denk konumda bulunduğu, hiçbir üstünlük içermeyen bir yatay ilişki",
             "C) Yalnızca özel kişiler arasındaki sözleşme ilişkisi",
             "D) Sadece uluslararası ticaret ilişkisi",
             "E) Yalnızca aile içi ilişkiler"
@@ -3800,7 +3800,7 @@
         {
           "soru": "Bir vergi dairesinin, kanunda öngörülen bir vergiyi mükelleften cebren tahsil etme yetkisi, kamu-özel hukuk ayrımındaki hangi ölçütle açıklanır?",
           "secenekler": [
-            "A) Menfaat ölçütü ile; çünkü vergi yalnızca mükellefin kişisel yararınadır",
+            "A) Menfaat ölçütü ile; çünkü tahsil edilen vergi tümüyle ve yalnızca mükellefin kendi kişisel çıkarına hizmet eden bir ödeme olarak görülür",
             "B) Subordinasyon ölçütü ile; çünkü devlet burada kamu gücüne dayanarak mükellef üzerinde üstün bir konumdadır",
             "C) Eşitlik ölçütü ile; çünkü taraflar sözleşmeyle vergi miktarını belirler",
             "D) Bu ilişki özel hukuka girdiğinden hiçbir kamu hukuku ölçütüyle açıklanamaz",
@@ -3812,7 +3812,7 @@
         {
           "soru": "Anayasa hukuku, aşağıdaki hukuk dalı gruplarından hangisi içinde yer alır?",
           "secenekler": [
-            "A) Özel hukuk; çünkü bireylerin haklarını düzenler",
+            "A) Özel hukuk; çünkü anayasa yalnızca bireylerin birbirleriyle olan özel ilişkilerini ve kişisel mal varlığı haklarını eşitlik temelinde düzenler",
             "B) Kamu hukuku; devletin temel yapısını, organlarını ve kişi hak-ödevlerini kamu gücü açısından düzenler",
             "C) Karma hukuk; hem kamu hem özel hukuk niteliği eşit ağırlıktadır",
             "D) Milletlerarası özel hukuk",
@@ -3828,7 +3828,7 @@
             "B) Yalnızca özel şirketler arası ticari ilişkileri düzenlemesi",
             "C) Sadece aile içi ilişkileri düzenlemesi",
             "D) Yalnızca miras paylaşımını düzenlemesi",
-            "E) Devletler arası andlaşmaları düzenlemesi"
+            "E) Egemen devletler arasındaki uluslararası andlaşmaları ve diplomatik ilişkileri kamu gücü temelinde ayrıntılı biçimde düzenlemesi nedeniyle"
           ],
           "dogruIndex": 0,
           "aciklama": "İdare hukuku, idarenin kuruluşu, işleyişi ile idarenin kamu gücüne dayanarak kişilerle kurduğu, tarafların eşit olmadığı ilişkileri konu alır; bu üstünlük-tabi olma yapısı idare hukukunu kamu hukuku dalı yapar."
@@ -3836,7 +3836,7 @@
         {
           "soru": "Ceza hukukunun kamu hukuku dalı sayılmasının temel gerekçesi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Suç mağdurunun her zaman devlet olması",
+            "A) İşlenen her suçta mağdur konumundaki tarafın istisnasız biçimde bizzat devletin kendisi olması ve bireylerin hiç zarar görmemesi",
             "B) Cezalandırma yetkisinin devlete ait olması ve bu yetkinin toplum adına, kamu gücüyle kullanılması",
             "C) Ceza davalarının hiçbir zaman mahkemede görülmemesi",
             "D) Ceza hukukunun yalnızca özel kişiler arası tazminat ilişkisini düzenlemesi",
@@ -3848,7 +3848,7 @@
         {
           "soru": "Medeni hukukun bir özel hukuk dalı olarak konu aldığı ilişkilerin ortak özelliği aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Taraflardan birinin mutlaka devlet olması",
+            "A) Düzenlediği tüm ilişkilerde taraflardan en az birinin mutlaka üstün kamu gücüne sahip devlet olmasını zorunlu kılması",
             "B) Kişiler arasında kural olarak eşitlik esasına dayanan ilişkileri düzenlemesi",
             "C) Sadece kamu görevlileri arasındaki ilişkileri düzenlemesi",
             "D) Yalnızca uluslararası kuruluşlar arası ilişkileri düzenlemesi",
@@ -3860,7 +3860,7 @@
         {
           "soru": "Borçlar hukukunun Türk özel hukuk sistematiği içindeki yeri aşağıdakilerden hangisiyle doğru ifade edilir?",
           "secenekler": [
-            "A) Bağımsız bir kamu hukuku dalıdır",
+            "A) Kişiler ile devlet arasındaki cezai ve idari ilişkileri düzenleyen, tümüyle bağımsız ve asli bir kamu hukuku dalı olarak kabul edilir",
             "B) Medeni hukukun, sözleşme ve haksız fiilden doğan borç ilişkilerini düzenleyen bir alt dalıdır",
             "C) Yalnızca ceza hukukunun bir alt dalıdır",
             "D) Sadece devletler arası ticari ilişkileri düzenler",
@@ -3873,7 +3873,7 @@
           "soru": "Ticaret hukukunun bir özel hukuk dalı sayılmasının temel gerekçesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Tacirler ve ticari işletmeler arasındaki ilişkilerin de kural olarak eşitlik esasına dayanması",
-            "B) Devletin ticari işlemlere her zaman taraf olması",
+            "B) Bütün ticari işlem ve sözleşmelerde egemen gücüyle devletin doğrudan ve zorunlu bir taraf olarak yer alması nedeniyle",
             "C) Ticaret hukukunun yalnızca kamu ihalelerini düzenlemesi",
             "D) Ticaret mahkemelerinin idari yargı kolunda yer alması",
             "E) Ticaret hukukunun cezai yaptırımlar içermesi nedeniyle"
@@ -3885,7 +3885,7 @@
           "soru": "Kamu hukuku ile özel hukuk ayrımında, 'yargı yolu' bakımından ortaya çıkan tipik sonuç aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Kamu hukukuna ilişkin uyuşmazlıklar kural olarak idari yargıda, özel hukuka ilişkin uyuşmazlıklar kural olarak adli yargıda görülür",
-            "B) Bütün uyuşmazlıklar, konusu ne olursa olsun yalnızca Anayasa Mahkemesi'nde görülür",
+            "B) Konusu ister kamu ister özel hukuk olsun bütün hukuki uyuşmazlıkların istisnasız yalnızca Anayasa Mahkemesi tarafından karara bağlanması",
             "C) Özel hukuk uyuşmazlıkları da idare mahkemelerinde görülür",
             "D) Kamu hukuku uyuşmazlıklarının tamamı Yargıtay'da görülür",
             "E) Yargı yolu ayrımı, kamu-özel hukuk ayrımıyla hiçbir ilişki taşımaz"
@@ -3899,7 +3899,7 @@
             "A) İşçi ile işveren arasındaki ilişkinin temelde bir özel hukuk sözleşmesi olmakla birlikte, işçiyi koruma amacıyla devletin emredici kurallarla bu ilişkiye kamu hukuku niteliğinde müdahale etmesi",
             "B) İş hukukunun yalnızca devlet memurlarını ilgilendirmesi",
             "C) İş hukukunun hiçbir özel hukuk unsuru taşımaması",
-            "D) İş sözleşmesinin tarafların hiçbir iradesine dayanmadan kanunla resen kurulması",
+            "D) İş sözleşmesinin, işçi ve işverenin hiçbir irade beyanına ve karşılıklı anlaşmasına gerek olmaksızın, tümüyle kanun hükmü gereğince devlet tarafından resen ve zorunlu olarak kurulması nedeniyle karma sayılması",
             "E) İş hukukunun yalnızca uluslararası andlaşmalarla düzenlenmesi"
           ],
           "dogruIndex": 0,
@@ -3911,7 +3911,7 @@
             "A) Devletin, işçiyi koruma amacıyla asgari ücret, azami çalışma süresi gibi konularda emredici kurallar koyarak özel hukuk sözleşmesine müdahale etmesiyle",
             "B) İş sözleşmesinin hiçbir zaman özel hukuk sözleşmesi sayılmamasıyla",
             "C) İşçinin hiçbir hak talep edememesiyle",
-            "D) İşverenin sınırsız bir kamu gücüne sahip olmasıyla",
+            "D) İşverenin, işçi üzerinde devletinkine denk, hiçbir sınır tanımayan ve tümüyle kamu gücü niteliği taşıyan mutlak bir yetkiye sahip olmasıyla açıklanmasıyla",
             "E) İş hukukunun yalnızca idare hukuku kurallarına tabi olmasıyla"
           ],
           "dogruIndex": 0,
@@ -3920,7 +3920,7 @@
         {
           "soru": "İş müfettişlerinin işyerlerini denetleyip iş mevzuatına aykırılıkları tespit ederek idari yaptırım uygulayabilmesi, iş hukukunun hangi yönünü ortaya koyar?",
           "secenekler": [
-            "A) İş hukukunun tamamen özel hukuk dalı olduğunu",
+            "A) İş hukukunun hiçbir kamu hukuku unsuru barındırmayan, baştan sona yalnızca özel hukuk niteliği taşıyan saf bir dal olduğunu",
             "B) İş hukukunun kamu hukuku unsuru taşıyan denetim/yaptırım boyutunu, dolayısıyla karma niteliğini",
             "C) İş hukukunun anayasa hukukunun bir alt dalı olduğunu",
             "D) İş hukukunun yalnızca ceza hukukuyla ilgili olduğunu",
@@ -3934,7 +3934,7 @@
           "secenekler": [
             "A) Yabancılık unsuru taşıyan özel hukuk ilişkilerini konu almakla birlikte, hangi devletin hukukunun uygulanacağını belirleyen kuralların doğrudan devletin egemenlik yetkisinden kaynaklanması",
             "B) Devletler özel hukukunun hiçbir zaman özel kişileri ilgilendirmemesi",
-            "C) Devletler özel hukukunun yalnızca devletler arası andlaşmalardan oluşması",
+            "C) Devletler özel hukukunun tümüyle egemen devletler arasında imzalanan uluslararası andlaşma ve sözleşmelerden oluşması, iç hukukta hiçbir yasal düzenlemeye yer vermemesi nedeniyle karma sayılması",
             "D) Devletler özel hukukunun ceza hukukunun bir alt dalı olması",
             "E) Devletler özel hukukunun Anayasa'da doğrudan düzenlenmiş olması"
           ],
@@ -3945,7 +3945,7 @@
           "soru": "Devletler özel hukukunun kapsamına aşağıdakilerden hangisi girer?",
           "secenekler": [
             "A) Vatandaşlık, yabancılar hukuku ve kanunlar ihtilafı (uygulanacak hukukun belirlenmesi) konuları",
-            "B) Yalnızca devletler arası savaş hukuku",
+            "B) Yalnızca egemen devletler arasındaki savaş ilanı, silahlı çatışma ve barış andlaşmalarına ilişkin uluslararası kuralları kapsaması",
             "C) Yalnızca uluslararası örgütlerin iç yönetmelikleri",
             "D) Yalnızca Anayasa Mahkemesi'nin uluslararası yetkileri",
             "E) Sadece diplomatik dokunulmazlık kuralları"
@@ -3956,7 +3956,7 @@
         {
           "soru": "Hukuk öğretisinde 'karma hukuk dalı' kavramı en genel biçimde nasıl tanımlanır?",
           "secenekler": [
-            "A) Yalnızca kamu hukuku kurallarından oluşan, özel hukukla hiçbir bağlantısı bulunmayan dallar",
+            "A) Yalnızca kamu hukuku kurallarından oluşan, özel hukukla hiçbir noktada bağlantısı ve ortak yönü bulunmayan, tümüyle devlet egemenliğine dayalı saf nitelikli hukuk dalları",
             "B) Hem kamu hukuku hem özel hukuk unsurlarını bir arada barındırdığı için klasik kamu-özel hukuk ikili ayrımına kesin biçimde dahil edilemeyen hukuk dalları",
             "C) Sadece uluslararası andlaşmalardan oluşan dallar",
             "D) Yalnızca örf ve adet hukukuna dayanan dallar",
@@ -3969,7 +3969,7 @@
           "soru": "Karma nitelikli hukuk dallarının ortaya çıkışı, toplumsal ve ekonomik hayattaki hangi gelişmeyle yakından ilişkilendirilir?",
           "secenekler": [
             "A) Devletin, geleneksel olarak salt özel hukuka bırakılmış ilişkilere sosyal adaleti ve zayıf tarafı koruma amacıyla giderek daha fazla müdahale etmesiyle",
-            "B) Devletin tüm özel hukuk kurallarını tamamen ortadan kaldırmasıyla",
+            "B) Devletin, toplumdaki bütün özel hukuk kurallarını ve kişiler arası sözleşme serbestisini tümüyle ve kalıcı biçimde ortadan kaldırıp yerine sadece kamu kurallarını koymasıyla",
             "C) Kamu hukukunun tarihsel olarak ortadan kalkmasıyla",
             "D) Örf ve adet hukukunun tamamen terk edilmesiyle",
             "E) Anayasa'nın ilk kez yazılı hâle getirilmesiyle"
@@ -3980,7 +3980,7 @@
         {
           "soru": "İş hukukunda toplu iş sözleşmesi ve grev/lokavt gibi kolektif iş hukuku kurumlarının devletçe ayrıntılı biçimde düzenlenip denetlenmesi, iş hukukunun hangi özelliğini pekiştirir?",
           "secenekler": [
-            "A) Tamamen özel hukuk niteliğinde olduğunu",
+            "A) İş hukukunun hiçbir devlet müdahalesi içermeyen, baştan sona tümüyle özel hukuk niteliği taşıyan saf bir dal olduğunu",
             "B) Kamu hukuku unsurlarının da güçlü biçimde bulunduğunu, dolayısıyla karma niteliğini",
             "C) Anayasa hukukunun bir alt dalı olmaktan çıktığını",
             "D) Hiçbir devlet denetimine tabi olmadığını",
@@ -3994,7 +3994,7 @@
           "secenekler": [
             "A) Devletler özel hukuku yabancılık unsuru taşıyan kişiler arası ilişkileri, devletler kamu hukuku ise devletler ve uluslararası kuruluşlar arası ilişkileri konu alır",
             "B) İkisi de yalnızca devletler arası savaş hâllerini düzenler",
-            "C) Devletler özel hukuku yalnızca ceza davalarını konu alır",
+            "C) Devletler özel hukuku yabancılık unsuru bulunsun bulunmasın yalnızca ağır ceza mahkemelerinde görülen uluslararası nitelikli ceza davalarını ve suçluların iadesini konu alır",
             "D) Devletler kamu hukuku yalnızca miras hukukuyla ilgilidir",
             "E) Aralarında hiçbir fark yoktur, aynı hukuk dalıdır"
           ],
@@ -4016,7 +4016,7 @@
         {
           "soru": "Karma nitelikli bir hukuk dalı olarak kabul edilen iş hukukunda, işçi ile işveren arasındaki uyuşmazlıkların çözümü için kural olarak hangi yargı koluna başvurulur?",
           "secenekler": [
-            "A) İdare mahkemeleri, çünkü işveren her zaman bir kamu tüzel kişisidir",
+            "A) İdare mahkemeleri, çünkü iş sözleşmesindeki işveren istisnasız her zaman üstün kamu gücüyle donatılmış bir kamu tüzel kişisi konumundadır",
             "B) Adli yargı içinde yer alan iş mahkemeleri, çünkü iş sözleşmesi temelde bir özel hukuk sözleşmesidir",
             "C) Anayasa Mahkemesi, çünkü iş hukuku doğrudan Anayasa'da ayrıntılı biçimde düzenlenir",
             "D) Sayıştay, çünkü iş hukuku kamu harcamalarını denetler",
@@ -4061,7 +4061,7 @@
             "A) 1924 Anayasası",
             "B) 1961 Anayasası",
             "C) 1921 Teşkilat-ı Esasiye Kanunu",
-            "D) 1876 Kanun-u Esasi",
+            "D) 1876 tarihli Kanun-u Esasi, Osmanlı'dan devralınan ilk yazılı anayasa olduğu için",
             "E) 1982 Anayasası"
           ],
           "dogruIndex": 2,
@@ -4170,7 +4170,7 @@
         {
           "soru": "1961 Anayasası'nı diğer Türk anayasalarından ayıran en önemli özellik hangisidir?",
           "secenekler": [
-            "A) Laiklik ilkesini ilk kez düzenlemesi",
+            "A) Laiklik ilkesini Türk anayasa tarihinde ilk kez açıkça düzenleyip güvenceye bağlaması",
             "B) Cumhurbaşkanlığı makamını oluşturması",
             "C) Anayasa Mahkemesi ve çift meclis sistemini getirmesi",
             "D) TBMM'yi kuran ilk anayasa olması",
@@ -4311,7 +4311,7 @@
           "soru": "Laiklik ilkesi Türkiye'de ilk kez hangi anayasayla anayasal güvence altına alınmıştır?",
           "secenekler": [
             "A) 1921 Anayasası",
-            "B) 1924 Anayasası",
+            "B) 1924 Anayasası'nın kabul edildiği ilk hâlinde doğrudan yer alan bir hüküm ile",
             "C) 1937 yılında 1924 Anayasası'na eklenmesiyle",
             "D) 1961 Anayasası",
             "E) 1982 Anayasası"
@@ -4346,7 +4346,7 @@
         {
           "soru": "1924 Anayasası döneminde yasama ve yürütme yetkilerinin tek bir elde toplanmasına verilen ad nedir?",
           "secenekler": [
-            "A) Kuvvetler ayrılığı",
+            "A) Kuvvetler ayrılığı ilkesinin katı biçimde uygulandığı başkanlık düzeni",
             "B) Meclis hükümeti sistemi",
             "C) Başkanlık sistemi",
             "D) Parlamenter sistem",
@@ -4358,7 +4358,7 @@
         {
           "soru": "1982 Anayasası'nın 2. maddesinde yer alan 'sosyal devlet' ilkesinin temel amacı nedir?",
           "secenekler": [
-            "A) Devletin sadece kamu düzenini koruması",
+            "A) Devletin yalnızca kamu düzenini ve iç güvenliği koruyup ekonomiye hiç karışmaması",
             "B) Bireylerin ekonomik ve sosyal refahını devletin güvence altına alması",
             "C) Dini kurallara göre yönetim",
             "D) Yargı bağımsızlığını sağlamak",
@@ -4514,7 +4514,7 @@
         {
           "soru": "1921 Anayasası (Teşkilat-ı Esasiye Kanunu) hangi yönetim ilkesini esas almıştır?",
           "secenekler": [
-            "A) Kuvvetler ayrılığı",
+            "A) Yasama ve yürütmenin kesin biçimde ayrıldığı katı kuvvetler ayrılığı ilkesi",
             "B) Kuvvetler birliği (meclis hükümeti sistemi)",
             "C) Çift meclisli parlamenter sistem",
             "D) Cumhurbaşkanlığı hükümet sistemi",
@@ -4538,7 +4538,7 @@
         {
           "soru": "1924 Anayasası döneminde yürütme organı nasıl oluşturulmaktaydı?",
           "secenekler": [
-            "A) Halk tarafından doğrudan seçilen bir Cumhurbaşkanı tek başına yürütmeyi kullanırdı",
+            "A) Halk tarafından doğrudan seçilen bir Cumhurbaşkanının, hiçbir bakanlar kuruluna gerek olmaksızın yürütme yetkisini tek başına ve meclisten bağımsız biçimde kullanması",
             "B) Cumhurbaşkanı ve TBMM içinden seçilen İcra Vekilleri Heyeti (Bakanlar Kurulu) meclise karşı sorumlu olarak yürütmeyi kullanırdı",
             "C) Yürütme yetkisi tamamen bağımsız bir kurula bırakılmıştı",
             "D) Yürütme yetkisi Anayasa Mahkemesi'ne bırakılmıştı",
@@ -4586,7 +4586,7 @@
         {
           "soru": "1961 Anayasası'nın Türk anayasa tarihindeki temel niteliği aşağıdakilerden hangisiyle ifade edilir?",
           "secenekler": [
-            "A) Otoriter ve devlet merkezli bir anayasa olması",
+            "A) Bireysel özgürlükleri kısıtlayan, otoriter ve tümüyle devlet merkezli katı bir anayasa olması",
             "B) Temel hak ve özgürlükleri genişleten özgürlükçü ve çoğulcu bir anayasa olması",
             "C) Tek partili rejimi anayasal güvenceye bağlaması",
             "D) Yürütmeyi güçlendirip yargıyı zayıflatması",
@@ -4610,7 +4610,7 @@
         {
           "soru": "1982 Anayasası'nın kabul edildiği halkoylamasında Anayasa ile birlikte hangi konuda da oy kullanılmıştır?",
           "secenekler": [
-            "A) Cumhurbaşkanlığı seçiminde",
+            "A) Cumhurbaşkanının halk tarafından doğrudan seçilmesine ilişkin ayrı bir oylamada",
             "B) Kenan Evren'in Cumhurbaşkanı olarak seçilmesinde",
             "C) TBMM'nin feshinde",
             "D) Seçim barajının belirlenmesinde",
@@ -4634,7 +4634,7 @@
         {
           "soru": "1982 Anayasası genel değerlendirmede sıklıkla hangi nitelikle anılır?",
           "secenekler": [
-            "A) Aşırı özgürlükçü bir anayasa olarak",
+            "A) Bireysel hak ve özgürlükleri sınırsız biçimde koruyan, devlet otoritesini geri plana atan aşırı özgürlükçü ve liberal bir anayasa olarak",
             "B) Devlet otoritesini ön plana çıkaran, temel hak sınırlamalarını geniş tutan bir anayasa olarak",
             "C) Yalnızca ekonomik haklara odaklanan bir anayasa olarak",
             "D) Federal devlet yapısını benimseyen bir anayasa olarak",
@@ -4707,7 +4707,7 @@
           "soru": "Cumhurbaşkanlığı hükümet sistemi, hangi seçimlerin ardından fiilen uygulanmaya başlamıştır?",
           "secenekler": [
             "A) 2015 genel seçimleri",
-            "B) 2017 halkoylaması",
+            "B) 16 Nisan 2017 tarihinde yapılan anayasa değişikliği halkoylamasının hemen ardından",
             "C) 24 Haziran 2018 Cumhurbaşkanlığı ve milletvekili seçimleri",
             "D) 2019 yerel seçimleri",
             "E) 2014 Cumhurbaşkanlığı seçimi"
@@ -4718,7 +4718,7 @@
         {
           "soru": "2017 anayasa değişikliğiyle Cumhurbaşkanı'nın siyasi parti üyeliğine ilişkin durumu nasıl değişmiştir?",
           "secenekler": [
-            "A) Cumhurbaşkanı hiçbir zaman parti üyesi olamaz hükmü getirilmiştir",
+            "A) Cumhurbaşkanının seçilmesinin ardından hiçbir siyasi partiye üye olamayacağı yönünde katı bir tarafsızlık kuralı getirilmiştir",
             "B) Cumhurbaşkanı seçildikten sonra da parti üyeliğini sürdürebilir hâle gelmiştir",
             "C) Cumhurbaşkanı yalnızca iktidar partisinin genel başkanı olabilir",
             "D) Cumhurbaşkanı'nın parti üyeliği TBMM kararıyla belirlenir",
@@ -4732,7 +4732,7 @@
           "secenekler": [
             "A) Devletin şeklinin Cumhuriyet olduğunu",
             "B) Cumhuriyetin niteliklerini",
-            "C) Devletin bütünlüğünü, resmî dilini, bayrağını, marşını ve başkentini",
+            "C) Devletin ülkesi ve milletiyle bölünmez bütünlüğünü, resmî dilini, bayrağını, millî marşını, başkentini ve egemenliğin kullanımını",
             "D) 1, 2 ve 3. maddelerin değiştirilemeyeceğini ve değiştirilmesinin teklif dahi edilemeyeceğini",
             "E) Temel hak ve özgürlüklerin sınırlanma usulünü"
           ],
@@ -4791,7 +4791,7 @@
           "soru": "TBMM'de üye tam sayısının 3/5 ile 2/3'ü arasında bir çoğunlukla kabul edilen bir anayasa değişikliği teklifi karşısında Cumhurbaşkanı'nın seçenekleri nelerdir?",
           "secenekler": [
             "A) Yalnızca doğrudan yayımlayabilir",
-            "B) Yalnızca veto edebilir",
+            "B) Teklifi hiçbir koşulda halkoyuna götüremez, yalnızca kesin biçimde veto etme yetkisine sahiptir",
             "C) Halkoyuna sunabilir veya TBMM'ye iade edebilir",
             "D) Anayasa Mahkemesi'ne götürebilir",
             "E) Hiçbir yetkisi yoktur"
@@ -4826,7 +4826,7 @@
         {
           "soru": "1961 Anayasası ile Türk hukukuna girmiş olup 1982 Anayasası'nda da korunan, kanunların anayasaya uygunluğunu denetleyen mekanizmaya ne ad verilir?",
           "secenekler": [
-            "A) Yasama denetimi",
+            "A) TBMM'nin kendi çıkardığı kanunları bizzat gözden geçirdiği yasama denetimi",
             "B) Anayasa yargısı (norm denetimi)",
             "C) İdari denetim",
             "D) Siyasi denetim",
@@ -4902,7 +4902,7 @@
             "B) Mustafa Kemal Atatürk",
             "C) Celal Bayar",
             "D) Adnan Menderes",
-            "E) Kenan Evren"
+            "E) 1982 Anayasası'nı halkoyuna sunan devlet başkanı Kenan Evren"
           ],
           "dogruIndex": 1,
           "aciklama": "1982 Anayasası'nın başlangıç kısmı, Atatürk milliyetçiliği, ilke ve inkılapları ile Atatürk'ün belirlediği millî devlet anlayışına açıkça atıf yapar."
@@ -4948,7 +4948,7 @@
           "secenekler": [
             "A) 1987 değişikliği",
             "B) 1995 değişikliği",
-            "C) 2001 değişikliği",
+            "C) Temel hakları genişleten kapsamlı 2001 anayasa değişikliği paketiyle",
             "D) 2017 değişikliği (Cumhurbaşkanlığı hükümet sistemi)",
             "E) 2004 değişikliği"
           ],
@@ -4970,7 +4970,7 @@
         {
           "soru": "1921 Anayasası ile 1924 Anayasası arasındaki en temel fark aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) 1921 Anayasası çok maddeli, 1924 Anayasası az maddelidir",
+            "A) 1921 Anayasası çok sayıda ayrıntılı madde içerirken, 1924 Anayasası ise yalnızca birkaç maddeden oluşan kısa ve öz bir metin olarak düzenlenmiştir",
             "B) 1921 Anayasası kuvvetler birliğini, 1924 Anayasası ise kuvvetler ayrılığına daha yakın karma bir sistemi benimsemiştir",
             "C) 1921 Anayasası federal, 1924 Anayasası üniter yapıdadır",
             "D) 1921 Anayasası laik, 1924 Anayasası değildir",
@@ -5018,7 +5018,7 @@
         {
           "soru": "1982 Anayasası'nın 7. maddesine göre yasama yetkisi kime aittir?",
           "secenekler": [
-            "A) Cumhurbaşkanı'na",
+            "A) Yürütmenin başı sıfatıyla doğrudan Cumhurbaşkanına ve onun atadığı yardımcılarına",
             "B) Türk Milleti adına Türkiye Büyük Millet Meclisi'ne",
             "C) Bakanlar Kurulu'na",
             "D) Anayasa Mahkemesi'ne",
@@ -5032,7 +5032,7 @@
           "secenekler": [
             "A) TBMM tarafından",
             "B) Cumhurbaşkanı tarafından, Anayasa'ya ve kanunlara uygun olarak",
-            "C) Bakanlar Kurulu tarafından",
+            "C) Başbakanın başkanlığındaki Bakanlar Kurulu tarafından meclise karşı sorumlu olarak",
             "D) Yargıtay tarafından",
             "E) Anayasa Mahkemesi tarafından"
           ],
@@ -5054,7 +5054,7 @@
         {
           "soru": "1982 Anayasası'nın 11. maddesinde düzenlenen 'Anayasa'nın bağlayıcılığı ve üstünlüğü' ilkesi ne anlama gelir?",
           "secenekler": [
-            "A) Anayasa yalnızca yargı organlarını bağlar",
+            "A) Anayasa hükümlerinin yalnızca mahkemeleri ve yargı organlarını bağladığı, yasama ile yürütme organlarını ve idare makamlarını ise hiçbir biçimde bağlamadığı anlamına gelir",
             "B) Anayasa hükümleri; yasama, yürütme, yargı organlarını, idare makamlarını ve diğer kuruluş ve kişileri bağlayan temel hukuk kurallarıdır; kanunlar Anayasa'ya aykırı olamaz",
             "C) Anayasa yalnızca TBMM'yi bağlar, diğer organları bağlamaz",
             "D) Anayasa hükümleri yalnızca tavsiye niteliğindedir",
@@ -5078,7 +5078,7 @@
         {
           "soru": "1982 Anayasası'nın üçüncü kısmı hangi konuyu düzenler?",
           "secenekler": [
-            "A) Temel hak ve ödevleri",
+            "A) Kişilerin temel hak, hürriyet ve ödevlerini ayrıntılı biçimde düzenler",
             "B) Cumhuriyetin temel organlarını (yasama, yürütme, yargı)",
             "C) Mali ve ekonomik hükümleri",
             "D) Genel esasları",
@@ -5093,7 +5093,7 @@
             "A) 1924 Anayasası",
             "B) 1921 Anayasası (Teşkilat-ı Esasiye Kanunu)",
             "C) 1961 Anayasası",
-            "D) Kanun-i Esasi",
+            "D) Osmanlı'dan miras kalan 1876 tarihli Kanun-i Esasi hâlâ yürürlükteydi",
             "E) Hiçbir anayasa yürürlükte değildi"
           ],
           "dogruIndex": 1,
@@ -5128,7 +5128,7 @@
           "secenekler": [
             "A) Cumhuriyetçilik",
             "B) Sosyal devlet ilkesi",
-            "C) Laiklik",
+            "C) Din ve devlet işlerinin ayrılığını öngören laiklik ilkesi",
             "D) Milliyetçilik",
             "E) Milli egemenlik"
           ],
@@ -5174,7 +5174,7 @@
         {
           "soru": "Türkiye'de idam cezası, hangi süreçte yapılan anayasa ve kanun değişiklikleriyle hukuk sisteminden kaldırılmıştır?",
           "secenekler": [
-            "A) 1961 Anayasası döneminde",
+            "A) 1961 Anayasası döneminde yapılan kapsamlı insan hakları reformlarıyla birlikte",
             "B) 1982 Anayasası'nın ilk hâlinde",
             "C) 2000'li yıllarda Avrupa Birliği uyum sürecinde yapılan değişikliklerle",
             "D) 1924 Anayasası döneminde",
@@ -5186,7 +5186,7 @@
         {
           "soru": "1982 Anayasası'nda yer alan 'geçici maddeler'in temel amacı nedir?",
           "secenekler": [
-            "A) Anayasa'nın kalıcı ilkelerini değiştirmek",
+            "A) Anayasanın değiştirilemez nitelikteki kalıcı temel ilkelerini kolayca değiştirebilmek amacıyla",
             "B) Yeni anayasal düzene geçiş sürecine ilişkin özel ve sınırlı süreli düzenlemeler yapmak",
             "C) Temel hak ve hürriyetleri sürekli olarak kısıtlamak",
             "D) Yalnızca ekonomik konuları düzenlemek",
@@ -5222,7 +5222,7 @@
         {
           "soru": "1921 Anayasası'na 1923 yılında yapılan ek madde ile hangi düzenleme getirilmiştir?",
           "secenekler": [
-            "A) Laiklik ilkesi eklenmiştir",
+            "A) Devletin dininin İslam olduğu ibaresi kaldırılıp laiklik ilkesi eklenmiştir",
             "B) 'Türkiye Devletinin şekli, Hükümeti, Cumhuriyettir' hükmü eklenmiştir",
             "C) Çok partili hayata geçilmiştir",
             "D) Anayasa Mahkemesi kurulmuştur",
@@ -5246,7 +5246,7 @@
         {
           "soru": "1982 Anayasası'nın ikinci kısmının birinci bölümünde yer alan 'Genel Hükümler' aşağıdakilerden hangisini düzenler?",
           "secenekler": [
-            "A) Yalnızca siyasi hakları",
+            "A) Yalnızca seçme, seçilme ve siyasi faaliyette bulunma gibi siyasi hak ve hürriyetlere ilişkin özel ve ayrıntılı düzenlemeleri",
             "B) Temel hak ve hürriyetlerin niteliği, sınırlanması ve kötüye kullanılması gibi tüm haklara ilişkin ortak esasları",
             "C) Yalnızca sosyal hakları",
             "D) Yalnızca yargı örgütünü",
@@ -5270,7 +5270,7 @@
         {
           "soru": "2001 yılında yapılan kapsamlı anayasa değişikliği paketinin temel amacı neydi?",
           "secenekler": [
-            "A) Cumhurbaşkanlığı hükümet sistemine geçmek",
+            "A) Parlamenter sistemi bütünüyle terk edip güçlü yürütmeye dayalı Cumhurbaşkanlığı hükümet sistemine geçişi sağlamak",
             "B) Avrupa Birliği uyum sürecinde temel hak ve özgürlükleri genişletmek ve demokratikleşmeyi ilerletmek",
             "C) Meclis hükümeti sistemine dönmek",
             "D) Çok partili hayata geçmek",
