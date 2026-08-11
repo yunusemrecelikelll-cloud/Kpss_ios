@@ -52,7 +52,7 @@
             "B) Bayraktar TB2 insansız hava araçları",
             "C) Leopard tankları",
             "D) Deniz kuvvetleri gemileri",
-            "E) Hava savunma sistemleri"
+            "E) Uzun menzilli hava savunma füze ve radar sistemleri"
           ],
           "dogruIndex": 1,
           "aciklama": "Türk yapımı Bayraktar TB2 insansız hava araçları (İHA), Dağlık Karabağ Savaşı'nda Azerbaycan'ın zafere ulaşmasında belirleyici rol oynamıştır.",
@@ -66,7 +66,7 @@
             "B) Hatay",
             "C) Kahramanmaraş",
             "D) Malatya",
-            "E) Gaziantep"
+            "E) Gaziantep ili ve çevre ilçeleri merkez alınarak"
           ],
           "dogruIndex": 2,
           "aciklama": "6 Şubat 2023'te yaşanan 7,7 ve 7,6 büyüklüğündeki depremler Kahramanmaraş merkez üssü ile yaşandı; on bir ili etkiledi.",
@@ -205,7 +205,7 @@
             "A) Mansur Yavas",
             "B) Kemal Kılıçdaroğlu",
             "C) Muharrem İnce",
-            "D) Ekrem İmamoğlu",
+            "D) Ekrem İmamoğlu (İstanbul Büyükşehir Belediye Başkanı)",
             "E) Meral Akşener"
           ],
           "dogruIndex": 1,
@@ -266,7 +266,7 @@
             "B) Ege, Doğu Akdeniz ve Karadeniz'deki Türk deniz yetki alanları",
             "C) Yalnızca Ege Denizi",
             "D) Marmara Denizi ve çevresi",
-            "E) Türkiye'nin kıta sahanlığı sınırları"
+            "E) Yalnızca Türkiye'nin resmî kıta sahanlığı sınırları ve karasuları"
           ],
           "dogruIndex": 1,
           "aciklama": "'Mavi Vatan' doktrini; Türkiye'nin Ege, Doğu Akdeniz ve Karadeniz'deki deniz yetki alanı iddialarını kapsayan stratejik bir deniz politikası konseptidir."
@@ -301,7 +301,7 @@
             "A) Karadeniz",
             "B) Marmara Denizi",
             "C) Ege Denizi ve Doğu Akdeniz",
-            "D) Adriyatik Denizi",
+            "D) Adriyatik Denizi ve çevresindeki kıyı suları",
             "E) İyon Denizi"
           ],
           "dogruIndex": 2,
@@ -311,7 +311,7 @@
           "soru": "Türkiye'nin 2023-2024 döneminde Orta Doğu politikasında en belirgin konu hangisidir?",
           "secenekler": [
             "A) Libya iç savaşı",
-            "B) Körfez ülkeleriyle askeri ittifak",
+            "B) Körfez ülkeleriyle kapsamlı savunma ve askeri ittifak anlaşmalarının imzalanması",
             "C) Gazze'deki çatışma sürecinde İsrail karşıtı tutum ve Filistin'e destek",
             "D) Irak'la sınır anlaşmazlığı",
             "E) Suriye'nin yeniden yapılanmasına destek"
@@ -337,7 +337,7 @@
             "A) AKP tüm büyükşehirleri kazandı.",
             "B) CHP büyükşehirlerdeki başarısını pekiştirdi ve İstanbul ile Ankara'yı korudu.",
             "C) MHP büyükşehirlerde oy oranını artırdı.",
-            "D) İYİ Parti üç büyükşehiri kazandı.",
+            "D) İYİ Parti İstanbul, Ankara ve İzmir dahil toplam üç büyükşehir belediyesini kazandı.",
             "E) Bağımsız adaylar galip geldi."
           ],
           "dogruIndex": 1,
@@ -349,7 +349,7 @@
             "A) 5651 sayılı İnternet Kanunu",
             "B) 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK)",
             "C) 7253 sayılı Sosyal Medya Kanunu",
-            "D) 5809 sayılı Elektronik Haberleşme Kanunu",
+            "D) 5809 sayılı Elektronik Haberleşme Kanunu ve buna bağlı ikincil mevzuat",
             "E) 6362 sayılı Sermaye Piyasası Kanunu"
           ],
           "dogruIndex": 1,
@@ -394,7 +394,7 @@
         {
           "soru": "Türkiye-Suriye ilişkilerinde 2024 yılı itibarıyla öne çıkan gelişme hangisidir?",
           "secenekler": [
-            "A) Suriye ile tam diplomatik normalleşme sağlandı.",
+            "A) Suriye ile karşılıklı büyükelçilikler açılarak tam diplomatik normalleşme sağlandı.",
             "B) Esad rejiminin yıkılmasıyla Suriye'de yeni yönetimle ilişkiler kuruldu.",
             "C) Türkiye askeri üslerini Suriye'den çekti.",
             "D) Suriye AB üyeliğine kabul edildi.",
@@ -446,7 +446,7 @@
             "B) Parlamenter sistem",
             "C) Cumhurbaşkanlığı Hükümet Sistemi",
             "D) Federal sistem",
-            "E) Meclis hükümeti sistemi"
+            "E) Meclis hükümeti (konvansiyonel) sistemi biçimine"
           ],
           "dogruIndex": 2,
           "aciklama": "16 Nisan 2017 halkoylamasıyla kabul edilen anayasa değişiklikleri, Türkiye'yi parlamenter sistemden Cumhurbaşkanlığı Hükümet Sistemine geçirmiştir."
@@ -456,7 +456,7 @@
           "secenekler": [
             "A) İlk yerel seçimler yapıldı.",
             "B) Cumhurbaşkanlığı ve milletvekili seçimleri yeni sistemde ilk kez eşzamanlı yapıldı.",
-            "C) İlk kez halk oylamasıyla anayasa değişti.",
+            "C) Türkiye'de ilk kez halk oylamasıyla anayasa değişikliği gerçekleştirilerek sistem tümüyle yenilendi.",
             "D) Türkiye ilk kez AB'ye üye oldu.",
             "E) İlk çok partili seçim yapıldı."
           ],
@@ -502,7 +502,7 @@
         {
           "soru": "Yüksek Seçim Kurulu'nun (YSK) temel görevi nedir?",
           "secenekler": [
-            "A) Siyasi partilerin kapatılmasına karar vermek",
+            "A) Siyasi partilerin temelli kapatılmasına ve mali denetimlerine ilişkin davalarda nihai karar vermek",
             "B) Seçimlerin düzenlenmesi, yönetimi ve denetimini sağlamak, itirazları kesin karara bağlamak",
             "C) Milletvekili dokunulmazlığını kaldırmak",
             "D) Anayasa değişikliklerini onaylamak",
@@ -514,7 +514,7 @@
         {
           "soru": "Hakimler ve Savcılar Kurulu'nun (HSK) temel işlevi nedir?",
           "secenekler": [
-            "A) Yasaların anayasaya uygunluğunu denetlemek",
+            "A) Yasaların ve Cumhurbaşkanlığı kararnamelerinin anayasaya uygunluğunu esas yönünden denetlemek",
             "B) Hakim ve savcıların atama, terfi ve disiplin işlerini yürütmek",
             "C) Kamu harcamalarını denetlemek",
             "D) Seçimleri yönetmek",
@@ -530,7 +530,7 @@
             "B) Kanunların, Cumhurbaşkanlığı kararnamelerinin ve TBMM İçtüzüğü'nün Anayasa'ya uygunluğunu denetlemek",
             "C) Seçim sonuçlarını ilan etmek",
             "D) Yerel yönetimleri denetlemek",
-            "E) Uluslararası antlaşmaları onaylamak"
+            "E) Devletin taraf olduğu uluslararası antlaşmaları ve ikili işbirliği protokollerini görüşerek onaylamak"
           ],
           "dogruIndex": 1,
           "aciklama": "Anayasa Mahkemesi; kanunların, Cumhurbaşkanlığı kararnamelerinin ve TBMM İçtüzüğü'nün şekil ve esas bakımından Anayasa'ya uygunluğunu denetler; ayrıca bireysel başvuruları inceler."
@@ -541,7 +541,7 @@
             "A) Kamu idarelerinin gelir, gider ve mallarını TBMM adına denetlemek",
             "B) Bankacılık sektörünü denetlemek",
             "C) Yerel seçimleri yönetmek",
-            "D) Cumhurbaşkanlığı kararnamelerini onaylamak",
+            "D) Cumhurbaşkanlığı kararnamelerini hukuka uygunluk yönünden inceleyip onaylamak",
             "E) Vergi tahsilatı yapmak"
           ],
           "dogruIndex": 0,
@@ -553,7 +553,7 @@
             "A) Bakanlar Kurulu'nu denetlemek",
             "B) Devletin milli güvenlik siyasetinin belirlenmesinde Cumhurbaşkanlığına gerekli temel kararların alınmasında yardımcı olmak amacıyla görüş bildirmek",
             "C) Yasa çıkarmak",
-            "D) Uluslararası antlaşma imzalamak",
+            "D) Devlet adına tüm uluslararası antlaşmaları ve savunma işbirliği anlaşmalarını müzakere edip imzalamak, bunları onaylayarak yürürlüğe koymak ve uygulanmasını denetlemek",
             "E) Belediye bütçelerini onaylamak"
           ],
           "dogruIndex": 1,
@@ -587,7 +587,7 @@
           "soru": "Cumhurbaşkanlığı Kararnamesi'nin niteliği aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Kanun hükmünde olup TBMM onayı gerektirmez ve kanunla çelişemez.",
-            "B) TBMM tarafından onaylanmadıkça yürürlüğe giremez.",
+            "B) TBMM tarafından ayrıca kabul edilip onaylanmadıkça hiçbir şekilde yürürlüğe giremez.",
             "C) Anayasa değişikliği niteliğindedir.",
             "D) Yalnızca ekonomi alanında çıkarılabilir.",
             "E) Uluslararası antlaşma yerine geçer."
@@ -612,7 +612,7 @@
           "secenekler": [
             "A) Bakanlar Kurulu güçlendirilmiştir.",
             "B) Bakanlar Kurulu kaldırılmış; bakanlar doğrudan Cumhurbaşkanı tarafından atanmaktadır.",
-            "C) Bakanlar Kurulu'nun yetkileri TBMM'ye devredilmiştir.",
+            "C) Bakanlar Kurulu'nun tüm yürütme yetkileri doğrudan TBMM Başkanlığı'na ve komisyonlarına devredilmiştir.",
             "D) Başbakanlık makamı korunmuştur.",
             "E) Bakanlar Kurulu yalnızca ekonomi alanında yetkili kılınmıştır."
           ],
@@ -636,7 +636,7 @@
           "secenekler": [
             "A) İslam dini ile ilgili işleri yürütmek, ibadet yerlerini yönetmek ve toplumu din konusunda aydınlatmak",
             "B) Vakıf mallarını yönetmek",
-            "C) Dini eğitim müfredatını belirlemek yalnızca",
+            "C) Yalnızca örgün ve yaygın din eğitimi müfredatını belirlemek ve okullardaki din derslerini denetlemekle görevlidir",
             "D) Hac organizasyonunu yalnızca yürütmek",
             "E) Azınlık dinlerini denetlemek"
           ],
@@ -672,7 +672,7 @@
           "secenekler": [
             "A) Gözlemci üyedir.",
             "B) 1961'de örgütün kurucu üyelerinden biri olmuştur.",
-            "C) 2001 krizinden sonra üye olmuştur.",
+            "C) 2001 ekonomik krizinden sonra tam üye statüsüne kabul edilmiştir.",
             "D) Aday üyedir, tam üye değildir.",
             "E) OECD üyesi değildir."
           ],
@@ -685,7 +685,7 @@
             "A) Gözlemci statüsündedir.",
             "B) 1975 Helsinki Nihai Senedi'nin imzacısı olarak kurucu üyelerdendir.",
             "C) 2000'li yıllarda üye olmuştur.",
-            "D) Üyelik başvurusu reddedilmiştir.",
+            "D) Üyelik başvurusu Soğuk Savaş sonrasında birkaç kez değerlendirilip reddedilmiştir.",
             "E) AGİT üyesi değildir."
           ],
           "dogruIndex": 1,
@@ -696,7 +696,7 @@
           "secenekler": [
             "A) En az 30 yaşını doldurmuş olmak",
             "B) En az 40 yaşını doldurmuş ve yükseköğrenim yapmış olmak",
-            "C) En az 25 yaşında ve milletvekili olmak",
+            "C) En az 25 yaşını doldurmuş ve hâlen görevde olan bir milletvekili olmak",
             "D) Üniversite rektörü olmak",
             "E) Emekli asker olmak"
           ],
@@ -707,7 +707,7 @@
           "soru": "Türkiye'de siyasi partilerin kapatılması davalarına hangi yüksek yargı organı bakar?",
           "secenekler": [
             "A) Yargıtay",
-            "B) Danıştay",
+            "B) Danıştay (idari yargının en yüksek mahkemesi)",
             "C) Anayasa Mahkemesi",
             "D) Sayıştay",
             "E) YSK"
@@ -719,7 +719,7 @@
           "soru": "Türkiye'de Danıştay'ın temel görevi nedir?",
           "secenekler": [
             "A) İdari uyuşmazlıkları çözmek ve idari yargının en yüksek mercii olmak",
-            "B) Adli davaları temyiz incelemesinden geçirmek",
+            "B) Adli yargıdaki hukuk ve ceza davalarını temyiz incelemesinden geçirerek karara bağlamak",
             "C) Anayasaya uygunluk denetimi yapmak",
             "D) Seçim itirazlarını incelemek",
             "E) Kamu bütçesini onaylamak"
@@ -732,7 +732,7 @@
           "secenekler": [
             "A) Adliye mahkemelerince verilen kesin veya kesinleşmiş hüküm ve kararların son inceleme merci olmak",
             "B) Yalnızca anayasa değişikliklerini incelemek",
-            "C) İdari uyuşmazlıklara bakmak",
+            "C) İlk derece ve bölge idare mahkemelerinden gelen idari uyuşmazlıklara son mercii olarak bakmak ve çözmek",
             "D) Seçim sonuçlarını onaylamak",
             "E) Kamu ihalelerini denetlemek"
           ],
@@ -768,7 +768,7 @@
           "secenekler": [
             "Mustafa Kemal Atatürk",
             "İsmet İnönü",
-            "Adnan Menderes",
+            "Adnan Menderes (Demokrat Parti lideri)",
             "Bülent Ecevit",
             "Turgut Özal"
           ],
@@ -838,7 +838,7 @@
         {
           "soru": "Türkiye'nin son 20 yıllık siyasi gelişmelerinde en önemli faktör hangisi?",
           "secenekler": [
-            "Ekonomik krize karşı mücadele",
+            "Süregelen ekonomik krizlere ve yüksek enflasyona karşı verilen mücadele",
             "Siyasi istikrarsızlık",
             "Dış politika",
             "Sosyal adalet",
@@ -863,7 +863,7 @@
           "soru": "Türkiye'nin yakın tarihinin önemli olaylarından biri olan 15 Temmuz Darbesi'nin nedenlerinden biri aşağıdadır.",
           "secenekler": [
             "Ekonomik kriz",
-            "Siyasi istikrarsızlık",
+            "Yaygın siyasi istikrarsızlık ve koalisyon arayışları",
             "Dini reasons",
             "İktidarın muhalefeti yasaklaması",
             "Güncel siyasi gelişmeler"
@@ -924,7 +924,7 @@
           "secenekler": [
             "A) Yalnızca tarım ürünlerini kapsar.",
             "B) Sanayi ürünleri ve işlenmiş tarım ürünlerini kapsar; tarım ürünlerinin büyük kısmı ve hizmetler kapsam dışıdır.",
-            "C) Hizmet sektörünü tamamen kapsar, sanayi ürünlerini kapsamaz.",
+            "C) Hizmet sektörünü ve kamu alımlarını tamamen kapsar, buna karşılık sanayi ürünlerini ve işlenmiş tarım ürünlerini kapsam dışında bırakır.",
             "D) Tarım, sanayi ve hizmetlerin tamamını kapsar.",
             "E) Yalnızca enerji ve madencilik ürünlerini kapsar."
           ],
@@ -936,7 +936,7 @@
           "secenekler": [
             "A) Azerbaycan gazını Avrupa'ya taşımak",
             "B) Rus doğal gazını Karadeniz altından Türkiye ve Avrupa'ya ulaştırmak",
-            "C) İran gazını Türkiye üzerinden Akdeniz'e taşımak",
+            "C) İran doğal gazını Türkiye üzerinden Akdeniz limanlarına ve oradan Avrupa'ya taşımak",
             "D) Türkiye'nin doğal gazını ihraç etmek",
             "E) Irak petrolünü Ceyhan'a taşımak"
           ],
@@ -961,7 +961,7 @@
             "A) Dış ticaret anlaşmalarını imzalamak",
             "B) Kalkınma yardımı ve teknik işbirliği yoluyla yumuşak güç/kamu diplomasisi aracı olarak faaliyet göstermek",
             "C) Askeri ihracat lisanslarını denetlemek",
-            "D) Yurt dışındaki vatandaşların konsolosluk işlemlerini yürütmek",
+            "D) Yurt dışındaki Türk vatandaşlarının konsolosluk, pasaport ve vatandaşlık işlemlerinin tamamını yürütmek ve takip etmek",
             "E) Uluslararası ticaret anlaşmazlıklarını çözmek"
           ],
           "dogruIndex": 1,
@@ -974,7 +974,7 @@
             "B) Ahmet Davutoğlu; Türkiye'nin tarihî ve coğrafi derinliğinin çok yönlü/aktif bir bölgesel dış politika izlemesini gerektirdiği",
             "C) Turgut Özal; yalnızca ekonomik entegrasyon",
             "D) Kenan Evren; askeri güvenlik önceliği",
-            "E) Bülent Ecevit; Kıbrıs merkezli dış politika"
+            "E) Bülent Ecevit; Türkiye'nin dış politikasının ağırlıklı olarak Kıbrıs sorunu ve Doğu Akdeniz merkezli yürütülmesi gerektiği yönündeki temel iddia"
           ],
           "dogruIndex": 1,
           "aciklama": "Stratejik Derinlik doktrini, akademisyen ve daha sonra Dışişleri Bakanı olan Ahmet Davutoğlu tarafından geliştirilmiş; Türkiye'nin Osmanlı mirasından gelen tarihî ve coğrafi derinliğinin komşu bölgelerde çok yönlü ve aktif bir dış politika izlemesini gerektirdiğini savunan bir yaklaşımdır."
@@ -1007,7 +1007,7 @@
           "soru": "Türk Silahlı Kuvvetleri'nin NATO içindeki konumuyla ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
             "A) NATO'nun en küçük ordularından biridir.",
-            "B) NATO'da yalnızca deniz kuvvetleriyle temsil edilir.",
+            "B) NATO içinde yalnızca deniz kuvvetleriyle temsil edilir ve kara birlikleriyle hiçbir katkı sağlamaz.",
             "C) Personel sayısı bakımından NATO'nun ABD'den sonra ikinci büyük ordusu kabul edilir.",
             "D) Türkiye'nin NATO'da kara kuvveti bulunmamaktadır.",
             "E) NATO'ya yalnızca gözlemci asker gönderir."
@@ -1018,7 +1018,7 @@
         {
           "soru": "Kıbrıs'ın kuzeyindeki Türk toplumunun siyasi varlığı, uluslararası hukukta genel olarak hangi terimle nitelendirilmektedir?",
           "secenekler": [
-            "A) Bağımsız ve tam tanınmış devlet",
+            "A) Uluslararası toplumun tamamınca tanınan, bağımsız, egemen ve tam yetkili bir üye devlet konumundadır",
             "B) BM üyesi devlet",
             "C) Yalnızca Türkiye tarafından tanınan, uluslararası toplumun büyük çoğunluğunca tanınmayan bir yapı",
             "D) Yunanistan'a bağlı özerk bölge",
@@ -1042,7 +1042,7 @@
         {
           "soru": "Türkiye ile Yunanistan arasında Ege Denizi üzerindeki hava sahası ve uçuş bilgi bölgesi (FIR) sınırlarına ilişkin anlaşmazlığın temel konusu nedir?",
           "secenekler": [
-            "A) İki ülke arasında deniz ticareti kısıtlamaları",
+            "A) İki ülke arasındaki deniz ticareti güzergâhlarına ve liman kullanımına getirilen karşılıklı kısıtlamalar ve tarife uyuşmazlıkları",
             "B) Yunanistan'ın FIR hattını kendi karasularının ötesine taşıyarak ulusal hava sahası gibi uygulama iddiaları",
             "C) Kıbrıs'ın hava sahası denetimi",
             "D) NATO tatbikatlarının sıklığı",
@@ -1068,7 +1068,7 @@
           "secenekler": [
             "A) 2010'da özel üniversiteleri desteklemek için",
             "B) 15 Temmuz 2016 sonrasında FETÖ/PDY'ye bağlı olduğu belirlenen yurt dışındaki okulların yerini almak üzere eğitim faaliyeti yürütmek için",
-            "C) 1999 depreminden sonra afetzede eğitimini desteklemek için",
+            "C) 1999 Marmara depreminden sonra afetzede öğrencilerin eğitimini ve barınmasını sürekli biçimde desteklemek amacıyla kurulmuş bir vakıf olarak faaliyet göstermek için",
             "D) AB müzakere sürecinde eğitim müktesebatını uyumlaştırmak için",
             "E) Yurt içi mesleki eğitimi geliştirmek için"
           ],
@@ -1082,7 +1082,7 @@
             "B) Katar'a asker göndererek ve gıda desteği sağlayarak dayanışma",
             "C) Tarafsız kalarak arabuluculuk reddi",
             "D) Diplomatik ilişkilerin kesilmesi",
-            "E) Suudi Arabistan'ın ablukasına diplomatik destek"
+            "E) Suudi Arabistan öncülüğündeki ablukaya diplomatik ve lojistik destek verilmesi"
           ],
           "dogruIndex": 1,
           "aciklama": "2017'de Suudi Arabistan öncülüğündeki bazı Körfez ülkelerinin Katar'a uyguladığı ablukada Türkiye, TBMM'den geçirdiği yasayla asker sevkiyatını hızlandırmış ve gıda/insani yardım göndererek Katar'a destek olmuştur."
@@ -1094,7 +1094,7 @@
             "B) Kasım 2015'te Türkiye'nin Suriye sınırında bir Rus savaş uçağını düşürmesi",
             "C) Türkiye'nin S-400 alımını iptal etmesi",
             "D) Rusya'nın Akkuyu projesinden çekilmesi",
-            "E) Türkiye'nin Karadeniz'i Rus gemilerine kapatması"
+            "E) Türkiye'nin Montrö'yü işleterek Karadeniz'i tüm Rus savaş gemilerine tamamen kapatması"
           ],
           "dogruIndex": 1,
           "aciklama": "Kasım 2015'te Türk Hava Kuvvetleri'nin sınır ihlali gerekçesiyle bir Rus Su-24 uçağını düşürmesi, iki ülke arasında ekonomik yaptırımlara varan ciddi bir krize yol açmış; ilişkiler 2016 ortasında normalleşme sürecine girmiştir."
@@ -1106,7 +1106,7 @@
             "B) İki kesimli, iki toplumlu federal çözüm (son dönemde bazı çevrelerce iki devletli model önerileri)",
             "C) Yunanistan'a bağlı özerklik",
             "D) BM vesayeti altında geçici yönetim",
-            "E) Tam bağımsız üçüncü bir devlet kurulması"
+            "E) Adanın tamamında Türk ve Rum toplumlarını birleştiren, tam bağımsız üçüncü bir üniter devletin kurulması"
           ],
           "dogruIndex": 1,
           "aciklama": "Türkiye ve KKTC, uzun yıllar BM parametreleri çerçevesinde 'iki kesimli, iki toplumlu federasyon' modelini desteklemiş; 2020'li yıllarda ise kimi zaman egemen eşitliğe dayalı iki devletli modelin de tartışmaya açıldığı görülmüştür."
@@ -1114,7 +1114,7 @@
         {
           "soru": "Mart 2016'da AB ile Türkiye arasında imzalanan ve düzensiz göçün Ege üzerinden Yunan adalarına geçişini azaltmayı amaçlayan anlaşma genel olarak hangi isimle bilinir?",
           "secenekler": [
-            "A) Dublin Anlaşması",
+            "A) Dublin Anlaşması (sığınma başvurusu sorumluluğu düzenlemesi)",
             "B) Schengen Protokolü",
             "C) AB-Türkiye Mutabakatı (18 Mart Anlaşması)",
             "D) Frontex Sözleşmesi",
@@ -1140,7 +1140,7 @@
           "secenekler": [
             "A) Öneriyi memnuniyetle kabul etmiştir.",
             "B) Tam üyelik dışında bir alternatifi kabul etmeyeceğini defalarca vurgulamıştır.",
-            "C) Ayrıcalıklı ortaklığı tam üyelikten daha avantajlı bulmuştur.",
+            "C) Ayrıcalıklı ortaklık modelini tam üyelikten çok daha avantajlı bularak resmen benimsemiştir.",
             "D) Bu öneriyi kendisi teklif etmiştir.",
             "E) Konuyla ilgili resmî bir görüş bildirmemiştir."
           ],
@@ -1154,7 +1154,7 @@
             "B) Siyasi, ekonomik ve kültürel ilişkileri çeşitlendirerek etkiyi artırmak",
             "C) Sömürgecilik faaliyeti yürütmek",
             "D) Yalnızca petrol kaynaklarını kontrol etmek",
-            "E) BM'de Afrika ülkelerinin oylarını satın almak"
+            "E) BM Genel Kurulu'nda Afrika ülkelerinin oylarını maddi teşviklerle satın almak"
           ],
           "dogruIndex": 1,
           "aciklama": "2000'li yılların ortasından itibaren yürütülen Afrika Açılım Politikası, büyükelçilik sayısının artırılması, THY uçuş ağının genişletilmesi, TİKA projeleri ve ticaret hacminin yükseltilmesi yoluyla siyasi, ekonomik ve kültürel ilişkilerin çeşitlendirilmesini amaçlamaktadır."
@@ -1166,7 +1166,7 @@
             "B) Meşru müdafaa hakkı ve sınır güvenliğinin/terör tehdidinin bertaraf edilmesi",
             "C) Suriye hükümetinin daveti",
             "D) Arap Birliği kararı",
-            "E) NATO'nun ortak savunma maddesinin işletilmesi"
+            "E) NATO'nun 5. maddesindeki ortak savunma hükmünün müttefiklerce işletilmesi ve ittifak kararı alınması"
           ],
           "dogruIndex": 1,
           "aciklama": "Türkiye, Suriye'deki sınır ötesi harekâtlarını BM Şartı'nın 51. maddesindeki meşru müdafaa hakkına ve sınır güvenliğini tehdit eden terör örgütlerinin (PKK/YPG, DAEŞ) bertaraf edilmesi gerekçesine dayandırmıştır."
@@ -1176,7 +1176,7 @@
           "secenekler": [
             "A) Suriye topraklarının ilhak edilmesi",
             "B) Sınır hattı boyunca güvenli bölge oluşturarak terör örgütlerinin oluşturduğu koridoru engellemek",
-            "C) Suriye'nin BM üyeliğinin sona erdirilmesi",
+            "C) Suriye'nin Birleşmiş Milletler üyeliğinin askıya alınarak tümüyle sona erdirilmesinin sağlanması ve tanınmaması",
             "D) Rusya ile ortak yönetim kurulması",
             "E) İran nüfuzunun artırılması"
           ],
@@ -1188,7 +1188,7 @@
           "secenekler": [
             "A) Türkiye'nin Ek Protokol'ü Kıbrıs Cumhuriyeti gemilerine ve uçaklarına uygulamayı reddetmesi",
             "B) Türkiye'nin AB bütçesine katkı yapmaması",
-            "C) Türkiye'nin Schengen bölgesine dahil olmak istememesi",
+            "C) Türkiye'nin Schengen bölgesine dahil olmayı reddederek serbest dolaşım müktesebatını uygulamak istememesi",
             "D) Kıbrıs'ın euro bölgesine girmemesi",
             "E) Türkiye'nin Gümrük Birliği'nden çıkma talebi"
           ],
@@ -1210,7 +1210,7 @@
         {
           "soru": "Türkiye'nin Kıbrıs'taki askeri varlığının hukuki dayanağı olarak gösterdiği temel belge hangisidir?",
           "secenekler": [
-            "A) Lozan Antlaşması",
+            "A) 1923 Lozan Barış Antlaşması",
             "B) 1960 Garanti Antlaşması",
             "C) Montrö Sözleşmesi",
             "D) Annan Planı",
@@ -1250,7 +1250,7 @@
             "B) 2011 sonrası Suriye iç savaşıyla Şam yönetimiyle ilişkilerin kopması",
             "C) NATO'ya üyeliğin sürdürülmesi",
             "D) Kıbrıs'ta KKTC'nin ilanı",
-            "E) Yunanistan ile 1999 depremi sonrası yakınlaşma"
+            "E) Yunanistan ile 1999 depremleri sonrasında başlayan 'deprem diplomasisi' ve kalıcı yakınlaşma süreci"
           ],
           "dogruIndex": 1,
           "aciklama": "2011'de Suriye'de başlayan iç savaş ve Türkiye'nin muhalefeti desteklemesiyle Şam yönetimiyle ilişkilerin tamamen kopması, 'komşularla sıfır sorun' politikasının pratik sınırlarına ulaştığının en belirgin örneği olarak değerlendirilir."
@@ -1272,7 +1272,7 @@
           "secenekler": [
             "A) Foruma derhal üye olmuştur.",
             "B) Forumun kendisini dışlayan bir 'dışlama forumu' olduğunu belirterek kendi hak iddialarını sondaj ve deniz yetki alanı anlaşmalarıyla savunmuştur.",
-            "C) Doğu Akdeniz'deki tüm faaliyetlerini durdurmuştur.",
+            "C) Doğu Akdeniz'deki tüm sondaj, arama ve deniz yetki alanı faaliyetlerini tek taraflı olarak durdurarak forumun kararlarına eksiksiz biçimde uymayı kabul etmiştir.",
             "D) NATO üyeliğinden istifa etmiştir.",
             "E) AB üyeliğine başvurmuştur."
           ],
@@ -1284,7 +1284,7 @@
           "secenekler": [
             "A) Gümrük Birliği'nin tamamen sona erdirilmesi",
             "B) Hizmetler, tarım ve kamu alımları gibi alanların da kapsama dahil edilerek modernizasyonun sağlanması",
-            "C) Gümrük Birliği'nin yalnızca enerji sektörüne genişletilmesi",
+            "C) Gümrük Birliği kapsamının yalnızca enerji ve madencilik sektörünü içerecek biçimde daraltılarak yeniden düzenlenmesi",
             "D) Türkiye'nin AB'den çıkarılması",
             "E) Vergi oranlarının sıfırlanması"
           ],
@@ -1294,7 +1294,7 @@
         {
           "soru": "Türkiye'nin Avrupa Birliği'ne aday ülke statüsünde olmasına rağmen Schengen vize muafiyeti bakımından durumu nedir?",
           "secenekler": [
-            "A) Türk vatandaşları AB'ye tam üye olmadan önce Schengen vizesinden muaf tutulmuştur.",
+            "A) Türk vatandaşları AB'ye tam üye olunmadan önce, geri kabul anlaşmasının yürürlüğe girmesiyle Schengen vizesinden tümüyle muaf tutulmuştur.",
             "B) Türk vatandaşları AB üyesi olmayan diğer birçok aday/komşu ülkenin aksine hâlâ Schengen vizesine tabidir.",
             "C) Türkiye zaten Schengen bölgesinin bir üyesidir.",
             "D) Türk vatandaşları yalnızca Yunanistan'a vizesiz girebilir.",
@@ -1307,7 +1307,7 @@
           "soru": "Türkiye'nin 2016 sonrası Rusya ile ilişkilerini normalleştirmesinde imzalanan ve TürkAkım projesinin yeniden hız kazanmasını sağlayan gelişme hangisidir?",
           "secenekler": [
             "A) Cumhurbaşkanı Erdoğan'ın Ağustos 2016'da Rusya'ya yaptığı ziyaret ve karşılıklı özür/uzlaşma süreci",
-            "B) Türkiye'nin NATO'dan çekilme kararı",
+            "B) Türkiye'nin NATO üyeliğinden tamamen çekilerek batı savunma ittifakından resmen ayrılma kararı alması",
             "C) Rusya'nın Kırım'ı Türkiye'ye devretmesi",
             "D) AB'nin arabuluculuğu",
             "E) BM Güvenlik Konseyi kararı"
@@ -1319,7 +1319,7 @@
           "soru": "Türkiye'nin Suriye politikasında 2011 sonrasında Şam yönetimine karşı desteklediği ana muhalefet çatısı hangi isimle anılmıştır?",
           "secenekler": [
             "A) Suriye Ulusal Konseyi ve sonrasında Suriye Muhalefet ve Devrimci Güçler Ulusal Koalisyonu",
-            "B) Baas Partisi",
+            "B) Şam'daki Esad iktidarının dayandığı Baas Partisi ve ona bağlı ulusal cephe yapılanmaları bütünü",
             "C) DAEŞ",
             "D) YPG/PYD",
             "E) Hizbullah"
@@ -1330,7 +1330,7 @@
         {
           "soru": "Türkiye'nin AB üyelik sürecinde 'Kopenhag Kriterleri' hangi alanları kapsamaktadır?",
           "secenekler": [
-            "A) Yalnızca ekonomik büyüme oranları",
+            "A) Yalnızca ülkenin yıllık ekonomik büyüme oranları ve kişi başına düşen toplam milli gelir seviyesi",
             "B) Siyasi (demokrasi, hukukun üstünlüğü, insan hakları), ekonomik ve müktesebata uyum kriterleri",
             "C) Yalnızca askeri kapasite",
             "D) Yalnızca çevre standartları",
@@ -1342,7 +1342,7 @@
         {
           "soru": "Türkiye'nin İslam İşbirliği Teşkilatı (İİT) bünyesindeki konumuyla ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Teşkilatın kurucu üyelerinden biridir ve merkezi Türkiye'dedir.",
+            "A) Teşkilatın kurucu üyelerinden biridir ve resmî genel merkezi Türkiye'nin başkenti Ankara'dadır.",
             "B) Teşkilatın kurucu üyelerinden biridir; merkezi ise Suudi Arabistan'ın Cidde kentindedir.",
             "C) Yalnızca gözlemci statüsündedir.",
             "D) 2000'li yıllarda üyeliğe kabul edilmiştir.",
@@ -1354,7 +1354,7 @@
         {
           "soru": "Türkiye'nin Avrupa Birliği ile 'vize serbestisi' için öngörülen 72 kriterlik yol haritasında en çok tartışılan ve askıya alınmasına neden olan madde hangisidir?",
           "secenekler": [
-            "A) Pasaport güvenliği standartları",
+            "A) Biyometrik pasaport ve seyahat belgelerinin güvenlik standartları",
             "B) Terörle mücadele mevzuatının AB tanımına uyumlaştırılması",
             "C) Sınır kapılarının sayısı",
             "D) Vergi oranlarının düşürülmesi",
@@ -1366,7 +1366,7 @@
         {
           "soru": "Türkiye'nin Katar Üssü'nde (TURKQFOR) yürütülen faaliyetlerin niteliği aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Yalnızca deniz üssü faaliyeti",
+            "A) Yalnızca deniz kuvvetlerine ait bir deniz üssü ve liman işletmeciliği faaliyeti",
             "B) Ortak askeri eğitim, tatbikat ve kara/hava unsurlarının konuşlandırılması",
             "C) Yalnızca istihbarat paylaşımı",
             "D) Sivil havacılık eğitimi",
@@ -1378,7 +1378,7 @@
         {
           "soru": "Türkiye'nin ikinci astronotu olarak yörünge altı (suborbital) uçuş gerçekleştiren isim kimdir?",
           "secenekler": [
-            "A) Alper Gezeravcı",
+            "A) İlk astronotumuz Alper Gezeravcı",
             "B) Alparslan Türkeş",
             "C) Cengiz Ultav",
             "D) Uğur Şahin",
@@ -1441,7 +1441,7 @@
             "B) Yurt dışı kalkınma yardımları",
             "C) Bilimsel ve teknolojik araştırmaları desteklemek",
             "D) Savunma sanayii üretimi",
-            "E) Uydu fırlatma operasyonları"
+            "E) Uzaya uydu fırlatma ve yörünge operasyonlarını yürütmek"
           ],
           "dogruIndex": 2,
           "aciklama": "TÜBİTAK (Türkiye Bilimsel ve Teknolojik Araştırma Kurumu), bilimsel ve teknolojik araştırmaları desteklemek, Ar-Ge faaliyetlerini koordine etmek ve milli teknoloji hamlesi kapsamında projeleri yürütmekle görevlidir.",
@@ -1455,7 +1455,7 @@
             "B) TİKA",
             "C) TÜRKSAT",
             "D) TÜBİTAK ve Türkiye Teknoloji Takımı Vakfı (T3 Vakfı)",
-            "E) Millî Eğitim Bakanlığı"
+            "E) Millî Eğitim Bakanlığı'na bağlı bir merkezî genel müdürlük"
           ],
           "dogruIndex": 3,
           "aciklama": "TEKNOFEST, TÜBİTAK ile Türkiye Teknoloji Takımı Vakfı (T3 Vakfı) ortaklığıyla düzenlenmektedir. Türkiye'nin en büyük havacılık, uzay ve teknoloji festivali olarak uluslararası ilgi çekmektedir.",
@@ -1507,7 +1507,7 @@
         {
           "soru": "TİKA'nın (Türk İşbirliği ve Koordinasyon Ajansı) temel işlevi nedir?",
           "secenekler": [
-            "A) Yurt içi Ar-Ge projeleri yönetmek",
+            "A) Yurt içi Ar-Ge ve bilimsel araştırma projelerini yönetmek",
             "B) Yurt dışında kalkınma yardımları ve projeler yürütmek",
             "C) Afet yönetimi koordinasyonu",
             "D) Savunma sanayi ihracatı",
@@ -1535,7 +1535,7 @@
         {
           "soru": "Türkiye'de 'Milli Teknoloji Hamlesi' kavramı hangi altyapıyla doğrudan ilişkilendirilmektedir?",
           "secenekler": [
-            "A) Turizm gelirleri artışı",
+            "A) Turizm gelirlerinin ve yabancı ziyaretçi sayısının artması",
             "B) Yerli ve milli savunma-teknoloji ürünleri geliştirme",
             "C) Yabancı yatırım teşvikleri",
             "D) Tarım üretim artışı",
@@ -1567,7 +1567,7 @@
             "B) Yaşlı, engelli ve kimsesizlere bakım hizmetleri",
             "C) Afet müdahalesi",
             "D) Yurt dışı kalkınma yardımları",
-            "E) Burs ve eğitim destekleri"
+            "E) Öğrencilere yönelik burs ve eğitim destekleri sağlamak"
           ],
           "dogruIndex": 1,
           "aciklama": "Darülaceze, 1896'da kurulan ve yaşlı, engelli, kimsesiz bireylere bakım hizmeti sunan Türkiye'nin köklü sosyal yardım kurumlarından biridir.",
@@ -1594,7 +1594,7 @@
             "A) ABD",
             "B) Çin",
             "C) Avrupa Birliği ülkeleri",
-            "D) Körfez ülkeleri",
+            "D) Petrol zengini Körfez ülkeleri",
             "E) Afrika ülkeleri"
           ],
           "dogruIndex": 2,
@@ -1617,7 +1617,7 @@
         {
           "soru": "ASELSAN hangi alanlarda faaliyet gösteren bir savunma sanayi şirketidir?",
           "secenekler": [
-            "A) Gemi inşası ve deniz platformları",
+            "A) Askeri gemi inşası ve ağır deniz savaş platformlarının üretimi",
             "B) Elektronik sistemler, haberleşme ve savunma elektroniği",
             "C) Uçak motoru ve havacılık sistemleri",
             "D) Kimyasal savunma sistemleri",
@@ -1644,7 +1644,7 @@
             "A) Askeri operasyonları planlamak",
             "B) Afet ve acil durum yönetimini koordine etmek",
             "C) Kamu altyapısını denetlemek",
-            "D) Çevre kirliliğiyle mücadele etmek",
+            "D) Çevre kirliliği ve iklim değişikliğiyle mücadele etmek",
             "E) Sağlık hizmetlerini düzenlemek"
           ],
           "dogruIndex": 1,
@@ -1653,7 +1653,7 @@
         {
           "soru": "TİKA (Türk İşbirliği ve Koordinasyon Ajansı) hangi alanlarda çalışma yürütür?",
           "secenekler": [
-            "A) Askeri işbirliği ve silah transferi",
+            "A) Uluslararası askeri işbirliği ve gelişmiş silah sistemleri transferi",
             "B) Gelişmekte olan ülkelere kalkınma yardımı ve teknik işbirliği",
             "C) Yurt içi istihdam politikaları",
             "D) Yabancı yatırımların teşviki",
@@ -1677,7 +1677,7 @@
         {
           "soru": "Türk Kızılay'ının uluslararası hareketteki statüsü nedir?",
           "secenekler": [
-            "A) Uluslararası Kızılhaç Komitesi'nin (ICRC) bir şubesidir.",
+            "A) Uluslararası Kızılhaç Komitesi'nin (ICRC) doğrudan merkeze bağlı bir şubesidir.",
             "B) Uluslararası Kızılhaç ve Kızılay Dernekleri Federasyonu'nun üyesidir.",
             "C) Tamamen bağımsız bir yardım kuruluşudur.",
             "D) BM insani yardım ajansının alt koludur.",
@@ -1689,7 +1689,7 @@
         {
           "soru": "SPK'nın (Sermaye Piyasası Kurulu) temel görevi nedir?",
           "secenekler": [
-            "A) Bankacılık sektörünü denetlemek",
+            "A) Bankacılık sektörünü ve kredi kuruluşlarını denetlemek",
             "B) Sermaye piyasalarını düzenlemek ve denetlemek",
             "C) Para politikasını belirlemek",
             "D) Kamu ihalelerini denetlemek",
@@ -1703,7 +1703,7 @@
           "secenekler": [
             "A) Enflasyonu kontrol etmek",
             "B) Bankacılık sistemini düzenlemek ve denetlemek",
-            "C) Kamu borç yönetimini sağlamak",
+            "C) Kamu borç yönetimini ve iç borçlanmayı doğrudan sağlamak",
             "D) Döviz kurunu belirlemek",
             "E) Vergi toplamak"
           ],
@@ -1713,7 +1713,7 @@
         {
           "soru": "Türkiye Cumhuriyet Merkez Bankası'nın temel amacı nedir?",
           "secenekler": [
-            "A) Devlet bütçesini hazırlamak",
+            "A) Devlet bütçesini hazırlamak ve kamu harcamalarını planlamak",
             "B) Fiyat istikrarını sağlamak ve para politikasını yürütmek",
             "C) Kamu bankalarını yönetmek",
             "D) Vergi gelirlerini toplamak",
@@ -1725,7 +1725,7 @@
         {
           "soru": "AKINCI İHA'nın TB2'den temel farkı nedir?",
           "secenekler": [
-            "A) AKINCI deniz görevleri için tasarlanmıştır.",
+            "A) AKINCI yalnızca deniz görevleri ve gemilerden kalkış-iniş operasyonları için özel bir platform olarak tasarlanmıştır.",
             "B) AKINCI daha büyük gövdeli, uzun menzilli ve daha ağır silah yükü taşıyabilen bir KARGO İHA'dır.",
             "C) AKINCI yalnızca keşif görevleri için kullanılır.",
             "D) AKINCI insanlı bir hava platformudur.",
@@ -1739,7 +1739,7 @@
           "secenekler": [
             "A) Nükleer denizaltı",
             "B) Amfibi hücum gemisi (hafif uçak gemisi)",
-            "C) Destroyer savaş gemisi",
+            "C) Füzelerle donatılmış destroyer sınıfı savaş gemisi",
             "D) Fırkateyn",
             "E) Deniz mayın avcısı"
           ],
@@ -1785,7 +1785,7 @@
         {
           "soru": "Türkiye'de 'kamu iktisadi teşebbüsü' (KİT) nedir?",
           "secenekler": [
-            "A) Yalnızca özel sektöre ait ticari şirketler",
+            "A) Yalnızca özel sektöre ait, kâr amacı güden büyük ölçekli ticari sanayi şirketleri ve holdingleri",
             "B) Devletin ekonomik faaliyetlerde bulunmak amacıyla kurduğu veya katıldığı kamu işletmeleri",
             "C) Belediye şirketleri",
             "D) AB fonlarıyla kurulan ortaklıklar",
@@ -1858,7 +1858,7 @@
           "soru": "Türkiye'de merkezi yönetim bütçesi TBMM'de hangi mali yıl için kabul edilir?",
           "secenekler": [
             "A) Takvim yılıyla aynı (1 Ocak - 31 Aralık)",
-            "B) Temmuz-Haziran arası",
+            "B) Temmuz ayında başlayıp haziran ayında biten dönem",
             "C) Mart-Şubat arası",
             "D) Ekim-Eylül arası",
             "E) Nisan-Mart arası"
@@ -1881,7 +1881,7 @@
         {
           "soru": "Hazine ve Maliye Bakanlığı'nın temel görevlerinden biri aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Sermaye piyasalarını denetlemek",
+            "A) Sermaye piyasalarını ve borsa işlemlerini düzenleyip sürekli denetlemek",
             "B) Kamu maliyesi, vergi politikası ve devlet borçlanmasını yönetmek",
             "C) Seçimleri düzenlemek",
             "D) Yerel yönetimleri denetlemek",
@@ -1893,7 +1893,7 @@
         {
           "soru": "Türkiye İstatistik Kurumu'nun (TÜİK) temel görevi nedir?",
           "secenekler": [
-            "A) Ekonomik büyümeyi teşvik etmek",
+            "A) Ekonomik büyümeyi ve kalkınmayı doğrudan teşvik etmek",
             "B) Ulusal istatistikleri üretmek ve yayımlamak",
             "C) Vergi toplamak",
             "D) Kamu ihalelerini düzenlemek",
@@ -1906,7 +1906,7 @@
           "soru": "Rekabet Kurumu'nun temel işlevi nedir?",
           "secenekler": [
             "A) Piyasalarda rekabeti sınırlayan anlaşma ve uygulamaları önlemek, tekelleşmeyi engellemek",
-            "B) Fiyatları doğrudan belirlemek",
+            "B) Piyasadaki tüm mal ve hizmet fiyatlarını doğrudan devlet eliyle resmen tek tek belirlemek",
             "C) Dış ticareti düzenlemek",
             "D) Kamu bankalarını yönetmek",
             "E) Vergi oranlarını belirlemek"
@@ -1918,7 +1918,7 @@
           "soru": "EPDK'nın (Enerji Piyasası Düzenleme Kurumu) görev alanı nedir?",
           "secenekler": [
             "A) Elektrik, doğal gaz, petrol ve LPG piyasalarını düzenlemek ve denetlemek",
-            "B) Maden aramalarını yürütmek",
+            "B) Ülke genelindeki tüm maden aramalarını ve çıkarma faaliyetlerini bizzat yürütmek",
             "C) Orman yönetimini denetlemek",
             "D) Tarım sübvansiyonlarını belirlemek",
             "E) Ulaştırma altyapısını yönetmek"
@@ -1930,7 +1930,7 @@
           "soru": "TMSF'nin (Tasarruf Mevduatı Sigorta Fonu) temel işlevi nedir?",
           "secenekler": [
             "A) Mevduat sahiplerinin haklarını korumak ve sorunlu bankaları yönetmek",
-            "B) Devlet tahvili ihraç etmek",
+            "B) Hazine adına devlet tahvili ve hazine bonosu gibi çeşitli araçlar ihraç etmek",
             "C) Döviz kurunu belirlemek",
             "D) Sermaye piyasalarını denetlemek",
             "E) Bütçe açığını finanse etmek"
@@ -1956,7 +1956,7 @@
             "A) Vergi politikalarını uygulamak ve vergi toplamak",
             "B) Bütçe hazırlamak",
             "C) Kamu personel maaşlarını belirlemek",
-            "D) Devlet borçlanmasını yönetmek",
+            "D) Devlet iç ve dış borçlanmasını planlayıp yönetmek",
             "E) Dış ticaret istatistiklerini üretmek"
           ],
           "dogruIndex": 0,
@@ -1969,7 +1969,7 @@
             "B) Bankacılık sektörünü denetlemek",
             "C) Tarımsal destekleme ödemeleri yapmak",
             "D) Sermaye piyasalarını düzenlemek",
-            "E) Elektrik üretimini denetlemek"
+            "E) Ülkedeki tüm elektrik santral, üretim ve dağıtım faaliyetlerini denetlemek"
           ],
           "dogruIndex": 0,
           "aciklama": "TOKİ; düşük ve orta gelirli vatandaşlara yönelik toplu konut projeleri geliştiren, kentsel dönüşüm ve afet konutu üretimini de yürüten kamu kuruluşudur."
@@ -1978,7 +1978,7 @@
           "soru": "İŞKUR'un (Türkiye İş Kurumu) temel görevi nedir?",
           "secenekler": [
             "A) İş arayanlarla işverenleri buluşturmak, işsizlik sigortası ödemelerini yönetmek ve mesleki eğitim kursları düzenlemek",
-            "B) Asgari ücreti belirlemek",
+            "B) Ülke genelinde uygulanacak asgari ücreti ve toplu iş sözleşmelerindeki taban ücretleri her yıl tek başına belirleyip yürürlüğe koymak",
             "C) Sendikaları denetlemek",
             "D) Kamu personeli atamak",
             "E) Vergi indirimleri belirlemek"
@@ -1990,7 +1990,7 @@
           "soru": "Sosyal Güvenlik Kurumu'nun (SGK) temel işlevi nedir?",
           "secenekler": [
             "A) Emeklilik, sağlık sigortası ve sosyal güvenlik hizmetlerini yürütmek",
-            "B) İşsizlik ödemelerini yalnızca yönetmek",
+            "B) Yalnızca işsizlik sigortası ödemelerini ve kısa çalışma ödeneğini yönetmek",
             "C) Vergi toplamak",
             "D) Asgari geçim indirimini belirlemek",
             "E) Sermaye piyasası işlemlerini denetlemek"
@@ -2025,7 +2025,7 @@
         {
           "soru": "Halkbank'ın kuruluş amacı temelde hangi kesime yöneliktir?",
           "secenekler": [
-            "A) Büyük sanayi holdinglerine",
+            "A) Büyük ölçekli sanayi holdinglerine finansman sağlamak",
             "B) Esnaf ve KOBİ'lere kredi desteği sağlamak",
             "C) Yalnızca ihracatçı firmalara",
             "D) Yabancı yatırımcılara",
@@ -2037,7 +2037,7 @@
         {
           "soru": "Türkiye Kalkınma ve Yatırım Bankası'nın temel işlevi nedir?",
           "secenekler": [
-            "A) Mevduat toplamak ve bireysel bankacılık hizmeti sunmak",
+            "A) Halktan mevduat toplamak ve bireysel bankacılık hizmetleri sunmaktır",
             "B) Kalkınma projelerine ve yatırımlara uzun vadeli finansman sağlamak",
             "C) Döviz kuru belirlemek",
             "D) Vergi tahsilatı yapmak",
@@ -2053,7 +2053,7 @@
             "B) Bankacılık lisansı vermek",
             "C) Vergi mevzuatını belirlemek",
             "D) Kamu borçlanma limitini belirlemek",
-            "E) Enflasyon hedeflemesi yapmak"
+            "E) Ülkedeki enflasyon hedeflemesini merkez bankası adına belirleyip para ve faiz politikalarını yürütmek"
           ],
           "dogruIndex": 0,
           "aciklama": "Borsa İstanbul; pay senedi, tahvil, bono, türev araç ve kıymetli maden gibi sermaye piyasası araçlarının işlem gördüğü organize piyasayı işleten kuruluştur."
@@ -2077,7 +2077,7 @@
             "B) TÜBİTAK",
             "C) Sayıştay",
             "D) YSK",
-            "E) Anayasa Mahkemesi"
+            "E) Yüksek yargı organı olan Anayasa Mahkemesi Başkanlığı"
           ],
           "dogruIndex": 0,
           "aciklama": "TCDD, PTT, TEİAŞ ve Ziraat Bankası gibi kuruluşlar Kamu İktisadi Teşebbüsü (KİT) niteliğindedir; ticari esaslara göre faaliyet gösterirler."
@@ -2087,7 +2087,7 @@
           "secenekler": [
             "A) Yalnızca telgraf hizmeti",
             "B) Posta, kargo ve bazı finansal hizmetler (PTTBank)",
-            "C) Elektrik dağıtımı",
+            "C) Ülke genelinde elektrik dağıtımı ve iletim hizmetleri",
             "D) Demiryolu işletmeciliği",
             "E) Havayolu taşımacılığı"
           ],
@@ -2100,7 +2100,7 @@
             "A) Elektrik üretimi",
             "B) Elektrik iletim hattı işletmeciliği ve sistem işletmeciliği",
             "C) Doğal gaz dağıtımı",
-            "D) Petrol rafinajı",
+            "D) Ham petrol rafinajı ve çeşitli akaryakıt ürünlerinin üretimi işleri",
             "E) Kömür madenciliği"
           ],
           "dogruIndex": 1,
@@ -2112,7 +2112,7 @@
             "A) Doğal gaz ve ham petrol boru hatlarının işletilmesi",
             "B) Elektrik üretimi",
             "C) Kömür madenciliği",
-            "D) Nükleer santral işletmeciliği",
+            "D) Ülkedeki nükleer güç santrallerinin kurulması ve işletmeciliği",
             "E) Sermaye piyasası denetimi"
           ],
           "dogruIndex": 0,
@@ -2122,7 +2122,7 @@
           "soru": "TPAO'nun (Türkiye Petrolleri Anonim Ortaklığı) faaliyet alanı nedir?",
           "secenekler": [
             "A) Petrol ve doğal gaz arama, üretim faaliyetleri",
-            "B) Akaryakıt perakende satışı yalnızca",
+            "B) Yalnızca akaryakıt perakende satış faaliyetleri yürütmek",
             "C) Elektrik dağıtımı",
             "D) Maden ihracatı",
             "E) Bankacılık hizmetleri"
@@ -2149,7 +2149,7 @@
             "B) Sivil havacılık motoru üretimi",
             "C) Tarımsal ilaçlama",
             "D) Turizm işletmeciliği",
-            "E) Demiryolu araçları üretimi"
+            "E) Yüksek hızlı tren ve raylı demiryolu araçlarının tasarımı ve seri üretimi"
           ],
           "dogruIndex": 0,
           "aciklama": "STM; sistem mühendisliği, yazılım, insansız deniz araçları ve komuta kontrol sistemleri gibi alanlarda faaliyet gösteren savunma sanayi kuruluşudur."
@@ -2161,7 +2161,7 @@
             "B) Tarım makineleri üretimi",
             "C) Gıda işleme teknolojileri",
             "D) Turizm tanıtımı",
-            "E) Enerji santrali işletmeciliği"
+            "E) Termik ve yenilenebilir enerji santrallerinin işletmeciliği"
           ],
           "dogruIndex": 0,
           "aciklama": "HAVELSAN; komuta kontrol sistemleri, siber güvenlik, simülasyon ve savunma yazılımları alanında faaliyet gösteren kamu sermayeli savunma şirketidir."
@@ -2173,7 +2173,7 @@
             "B) Deniz altı inşası",
             "C) Elektronik harp yazılımı yalnızca",
             "D) Roket yakıtı üretimi",
-            "E) Kara aracı zırhlama"
+            "E) Zırhlı muharebe araçlarının gövde ve zırhlama sistemleri"
           ],
           "dogruIndex": 0,
           "aciklama": "TUSAŞ; askeri ve sivil uçak, helikopter, İHA ve uydu platformlarının tasarım ve üretimini yürüten Türkiye'nin havacılık ve uzay sanayii kuruluşudur."
@@ -2205,7 +2205,7 @@
         {
           "soru": "Türkiye'de KOSGEB'in hedef kitlesi kimlerdir?",
           "secenekler": [
-            "A) Büyük holding şirketleri",
+            "A) Büyük ölçekli sanayi holdingleri ve şirketleri",
             "B) Küçük ve orta ölçekli işletmeler (KOBİ'ler)",
             "C) Kamu bankaları",
             "D) Yabancı yatırımcılar",
@@ -2221,7 +2221,7 @@
             "B) Vergi denetimi yapmak",
             "C) Dış ticaret istatistiklerini toplamak",
             "D) Bankacılık lisansı vermek",
-            "E) Kamu personeli sınavlarını yürütmek"
+            "E) Kamu kurumlarının personel alım ve yerleştirme sınavlarını hazırlayıp yürütmek"
           ],
           "dogruIndex": 0,
           "aciklama": "TSE; ürün, hizmet ve yönetim sistemlerinde ulusal standartları belirleyen ve uygunluk belgelendirmesi yapan kuruluştur."
@@ -2231,7 +2231,7 @@
           "secenekler": [
             "A) İhracatçı birliklerini bir çatı altında toplayarak ihracatı geliştirmek",
             "B) İthalat vergilerini belirlemek",
-            "C) Gümrük kapılarını işletmek",
+            "C) Ülkedeki bütün gümrük kapılarını ve kara sınır geçiş noktalarını doğrudan işletmek",
             "D) Döviz kurunu belirlemek",
             "E) Yabancı sermaye izinlerini vermek"
           ],
@@ -2243,7 +2243,7 @@
           "secenekler": [
             "A) İhracatçılara kredi, sigorta ve garanti desteği sağlamak",
             "B) Bireysel mevduat toplamak",
-            "C) Konut kredisi vermek",
+            "C) Vatandaşlara uzun vadeli konut ve tüketici ihtiyaç kredisi vermek",
             "D) Sermaye piyasasını denetlemek",
             "E) Vergi tahsilatı yapmak"
           ],
@@ -2254,7 +2254,7 @@
           "soru": "Türkiye'de merkez bankası bağımsızlığı ilkesinin temel amacı nedir?",
           "secenekler": [
             "A) Siyasi baskılardan uzak biçimde fiyat istikrarı hedefine odaklanabilmesi",
-            "B) Hükümetin bütçe açığını doğrudan finanse edebilmesi",
+            "B) Hükümetin bütçe açığını ve kamu harcamalarını her zaman doğrudan finanse edebilmesi",
             "C) Vergi oranlarını belirleyebilmesi",
             "D) Kamu bankalarını denetleyebilmesi",
             "E) Seçim takvimini belirleyebilmesi"
@@ -6227,105 +6227,180 @@
         },
         {
           "soru": "7-8 Temmuz 2026'da düzenlenen 36. NATO Zirvesi hangi şehirde yapılmıştır?",
-          "secenekler": ["A) İstanbul", "B) Brüksel", "C) Ankara", "D) Lahey"],
+          "secenekler": [
+            "A) İstanbul",
+            "B) Brüksel",
+            "C) Ankara",
+            "D) Lahey"
+          ],
           "dogruIndex": 2,
           "aciklama": "36. NATO Devlet ve Hükümet Başkanları Zirvesi 2026'da Ankara'da yapılmıştır.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "NATO'ya en son katılarak 32. üye olan ülke hangisidir?",
-          "secenekler": ["A) Finlandiya", "B) İsveç", "C) Ukrayna", "D) Gürcistan"],
+          "secenekler": [
+            "A) Finlandiya",
+            "B) İsveç",
+            "C) Ukrayna",
+            "D) Gürcistan"
+          ],
           "dogruIndex": 1,
           "aciklama": "İsveç 7 Mart 2024'te katılarak NATO'nun 32. üyesi olmuştur.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Mekke Ortak Savunma Anlaşması aşağıdaki devletlerden hangisini taraf olarak KAPSAMAZ?",
-          "secenekler": ["A) Türkiye", "B) Suudi Arabistan", "C) Pakistan", "D) Mısır"],
+          "secenekler": [
+            "A) Türkiye",
+            "B) Suudi Arabistan",
+            "C) Pakistan",
+            "D) Mısır"
+          ],
           "dogruIndex": 3,
           "aciklama": "Anlaşmanın tarafları Türkiye, Suudi Arabistan ve Pakistan'dır (7 Ağustos 2026).",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Türkiye'nin 2025'te aktif hizmete alınan ilk yerli ve millî haberleşme uydusu hangisidir?",
-          "secenekler": ["A) GÖKTÜRK-2", "B) RASAT", "C) TÜRKSAT 6A", "D) TÜRKSAT 5A"],
+          "secenekler": [
+            "A) GÖKTÜRK-2",
+            "B) RASAT",
+            "C) TÜRKSAT 6A",
+            "D) TÜRKSAT 5A"
+          ],
           "dogruIndex": 2,
           "aciklama": "TÜRKSAT 6A, Türkiye'nin ilk yerli ve millî haberleşme uydusudur.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Yerli otomobil TOGG'un seri üretimi hangi yıl başlamıştır?",
-          "secenekler": ["A) 2021", "B) 2022", "C) 2023", "D) 2024"],
+          "secenekler": [
+            "A) 2021",
+            "B) 2022",
+            "C) 2023",
+            "D) 2024"
+          ],
           "dogruIndex": 2,
           "aciklama": "TOGG'un seri üretimi 2023'te Bursa'da başlamıştır.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "13 Mart 2026'da vefat eden ünlü tarihçi kimdir?",
-          "secenekler": ["A) Halil İnalcık", "B) İlber Ortaylı", "C) Kemal Karpat", "D) Feridun Emecen"],
+          "secenekler": [
+            "A) Halil İnalcık",
+            "B) İlber Ortaylı",
+            "C) Kemal Karpat",
+            "D) Feridun Emecen"
+          ],
           "dogruIndex": 1,
           "aciklama": "13 Mart 2026'da tarihçi İlber Ortaylı vefat etmiştir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "2026 Dünya Kitap Başkenti seçilen Rabat hangi ülkenin başkentidir?",
-          "secenekler": ["A) Tunus", "B) Cezayir", "C) Fas", "D) Mısır"],
+          "secenekler": [
+            "A) Tunus",
+            "B) Cezayir",
+            "C) Fas",
+            "D) Mısır"
+          ],
           "dogruIndex": 2,
           "aciklama": "Rabat, Fas'ın başkentidir ve 2026 Dünya Kitap Başkenti seçilmiştir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Ocak 2026'da Euro para birimine geçen ve Euro bölgesinin 21. üyesi olan ülke hangisidir?",
-          "secenekler": ["A) Bulgaristan", "B) Romanya", "C) Polonya", "D) Macaristan"],
+          "secenekler": [
+            "A) Bulgaristan",
+            "B) Romanya",
+            "C) Polonya",
+            "D) Macaristan"
+          ],
           "dogruIndex": 0,
           "aciklama": "Bulgaristan, Euro bölgesine dâhil olan 21. ülkedir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Nisan 2026'da Türkiye'de sosyal medya uygulamalarına getirilen yaş sınırı kaçtır?",
-          "secenekler": ["A) 13", "B) 14", "C) 15", "D) 18"],
+          "secenekler": [
+            "A) 13",
+            "B) 14",
+            "C) 15",
+            "D) 18"
+          ],
           "dogruIndex": 2,
           "aciklama": "Sosyal medya kullanımına 15 yaş sınırı getirilmiştir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "2025 TÜİK verilerine göre Türkiye'nin nüfusu yaklaşık kaçtır?",
-          "secenekler": ["A) 82 milyon", "B) 84 milyon", "C) 86 milyon", "D) 90 milyon"],
+          "secenekler": [
+            "A) 82 milyon",
+            "B) 84 milyon",
+            "C) 86 milyon",
+            "D) 90 milyon"
+          ],
           "dogruIndex": 2,
           "aciklama": "2025 ADNKS sonuçlarına göre nüfus 86 milyon 92 bin 168'dir.",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "2025 TÜİK'e göre Türkiye'de nüfusu ilk kez 1 milyonu aşan ilçe hangisidir?",
-          "secenekler": ["A) Bağcılar", "B) Esenyurt", "C) Küçükçekmece", "D) Keçiören"],
+          "secenekler": [
+            "A) Bağcılar",
+            "B) Esenyurt",
+            "C) Küçükçekmece",
+            "D) Keçiören"
+          ],
           "dogruIndex": 1,
           "aciklama": "İstanbul Esenyurt, 1 milyon 3 bin 905 kişiyle nüfusu 1 milyonu aşan ilk ilçedir.",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "2025 TÜİK verilerine göre koyun varlığında ilk sırada yer alan il hangisidir?",
-          "secenekler": ["A) Konya", "B) Van", "C) Şanlıurfa", "D) Erzurum"],
+          "secenekler": [
+            "A) Konya",
+            "B) Van",
+            "C) Şanlıurfa",
+            "D) Erzurum"
+          ],
           "dogruIndex": 1,
           "aciklama": "Koyun varlığında ilk sırada Van, ardından Konya ve Şanlıurfa gelir.",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "Zeugma Mozaik Müzesi (Çingene Kızı mozaiği) hangi ilimizdedir?",
-          "secenekler": ["A) Hatay", "B) Gaziantep", "C) Şanlıurfa", "D) Kayseri"],
+          "secenekler": [
+            "A) Hatay",
+            "B) Gaziantep",
+            "C) Şanlıurfa",
+            "D) Kayseri"
+          ],
           "dogruIndex": 1,
           "aciklama": "Zeugma Mozaik Müzesi Gaziantep'tedir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Balta Limanı Ticaret Antlaşması (1838) ile gümrük vergileri nasıl belirlenmiştir?",
-          "secenekler": ["A) İhracat %5, ithalat %12", "B) İhracat %12, ithalat %5", "C) İkisi de %8", "D) İkisi de %3"],
+          "secenekler": [
+            "A) İhracat %5, ithalat %12",
+            "B) İhracat %12, ithalat %5",
+            "C) İkisi de %8",
+            "D) İkisi de %3"
+          ],
           "dogruIndex": 1,
           "aciklama": "Tersine gümrük tarifesiyle ihracat %12, ithalat %5 yapılmış; yerli üretici zarar görmüştür.",
           "kaynak": "Tarih"
         },
         {
           "soru": "Kudüs Fatihi olarak bilinen komutan kimdir?",
-          "secenekler": ["A) Yavuz Sultan Selim", "B) Selahaddin Eyyubi", "C) Nureddin Zengi", "D) Kılıç Arslan"],
+          "secenekler": [
+            "A) Yavuz Sultan Selim",
+            "B) Selahaddin Eyyubi",
+            "C) Nureddin Zengi",
+            "D) Kılıç Arslan"
+          ],
           "dogruIndex": 1,
           "aciklama": "1187 Hıttin Zaferi sonrası Kudüs'ü Selahaddin Eyyubi fethetmiştir.",
           "kaynak": "Tarih"
@@ -6356,42 +6431,72 @@
       "sorular": [
         {
           "soru": "2025 TÜİK verilerine göre Türkiye'de nüfus yoğunluğu (kişi/km²) en yüksek olan il hangisidir?",
-          "secenekler": ["A) Ankara", "B) İzmir", "C) İstanbul", "D) Kocaeli"],
+          "secenekler": [
+            "A) Ankara",
+            "B) İzmir",
+            "C) İstanbul",
+            "D) Kocaeli"
+          ],
           "dogruIndex": 2,
           "aciklama": "İstanbul kilometrekareye 2.943 kişiyle en yüksek; en az yoğunluk Tunceli'dedir (11).",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "2025 TÜİK'e göre Türkiye nüfusunun ortanca yaşı kaçtır?",
-          "secenekler": ["A) 32,4", "B) 33,5", "C) 34,9", "D) 36,1"],
+          "secenekler": [
+            "A) 32,4",
+            "B) 33,5",
+            "C) 34,9",
+            "D) 36,1"
+          ],
           "dogruIndex": 2,
           "aciklama": "Ortanca yaş 34,9'a yükselmiştir; en yüksek Sinop, en düşük Şanlıurfa'dadır.",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "NATO'nun mevcut Genel Sekreteri kimdir?",
-          "secenekler": ["A) Jens Stoltenberg", "B) Mark Rutte", "C) Ursula von der Leyen", "D) Josep Borrell"],
+          "secenekler": [
+            "A) Jens Stoltenberg",
+            "B) Mark Rutte",
+            "C) Ursula von der Leyen",
+            "D) Josep Borrell"
+          ],
           "dogruIndex": 1,
           "aciklama": "1 Ekim 2024'ten itibaren NATO Genel Sekreteri Mark Rutte'dir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "Türk savunma sanayiinde millî muharip uçak KAAN'ı geliştiren kuruluş hangisidir?",
-          "secenekler": ["A) ASELSAN", "B) ROKETSAN", "C) TUSAŞ", "D) HAVELSAN"],
+          "secenekler": [
+            "A) ASELSAN",
+            "B) ROKETSAN",
+            "C) TUSAŞ",
+            "D) HAVELSAN"
+          ],
           "dogruIndex": 2,
           "aciklama": "KAAN, TUSAŞ (Türk Havacılık ve Uzay Sanayii) tarafından geliştirilmektedir.",
           "kaynak": "2026-Güncel"
         },
         {
           "soru": "2025 TÜİK verilerine göre sığır varlığında ilk sırada yer alan il hangisidir?",
-          "secenekler": ["A) Erzurum", "B) Konya", "C) Sivas", "D) Balıkesir"],
+          "secenekler": [
+            "A) Erzurum",
+            "B) Konya",
+            "C) Sivas",
+            "D) Balıkesir"
+          ],
           "dogruIndex": 1,
           "aciklama": "Sığır varlığında ilk sırada Konya yer alır.",
           "kaynak": "2025-Güncel"
         },
         {
           "soru": "2025 TÜİK'e göre bal üretiminde ilk sırada yer alan il hangisidir?",
-          "secenekler": ["A) Muğla", "B) Adana", "C) Ordu", "D) Bingöl"],
+          "secenekler": [
+            "A) Muğla",
+            "B) Adana",
+            "C) Ordu",
+            "D) Bingöl"
+          ],
           "dogruIndex": 2,
           "aciklama": "Bal üretiminde ilk sırada Ordu, ardından Adana ve Muğla gelir.",
           "kaynak": "2025-Güncel"
