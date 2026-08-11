@@ -385,7 +385,7 @@
           "secenekler": [
             "Topraklarının tamamı Asya kıtasındadır",
             "Topraklarının büyük çoğunluğu Asya'da (Anadolu), küçük bir bölümü Avrupa'da (Trakya) yer alır",
-            "Topraklarının yarısı Asya'da yarısı Avrupa'dadır",
+            "Topraklarının yarısı Asya kıtasında (Anadolu), diğer yarısı ise Avrupa kıtasında (Trakya) eşit biçimde paylaşılmış olarak yer alır",
             "Topraklarının tamamı Avrupa kıtasındadır",
             "Topraklarının büyük bölümü Afrika kıtasındadır"
           ],
@@ -575,7 +575,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin özel konumunun turizm açısından sağladığı avantajlardan biri olarak değerlendirilebilir?",
           "secenekler": [
-            "Ülkenin dört mevsiminin belirgin yaşanması",
+            "Ülkenin dört mevsiminin tamamının her bölgede aynı anda ve birebir aynı biçimde yaşanması sayesinde turizm hareketliliğinin sağlanması",
             "Farklı denizlere, iklim tiplerine ve tarihî-kültürel mirasa aynı anda sahip olunması",
             "Yerel saat farkının doğu-batı arasında oluşması",
             "Güneş ışınlarının hiçbir yere dik açıyla düşmemesi",
@@ -599,7 +599,7 @@
         {
           "soru": "Türkiye'nin 26. ve 45. boylamları arasında yer almasının doğrudan bir sonucu olarak aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "Ülkede dört mevsimin belirgin yaşanması",
+            "Ülkenin 26. ve 45. boylamları arasında yer alması nedeniyle dört mevsimin belirgin biçimde ve eş zamanlı olarak yaşanması",
             "Doğu ile batı arasında güneşin doğuş ve batış saatlerinin farklılaşması",
             "Kıyı bölgelerinde ılıman iklim görülmesi",
             "Ülkenin komşu sayısının 8 olması",
@@ -611,7 +611,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin 'yarımada' konumunda olmasının bir sonucu olarak değerlendirilebilir?",
           "secenekler": [
-            "Ülkenin yalnızca kara ikliminin etkisinde kalması",
+            "Ülkenin yarımada konumunda olmasına rağmen yalnızca sert kara ikliminin etkisinde kalması nedeniyle kıyılarda denizel özelliklerin hiç görülmemesi",
             "Üç tarafının denizle çevrili olması nedeniyle kıyı kesimlerde denizel iklim özelliklerinin görülmesi",
             "Ülkenin hiçbir komşusunun olmaması",
             "Ülkenin Ekvator'a çok yakın olması",
@@ -721,7 +721,7 @@
           "secenekler": [
             "Ülkenin dört mevsiminin yaşanması",
             "Boğazların, Karadeniz'e kıyısı olan ülkelerin açık denizlere çıkışını kontrol eden bir geçit olması",
-            "Ülkenin yüzölçümünün büyük olması",
+            "Ülkenin yüzölçümünün Avrupa kıtasındaki tüm ülkelerden büyük olması nedeniyle askerî açıdan bölgeye mutlak üstünlük sağlaması",
             "Ülkede farklı iklim tiplerinin görülmesi",
             "Ülkenin step bitki örtüsüne sahip olması"
           ],
@@ -779,7 +779,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin coğrafi konumunun bir sonucu olarak farklı din ve kültürlere ev sahipliği yapmasını AÇIKLAR?",
           "secenekler": [
-            "Ülkenin Orta Kuşak'ta yer alması",
+            "Ülkenin Orta Kuşak'ta yer alması nedeniyle tüm dünya dinlerinin doğduğu ve yayıldığı tek merkez konumunda bulunması",
             "Ülkenin tarih boyunca önemli göç ve ticaret yollarının kesişim noktasında bulunması",
             "Ülkenin yerel saat farkına sahip olması",
             "Ülkenin step ikliminin etkisinde kalması",
@@ -963,7 +963,7 @@
             "Çok derin olması",
             "Kıyısında hiç ülke bulunmaması",
             "Sıcaklığının çok yüksek olması",
-            "Yalnızca Türkiye kıyılarını kapsaması"
+            "Yalnızca Türkiye'nin kuzey kıyılarını kapsayıp başka hiçbir ülkeye kıyısı bulunmayan, tümüyle kapalı bir su kütlesi olması"
           ],
           "dogruIndex": 0,
           "aciklama": "Karadeniz, açık okyanuslara geniş biçimde açılmayan, İstanbul Boğazı-Marmara-Çanakkale Boğazı zinciriyle Ege ve Akdeniz'e bağlanan bir iç (kenar) deniz özelliği taşır."
@@ -995,7 +995,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin denizlerle olan ilişkisi bakımından doğrudur?",
           "secenekler": [
-            "Türkiye'nin dört tarafı da denizle çevrilidir",
+            "Türkiye'nin kuzey, güney, batı ve doğu olmak üzere dört tarafının tamamı açık denizlerle çevrili bir ada ülkesi konumundadır",
             "Türkiye'nin yalnızca bir tarafı denizle çevrilidir",
             "Türkiye'nin üç tarafı (kuzey, batı, güney) denizle, doğu tarafı ise karayla çevrilidir",
             "Türkiye'nin hiçbir tarafı denizle çevrili değildir",
@@ -1007,7 +1007,7 @@
         {
           "soru": "Aşağıdakilerden hangisi 'Anadolu' ile 'Türkiye' kavramları arasındaki ilişkiyi en doğru biçimde ifade eder?",
           "secenekler": [
-            "Anadolu ve Türkiye tamamen aynı toprak parçasını ifade eder",
+            "Anadolu ve Türkiye kavramları tamamen aynı toprak parçasını ifade eder; Trakya bölgesi hiçbir biçimde Türkiye sınırları içinde yer almaz",
             "Anadolu, Türkiye topraklarının Asya kıtasındaki bölümünü ifade eder; Türkiye toprakları ayrıca Trakya'yı (Avrupa) da kapsar",
             "Anadolu yalnızca Trakya'yı ifade eder",
             "Anadolu, Türkiye'nin dışında kalan bir bölgedir",
@@ -1044,7 +1044,7 @@
           "soru": "Aşağıdakilerden hangisi Türkiye'nin coğrafi konumunun bir sonucu olarak enerji politikaları açısından önemine örnektir?",
           "secenekler": [
             "Türkiye'nin Orta Doğu ve Hazar havzası enerji kaynaklarını Avrupa'ya taşıyan boru hatlarına ev sahipliği yapması",
-            "Türkiye'nin dört mevsiminin belirgin yaşanması",
+            "Türkiye'nin dört mevsiminin belirgin yaşanması sayesinde kendi petrol ve doğal gaz rezervleriyle tüm Avrupa'nın enerji ihtiyacını tek başına karşılaması",
             "Türkiye'nin yerel saat farkına sahip olması",
             "Türkiye'nin step bitki örtüsüne sahip olması",
             "Türkiye'nin Ekvator'a yakın olması"
@@ -1103,7 +1103,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin coğrafi konumu bakımından 'kavşak/köprü ülke' olarak adlandırılmasını en iyi açıklar?",
           "secenekler": [
-            "Yalnızca tek bir kıtada yer alması",
+            "Yalnızca tek bir kıtada yer alması ve hiçbir kıtayla doğrudan kara bağlantısının bulunmaması nedeniyle diğer bölgelerden tümüyle yalıtılmış olması",
             "Asya, Avrupa ve Afrika kıtalarının kesişim noktasına yakın, kıtalar arasında doğal bir geçiş konumunda bulunması",
             "Yalnızca step ikliminin görülmesi",
             "Yerel saat farkının fazla olması",
@@ -1115,7 +1115,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin özel konumunun ülkeye yüklediği bir dezavantaj olarak gösterilebilir?",
           "secenekler": [
-            "Farklı iklim tiplerinin görülmesi",
+            "Farklı iklim tiplerinin görülmesi nedeniyle ülkenin tümünde tarımsal üretimin imkânsız hâle gelmesi ve sürekli ekonomik kayıp yaşanması gibi bir dezavantajın ortaya çıkması",
             "Deprem kuşağında bulunan komşu bölgelerle birlikte artan doğal afet riski gibi jeopolitik ve güvenlik risklerine açık olması",
             "Boğazlardan gelir elde edilmesi",
             "Kültürel zenginliğin oluşması",
@@ -1163,7 +1163,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin coğrafi konumunun bir sonucu olarak biyoçeşitlilik açısından zenginliğini AÇIKLAR?",
           "secenekler": [
-            "Ülkenin tek bir iklim tipine ve tek bir bitki örtüsüne sahip olması",
+            "Ülkenin baştan sona tek bir iklim tipine ve yalnızca tek bir bitki örtüsüne sahip olmasının, tüm bölgelerde aynı hayvan türlerinin yaşamasına yol açması",
             "Farklı iklim tiplerinin (Karadeniz, Akdeniz, karasal) bir arada bulunmasının farklı bitki ve hayvan türlerine yaşam alanı sunması",
             "Ülkenin komşu sayısının fazla olması",
             "Ülkenin boğazlara sahip olması",
@@ -1719,7 +1719,7 @@
             "Ege Denizi ve Marmara Denizi",
             "Karadeniz ve Marmara Denizi",
             "Akdeniz, Ege Denizi, Karadeniz ve Marmara Denizi",
-            "Sadece Akdeniz ve Ege Denizi"
+            "Sadece Akdeniz ve Ege Denizi olmak üzere yalnızca güney ve batı kıyılarındaki iki denizin birleşim noktasında yer alması"
           ],
           "dogruIndex": 3,
           "aciklama": "Doğru cevap. Türkiye, Akdeniz, Ege Denizi, Karadeniz ve Marmara Denizi'nin birleşim noktasında yer alıyor."
@@ -2231,7 +2231,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'de dört mevsimin belirgin biçimde yaşanmasının temel nedenidir?",
           "secenekler": [
-            "A) Üç tarafının denizlerle çevrili olması",
+            "A) Üç tarafının denizlerle çevrili olması ve bu denizlerin ülke ikliminde dört mevsimi eşit biçimde belirlemesi",
             "B) Orta Kuşak'ta, dönenceler ile kutup dairesi arasında yer alması",
             "C) Sekiz ülkeyle komşu olması",
             "D) Boğazlara sahip olması",
@@ -2243,7 +2243,7 @@
         {
           "soru": "Aynı enlemde bulunan iki yerleşim yeri için aşağıdaki ifadelerden hangisi kesinlikle doğrudur?",
           "secenekler": [
-            "A) İklim özellikleri birebir aynıdır",
+            "A) İklim özellikleri, yükselti ve denize uzaklık farkı olsa bile her koşulda birebir aynı olmak zorundadır",
             "B) Güneş ışınlarını yıl boyunca ortalama olarak benzer açıyla alırlar",
             "C) Bitki örtüleri kesinlikle aynıdır",
             "D) Yükseltileri kesinlikle aynıdır",
@@ -2256,7 +2256,7 @@
           "soru": "Türkiye'nin matematik konumunun bir sonucu olarak, ülke genelinde yıl içinde gözlenen gölge boyu değişimiyle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Gölge boyu yıl boyunca hiç değişmez",
-            "B) Gölge boyu yaz aylarında kışa göre daha uzundur",
+            "B) Gölge boyu, güneş ışınlarının dik geldiği yaz aylarında kış aylarına göre belirgin biçimde daha uzun olur",
             "C) Gölge boyu, güneş ışını geliş açısındaki mevsimsel değişime bağlı olarak yıl içinde değişir",
             "D) Gölge boyu yalnızca kıyı bölgelerinde değişir",
             "E) Gölge boyu yalnızca gece değişir"
@@ -2543,7 +2543,7 @@
         {
           "soru": "Marmara Denizi'nin bir 'iç deniz' olarak nitelendirilmesinin temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Yüzölçümünün çok büyük olması",
+            "A) Yüzölçümünün dünyadaki bütün iç denizlerden çok daha büyük olması ve bu nedenle açık okyanus sayılması",
             "B) Tamamen Türkiye toprakları ile çevrili olup dış denizlere yalnızca boğazlarla bağlanması",
             "C) Kıyısında hiç kentin bulunmaması",
             "D) Derinliğinin diğer denizlerden fazla olması",
@@ -2591,7 +2591,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin 'yarımada' konumunda olmasının doğrudan bir göstergesidir?",
           "secenekler": [
-            "A) 36°-42° kuzey enlemleri arasında olması",
+            "A) 36°-42° kuzey enlemleri arasında yer almasının kara parçasını üç yönden denizle çevrili hâle getirmesi",
             "B) Kara parçasının üç yönden (kuzey, batı, güney) denizlerle çevrili olması",
             "C) Sekiz ülkeyle komşu olması",
             "D) Orta Kuşak'ta yer alması",
@@ -2651,7 +2651,7 @@
         {
           "soru": "Bir coğrafya öğretmeni, 'Özel konum her zaman avantaj sağlamaz, bazı durumlarda ülkeye risk de yükler.' demektedir. Bu duruma örnek olarak aşağıdakilerden hangisi gösterilebilir?",
           "secenekler": [
-            "A) Farklı kültürlere ev sahipliği yapması",
+            "A) Farklı kültürlere ev sahipliği yapmasının ülkeye sürekli olarak savaş ve çatışma riski yükleyen tek etken olması",
             "B) Sınır güvenliği ve bölgesel çatışmalardan etkilenme riskinin artması",
             "C) Transit ticaretten gelir elde etmesi",
             "D) Kıyı turizminin gelişmesi",
@@ -2711,7 +2711,7 @@
         {
           "soru": "Aşağıdakilerden hangisi 'kavşak/köprü ülke' olarak adlandırılan bir ülkenin taşıması beklenen özel konum özelliğidir?",
           "secenekler": [
-            "A) Yalnızca tek bir kıtada toprağa sahip olması",
+            "A) Yalnızca tek bir kıtada toprağa sahip olması ve komşu bölgelere hiçbir ulaşım ya da ticaret bağlantısı sunmaması",
             "B) Farklı kıtalar veya bölgeler arasında ulaşım ve ticaret güzergahı üzerinde bulunması",
             "C) Yalnızca yüksek dağlarla çevrili olması",
             "D) Ekvator üzerinde yer alması",
@@ -2725,7 +2725,7 @@
           "secenekler": [
             "A) Matematik konum zamanla değişebilirken özel konum sabittir",
             "B) Matematik konum enlem-boylam dereceleriyle kesin olarak ifade edilirken özel konum komşuluk ve yer şekilleri gibi yoruma dayalı unsurlarla ifade edilir",
-            "C) Özel konum yalnızca denizlerle, matematik konum yalnızca dağlarla ilgilidir",
+            "C) Özel konum yalnızca denizlerle ve kıyı uzunluğuyla, matematik konum ise yalnızca dağların yüksekliği ve ülkedeki akarsuların uzunluğuyla belirlenen bir kavramdır",
             "D) İkisi de birbirinin birebir eş anlamlısıdır",
             "E) Matematik konum yalnızca ülkenin nüfusuna göre belirlenir"
           ],
@@ -2735,7 +2735,7 @@
         {
           "soru": "Türkiye'nin özel konumu ile ilgili olarak aşağıdaki ifadelerden hangisi YANLIŞTIR?",
           "secenekler": [
-            "A) Üç tarafı denizlerle çevrilidir",
+            "A) Üç tarafı kuzey, batı ve güney yönlerinden denizlerle çevrili olup bu durum özel konumunun bir örneğidir",
             "B) Sekiz ülke ile kara sınırına sahiptir",
             "C) Boğazlara sahiptir",
             "D) 26°-45° doğu boylamları arasında yer alması özel konumunun bir örneğidir",
@@ -2808,7 +2808,7 @@
           "soru": "Karadeniz'in coğrafya kaynaklarında bir 'iç deniz' olarak sınıflandırılmasında kullanılan temel ölçüt aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Açık okyanusa doğrudan kıyısının bulunmaması ve dış denizlere yalnızca İstanbul Boğazı ile bağlanması",
-            "B) Yüzölçümünün dünyadaki en büyük deniz olması",
+            "B) Yüzölçümünün dünyadaki bütün açık denizlerden ve okyanuslardan daha büyük olması nedeniyle iç deniz sayılması",
             "C) Kıyısında hiçbir ülkenin bulunmaması",
             "D) Tuzluluk oranının okyanuslarla birebir aynı olması",
             "E) Gel-git farkının çok yüksek olması"
@@ -2867,7 +2867,7 @@
         {
           "soru": "Boğazların Türkiye'ye kazandırdığı 'kilit nokta/koridor ülke' özelliğiyle ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Bu özellik yalnızca ülkenin nüfusundan kaynaklanır",
+            "A) Bu özellik, tümüyle ülkenin nüfusunun fazlalığından ve şehirlerin kıyıya yakın kurulmuş olmasından kaynaklanır",
             "B) Bu özellik, Karadeniz ile Akdeniz havzaları arasındaki tek doğal su geçidine sahip olmaktan kaynaklanır",
             "C) Bu özellik yalnızca tarım üretiminden kaynaklanır",
             "D) Bu özellik yalnızca dağların yüksekliğinden kaynaklanır",
@@ -3167,7 +3167,7 @@
         {
           "soru": "Iğdır ilinin konumu düşünüldüğünde, bu ilin aynı anda birden fazla ülkeyle sınır komşusu olmasının temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) İlin çok büyük bir yüzölçümüne sahip olması",
+            "A) İlin Türkiye'nin en büyük yüzölçümüne sahip ili olması ve bu geniş toprakları sayesinde birçok ülkeye komşu olabilmesi",
             "B) İlin, Ermenistan, Nahçıvan (Azerbaycan) ve İran sınırlarının kesiştiği dar bir çıkıntı bölgesinde yer alması",
             "C) İlin denize kıyısının olması",
             "D) İlin Türkiye'nin en kalabalık ili olması",
@@ -3204,7 +3204,7 @@
           "soru": "Baharat Yolu ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
             "A) Hindistan ve Güneydoğu Asya'dan başlayıp Basra Körfezi/Kızıldeniz üzerinden Anadolu'ya ve Avrupa'ya uzanan tarihi bir ticaret yoludur",
-            "B) Yalnızca Kuzey Amerika kıtasında işlemiştir",
+            "B) Yalnızca Kuzey Amerika kıtasında, Atlas Okyanusu kıyısındaki limanlar arasında baharat taşımak amacıyla işletilmiş tarihî bir deniz ticaret yoludur",
             "C) Yalnızca demir yolu taşımacılığına dayanır",
             "D) Osmanlı Devleti kurulmadan önce hiç kullanılmamıştır",
             "E) Yalnızca 20. yüzyılda ortaya çıkmıştır"
@@ -3227,7 +3227,7 @@
         {
           "soru": "Anadolu'nun tarih boyunca 'medeniyetler beşiği' ya da 'kültürler köprüsü' olarak nitelendirilmesinin temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Anadolu'nun yalnızca tek bir kültürün yaşadığı kapalı bir bölge olması",
+            "A) Anadolu'nun tarih boyunca yalnızca tek bir kültürün yaşadığı, dış dünyaya tamamen kapalı ve hiç göç almamış bir bölge olması",
             "B) Kıtalararası kavşak konumu nedeniyle farklı toplulukların göç, ticaret ve istila yollarının burada kesişmesi",
             "C) Anadolu'da hiç deprem yaşanmaması",
             "D) Anadolu'nun yalnızca çöl iklimine sahip olması",
@@ -3276,7 +3276,7 @@
           "soru": "Aşağıdakilerden hangisi Türkiye'nin özel konumunun kültürel çeşitlilik üzerindeki etkisine bir örnektir?",
           "secenekler": [
             "A) Farklı dinlere ve etnik gruplara ait tarihi eserlerin Anadolu topraklarında bir arada bulunması",
-            "B) Ülkede dört mevsimin belirgin yaşanması",
+            "B) Ülkede dört mevsimin belirgin yaşanmasının, farklı din ve etnik grupların Anadolu'ya yerleşmesindeki tek belirleyici etken olması",
             "C) Ülkenin Orta Kuşak'ta yer alması",
             "D) Ülkede güneş ışınlarının geliş açısının mevsime göre değişmesi",
             "E) Doğuda güneşin batıya göre daha erken doğması"
@@ -3288,7 +3288,7 @@
           "soru": "Türkiye'nin özel konumunun getirdiği jeopolitik risklerden biri olarak aşağıdakilerden hangisi değerlendirilebilir?",
           "secenekler": [
             "A) Komşu bölgelerdeki siyasi ve askeri gelişmelerden doğrudan etkilenme olasılığının bulunması",
-            "B) Ülkede dört mevsimin yaşanması",
+            "B) Ülkede dört mevsimin yaşanmasının, komşu bölgelerdeki savaşlardan etkilenme riskini artıran başlıca jeopolitik etken olması",
             "C) Ülkenin 26°-45° doğu boylamları arasında yer alması",
             "D) Ülkede gölge boyunun yaz ve kış farklı olması",
             "E) Ülkede yerel saat farkının bulunması"
@@ -3312,7 +3312,7 @@
           "soru": "Aşağıdakilerden hangisi Türkiye'nin tarihi göç yolları üzerinde bulunmasının bir sonucu olarak değerlendirilebilir?",
           "secenekler": [
             "A) Farklı toplulukların Anadolu üzerinden geçerek buraya yerleşmesi ve kültürel mirasa katkı sağlaması",
-            "B) Ülkede güneş ışınlarının hiçbir yerde tam dik açıyla düşmemesi",
+            "B) Ülkede güneş ışınlarının hiçbir yerde tam dik açıyla düşmemesinin, farklı toplulukların Anadolu'ya göç etmesindeki temel neden olması",
             "C) Ülkenin dört mevsimi yaşaması",
             "D) Ülkenin 36°-42° kuzey enlemleri arasında yer alması",
             "E) Ülkede yerel saat farklarının oluşması"
@@ -3335,7 +3335,7 @@
         {
           "soru": "Türkiye'nin özel konumu ile ilgili olarak aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Özel konum yalnızca olumlu sonuçlar doğurur, hiçbir dezavantajı yoktur",
+            "A) Özel konum ülkeye yalnızca olumlu sonuçlar doğurur; ticaret ve turizm dışında hiçbir jeopolitik risk ya da dezavantaj barındırmaz",
             "B) Özel konum hem avantajlar (ticaret, turizm, kültürel zenginlik) hem de riskler (jeopolitik gerginlikler) barındırır",
             "C) Özel konumun ülkeye hiçbir ekonomik katkısı yoktur",
             "D) Özel konum yalnızca askeri açıdan önem taşır, ekonomik önemi yoktur",
@@ -3527,7 +3527,7 @@
         {
           "soru": "Karadeniz kıyısında her mevsim yağış görülmesinin temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Bölgenin Ekvator'a çok yakın olması",
+            "A) Bölgenin Ekvator'a çok yakın olması nedeniyle yıl boyunca yükselen sıcak ve nemli havanın her mevsim bol yağış bırakması",
             "B) Dağların kıyıya paralel uzanması ve nemli hava kütlelerinin bu dağlara çarparak yıl boyunca yağış bırakması",
             "C) Bölgenin dönenceler arasında yer alması",
             "D) Bölgenin boylam değerinin çok yüksek olması",
@@ -3539,7 +3539,7 @@
         {
           "soru": "Akdeniz ve Ege kıyılarında yazların sıcak ve kurak geçmesinde enlem konumunun (matematik konumun) payı için aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Enlem konumunun bu durumla hiçbir ilgisi yoktur",
+            "A) Enlem konumunun yaz kuraklığıyla hiçbir ilgisi yoktur; bu durum tamamen bölgedeki dağların yüksekliğinden ve akarsu sayısından kaynaklanır",
             "B) Bu bölgelerin bulunduğu enlem kuşağı, yaz aylarında subtropikal yüksek basınç sistemlerinin etkisi altında kalmaya uygundur",
             "C) Bu durum yalnızca komşu ülkelerden kaynaklanır",
             "D) Bu durum yalnızca boğazların varlığından kaynaklanır",
@@ -3575,7 +3575,7 @@
         {
           "soru": "Aynı enlemde bulunan bir kıyı kenti ile bir iç kesim kentinin iklim özellikleri karşılaştırıldığında aşağıdakilerden hangisi beklenir?",
           "secenekler": [
-            "A) İkisinin iklimi birebir aynı olur, çünkü enlemleri aynıdır",
+            "A) İkisinin iklimi birebir aynı olur; çünkü enlemleri aynı olduğunda denize uzaklık ve yükselti farkının hiçbir önemi kalmaz",
             "B) Kıyı kenti, denizin ılımanlaştırıcı etkisi nedeniyle daha az sıcaklık farkı (yazı serin, kışı ılık) yaşayabilir",
             "C) İç kesim kenti her zaman kıyı kentinden daha sıcak olur",
             "D) Enlem aynı olduğu için ikisi de aynı bitki örtüsüne sahip olmak zorundadır",
@@ -3611,7 +3611,7 @@
         {
           "soru": "İklim ile matematik konum (enlem) arasındaki ilişkiye dair aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Aynı enlemdeki tüm yerlerin iklimi mutlaka birebir aynıdır",
+            "A) Aynı enlemdeki tüm yerlerin iklimi, yükselti ve denize uzaklık gibi etkenlerden bağımsız olarak mutlaka birebir aynı olur",
             "B) Matematik konum (enlem) tek başına bir yerin iklimini tam olarak belirlemeye yetmez; özel konum unsurları da etkilidir",
             "C) İklim yalnızca boylam derecesiyle belirlenir",
             "D) İklim hiçbir şekilde coğrafi konumla ilişkili değildir",
@@ -3623,7 +3623,7 @@
         {
           "soru": "Türkiye'de iklim ve bitki örtüsü çeşitliliğinin, ülkenin coğrafi konumuyla ilişkisi değerlendirildiğinde aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "A) Bu çeşitlilik yalnızca matematik konumun bir sonucudur",
+            "A) Bu çeşitlilik yalnızca matematik konumun, yani enlem derecesinin bir sonucudur; yer şekilleri ve denizelliğin bununla hiçbir ilgisi yoktur",
             "B) Bu çeşitlilik yalnızca özel konumun bir sonucudur",
             "C) Bu çeşitlilik hem matematik konum (enlem) hem de özel konum (yer şekli, denizellik) unsurlarının bir arada etkisiyle ortaya çıkar",
             "D) Bu çeşitlilikle coğrafi konumun hiçbir ilgisi yoktur",
@@ -3767,7 +3767,7 @@
         {
           "soru": "Bir öğrenci, 'Türkiye'nin coğrafi konumunun sonuçlarını incelerken, dört mevsimin yaşanmasını ve boğazların ticarete sağladığı avantajı aynı kategoriye koydum.' demektedir. Bu yaklaşımla ilgili aşağıdakilerden hangisi söylenebilir?",
           "secenekler": [
-            "A) Yaklaşım doğrudur, ikisi de matematik konum sonucudur",
+            "A) Yaklaşım doğrudur; hem dört mevsimin yaşanması hem de boğazların ticaret avantajı doğrudan matematik konumun birer sonucudur",
             "B) Yaklaşım doğrudur, ikisi de özel konum sonucudur",
             "C) Yaklaşım yanlıştır; dört mevsim matematik konumun, boğazların ticaret avantajı ise özel konumun bir sonucudur",
             "D) Yaklaşım yanlıştır; ikisi de siyasi konumun sonucudur",
@@ -3872,7 +3872,7 @@
         {
           "soru": "Doğu Karadeniz Bölümü'nün Türkiye'nin en fazla yağış alan yeri olmasının temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Enlem derecesinin düşük olması",
+            "Enlem derecesinin çok düşük olması nedeniyle bölgeye sürekli tropikal nemli havanın gelmesi ve yıl boyunca bol yağış bırakması",
             "Dağların kıyıya paralel uzanması ve nemli hava kütlelerinin yamaçta yükselerek yağışa dönüşmesi",
             "Bölgenin step bitki örtüsüne sahip olması",
             "Bölgenin Ekvator'a yakın olması",
@@ -3970,7 +3970,7 @@
           "secenekler": [
             "Enlem",
             "Yükselti",
-            "Denize uzaklık",
+            "Denize uzaklık, yani karasallık derecesinin bir yerin sıcaklığı üzerindeki belirleyici doğal etkisi",
             "Bakı",
             "Nüfus yoğunluğunun resmi istatistiklerde yayımlanma sıklığı"
           ],
@@ -4196,7 +4196,7 @@
         {
           "soru": "Aşağıdakilerden hangisi 'iklim' ile 'hava durumu' arasındaki temel farkı en doğru biçimde açıklar?",
           "secenekler": [
-            "İklim kısa süreli, hava durumu uzun süreli bir kavramdır",
+            "İklim, bir yerdeki günlük ve kısa süreli hava olaylarını; hava durumu ise uzun yıllar boyunca gözlenen ortalama koşulları ifade eden bir kavramdır",
             "İklim, bir yerde uzun yıllar gözlenen ortalama atmosfer koşullarını; hava durumu ise günlük, kısa süreli atmosfer olaylarını ifade eder",
             "İklim yalnızca sıcaklığı, hava durumu yalnızca yağışı kapsar",
             "İklim ve hava durumu tamamen aynı anlama gelir",
@@ -4268,7 +4268,7 @@
         {
           "soru": "Aşağıdakilerden hangisi 'karasallık' kavramının doğru bir tanımıdır?",
           "secenekler": [
-            "Bir yerin yıl boyunca sabit sıcaklıkta kalması",
+            "Bir yerin denize yakınlığına bağlı olarak yıl boyunca sıcaklığının hiç değişmeden sabit kalması ve mevsim farkının ortadan kalkması durumu",
             "Bir yerin denizden uzaklığına bağlı olarak yaz-kış ve gündüz-gece sıcaklık farkının artması durumu",
             "Bir yerin yalnızca kışın soğuk olması durumu",
             "Bir yerin deniz seviyesinde bulunması durumu",
@@ -4364,7 +4364,7 @@
         {
           "soru": "Bir dağın rüzgar alan (denize bakan) yamacında bol yağış görülürken, rüzgar almayan (arka) yamacında yağışın azalması durumu aşağıdaki kavramlardan hangisiyle açıklanır?",
           "secenekler": [
-            "A) Karasallık",
+            "A) Karasallık, yani bir yerin denizden uzaklığına bağlı olarak yamaçlarında yağışın azalması durumu",
             "B) Bakı etkisi",
             "C) Yamaç (orografik) yağış ve yağış gölgesi",
             "D) Enlem etkisi",
@@ -4376,7 +4376,7 @@
         {
           "soru": "Doğu Karadeniz'in iç kesimlerinde (dağların gerisinde), kıyıya göre çok daha az yağış görülmesinin temel nedeni aşağıdakilerden hangisidir?",
           "secenekler": [
-            "İç kesimlerin Ekvator'a daha yakın olması",
+            "İç kesimlerin Ekvator'a daha yakın olması nedeniyle sürekli yükselen sıcak havanın kıyıda tüm nemini bırakıp iç kesime kuru ulaşması",
             "Dağların rüzgar önü tarafında yağışını bırakan hava kütlesinin, dağın arka (rüzgar altı) tarafına kuru biçimde inmesi",
             "İç kesimlerin deniz seviyesinde bulunması",
             "İç kesimlerin step bitki örtüsüne sahip olmaması",
@@ -4520,7 +4520,7 @@
         {
           "soru": "Yazın İç Anadolu'da öğleden sonra aniden gelişen, gök gürültülü sağanak yağışlar genellikle hangi yağış türüne örnektir?",
           "secenekler": [
-            "A) Orografik yağış",
+            "A) Orografik yağış, yani ısınan havanın yükselerek soğuması sonucu oluşan yükselim kaynaklı yağış türü",
             "B) Cephesel yağış",
             "C) Konvektif (yükselim) yağış",
             "D) Muson yağışı",
@@ -4544,7 +4544,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Akdeniz ikliminin Türkiye dışındaki dünya üzerindeki tipik görülme alanlarından biridir?",
           "secenekler": [
-            "Ekvator çevresindeki yağmur ormanları",
+            "Ekvator çevresindeki, yıl boyunca sıcak ve bol yağışlı geçen yağmur ormanlarının bulunduğu alçak enlem kuşağı bölgeleri",
             "Kutup dairesine yakın tundra alanları",
             "Orta enlemlerdeki, kışı ılıman-yağışlı yazı sıcak-kurak geçen kıyı bölgeleri (örneğin Kaliforniya kıyıları)",
             "Sahra Çölü'nün merkezi",
@@ -4605,7 +4605,7 @@
           "soru": "Aşağıdakilerden hangisi 'yükselti kuşaklanması' kavramını en iyi açıklayan örnektir?",
           "secenekler": [
             "Bir dağın eteğinde orman, üst kesimlerinde çayır, zirvesinde ise kayalık-kar alanının sırayla görülmesi",
-            "Bir ovanın her yerinde aynı bitki örtüsünün bulunması",
+            "Bir ovanın alçak ve düz olan her yerinde, yükseltiye bağlı hiçbir fark olmaksızın tamamen aynı bitki örtüsünün görülmesi durumu",
             "Kıyı ile iç kesim arasında hiç bitki farkının olmaması",
             "Bir çölün ortasında aniden orman oluşması",
             "Bir gölün derinliğine göre renk değişimi göstermesi"
@@ -4726,7 +4726,7 @@
           "secenekler": [
             "Göl ve barajlardaki su seviyesinin düşmesi ve tuzluluk oranının artması",
             "Bölgede yağışın kesinlikle artması",
-            "Toprağın daha nemli hâle gelmesi",
+            "Toprağın ve yüzey sularının buharlaşmaya rağmen sürekli daha nemli hâle gelerek tuzluluk oranının azalması durumu",
             "Bölgenin daha soğuk hâle gelmesi",
             "Bitki örtüsünün daha gür hâle gelmesi"
           ],
@@ -4737,7 +4737,7 @@
           "soru": "Aşağıdakilerden hangisi bir bölgenin 'yarı kurak' iklim özelliği taşıdığını gösteren bir bulgu olabilir?",
           "secenekler": [
             "Yıllık yağışın düşük olması, doğal bitki örtüsünün seyrek ve kısa boylu olması",
-            "Yıl boyunca aşırı nemli ve bol yağışlı olması",
+            "Yıl boyunca aşırı nemli ve bol yağışlı olması nedeniyle doğal bitki örtüsünün gür ve boylu ormanlardan oluşması durumu",
             "Bölgede yoğun orman örtüsünün bulunması",
             "Bölgenin sürekli sis altında kalması",
             "Bölgenin okyanus kıyısında olması"
