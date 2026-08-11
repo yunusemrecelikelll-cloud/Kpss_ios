@@ -231,7 +231,7 @@
           "soru": "Türkiye Büyük Millet Meclisi'nin ilk Başkanı (Meclis Reisi) kimdir?",
           "secenekler": [
             "A) Ali Fethi Okyar",
-            "B) Kâzım Karabekir",
+            "B) Kâzım Karabekir Paşa (Doğu Cephesi Komutanlığı görevini yürüten asker)",
             "C) Fevzi Çakmak",
             "D) Abdülhalik Renda",
             "E) Mustafa Kemal Atatürk"
@@ -304,7 +304,7 @@
             "B) Ulus",
             "C) Cumhuriyet",
             "D) Hâkimiyet-i Millîye",
-            "E) Anadolu Ajansı"
+            "E) Anadolu Ajansı (Millî Mücadele döneminde kurulan resmî haber ajansı)"
           ],
           "dogruIndex": 3,
           "aciklama": "Atatürk'ün Ankara'da çıkarttığı Hâkimiyet-i Millîye, Millî Mücadele'nin sesi olmuş, sonradan 'Ulus' adını almıştır.",
@@ -482,7 +482,7 @@
         {
           "soru": "1959-1960 yıllarında imzalanan ve Kıbrıs Cumhuriyeti'nin kuruluşunu düzenleyen antlaşmalar hangileridir?",
           "secenekler": [
-            "A) Lozan Antlaşmaları",
+            "A) Lozan Antlaşmaları (1923'te İsviçre'de imzalanan barış antlaşmaları)",
             "B) Montrö Sözleşmesi",
             "C) Annan Planı",
             "D) Paris Antlaşması",
@@ -765,7 +765,7 @@
             "A) Vergi kaçakçılığı",
             "B) Hükümeti devirmeye yönelik derin devlet yapılanması ve darbe planları",
             "C) Kamu ihalelerinde usulsüzlük",
-            "D) Silah kaçakçılığı ağı",
+            "D) Uluslararası uyuşturucu ve silah kaçakçılığı yürüten organize suç şebekesi",
             "E) Seçim sahtekârlığı"
           ],
           "dogruIndex": 1,
@@ -846,7 +846,7 @@
         {
           "soru": "1974 Kıbrıs Barış Harekâtı'nın temel gerekçesi nedir?",
           "secenekler": [
-            "A) Kıbrıs'ta petrol kaynaklarının paylaşımı",
+            "A) Kıbrıs açıklarındaki petrol ve doğal gaz kaynaklarının paylaşım anlaşmazlığı",
             "B) Kıbrıs Rum ekonomisinin çökmesi",
             "C) EOKA-B destekli darbeyle adanın Yunanistan'a bağlanmak istenmesi",
             "D) BM'nin doğrudan çağrısı üzerine müdahale",
@@ -1155,7 +1155,7 @@
           "soru": "Cumhuriyetin ilan edilmesinden sonra Türkiye'nin ilk cumhurbaşkanı kimdir?",
           "secenekler": [
             "A) İsmet İnönü",
-            "B) Kâzım Karabekir",
+            "B) Kâzım Karabekir Paşa (Doğu Cephesi Komutanlığı yapan ünlü asker)",
             "C) Mustafa Kemal Atatürk",
             "D) Fethi Okyar",
             "E) Ali Fuat Cebesoy"
@@ -1255,7 +1255,7 @@
             "A) Mustafa Kemal Atatürk'ün barışçı, yayılmacı olmayan dış politika ilkesi",
             "B) İsmet İnönü'nün tarafsızlık politikası",
             "C) Turgut Özal'ın çok yönlü dış politika anlayışı",
-            "D) Ahmet Davutoğlu'nun stratejik derinlik doktrini",
+            "D) Ahmet Davutoğlu'nun komşularla sıfır sorun hedefleyen stratejik derinlik doktrini",
             "E) Adnan Menderes'in Batı ittifakı politikası"
           ],
           "dogruIndex": 0,
@@ -1266,7 +1266,7 @@
         {
           "soru": "1960 Kıbrıs Cumhuriyeti Anayasası'nın iktidar paylaşımı yapısıyla ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Cumhurbaşkanı Türk, Cumhurbaşkanı Yardımcısı Rum toplumundan seçilirdi.",
+            "A) Cumhurbaşkanı Türk toplumundan, Cumhurbaşkanı Yardımcısı ise Rum toplumundan seçilir ve başkanlık yetkileri Türk tarafında toplanırdı.",
             "B) Devlet başkanlığı dönüşümlü olarak iki toplum arasında el değiştirirdi.",
             "C) Cumhurbaşkanı Rum, Cumhurbaşkanı Yardımcısı Türk toplumundan seçilir ve yardımcıya veto yetkisi tanınırdı.",
             "D) Yönetim tamamen Rum toplumunun kontrolündeydi.",
@@ -1294,7 +1294,7 @@
         {
           "soru": "Türkiye'nin de aralarında bulunduğu Balkan ülkelerinin bölgesel güvenliği için 1934 yılında imzalanan ittifak anlaşması hangisidir?",
           "secenekler": [
-            "A) Sadabat Paktı",
+            "A) Sadabat Paktı (1937'de Doğu komşularıyla imzalanan bölgesel güvenlik paktı)",
             "B) Küçük Antant",
             "C) Varşova Paktı",
             "D) Bükreş Anlaşması",
@@ -1324,7 +1324,7 @@
           "secenekler": [
             "A) Askeri tatbikatlarda",
             "B) İstanbul'daki Rum ve Batı Trakya'daki Türk azınlıkların hak ve statülerinde",
-            "C) Ticari gümrük tarifelerinde",
+            "C) İki ülke arasındaki ticari gümrük tarifeleri ve ithalat kotalarının belirlenmesinde",
             "D) Denizcilik sınırlarında",
             "E) Vize uygulamalarında"
           ],
@@ -1381,7 +1381,7 @@
             "A) Batı ittifakına bağlılığını kanıtlayarak NATO üyeliğine kabul edilmeyi kolaylaştırmak",
             "B) BM'den ayrılmak",
             "C) Kore'yi işgal etmek",
-            "D) Sovyetler Birliği ile ittifak kurmak",
+            "D) Sovyetler Birliği ile askeri ve siyasi bir savunma ittifakı kurarak Doğu Bloku'na yaklaşmak",
             "E) Kore'den toprak talep etmek"
           ],
           "dogruIndex": 0,
@@ -1393,7 +1393,7 @@
           "soru": "Türkiye'nin 1991 Körfez Savaşı sırasında izlediği dış politikada Cumhurbaşkanı Turgut Özal'ın öne çıkan yaklaşımı neydi?",
           "secenekler": [
             "A) Tarafsız kalarak hiçbir desteği vermemek",
-            "B) Irak'a askeri destek sağlamak",
+            "B) Irak'ın Kuveyt'i işgaline destek vererek Saddam Hüseyin yönetimine askeri, lojistik ve diplomatik yardım sağlamak",
             "C) 'Bir koyup üç almak' anlayışıyla ABD öncülüğündeki koalisyona aktif destek vermek ve İncirlik'i kullanıma açmak",
             "D) BM'den çekilmek",
             "E) Sovyetler Birliği ile ittifak kurmak"
@@ -1407,7 +1407,7 @@
           "soru": "Türkiye'nin ECO (Ekonomik İşbirliği Teşkilatı) üyeliğinin genişleyerek Orta Asya cumhuriyetlerini de kapsaması hangi tarihsel gelişmeyle mümkün olmuştur?",
           "secenekler": [
             "A) II. Dünya Savaşı'nın bitmesi",
-            "B) AB'nin genişlemesi",
+            "B) Avrupa Birliği'nin doğuya doğru genişleyerek Orta ve Doğu Avrupa ülkelerini bünyesine katması süreci",
             "C) NATO'nun kurulması",
             "D) 1991'de Sovyetler Birliği'nin dağılmasıyla Orta Asya cumhuriyetlerinin bağımsızlığını kazanması",
             "E) Bağdat Paktı'nın feshi"
@@ -1773,7 +1773,7 @@
         {
           "soru": "Kapadokya'daki peri bacaları ve kayalık oluşumlar temelde hangi jeolojik süreçle şekillenmiştir?",
           "secenekler": [
-            "A) Buzul aşınması",
+            "A) Buzul çağında ilerleyen buzulların aşındırma ve biriktirme etkisiyle şekillenmesi",
             "B) Deniz taşkınları",
             "C) Deprem faylanmaları",
             "D) Volkanik tüf tabakalarının rüzgar ve su erozyonuyla şekillenmesi",
@@ -1844,7 +1844,7 @@
           "soru": "Türkiye'nin en yüksek ikinci dağı olan, Hakkari'deki zirve hangisidir?",
           "secenekler": [
             "A) Süphan Dağı",
-            "B) Kaçkar Dağı",
+            "B) Kaçkar Dağı (Doğu Karadeniz sıradağlarının en yüksek zirvesi olan tepe)",
             "C) Erciyes Dağı",
             "D) Uludağ",
             "E) Cilo Dağı (Reşko Tepesi)"
@@ -2431,7 +2431,7 @@
         {
           "soru": "Panama Kanalı hangi iki okyanusu birbirine bağlar?",
           "secenekler": [
-            "A) Akdeniz - Kızıldeniz",
+            "A) Akdeniz ile Kızıldeniz'i birbirine bağlayan doğal su geçidi bağlantısı",
             "B) Hint - Atlas",
             "C) Atlas - Arktik",
             "D) Atlas Okyanusu - Büyük Okyanus (Pasifik)",
@@ -2515,7 +2515,7 @@
         {
           "soru": "Akdeniz ikliminin genel özelliği aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Her mevsim bol yağışlı olması",
+            "A) Her mevsimin bol ve düzenli yağış aldığı, kuraklığın hiç görülmediği bir yapı",
             "B) Yazların soğuk geçmesi",
             "C) Kışların çok sert geçmesi",
             "D) Yazların sıcak-kurak, kışların ılık-yağışlı olması",
@@ -2725,7 +2725,7 @@
         {
           "soru": "Türkiye topraklarının büyük bölümünün üzerinde bulunduğu yarımadanın adı nedir?",
           "secenekler": [
-            "A) Balkan Yarımadası",
+            "A) Balkan Yarımadası (Güneydoğu Avrupa'da yer alan geniş yarımada)",
             "B) İber Yarımadası",
             "C) İtalya Yarımadası",
             "D) Anadolu (Küçük Asya) Yarımadası",
@@ -3218,7 +3218,7 @@
         {
           "soru": "Türkiye'de 2024 yılı Nobel Edebiyat Ödülü'nü kazanan bir Türk yazar var mıdır? Yoksa bu ödülü en son hangi Türk yazar almıştır?",
           "secenekler": [
-            "A) Elif Şafak 2023'te aldı.",
+            "A) Elif Şafak 2023 yılında Nobel Edebiyat Ödülü'nü kazanan ilk Türk kadın yazar oldu.",
             "B) 2024'te herhangi bir Türk yazar almadı; en son 2006'da Orhan Pamuk aldı.",
             "C) Yaşar Kemal 2020'de aldı.",
             "D) Ahmet Altan 2022'de aldı.",
@@ -3246,7 +3246,7 @@
         {
           "soru": "Fazıl Say hangi alanda uluslararası üne kavuşmuştur?",
           "secenekler": [
-            "A) Türk pop müziği bestecisi",
+            "A) Türk pop ve arabesk müziğinin öncü söz yazarı ve bestecisi",
             "B) Klasik müzik piyanisti ve bestecisi",
             "C) Caz müzisyeni",
             "D) Halk müziği sanatçısı",
@@ -3260,7 +3260,7 @@
         {
           "soru": "Türkiye'de 'kültür başkenti' unvanını taşıyan ve 2010 yılında Avrupa Kültür Başkenti seçilen şehir hangisidir?",
           "secenekler": [
-            "A) Ankara",
+            "A) Ankara (Türkiye'nin başkenti olan İç Anadolu şehri)",
             "B) İzmir",
             "C) Bursa",
             "D) İstanbul",
@@ -3274,7 +3274,7 @@
         {
           "soru": "Orhan Pamuk'un Nobel Edebiyat Ödülü'ne layık görülen romanları arasında en tanınmışı hangisidir?",
           "secenekler": [
-            "A) Tutunamayanlar",
+            "A) Tutunamayanlar (Oğuz Atay'ın modernist başyapıtı sayılan romanı)",
             "B) Mavi Karanfil",
             "C) İnce Memed",
             "D) Küçük Ağa",
@@ -3360,7 +3360,7 @@
           "secenekler": [
             "A) Hassa Baş Mimarı (Mimarbaşı)",
             "B) Reisülküttap",
-            "C) Kaptan-ı Derya",
+            "C) Kaptan-ı Derya (Osmanlı donanmasının başkomutanına verilen unvan)",
             "D) Şeyhülislam",
             "E) Defterdar"
           ],
@@ -3596,7 +3596,7 @@
         {
           "soru": "Aziz Nesin, Türk edebiyatında en çok hangi türle tanınmaktadır?",
           "secenekler": [
-            "A) Tarihi roman",
+            "A) Tarihi roman ve destansı anlatı türünün önde gelen yazarı",
             "B) Şiir",
             "C) Mizah ve hiciv öyküleri",
             "D) Tiyatro eleştirisi",
@@ -3612,7 +3612,7 @@
           "secenekler": [
             "A) Tutunamayanlar",
             "B) Kar",
-            "C) Benim Adım Kırmızı",
+            "C) Benim Adım Kırmızı (Orhan Pamuk'un Nobel'e uzanan ünlü romanı)",
             "D) Baba ve Piç (The Bastard of Istanbul)",
             "E) Serenad"
           ],
@@ -3666,7 +3666,7 @@
         {
           "soru": "Leyla Gencer, uluslararası opera camiasında hangi lakapla anılmaktadır?",
           "secenekler": [
-            "A) 'İstanbul Bülbülü'",
+            "A) 'İstanbul Bülbülü' (Boğaz'ın efsanevi ses sanatçısına verilen lakap)",
             "B) 'Anadolu'nun Sesi'",
             "C) 'La Diva Turca' (Türk Diva)",
             "D) 'Şark Yıldızı'",
@@ -3708,7 +3708,7 @@
         {
           "soru": "Türkiye'de 'Devlet Sanatçısı' unvanı kimlere verilmektedir?",
           "secenekler": [
-            "A) Yalnızca müzisyenlere",
+            "A) Yalnızca klasik Batı müziği, opera ve senfonik müzik alanında eser veren müzisyenlere devletçe verilen resmî unvan",
             "B) Kültür ve sanata üstün hizmetleri geçen kişilere Kültür ve Turizm Bakanlığınca verilen onursal unvan",
             "C) Yalnızca devlet memuru sanatçılara",
             "D) Yalnızca ressamlara",
@@ -3738,7 +3738,7 @@
           "secenekler": [
             "A) Modern pop müzik",
             "B) Klasik Osmanlı-Türk müziği",
-            "C) Senfonik Batı müziği",
+            "C) Senfonik orkestra için eser üreten Batı klasik müziği geleneği",
             "D) Caz müziği",
             "E) Elektronik müzik"
           ],
@@ -3764,7 +3764,7 @@
         {
           "soru": "Konya'da bulunan Mevlana Müzesi'nin özgün adı nedir?",
           "secenekler": [
-            "A) Yeşil Türbe",
+            "A) Yeşil Türbe (Bursa'da bulunan ünlü Osmanlı türbesi yapısı)",
             "B) Dergâh-ı Şerif",
             "C) Sultan Selim Türbesi",
             "D) Kubbe-i Hadra (Yeşil Kubbe)",
@@ -3877,7 +3877,7 @@
           "soru": "Aşağıdakilerden hangisi 'Divan Edebiyatı' şairlerinden biri değildir?",
           "secenekler": [
             "A) Karacaoğlan",
-            "B) Fuzuli",
+            "B) Fuzuli (16. yüzyıl Divan edebiyatının büyük gazel şairi)",
             "C) Baki",
             "D) Nef'i",
             "E) Nedim"
@@ -4128,7 +4128,7 @@
         {
           "soru": "Kültür sanat ve bilimdeki gelişmelerden biri olan 'Rönesans', hangi şehre aittir?",
           "secenekler": [
-            "A) Roma",
+            "A) Roma (İtalya'nın başkenti ve antik imparatorluğun merkezi)",
             "B) Floransa",
             "C) Paris",
             "D) Londra",
@@ -4185,7 +4185,7 @@
           "soru": "Ahi Evran, teşkilatlanmaya öncülük etmeden önce hangi meslekle uğraşan bir zanaatkârdı?",
           "secenekler": [
             "A) Debbağlık (dericilik)",
-            "B) Demircilik",
+            "B) Demircilik (madeni ısıtıp dövme yoluyla işleyen el sanatı)",
             "C) Dokumacılık",
             "D) Marangozluk",
             "E) Kuyumculuk"
@@ -4226,7 +4226,7 @@
         {
           "soru": "Ahilik teşkilatının Osmanlı öncesi ve Osmanlı dönemindeki temel işlevi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Yalnızca askeri birlikleri örgütlemek",
+            "A) Yalnızca sınır boylarındaki askeri birlikleri ve uç beylerini örgütleyerek onları sefere hazırlamakla görevliydi",
             "B) Esnaf ve zanaatkârları meslek ahlakı, üretim standartları ve dayanışma ilkeleri çerçevesinde örgütlemek",
             "C) Yalnızca vergi toplamak",
             "D) Yalnızca dini eğitim vermek",
@@ -4241,7 +4241,7 @@
           "soru": "Osmanlı ve İslam sanat geleneğinde Kur'an-ı Kerim, hilye, levha gibi eserlerin estetik kurallara uygun olarak yazılması sanatına verilen isim aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Ebru",
-            "B) Tezhip",
+            "B) Tezhip (altın ve boya kullanılarak yapılan kitap süsleme sanatı)",
             "C) Minyatür",
             "D) Hüsn-i Hat",
             "E) Çini"
@@ -4268,7 +4268,7 @@
         {
           "soru": "Hüsn-i Hat sanatı Osmanlı döneminde en yaygın olarak hangi alanlarda uygulanmıştır?",
           "secenekler": [
-            "A) Yalnızca para birimleri üzerinde",
+            "A) Yalnızca tedavüldeki madeni ve kâğıt para birimlerinin süslemelerinde",
             "B) Kur'an-ı Kerim, cami kitabeleri, hilye ve levhalarda",
             "C) Yalnızca resmi mühürlerde",
             "D) Yalnızca çini süslemelerinde",
@@ -4495,7 +4495,7 @@
         {
           "soru": "Anayasa Mahkemesi Başkanını kim seçer?",
           "secenekler": [
-            "A) Cumhurbaşkanı seçer",
+            "A) Cumhurbaşkanı, mahkeme üyeleri arasından doğrudan atayarak seçer",
             "B) TBMM seçer",
             "C) Anayasa Mahkemesi üyeleri kendi aralarından seçer",
             "D) HSK seçer",
@@ -4509,7 +4509,7 @@
         {
           "soru": "Danıştay üyelerinin dörtte üçünü (3/4) kim seçer?",
           "secenekler": [
-            "A) Cumhurbaşkanı",
+            "A) Cumhurbaşkanı, Danıştay üyelerinin tamamını tek başına atayarak seçer",
             "B) TBMM",
             "C) Danıştay Genel Kurulu",
             "D) Hâkimler ve Savcılar Kurulu (HSK)",
@@ -4538,7 +4538,7 @@
           "soru": "Bir milletvekilinin milletvekilliği hangi durumda kendiliğinden (re'sen) düşer?",
           "secenekler": [
             "A) Cumhurbaşkanı, Cumhurbaşkanı Yardımcısı veya Bakan seçilmesi durumunda",
-            "B) Partisinden istifa etmesi durumunda",
+            "B) Mensubu olduğu siyasi partisinden istifa ederek bağımsız kalması durumunda",
             "C) Bir oturuma katılmaması durumunda",
             "D) Yurt dışına çıkması durumunda",
             "E) Milletvekili maaşını reddetmesi durumunda"
@@ -4638,7 +4638,7 @@
             "A) Büyümeyi hızlandıran iç taleplerin artması",
             "B) Çalışma saatlerinin artırılması",
             "C) Dünya ekonomisinin aşırı bağımlılığını önleyen küresel ticaret anlaşmaları",
-            "D) Yabancı sermayenin çekilmesi",
+            "D) Yabancı sermayenin ülkeden aniden ve kitlesel biçimde çekilerek finansal dengeyi bozması",
             "E) Düşük faiz oranları"
           ],
           "dogruIndex": 2,
@@ -4762,7 +4762,7 @@
           "soru": "GSYH hesaplamasında kullanılan 'üretim yöntemi' neyi esas alır?",
           "secenekler": [
             "A) Ekonomideki tüm sektörlerin ürettiği katma değerlerin toplanmasını",
-            "B) Yalnızca hanehalkı harcamalarının toplanmasını",
+            "B) Yalnızca hanehalklarının nihai tüketim harcamalarının toplanarak hesaplanmasını",
             "C) Yalnızca dış ticaret fazlasının hesaplanmasını",
             "D) Yalnızca kamu harcamalarının toplanmasını",
             "E) Yalnızca ücret ödemelerinin toplanmasını"
@@ -4776,7 +4776,7 @@
           "soru": "GSYH hesaplamasında 'gelir yöntemi' neyi esas alır?",
           "secenekler": [
             "A) Üretim faktörlerine (emek, sermaye, doğal kaynak, girişim) ödenen ücret, faiz, rant ve kâr gibi gelirlerin toplanmasını",
-            "B) Yalnızca ihracat gelirlerinin toplanmasını",
+            "B) Yalnızca mal ve hizmet ihracatından elde edilen döviz gelirlerinin ve dış ticaret fazlasının bir arada toplanarak hesaplanmasını",
             "C) Yalnızca vergi gelirlerinin toplanmasını",
             "D) Yalnızca turizm gelirlerinin toplanmasını",
             "E) Yalnızca kamu bankası kârlarının toplanmasını"
@@ -4790,7 +4790,7 @@
           "soru": "GSYH hesaplamasında 'harcama yöntemi' hangi bileşenlerin toplamına dayanır?",
           "secenekler": [
             "A) Tüketim, yatırım, kamu harcamaları ve net ihracatın (ihracat eksi ithalat) toplamı",
-            "B) Yalnızca kamu bütçesi gelirlerinin toplamı",
+            "B) Yalnızca merkezi yönetim kamu bütçesi gelirlerinin ve toplam vergi tahsilatlarının bir arada toplamı",
             "C) Yalnızca ücretlerin toplamı",
             "D) Yalnızca ithalat harcamalarının toplamı",
             "E) Yalnızca konut yatırımlarının toplamı"
@@ -4818,7 +4818,7 @@
           "soru": "GSYH ile GSMH (Gayri Safi Milli Hasıla) arasındaki temel fark nedir?",
           "secenekler": [
             "A) GSYH bir ülkenin sınırları içindeki üretimi, GSMH ise o ülke vatandaşlarının yurt içi ve yurt dışındaki toplam üretimini/gelirini kapsar",
-            "B) GSYH yalnızca tarım sektörünü, GSMH yalnızca sanayi sektörünü kapsar",
+            "B) GSYH yalnızca tarım ve hayvancılık sektörünü, GSMH ise yalnızca sanayi ve imalat sektörünü kapsayan, birbirinden bağımsız iki ayrı ölçüt olarak hesaplanır",
             "C) GSMH yalnızca kamu sektörünü kapsar",
             "D) GSYH yalnızca ihracatı, GSMH yalnızca ithalatı ölçer",
             "E) İkisi birbirinin aynısıdır, fark yoktur"
@@ -4832,7 +4832,7 @@
           "soru": "Reel GSYH ile nominal GSYH arasındaki temel fark nedir?",
           "secenekler": [
             "A) Reel GSYH, enflasyon etkisinden arındırılarak sabit fiyatlarla hesaplanır; nominal GSYH ise cari yıl fiyatlarıyla hesaplanır",
-            "B) Reel GSYH yalnızca ihracatı kapsar",
+            "B) Reel GSYH yalnızca mal ve hizmet ihracatını kapsarken nominal GSYH yalnızca toplam ithalat harcamalarını ve gümrük gelirlerini kapsar",
             "C) Nominal GSYH yalnızca kamu harcamalarını kapsar",
             "D) Reel GSYH döviz cinsinden hesaplanır",
             "E) Aralarında hiçbir fark yoktur"
@@ -4845,7 +4845,7 @@
         {
           "soru": "'Ekonomik büyüme' kavramı en temelde neyi ifade eder?",
           "secenekler": [
-            "A) Gelir dağılımındaki iyileşmeyi",
+            "A) Toplumdaki gelir dağılımının sosyal adalet ölçüsünde iyileşerek daha dengeli bir yapıya kavuşmasını ifade eder",
             "B) Eğitim ve sağlık göstergelerindeki iyileşmeyi",
             "C) Demokratikleşme düzeyindeki artışı",
             "D) Nüfusun yaşlanma oranını",
@@ -4860,7 +4860,7 @@
           "soru": "Ekonomik kalkınma kavramı, ekonomik büyümeden temel olarak hangi yönüyle ayrılır?",
           "secenekler": [
             "A) Kalkınma, büyümenin yanı sıra gelir dağılımı, eğitim, sağlık ve yaşam kalitesi gibi yapısal ve niteliksel unsurları da kapsar",
-            "B) Kalkınma yalnızca GSYH'deki artışı ifade eder, büyüme ise yapısal değişimi kapsar",
+            "B) Kalkınma yalnızca GSYH'deki niceliksel artışı ifade ederken büyüme, gelir dağılımı ve yaşam kalitesi gibi yapısal değişimleri kapsar",
             "C) Kalkınma yalnızca tarım sektörüyle ilgilidir",
             "D) İkisi birebir aynı anlama gelir",
             "E) Kalkınma yalnızca dış ticaret fazlasını ifade eder"
@@ -4874,7 +4874,7 @@
           "soru": "Bir ülkenin ekonomik kalkınma düzeyini değerlendirirken yalnızca GSYH büyüme oranına bakmanın yetersiz kalmasının temel nedeni nedir?",
           "secenekler": [
             "A) Büyümenin gelir dağılımı, eğitim ve sağlık gibi yaşam kalitesi unsurlarındaki iyileşmeyi yansıtmayabilmesi",
-            "B) GSYH'nin hiçbir zaman ölçülememesi",
+            "B) GSYH büyüme oranının istatistiksel yöntemlerle hiçbir zaman güvenilir ve doğru biçimde ölçülüp hesaplanamaması",
             "C) Büyüme oranının her zaman negatif olması",
             "D) GSYH'nin yalnızca ihracatla ilgili olması",
             "E) Kalkınmanın yalnızca askeri güçle ilgili olması"
@@ -4888,7 +4888,7 @@
           "soru": "'Talep enflasyonu' kavramı nasıl tanımlanır?",
           "secenekler": [
             "A) Toplam talebin toplam arzı aşması sonucu fiyatlar genel düzeyinin yükselmesi",
-            "B) Üretim maliyetlerindeki artışın fiyatlara yansıması",
+            "B) Üretimde kullanılan girdi ve maliyet unsurlarındaki artışın fiyatlara doğrudan yansıması",
             "C) Döviz kurunun sabitlenmesi sonucu oluşan fiyat artışı",
             "D) Yalnızca ithal mallarda görülen fiyat artışı",
             "E) Vergi oranlarının düşürülmesiyle oluşan fiyat artışı"
@@ -4902,7 +4902,7 @@
           "soru": "'Maliyet enflasyonu' kavramı nasıl tanımlanır?",
           "secenekler": [
             "A) Hammadde, enerji veya ücret gibi girdi maliyetlerindeki artışların fiyatlara yansımasıyla oluşan enflasyon",
-            "B) Toplam talebin toplam arzı aşması sonucu oluşan enflasyon",
+            "B) Toplam talebin toplam arzı aşması sonucu fiyatlar genel düzeyinin sürekli ve hızlı biçimde yükselmesiyle oluşan enflasyon",
             "C) Yalnızca para arzının azalmasıyla oluşan enflasyon",
             "D) Yalnızca ihracatın artmasıyla oluşan enflasyon",
             "E) Yalnızca faiz oranlarının düşürülmesiyle oluşan enflasyon"
@@ -4930,7 +4930,7 @@
           "soru": "'Stagflasyon' kavramı hangi durumu ifade eder?",
           "secenekler": [
             "A) Ekonomik durgunluk (düşük büyüme/yüksek işsizlik) ile yüksek enflasyonun aynı anda görülmesi",
-            "B) Yüksek büyüme ile düşük enflasyonun birlikte görülmesi",
+            "B) Yüksek ekonomik büyüme oranı ile düşük enflasyon ve düşük işsizliğin bir arada görüldüğü olumlu ekonomik durum",
             "C) Yalnızca döviz kurunun sabitlenmesi",
             "D) Yalnızca dış ticaret fazlasının oluşması",
             "E) Bütçe fazlası ile düşük işsizliğin birlikte görülmesi"
@@ -4944,7 +4944,7 @@
           "soru": "Reel büyüme oranı hesaplanırken 'sabit fiyatların' kullanılmasının temel amacı nedir?",
           "secenekler": [
             "A) Enflasyonun etkisini gidererek üretimdeki gerçek (fiziki) artışı ölçebilmek",
-            "B) Döviz kurunu sabitlemek",
+            "B) Döviz kurundaki dalgalanmayı gidererek dış ticaret dengesindeki gerçek artışı ölçebilmek",
             "C) Vergi oranlarını sabit tutmak",
             "D) Faiz oranlarını dondurmak",
             "E) İhracat fiyatlarını yükseltmek"
@@ -4975,7 +4975,7 @@
             "B) Altın fiyatına endekslenerek",
             "C) Birkaç büyük uluslararası para biriminden oluşan bir sepete dayanarak",
             "D) Petrol fiyatlarına göre",
-            "E) Her üye ülkenin ulusal parasının ortalamasına göre"
+            "E) Her üye ülkenin ulusal para biriminin piyasa değerlerinin ağırlıklı ortalamasına dayanarak"
           ],
           "dogruIndex": 2,
           "aciklama": "SDR'nin değeri; ABD doları, avro, Çin yuanı, Japon yeni ve İngiliz sterlini gibi büyük uluslararası para birimlerinden oluşan bir sepete dayanarak periyodik olarak belirlenir.",
@@ -5002,7 +5002,7 @@
             "A) Kota yalnızca sembolik bir üyelik ücretidir, başka işlevi yoktur.",
             "B) Kota, hem üyenin oy gücünü hem de IMF'den borçlanabileceği azami tutarı belirler.",
             "C) Kota yalnızca personel istihdamı için kullanılır.",
-            "D) Kota, üyenin BM Güvenlik Konseyi'ndeki oyunu belirler.",
+            "D) Kota, yalnızca üyenin BM Güvenlik Konseyi'ndeki daimi temsil oyunu ve veto yetkisini belirler.",
             "E) Kota her üye için eşit olarak sabitlenmiştir."
           ],
           "dogruIndex": 1,
@@ -5016,7 +5016,7 @@
             "A) Doğrudan BM Güvenlik Konseyi'ne başvuru",
             "B) Danışma (istişare) süreci, panel kurulması ve gerektiğinde temyiz (Temyiz Organı) aşaması",
             "C) Yalnızca ikili görüşmelerle çözülür, kurumsal bir mekanizma yoktur",
-            "D) Uluslararası Adalet Divanı'na doğrudan dava açılması",
+            "D) Uluslararası Adalet Divanı'na doğrudan dava açılması, ardından zorunlu tahkim ve nihai infaz aşaması",
             "E) IMF'nin bağlayıcı kararı"
           ],
           "dogruIndex": 1,
@@ -5042,7 +5042,7 @@
           "soru": "Bir WTO üyesi, kaybettiği bir anlaşmazlıkta panel/Temyiz Organı kararına uymazsa, kazanan taraf için WTO sistemi hangi yaptırımı öngörür?",
           "secenekler": [
             "A) Otomatik olarak WTO üyeliğinden çıkarılma",
-            "B) BM Güvenlik Konseyi'nin ekonomik ambargo kararı alması",
+            "B) BM Güvenlik Konseyi'nin oybirliğiyle kapsamlı ekonomik ambargo ve silah yaptırımı kararı alarak uygulamaya koyması",
             "C) WTO'nun onayıyla kazanan tarafın orantılı misilleme (karşı ticaret önlemleri) uygulamasına izin verilmesi",
             "D) Uluslararası Adalet Divanı'na otomatik sevk",
             "E) IMF kredilerinin kesilmesi"
@@ -5069,7 +5069,7 @@
         {
           "soru": "UCM'nin (Uluslararası Ceza Mahkemesi) yargı yetkisini yönlendiren 'tamamlayıcılık ilkesi' (complementarity) ne anlama gelir?",
           "secenekler": [
-            "A) UCM her zaman ulusal mahkemelerin önüne geçer.",
+            "A) UCM, her davada ulusal mahkemelerin önüne geçerek yargılamayı doğrudan kendisi üstlenir ve nihai kararı verir.",
             "B) UCM, ancak ilgili devletin yargılama konusunda isteksiz veya yetersiz olması durumunda devreye girer.",
             "C) UCM yalnızca BM Güvenlik Konseyi'nin talebiyle harekete geçebilir.",
             "D) UCM kararları ulusal mahkemeleri bağlamaz.",
@@ -5128,7 +5128,7 @@
             "A) 1961 Diplomatik İlişkiler Hakkında Viyana Sözleşmesi",
             "B) BM Şartı",
             "C) Roma Statüsü",
-            "D) Cenevre Sözleşmeleri",
+            "D) 1949 Savaş Esirlerine ve Sivillere İlişkin Cenevre Sözleşmeleri",
             "E) UNCLOS"
           ],
           "dogruIndex": 0,
@@ -5143,7 +5143,7 @@
             "B) Büyükelçilik binaları vergiden muaf değildir.",
             "C) Büyükelçilik binaları yalnızca savaş zamanında dokunulmazdır.",
             "D) Ev sahibi devlet, büyükelçilik binasını istediği zaman arayabilir.",
-            "E) Dokunulmazlık yalnızca büyükelçinin kişisel konutunu kapsar, binayı kapsamaz."
+            "E) Dokunulmazlık yalnızca büyükelçinin kişisel konutunu ve özel araçlarını kapsar, elçilik binasını ise hiçbir biçimde kapsamaz."
           ],
           "dogruIndex": 0,
           "aciklama": "Diplomatik misyon binalarının dokunulmazlığı ilkesine göre, ev sahibi devletin yetkilileri gönderen devletin izni olmaksızın büyükelçilik binasına giremez; bu, diplomasi tarihindeki en temel korumalardan biridir.",
@@ -5155,7 +5155,7 @@
           "secenekler": [
             "A) Diplomatların kişisel eşyalarının gümrükte vergilendirilmesi",
             "B) Diplomatik yazışma ve resmi belgelerin taşındığı çantaların açılamaması ve el konulamaması",
-            "C) Diplomatların taşıyabileceği silahların sınırlandırılması",
+            "C) Diplomatların taşıyabileceği kişisel silah ve mühimmatın sayıca ve türce ayrıntılı biçimde sınırlandırılması",
             "D) Büyükelçilik personelinin maaş ödemelerinin düzenlenmesi",
             "E) Diplomatların seyahat vizesi muafiyeti"
           ],
@@ -5183,7 +5183,7 @@
           "secenekler": [
             "A) Tamamen aynı kapsamda, sınırsız dokunulmazlık",
             "B) Daha dar kapsamlı; yalnızca resmi görevleriyle ilgili eylemleri kapsayan işlevsel (fonksiyonel) bağışıklık",
-            "C) Diplomatik dokunulmazlıktan daha geniştir",
+            "C) Diplomatik dokunulmazlıktan çok daha geniş kapsamlı olup her türlü kişisel eylemi de içeren sınırsız bağışıklık",
             "D) Hiçbir dokunulmazlıkları yoktur",
             "E) Yalnızca vergi muafiyetiyle sınırlıdır"
           ],
@@ -5195,7 +5195,7 @@
         {
           "soru": "1963 Viyana Sözleşmesi'ne göre, yabancı bir ülkede tutuklanan bir kişinin sahip olduğu temel hak nedir?",
           "secenekler": [
-            "A) Otomatik olarak sınır dışı edilme hakkı",
+            "A) Yargılama yapılmaksızın otomatik olarak sınır dışı edilme ve kendi ülkesine güvenli biçimde geri gönderilme hakkı",
             "B) Doğrudan UCM'ye başvurma hakkı",
             "C) Tutuklandığı ülkenin vatandaşlığını otomatik kazanma hakkı",
             "D) Kendi ülkesinin konsolosluğuna haber verilmesini ve konsolosluk yetkilileriyle görüşmeyi talep etme hakkı",
@@ -5224,7 +5224,7 @@
           "soru": "Antarktika Antlaşması'nın kıta üzerindeki egemenlik iddialarına ilişkin yaklaşımı nedir?",
           "secenekler": [
             "A) Mevcut egemenlik iddialarını ne tanır ne de reddeder; yeni iddiaları dondurur.",
-            "B) Tüm egemenlik iddialarını resmen tanır ve onaylar.",
+            "B) Antlaşmaya taraf tüm devletlerin mevcut egemenlik iddialarını resmen tanır, onaylar ve kalıcı biçimde güvence altına alır.",
             "C) Kıtayı tek bir devletin egemenliğine bırakır.",
             "D) Egemenlik iddialarını BM Güvenlik Konseyi'nin kararına bırakır.",
             "E) Kıtayı Antarktika'ya en yakın ülkeler arasında paylaştırır."
@@ -5237,7 +5237,7 @@
         {
           "soru": "Antarktika Antlaşması aşağıdakilerden hangisini açıkça yasaklamaktadır?",
           "secenekler": [
-            "A) Bilimsel araştırma istasyonları kurulmasını",
+            "A) Bilimsel araştırma istasyonlarının kurulmasını ve buralarda personel görevlendirilmesini",
             "B) Nükleer patlama denemelerini ve radyoaktif atık bertarafını",
             "C) Turist ziyaretlerini",
             "D) Hava durumu gözlemlerini",
@@ -5266,7 +5266,7 @@
           "soru": "Dış Uzay Antlaşması'na göre yörüngeye veya gök cisimlerine yerleştirilmesi açıkça yasaklanan silah türü hangisidir?",
           "secenekler": [
             "A) Konvansiyonel silahlar",
-            "B) Uydu karşıtı lazerler",
+            "B) Uydu karşıtı lazerler ve yörünge bombardıman sistemleri dahil tüm konvansiyonel füze türleri",
             "C) Küçük silahlar",
             "D) Kitle imha silahları (nükleer silahlar dahil)",
             "E) Siber silahlar"
@@ -5293,7 +5293,7 @@
         {
           "soru": "Suçluların iadesinde (extradition) uygulanan ve iade talebine konu eylemin hem talep eden hem de talep edilen devletin hukukunda suç sayılmasını gerektiren ilke hangisidir?",
           "secenekler": [
-            "A) Non-refoulement ilkesi",
+            "A) Geri göndermeme (non-refoulement) ve güvenli üçüncü ülke ilkesi",
             "B) Tamamlayıcılık ilkesi",
             "C) Egemen eşitlik ilkesi",
             "D) Persona non grata ilkesi",
@@ -5308,7 +5308,7 @@
           "soru": "Suçluların iadesi hukukunda, bir kişinin siyasi suç işlediği gerekçesiyle iade talebinin reddedilebilmesini sağlayan istisna hangisidir?",
           "secenekler": [
             "A) Siyasi suç istisnası (political offense exception)",
-            "B) Ekonomik suç istisnası",
+            "B) Ekonomik ve mali suç istisnası (economic offense exception)",
             "C) Askeri suç istisnası",
             "D) Diplomatik dokunulmazlık istisnası",
             "E) Çevresel suç istisnası"
@@ -5321,7 +5321,7 @@
         {
           "soru": "'Diplomatik sığınma' (diplomatic asylum) kavramı neyi ifade eder?",
           "secenekler": [
-            "A) Bir kişinin sınırı geçerek başka bir ülkenin topraklarına sığınmasını",
+            "A) Bir kişinin devlet sınırını fiilen geçerek başka bir ülkenin egemen topraklarına ulaşıp orada korunma talep etmesini",
             "B) Bir kişinin, bulunduğu ülkedeki yabancı bir devletin büyükelçilik binası içinde korunma talep etmesini",
             "C) Bir devletin başka bir devlete resmi özür dilemesini",
             "D) İki devlet arasında diplomatik ilişkilerin kesilmesini",
@@ -5335,7 +5335,7 @@
         {
           "soru": "Diplomatik sığınma uygulamasıyla ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Uluslararası hukukta evrensel olarak kabul edilen bir haktır ve tüm devletleri bağlar.",
+            "A) Uluslararası hukukta evrensel biçimde kabul edilen, bağlayıcı nitelikte bir insan hakkıdır ve istisnasız tüm devletleri hem barış hem savaş zamanında bağlar.",
             "B) Uluslararası hukukta evrensel olarak tanınmaz; özellikle 1954 Karakas Sözleşmesi ile Latin Amerika devletleri arasında yaygın bir uygulamadır.",
             "C) Yalnızca BM Güvenlik Konseyi üyesi devletler arasında geçerlidir.",
             "D) 1951 Mülteciler Sözleşmesi'nde ayrıntılı biçimde düzenlenmiştir.",
@@ -5367,7 +5367,7 @@
             "B) PCA, BM'nin resmi bir organı olmayıp taraflara tahkim hizmeti sunan esnek bir yapıdır; UAD ise BM'nin resmi yargı organıdır.",
             "C) PCA yalnızca ceza davalarına bakar.",
             "D) UAD yalnızca ticari tahkim yapar.",
-            "E) PCA'nın kararları asla bağlayıcı değildir, UAD'ın kararları her zaman bağlayıcıdır."
+            "E) PCA'nın verdiği hakem kararları hiçbir koşulda bağlayıcı değildir; UAD'ın kararları ise istisnasız her davada ve tüm taraflar için mutlak biçimde bağlayıcıdır."
           ],
           "dogruIndex": 1,
           "aciklama": "PCA, BM'nin resmi bir organı değildir; devletlere, uluslararası kuruluşlara ve hatta özel taraflara esnek tahkim ve uyuşmazlık çözüm hizmetleri sunan bağımsız bir kurumdur. UAD ise BM Şartı'yla kurulmuş, yalnızca devletler arası davalara bakan resmi BM yargı organıdır.",
@@ -5378,7 +5378,7 @@
           "soru": "Farklı ülkelerin özel hukuk kurallarının uyumlaştırılmasını amaçlayan, örneğin evlat edinme ve çocuk kaçırma konularında sözleşmeler hazırlayan Lahey merkezli kuruluş hangisidir?",
           "secenekler": [
             "A) Uluslararası Adalet Divanı",
-            "B) Daimi Hakemlik Mahkemesi",
+            "B) Daimi Hakemlik ve Uzlaştırma Mahkemesi (PCA)",
             "C) Uluslararası Ceza Mahkemesi",
             "D) Lahey Özel Hukuk Konferansı (HCCH)",
             "E) Avrupa Konseyi"
@@ -5405,7 +5405,7 @@
         {
           "soru": "Dış Uzay Antlaşması'na göre, bir devletin özel şirketleri de dahil olmak üzere kendi uzay faaliyetlerinden doğan zararlardan sorumluluğuna ilişkin ilke nedir?",
           "secenekler": [
-            "A) Yalnızca faaliyeti yürüten özel şirket sorumludur, devlet sorumlu tutulamaz.",
+            "A) Yalnızca faaliyeti fiilen yürüten özel şirket veya ticari kuruluş sorumludur; fırlatmayı onaylayan veya topraklarını kullandıran devlet hiçbir biçimde uluslararası sorumluluk taşımaz.",
             "B) 'Fırlatan devlet' (launching state), kendi ulusal aktörlerinin (devlet kurumları ve özel şirketler dahil) uzay faaliyetlerinden uluslararası sorumluluk taşır.",
             "C) Sorumluluk yalnızca BM Güvenlik Konseyi'ne aittir.",
             "D) Sorumluluk yalnızca faaliyetin gerçekleştiği gök cismine aittir.",
@@ -5423,7 +5423,7 @@
             "B) Kolonide sömürge doğrudan yönetilirken himayede yerel yönetici biçimsel olarak yerinde kalır ve dış ilişkiler güçlü devletin denetiminde yürütülür.",
             "C) Himaye yalnızca Avrupa ülkeleri arasında uygulanır.",
             "D) Koloni geçicidir, himaye kalıcıdır.",
-            "E) Himayede yerel halkın hiçbir hakkı yoktur, kolonide vardır."
+            "E) Himayede yerel halkın hiçbir siyasi veya medeni hakkı bulunmazken, koloni yönetiminde halk tam anlamıyla eşit vatandaşlık haklarına ve temsil yetkisine sahiptir."
           ],
           "dogruIndex": 1,
           "aciklama": "Kolonide sömürgeci devlet toprağı doğrudan kendi idaresi altına alırken, himaye (protektora) düzeninde yerel hükümdar veya yönetim biçimsel olarak yerinde kalır, ancak dış politika ve savunma gibi alanlar güçlü devletin denetimine bırakılır; bu, dolaylı yönetimin bir biçimidir.",
@@ -5436,7 +5436,7 @@
             "A) İkisi de aynı yönetim biçimidir.",
             "B) Mutlak monarşide hükümdarın yetkisi sınırsızdır; meşruti monarşide hükümdarın yetkileri anayasa ile sınırlandırılmış ve genellikle sembolik hale gelmiştir.",
             "C) Meşruti monarşi yalnızca Asya ülkelerinde uygulanır.",
-            "D) Mutlak monarşide seçilmiş bir parlamento hükümdardan daha güçlüdür.",
+            "D) Mutlak monarşide halk tarafından seçilmiş bir parlamento hükümdardan çok daha güçlüdür ve yasama ile yürütmenin tüm yetkisini tek başına ve denetimsiz biçimde elinde bulundurur.",
             "E) Meşruti monarşide hükümdar halk tarafından seçilir."
           ],
           "dogruIndex": 1,
@@ -5451,7 +5451,7 @@
             "B) Üniter devletlerde birden fazla anayasa bulunur.",
             "C) Federal devletlerde tek bir yasama organı vardır.",
             "D) Üniter devletler daima daha büyük yüzölçümüne sahiptir.",
-            "E) Federal devletlerde eyaletlerin bağımsız dış politika yürütme hakkı sınırsızdır."
+            "E) Federal devletlerde eyaletlerin merkezi hükümetten tamamen bağımsız biçimde dış politika yürütme ve uluslararası antlaşma imzalama hakkı sınırsızdır ve hiçbir anayasal denetime tabi değildir."
           ],
           "dogruIndex": 0,
           "aciklama": "Üniter devlette (örneğin Fransa, Türkiye, Japonya) egemenlik ve nihai yetki merkezi hükümette toplanır; federal devlette (örneğin ABD, Almanya, Kanada, Hindistan) ise anayasa gereği yetkiler merkezi hükümet ile eyalet/federe birimler arasında paylaştırılmıştır.",
@@ -5476,7 +5476,7 @@
           "soru": "Bir devletin, kendi ülkesinde bulunan ve başka bir devlette suç işlediği iddia edilen bir kişiyi, o devletin talebi üzerine ve genellikle bir antlaşma temelinde yargılanmak veya cezasını çekmek üzere ilgili devlete teslim etmesi işlemine ne ad verilir?",
           "secenekler": [
             "A) Deport (Sınır dışı etme)",
-            "B) Diplomatik sığınma",
+            "B) Diplomatik sığınma ve konsolosluk himayesi",
             "C) Suçluların iadesi (ekstradisyon)",
             "D) Persona non grata ilanı",
             "E) Vize iptali"
@@ -5493,7 +5493,7 @@
             "B) Yaptırım, bir devleti belirli bir davranışa zorlamak için uygulanan geniş kapsamlı önlemleri (ticaret kısıtlaması, varlık dondurma, seyahat yasağı vb.) kapsayan genel bir kavramdır; ambargo ise özellikle mal/silah ticaretinin tamamen yasaklanmasını ifade eden bir yaptırım türüdür.",
             "C) Ambargo yalnızca askeri harekatlarda kullanılan bir terimdir.",
             "D) Yaptırım yalnızca BM tarafından uygulanabilir, ambargo ise herhangi bir devlet tarafından uygulanabilir.",
-            "E) Ambargo, yaptırımdan daha geniş kapsamlı bir kavramdır."
+            "E) Ambargo, yaptırımın kapsayıcı bir alt türü olmayıp ondan çok daha geniş kapsamlı, üst düzey bir kavramdır; ticaret kısıtlaması, varlık dondurma ve seyahat yasağı gibi tüm önlemleri kendi içinde barındıran genel çerçeveyi ambargo oluşturur, yaptırım ise yalnızca onun dar bir uygulamasıdır."
           ],
           "dogruIndex": 1,
           "aciklama": "Yaptırım (sanction), bir devletin veya devletler grubunun politika değişikliği sağlamak amacıyla uyguladığı ticari kısıtlama, mali dondurma, seyahat yasağı gibi çok çeşitli önlemleri kapsayan geniş bir şemsiye kavramdır; ambargo ise bu yaptırımlar arasında özellikle belirli mal, silah veya hizmetlerin ticaretinin tamamen durdurulmasını ifade eden daha dar kapsamlı bir araçtır.",
@@ -5507,7 +5507,7 @@
             "B) Referandum, bir yasa veya anayasa değişikliği gibi belirli bir politika sorusuna ilişkin genel halk oylamasını ifade ederken; plebisit terimi daha çok bir toprağın egemenliği, bir liderin meşruiyeti veya bir topluluğun siyasi statüsü gibi konularda yapılan halk oylamaları için kullanılır.",
             "C) Plebisit yalnızca yerel seçimlerde kullanılan bir terimdir.",
             "D) İkisi arasında hiçbir kavramsal fark yoktur ve hukuken eş anlamlıdır.",
-            "E) Referandum uluslararası, plebisit ulusal düzeyde yapılır."
+            "E) Referandum yalnızca uluslararası hukuk düzeyinde, devletlerarası antlaşmaların onaylanması için yapılan bir oylamayı ifade ederken; plebisit terimi yalnızca ulusal düzeyde, bir ülkenin kendi iç yasalarının ve anayasa değişikliklerinin halk tarafından onaylanması için yapılan oylamalar için kullanılır."
           ],
           "dogruIndex": 1,
           "aciklama": "Her iki terim de doğrudan halk oylamasını ifade etse de kullanım geleneği bakımından 'referandum' genellikle yasal/anayasal bir düzenlemeye ilişkin oylamaları, 'plebisit' ise bir toprağın egemenliğinin belirlenmesi, bir liderin/rejimin meşruiyetinin onaylanması gibi siyasi statü sorularını ifade etmek için kullanılır.",
@@ -5518,7 +5518,7 @@
           "soru": "Siyasi iktidarın, anayasal ve hukuki süreçler izlenmeksizin, genellikle silahlı kuvvetler veya küçük bir grup tarafından ani ve zorla ele geçirilmesine ne ad verilir?",
           "secenekler": [
             "A) Referandum",
-            "B) Devrim",
+            "B) Halk ayaklanmasıyla gerçekleşen köklü toplumsal devrim",
             "C) Ambargo",
             "D) Darbe (Coup d'état)",
             "E) Vekalet savaşı"
@@ -5531,7 +5531,7 @@
         {
           "soru": "Bir ülkenin işgal edilmesi veya iç savaş gibi nedenlerle ülke topraklarını fiilen yönetemeyen, ancak başka bir ülkede faaliyet göstererek kendini o devletin meşru yönetimi olarak ilan eden siyasi oluşuma ne ad verilir?",
           "secenekler": [
-            "A) Gölge kabine",
+            "A) Muhalefet partisinin oluşturduğu gölge kabine yapılanması",
             "B) Geçici hükümet",
             "C) Vekil rejim",
             "D) Bağlantısız yönetim",
@@ -5548,7 +5548,7 @@
             "A) Stimson (Tanımama) Doktrini",
             "B) Monroe Doktrini",
             "C) Truman Doktrini",
-            "D) Brejnev Doktrini",
+            "D) Brejnev (Sınırlı Egemenlik) Doktrini",
             "E) Eisenhower Doktrini"
           ],
           "dogruIndex": 0,
@@ -5559,7 +5559,7 @@
         {
           "soru": "Bir devletin, ülkesinde görevli yabancı bir diplomatı 'istenmeyen kişi' ilan ederek görevine son verilmesini ve ülkeyi terk etmesini talep etmesine diplomasi dilinde ne ad verilir?",
           "secenekler": [
-            "A) Casus belli",
+            "A) Casus belli (savaş nedeni sayılan eylem)",
             "B) Persona non grata",
             "C) Ultimatum",
             "D) Moratoryum",
@@ -5576,7 +5576,7 @@
             "A) İkisi tamamen aynı anlama gelir.",
             "B) De facto tanıma, bir devlet veya hükümetin fiilen var olan otoritesinin pratik olarak kabulünü ifade ederken; de jure tanıma, o otoritenin tam ve resmi hukuki meşruiyetinin tanınmasını ifade eder.",
             "C) De jure tanıma yalnızca BM tarafından verilebilir.",
-            "D) De facto tanıma daima de jure tanımadan daha kapsamlıdır.",
+            "D) De facto tanıma, hukuki sonuçları itibarıyla daima de jure tanımadan çok daha kapsamlı ve bağlayıcı bir nitelik taşır; bu nedenle bir devlet de facto tanındığında otomatik olarak tam ve resmi hukuki meşruiyete de kavuşmuş sayılır.",
             "E) De facto tanıma yalnızca ekonomik ilişkiler için geçerlidir."
           ],
           "dogruIndex": 1,
@@ -5632,7 +5632,7 @@
             "A) Konfederasyonda üye devletler egemenliklerini büyük ölçüde korurken merkezi otorite zayıftır; federasyonda ise anayasal olarak güçlü bir merkezi hükümet vardır ve egemenlik merkez ile birimler arasında kalıcı biçimde paylaştırılmıştır.",
             "B) İkisi aynı yönetim biçimidir.",
             "C) Konfederasyonda merkezi hükümet üye devletlerden daha güçlüdür.",
-            "D) Federasyonlarda üye birimlerin ayrılma hakkı sınırsızdır.",
+            "D) Federasyonlarda üye birimlerin merkezden tek taraflı olarak ayrılma (secession) hakkı anayasal güvence altındadır ve sınırsızdır; konfederasyonda ise üyeler hiçbir koşulda birlikten ayrılamaz ve egemenliklerini tümüyle ve geri dönülmez biçimde merkeze devretmiştir.",
             "E) Konfederasyon yalnızca ekonomik birlikler için kullanılan bir terimdir."
           ],
           "dogruIndex": 0,
@@ -5657,7 +5657,7 @@
         {
           "soru": "Merkezi hükümetin ülke topraklarının tamamı üzerinde etkin kontrolünü, temel kamu hizmetlerini sağlama kapasitesini veya meşru güç kullanma tekelini yitirdiği devlet durumunu tanımlamak için kullanılan kavram hangisidir?",
           "secenekler": [
-            "A) Tampon devlet",
+            "A) İki büyük güç arasında konumlanan tampon devlet",
             "B) Başarısız devlet (failed state)",
             "C) Vasal devlet",
             "D) Rejim devleti",
@@ -5671,7 +5671,7 @@
         {
           "soru": "Birbirine rakip veya düşman iki güçlü devlet arasında konumlanarak bu devletlerin doğrudan çatışmasını önlediği düşünülen küçük veya zayıf devletlere uluslararası ilişkiler literatüründe ne ad verilir?",
           "secenekler": [
-            "A) Vasal devlet",
+            "A) Bir başka devlete bağımlı vasal devlet",
             "B) Himaye devleti",
             "C) Tampon devlet (buffer state)",
             "D) Mikro devlet",
@@ -5699,7 +5699,7 @@
         {
           "soru": "Uluslararası ilişkilerde, hiçbir devletin veya devletler ittifakının bölgesel ya da küresel düzeyde tek başına baskın (hegemonik) hale gelmesini önlemek amacıyla devletlerin ittifaklar kurarak güçlerini dengelemeye çalıştığı stratejik ilkeye ne ad verilir?",
           "secenekler": [
-            "A) Kolektif güvenlik",
+            "A) Kolektif güvenlik ve ortak savunma sistemi",
             "B) Çevreleme politikası",
             "C) Bağlantısızlık",
             "D) Detant",
@@ -6083,7 +6083,7 @@
             "A) Fizik araştırmaları",
             "B) Çevre mühendisliği",
             "C) Nükleer enerji",
-            "D) Astronomi gözlemleri",
+            "D) Modern astronomi gözlemleri ve teleskop teknolojisi",
             "E) İslam bilim tarihi ve el yazmaları"
           ],
           "dogruIndex": 4,
@@ -6122,7 +6122,7 @@
         {
           "soru": "Feza Gürsey hangi bilim dalında uluslararası tanınırlık kazanmış bir Türk bilim insanıdır?",
           "secenekler": [
-            "A) Matematik",
+            "A) Uygulamalı matematik ve sayılar teorisi",
             "B) Kimya",
             "C) Teorik fizik (parçacık fiziği)",
             "D) Tıp",
@@ -6136,7 +6136,7 @@
         {
           "soru": "Oktay Sinanoğlu hangi bilim dalında tanınmış bir Türk bilim insanıdır?",
           "secenekler": [
-            "A) Nükleer fizik",
+            "A) Nükleer fizik ve parçacık hızlandırıcıları",
             "B) Jeoloji mühendisliği",
             "C) Tarım bilimleri",
             "D) Kuramsal kimya ve moleküler biyofizik",
@@ -6290,7 +6290,7 @@
         {
           "soru": "Ali Kuşçu'nun ilk bilimsel çalışmalarını gerçekleştirdiği ve Uluğ Bey tarafından kurulan ünlü rasathane hangi şehirde bulunmaktadır?",
           "secenekler": [
-            "A) Bağdat",
+            "A) Bağdat (Beytü'l-Hikme)",
             "B) Kahire",
             "C) Buhara",
             "D) Isfahan",
@@ -6304,7 +6304,7 @@
         {
           "soru": "Ali Kuşçu, İstanbul'a geldikten sonra Fatih Sultan Mehmet'in isteğiyle hangi alanda görev üstlenmiştir?",
           "secenekler": [
-            "A) Yalnızca donanma komutanlığı",
+            "A) Yalnızca Osmanlı donanmasının başkomutanlığı ve tüm deniz seferlerinin planlanıp yönetilmesi",
             "B) Ayasofya medresesinde müderrislik yaparak astronomi ve matematik eğitimi vermek",
             "C) Yalnızca vergi tahsildarlığı",
             "D) Yalnızca saray hekimliği",
@@ -6444,7 +6444,7 @@
         {
           "soru": "'Açık kaynak kodlu yazılım' (open source software) kavramı ne anlama gelir?",
           "secenekler": [
-            "A) Yalnızca ücretsiz dağıtılan yazılım",
+            "A) Yalnızca hiçbir ücret alınmadan dağıtılan ve ticari amaçla kullanılması yasak olan her türlü yazılım",
             "B) Kaynak kodunun herkese açık olduğu, incelenebilen ve üzerinde değişiklik yapılabilen yazılım",
             "C) Yalnızca devlet kurumlarının kullanabileceği yazılım",
             "D) Virüs içermeyen yazılım",
@@ -6514,7 +6514,7 @@
         {
           "soru": "Bilgisayar biliminde 'algoritma' kavramı ne anlama gelir?",
           "secenekler": [
-            "A) Yalnızca bir programlama dili",
+            "A) Yalnızca belirli bir programlama dilinde yazılmış hazır komut kütüphanesi",
             "B) Bir problemi çözmek için izlenen, adım adım tanımlanmış işlemler dizisi",
             "C) Bir bilgisayarın fiziksel parçası",
             "D) Bir internet tarayıcısı türü",
@@ -6530,7 +6530,7 @@
           "secenekler": [
             "A) Farklı yazılım uygulamalarının birbirleriyle veri alışverişi yapmasını ve iletişim kurmasını sağlayan arayüz kuralları bütünü",
             "B) Bir bilgisayarın işlemci hızını artırır.",
-            "C) Yalnızca grafik tasarım için kullanılır.",
+            "C) Yalnızca grafik tasarım ve görsel kullanıcı arayüzü düzenleme işlemleri için kullanılan, başka hiçbir işlevi olmayan özel bir yardımcı yazılım aracıdır.",
             "D) Bir internet tarayıcısı türüdür.",
             "E) Yalnızca oyun motorlarında kullanılır."
           ],
@@ -6542,7 +6542,7 @@
         {
           "soru": "Penisilini (ilk antibiyotik) keşfeden ve bu keşfiyle Nobel Tıp Ödülü'nü kazanan bilim insanı kimdir?",
           "secenekler": [
-            "A) Louis Pasteur",
+            "A) Louis Pasteur (kuduz aşısının kâşifi)",
             "B) Robert Koch",
             "C) Alexander Fleming",
             "D) Edward Jenner",
@@ -6598,7 +6598,7 @@
         {
           "soru": "Hareketli metal harflerle çalışan matbaayı geliştirerek Avrupa'da bilginin yayılmasını hızlandıran kişi kimdir?",
           "secenekler": [
-            "A) William Caxton",
+            "A) William Caxton (İngiliz matbaacı)",
             "B) Johannes Gutenberg",
             "C) Aldus Manutius",
             "D) Johannes Fust",
@@ -6626,7 +6626,7 @@
         {
           "soru": "Telefonu icat ederek patentini alan bilim insanı kimdir?",
           "secenekler": [
-            "A) Thomas Edison",
+            "A) Thomas Alva Edison (ampulün mucidi)",
             "B) Nikola Tesla",
             "C) Antonio Meucci",
             "D) Alexander Graham Bell",
@@ -7102,7 +7102,7 @@
         {
           "soru": "Havanın basıncını ölçen ilk aleti (cıvalı barometre) icat eden bilim insanı kimdir?",
           "secenekler": [
-            "A) Blaise Pascal",
+            "A) Blaise Pascal (basınç biriminin adaşı)",
             "B) Evangelista Torricelli",
             "C) Galileo Galilei",
             "D) Robert Boyle",
@@ -7245,7 +7245,7 @@
         {
           "soru": "'Binbir Kilise Şehri' olarak bilinen ve Kars'ta yer alan UNESCO Dünya Mirası alanı hangisidir?",
           "secenekler": [
-            "A) Sümela Manastırı",
+            "A) Trabzon'daki Sümela Manastırı",
             "B) Akdamar Kilisesi",
             "C) Mren Katedrali",
             "D) Işhan Manastırı",
@@ -7261,7 +7261,7 @@
           "secenekler": [
             "A) Troya (Truva)",
             "B) Assos",
-            "C) Bergama",
+            "C) Bergama (Pergamon Antik Kenti)",
             "D) Efes",
             "E) Milet"
           ],
@@ -7273,7 +7273,7 @@
         {
           "soru": "Aydın'da bulunan, antik dönemin önemli mermer heykelcilik merkezi olan UNESCO mirası kent hangisidir?",
           "secenekler": [
-            "A) Milet",
+            "A) Milet Antik Kenti",
             "B) Afrodisyas",
             "C) Priene",
             "D) Didyma",
@@ -7301,7 +7301,7 @@
         {
           "soru": "Efes Antik Kenti ve Meryem Ana Evi hangi ilimizde yer alır?",
           "secenekler": [
-            "A) Aydın",
+            "A) Aydın (Kuşadası)",
             "B) Manisa",
             "C) Muğla",
             "D) İzmir (Selçuk)",
@@ -7315,7 +7315,7 @@
         {
           "soru": "Şanlıurfa'da, İbrahim Peygamber'in ateşe atıldığına inanılan ve kutsal balıklarıyla ünlü tarihî mekân hangisidir?",
           "secenekler": [
-            "A) Göbeklitepe",
+            "A) Göbeklitepe (Neolitik tapınak alanı)",
             "B) Harran",
             "C) Eyyübiye",
             "D) Zeugma",
@@ -7385,7 +7385,7 @@
         {
           "soru": "Doğu Beyazıt'ta yer alan, Osmanlı-İran sınırındaki görkemli tarihî saray hangi ilimizdedir?",
           "secenekler": [
-            "A) Van",
+            "A) Van (Doğu Anadolu ili)",
             "B) Iğdır",
             "C) Kars",
             "D) Muş",
@@ -7487,7 +7487,7 @@
             "B) Dünyanın en eski şehir yerleşimlerinden biri; Konya",
             "C) Osmanlı dönemi sarayı; İstanbul",
             "D) Antik liman kenti; İzmir",
-            "E) Roma dönemi amfitiyatrosu; Efes"
+            "E) Roma dönemi amfitiyatrosu ve gladyatör arenası; İzmir Efes"
           ],
           "dogruIndex": 1,
           "aciklama": "Çatalhöyük; Konya'da yer alan ve yaklaşık 9.500 yıl önce kurulmuş, dünyanın en eski büyük yerleşim yerlerinden biridir. 2012 yılında UNESCO Dünya Mirası Listesi'ne alınmıştır.",
@@ -7539,7 +7539,7 @@
         {
           "soru": "Türkiye'nin UNESCO somut olmayan kültürel miras listesindeki unsurları arasında hangisi bulunmaktadır?",
           "secenekler": [
-            "A) Mehter müziği ve bağlama",
+            "A) Mehter (Osmanlı askerî bandosu) müziği ve bağlama sazı",
             "B) Ebru (kâğıt süsleme sanatı) ve mevlevilik sema töreni",
             "C) Zeybek dansı ve davul zurna",
             "D) Karadeniz horon dansı",
@@ -7569,7 +7569,7 @@
           "secenekler": [
             "A) Patara",
             "B) Xanthos-Letoon",
-            "C) Perge",
+            "C) Perge Antik Kenti (Antalya)",
             "D) Aspendos",
             "E) Side"
           ],
@@ -7722,7 +7722,7 @@
           "soru": "Safranbolu şehri hangi özelliğiyle UNESCO Dünya Mirası Listesi'nde yer almaktadır?",
           "secenekler": [
             "A) Antik tiyatrosuyla",
-            "B) Roma dönemi su kemerleriyle",
+            "B) Roma dönemi su kemerleri ve anıtsal çeşmeleriyle tanınmasıyla",
             "C) Osmanlı dönemi geleneksel ev mimarisi ve şehir dokusuyla",
             "D) Selçuklu kervansaraylarıyla",
             "E) Bizans surlarıyla"
@@ -7777,7 +7777,7 @@
         {
           "soru": "Bursa ve Cumalıkızık, UNESCO Dünya Mirası Listesi'ne hangi tarihsel önemiyle girmiştir?",
           "secenekler": [
-            "A) Bizans İmparatorluğu'nun başkenti olmasıyla",
+            "A) Bizans İmparatorluğu'nun uzun süre başkenti ve dinî merkezi olmasıyla",
             "B) Osmanlı Devleti'nin doğuşunu ve kentleşme modelini temsil etmesiyle",
             "C) Selçuklu ordugâhı olmasıyla",
             "D) Roma dönemi hamamlarıyla",
@@ -7961,7 +7961,7 @@
           "secenekler": [
             "A) Yalnızca Türkiye",
             "B) Türkiye, Azerbaycan, İran, Kazakistan, Kırgızistan",
-            "C) Türkiye, Yunanistan, Bulgaristan",
+            "C) Türkiye, Yunanistan, Bulgaristan, Kuzey Makedonya, Arnavutluk",
             "D) Türkiye, Irak, Suriye",
             "E) Türkiye, Rusya, Ukrayna"
           ],
@@ -8085,7 +8085,7 @@
         {
           "soru": "Ani kentindeki yapılarda mimari üslup ve süsleme açısından hangi kültürlerin izlerine birlikte rastlanmaktadır?",
           "secenekler": [
-            "A) Yalnızca Bizans kültürü",
+            "A) Yalnızca Bizans ve Doğu Roma imparatorluk kültürü",
             "B) Ermeni, Gürcü ve çeşitli İslam kültürleri",
             "C) Yalnızca Selçuklu kültürü",
             "D) Yalnızca Roma kültürü",
@@ -8142,7 +8142,7 @@
           "soru": "Gordion'da yer alan ve içindeki ahşap mezar odasının dünyanın günümüze ulaşan en eski ahşap yapılarından biri kabul edildiği büyük tümülüs aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Karatepe Tümülüsü",
-            "B) Bin Tepeler Tümülüsü",
+            "B) Bin Tepeler (Lidya kral mezarları) Tümülüsü",
             "C) Aktopraklık Tümülüsü",
             "D) Kültepe Tümülüsü",
             "E) Midas Tümülüsü (Büyük Tümülüs)"
@@ -8253,7 +8253,7 @@
         {
           "soru": "Perge, Aspendos ve Side antik kentleri hakkında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Üçü de UNESCO Dünya Mirası Listesi'ne kesin olarak alınmıştır.",
+            "A) Üçü de UNESCO Dünya Mirası Listesi'ne, tıpkı Göbeklitepe gibi, kesin ve kalıcı biçimde ayrı kalemler hâlinde dâhil edilmiş ve koruma altına alınmıştır.",
             "B) Üçü de Göbeklitepe ile aynı yılda listeye girmiştir.",
             "C) Bu kentler önemli ören yerleri olmakla birlikte, UNESCO'nun kesin Dünya Mirası Listesi'nde ayrı kalemler olarak yer almamaktadır.",
             "D) Bu kentler UNESCO Somut Olmayan Kültürel Miras Listesi'ndedir.",
@@ -8281,7 +8281,7 @@
         {
           "soru": "Side antik kentindeki tiyatro için aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Dünyanın en büyük amfitiyatrosudur.",
+            "A) Roma İmparatorluğu döneminde inşa edilmiş, dünyanın bilinen en büyük ve en görkemli amfitiyatrosu olarak kabul edilen yapıdır.",
             "B) Sadece gladyatör dövüşleri için inşa edilmiştir.",
             "C) Bizans döneminde inşa edilmiştir.",
             "D) Selçuklu döneminde inşa edilmiştir.",
@@ -8337,7 +8337,7 @@
         {
           "soru": "Türkiye'nin UNESCO Dünya Mirası Listesi'ne ilk kez 1985 yılında dâhil edilen varlıklarından biri olan ve İstanbul'un tarihî yarımadasını kapsayan miras hangisidir?",
           "secenekler": [
-            "A) Galata Kulesi",
+            "A) Galata Kulesi ve Beyoğlu çevresi",
             "B) Dolmabahçe Sarayı",
             "C) Rumeli Hisarı",
             "D) İstanbul'un Tarihi Alanları",
@@ -8366,7 +8366,7 @@
           "soru": "Denizli'de bulunan, beyaz kalsiyum travertenleri ve antik Hierapolis kentiyle birlikte UNESCO 'karma miras' (kültürel ve doğal) olarak listelenen alan hangisidir?",
           "secenekler": [
             "A) Pamukkale-Hierapolis",
-            "B) Saklıkent",
+            "B) Saklıkent Kanyonu (Muğla)",
             "C) Ballıca Mağarası",
             "D) Karahayıt",
             "E) Kaklık Mağarası"
@@ -8408,7 +8408,7 @@
           "soru": "Malatya'da yer alan, dünyanın en eski saray yapılarından birini ve erken devlet örgütlenmesinin izlerini barındıran, 2021'de UNESCO listesine alınan höyük hangisidir?",
           "secenekler": [
             "A) Alacahöyük",
-            "B) Kültepe",
+            "B) Kültepe (Kaniş-Karum) Höyüğü",
             "C) Norşuntepe",
             "D) Arslantepe Höyüğü",
             "E) Değirmentepe"
@@ -8421,7 +8421,7 @@
         {
           "soru": "UNESCO Somut Olmayan Kültürel Miras Listesi'ne 2013 yılında alınan, Türk kültürünün önemli bir içeceği olan gelenek hangisidir?",
           "secenekler": [
-            "A) Türk çayı",
+            "A) Türk çayı demleme ve ikram etme geleneği",
             "B) Ayran geleneği",
             "C) Şerbet kültürü",
             "D) Boza geleneği",
@@ -8449,7 +8449,7 @@
         {
           "soru": "Konya ile özdeşleşen, Mevlânâ geleneğine dayanan ve 2008'de UNESCO listesine alınan ritüel gösteri hangisidir?",
           "secenekler": [
-            "A) Semah",
+            "A) Semah (Alevi-Bektaşi ritüeli)",
             "B) Mevlevi Sema Töreni",
             "C) Zeybek",
             "D) Halay",
@@ -8521,7 +8521,7 @@
           "secenekler": [
             "A) Cirit",
             "B) Geleneksel Türk okçuluğu",
-            "C) Atlı okçuluk",
+            "C) Atlı okçuluk (geleneksel Türk sporu)",
             "D) Güreş",
             "E) Avcılık"
           ],
@@ -8676,7 +8676,7 @@
           "soru": "'Cep Herkülü' lakabıyla anılan, dünya rekorları kıran efsanevi haltercimiz kimdir?",
           "secenekler": [
             "A) Naim Süleymanoğlu",
-            "B) Halil Mutlu",
+            "B) Halil Mutlu (halterci)",
             "C) Nurcan Taylan",
             "D) Taner Sağır",
             "E) Şule Şahbaz"
@@ -8733,7 +8733,7 @@
           "secenekler": [
             "A) Enderun Mektebi",
             "B) Galatasaray Mektebi",
-            "C) Süleymaniye Medresesi",
+            "C) Süleymaniye Külliyesi Medresesi (İstanbul)",
             "D) Okmeydanı Tekkesi (Okçular Tekkesi)",
             "E) Darülfünun"
           ],
@@ -8787,7 +8787,7 @@
         {
           "soru": "IOC'nin (Uluslararası Olimpiyat Komitesi) örgütsel yapısına ilişkin aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) IOC üyeleri, kendi ülkelerini IOC nezdinde temsil eden hükümet delegeleridir.",
+            "A) IOC üyeleri, kendi ülkelerini IOC nezdinde temsil eden ve hükümetlerince atanan resmî devlet delegeleridir.",
             "B) IOC üyeleri, ülkelerini IOC'ye karşı değil, IOC'yi kendi ülkelerine karşı temsil eden kişilerdir.",
             "C) IOC üyeleri doğrudan halk oyuyla seçilir.",
             "D) IOC üyeliği yalnızca devlet başkanlarına açıktır.",
@@ -8801,7 +8801,7 @@
         {
           "soru": "Milletler Topluluğu (Commonwealth) üyesi ülkelerin sporcularının dört yılda bir katıldığı çok branşlı spor organizasyonu hangisidir?",
           "secenekler": [
-            "A) Frankofoni Oyunları",
+            "A) Frankofoni Oyunları (Jeux de la Francophonie etkinliği)",
             "B) Pan-Amerikan Oyunları",
             "C) Commonwealth Oyunları (Commonwealth Games)",
             "D) Asya Oyunları",
@@ -8815,7 +8815,7 @@
         {
           "soru": "Antik Olimpiyat Oyunları'nın ilk kez düzenlendiği ve adını verdiği yer neresidir?",
           "secenekler": [
-            "A) Atina",
+            "A) Atina (antik Yunan kenti)",
             "B) Sparta",
             "C) Roma",
             "D) Olympia (Yunanistan)",
@@ -8901,7 +8901,7 @@
           "secenekler": [
             "A) 1936 Almanya",
             "B) 1932 ABD",
-            "C) 1928 İsviçre",
+            "C) 1928 İsviçre (St. Moritz Kış Oyunları)",
             "D) 1920 Belçika",
             "E) 1924 Fransa (Chamonix)"
           ],
@@ -9207,7 +9207,7 @@
         {
           "soru": "Aşağıdaki Türk atletlerden hangisi uzun mesafe koşularında (5000-10000 m) uluslararası başarılarıyla tanınır?",
           "secenekler": [
-            "A) Eşref Apak",
+            "A) Eşref Apak (çekiç atma)",
             "B) Elvan Abeylegesse",
             "C) Nevin Yanıt",
             "D) Ramil Guliyev",
@@ -9445,7 +9445,7 @@
         {
           "soru": "'Filenin Sultanları' lakaplı Kadın Voleybol Millî Takımımız 2023 yılında hangi kupada Avrupa şampiyonu olmuştur?",
           "secenekler": [
-            "A) Dünya Kupası",
+            "A) Dünya Kupası (FIVB) turnuvası",
             "B) Olimpiyat",
             "C) Avrupa Şampiyonası (CEV)",
             "D) Balkan Kupası",
@@ -9669,7 +9669,7 @@
         {
           "soru": "Toprak (kil) zeminde düzenlenen ve Rafael Nadal'ın rekor sayıda kez kazandığı Grand Slam turnuvası hangisidir?",
           "secenekler": [
-            "A) Wimbledon",
+            "A) Wimbledon (Çim Kort Turnuvası)",
             "B) ABD Açık",
             "C) Avustralya Açık",
             "D) Roland Garros (Fransa Açık)",
@@ -9893,7 +9893,7 @@
         {
           "soru": "Basketbolda bir oyuncunun aynı maçta sayı, ribaund, asist gibi üç farklı istatistikte çift haneli rakama ulaşmasına ne ad verilir?",
           "secenekler": [
-            "A) Buzzer beater",
+            "A) Buzzer beater (son saniye basketi)",
             "B) Alley-oop",
             "C) Pick and roll",
             "D) Fast break",
@@ -10079,7 +10079,7 @@
           "soru": "İstiklal Marşı ilk kez hangi gazetede yayımlanmıştır?",
           "secenekler": [
             "A) Açıksöz Gazetesi (Kastamonu)",
-            "B) Hâkimiyet-i Millîye",
+            "B) Hâkimiyet-i Millîye (Ankara gazetesi)",
             "C) İrade-i Millîye",
             "D) Takvim-i Vekayi",
             "E) Tanin"
@@ -10302,7 +10302,7 @@
         {
           "soru": "Cumhurbaşkanlığı forsunda yer alan yıldız sayısı kaçtır ve neyi simgelemektedir?",
           "secenekler": [
-            "A) 12 yıldız, 12 hayvanlı Türk takvimini",
+            "A) 12 yıldız, on iki hayvanlı geleneksel Türk takvimini simgeler",
             "B) 16 yıldız, tarihte kurulan 16 büyük Türk devletini",
             "C) 9 yıldız, dokuz ışığı",
             "D) 24 yıldız, Oğuz boylarını",
@@ -10334,7 +10334,7 @@
             "B) Endonezya",
             "C) Malezya",
             "D) Suudi Arabistan",
-            "E) Nijerya"
+            "E) Nijerya Federal Cumhuriyeti"
           ],
           "dogruIndex": 3,
           "aciklama": "D-8'in kurucu sekiz üyesi Türkiye, Endonezya, Malezya, Nijerya, Pakistan, Bangladeş, Mısır ve İran'dır; Suudi Arabistan bu teşkilatın üyesi değildir.",
@@ -10417,7 +10417,7 @@
             "A) Türk sanatını tanıtmak",
             "B) Bilimsel araştırmaları desteklemek",
             "C) Eğitim yatırımları yapmak",
-            "D) Kültürel mirası korumak",
+            "D) Türkiye'nin tarihî ve kültürel mirasını korumak, restore etmek ve gelecek nesillere aktarmak",
             "E) Türkiye'de toprak erozyonu ve çölleşmeyle mücadele etmek, ağaçlandırma yapmak"
           ],
           "dogruIndex": 4,
@@ -10429,7 +10429,7 @@
           "soru": "Türkiye'de en uzun süredir yayımlanmakta olan resmi haber ajansı hangisidir?",
           "secenekler": [
             "A) AA (Anadolu Ajansı)",
-            "B) TRT",
+            "B) TRT (Türkiye Radyo Televizyon Kurumu)",
             "C) İHA",
             "D) DHA",
             "E) CNN Türk"
@@ -10527,7 +10527,7 @@
           "soru": "İklim değişikliğiyle mücadelede Paris Anlaşması'nın temel hedefi nedir?",
           "secenekler": [
             "A) Okyanus plastik kirliliğini sıfırlamak",
-            "B) Tüm ülkelerin 2030'a kadar sıfır emisyona ulaşması",
+            "B) Tüm ülkelerin 2030 yılına kadar sıfır sera gazı emisyonuna ulaşmasını zorunlu kılmak",
             "C) Küresel ortalama sıcaklık artışını sanayi öncesine göre 1,5-2°C ile sınırlamak",
             "D) Fosil yakıt ticaretini yasaklamak",
             "E) Nükleer santrallerin kapatılmasını sağlamak"
@@ -10556,7 +10556,7 @@
           "secenekler": [
             "A) Nükleer silahsızlanmayı sağlamak",
             "B) Deniz kirliliğini önlemek",
-            "C) Ozon tabakasını korumak",
+            "C) Ozon tabakasını incelten kimyasal gazların kullanımını tümüyle yasaklayarak bu tabakayı korumak",
             "D) Biyoçeşitlilik kaybını durdurmak",
             "E) Küresel ortalama sıcaklık artışını sanayi öncesi döneme kıyasla 2°C altında tutmak"
           ],
@@ -10596,7 +10596,7 @@
         {
           "soru": "NATO'nun 'Madde 5' hükmü ne anlama gelir?",
           "secenekler": [
-            "A) Üye devletlerin savunma harcamaları için belirlenen eşik",
+            "A) Üye devletlerin gayrisafi millî hasılalarına göre yapmaları gereken savunma harcamaları için belirlenen asgari eşik ve oran",
             "B) Nükleer silah kullanımına ilişkin kurallar",
             "C) Bir üye devlete yapılan silahlı saldırının tüm üyelere yapılmış sayılması ve kolektif savunma yükümlülüğü",
             "D) NATO genişlemesine ilişkin usul kuralları",
@@ -10614,7 +10614,7 @@
             "B) Dünya Bankası",
             "C) IMF",
             "D) BM İklim Değişikliği Çerçeve Sözleşmesi (UNFCCC)",
-            "E) Avrupa Birliği"
+            "E) Avrupa Birliği ve Avrupa Komisyonu Çevre Genel Müdürlüğü"
           ],
           "dogruIndex": 3,
           "aciklama": "COP (Conference of the Parties - Taraflar Konferansı); BM İklim Değişikliği Çerçeve Sözleşmesi (UNFCCC) kapsamında her yıl düzenlenen küresel iklim zirvesidir.",
@@ -10624,7 +10624,7 @@
         {
           "soru": "IMF (Uluslararası Para Fonu) hangi alanlarda faaliyetlerini yürütür?",
           "secenekler": [
-            "A) Yalnızca az gelişmiş ülkelere hibe sağlar.",
+            "A) Yalnızca az gelişmiş ve gelişmekte olan ülkelere karşılıksız hibe ve kalkınma bağışı sağlamakla görevli bir kuruluştur.",
             "B) Küresel parasal işbirliğini destekler, finansal istikrarı izler, ekonomik danışmanlık ve koşullu kredi sağlar.",
             "C) Dünya ticaretini düzenler.",
             "D) İklim değişikliğiyle mücadele fonlarını yönetir.",
@@ -10638,7 +10638,7 @@
         {
           "soru": "Dünya Ticaret Örgütü'nün (WTO) temel işlevi nedir?",
           "secenekler": [
-            "A) Uluslararası para politikalarını belirlemek",
+            "A) Üye ülkelerin uluslararası para ve döviz kuru politikalarını belirleyip merkezî biçimde eşgüdümlemek",
             "B) Gelişmekte olan ülkelere kalkınma yardımı sağlamak",
             "C) Küresel enerji ticaretini denetlemek",
             "D) Nükleer silahların yayılmasını önlemek",
@@ -10710,7 +10710,7 @@
           "secenekler": [
             "A) Avrupa Konseyi",
             "B) Kutsal İttifak",
-            "C) Varşova Paktı",
+            "C) Varşova Paktı (Doğu Bloku askerî ittifakı)",
             "D) NATO",
             "E) Milletler Cemiyeti (Cemiyet-i Akvam)"
           ],
@@ -10724,7 +10724,7 @@
           "secenekler": [
             "A) San Francisco",
             "B) New York",
-            "C) Cenevre",
+            "C) Cenevre (İsviçre şehri)",
             "D) Washington",
             "E) Londra"
           ],
@@ -10736,7 +10736,7 @@
         {
           "soru": "BM Genel Sekreteri hangi organ tarafından, hangi usulle atanır?",
           "secenekler": [
-            "A) Doğrudan halk oylamasıyla",
+            "A) Üye devletlerin katıldığı doğrudan ve genel halk oylamasıyla, beş yıllık süre için",
             "B) Güvenlik Konseyi'nin tavsiyesi üzerine Genel Kurul tarafından",
             "C) Yalnızca P5 ülkeleri tarafından",
             "D) Uluslararası Adalet Divanı tarafından",
@@ -10754,7 +10754,7 @@
             "B) UAD devletler arası uyuşmazlıklara, UCM ise bireylerin soykırım/savaş suçu gibi eylemlerine bakar.",
             "C) UAD yalnızca ticaret davalarına bakar.",
             "D) UCM BM'nin resmi bir organıdır, UAD değildir.",
-            "E) UAD Brüksel'de, UCM New York'tadır."
+            "E) UAD Belçika'nın başkenti Brüksel'de, UCM ise ABD'nin New York kentinde konuşlanmış uluslararası mahkemelerdir."
           ],
           "dogruIndex": 1,
           "aciklama": "Uluslararası Adalet Divanı, BM'nin resmi yargı organı olup devletler arası uyuşmazlıklara bakar; Uluslararası Ceza Mahkemesi ise Roma Statüsü ile kurulmuş bağımsız bir mahkeme olup bireylerin soykırım, savaş suçu gibi eylemlerini yargılar.",
@@ -10778,7 +10778,7 @@
         {
           "soru": "BM Ekonomik ve Sosyal Konseyi'nin (ECOSOC) temel görevi nedir?",
           "secenekler": [
-            "A) Askeri müdahale kararları almak",
+            "A) Uluslararası barışı tehdit eden durumlarda askerî müdahale ve yaptırım kararları almak",
             "B) Uluslararası anlaşmazlıkları yargılamak",
             "C) Ekonomik, sosyal ve ilgili alanlarda uluslararası işbirliğini koordine etmek",
             "D) Barış gücü askerlerini yönetmek",
@@ -10793,7 +10793,7 @@
           "soru": "BM Vesayet Konseyi'nin günümüzdeki durumu nedir?",
           "secenekler": [
             "A) Aktif olarak yeni sömürgeleri yönetmektedir.",
-            "B) Güvenlik Konseyi ile birleştirilmiştir.",
+            "B) 1994 yılında BM Güvenlik Konseyi ile resmen birleştirilerek ortak bir organ hâline getirilmiştir.",
             "C) Adı Ekonomik Konsey olarak değiştirilmiştir.",
             "D) 1994'te tüm vesayet bölgeleri bağımsızlığını kazandığı için faaliyetlerini askıya almıştır.",
             "E) Hiç kurulmamıştır."
@@ -10876,7 +10876,7 @@
         {
           "soru": "BM Mülteciler Yüksek Komiserliği'nin (UNHCR) temel görevi nedir?",
           "secenekler": [
-            "A) Uluslararası ticareti düzenlemek",
+            "A) Uluslararası mal ve hizmet ticaretini düzenlemek ve gümrük tarifelerini belirlemek",
             "B) Savaş suçlularını yargılamak",
             "C) Küresel para politikasını yönetmek",
             "D) Aşı geliştirmek",
@@ -10891,7 +10891,7 @@
           "soru": "UNICEF'in (Birleşmiş Milletler Çocuklara Yardım Fonu) temel görev alanı nedir?",
           "secenekler": [
             "A) Çocukların sağlık, eğitim ve refahını desteklemek",
-            "B) Uluslararası ticareti düzenlemek",
+            "B) Uluslararası ticareti düzenlemek ve ülkeler arası gümrük anlaşmazlıklarını çözmek",
             "C) Nükleer silahsızlanmayı denetlemek",
             "D) Merkez bankalarını koordine etmek",
             "E) Deniz hukukunu düzenlemek"
@@ -10947,7 +10947,7 @@
           "soru": "Uluslararası Para Fonu'nun (IMF) ve Dünya Bankası'nın genel merkezleri hangi şehirdedir?",
           "secenekler": [
             "A) New York",
-            "B) Cenevre",
+            "B) Cenevre (İsviçre şehri)",
             "C) Londra",
             "D) Brüksel",
             "E) Washington D.C."
@@ -10964,7 +10964,7 @@
             "B) Yalta Konferansı",
             "C) Potsdam Konferansı",
             "D) Viyana Kongresi",
-            "E) San Francisco Konferansı"
+            "E) San Francisco Konferansı (BM'nin kuruluşu, 1945)"
           ],
           "dogruIndex": 0,
           "aciklama": "IMF ve Dünya Bankası, II. Dünya Savaşı sonrası küresel ekonomik düzeni yeniden inşa etmek amacıyla 1944'te düzenlenen Bretton Woods Konferansı sonucunda kurulmuştur.",
@@ -10974,7 +10974,7 @@
         {
           "soru": "Dünya Ticaret Örgütü (WTO), hangi önceki anlaşmanın yerini alarak 1995'te kurulmuştur?",
           "secenekler": [
-            "A) Bretton Woods Anlaşması",
+            "A) Bretton Woods Anlaşması (1944 uluslararası para sistemi düzenlemesi)",
             "B) GATT (Gümrük Tarifeleri ve Ticaret Genel Anlaşması)",
             "C) Kyoto Protokolü",
             "D) Maastricht Antlaşması",
@@ -10992,7 +10992,7 @@
             "B) 2001, deniz kirliliğini önlemek",
             "C) 1997, sera gazı emisyonlarını sınırlamak",
             "D) 2015, nükleer silahsızlanma",
-            "E) 1987, ozon tabakasını korumak"
+            "E) 1987, ozon tabakasını korumak (Montreal Protokolü)"
           ],
           "dogruIndex": 2,
           "aciklama": "Kyoto Protokolü, 1997'de kabul edilmiş ve gelişmiş ülkeler için bağlayıcı sera gazı emisyon azaltım hedefleri belirleyen ilk uluslararası iklim anlaşmasıdır.",
@@ -11114,7 +11114,7 @@
         {
           "soru": "Schengen Bölgesi'nin temel özelliği nedir?",
           "secenekler": [
-            "A) Ortak para birimi kullanımı",
+            "A) Ortak para birimi (avro) kullanımı ve ortak gümrük birliği",
             "B) Üye ülkeler arasında pasaportsuz serbest dolaşım",
             "C) Ortak savunma politikası",
             "D) Ortak vergi sistemi",
@@ -11132,7 +11132,7 @@
             "B) Hayır; Schengen ve AB üyeliği farklı düzenlemelerdir, bazı AB dışı ülkeler de Schengen'e üyedir.",
             "C) Yalnızca Doğu Avrupa ülkeleri için geçerlidir.",
             "D) Yalnızca büyük ekonomiler Schengen'e üye olabilir.",
-            "E) Schengen üyeliği AB üyeliğinin ön şartıdır."
+            "E) Schengen üyeliği AB üyeliğinin zorunlu ön şartıdır ve her AB üyesi otomatik olarak Schengen Bölgesi'ne dahildir."
           ],
           "dogruIndex": 1,
           "aciklama": "Schengen Bölgesi ve AB üyeliği farklı düzenlemelerdir; Norveç ve İsviçre gibi AB üyesi olmayan ülkeler de Schengen'e dahildir, İrlanda gibi bazı AB üyeleri ise Schengen dışındadır.",
@@ -11171,7 +11171,7 @@
           "soru": "Avrupa Komisyonu'nun AB yapısındaki temel işlevi nedir?",
           "secenekler": [
             "A) AB yasalarını önermek ve uygulanmasını denetlemek (AB'nin yürütme organı)",
-            "B) Üye devletler arası anlaşmazlıkları yargılamak",
+            "B) Üye devletler arasındaki hukuki anlaşmazlıkları yargılamak (AB'nin başlıca adli organı)",
             "C) Ortak para politikasını belirlemek",
             "D) AB bütçesini denetlemek yalnızca",
             "E) Üye ülkelerin ordularını yönetmek"
@@ -11188,7 +11188,7 @@
             "B) Avrupa Konseyi devlet/hükümet başkanlarından, AB Konseyi ise ilgili alan bakanlarından oluşur.",
             "C) Avrupa Konseyi yalnızca ekonomik konularla ilgilenir.",
             "D) AB Konseyi'nin üyeleri halk tarafından seçilir.",
-            "E) Avrupa Konseyi AB'nin değil, BM'nin bir organıdır."
+            "E) Avrupa Konseyi AB'nin değil, Birleşmiş Milletler'in bir uzman organı olup New York'ta toplanır."
           ],
           "dogruIndex": 1,
           "aciklama": "Avrupa Konseyi (European Council), üye devletlerin devlet/hükümet başkanlarından oluşarak stratejik yön belirler; AB Konseyi (Council of the EU) ise konuya göre ilgili bakanlardan oluşan yasama organıdır.",
@@ -11201,7 +11201,7 @@
             "A) Avrupa Birliği",
             "B) NATO",
             "C) AGİT",
-            "D) Birleşmiş Milletler",
+            "D) Birleşmiş Milletler (İnsan Hakları Konseyi, Cenevre)",
             "E) Avrupa Konseyi (Council of Europe)"
           ],
           "dogruIndex": 4,
@@ -11258,7 +11258,7 @@
             "B) Commonwealth",
             "C) G77",
             "D) Afrika Birliği Teşkilatı (OAU)",
-            "E) Bağlantısızlar Hareketi"
+            "E) Bağlantısızlar Hareketi (Non-Aligned Movement)"
           ],
           "dogruIndex": 3,
           "aciklama": "Afrika Birliği (AU), 1963'te kurulan Afrika Birliği Teşkilatı'nın (OAU) yerini alarak 2002'de daha geniş yetkilerle kurulmuştur.",
@@ -11394,7 +11394,7 @@
         {
           "soru": "NATO'nun sivil idari başı olan 'Genel Sekreter' ile askeri komuta arasındaki ilişki nasıldır?",
           "secenekler": [
-            "A) Genel Sekreter aynı zamanda en yüksek rütbeli askeri komutandır.",
+            "A) Genel Sekreter aynı zamanda NATO'nun en yüksek rütbeli askeri komutanı olup tüm müttefik kara, deniz ve hava kuvvetlerine doğrudan komuta eder.",
             "B) Genel Sekreter sivil bir yetkilidir; en yüksek askeri komutan ise Avrupa Müttefik Kuvvetleri Yüksek Komutanı'dır (SACEUR).",
             "C) NATO'da askeri komuta yapısı bulunmaz.",
             "D) Genel Sekreterlik yalnızca ABD vatandaşlarına açıktır.",
@@ -11410,7 +11410,7 @@
           "secenekler": [
             "A) 15 üyenin tamamının oyu gerekir.",
             "B) En az 9 üyenin olumlu oyu ve hiçbir daimi üyenin veto kullanmaması gerekir.",
-            "C) Yalnızca 5 daimi üyenin oy birliği yeterlidir.",
+            "C) Yalnızca 5 daimi üyenin oy birliği yeterli olup on geçici üyenin oyu hiç aranmaz.",
             "D) Genel Kurul onayı şarttır.",
             "E) Basit çoğunluk (8 oy) yeterlidir."
           ],
@@ -11422,7 +11422,7 @@
         {
           "soru": "BRICS'in kalkınma finansmanı sağlamak amacıyla kurduğu ve merkezi Şangay'da bulunan banka hangisidir?",
           "secenekler": [
-            "A) Asya Kalkınma Bankası",
+            "A) Asya Kalkınma Bankası (1966'da kurulmuş, Manila merkezli, ADB)",
             "B) Avrasya Kalkınma Bankası",
             "C) BRICS Merkez Bankası",
             "D) Yeni Kalkınma Bankası (New Development Bank)",
@@ -11436,7 +11436,7 @@
         {
           "soru": "Refugee (mülteci) statüsünün uluslararası hukuktaki temel tanımını yapan 1951 tarihli sözleşme hangisidir?",
           "secenekler": [
-            "A) Cenevre Sözleşmeleri",
+            "A) Cenevre Sözleşmeleri (1949 tarihli savaş hukuku antlaşmaları)",
             "B) Roma Statüsü",
             "C) Lahey Sözleşmesi",
             "D) Dublin Tüzüğü",
