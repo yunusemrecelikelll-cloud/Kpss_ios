@@ -77,7 +77,7 @@
           "secenekler": [
             "Arap alfabesi",
             "Latin alfabesi",
-            "Süryani alfabesi",
+            "Süryani (Estrangelo) alfabesi",
             "Göktürk (Runik) alfabesi",
             "Kiril alfabesi"
           ],
@@ -175,7 +175,7 @@
           "secenekler": [
             "Ordu birliği",
             "Devlet düzeni ve egemenlik",
-            "Yerleşim yeri",
+            "Yerleşim yeri ve barınma düzeni",
             "Vergi sistemi",
             "Dini tören"
           ],
@@ -245,7 +245,7 @@
             "B) Taht kavgaları ve iç çekişmeler",
             "C) İklim değişikliği",
             "D) Uygur baskısı",
-            "E) Hazar saldırıları"
+            "E) Hazar Kağanlığı'nın batıdan saldırıları"
           ],
           "dogruIndex": 1,
           "aciklama": "Göktürk Devleti, hanedan içi taht kavgaları ve Çin'in kışkırtmaları sonucu Doğu ve Batı Göktürk olarak ikiye bölünmüştür."
@@ -266,7 +266,7 @@
           "soru": "Türklerin İslamiyet öncesi dini inancı aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Budizm",
-            "B) Hristiyanlık",
+            "B) Hristiyanlık (Nasturi mezhebi)",
             "C) Maniheizm",
             "D) Şamanizm (Gök Tanrı)",
             "E) Yahudilik"
@@ -279,7 +279,7 @@
           "secenekler": [
             "A) Savaş stratejisi",
             "B) Gelenek, hukuk ve devlet düzeni",
-            "C) Tanrıya yapılan dua",
+            "C) Tanrıya sunulan dua ve kurban töreni",
             "D) Kurultay kararı",
             "E) Vergi sistemi"
           ],
@@ -292,7 +292,7 @@
             "A) Ordu komutanlarına",
             "B) Din adamlarına",
             "C) Hükümdarın eşi olan kadına",
-            "D) Vergi toplayıcılara",
+            "D) Vergi toplayan devlet görevlilerine",
             "E) Kurultay üyelerine"
           ],
           "dogruIndex": 2,
@@ -363,7 +363,7 @@
           "secenekler": [
             "A) Doğu Asya",
             "B) Karadeniz'in kuzeyindeki bozkırlar",
-            "C) Hindistan alt kıtası",
+            "Hindistan alt kıtası ve Ganj havzası",
             "D) Arabistan yarımadası",
             "E) Balkan yarımadası"
           ],
@@ -388,7 +388,7 @@
             "A) Deniz savaşları",
             "B) Uzun kuşatmalar",
             "C) Süvari akınları ve baskın savaşı",
-            "D) Savunma hatları kurma",
+            "D) Uzun savunma hatları ve kaleler kurma",
             "E) Müttefik arama"
           ],
           "dogruIndex": 2,
@@ -401,7 +401,7 @@
             "B) Orhun Yazıtları'nın dikilişini",
             "C) Türklerin bir dağ geçidinde sıkışıp kalması ve yeniden çıkışını",
             "D) Göktürk Devleti'nin kuruluşunu",
-            "E) Mete Han'ın iktidarı ele geçirişini"
+            "E) Türklerin bir bataklıkta sıkışıp kalması ve gemilerle geri kaçışını"
           ],
           "dogruIndex": 2,
           "aciklama": "Ergenekon destanı, Türklerin düşmanları tarafından sıkıştırıldığı bir vadiden demir dağı eriterek çıkmasını ve yeniden güçlenmesini anlatan bir yeniden doğuş destanıdır."
@@ -433,7 +433,7 @@
         {
           "soru": "Kavimler Göçü'nün Avrupa tarihi açısından en önemli sonucu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Roma İmparatorluğu'nun güçlenmesi",
+            "Roma İmparatorluğu'nun yeniden güçlenerek genişlemesi",
             "Feodalite (derebeylik) düzeninin ortaya çıkması",
             "Rönesans'ın başlaması",
             "Haçlı Seferlerinin başlaması",
@@ -460,7 +460,7 @@
             "Sürekli tam barış içinde yaşama",
             "Prenses ve yıllık ipek/vergi karşılığı yapılan barış anlaşmaları",
             "Çin'i tamamen topraklarına katma",
-            "Çin ile ittifak kurarak Roma'ya saldırma",
+            "Çin ile ittifak kurarak batıdaki Roma İmparatorluğu'na birlikte saldırma",
             "Deniz ticaretini denetim altına alma"
           ],
           "dogruIndex": 1,
@@ -520,7 +520,7 @@
             "Otukan",
             "Karabalgasun (Ordu Balık)",
             "Kaşgar",
-            "Balasagun",
+            "Balasagun (Karahanlı şehri)",
             "Semerkant"
           ],
           "dogruIndex": 1,
@@ -556,7 +556,7 @@
             "Göktürkler – Bizans",
             "Abbasiler ve Karluklar – Çin (Tang)",
             "Uygurlar – Kırgızlar",
-            "Selçuklular – Gazneliler",
+            "Selçuklular ve Karahanlılar – Gazneliler",
             "Hazarlar – Ruslar"
           ],
           "dogruIndex": 1,
@@ -565,7 +565,7 @@
         {
           "soru": "Talas Savaşı'nın (751) Türk-İslam tarihi açısından en önemli sonucu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Türklerin Hristiyanlığı kabul etmesi",
+            "Türklerin kağıt yapımını öğrenerek Hristiyanlığı kitleler hâlinde kabul etmesi",
             "Türklerin İslamiyet ile daha yakından tanışma sürecinin hızlanması",
             "Çin Seddi'nin yıkılması",
             "Bizans'ın Anadolu'yu kaybetmesi",
@@ -675,7 +675,7 @@
           "secenekler": [
             "Anadolu",
             "İran ve Kuzey Hindistan",
-            "Balkanlar",
+            "Balkanlar ve Orta Avrupa toprakları",
             "Kafkasya",
             "Mısır"
           ],
@@ -699,7 +699,7 @@
           "secenekler": [
             "Dini ayrımı sağlamak",
             "Geniş toprakların daha etkin yönetilmesi",
-            "Ticareti tekelleştirmek",
+            "Ülkedeki tüm ticareti devlet elinde tekelleştirmek",
             "Ordu sayısını azaltmak",
             "Vergiyi kaldırmak"
           ],
@@ -709,7 +709,7 @@
         {
           "soru": "Eski Türklerde 'yabgu' unvanı genellikle kime verilirdi?",
           "secenekler": [
-            "Hükümdarın baş veziri",
+            "Kağana bağlı olarak devletin tüm mali işlerini yöneten baş vezir ve hazine sorumlusu",
             "Kağana bağlı olarak devletin bir kanadını (genellikle batıyı) yöneten hükümdar",
             "Ordu komutanı",
             "Din adamı",
@@ -772,7 +772,7 @@
             "Yabgu",
             "Şad",
             "Kam (Baksı)",
-            "Tarkan",
+            "Tarkan (savaş komutanı)",
             "Tigin"
           ],
           "dogruIndex": 2,
@@ -808,7 +808,7 @@
             "Oguş",
             "Urug",
             "Budun",
-            "İl",
+            "İl (devlet/ülke)",
             "Kam"
           ],
           "dogruIndex": 2,
@@ -820,7 +820,7 @@
             "Hat sanatı",
             "Minyatür ve duvar resmi",
             "Çinicilik",
-            "Heykelcilik",
+            "Ahşap ve taş üzerine heykelcilik",
             "Halıcılık"
           ],
           "dogruIndex": 1,
@@ -831,7 +831,7 @@
           "secenekler": [
             "Uygurlar kağıt ve matbaa kullanan öncü Türk topluluklarındandır",
             "Uygurlar hiçbir yazılı belge bırakmamıştır",
-            "Kağıdı ilk kullanan Türk topluluğu Göktürklerdir",
+            "Kağıt ve matbaayı ilk kez kullanan Türk topluluğu şüphesiz Göktürklerdir",
             "Matbaayı ilk kullanan Türkler Karahanlılardır",
             "Uygurlar yalnızca sözlü kültürle yetinmiştir"
           ],
@@ -865,7 +865,7 @@
         {
           "soru": "Eski Türk siyasi düşüncesinde, hükümdarın 'kut'unu kaybettiğine inanılması genellikle hangi sonucu doğurabilirdi?",
           "secenekler": [
-            "Hükümdarın ölene kadar tahtta kalması",
+            "Hükümdarın ölene kadar hiçbir engelle karşılaşmadan tahtta kalması",
             "Hükümdarın tahttan indirilmesi ya da meşruiyetini yitirmesi",
             "Kurultayın toplanmaması",
             "Devletin otomatik olarak yıkılması",
@@ -902,7 +902,7 @@
           "soru": "Eski Türk devletlerinde 'tarkan' unvanı genellikle kimlere verilirdi?",
           "secenekler": [
             "Savaşta üstün başarı gösteren komutanlara",
-            "Sadece hükümdar çocuklarına",
+            "Sadece hükümdar ailesinden gelen erkek çocuklarına",
             "Yalnızca tüccarlara",
             "Din adamlarına",
             "Kurultay yazmanlarına"
@@ -963,7 +963,7 @@
           "secenekler": [
             "Vergi makbuzu",
             "Boy veya aileye ait sembol/işaret",
-            "Kurultay kararı",
+            "Kurultayda alınan resmî yönetim kararı",
             "Askeri rütbe",
             "Dini sembol"
           ],
@@ -977,7 +977,7 @@
             "Doğu Türkistan (Turfan) ve Kansu bölgesi",
             "Balkanlar",
             "Kafkasya",
-            "İber Yarımadası"
+            "İber Yarımadası ve Kuzey Afrika kıyı bölgeleri"
           ],
           "dogruIndex": 1,
           "aciklama": "Uygur Devleti 840'ta Kırgızlar tarafından yıkıldıktan sonra Uygurların bir bölümü Doğu Türkistan (Turfan) ve Kansu bölgesine göç ederek kültürel varlıklarını sürdürmüştür."
@@ -1012,7 +1012,7 @@
             "Roma'nın güçlenmesi",
             "Attila'nın oğulları arasındaki taht kavgaları",
             "Çin baskısı",
-            "Bizans'ın saldırısı",
+            "Bizans ve Batı Roma'nın birleşik ordu saldırıları",
             "İklim değişikliği"
           ],
           "dogruIndex": 1,
@@ -1061,7 +1061,7 @@
             "Şamanizm (Gök Tanrı inancı)",
             "Budizm",
             "Maniheizm",
-            "Hristiyanlık"
+            "Hristiyanlık (Ortodoks mezhebi)"
           ],
           "dogruIndex": 1,
           "aciklama": "Eski Türklerin Şamanist (Gök Tanrı) inanç sisteminde evren gök, yer-su ve yeraltı olmak üzere üç katmanlı bir yapı olarak tasavvur edilirdi."
@@ -1069,7 +1069,7 @@
         {
           "soru": "Uygurların Mani dinini benimsemesinin toplumsal sonuçlarından biri olarak aşağıdakilerden hangisi kabul edilir?",
           "secenekler": [
-            "Askeri güçlerinin artması",
+            "Et yemenin ve savaşmanın teşvik edilmesi sayesinde askeri güçlerinin ve savaşçı niteliklerinin artması",
             "Et yemenin ve savaşmanın dinen hoş karşılanmaması nedeniyle savaşçı niteliklerinin zayıflaması",
             "Yerleşik hayata son verilmesi",
             "Göçebe kültüre geri dönülmesi",
@@ -1093,7 +1093,7 @@
         {
           "soru": "Mete Han'ın kurduğu onluk ordu sisteminin en önemli tarihsel önemi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Yalnızca törensel bir uygulama olması",
+            "Yalnızca törensel amaçlarla kullanılan, savaş dışı bir gösteri uygulaması olması",
             "Askeri gücün merkezi otoriteye bağlı, hiyerarşik bir yapıya kavuşması",
             "Kurultayın ortadan kalkması",
             "Göçebe yaşamın sona ermesi",
@@ -1119,7 +1119,7 @@
           "secenekler": [
             "Hun kültürü",
             "İskit (Saka) kültürü",
-            "Göktürk kültürü",
+            "Göktürk bozkır atlı kültürü",
             "Uygur kültürü",
             "Karluk kültürü"
           ],
@@ -1142,7 +1142,7 @@
           "soru": "Alp Er Tunga Destanı hangi Türk topluluğuna ait bir destandır?",
           "secenekler": [
             "Hunlar",
-            "Göktürkler",
+            "Göktürkler (Kök Türkler)",
             "Sakalar (İskitler)",
             "Uygurlar",
             "Avarlar"
@@ -1168,7 +1168,7 @@
             "Toy geleneği",
             "Cihan hâkimiyeti anlayışı",
             "Töre kavramı",
-            "Kurultay geleneği",
+            "Kurultayda karar alma geleneği",
             "Devşirme sistemi"
           ],
           "dogruIndex": 1,
@@ -1180,7 +1180,7 @@
             "Hicri Takvim",
             "Miladi Takvim",
             "12 Hayvanlı Türk Takvimi",
-            "Celali Takvimi",
+            "Celali (Güneş esaslı) Takvimi",
             "Rumi Takvim"
           ],
           "dogruIndex": 2,
@@ -1189,7 +1189,7 @@
         {
           "soru": "Eski Türk devletlerinde ekonomi büyük ölçüde hangi faaliyete dayanmaktaydı?",
           "secenekler": [
-            "Denizcilik ve balıkçılık",
+            "Denizcilik, balıkçılık ve deniz ticareti",
             "Hayvancılık ve at yetiştiriciliği",
             "Madencilik",
             "Tarım",
@@ -1348,7 +1348,7 @@
             "Aile, klan ve boy",
             "Klan ve boy",
             "Aile ve boy",
-            "Aile ve klan",
+            "Yalnızca aile ve klan toplulukları",
             "Boy ve klan"
           ],
           "dogruIndex": 0,
@@ -1478,7 +1478,7 @@
           "soru": "Göktürklerin ana kolu olan Türeyş'in hangi kabileye bağlı olduğu bilinmemektedir?",
           "secenekler": [
             "Uygar",
-            "Onok",
+            "Onok (On Ok boyları)",
             "Boyra",
             "Bumin",
             "Doğru cevabı yok"
@@ -1539,7 +1539,7 @@
           "secenekler": [
             "Uygar",
             "Onok",
-            "Türeyş",
+            "Türeyş (batı kolu boyu)",
             "Boyra",
             "Doğru cevabı yok"
           ],
@@ -1575,7 +1575,7 @@
           "secenekler": [
             "Bulgar",
             "Avar",
-            "Hazar",
+            "Hazar (Hazar Kağanlığı)",
             "Kutlug",
             "Bilge Kağan"
           ],
@@ -1684,7 +1684,7 @@
             "Tarım ve hayvancılıkla uğraşmak",
             "Sabittir, şehirlerde yaşamaktır",
             "Hayvancılıkla uğraşmak ve mevsimlere göre yer değiştirmek",
-            "Sanayi ve ticaret ile uğraşmak",
+            "Sanayi, ticaret ve el sanatlarıyla uğraşarak büyük şehirlerde sürekli yerleşik yaşamak",
             "Dini ve sosyal faaliyetlerle uğraşmak"
           ],
           "dogruIndex": 2,
@@ -1778,7 +1778,7 @@
           "soru": "İslamiyet öncesi Türk tarihinde önemli bir yere sahip olan Hun İmparatorluğu'nun başkenti neresidir?",
           "secenekler": [
             "Sogdiana",
-            "Ordu-Balıq",
+            "Ordu-Balıq (Uygur başkenti)",
             "Patum",
             "Attila'nın şehri",
             "Buhara"
@@ -2073,7 +2073,7 @@
         {
           "soru": "İlk Türk-İslam devletlerinde inşa edilen 'ribat' yapıları ne amaçla kullanılmıştır?",
           "secenekler": [
-            "Dini eğitim merkezi",
+            "Yalnızca dini eğitim verilen medrese merkezi",
             "Ticaret yollarında konaklama ve savunma",
             "Hükümdar sarayı",
             "Mahkeme binası",
@@ -2132,7 +2132,7 @@
             "Askeri üs olarak kullanmak",
             "Ticaret yollarını güvenli kılmak ve ekonomiyi canlandırmak",
             "Dini eğitim vermek",
-            "Vergi toplamak",
+            "Yalnızca seyyahlara ücretsiz konaklama ve müze gezisi hizmeti sunmak",
             "Seyyahlara müze hizmeti sunmak"
           ],
           "dogruIndex": 1,
@@ -2234,7 +2234,7 @@
             "A) Dini liderlik makamı",
             "B) Şehzadelerin yetiştirilmesi için atanan velilik görevi",
             "C) Vergi toplama yöntemi",
-            "D) Askeri komutanlık unvanı",
+            "D) Ordu içinde belirli birliklere verilen askeri komutanlık unvanı",
             "E) Ticaret kontrol sistemi"
           ],
           "dogruIndex": 1,
@@ -2318,7 +2318,7 @@
             "A) Ticaret okulu",
             "B) Dini ve pozitif bilimlerin öğretildiği yüksek eğitim kurumu",
             "C) Askeri eğitim merkezi",
-            "D) Vergi kayıtlarının tutulduğu yer",
+            "D) Devlete ait vergi kayıtlarının tutulduğu resmî defter dairesi",
             "E) Saray mutfağı"
           ],
           "dogruIndex": 1,
@@ -2329,7 +2329,7 @@
           "secenekler": [
             "A) Haçlı seferleri",
             "B) Kösedağ Savaşı sonrası Moğol hakimiyeti",
-            "C) Osmanlıların bölgeyi fethetmesi",
+            "C) Osmanlıların Anadolu'yu tümüyle fethetmesi ve ilhak etmesi",
             "D) İç isyanlar",
             "E) Bizans'ın tekrar güçlenmesi"
           ],
@@ -2375,7 +2375,7 @@
         {
           "soru": "İslam-Türk tarihinde 'Sultan' unvanını ilk kez resmî olarak kullanan hükümdar aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Tuğrul Bey",
+            "Selçuklu Sultanı Tuğrul Bey",
             "Gazneli Mahmud",
             "Alp Arslan",
             "Melikşah",
@@ -2535,7 +2535,7 @@
             "Bâtınîler (Haşhaşinler)",
             "Haricîler",
             "Mutezile",
-            "Karmatîler"
+            "Karmatîler (Karmatî hareketi)"
           ],
           "dogruIndex": 1,
           "aciklama": "Nizamülmülk, 1092'de Hasan Sabbah liderliğindeki Bâtınî (Haşhaşin/İsmaili) tarikatına mensup bir fedai tarafından öldürülmüştür."
@@ -2571,7 +2571,7 @@
             "Matematik, astronomi ve şiir (rubai)",
             "Sadece mimari",
             "Yalnızca askerlik",
-            "Sadece hat sanatı"
+            "Sadece hat sanatı ve süsleme (tezhip) alanı"
           ],
           "dogruIndex": 1,
           "aciklama": "Ömer Hayyam, Büyük Selçuklu döneminde yaşamış; matematik ve astronomi alanındaki çalışmalarının yanı sıra rubaileriyle de ün kazanmış çok yönlü bir bilgindir."
@@ -2652,7 +2652,7 @@
           "soru": "Harzemşahlar Devleti'nin son hükümdarı olan ve Moğollara karşı direniş gösteren kişi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Anuştekin",
-            "Alaeddin Tekiş",
+            "Harzemşah hükümdarı Alaeddin Tekiş",
             "Celaleddin Harzemşah",
             "Sencer",
             "Alp Arslan"
@@ -2701,7 +2701,7 @@
           "secenekler": [
             "Devşirme sistemi",
             "İkili (çifte) hakanlık sistemi",
-            "Atabeylik sistemi",
+            "Atabeylik (şehzade eğitmenliği) sistemi",
             "İkta sistemi",
             "Tımar sistemi"
           ],
@@ -2714,7 +2714,7 @@
             "Halifeliği ortadan kaldıran devlet",
             "Abbasi halifesini koruyup İslam dünyasının siyasi hamisi olan devlet",
             "Şii mezhebini benimseyen devlet",
-            "Sadece ticaretle ilgilenen bir hanedanlık",
+            "Yalnızca ticaret ve tarımla ilgilenip siyasetten tamamen uzak duran bir hanedanlık",
             "Anadolu'da kurulan ilk Türk devleti"
           ],
           "dogruIndex": 1,
@@ -2761,7 +2761,7 @@
           "secenekler": [
             "İkta sistemi",
             "Devlet sigortacılığı (kervan malı güvencesi)",
-            "Devşirme sistemi",
+            "Devşirme (hristiyan çocuk toplama) sistemi ve uygulaması",
             "Cizye vergisi",
             "Tımar sistemi"
           ],
@@ -2771,7 +2771,7 @@
         {
           "soru": "Anadolu Selçuklu Devleti döneminde Konya'da inşa edilen ve günümüzde Mevlana Müzesi olarak kullanılan yapı aslen ne amaçla yapılmıştır?",
           "secenekler": [
-            "Kervansaray",
+            "Kervansaray (kervan konaklama yapısı)",
             "Medrese",
             "Tekke (dergah)",
             "Darüşşifa",
@@ -2810,7 +2810,7 @@
             "Türk dilinin grameri",
             "Devlet yönetimi, adalet ve idari ilkeler",
             "İslam tasavvufu",
-            "Matematik ve astronomi",
+            "Matematik, astronomi ve geometri alanındaki temel kurallar",
             "Şiir ve edebiyat"
           ],
           "dogruIndex": 1,
@@ -2833,7 +2833,7 @@
           "secenekler": [
             "Konya'nın daha zengin olması",
             "I. Haçlı Seferi sonucu İznik'in kaybedilmesi",
-            "Konya'nın deniz kıyısında olması",
+            "Konya'nın işlek bir liman ve deniz kıyısı kenti olması",
             "Bizans'ın Konya'yı hediye etmesi",
             "Moğol baskısı"
           ],
@@ -2843,7 +2843,7 @@
         {
           "soru": "Aşağıdakilerden hangisi ilk Türk-İslam devletlerinde 'ikta' sahiplerinin yükümlülüklerinden biridir?",
           "secenekler": [
-            "Sadece vergi toplamak ve hazineye aktarmak",
+            "Toplanan bütün vergileri hiç eksiltmeden doğrudan merkezi hazineye aktarmak",
             "Gelirin bir kısmıyla asker beslemek ve gerektiğinde orduya katılmak",
             "Toprağı satmak",
             "Köylüleri başka bölgelere göç ettirmek",
@@ -2879,7 +2879,7 @@
         {
           "soru": "Malazgirt Savaşı'nda Alp Arslan'ın ordusunda kullandığı ve düşmanı yanıltmaya yönelik taktik aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Uzun kuşatma taktiği",
+            "Uzun süreli kale kuşatması ve bekleme taktiği",
             "Sahte geri çekilme (Turan taktiği)",
             "Deniz ablukası",
             "Suikast düzenleme",
@@ -2892,7 +2892,7 @@
           "soru": "Büyük Selçuklu Devleti'nde toprakların büyük bölümünün miri (devlet) arazisi sayılması ve bu arazilerin ikta yoluyla dağıtılması hangi amaca hizmet etmiştir?",
           "secenekler": [
             "Merkezi hazineye bağımlı olmayan güçlü bir ordu kurmak",
-            "Toprağı özel mülkiyete tamamen açmak",
+            "Bütün toprakları özel mülkiyete açıp serbestçe alınıp satılmasını sağlamak",
             "Ticareti sınırlamak",
             "Köylüleri özgür bırakmak",
             "Vergi toplanmasını engellemek"
@@ -2915,7 +2915,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türk-İslam devletlerinde görülen 'atabeylik' kurumunun bir sonucu olarak değerlendirilir?",
           "secenekler": [
-            "Merkezi otoritenin güçlenmesi",
+            "Merkezi otoritenin her zamankinden çok daha fazla güçlenip iyice mutlaklaşması",
             "Bazı atabeylerin zamanla bağımsız hareket ederek küçük beylikler kurması",
             "Kurultay geleneğinin canlanması",
             "Devşirme sisteminin başlaması",
@@ -2927,7 +2927,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Karahanlı Devleti dönemi Türk-İslam kültürünün bir özelliği olarak kabul edilir?",
           "secenekler": [
-            "Eserlerin yalnızca Arapça yazılması",
+            "Bütün edebi eserlerin istisnasız olarak yalnızca Arapça dilinde yazılması",
             "Türkçenin İslami bir edebiyat dili olarak kullanılmaya başlanması",
             "Göçebe kültürün tamamen terk edilmesi",
             "Yazının hiç kullanılmaması",
@@ -2975,7 +2975,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Büyük Selçuklu Devleti'nde 'has arazi' kavramını en doğru şekilde tanımlar?",
           "secenekler": [
-            "Köylülere dağıtılan küçük tarım parselleri",
+            "Köylü ailelere işlemeleri için dağıtılan küçük ölçekli tarım parselleri",
             "Geliri doğrudan sultana ve hanedan üyelerine ayrılan topraklar",
             "Vakıflara bağışlanan topraklar",
             "Yabancı tüccarlara satılan topraklar",
@@ -2987,7 +2987,7 @@
         {
           "soru": "Aşağıdakilerden hangisi ilk Türk-İslam devletlerinde bilim insanlarının himaye edilmesinin bir sonucu olarak gösterilebilir?",
           "secenekler": [
-            "Bilimsel faaliyetlerin tamamen durması",
+            "Bütün bilimsel ve akademik faaliyetlerin uzun bir süre boyunca tamamen durması",
             "Tıp, matematik, astronomi gibi alanlarda önemli eserlerin ortaya çıkması",
             "Yalnızca dini ilimlerin gelişmesi",
             "Medreselerin kapatılması",
@@ -3023,7 +3023,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Türk-İslam devletlerinde uygulanan 'ikta' sistemi ile Osmanlı'daki 'tımar' sistemi arasındaki temel benzerliği ifade eder?",
           "secenekler": [
-            "Her ikisi de miras yoluyla devredilebilen özel mülkiyettir",
+            "Her ikisi de babadan oğula miras yoluyla devredilebilen tam özel mülkiyet toprağıdır",
             "Her ikisinde de toprak geliri karşılığında asker besleme yükümlülüğü vardır",
             "Her ikisi de sadece vergi muafiyeti sağlar",
             "Her ikisi de yalnızca din adamlarına verilir",
@@ -3314,7 +3314,7 @@
             "Sabanîler",
             "Gazneliler",
             "Selçuklu Devleti",
-            "Harezmşahlar Devleti",
+            "Harezmşahlar (Harezm) Türk Devleti",
             "Büyük Selçuklu İmparatorluğu"
           ],
           "dogruIndex": 4,
@@ -3371,7 +3371,7 @@
         {
           "soru": "Sultan Alp Arslan'ın ölüm şekli nedir?",
           "secenekler": [
-            "Saldırıya uğramak",
+            "Bir av sırasında atından düşerek aldığı ağır yaralar yüzünden ölme",
             "Öldürmek",
             "Kendini öldürmek",
             "Hastalıktan ölme",
@@ -3385,7 +3385,7 @@
           "secenekler": [
             "Buhara, Gazne ve Harezm",
             "Sasanîler, Buhara ve Gazne",
-            "Selçuklu ve Danişmendliler",
+            "Selçuklular, Danişmendliler ve Saltuklular beylikleri",
             "Sasanîler, Harezm ve Gazne",
             "Buhara, Gazne, Harezm ve Sasanîler"
           ],
@@ -3883,7 +3883,7 @@
         {
           "soru": "İstanbul'un fethinden sonra Fatih Sultan Mehmet'in aldığı unvan aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Yıldırım",
+            "Yıldırım (şimşek) unvanı",
             "Gazi",
             "Kayser-i Rum",
             "Hünkar",
@@ -3925,7 +3925,7 @@
         {
           "soru": "Yavuz Sultan Selim'in Mısır Seferi (1517) sonucunda Osmanlı'ya geçen en önemli sembolik kazanım nedir?",
           "secenekler": [
-            "Baharat yolunun kontrolü",
+            "Baharat ticaret yolunun tamamının kontrolü ve denetimi",
             "İslam dünyasında halifelik kurumu",
             "Nil Nehri'nin kontrolü",
             "Kudüs'ün fethi",
@@ -3953,7 +3953,7 @@
         {
           "soru": "Osmanlı Devleti'nde 'tımar sistemi' ile aşağıdaki kavramlardan hangisi doğrudan ilişkilidir?",
           "secenekler": [
-            "Kapıkulu askerleri",
+            "Maaşlı kapıkulu piyade askerleri ve ocakları",
             "Eyalet sistemi ve sipahi ordusu",
             "Devşirme uygulaması",
             "Yeniçeri ocağı",
@@ -3981,7 +3981,7 @@
         {
           "soru": "Osmanlı Devleti'nde 'divan-ı hümayun'un işlevi nedir?",
           "secenekler": [
-            "Yalnızca askeri kararlar almak",
+            "Yalnızca ordu ve askerlikle ilgili kararların alındığı savaş kurulu",
             "Devlet işlerini görüşüp karara bağlayan yüksek yönetim kurulu",
             "Dini fetva organı",
             "Vilayet meclisi",
@@ -4026,7 +4026,7 @@
             "Ordu komutanlığı",
             "Fetva vermek ve dini hukuku denetlemek",
             "Vergi toplamak",
-            "Sadrazama vekâlet etmek",
+            "Sadrazamın yokluğunda ona vekâlet ederek divana başkanlık etmek",
             "Eyaletleri yönetmek"
           ],
           "dogruIndex": 1,
@@ -4077,7 +4077,7 @@
         {
           "soru": "Osmanlı Devleti'nin Avrupa'ya ilk geçtiği yer aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) İstanbul Boğazı",
+            "A) İstanbul Boğazı üzerinden Anadolu yakası",
             "B) Çanakkale Boğazı – Gelibolu",
             "C) Edirne",
             "D) Selanik",
@@ -4103,7 +4103,7 @@
           "secenekler": [
             "A) Eyalet idaresini yönetmek",
             "B) Hükümdara bağlı merkezi piyade kuvveti oluşturmak",
-            "C) Gümrük vergilerini toplamak",
+            "C) Sınır kapılarındaki gümrük ve geçiş vergilerini toplamak",
             "D) Dini eğitim vermek",
             "E) Saray mutfağını yönetmek"
           ],
@@ -4129,7 +4129,7 @@
             "B) Gemileri karadan yürüterek Haliç'e indirmek",
             "C) Tüneller kazmak",
             "D) Rüzgâr bekleme stratejisi",
-            "E) Venedik ile ittifak kurmak"
+            "E) Venedik ve Ceneviz donanmalarıyla ittifak kurmak"
           ],
           "dogruIndex": 1,
           "aciklama": "Fatih Sultan Mehmet, Bizans'ın Haliç'e gerdiği zinciri aşmak için gece boyunca gemilerini yağlanmış kütükler üzerinde karadan yürüterek Haliç'e indirmiştir."
@@ -4177,7 +4177,7 @@
             "B) Turgut Reis",
             "C) Hayreddin Barbaros",
             "D) Kemal Reis",
-            "E) Uluç Ali Reis"
+            "E) Uluç Ali Reis (Kılıç Ali Paşa)"
           ],
           "dogruIndex": 2,
           "aciklama": "Hayreddin Barbaros Paşa, 1538 Preveze'de Haçlı donanmasını mağlup ederek Osmanlı'nın Akdeniz üstünlüğünü yaklaşık 30 yıl sürdüreceği dönemi başlatmıştır."
@@ -4188,7 +4188,7 @@
             "A) Farklı bölgelerden alınmaları",
             "B) Verilen toprakların gelir büyüklüğüne göre kademelendirilmesi",
             "C) Farklı dini gruplar için oluşturulmaları",
-            "D) Üretilen ürün çeşidine göre sınıflandırılmaları",
+            "D) Üzerinde üretilen tarım ürününün çeşidine göre ayrı ayrı sınıflandırılmaları",
             "E) Farklı hanedanlara bağlı olmaları"
           ],
           "dogruIndex": 1,
@@ -4197,7 +4197,7 @@
         {
           "soru": "Osmanlı Devleti'nde 'sadrazam' kimdir?",
           "secenekler": [
-            "A) Dini işlerden sorumlu en üst yetkili",
+            "A) Dini işlerden ve fetva makamından sorumlu olan en üst düzey devlet yetkilisi",
             "B) Padişahın mutlak vekili olan ve devleti yöneten en üst yönetici",
             "C) Ordunun başkomutanı",
             "D) Hazineyi yöneten baş görevli",
@@ -4213,7 +4213,7 @@
             "B) Lepanto (1571)",
             "C) Hint Deniz Seferleri (1538)",
             "D) Cerbe (1560)",
-            "E) Kıbrıs Seferi (1571)"
+            "E) Kıbrıs Adası Fetih Seferi (1571)"
           ],
           "dogruIndex": 2,
           "aciklama": "Kanuni döneminde Portekizlilerin Hint Okyanusu'ndaki tehlikesine karşı Hadım Süleyman Paşa komutasında Hint Deniz Seferleri düzenlenmiştir."
@@ -4237,7 +4237,7 @@
             "B) Padişaha doğrudan bağlı merkezi ordu mensupları",
             "C) Eyalet valileri",
             "D) Ticaret esnafı",
-            "E) Dini vakıf görevlileri"
+            "E) Dini vakıflarda görev yapan din adamları ve görevlileri"
           ],
           "dogruIndex": 1,
           "aciklama": "Kapıkulu, padişahın kapısına (sarayına) mensup olan ve maaş karşılığı görev yapan merkezi ordu ve bürokrasi mensuplarını ifade eder; yeniçeriler bu grubun en önemli parçasıdır."
@@ -4356,7 +4356,7 @@
             "Yıldırım Bayezid",
             "Çelebi Mehmet (I. Mehmet)",
             "II. Murat",
-            "Fatih Sultan Mehmet",
+            "Fatih Sultan Mehmet (II. Mehmet)",
             "II. Bayezid"
           ],
           "dogruIndex": 1,
@@ -4417,7 +4417,7 @@
             "Patrikhaneyi tanıyarak dini ve idari yetkilerini korumuştur",
             "Patriği idam ettirmiştir",
             "Patrikhaneyi Roma'ya taşımıştır",
-            "Ortodoksları İstanbul'dan sürmüştür"
+            "Bütün Ortodoks halkı İstanbul'dan sürerek Anadolu'ya göç ettirmiştir"
           ],
           "dogruIndex": 1,
           "aciklama": "Fatih Sultan Mehmet, fetihten sonra Rum Ortodoks Patrikhanesi'ni tanımış; gayrimüslim tebaanın dini ve idari özerkliğini büyük ölçüde korumuştur."
@@ -4427,7 +4427,7 @@
           "secenekler": [
             "Mora Despotluğu",
             "Trabzon Rum İmparatorluğu",
-            "Venedik Cumhuriyeti",
+            "Venedik Deniz Cumhuriyeti Devleti",
             "Ceneviz Cumhuriyeti",
             "Kıbrıs Krallığı"
           ],
@@ -4461,7 +4461,7 @@
         {
           "soru": "II. Bayezid döneminde yaşanan ve kardeşi Cem Sultan ile giriştiği taht mücadelesinin sonucu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Cem Sultan tahtı ele geçirmiştir",
+            "Cem Sultan savaşı kazanarak tahtı ele geçirmiştir",
             "Cem Sultan yenilerek Avrupa'ya sığınmıştır",
             "İkisi ülkeyi paylaşmıştır",
             "Cem Sultan idam edilmiştir",
@@ -4511,7 +4511,7 @@
           "secenekler": [
             "Baharat Yolu'nun büyük ölçüde Osmanlı denetimine girmesi",
             "İpek Yolu'nun kapanması",
-            "Karadeniz ticaretinin sona ermesi",
+            "Karadeniz üzerinden yürütülen bütün ticaretin tamamen sona ermesi",
             "Akdeniz'in Venedik'e bırakılması",
             "Tuz ticaretinin yasaklanması"
           ],
@@ -4569,7 +4569,7 @@
         {
           "soru": "Preveze Deniz Savaşı (1538) hangi devletler ittifakına karşı kazanılmıştır?",
           "secenekler": [
-            "Yalnızca Venedik'e karşı",
+            "Yalnızca Venedik Cumhuriyeti donanmasına karşı tek başına verilen",
             "Haçlı deniz ittifakına (İspanya, Venedik, Papalık vb.) karşı",
             "Portekiz'e karşı",
             "İngiltere'ye karşı",
@@ -4593,7 +4593,7 @@
         {
           "soru": "Osmanlı donanmasına katılarak Cezayir'i Osmanlı hakimiyetine sokan ve daha sonra kaptan-ı deryalık yapan denizci aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Turgut Reis",
+            "Turgut Reis (Dragut Paşa)",
             "Barbaros Hayreddin Paşa",
             "Piri Reis",
             "Kemal Reis",
@@ -4632,7 +4632,7 @@
             "Padişaha ait has topraklar",
             "Yıllık geliri 20.000 ile 100.000 akçe arasında olan dirlik toprakları",
             "Vakıf toprakları",
-            "Köylülere ait mülk topraklar",
+            "Köylü ailelerin babadan oğula miras yoluyla bıraktığı özel mülk toprakları",
             "Yabancılara satılan topraklar"
           ],
           "dogruIndex": 1,
@@ -4800,7 +4800,7 @@
             "Orta Anadolu'nun tam merkezinde bulunması",
             "Bizans sınırında uç beyliği olarak fetih imkânı bulması",
             "Akdeniz kıyısında olması",
-            "Doğu Anadolu'da güçlü komşulara sahip olması",
+            "Doğu Anadolu bölgesinde güçlü ve köklü komşu devletlere sahip olması",
             "Karadeniz'e kıyısının bulunmaması"
           ],
           "dogruIndex": 1,
@@ -4809,7 +4809,7 @@
         {
           "soru": "Aşağıdakilerden hangisi Osmanlı Devleti'nin kuruluş döneminde Anadolu'daki siyasi birliği geçici olarak sekteye uğratan gelişmedir?",
           "secenekler": [
-            "I. Kosova Savaşı",
+            "I. Kosova Meydan Savaşı (1389 yılı)",
             "Niğbolu Savaşı",
             "Ankara Savaşı ve Fetret Devri",
             "Varna Savaşı",
@@ -4821,7 +4821,7 @@
         {
           "soru": "1396 Niğbolu Savaşı, Yıldırım Bayezid'in hangi güce karşı kazandığı bir zaferdir?",
           "secenekler": [
-            "Bizans'a karşı",
+            "Bizans İmparatorluğu ordusuna karşı",
             "Haçlı ittifakına karşı",
             "Timur'a karşı",
             "Memlüklere karşı",
@@ -4883,7 +4883,7 @@
           "secenekler": [
             "Savaş esirlerinin beşte birinin devlete ayrılması",
             "Vergi toplama yöntemi",
-            "Toprak dağıtım sistemi",
+            "Dirlik topraklarının askerlere dağıtılmasını düzenleyen sistem",
             "Yeniçeri maaş sistemi",
             "Deniz ticareti vergisi"
           ],
@@ -4907,7 +4907,7 @@
           "secenekler": [
             "Halkı vergiden muaf tutmak",
             "Kapıkulu askerlerinin desteğini ve bağlılığını sağlamak",
-            "Yabancı elçilere hediye vermek",
+            "Yabancı devlet elçilerine değerli hediyeler vererek gönüllerini almak",
             "Ulemaya maaş bağlamak",
             "Ticareti canlandırmak"
           ],
@@ -4931,7 +4931,7 @@
           "secenekler": [
             "Kanunname-i Ali Osman",
             "Mecelle",
-            "Tanzimat Fermanı",
+            "Tanzimat Fermanı (Gülhane Hattı)",
             "Kanun-i Esasi",
             "Islahat Fermanı"
           ],
@@ -4944,7 +4944,7 @@
             "Fethedilen bölge halkına hoşgörülü davranarak gönlünü kazanma politikası",
             "Sıkı vergi toplama politikası",
             "Zorunlu göç ettirme politikası",
-            "Din değiştirmeye zorlama politikası",
+            "Fethedilen bölgelerdeki halkı zorla din değiştirmeye ve göçe zorlama politikası",
             "Sınır bölgelerini boşaltma politikası"
           ],
           "dogruIndex": 0,
@@ -5015,7 +5015,7 @@
           "secenekler": [
             "Tımar",
             "Kapitülasyon",
-            "İltizam",
+            "İltizam (vergi ihalesi) usulü",
             "Cizye",
             "Avarız"
           ],
@@ -5025,7 +5025,7 @@
         {
           "soru": "Osmanlı Devleti'nde Fransa'ya ilk kez kapsamlı kapitülasyonların verilmesinin arka planındaki temel dış politika amacı aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Fransa'yı Osmanlı topraklarına yerleştirmek",
+            "Fransız halkını Osmanlı topraklarına kalıcı olarak yerleştirip iskan etmek ve vergilendirmek",
             "Avrupa'da Habsburg (Kutsal Roma-İspanya) gücüne karşı bir denge unsuru oluşturmak",
             "Fransa ile din birliği kurmak",
             "Fransa'yı vergiye bağlamak",
@@ -5349,7 +5349,7 @@
         {
           "soru": "Osmanlı Devleti'nin kuruluş aşamasında önemli bir figür olan Ertuğrul Gazi'nin gerçek ismi neydi?",
           "secenekler": [
-            "Osman",
+            "Osman (Osmancık)",
             "Ertuğrul",
             "Gazi",
             "Bey",
@@ -5401,7 +5401,7 @@
             "Orhan Gazi",
             "I. Murad",
             "Süleyman the Magnificent",
-            "Yavuz Sultan Selim"
+            "Yavuz Sultan Selim Han (I. Selim)"
           ],
           "dogruIndex": 3,
           "aciklama": "Bu seçeneği seçen kullanıcılar haklıdır, Osmanlı İmparatorluğu'nun en önemli figürü Süleyman the Magnificent'tir."
@@ -5860,7 +5860,7 @@
         {
           "soru": "Osmanlı'nın I. Dünya Savaşı'nda yanında savaştığı devletler hangi grubu oluşturur?",
           "secenekler": [
-            "İngiltere, Fransa, Rusya",
+            "İngiltere, Fransa, Rusya ve İtalya Krallığı devletleri",
             "Almanya, Avusturya-Macaristan, Bulgaristan",
             "İtalya, Sırbistan, Romanya",
             "ABD, Japonya, Belçika",
@@ -5888,7 +5888,7 @@
           "secenekler": [
             "A) Kâtip Çelebi",
             "B) İbrahim Müteferrika",
-            "C) Evliya Çelebi",
+            "C) Ünlü seyyah Evliya Çelebi",
             "D) Hacı Halife",
             "E) Koçi Bey"
           ],
@@ -5922,7 +5922,7 @@
         {
           "soru": "Osmanlı'da 'Sened-i İttifak' hangi taraflar arasında imzalanmıştır?",
           "secenekler": [
-            "A) Osmanlı-Fransa",
+            "A) Osmanlı ile Fransa Krallığı",
             "B) Osmanlı-İngiltere",
             "C) Padişah-Anadolu ayanları",
             "D) Osmanlı-Rusya",
@@ -5958,7 +5958,7 @@
         {
           "soru": "Osmanlı'nın I. Dünya Savaşı'ndaki en büyük askeri başarısı aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Kafkasya Cephesi zaferi",
+            "A) Kafkasya Cephesi'nde Rus ordusuna karşı kazanılan büyük Sarıkamış zaferi",
             "B) Çanakkale Cephesi'nde İtilaf kuvvetlerinin püskürtülmesi",
             "C) Sina Cephesi'nin savunulması",
             "D) Irak Cephesi'nde İngilizlerin durdurulması",
@@ -5970,7 +5970,7 @@
         {
           "soru": "Osmanlı Devleti'nde 1876 anayasasını askıya alan padişah kimdir?",
           "secenekler": [
-            "A) V. Murat",
+            "A) Kısa süre tahtta kalan V. Murat",
             "B) Abdülmecit",
             "C) Abdülaziz",
             "D) II. Abdülhamit",
@@ -5982,7 +5982,7 @@
         {
           "soru": "Osmanlı'da kapitülasyonların ekonomik zararı nedir?",
           "secenekler": [
-            "A) Osmanlı tüccarlarının daha fazla vergi ödemesi",
+            "A) Osmanlı tüccarlarının yabancı rakiplerine kıyasla çok daha fazla vergi ödeyerek ticaret hayatından tamamen çekilmek zorunda kalması",
             "B) Yabancı tüccarların düşük gümrük ve vergi avantajıyla Osmanlı pazarlarında rekabet üstünlüğü kazanması",
             "C) Osmanlı'nın dış ticaret yapamaması",
             "D) Yabancı gemilerin Boğazlardan geçememesi",
@@ -5998,7 +5998,7 @@
             "B) Gayrimüslim toplulukların kendi dini liderliği altında özerk yönetimini tanıyan düzen",
             "C) Askeri ordu düzeni",
             "D) Vergi toplama sistemi",
-            "E) Eyalet yönetim biçimi"
+            "E) Eyaletlerin merkezden atanan valiler eliyle yönetildiği geleneksel taşra idari taksimat biçimi"
           ],
           "dogruIndex": 1,
           "aciklama": "Millet sistemi, Osmanlı'da Rum, Ermeni, Yahudi gibi gayrimüslim toplulukların kendi dini liderliklerince yönetildiği; iç işlerde özerklik tanınan bir düzendir."
@@ -6008,7 +6008,7 @@
           "secenekler": [
             "A) Oy kullanma hakkı",
             "B) Devlet memuru olabilme ve askeri görev üstlenebilme hakkı",
-            "C) Kendi ordularını kurma hakkı",
+            "C) Kendi bağımsız ordularını ve silahlı birliklerini kurma hakkı",
             "D) Vergi muafiyeti",
             "E) Bağımsız mahkeme kurma hakkı"
           ],
@@ -6022,7 +6022,7 @@
             "B) Ordu içindeki İttihat-Terakki çatışması ve salgın hastalıklar",
             "C) Rusya'nın doğrudan müdahale etmesi",
             "D) Padişahın teslim olması",
-            "E) Avusturya'nın savaşa katılması"
+            "E) Avusturya-Macaristan'ın Birinci Balkan Savaşı'na doğrudan askeri katılması"
           ],
           "dogruIndex": 1,
           "aciklama": "Birinci Balkan Savaşı'nda Osmanlı ordusu içi çekişmeler, salgın hastalıklar, lojistik yetersizlikler ve koordinasyon eksikliği nedeniyle hızla geri çekilmek zorunda kalmıştır."
@@ -6034,7 +6034,7 @@
             "B) 1908'de II. Meşrutiyet'in ilanıyla fiilî iktidarı ele geçirerek",
             "C) 1912'de askeri darbe ile",
             "D) 1914'te padişah tarafından atanarak",
-            "E) 1918'de yabancı devletlerin desteğiyle"
+            "E) 1918'de İtilaf yabancı devletlerinin doğrudan desteği ve baskısıyla"
           ],
           "dogruIndex": 1,
           "aciklama": "İttihat ve Terakki Cemiyeti, 1908'de II. Meşrutiyet'i ilan ettirerek fiilî iktidarı ele geçirmiş; özellikle 1913 Bâb-ı Âli Baskını'ndan sonra tek parti iktidarına dönüşmüştür."
@@ -6056,7 +6056,7 @@
           "secenekler": [
             "A) Savaş",
             "B) Düzenleme/yeniden yapılandırma",
-            "C) Bağımsızlık",
+            "C) Devletin tam bağımsızlığını ilan etmesi",
             "D) Vergi",
             "E) Eğitim"
           ],
@@ -6082,7 +6082,7 @@
             "Balkan Savaşları",
             "Kırım Savaşı",
             "93 Harbi",
-            "Trablusgarp Savaşı"
+            "Trablusgarp ve Bingazi Savaşları"
           ],
           "dogruIndex": 0,
           "aciklama": "1683 II. Viyana bozgunundan sonra Avusturya, Lehistan, Venedik ve Rusya'nın oluşturduğu Kutsal İttifak ile savaşlar başlamış; bu savaşlar 1699 Karlofça Antlaşması ile sona ermiştir."
@@ -6138,7 +6138,7 @@
         {
           "soru": "1774 Küçük Kaynarca Antlaşması ile Kırım'ın statüsü nasıl değişmiştir?",
           "secenekler": [
-            "Doğrudan Rusya'ya ilhak edilmiştir",
+            "Doğrudan Rusya İmparatorluğu'na ilhak edilerek bağlanmıştır",
             "Osmanlı'dan ayrılarak bağımsız hale getirilmiştir",
             "Avusturya himayesine bırakılmıştır",
             "Osmanlı'ya bağlı kalmaya devam etmiştir",
@@ -6152,7 +6152,7 @@
           "secenekler": [
             "Osmanlı ordusunu denetleme hakkı",
             "Osmanlı topraklarındaki Ortodoksları koruma bahanesiyle müdahale hakkı",
-            "Osmanlı sarayında elçi bulundurmama hakkı",
+            "Osmanlı sarayında sürekli olarak daimi elçi bulundurmama ve temsilci gönderme hakkı",
             "Osmanlı parasını basma hakkı",
             "Osmanlı donanmasını yönetme hakkı"
           ],
@@ -6174,7 +6174,7 @@
         {
           "soru": "Sened-i İttifak (1808) belgesinin imzalanmasındaki temel amaç aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Halka temel hak ve özgürlükler tanımak",
+            "Halka geniş temel hak ve özgürlükler tanıyarak modern anlamda anayasal bir hukuk düzeni oluşturmak",
             "Padişah ile Anadolu ve Rumeli ayanları arasında karşılıklı yetki ve güvence dengesini kurmak",
             "Azınlıklara eşitlik sağlamak",
             "Yeniçeri Ocağı'nı güçlendirmek",
@@ -6186,7 +6186,7 @@
         {
           "soru": "Sened-i İttifak, Osmanlı anayasal tarihi açısından niçin önemlidir?",
           "secenekler": [
-            "İlk yazılı anayasa olması",
+            "Osmanlı tarihinin ilk yazılı ve resmî anayasası kabul edilmesi",
             "Padişahın yetkilerini sınırlayan ilk belge sayılması",
             "Meclis-i Mebusan'ı kurması",
             "Kadınlara siyasi haklar tanıması",
@@ -6198,7 +6198,7 @@
         {
           "soru": "II. Mahmut döneminde 1826'da Yeniçeri Ocağı'nın kaldırılmasının ardından kurulan yeni ordu aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Nizam-ı Cedid",
+            "III. Selim'in kurduğu Nizam-ı Cedid ordusu",
             "Asakir-i Mansure-i Muhammediye",
             "Kapıkulu Ocağı",
             "Redif Ordusu",
@@ -6235,7 +6235,7 @@
           "soru": "1821'de başlayıp 1830'da Yunanistan'ın bağımsızlığıyla sonuçlanan isyan, Osmanlı Devleti için hangi açıdan önemli bir dönüm noktasıdır?",
           "secenekler": [
             "İlk kez bir gayrimüslim topluluğun bağımsız bir devlet kurması",
-            "İlk toprak kaybı olması",
+            "Osmanlı Devleti'nin tarihinde verdiği ilk büyük toprak kaybı olması",
             "İlk anayasanın ilan edilmesi",
             "İlk kapitülasyonun verilmesi",
             "İlk demiryolunun yapılması"
@@ -6272,7 +6272,7 @@
           "secenekler": [
             "Dini ayrılıkçılık",
             "Mısır'ın bağımsızlığını ve oğlu için kalıcı valilik hakkını istemesi",
-            "Rusya ile ittifak kurma isteği",
+            "Rusya İmparatorluğu ile askeri ittifak kurma ve Osmanlı'ya karşı savaşma isteği",
             "Halifelik makamını talep etmesi",
             "Kapitülasyonları genişletme isteği"
           ],
@@ -6282,7 +6282,7 @@
         {
           "soru": "1838 Balta Limanı Ticaret Antlaşması'nın Osmanlı ekonomisi üzerindeki temel etkisi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Osmanlı sanayisinin korunması",
+            "Osmanlı yerli sanayisinin gümrük duvarlarıyla dış rekabete karşı tam olarak korunması",
             "İngiliz mallarına düşük gümrük tanınarak Osmanlı pazarının dış rekabete açılması",
             "Osmanlı ihracatının artması",
             "Yerli sanayinin güçlenmesi",
@@ -6318,7 +6318,7 @@
         {
           "soru": "1856 Paris Antlaşması ile Osmanlı Devleti'ne tanınan ve büyük ölçüde sembolik kalan statü aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Bağımsızlığının ilk kez tanınması",
+            "Osmanlı bağımsızlığının ilk kez uluslararası düzeyde resmen tanınması",
             "Avrupa devletler hukukundan (Avrupa Concert'i) yararlanma statüsü",
             "Halifeliğin uluslararası tanınması",
             "Kapitülasyonların kaldırılması",
@@ -6342,7 +6342,7 @@
         {
           "soru": "Osmanlı Devleti'nin ödeyemediği dış borçlarını denetlemek amacıyla 1881'de kurulan ve devletin bazı gelir kaynaklarına el koyan kurum aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Reji İdaresi",
+            "Tütün gelirlerini yöneten Reji İdaresi",
             "Duyun-u Umumiye İdaresi",
             "Ziraat Bankası",
             "Osmanlı Bankası",
@@ -6368,7 +6368,7 @@
           "secenekler": [
             "Kırım Savaşı",
             "Osmanlı-Rus Savaşı (93 Harbi)",
-            "Balkan Savaşları",
+            "Osmanlı'nın yenildiği Birinci Balkan Savaşları",
             "I. Dünya Savaşı",
             "Trablusgarp Savaşı"
           ],
@@ -6390,7 +6390,7 @@
         {
           "soru": "II. Abdülhamit döneminde Anadolu'yu Avrupa ile bağlamak ve Almanya ile ekonomik-siyasi ilişkileri güçlendirmek amacıyla yapımına başlanan demiryolu projesi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Hicaz Demiryolu",
+            "Hac yolunu kolaylaştıran Hicaz Demiryolu hattı",
             "Bağdat Demiryolu",
             "Şark Demiryolu",
             "Anadolu-Bağdat Demiryolu (Almanlarla)",
@@ -6464,7 +6464,7 @@
           "secenekler": [
             "Trablusgarp'ın Osmanlı'da kalması",
             "Trablusgarp ve Bingazi'nin İtalya'ya bırakılması",
-            "Rodos'un Osmanlı'ya geri verilmesi",
+            "Rodos ve Oniki Ada'nın Osmanlı Devleti'ne geri verilmesi",
             "Mısır'ın Osmanlı'ya bağlanması",
             "Balkanlar'ın Osmanlı'da kalması"
           ],
@@ -6548,7 +6548,7 @@
           "secenekler": [
             "Osmanlı'yı savaşa sokmak",
             "İtilaf Devletleri'nin İstanbul'u ele geçirip Rusya'ya yardım ulaştırmak istemesi",
-            "Osmanlı'nın Mısır'ı fethetmesini engellemek",
+            "Osmanlı ordusunun Mısır'ı ve Süveyş Kanalı'nı ele geçirmesini kesin olarak engellemek",
             "Balkan Savaşları'nı bitirmek",
             "Almanya'yı Avrupa'dan çıkarmak"
           ],
@@ -6558,7 +6558,7 @@
         {
           "soru": "Çanakkale Muharebeleri sırasında 18 Mart 1915'te gerçekleşen ve Osmanlı deniz savunmasının başarıyla sonuçlandığı olay aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Kara Muharebeleri'nin başlaması",
+            "Anafartalar bölgesinde kara muharebelerinin fiilen resmen başlaması",
             "İtilaf donanmasının Boğaz'ı geçme girişiminin püskürtülmesi",
             "Anzak çıkarması",
             "Seddülbahir çıkarması",
@@ -6570,7 +6570,7 @@
         {
           "soru": "I. Dünya Savaşı sırasında Osmanlı Devleti'nde Ermeni tehciri kararının alınmasında gerekçe olarak gösterilen gelişme aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Ermeni topluluklarının vergi ödememesi",
+            "Ermeni topluluklarının devlete karşı toplu biçimde vergi ödemeyi reddederek isyan çıkarması",
             "Doğu cephesinde Rus ordusuyla iş birliği yaptığı iddia edilen Ermeni çete faaliyetleri",
             "Ermenilerin Balkan Savaşları'na katılması",
             "Ermenilerin İstanbul'u işgal girişimi",
@@ -6606,7 +6606,7 @@
         {
           "soru": "Osmanlı Devleti'nde duraklama döneminin askeri nedenleri arasında aşağıdakilerden hangisi gösterilir?",
           "secenekler": [
-            "Coğrafi Keşiflerin ticaret yollarının önemini azaltması",
+            "Coğrafi Keşiflerin eski ticaret yollarının önemini azaltarak Osmanlı gelirlerini düşürmesi",
             "Avrupa'da düzenli ve disiplinli orduların kurulmasına karşın Osmanlı ordusundaki bozulma",
             "Yeni kıtaların keşfedilmesi",
             "Rönesans hareketinin başlaması",
@@ -6621,7 +6621,7 @@
             "Tımar sisteminin bozulması ve iltizam uygulamasının yaygınlaşması",
             "Kapitülasyonların kaldırılması",
             "Sanayi Devrimi'nin Osmanlı'da başlaması",
-            "Yeni ticaret yollarının Osmanlı üzerinden geçmesi",
+            "Yeni keşfedilen ticaret yollarının tamamen Osmanlı toprakları üzerinden geçmeye devam etmesi",
             "Deniz ticaretinin tamamen durması"
           ],
           "dogruIndex": 0,
@@ -6630,7 +6630,7 @@
         {
           "soru": "Coğrafi Keşiflerin Osmanlı ekonomisi üzerindeki en önemli olumsuz etkisi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Osmanlı topraklarının işgal edilmesi",
+            "Osmanlı topraklarının Avrupalı devletler tarafından doğrudan ve tümüyle işgal edilerek sömürgeleştirilmesi",
             "İpek ve Baharat Yolu'nun öneminin azalması ve Osmanlı'nın transit ticaret gelirlerinin düşmesi",
             "Osmanlı ordusunun zayıflaması",
             "Yeniçeri isyanlarının artması",
@@ -6642,7 +6642,7 @@
         {
           "soru": "Osmanlı Devleti'nde 'Kadızadeliler' hareketi ile ilgili aşağıdaki ifadelerden hangisi DOĞRUDUR?",
           "secenekler": [
-            "Batı tarzı reformları savunan bir harekettir",
+            "Batı tarzı yenilikleri ve modern reformları açıkça savunan yenilikçi ve ilerici bir siyasi harekettir",
             "17. yüzyılda dini kuralların katı biçimde uygulanmasını savunan muhafazakar bir harekettir",
             "Yeniçeri Ocağı'nı kaldırmayı amaçlayan bir harekettir",
             "Azınlık haklarını savunan bir harekettir",
@@ -6654,7 +6654,7 @@
         {
           "soru": "Osmanlı Devleti'nde II. Osman'ın (Genç Osman) yeniçeriler tarafından tahttan indirilip öldürülmesi (1622) hangi açıdan önemlidir?",
           "secenekler": [
-            "İlk kez bir padişahın yabancı bir devlet tarafından öldürülmesi",
+            "İlk kez bir Osmanlı padişahının yabancı bir düşman devlet tarafından esir alınıp öldürülmesi",
             "Bir Osmanlı padişahının kendi askerleri tarafından öldürülen ilk örneği olması",
             "Halifeliğin kaldırılmasına yol açması",
             "Tanzimat sürecini başlatması",
@@ -6667,7 +6667,7 @@
           "soru": "IV. Murat döneminde devlet otoritesinin yeniden sağlanması amacıyla alınan sert tedbirler arasında aşağıdakilerden hangisi gösterilir?",
           "secenekler": [
             "Tütün, kahve ve içki yasaklarının sıkı biçimde uygulanması",
-            "Kapitülasyonların genişletilmesi",
+            "Yabancı devletlere kapitülasyonların yeniden genişletilerek verilmesi",
             "Yeniçeri Ocağı'nın kaldırılması",
             "Meşrutiyetin ilan edilmesi",
             "Tanzimat Fermanı'nın hazırlanması"
@@ -6714,7 +6714,7 @@
         {
           "soru": "Osmanlı Devleti'nde ilk nüfus sayımı hangi amaçla ve hangi padişah döneminde yapılmıştır?",
           "secenekler": [
-            "Seçim yapmak amacıyla, II. Abdülhamit döneminde",
+            "Genel seçim yapmak ve halkın oyunu almak amacıyla, II. Abdülhamit döneminde başlatılarak",
             "Asker ve vergi mükellefi sayısını belirlemek amacıyla, II. Mahmut döneminde",
             "Göçleri önlemek amacıyla, III. Selim döneminde",
             "Eğitim planlaması amacıyla, Abdülmecit döneminde",
@@ -6728,7 +6728,7 @@
           "secenekler": [
             "Enderun Mektebi",
             "Rüşdiyeler ve Mekteb-i Mülkiye",
-            "Sahn-ı Seman Medreseleri",
+            "Fatih döneminde kurulan Sahn-ı Seman Medreseleri",
             "Nizamiye Medreseleri",
             "Acemi Ocağı"
           ],
@@ -6750,7 +6750,7 @@
         {
           "soru": "Osmanlı Devleti'nde 1839-1876 yılları arasındaki dönemde padişahın yetkilerinin hukuk önünde bir ölçüde sınırlanmaya başlamasının temel göstergesi aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Padişahın ordudan çekilmesi",
+            "Padişahın ordunun başkomutanlığından ve yönetiminden tamamen çekilmesi",
             "Kanun önünde eşitlik ilkesinin ve yargılama güvencelerinin tanınması",
             "Halifeliğin kaldırılması",
             "Saltanatın kaldırılması",
@@ -6762,7 +6762,7 @@
         {
           "soru": "Osmanlı Devleti'nde Islahat Fermanı (1856) ile Tanzimat Fermanı (1839) arasındaki temel fark aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Islahat Fermanı yalnızca Müslümanlara hak tanımıştır",
+            "Islahat Fermanı yalnızca Müslüman tebaaya yeni haklar ve çeşitli geniş ayrıcalıklar tanımıştır",
             "Islahat Fermanı büyük ölçüde gayrimüslimlere yönelik hak ve ayrıcalıkları genişletmiştir",
             "Tanzimat Fermanı bir dış baskı sonucu ilan edilmiştir",
             "Islahat Fermanı halifeliği kaldırmıştır",
@@ -6789,7 +6789,7 @@
             "Balkan Savaşları'ndaki başarısızlığın hükümeti sorumlu tutması",
             "Tanzimat Fermanı'nın uygulanmaması",
             "Kırım Savaşı'nın kaybedilmesi",
-            "Meclis-i Mebusan'ın kapatılması istekleri",
+            "Meclis-i Mebusan'ın padişah tarafından kapatılması yönündeki istekler",
             "Halifeliğin kaldırılması talebi"
           ],
           "dogruIndex": 0,
@@ -6798,7 +6798,7 @@
         {
           "soru": "I. Dünya Savaşı sırasında Osmanlı Devleti'nin savaşa girmesini sağlayan ve Karadeniz'deki Rus limanlarının bombalanmasıyla sonuçlanan olay aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Sarıkamış Harekâtı",
+            "Enver Paşa'nın yönettiği Sarıkamış Harekâtı",
             "Goeben ve Breslau (Yavuz-Midilli) olayı",
             "Kanal Harekâtı",
             "Çanakkale Savunması",
@@ -6810,7 +6810,7 @@
         {
           "soru": "Osmanlı Devleti I. Dünya Savaşı'na girerken ilan ettiği ve savaşı tüm Müslümanlar için dini bir yükümlülük olarak sunmaya çalıştığı çağrı aşağıdakilerden hangisidir?",
           "secenekler": [
-            "Fetva-i Şerif",
+            "Şeyhülislam tarafından okunan Fetva-i Şerif",
             "Cihad-ı Ekber ilanı",
             "Hutbe-i Şerif",
             "Kanun-i Esasi",
@@ -6906,7 +6906,7 @@
         {
           "soru": "Osmanlı'nın 19. yüzyılda duraklama gerileme ve çöküş sürecini nasıl tanımlayabiliriz?",
           "secenekler": [
-            "Osmanlı, 19. yüzyılda hızlı bir şekilde büyüdü ve güçlendi.",
+            "Osmanlı, 19. yüzyılda çok hızlı bir şekilde büyüyerek her alanda güçlenip altın çağını yaşadı.",
             "Osmanlı, 19. yüzyılda siyasi, ekonomik ve askeri açıdan gerileme ve çöküş yaşamaya başladı.",
             "Osmanlı, 19. yüzyılda yalnızca askeri açıdan güçlendi.",
             "Osmanlı, 19. yüzyılda ekonomik açıdan güçlendi.",
@@ -6918,7 +6918,7 @@
         {
           "soru": "Osmanlı'nın gerileme ve çöküş sürecinde en büyük etken neydi?",
           "secenekler": [
-            "Osmanlı'nın askeri güç kaybı",
+            "Osmanlı'nın askeri alandaki büyük güç ve üstünlük kaybı",
             "Osmanlı'nın ekonomik güç kaybı",
             "Osmanlı'nın siyasi güç kaybı",
             "Osmanlı'nın tüm bu etkenlerin kombinasyonu",
@@ -6931,7 +6931,7 @@
           "soru": "Osmanlı'nın 19. yüzyılda iç savaş ve bölünme neden oldu?",
           "secenekler": [
             "Osmanlı'nın askeri güç kaybı",
-            "Osmanlı'nın ekonomik güç kaybı",
+            "Osmanlı'nın ekonomik alandaki ağır ve sürekli güç kaybı",
             "Osmanlı'nın siyasi güç kaybı",
             "Osmanlı'nın tüm bu etkenlerin kombinasyonu",
             "Osmanlı'nın teknolojik gerilik"
@@ -7038,7 +7038,7 @@
         {
           "soru": "Osmanlı Devleti'nin duraklama, gerileme ve çöküş dönemiyle ilgili olarak aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "Osmanlı Devleti'nin duraklama döneminde ekonomisi ve ordu örgütlenmesinde büyük ilerlemeler kaydetmiştir.",
+            "Osmanlı Devleti'nin duraklama döneminde hem ekonomisi hem de ordu ve donanma örgütlenmesinde çok büyük ilerlemeler kaydederek güçlenmiştir.",
             "Osmanlı Devleti'nin gerileme döneminde eğitim ve kültür alanında büyük atılımlar yaşanmıştır.",
             "Osmanlı Devleti'nin çöküş döneminde siyasi ve askeri alanda büyük reformlar yapılmıştır.",
             "Osmanlı Devleti'nin duraklama, gerileme ve çöküş döneminde siyasi, askeri, ekonomik ve kültürel alanlarda büyük sorunlar yaşandı.",
@@ -7051,7 +7051,7 @@
           "soru": "Osmanlı Devleti'nin duraklama ve gerileme döneminde neden dışarıdan tehditler aldığını açıklayan ifade hangisidir?",
           "secenekler": [
             "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, Avrupa'daki ulusal devletlerin ortaya çıkması ve güçlenmesidir.",
-            "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, iç isyanlar ve ekonomik sorunlardır.",
+            "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, ülke içindeki büyük iç isyanlar ve derin ekonomik sorunların giderek artmasıdır.",
             "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, askeri alanda geri kalmasıdır.",
             "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, eğitim ve kültür alanında gerilemesidir.",
             "Osmanlı Devleti'nin dışarıdan tehditler almasının nedeni, siyasi alanda büyük reformlar yapmasıdır."
@@ -7161,7 +7161,7 @@
             "İktisadi bağımsızlık",
             "Teknolojik gelişme",
             "İç karışıklıklar ve yabancı müdahaleler",
-            "Dini ve kültürel nedenler",
+            "Dini, mezhepsel ve kültürel iç çekişmeler",
             "Siyasi istikrar"
           ],
           "dogruIndex": 2,
@@ -7182,7 +7182,7 @@
         {
           "soru": "Osmanlı İmparatorluğu'nun gerileme ve çöküşü sırasında, aşağıdakilerden hangisi olmadı?",
           "secenekler": [
-            "İmparatorluk, Balkan Savaşları'nın ardından büyük bir toprak kaybına uğradı.",
+            "İmparatorluk, 1912-1913 Balkan Savaşları'nın ardından Rumeli topraklarında çok büyük bir toprak kaybına uğradı.",
             "Osmanlılar, Birinci Dünya Savaşı'nda yenildi ve İmparatorluk çöktü.",
             "Osmanlılar, modernleşmeyi ve reformları reddetti.",
             "İmparatorluk, I. Dünya Savaşı'ndan sonra parçalandı.",
@@ -7323,7 +7323,7 @@
           "secenekler": [
             "TBMM",
             "Osmanlı Mebusan Meclisi",
-            "Sivas Kongresi",
+            "Mustafa Kemal başkanlığındaki Sivas Kongresi",
             "Erzurum Kongresi",
             "Temsil Heyeti"
           ],
@@ -7461,7 +7461,7 @@
         {
           "soru": "Lozan Antlaşması'nda Türkiye ile Yunanistan arasında uygulanan nüfus mübadelesi hangi ilkeye dayanmaktadır?",
           "secenekler": [
-            "Etnik köken",
+            "Ortak etnik köken ve ırksal soy bağı",
             "Dil",
             "Din (Müslüman – Rum Ortodoks)",
             "Milliyet belgesi",
@@ -7476,7 +7476,7 @@
           "soru": "Sivas Kongresi kararlarına göre aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "Yalnızca doğu illeri korunacaktır",
-            "Mandacılık kabul edilmiştir",
+            "Amerikan mandası ve himayesi meclisçe kesin olarak kabul edilmiştir",
             "Manda ve himaye reddedilmiş, toprak bütünlüğü savunulmuştur",
             "Padişaha bağlı kalınacaktır",
             "İtilaf devletleriyle müzakere açılmıştır"
