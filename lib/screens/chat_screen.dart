@@ -113,7 +113,7 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('💬 Sohbet'),
+        title: const _SohbetBaslik(),
         bottom: TabBar(
           controller: _tabController,
           isScrollable: true,
@@ -163,6 +163,51 @@ class _ChatScreenState extends State<ChatScreen> with SingleTickerProviderStateM
   }
 }
 
+/// Renkli gradyanlı "Sohbet" AppBar başlığı — diğer ekranlardaki (KPSS
+/// Hazırlık, Yanlışlarım) gradyan başlıklarla aynı stil: gradyan rozet + mor→nane
+/// ShaderMask yazı.
+class _SohbetBaslik extends StatelessWidget {
+  const _SohbetBaslik();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: 30,
+          height: 30,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [c.violet, c.violetL]),
+            borderRadius: BorderRadius.circular(9),
+            boxShadow: [
+              BoxShadow(color: c.violet.withValues(alpha: 0.45), blurRadius: 10),
+            ],
+          ),
+          child: const Icon(Icons.forum_rounded, size: 17, color: Colors.white),
+        ),
+        const SizedBox(width: 9),
+        ShaderMask(
+          blendMode: BlendMode.srcIn,
+          shaderCallback: (rect) =>
+              LinearGradient(colors: [c.violetL, c.mint]).createShader(rect),
+          child: const Text(
+            'Sohbet',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 0.3,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 /// Sohbete giriş yapılmadan bakıldığında gösterilen yönlendirme ekranı.
 ///
 /// DEĞİŞTİRİLDİ (kullanıcı isteği): Sohbet içinde ARTIK giriş yap butonları
@@ -176,7 +221,7 @@ class _ChatLoginPrompt extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     return Scaffold(
-      appBar: AppBar(title: const Text('💬 Sohbet')),
+      appBar: AppBar(title: const _SohbetBaslik()),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
