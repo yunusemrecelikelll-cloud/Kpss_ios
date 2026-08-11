@@ -2289,7 +2289,7 @@
         {
           "soru": "Cari işlemler dengesi neyi ifade eder?",
           "secenekler": [
-            "A) Yalnızca dış ticaret dengesini",
+            "A) Yalnızca dış ticaret dengesini, yani ihracat ile ithalat farkını",
             "B) Mal, hizmet, birincil ve ikincil gelir dengelerinin toplamını",
             "C) Yalnızca sermaye hareketlerini",
             "D) Devlet bütçe açığını",
@@ -2302,7 +2302,7 @@
           "soru": "Türkiye'de 'örtülü ödenek' kavramı hangi alanla ilgilidir?",
           "secenekler": [
             "A) Devlet güvenliği, istihbarat ve gizlilik gerektiren harcamalar için ayrılan bütçe kalemi",
-            "B) Belediyelerin gelir kalemleri",
+            "B) Belediyelerin öz gelir kalemleri ile merkezî bütçeden aktarılan ödenek paylarının toplamı",
             "C) Sosyal yardım ödemeleri",
             "D) İhracat teşvikleri",
             "E) Emeklilik ödemeleri"
@@ -2374,7 +2374,7 @@
           "soru": "Türkiye'de 'Vergi Usul Kanunu' hangi konuları düzenler?",
           "secenekler": [
             "A) Vergi tarh, tahakkuk, tahsil usulleri ile mükellef hak ve ödevlerini",
-            "B) Yalnızca gümrük vergilerini",
+            "B) Yalnızca gümrük vergileri ile ithalatta alınan vergilerin tahsil usullerini",
             "C) Yalnızca kurumlar vergisi oranlarını",
             "D) Sermaye piyasası işlemlerini",
             "E) Belediye gelirlerini"
@@ -2397,7 +2397,7 @@
         {
           "soru": "Türkiye'de 'Kurumlar Vergisi' kimlerden alınır?",
           "secenekler": [
-            "A) Gerçek kişilerden",
+            "A) Gerçek kişilerin elde ettiği ticari ve serbest meslek kazançlarından",
             "B) Sermaye şirketleri ve diğer kurumlardan elde edilen kazançlardan",
             "C) Yalnızca kamu kurumlarından",
             "D) Yalnızca ihracatçı firmalardan",
@@ -2422,7 +2422,7 @@
           "soru": "Türkiye'de sanayi üretiminin izlenmesinde kullanılan temel öncü göstergelerden biri hangisidir?",
           "secenekler": [
             "A) Satın Alma Yöneticileri Endeksi (PMI)",
-            "B) Nüfus sayımı sonuçları",
+            "B) Genel nüfus sayımı sonuçları ve verileri",
             "C) Eğitim istatistikleri",
             "D) Turizm gelirleri yalnızca",
             "E) Seçim sonuçları"
@@ -2434,7 +2434,7 @@
           "soru": "Türkiye'de 'İhracatı Geliştirme A.Ş.' (İGE A.Ş.) hangi amaçla kurulmuştur?",
           "secenekler": [
             "A) KOBİ'lerin ihracat kapasitesini artırmak için finansman desteği sağlamak",
-            "B) Doğrudan yabancı yatırımları vergilendirmek",
+            "B) Doğrudan yabancı yatırımları ve sermaye girişlerini denetleyip vergilendirmek",
             "C) İthalat kotalarını belirlemek",
             "D) Gümrük tarifelerini belirlemek",
             "E) Yurt dışı işçi istihdamını düzenlemek"
@@ -2459,7 +2459,7 @@
           "secenekler": [
             "A) Tasarruf oranlarını artırmak ve uzun vadeli fon birikimini teşvik etmek",
             "B) Vergi gelirlerini azaltmak",
-            "C) İşsizlik oranını düşürmek",
+            "C) İşsizlik oranını düşürüp istihdamı ve iş gücüne katılım oranını artırmak",
             "D) Kamu bankalarını özelleştirmek",
             "E) Dış ticaret açığını artırmak"
           ],
@@ -2470,7 +2470,7 @@
           "soru": "Türkiye'de 'Kredi Garanti Fonu'nun (KGF) işlevi nedir?",
           "secenekler": [
             "A) KOBİ'lerin banka kredilerine kefil olarak finansmana erişimini kolaylaştırmak",
-            "B) Doğrudan hibe kredisi vermek",
+            "B) KOBİ'lere doğrudan hibe ve karşılıksız nakit kredisi sağlayıp bunları dağıtmak",
             "C) Döviz kurunu sabitlemek",
             "D) Vergi affı düzenlemek",
             "E) Sermaye piyasasını denetlemek"
@@ -2483,7 +2483,7 @@
           "secenekler": [
             "A) Kamu kurumlarının ihtiyaç duyduğu malzemeleri toplu olarak temin etmek",
             "B) Vergi mevzuatını belirlemek",
-            "C) Kamu personeli istihdam etmek",
+            "C) Kamu kurumlarına personel alımı ve toplu istihdam hizmetlerini yürütmek",
             "D) Sermaye piyasasını denetlemek",
             "E) Yerel yönetim bütçelerini onaylamak"
           ],
@@ -2494,7 +2494,7 @@
           "soru": "Türkiye'de Vakıflar Genel Müdürlüğü'nün temel görevi nedir?",
           "secenekler": [
             "A) Vakıf mallarını ve tarihi eserleri yönetmek, sosyal yardım hizmetleri yürütmek",
-            "B) Sermaye piyasasını düzenlemek",
+            "B) Sermaye piyasasını, menkul kıymet borsalarını ve tüm aracı kurumları düzenlemek",
             "C) Bankacılık sektörünü denetlemek",
             "D) Dış ticaret politikası belirlemek",
             "E) Askeri harcamaları planlamak"
@@ -2506,7 +2506,7 @@
           "soru": "Türkiye'de bütçe sürecinde 'Torba Kanun' ifadesi neyi anlatır?",
           "secenekler": [
             "A) Birden fazla farklı konuda düzenleme içeren tek bir kanun tasarısı",
-            "B) Yalnızca vergi kanunlarını",
+            "B) Yalnızca vergi ve harçlarla ilgili düzenleme içeren mali kanun tasarısı",
             "C) Belediye bütçelerini",
             "D) Anayasa değişikliği tekliflerini",
             "E) Uluslararası antlaşmaları"
@@ -2521,7 +2521,7 @@
             "B) Bankaları özelleştirmek",
             "C) Kamu borcunu tamamen kapatmak",
             "D) İhracatı sınırlamak",
-            "E) Yabancı sermaye çıkışını hızlandırmak"
+            "E) Yurt dışına yabancı sermaye ve döviz çıkışını hızlandırarak rezervleri hızla eritmek"
           ],
           "dogruIndex": 0,
           "aciklama": "Kur Korumalı Mevduat (KKM) uygulaması; TL mevduatı döviz kuru artışına karşı devlet garantisiyle koruyarak vatandaşları dövizden TL'ye yönlendirmek amacıyla getirilmiştir."
@@ -2530,7 +2530,7 @@
           "soru": "Türkiye'de 'Ar-Ge ve tasarım merkezleri' teşvik sisteminin temel amacı nedir?",
           "secenekler": [
             "A) Özel sektörün araştırma-geliştirme ve tasarım faaliyetlerini vergi ve diğer teşviklerle desteklemek",
-            "B) Yalnızca kamu Ar-Ge'sini finanse etmek",
+            "B) Yalnızca kamu kurumlarının Ar-Ge ve yenilik projelerini kamu bütçesinden doğrudan finanse ederek yürütmek",
             "C) İthalatı artırmak",
             "D) Küçük esnafı desteklemek",
             "E) Tarımsal üretimi düzenlemek"
@@ -2542,7 +2542,7 @@
           "soru": "Türkiye'de 'Serbest Bölgeler'in temel amacı nedir?",
           "secenekler": [
             "A) İhracata yönelik üretimi teşvik etmek, yabancı sermaye ve teknoloji girişini kolaylaştırmak",
-            "B) Yalnızca turizm faaliyetleri yürütmek",
+            "B) Yalnızca kıyı bölgelerinde turizm ve konaklama faaliyetleri yürütüp ziyaretçi sayısını artırmak",
             "C) Tarımsal üretimi sınırlamak",
             "D) Vergi affı sağlamak",
             "E) Kamu istihdamını artırmak"
@@ -2554,7 +2554,7 @@
           "soru": "Türkiye'de 'Organize Sanayi Bölgeleri'nin (OSB) temel amacı nedir?",
           "secenekler": [
             "A) Sanayi işletmelerini planlı bir altyapı içinde bir araya getirerek üretim verimliliğini artırmak",
-            "B) Yalnızca ihracatı vergilendirmek",
+            "B) Yalnızca ihracat yapan sanayi işletmelerini vergilendirip elde edilen geliri doğrudan bütçeye aktarmak",
             "C) Konut üretimini artırmak",
             "D) Tarımsal sulama yapmak",
             "E) Turizm bölgeleri oluşturmak"
@@ -2568,7 +2568,7 @@
             "A) Hazine ve Maliye Bakanlığı",
             "B) TÜİK",
             "C) Rekabet Kurumu",
-            "D) BDDK",
+            "D) Bankacılık Düzenleme ve Denetleme Kurumu (BDDK)",
             "E) Sayıştay"
           ],
           "dogruIndex": 0,
@@ -2591,7 +2591,7 @@
           "secenekler": [
             "A) Fırat ve Dicle havzalarında sulama ve enerji üretimiyle bölgesel kalkınmayı sağlamak",
             "B) Karadeniz'de liman inşa etmek",
-            "C) İstanbul'un ulaşım altyapısını geliştirmek",
+            "C) İstanbul'un ulaşım, metro ve raylı sistem altyapısını geliştirerek trafiği rahatlatmak",
             "D) Ege'de turizm yatırımı yapmak",
             "E) Akdeniz'de balıkçılığı geliştirmek"
           ],
@@ -2689,7 +2689,7 @@
             "Kamu kaynakları, kamu kurumları tarafından kullanılan kaynaklardır.",
             "Kamu kaynakları, kamu kurumları tarafından kullanılan kaynaklardır ve kamu kurumları tarafından yönetilir.",
             "Kamu kaynakları, kamu kurumları tarafından kullanılmaz.",
-            "Kamu kaynakları, kamu kurumları tarafından kullanılmaz ve kamu kurumları tarafından yönetilir."
+            "Kamu kaynakları, kamu kurumları tarafından kullanılmaz ancak yalnızca kamu kurumları tarafından yönetilir ve denetlenir."
           ],
           "dogruIndex": 2,
           "aciklama": "Kamu kaynakları, kamu kurumları tarafından kullanılan kaynaklardır ve kamu kurumları tarafından yönetilir. Bu seçeneğin doğru olduğunu varsayarsak, adayların kamu kaynaklarının kamu kurumları tarafından kullanıldığını ve yönetildiğini bilmeleri gerekir."
@@ -2771,7 +2771,7 @@
           "secenekler": [
             "Hizmet sunma ve kaynakların etkili kullanılması",
             "Üretim ve tedarik",
-            "Distribisyon ve fiyatlandırma",
+            "Ürünlerin dağıtımı ve fiyatlandırılması işlemleri",
             "Harcamalar ve gelirler",
             "Faaliyet ve performans"
           ],
@@ -2784,7 +2784,7 @@
             "Hizmet sunma ve kaynakların etkili kullanılması",
             "Üretim ve tedarik",
             "Distribisyon ve fiyatlandırma",
-            "Harcamalar ve gelirler",
+            "Kamu harcamalarının ve gelirlerinin planlanması",
             "Faaliyet ve performans"
           ],
           "dogruIndex": 0,
@@ -2797,7 +2797,7 @@
             "Üretim ve tedarik",
             "Distribisyon ve fiyatlandırma",
             "Harcamalar ve gelirler",
-            "Faaliyet ve performans"
+            "Faaliyet ve performansın sürekli değerlendirilmesi"
           ],
           "dogruIndex": 0,
           "aciklama": "Doğru cevaptır. Kamu kurumları hizmet sunma ve kaynakların etkili kullanılması amaçlarıyla değerlendirilir."
@@ -2807,7 +2807,7 @@
           "secenekler": [
             "Sözleşme ile",
             "Kura ile",
-            "Eşit ağırlık merkezi sınav puanı ile",
+            "Eşit ağırlık türündeki merkezi yerleştirme sınavı puanı ile",
             "Ön lisans ve lisans mezunu olmak kaydıyla KPSS puanı ile",
             "Lise diploması ile"
           ],
@@ -2997,7 +2997,7 @@
         {
           "soru": "Türkiye'de katılım bankacılığı modelinin geleneksel bankacılıktan temel farkı nedir?",
           "secenekler": [
-            "A) Sadece kurumsal müşterilere hizmet vermesi",
+            "A) Sadece büyük ölçekli kurumsal müşterilere yalnızca faizli mevduat ve ticari kredi hizmeti sunması",
             "B) Faiz yerine kâr-zarar ortaklığı ve alım-satım esasına dayalı fon toplama ve kullandırma ilkesi",
             "C) Yalnızca döviz cinsinden işlem yapması",
             "D) Devlet garantisi olmadan faaliyet göstermesi",
@@ -3009,7 +3009,7 @@
         {
           "soru": "Katılım bankalarının mudilere dağıttığı 'kâr payı', geleneksel bankaların mevduat faizinden temelde nasıl ayrılır?",
           "secenekler": [
-            "A) Kâr payı önceden sabit bir oran olarak garanti edilir",
+            "A) Kâr payı, hesap açılışında önceden sabit bir oran olarak belirlenir ve banka tarafından yatırılan anapara üzerinden kesin garanti edilir",
             "B) Kâr payı, bankanın fonları katılım hesaplarında değerlendirmesi sonucu oluşan kâr veya zarara göre değişkenlik gösterir",
             "C) Kâr payı yalnızca döviz hesaplarına uygulanır",
             "D) Kâr payı devlet tarafından sabitlenir",
@@ -3022,7 +3022,7 @@
           "soru": "Katılım bankacılığında kullanılan 'murabaha' yöntemi hangi işlemi ifade eder?",
           "secenekler": [
             "A) Bankanın müşteri adına bir malı peşin alıp üzerine kâr marjı koyarak vadeli satması",
-            "B) Bankanın müşteriye faizli nakit kredi vermesi",
+            "B) Bankanın müşteriye belirli bir vade ve faiz oranı üzerinden nakit kredi kullandırması",
             "C) Bankanın müşteri ile hisse senedi takası yapması",
             "D) Bankanın döviz kurunu sabitlemesi",
             "E) Bankanın devlet tahvili ihraç etmesi"
@@ -3033,7 +3033,7 @@
         {
           "soru": "Katılım bankacılığında 'müşareke' kavramı en iyi hangi şekilde tanımlanır?",
           "secenekler": [
-            "A) Bankanın yalnızca kredi garantörlüğü yapması",
+            "A) Bankanın herhangi bir sermaye koymadan ve riske girmeden yalnızca kredi garantörlüğü ile kefillik yaparak komisyon geliri elde etmesi",
             "B) Banka ile girişimcinin bir işe birlikte sermaye koyarak kâr ve zararı önceden belirlenen oranlarda paylaştığı ortaklık finansmanı",
             "C) Bankanın sabit faizle mevduat toplaması",
             "D) Bankanın yalnızca ipotekli konut kredisi vermesi",
@@ -3046,7 +3046,7 @@
           "soru": "Ziraat Katılım Bankası'nın kuruluş amacı ve niteliği aşağıdakilerden hangisinde doğru verilmiştir?",
           "secenekler": [
             "A) Ziraat Bankası'nın iştiraki olarak faizsiz bankacılık alanında hizmet sunmak üzere kurulan kamu sermayeli katılım bankası",
-            "B) Yalnızca tarım kredisi veren özel bir kalkınma bankası",
+            "B) Yalnızca tarım ve hayvancılık sektörüne düşük faizli kredi veren, kâr amacı güden özel sermayeli bir kalkınma ve ticari yatırım bankası",
             "C) Yabancı sermayeli bir yatırım bankası",
             "D) Sermaye piyasasını denetleyen bir kamu kurumu",
             "E) Yalnızca ihracat kredisi sağlayan bir kuruluş"
@@ -3070,7 +3070,7 @@
           "soru": "Türkiye Emlak Katılım Bankası'nın kuruluş amacı temelde hangi sektörle ilişkilidir?",
           "secenekler": [
             "A) Gayrimenkul ve inşaat sektörüne yönelik faizsiz finansman modelleri sunmak",
-            "B) Yalnızca tarımsal sulama projelerini finanse etmek",
+            "B) Yalnızca tarımsal sulama ve altyapı projelerini kamu kaynağıyla finanse etmek",
             "C) Yalnızca döviz ticareti yapmak",
             "D) Sermaye piyasası araçlarını denetlemek",
             "E) Kamu bankalarının birleşmesini sağlamak"
@@ -3082,7 +3082,7 @@
           "soru": "Ziraat Katılım, Vakıf Katılım ve Türkiye Emlak Katılım'ın ortak stratejik amacı aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Kamu bankacılığı gücünü faizsiz bankacılık alanına taşıyarak bu alandaki kamu payını artırmak",
-            "B) Yalnızca yurt dışı şubeler açmak",
+            "B) Yalnızca yurt dışı piyasalarda çok sayıda şube açarak uluslararası bankacılık ağını genişletmek",
             "C) Borsa İstanbul'da tek başına işlem yapmak",
             "D) Sigortacılık sektörüne girmek",
             "E) Kamu personeli maaş ödemelerini tekelleştirmek"
@@ -3107,7 +3107,7 @@
           "secenekler": [
             "A) Sanayileşme sürecini desteklemek için özel sektör yatırımlarına uzun vadeli kredi ve finansman sağlamak",
             "B) Kamu personeline maaş ödemesi yapmak",
-            "C) Belediyelerin su ve kanalizasyon yatırımlarını finanse etmek",
+            "C) Belediyelerin su, kanalizasyon ve altyapı yatırımlarını uzun vadeli kredilerle finanse edip desteklemek",
             "D) Sadece döviz ticareti yapmak",
             "E) Emeklilik fonlarını yönetmek"
           ],
@@ -3120,7 +3120,7 @@
             "A) Vakıflar Genel Müdürlüğü'ne bağlı mazbut vakıfların nakit varlıklarını ekonomiye kazandırmak",
             "B) Yalnızca ihracatçı firmalara kredi sağlamak",
             "C) Sermaye piyasası araçlarını denetlemek",
-            "D) Esnaf ve sanatkarlara kredi vermek amacıyla kurulmak",
+            "D) Küçük esnaf ve sanatkârlara düşük faizli işletme kredisi vermek amacıyla devlet tarafından kurulmak",
             "E) Askeri harcamaları finanse etmek"
           ],
           "dogruIndex": 0,
@@ -3142,7 +3142,7 @@
           "soru": "TCMB zorunlu karşılık oranlarını artırdığında piyasada beklenen etki genellikle hangisidir?",
           "secenekler": [
             "A) Bankaların kullanılabilir/kredilendirilebilir fon miktarı azalır",
-            "B) Bankaların kredi verme kapasitesi sınırsız artar",
+            "B) Bankaların kredi verme kapasitesi sınırsız ve kontrolsüz biçimde artar",
             "C) Devlet bütçe açığı otomatik olarak kapanır",
             "D) Döviz kuru sabitlenir",
             "E) Vergi oranları düşer"
@@ -3154,7 +3154,7 @@
           "soru": "TCMB'nin uyguladığı 'faiz koridoru' kavramı en doğru şekilde nasıl tanımlanır?",
           "secenekler": [
             "A) TCMB'nin gecelik borç verme faizi ile borç alma faizi arasında oluşturduğu bant",
-            "B) Bankalar arası döviz alım-satım kuru aralığı",
+            "B) Bankalar arası piyasada oluşan döviz alım ve satım kurları arasındaki günlük aralık",
             "C) Devlet tahvili faiz oranlarının sabitlenmesi",
             "D) Konut kredisi faiz tavanı uygulaması",
             "E) Kredi kartı asgari ödeme oranı aralığı"
@@ -3166,7 +3166,7 @@
           "soru": "TCMB'nin 'açık piyasa işlemleri' (APİ) aracı temel olarak neyi ifade eder?",
           "secenekler": [
             "A) TCMB'nin repo, ters repo ve menkul kıymet alım-satımı yoluyla piyasadaki likiditeyi düzenlemesi",
-            "B) Bankaların birbirleriyle döviz takası yapması",
+            "B) Bankaların kendi aralarında döviz ile tahvil takası yaparak günlük kısa vadeli likidite sağlaması",
             "C) Hazine'nin bütçe açığını doğrudan Merkez Bankası'na finanse ettirmesi",
             "D) Bireysel yatırımcıların borsada hisse senedi alıp satması",
             "E) Kamu bankalarının özelleştirilmesi süreci"
@@ -3180,7 +3180,7 @@
             "A) Zorunlu karşılık yasal bir zorunluluktur, APİ ise TCMB'nin piyasada gönüllü olarak yürüttüğü işlemlerdir",
             "B) İkisi de tamamen aynı işlevi görür",
             "C) Zorunlu karşılık yalnızca döviz mevduatına, APİ yalnızca TL mevduatına uygulanır",
-            "D) APİ bir yasal zorunluluktur, zorunlu karşılık ise piyasa işlemidir",
+            "D) APİ her banka için yasal ve bağlayıcı bir zorunluluktur, zorunlu karşılık ise gönüllü piyasa işlemleridir",
             "E) Zorunlu karşılık yalnızca kamu bankalarına uygulanır"
           ],
           "dogruIndex": 0,
@@ -3202,7 +3202,7 @@
           "soru": "BDDK ile SPK arasındaki temel görev ayrımı aşağıdakilerden hangisinde doğru verilmiştir?",
           "secenekler": [
             "A) BDDK bankacılık ve finansal kuruluşları, SPK ise sermaye piyasası araçları ve halka açık şirketleri denetler",
-            "B) BDDK sermaye piyasasını, SPK bankacılığı denetler",
+            "B) BDDK sermaye piyasası araçlarını ve borsayı, SPK ise bankaları ve tüm finansal kuruluşları düzenleyip denetler",
             "C) İkisi de yalnızca kamu bankalarını denetler",
             "D) BDDK yalnızca vergi tahsilatından sorumludur",
             "E) SPK yalnızca döviz kurunu belirler"
@@ -3227,7 +3227,7 @@
           "secenekler": [
             "A) Hanehalklarının satın aldığı mal ve hizmet sepetindeki fiyat değişimini",
             "B) Yalnızca ihracat fiyatlarındaki değişimi",
-            "C) Üreticilerin toptan satış fiyatlarındaki değişimi",
+            "C) Üreticilerin piyasadaki toptan satış fiyatlarındaki genel ortalama değişimi",
             "D) Yalnızca konut fiyatlarındaki değişimi",
             "E) Döviz kurundaki değişimi"
           ],
@@ -3238,7 +3238,7 @@
           "soru": "Yurt İçi Üretici Fiyat Endeksi (Yİ-ÜFE) neyi ölçer?",
           "secenekler": [
             "A) Üreticilerin yurt içi piyasada sattıkları mal ve hizmetlerin üretim/satış aşamasındaki fiyat değişimini",
-            "B) Hanehalklarının market alışverişindeki fiyat değişimini",
+            "B) Hanehalklarının market ve perakende alışverişinde ödediği mal ve hizmet fiyatlarındaki ortalama değişimini",
             "C) Yalnızca ithalat fiyatlarını",
             "D) Konut kira artışlarını",
             "E) Asgari ücret artış oranını"
@@ -3274,7 +3274,7 @@
           "soru": "Hazine bonosu ve devlet tahvilinin ortak yönü aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) İkisi de Hazine ve Maliye Bakanlığı'nın iç borçlanma amacıyla ihraç ettiği senetlerdir",
-            "B) İkisi de yalnızca yabancı yatırımcılara satılır",
+            "B) İkisi de yalnızca yurt dışındaki yabancı kurumsal yatırımcılara döviz karşılığında satılır",
             "C) İkisi de vadesiz araçlardır",
             "D) İkisi de TCMB'nin doğrudan bastığı banknotlardır",
             "E) İkisi de yalnızca bankalar tarafından ihraç edilir"
@@ -3286,7 +3286,7 @@
           "soru": "Bir ülkenin 'iç borcu' ile 'dış borcu' arasındaki temel ayrım aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) İç borç yurt içi kaynaklardan, dış borç yabancı hükümet/kurum ve piyasalardan sağlanan borçlanmadır",
-            "B) İç borç yalnızca döviz cinsindendir, dış borç yalnızca TL cinsindendir",
+            "B) İç borç yalnızca döviz cinsinden, dış borç ise her zaman yalnızca yerli para cinsinden alınan borçtur",
             "C) İç borç yalnızca bankalardan, dış borç yalnızca bireylerden alınır",
             "D) Dış borç yalnızca kısa vadeli, iç borç yalnızca uzun vadelidir",
             "E) İkisi arasında fark yoktur"
@@ -3298,7 +3298,7 @@
           "soru": "Devletin iç borçlanmasında borç verenler tipik olarak kimlerdir?",
           "secenekler": [
             "A) Yurt içi bankalar, bireysel ve kurumsal yatırımcılar",
-            "B) Yalnızca IMF ve Dünya Bankası",
+            "B) Yalnızca IMF, Dünya Bankası ve yabancı kalkınma bankaları",
             "C) Yalnızca yabancı hükümetler",
             "D) Yalnızca uluslararası tahvil piyasaları",
             "E) Yalnızca yabancı merkez bankaları"
@@ -3310,7 +3310,7 @@
           "soru": "Kamu-özel işbirliği (KÖİ) modeli genel olarak nasıl tanımlanır?",
           "secenekler": [
             "A) Kamu hizmetine yönelik bir altyapının finansmanı, yapımı ve/veya işletilmesinin belirli bir süreliğine özel sektöre devredildiği model",
-            "B) Bir kamu hizmetinin tamamen ve süresiz olarak özelleştirilmesi",
+            "B) Bir kamu hizmetinin veya kamu varlığının mülkiyetiyle birlikte tamamen ve süresiz bir biçimde özel sektöre satılarak kalıcı olarak özelleştirilmesi",
             "C) Devletin özel şirketlere doğrudan hibe vermesi",
             "D) Yalnızca yabancı şirketlerin kamu ihalelerine katılabilmesi",
             "E) Belediyelerin vergi toplama yetkisini özel şirketlere devretmesi"
@@ -3322,7 +3322,7 @@
           "soru": "Aşağıdaki köprü projelerinden hangisi Türkiye'de kamu-özel işbirliği (KÖİ) modeliyle inşa edilip işletilen projelere örnektir?",
           "secenekler": [
             "A) Yavuz Sultan Selim Köprüsü",
-            "B) Galata Köprüsü",
+            "B) İstanbul Haliç üzerindeki tarihi Galata Köprüsü",
             "C) Haliç Köprüsü",
             "D) Unkapanı Köprüsü",
             "E) Atatürk Köprüsü"
@@ -3334,7 +3334,7 @@
           "soru": "Kamu-özel işbirliği (KÖİ) modeli ile klasik 'yap-işlet-devret' (YİD) modeli arasındaki ilişki nasıl açıklanabilir?",
           "secenekler": [
             "A) YİD, KÖİ kapsamındaki uygulama biçimlerinden biridir; özel sektör projeyi yapar, belirli süre işletir, sonra kamuya devreder",
-            "B) YİD ile KÖİ birbirinden tamamen bağımsız, ilgisiz iki kavramdır",
+            "B) YİD ile KÖİ birbirinden tamamen bağımsız, hiçbir ortak yönü ve benzerliği bulunmayan, birbiriyle tümüyle ilgisiz iki finansman kavramıdır",
             "C) YİD modelinde mülkiyet hiçbir zaman kamuya geçmez",
             "D) KÖİ yalnızca sağlık sektöründe uygulanabilir",
             "E) YİD modeli yalnızca kamu bankalarınca kullanılabilir"
@@ -3346,7 +3346,7 @@
           "soru": "Türkiye'de 'kesin hesap kanunu' kavramı neyi ifade eder?",
           "secenekler": [
             "A) Bir mali yılın bütçe uygulama sonuçlarını gösteren ve bütçe kanunuyla verilen yetkinin ne ölçüde kullanıldığını ortaya koyan kanunu",
-            "B) Gelecek mali yılın bütçe tahminlerini içeren kanunu",
+            "B) Gelecek mali yıla ait bütçe gelir ve gider tahminlerini ayrıntılı biçimde belirleyip meclis tarafından onaylanan ve yürürlüğe konulan kanunu",
             "C) Yalnızca belediye bütçelerini onaylayan kanunu",
             "D) Vergi oranlarını belirleyen kanunu",
             "E) Asgari ücreti belirleyen kanunu"
@@ -3370,7 +3370,7 @@
           "soru": "Sayıştay'ın klasik denetim görevinin yanı sıra sahip olduğu 'hesap yargılaması' işlevi ne anlama gelir?",
           "secenekler": [
             "A) Kamu görevlilerinin hesap ve işlemlerini yargısal nitelikte inceleyip sorumluluk kararı verebilmesi",
-            "B) Yalnızca ceza davalarına bakması",
+            "B) Yalnızca ceza mahkemesi sıfatıyla kamu görevlileri hakkında açılan ceza davalarına bakıp hüküm vermesi",
             "C) Yalnızca özel hukuk uyuşmazlıklarını çözmesi",
             "D) Belediye başkanlarını seçmesi",
             "E) Vergi mahkemesi gibi çalışması"
@@ -3382,7 +3382,7 @@
           "soru": "Kamu Gözetimi, Muhasebe ve Denetim Standartları Kurumu'nun (KGK) temel görevi nedir?",
           "secenekler": [
             "A) Bağımsız denetim ve muhasebe standartlarını belirlemek",
-            "B) Bankaların sermaye yeterliliğini denetlemek",
+            "B) Bankaların sermaye yeterlilik oranlarını sürekli denetlemek",
             "C) Devlet tahvili ihraç etmek",
             "D) Asgari ücreti belirlemek",
             "E) Kamu ihalelerini yürütmek"
@@ -3394,7 +3394,7 @@
           "soru": "KGK'nın (Kamu Gözetimi, Muhasebe ve Denetim Standartları Kurumu) bağımsız denetim alanındaki yetkisi aşağıdakilerden hangisini kapsar?",
           "secenekler": [
             "A) Bağımsız denetçi ve denetim kuruluşlarını yetkilendirmek ve gözetimini yapmak",
-            "B) Bankalara mevduat sigortası sağlamak",
+            "B) Bankalara ve katılım fonlarına mevduat sigortası kapsamında devlet güvencesi sağlamak",
             "C) Sermaye piyasası araçlarını ihraç etmek",
             "D) Merkez bankası rezervlerini yönetmek",
             "E) Kamu personeli atamalarını yapmak"
@@ -3406,7 +3406,7 @@
           "soru": "Türkiye Bankalar Birliği'nin (TBB) temel işlevi nedir?",
           "secenekler": [
             "A) Bankacılık sektörünün meslek kuruluşu olarak üyelerinin ortak menfaatlerini korumak ve mesleki gelişimi desteklemek",
-            "B) Bankalara doğrudan sermaye desteği sağlamak",
+            "B) Bankalara doğrudan sermaye ve fon desteği sağlayarak mali açıdan zor durumdaki bankaları finanse edip doğrudan kurtarmak",
             "C) Bankacılık lisansı vermek",
             "D) Para politikası kararları almak",
             "E) Devlet tahvili ihraç etmek"
@@ -3418,7 +3418,7 @@
           "soru": "Türkiye Katılım Bankaları Birliği'nin (TKBB) temel işlevi nedir?",
           "secenekler": [
             "A) Katılım bankalarının meslek kuruluşu olarak faizsiz bankacılık standartlarının gelişimine katkı sağlamak",
-            "B) Katılım bankalarına bankacılık lisansı vermek",
+            "B) Katılım bankalarına doğrudan bankacılık faaliyet lisansı vererek onların kuruluşuna resmen ve doğrudan izin vermek",
             "C) Katılım bankalarının kâr paylarını vergilendirmek",
             "D) Devletin dış borçlanmasını yönetmek",
             "E) Sermaye piyasasını denetlemek"
@@ -3430,7 +3430,7 @@
           "soru": "TCMB'nin döviz ve altından oluşan uluslararası rezervlerinin temel amacı nedir?",
           "secenekler": [
             "A) Dış ödemelerde güven sağlamak, döviz kuru istikrarına katkıda bulunmak ve dışsal şoklara karşı tampon oluşturmak",
-            "B) Doğrudan kamu personeli maaşlarını ödemek",
+            "B) Merkezi yönetim bütçesindeki açığı kapatmak ve doğrudan kamu personelinin aylık maaşlarını her ay düzenli olarak ödemek",
             "C) Belediye bütçelerini finanse etmek",
             "D) Vergi tahsilatını artırmak",
             "E) Kamu ihalelerini finanse etmek"
@@ -3442,7 +3442,7 @@
           "soru": "Türkiye'de uygulanan 'Rezerv Opsiyon Mekanizması' (ROM) kavramı neyi ifade eder?",
           "secenekler": [
             "A) Bankaların TL zorunlu karşılıklarının bir bölümünü döviz veya altın cinsinden tutabilmesine imkân tanıyan uygulama",
-            "B) Bankaların yalnızca TL cinsinden kredi verebilmesi zorunluluğu",
+            "B) Bankaların döviz kurundaki dalgalanmalardan korunmak amacıyla yalnızca TL cinsinden kredi verebilmesini öngören zorunluluk",
             "C) Devlet tahvillerinin yalnızca dövizle ihraç edilmesi",
             "D) Kamu bankalarının özelleştirilmesi süreci",
             "E) Hazine'nin dış borç ödemelerini erteleme yetkisi"
@@ -3481,7 +3481,7 @@
             "B) BDDK",
             "C) SPK",
             "D) TÜİK",
-            "E) Rekabet Kurumu"
+            "E) Rekabet Kurumu ve Ticaret Bakanlığı"
           ],
           "dogruIndex": 0,
           "aciklama": "Yatırım teşvik belgesi, belirli yatırım projelerinin vergi indirimi, gümrük muafiyeti, sigorta primi desteği gibi teşviklerden yararlanabilmesi için Sanayi ve Teknoloji Bakanlığı tarafından düzenlenir."
@@ -3490,7 +3490,7 @@
           "soru": "Yatırım teşvik belgesi sisteminin temel amacı nedir?",
           "secenekler": [
             "A) Belirlenen öncelikli alan ve bölgelerdeki yatırımları vergi, gümrük ve diğer desteklerle teşvik etmek",
-            "B) Yalnızca yabancı yatırımcılara ayrıcalık tanımak",
+            "B) Yalnızca yabancı sermayeli yatırımcılara ayrıcalık tanıyarak yerli yatırımcıları tamamen kapsam dışında bırakmak",
             "C) Yatırımları tamamen yasaklamak",
             "D) Yalnızca kamu yatırımlarını belgelendirmek",
             "E) Bankaların kredi faizlerini belirlemek"
@@ -3515,7 +3515,7 @@
           "secenekler": [
             "A) Çeşitli kamu kurum ve kuruluşlarının hisselerini bünyesinde toplayarak stratejik yatırımlara kaynak sağlamayı amaçlayan devlet yatırım fonu",
             "B) Yalnızca yabancı yatırımcılardan oluşan özel bir fon",
-            "C) Bireysel emeklilik katkı paylarını toplayan bir sigorta şirketi",
+            "C) Vatandaşların bireysel emeklilik sistemine yatırdığı katkı paylarını toplayıp yöneten ve bu fonları sigortalayan özel bir emeklilik sigorta şirketi",
             "D) Yalnızca tarım sigortası yapan bir kuruluş",
             "E) Belediyelerin ortak bütçe havuzu"
           ],
@@ -3538,7 +3538,7 @@
           "soru": "Devlet Malzeme Ofisi (DMO) ile Kamu İhale Kurumu arasındaki temel görev farkı nedir?",
           "secenekler": [
             "A) DMO kamu kurumlarına doğrudan mal/malzeme tedarik eder, Kamu İhale Kurumu ise ihale sürecinin mevzuata uygunluğunu düzenleyip denetler",
-            "B) DMO ihale süreçlerini denetler, Kamu İhale Kurumu ise mal tedarik eder",
+            "B) DMO ihale süreçlerinin tümünü mevzuata göre denetler, Kamu İhale Kurumu ise kamu kurumlarına doğrudan mal ve malzeme tedarik ederek dağıtır",
             "C) İkisi de yalnızca vergi tahsilatı yapar",
             "D) İkisi de yalnızca personel alımı yapar",
             "E) Aralarında hiçbir görev farkı yoktur"
@@ -3562,7 +3562,7 @@
           "soru": "Dolaylı vergi ile dolaysız vergi arasındaki temel fark nedir?",
           "secenekler": [
             "A) Dolaylı vergi başkasına yansıtılabilirken, dolaysız vergi doğrudan mükellefin geliri veya servetinden alınır ve yansıtılamaz",
-            "B) Dolaylı vergi yalnızca kamu kurumlarından alınır",
+            "B) Dolaylı vergi yalnızca kamu kurumlarından tahsil edilirken, dolaysız vergi sadece özel sektör şirketlerinden düzenli olarak alınır",
             "C) Dolaysız vergi yalnızca ithalatta uygulanır",
             "D) İkisi arasında hiçbir fark yoktur",
             "E) Dolaylı vergi yalnızca yabancı yatırımcılardan alınır"
@@ -3577,7 +3577,7 @@
             "B) Gelir Vergisi",
             "C) Kurumlar Vergisi",
             "D) Emlak Vergisi",
-            "E) Veraset ve İntikal Vergisi"
+            "E) Veraset ve İntikal Vergisi ile Emlak Vergisi"
           ],
           "dogruIndex": 0,
           "aciklama": "KDV ve ÖTV, mal ve hizmet fiyatına eklenip nihai tüketiciye yansıtılan dolaylı vergilerin başlıca örnekleridir."
@@ -3601,7 +3601,7 @@
             "B) Yalnızca ihracat ürünlerini",
             "C) Yalnızca gıda ürünlerini",
             "D) Yalnızca eğitim hizmetlerini",
-            "E) Yalnızca tarımsal girdileri"
+            "E) Yalnızca tarımsal girdiler ile çiftçilere yönelik gübre, tohum ve zirai ilaç gibi temel tarımsal üretim ve girdi malzemelerini"
           ],
           "dogruIndex": 0,
           "aciklama": "ÖTV; petrol ürünleri, motorlu taşıtlar, alkollü içkiler, tütün mamulleri, bazı içecekler ve lüks tüketim malları gibi kanunda belirtilen listelerdeki mallardan alınan bir tüketim vergisidir."
@@ -3611,7 +3611,7 @@
           "secenekler": [
             "A) Bir malın üretimi veya ithalatında yalnızca bir kez uygulanan tek aşamalı bir vergi olması",
             "B) Yalnızca ihracat işlemlerinde uygulanması",
-            "C) Her el değiştirmede yeniden tahsil edilmesi",
+            "C) Malın her el değiştirdiği aşamada yeniden hesaplanıp tahsil edilen çok aşamalı bir vergi olması",
             "D) Yalnızca kamu kurumlarından alınması",
             "E) Yıllık olarak değil, aylık olarak tahsil edilmesi"
           ],
@@ -3624,7 +3624,7 @@
             "A) İki veya daha fazla ülkenin kendi aralarındaki ticarette gümrük vergisi ve engelleri kaldırdığı, ancak üçüncü ülkelere karşı kendi tarife politikalarını sürdürdüğü anlaşma",
             "B) Tüm ülkelerin ortak bir para birimi kullanmayı kabul ettiği anlaşma",
             "C) Yalnızca hizmet ticaretini kapsayan bir askeri ittifak",
-            "D) Ülkelerin sınırlarını tamamen kaldırdığı bir birleşme anlaşması",
+            "D) Üye ülkelerin kendi aralarındaki tüm siyasi ve fiziki sınırları tamamen kaldırarak tek bir ortak devlet çatısı altında birleştikleri kapsamlı ve bütünleşik siyasi birleşme anlaşması",
             "E) Yalnızca yatırımcıların vergiden muaf tutulduğu bir anlaşma"
           ],
           "dogruIndex": 0,
@@ -3634,7 +3634,7 @@
           "soru": "Gümrük Birliği'nin serbest ticaret anlaşmasından (FTA) temel farkı nedir?",
           "secenekler": [
             "A) Gümrük Birliği'nde üye ülkeler üçüncü ülkelere karşı da ortak bir dış tarife uygular, FTA'da ise her ülke kendi tarifesini korur",
-            "B) FTA'da ortak dış tarife uygulanırken, Gümrük Birliği'nde her ülke kendi tarifesini uygular",
+            "B) FTA'da üye ülkeler üçüncü ülkelere karşı ortak bir dış tarife uygularken, Gümrük Birliği'nde her ülke kendi bağımsız tarifesini uygular",
             "C) Gümrük Birliği yalnızca hizmet ticaretini kapsar",
             "D) FTA yalnızca AB üyeleri arasında uygulanabilir",
             "E) Aralarında hiçbir fark yoktur"
@@ -3647,7 +3647,7 @@
           "secenekler": [
             "A) Esas olarak sanayi ürünlerini ve işlenmiş tarım ürünlerini kapsar; birincil tarım ürünleri ve hizmetler büyük ölçüde kapsam dışındadır",
             "B) Yalnızca hizmet sektörünü kapsar",
-            "C) Tüm tarım ürünlerini ve kamu ihalelerini de tam kapsamaktadır",
+            "C) Sanayi ürünlerinin yanı sıra tüm birincil tarım ürünlerini, hizmet sektörünü ve kamu ihalelerini de eksiksiz biçimde tam olarak kapsamaktadır",
             "D) Yalnızca savunma sanayii ürünlerini kapsar",
             "E) Yalnızca enerji ürünlerini kapsar"
           ],
@@ -3661,7 +3661,7 @@
             "B) NATO üyelik anlaşması",
             "C) Birleşmiş Milletler Şartı",
             "D) Kyoto Protokolü",
-            "E) Dünya Sağlık Örgütü tüzüğü"
+            "E) Dünya Sağlık Örgütü'nün uluslararası sağlık tüzüğü ve çerçeve sözleşmesi ile ek protokolleri"
           ],
           "dogruIndex": 0,
           "aciklama": "Türkiye, AB üyelik sürecinden bağımsız olarak İzlanda, Norveç, İsviçre ve Lihtenştayn'dan oluşan EFTA ülkeleriyle de serbest ticaret anlaşması imzalamıştır."
@@ -3670,7 +3670,7 @@
           "soru": "Katılım bankacılığında finansman ilişkisinin temel niteliği aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Borç-alacak ilişkisi değil, alım-satım veya ortaklık esasına dayalı bir işlem ilişkisidir",
-            "B) Tamamen faiz üzerinden kurulan bir borç ilişkisidir",
+            "B) Tamamen önceden belirlenmiş sabit faiz oranı üzerinden kurulan bir borç-alacak kredi ilişkisidir",
             "C) Yalnızca devlet garantili kredi ilişkisidir",
             "D) Sadece döviz kredisi ilişkisidir",
             "E) Sigorta poliçesi ilişkisidir"
@@ -3682,7 +3682,7 @@
           "soru": "TCMB'nin bankacılık sistemine döviz likiditesi sağlamak amacıyla kullandığı 'döviz swap işlemi' ne anlama gelir?",
           "secenekler": [
             "A) TCMB'nin bankalarla belirli bir vadede TL karşılığı döviz alıp, vade sonunda geri satması işlemi",
-            "B) Bankaların birbirlerine faizsiz kredi vermesi",
+            "B) Ticari bankaların likidite ihtiyaçları için birbirlerine teminatsız ve faizsiz kredi vermesi işlemi",
             "C) Hazine'nin dış borcunu tamamen silmesi",
             "D) Bireysel yatırımcıların döviz büfelerinden nakit alması",
             "E) Kamu bankalarının özelleştirilmesi süreci"
@@ -3706,7 +3706,7 @@
           "soru": "Kamu-özel işbirliği (KÖİ) projelerinde sıkça kullanılan 'gelir garantisi' mekanizması ne anlama gelir?",
           "secenekler": [
             "A) Devletin, projeden beklenen kullanım/gelir seviyesinin altında kalınması durumunda özel sektöre belirli bir tutarı garanti etmesi",
-            "B) Özel sektörün devlete sabit bir vergi ödemesi",
+            "B) Özel sektör yatırımcısının, proje süresince elde ettiği gelir üzerinden devlete her yıl sabit oranlı bir vergi ve kira bedeli ödemesi",
             "C) Devletin projenin tüm hisselerini satın alması",
             "D) Özel sektörün projeyi tamamen bedavaya devretmesi",
             "E) Devletin projeye hiçbir şekilde müdahil olmaması"
@@ -3718,7 +3718,7 @@
           "soru": "Sayıştay'ın kesin hesap kanunu tasarısı sürecindeki 'genel uygunluk bildirimi' işlevi nedir?",
           "secenekler": [
             "A) Sayıştay'ın denetim sonuçlarına dayanarak kesin hesap kanun tasarısı hakkında görüşünü TBMM'ye sunması",
-            "B) Sayıştay'ın doğrudan bütçe kanununu hazırlaması",
+            "B) Sayıştay'ın merkezi yönetim bütçe kanunu tasarısını doğrudan hazırlayıp Cumhurbaşkanlığına ve TBMM'ye sunması",
             "C) Sayıştay'ın vergi oranlarını belirlemesi",
             "D) Sayıştay'ın kamu bankalarını yönetmesi",
             "E) Sayıştay'ın Cumhurbaşkanını seçmesi"
@@ -3732,7 +3732,7 @@
             "A) Hafize Gaye Erkan",
             "B) Nurel Aksoy",
             "C) Aysel Ekşi",
-            "D) Güler Sabancı",
+            "D) Güler Sabancı Uzan",
             "E) Şafak Pavey"
           ],
           "dogruIndex": 0,
@@ -3777,7 +3777,7 @@
             "B) Dolmabahçe Sarayı",
             "C) Ayasofya-i Kebir Camii",
             "D) Sultanahmet Camii",
-            "E) Eyüp Sultan Camii"
+            "E) Eyüp Sultan Camii ve Türbesi"
           ],
           "dogruIndex": 2,
           "aciklama": "Ayasofya; 2020 yılında Danıştay kararı ve Cumhurbaşkanlığı kararnamesiyle müzeden yeniden camiye dönüştürülmüştür. 2023 yılında ise restorasyon ve yenileme çalışmaları sürdürülmüştür."
@@ -3788,7 +3788,7 @@
             "A) Harvard Üniversitesi",
             "B) Yale Üniversitesi",
             "C) North Carolina Üniversitesi (UNC-Chapel Hill)",
-            "D) Stanford Üniversitesi",
+            "D) Stanford Üniversitesi Tıp Fakültesi (California)",
             "E) MIT"
           ],
           "dogruIndex": 2,
@@ -4165,7 +4165,7 @@
         {
           "soru": "Quad (Dörtlü Güvenlik Diyaloğu) hakkında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) NATO gibi karşılıklı savunma yükümlülüğü içeren resmi bir askeri ittifaktır.",
+            "A) NATO benzeri, üyeleri arasında karşılıklı savunma yükümlülüğü içeren resmi bir askeri ittifaktır.",
             "B) Herhangi bir kurucu antlaşmaya dayanmayan, gayriresmi bir stratejik diyalog mekanizmasıdır.",
             "C) BM Güvenlik Konseyi'nin alt organıdır.",
             "D) Yalnızca ekonomik bir gümrük birliğidir.",
@@ -4219,7 +4219,7 @@
           "secenekler": [
             "A) Pekin (Çin)",
             "B) Milano ve Cortina d'Ampezzo (İtalya)",
-            "C) Salt Lake City (ABD)",
+            "C) Salt Lake City (Utah eyaleti, Amerika)",
             "D) Sapporo (Japonya)",
             "E) Stockholm (İsveç)"
           ],
@@ -4439,7 +4439,7 @@
         {
           "soru": "Blok zinciri (blockchain) teknolojisinin temel özelliği nedir?",
           "secenekler": [
-            "A) Merkezi bir sunucu tarafından kontrol edilir.",
+            "A) Veriler tek bir merkezi sunucu tarafından depolanır ve kontrol edilir.",
             "B) Verileri değiştirilemez biçimde dağıtık kayıt defterinde saklar.",
             "C) Yalnızca kripto para işlemlerinde kullanılabilir.",
             "D) Veriler internet bağlantısı olmadan silinemez.",
@@ -4465,7 +4465,7 @@
         {
           "soru": "Türkiye'de kripto para kullanımına ilişkin aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Türkiye'de kripto para tamamen yasaklanmıştır.",
+            "A) Türkiye'de kripto para alım-satımı ve her türlü kullanımı tamamen ve resmen yasaklanmıştır.",
             "B) Kripto para alım-satımı serbesttir; ancak mal/hizmet ödemelerinde kullanımı yasaktır.",
             "C) Türkiye, kripto parayı resmi para birimi olarak kabul etmiştir.",
             "D) Yalnızca devlet onaylı borsa platformlarında işlem yapılabilir.",
@@ -4478,7 +4478,7 @@
         {
           "soru": "TÜBİTAK BİLGEM Türkiye'de hangi alanda çalışmalar yürütmektedir?",
           "secenekler": [
-            "A) Uzay araştırmaları ve uydu geliştirme",
+            "A) Uzay araştırmaları, uydu geliştirme ve fırlatma sistemleri",
             "B) Siber güvenlik ve bilişim teknolojileri araştırmaları",
             "C) Yerli otomobil geliştirme",
             "D) Yenilenebilir enerji sistemleri",
@@ -4516,7 +4516,7 @@
         {
           "soru": "Alper Gezeravcı'nın uzay yolculuğu hakkında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) 2022 yılında Soyuz roketi ile uzaya gitti.",
+            "A) 2022 yılında Rusya'nın Soyuz roketiyle Uluslararası Uzay İstasyonu'na giderek uzaya gitti.",
             "B) Ocak 2024'te SpaceX'in Crew Dragon kapsülüyle uzaya giderek ilk Türk astronot oldu.",
             "C) 2021 yılında ilk Türk uydu fırlatma görevini tamamladı.",
             "D) NASA'nın astronot programına kabul edilen ilk Türk'tür.",
@@ -4544,7 +4544,7 @@
             "B) Çok daha yüksek veri hızı ve çok daha düşük gecikme süresi sağlar.",
             "C) Yalnızca akıllı telefonlarda kullanılır.",
             "D) Kapsama alanı daha geniştir.",
-            "E) Daha az enerji tüketir ve daha ucuzdur."
+            "E) Aynı kapsama için daha az baz istasyonu gerektirir ve çok daha ucuzdur."
           ],
           "dogruIndex": 1,
           "aciklama": "5G; 4G/LTE'ye kıyasla çok daha yüksek veri hızı (teorik olarak 20 Gbps'e kadar) ve çok daha düşük gecikme süresi (1 ms altı) sunmaktadır. Nesnelerin interneti ve otonom araçlar için kritik öneme sahiptir."
@@ -4556,7 +4556,7 @@
             "B) Bilgi ve iletişim teknolojileri ile siber güvenlik",
             "C) Uzay bilimleri",
             "D) Tıp ve ilaç araştırmaları",
-            "E) Enerji sistemleri araştırmaları"
+            "E) Enerji sistemleri ve yenilenebilir enerji araştırmaları"
           ],
           "dogruIndex": 1,
           "aciklama": "TÜBİTAK BİLGEM (Bilişim ve Bilgi Güvenliği İleri Teknolojiler Araştırma Merkezi); bilgi ve iletişim teknolojileri, siber güvenlik ve kriptografi alanlarında araştırma ve geliştirme faaliyetleri yürütmektedir."
@@ -4580,7 +4580,7 @@
             "B) Ankara",
             "C) İzmir",
             "D) Bursa (Gemlik)",
-            "E) Kocaeli"
+            "E) Kocaeli (Gebze OSB)"
           ],
           "dogruIndex": 3,
           "aciklama": "Türkiye'nin yerli otomobili Togg'un üretim tesisi Bursa iline bağlı Gemlik ilçesinde inşa edilmiştir. İlk araçlar 2023 yılında teslim edilmeye başlanmıştır."
@@ -4590,7 +4590,7 @@
           "secenekler": [
             "A) Yalnızca matematik hesaplamalar yapan yazılım",
             "B) Büyük veri kümeleri üzerinde eğitilerek metin anlama ve üretme yeteneği kazanan derin öğrenme modeli",
-            "C) Programcılar tarafından elle yazılan kural tabanlı sistem",
+            "C) Programcılar tarafından elle tek tek yazılan, önceden tanımlı kurallara dayalı kural tabanlı klasik bir sistemdir",
             "D) Görüntü tanıma için kullanılan algoritma türü",
             "E) Fiziksel robotiği yönlendiren yazılım"
           ],
@@ -4624,7 +4624,7 @@
         {
           "soru": "Metaverse kavramı teknoloji dünyasında ne anlama gelir?",
           "secenekler": [
-            "A) Büyük veri analizi teknolojisi",
+            "A) Devasa boyutlardaki veri kümelerinin işlenip analiz edildiği ileri düzey gelişmiş büyük veri analizi teknolojisi ve altyapısıdır",
             "B) Sanal ve artırılmış gerçekliğin bütünleştiği, kullanıcıların avatar aracılığıyla etkileşim kurduğu 3 boyutlu dijital evren",
             "C) Yeni nesil arama motoru teknolojisi",
             "D) Yapay zeka tabanlı tercüme sistemi",
@@ -4651,7 +4651,7 @@
             "A) Veri silen kötü amaçlı yazılım",
             "B) Kullanıcının dosyalarını şifreleyerek şifre çözme anahtarı için fidye talep eden kötü amaçlı yazılım",
             "C) Bilgisayarın ağ bağlantısını kesen yazılım",
-            "D) Şifreleri çalan casus yazılım",
+            "D) Kullanıcının klavye tuşlarını kaydederek şifrelerini gizlice ele geçirip çalan bir casus yazılım türüdür",
             "E) Reklam gösteren zararsız yazılım"
           ],
           "dogruIndex": 1,
@@ -4660,7 +4660,7 @@
         {
           "soru": "Nesnelerin İnterneti (IoT) teknolojisi neyi ifade eder?",
           "secenekler": [
-            "A) Yalnızca akıllı telefon uygulamalarını",
+            "A) Yalnızca akıllı telefonlardaki mobil uygulamaların birbirine bağlanmasını sağlayan dijital teknolojiyi",
             "B) Fiziksel nesnelerin sensörler ve ağ bağlantısıyla birbirine ve internete bağlandığı teknolojiyi",
             "C) Sosyal medya platformlarının birbirine bağlanmasını",
             "D) İnternetin yalnızca ev kullanımını",
@@ -4676,7 +4676,7 @@
             "B) Türkiye Uzay Ajansı (TUA) ve Axiom Space",
             "C) NASA ve ESA",
             "D) Roscosmos",
-            "E) Türk Hava Kuvvetleri"
+            "E) Türk Hava Kuvvetleri ve Milli Savunma Bakanlığı"
           ],
           "dogruIndex": 1,
           "aciklama": "Alper Gezeravcı'nın uzay görevi; Türkiye Uzay Ajansı (TUA) ile Axiom Space şirketinin işbirliğiyle Ax-3 misyonu kapsamında gerçekleştirilmiştir."
@@ -4687,7 +4687,7 @@
             "A) Kurallar listesi üzerinden programlanmış karar ağacı",
             "B) Çok katmanlı yapay sinir ağları kullanarak büyük veriden örüntü öğrenme yöntemi",
             "C) Verileri manuel olarak sınıflandırma yöntemi",
-            "D) Uzman sistemlerin kullanıldığı eski nesil yapay zeka",
+            "D) Önceden tanımlı uzman sistemlerin kullanıldığı eski nesil bir yapay zeka türüdür",
             "E) Sosyal medya analizinde kullanılan özel algoritma"
           ],
           "dogruIndex": 1,
@@ -4708,7 +4708,7 @@
         {
           "soru": "Kuantum bilgisayarların klasik bilgisayarlardan temel farkı nedir?",
           "secenekler": [
-            "A) Daha küçük ve taşınabilirdir.",
+            "A) Klasik bilgisayarlara kıyasla fiziksel olarak çok daha küçük, oldukça hafif ve son derece kolay taşınabilir cihazlardır.",
             "B) Bit yerine kubit kullanarak süperpozisyon ve dolaşıklık ilkeleriyle çok daha hızlı belirli hesaplamalar yapabilir.",
             "C) Elektrik yerine güneş enerjisiyle çalışır.",
             "D) Yalnızca yapay zeka uygulamalarında kullanılır.",
@@ -4720,7 +4720,7 @@
         {
           "soru": "Yapay zekanın 'büyük dil modeli' eğitiminde kullanılan 'ince ayar' (fine-tuning) ne anlama gelir?",
           "secenekler": [
-            "A) Modelin sıfırdan yeniden eğitilmesi",
+            "A) Modelin tüm parametreleriyle birlikte devasa veri kümeleri üzerinde sıfırdan baştan sona yeniden eğitilmesi işlemi",
             "B) Genel amaçlı önceden eğitilmiş bir modelin belirli bir görev veya alan için ek verilerle özelleştirilmesi",
             "C) Modelin hızlandırılması için yazılım optimizasyonu",
             "D) Kullanıcı arayüzünün tasarlanması",
@@ -4732,7 +4732,7 @@
         {
           "soru": "Bulut bilişimde 'SaaS' (Software as a Service) modeli neyi ifade eder?",
           "secenekler": [
-            "A) Donanımın hizmet olarak sunulması",
+            "A) Fiziksel sunucu ve donanım altyapısının hizmet olarak kiralanıp sunulması",
             "B) Yazılımın internet üzerinden hizmet olarak kullanıcıya sunulması",
             "C) Yalnızca veri depolama hizmeti",
             "D) Ağ altyapısının kiralanması",
@@ -4745,7 +4745,7 @@
           "soru": "Bulut bilişimde 'IaaS' (Infrastructure as a Service) modeli neyi kapsar?",
           "secenekler": [
             "A) Sunucu, depolama ve ağ gibi temel bilgi işlem altyapısının hizmet olarak sunulması",
-            "B) Yalnızca son kullanıcı uygulamalarının sunulması",
+            "B) Yalnızca son kullanıcıya yönelik hazır yazılım uygulamalarının internet üzerinden sunulması",
             "C) Yalnızca mobil uygulama geliştirme araçları",
             "D) Sosyal medya yönetimi hizmeti",
             "E) E-posta hizmeti yalnızca"
@@ -4760,7 +4760,7 @@
             "B) Hız (Velocity)",
             "C) Çeşitlilik (Variety)",
             "D) Doğrulanabilirlik (Verification)",
-            "E) Doğruluk (Veracity)"
+            "E) Doğruluk ve Güvenilirlik (Veracity)"
           ],
           "dogruIndex": 3,
           "aciklama": "Büyük Veri genellikle Hacim, Hız, Çeşitlilik, Doğruluk ve Değer (Value) gibi 'V' ile başlayan özelliklerle tanımlanır; 'Doğrulanabilirlik' standart bir Big Data V'si değildir."
@@ -4768,7 +4768,7 @@
         {
           "soru": "Siber güvenlikte 'oltalama' (phishing) saldırısı nedir?",
           "secenekler": [
-            "A) Ağ trafiğini aşırı yükleyerek sistemi çökertme saldırısı",
+            "A) Hedef sunucunun ağ trafiğini yoğun ve aşırı istekle yükleyerek sistemi tamamen çökertme saldırısı",
             "B) Sahte e-posta veya web siteleri aracılığıyla kullanıcıları kandırıp hassas bilgi çalma yöntemi",
             "C) Bilgisayar donanımına fiziksel müdahale",
             "D) Yazılımın kaynak kodunu çalma eylemi",
@@ -4782,7 +4782,7 @@
           "secenekler": [
             "A) Bir sunucu veya ağı aşırı trafikle doldurarak hizmet dışı bırakmak",
             "B) Kullanıcı parolasını çalmak",
-            "C) Verileri şifreleyerek fidye istemek",
+            "C) Kullanıcının verilerini şifreleyerek karşılığında yüklü bir fidye istemek",
             "D) Sahte web sitesi oluşturmak",
             "E) Donanımı fiziksel olarak bozmak"
           ],
@@ -4795,7 +4795,7 @@
             "A) İnternet hızını artırmak",
             "B) Kullanıcının internet trafiğini şifreleyerek güvenli ve gizli bir bağlantı sağlamak",
             "C) Virüslerden korunmayı garanti etmek",
-            "D) Yalnızca kurumsal e-postaları yönetmek",
+            "D) Yalnızca kurumsal ağdaki e-postaları ve dahili yazışmaları merkezî bir noktadan yönetmek",
             "E) Web sitelerini barındırmak"
           ],
           "dogruIndex": 1,
@@ -4807,7 +4807,7 @@
             "A) Ağ trafiğini izleyip önceden belirlenmiş güvenlik kurallarına göre filtrelemek",
             "B) İnternet hızını artırmak",
             "C) Verileri yedeklemek",
-            "D) Yazılım güncellemelerini otomatikleştirmek",
+            "D) Bilgisayardaki tüm yazılımların güncellemelerini otomatik olarak indirip yüklemek",
             "E) Ekran kartı performansını iyileştirmek"
           ],
           "dogruIndex": 0,
@@ -4816,7 +4816,7 @@
         {
           "soru": "İki faktörlü kimlik doğrulama (2FA/İki Aşamalı Doğrulama) neden kullanılır?",
           "secenekler": [
-            "A) Yalnızca şifreyle giriş yapılmasını hızlandırmak için",
+            "A) Yalnızca tek bir şifreyle sisteme giriş yapılmasını kolaylaştırıp daha da hızlandırmak için",
             "B) Şifreye ek olarak ikinci bir doğrulama katmanı ekleyerek hesap güvenliğini artırmak için",
             "C) İnternet hızını artırmak için",
             "D) Verileri sıkıştırmak için",
@@ -4865,7 +4865,7 @@
           "soru": "BTK'nın (Bilgi Teknolojileri ve İletişim Kurumu) temel görev alanı nedir?",
           "secenekler": [
             "A) Telekomünikasyon ve bilgi teknolojileri sektörünü düzenlemek ve denetlemek",
-            "B) Bankacılık sektörünü denetlemek",
+            "B) Bankacılık ve finans sektörünü düzenleyip yakından ve etkin biçimde denetlemek",
             "C) Enerji piyasasını düzenlemek",
             "D) Sermaye piyasasını denetlemek",
             "E) Tarım politikalarını belirlemek"
@@ -4876,7 +4876,7 @@
         {
           "soru": "RASAT uydusunun Türkiye'nin uzay tarihindeki önemi nedir?",
           "secenekler": [
-            "A) Türkiye'nin fırlattığı ilk haberleşme uydusudur.",
+            "A) Türkiye'nin uzaya fırlattığı ilk yerli haberleşme ve iletişim amaçlı uydusudur.",
             "B) Türkiye'nin tamamen yerli olarak tasarlayıp ürettiği ilk gözlem uydusudur.",
             "C) İlk Türk astronotu taşıyan araçtır.",
             "D) Türkiye'nin ilk hava savunma sistemidir.",
@@ -4888,7 +4888,7 @@
         {
           "soru": "GÖKTÜRK uydu ailesinin temel amacı nedir?",
           "secenekler": [
-            "A) Televizyon yayıncılığı",
+            "A) Ülke genelindeki tüm evlere ticari televizyon yayını ulaştırmak",
             "B) Askeri/istihbarat amaçlı yüksek çözünürlüklü yer gözlemi",
             "C) Hava durumu tahmini",
             "D) İnternet erişimi sağlamak",
@@ -4912,7 +4912,7 @@
         {
           "soru": "SpaceX'in uzay taşımacılığı maliyetlerini düşürmede en önemli teknolojik katkısı nedir?",
           "secenekler": [
-            "A) Yalnızca insan taşıyan kapsüller geliştirmesi",
+            "A) Yalnızca insan taşıyan kapsüller geliştirip Ay yörüngesine göndermesi",
             "B) Roketlerin ilk kademesini yeniden kullanılabilir hale getirmesi",
             "C) Uzayda otel işletmesi",
             "D) Ay'da maden çıkarması",
@@ -4924,7 +4924,7 @@
         {
           "soru": "Starlink nedir?",
           "secenekler": [
-            "A) NASA'nın Mars keşif aracı",
+            "A) NASA tarafından Mars'a gönderilen gezgin keşif aracı",
             "B) SpaceX'in düşük yörüngeli uydu internet ağı",
             "C) Türkiye'nin haberleşme uydusu",
             "D) Bir kripto para birimi",
@@ -4961,7 +4961,7 @@
           "soru": "CRISPR gen düzenleme teknolojisi temelde ne işe yarar?",
           "secenekler": [
             "A) DNA dizilerini hassas biçimde kesip düzenleyerek genetik değişiklik yapmayı sağlar.",
-            "B) Yalnızca DNA'yı görüntülemeye yarar.",
+            "B) Yalnızca DNA moleküllerini mikroskop altında görüntülemeye ve kayıt altına almaya yarar.",
             "C) Bilgisayar çiplerini üretmede kullanılır.",
             "D) Uydu sinyallerini güçlendirir.",
             "E) Kripto para madenciliğinde kullanılır."
@@ -4976,7 +4976,7 @@
             "B) Aziz Sancar ve James Watson",
             "C) Katalin Karikó ve Drew Weissman",
             "D) Marie Curie ve Rosalind Franklin",
-            "E) Craig Venter ve Francis Collins"
+            "E) John Craig Venter ve Francis Sellers Collins"
           ],
           "dogruIndex": 0,
           "aciklama": "Jennifer Doudna ve Emmanuelle Charpentier, CRISPR-Cas9 gen düzenleme yöntemini geliştirdikleri için 2020 Nobel Kimya Ödülü'nü kazanmışlardır."
@@ -4988,7 +4988,7 @@
             "B) Araç yalnızca otoyolda otomatik gidebilir.",
             "C) Araç, hiçbir insan müdahalesi olmadan her koşulda tam otonom sürüş yapabilir.",
             "D) Yalnızca park etme otomatiktir.",
-            "E) Sürücü koltuğu bulunmaz ancak uzaktan kumanda gerekir."
+            "E) Araçta sürücü koltuğu bulunmaz ancak sürüş için sürekli uzaktan kumanda gerekir."
           ],
           "dogruIndex": 2,
           "aciklama": "SAE (Society of Automotive Engineers) sınıflandırmasına göre Seviye 5, aracın hiçbir insan müdahalesine gerek kalmadan her koşulda tam otonom sürüş yapabildiği en üst düzeydir."
@@ -4996,7 +4996,7 @@
         {
           "soru": "Merkez Bankası Dijital Parası (CBDC) kavramı neyi ifade eder?",
           "secenekler": [
-            "A) Özel şirketlerin çıkardığı kripto paralar",
+            "A) Özel şirketler tarafından piyasaya sürülen ve merkezi denetimden bağımsız çalışan kripto para birimleri",
             "B) Merkez bankası tarafından ihraç edilen ve devlet güvencesi taşıyan dijital ulusal para birimi",
             "C) Yalnızca borsalarda işlem gören sanal varlıklar",
             "D) Bitcoin'in resmi adı",
@@ -5011,7 +5011,7 @@
             "A) e-Lira",
             "B) Dijital Türk Lirası",
             "C) TL-Coin",
-            "D) Kripto Lira",
+            "D) Kripto Lira Dijital Ödeme Sistemi",
             "E) Merkez Coin"
           ],
           "dogruIndex": 1,
@@ -5021,7 +5021,7 @@
           "soru": "NFT (Non-Fungible Token) kavramı ne anlama gelir?",
           "secenekler": [
             "A) Değiştirilemez, benzersiz dijital varlıkları temsil eden blok zinciri tabanlı token",
-            "B) Bir kripto para birimi türü",
+            "B) Merkez bankaları tarafından çıkarılan ve devlet güvenceli resmi bir kripto para birimi türü",
             "C) Bir internet tarayıcısı",
             "D) Bir bulut depolama hizmeti",
             "E) Bir işletim sistemi"
@@ -5032,7 +5032,7 @@
         {
           "soru": "Ethereum'un Bitcoin'den temel farkı nedir?",
           "secenekler": [
-            "A) Ethereum yalnızca ödeme aracı olarak tasarlanmıştır.",
+            "A) Ethereum, tıpkı Bitcoin gibi yalnızca dijital ödeme ve para transferi aracı olarak tasarlanmış bir kripto ağıdır.",
             "B) Ethereum, akıllı kontratlar (smart contracts) çalıştırabilen programlanabilir bir blok zinciri platformudur.",
             "C) Ethereum madenciliğe izin vermez.",
             "D) Bitcoin daha yeni bir teknolojidir.",
@@ -5044,7 +5044,7 @@
         {
           "soru": "'Akıllı kontrat' (smart contract) kavramı ne anlama gelir?",
           "secenekler": [
-            "A) Avukatların hazırladığı dijital sözleşme şablonu",
+            "A) Avukatlar ve hukuk büroları tarafından önceden hazırlanıp taraflara sunulan, imzaya hazır standart dijital sözleşme şablonu ve belgesi",
             "B) Belirli koşullar gerçekleştiğinde otomatik olarak yürütülen, blok zinciri üzerinde kodlanmış kendi kendini uygulayan sözleşme",
             "C) Bir bankanın kredi sözleşmesi",
             "D) E-imzalı PDF belgesi",
@@ -5060,7 +5060,7 @@
             "B) İkisi de aynı teknolojidir.",
             "C) AR yalnızca oyunlarda kullanılır.",
             "D) VR yalnızca eğitim amaçlıdır.",
-            "E) AR tamamen dijital bir ortam yaratır."
+            "E) AR, tıpkı sanal gerçeklik gibi kullanıcıyı çevresinden tamamen koparan bütünüyle dijital ve yapay bir ortam yaratır."
           ],
           "dogruIndex": 0,
           "aciklama": "Sanal gerçeklik (VR), kullanıcıyı tamamen yapay bir dijital ortama daldırırken; artırılmış gerçeklik (AR), gerçek dünya görüntüsü üzerine dijital bilgi katmanları ekler (örn. Pokémon GO)."
@@ -5068,7 +5068,7 @@
         {
           "soru": "Giyilebilir teknoloji (wearable technology) kavramına örnek olarak aşağıdakilerden hangisi verilebilir?",
           "secenekler": [
-            "A) Masaüstü bilgisayar",
+            "A) Sabit masaüstü bilgisayar ve büyük ekran monitör",
             "B) Akıllı saat ve fitness bileklikleri",
             "C) Sunucu odası",
             "D) Ağ yönlendiricisi (router)",
@@ -5080,7 +5080,7 @@
         {
           "soru": "Yarı iletken çip (semiconductor chip) teknolojisi günümüzde neden stratejik öneme sahiptir?",
           "secenekler": [
-            "A) Yalnızca oyun konsollarında kullanıldığı için",
+            "A) Yalnızca ev tipi oyun konsollarında ve taşınabilir el oyun cihazlarında sınırlı sayıda kullanıldığı ve başka alana geçmediği için",
             "B) Akıllı telefonlardan otomobillere, savunma sistemlerinden yapay zekaya kadar geniş bir yelpazede temel bileşen olduğu için",
             "C) Yalnızca tarım makinelerinde kullanıldığı için",
             "D) Yalnızca uzay araçlarında kullanıldığı için",
@@ -5093,7 +5093,7 @@
           "soru": "'Endüstri 4.0' kavramı neyi ifade etmektedir?",
           "secenekler": [
             "A) Dördüncü sanayi devrimi olarak nitelendirilen, üretimde otomasyon, IoT, yapay zeka ve veri değişiminin bütünleşmesi",
-            "B) Yalnızca elektrik enerjisinin sanayide kullanılması",
+            "B) İkinci sanayi devrimini simgeleyen, yalnızca elektrik enerjisinin ve seri üretim bantlarının sanayide yaygın biçimde kullanılması",
             "C) Buhar makinelerinin icadı",
             "D) Montaj hattı üretiminin başlangıcı",
             "E) Yalnızca tarımsal mekanizasyon"
@@ -5107,7 +5107,7 @@
             "A) Yazılım geliştiricisinin henüz farkında olmadığı ve dolayısıyla henüz yaması bulunmayan güvenlik açığı",
             "B) Bir yazılımın ilk kurulum günü",
             "C) Bir sistemin hiç güvenlik açığı olmadığı durum",
-            "D) Yıllık güvenlik denetim tarihi",
+            "D) Kurumların her yıl düzenli olarak gerçekleştirdiği ve raporladığı yıllık güvenlik denetim ve sızma testi tarihi",
             "E) Bir virüsün etkisiz hale getirildiği gün"
           ],
           "dogruIndex": 0,
@@ -5144,7 +5144,7 @@
             "B) 6698 sayılı KVKK",
             "C) 5070 sayılı Elektronik İmza Kanunu",
             "D) 5651 sayılı İnternet Kanunu",
-            "E) 5809 sayılı Elektronik Haberleşme Kanunu"
+            "E) 5809 sayılı Elektronik Haberleşme Kanunu ve ilgili ikincil düzenlemeleri"
           ],
           "dogruIndex": 0,
           "aciklama": "6563 sayılı Elektronik Ticaretin Düzenlenmesi Hakkında Kanun; Türkiye'de e-ticaret faaliyetlerinin temel yasal çerçevesini belirlemektedir."
@@ -5176,7 +5176,7 @@
         {
           "soru": "'İHA' ve 'SİHA' kısaltmaları arasındaki fark nedir?",
           "secenekler": [
-            "A) İkisi aynı anlama gelir.",
+            "A) İki kısaltma da birbirinin yerine kullanılabilen, tamamen aynı anlama gelen ve aralarında hiçbir teknik fark bulunmayan terimlerdir.",
             "B) İHA yalnızca keşif/gözetleme amaçlıdır; SİHA ise silah taşıyabilen insansız hava aracını ifade eder.",
             "C) SİHA yalnızca deniz görevlerinde kullanılır.",
             "D) İHA insanlı bir araçtır.",
@@ -5188,7 +5188,7 @@
         {
           "soru": "'Deepfake' teknolojisi nedir?",
           "secenekler": [
-            "A) Derin deniz araştırma teknolojisi",
+            "A) Okyanusların en derin noktalarını insansız denizaltılarla inceleyen ve haritalandıran derin deniz araştırma teknolojisi",
             "B) Yapay zeka kullanılarak bir kişinin görüntü veya sesinin gerçekçi biçimde sahte olarak üretilmesi",
             "C) Bir tür şifreleme algoritması",
             "D) Bir bulut depolama sistemi",
@@ -5200,7 +5200,7 @@
         {
           "soru": "Sohbet robotları (chatbot) temel olarak ne işe yarar?",
           "secenekler": [
-            "A) Yalnızca oyun oynamak için kullanılır.",
+            "A) Sohbet robotları yalnızca bilgisayar oyunları oynamak ve oyun içi görevleri tamamlamak için kullanılır.",
             "B) Doğal dil işleme kullanarak kullanıcılarla otomatik metin veya sesli diyalog kurar.",
             "C) Yalnızca donanım arızalarını tamir eder.",
             "D) Bilgisayar virüslerini temizler.",
@@ -5212,7 +5212,7 @@
         {
           "soru": "Yapay sinir ağları (neural networks) hangi biyolojik yapıdan esinlenerek tasarlanmıştır?",
           "secenekler": [
-            "A) Kalp kasları",
+            "A) Kalp kasındaki ritmik kasılma hücreleri",
             "B) İnsan beynindeki nöron ağları",
             "C) Sindirim sistemi",
             "D) Bağışıklık sistemi",
@@ -5224,7 +5224,7 @@
         {
           "soru": "'Dijital ikiz' (digital twin) teknolojisi nedir?",
           "secenekler": [
-            "A) Bir cihazın fiziksel olarak iki adet üretilmesi",
+            "A) Bir elektronik cihazın veya makinenin fabrikada tıpatıp aynı özelliklerde fiziksel olarak iki ayrı adet üretilmesi ve saklanması",
             "B) Fiziksel bir nesnenin veya sistemin gerçek zamanlı verilerle beslenen sanal/dijital kopyasının oluşturulması",
             "C) Bir yazılımın iki farklı işletim sisteminde çalışması",
             "D) İki farklı şirketin aynı ürünü üretmesi",
@@ -5236,7 +5236,7 @@
         {
           "soru": "Pardus işletim sistemi nedir?",
           "secenekler": [
-            "A) Microsoft tarafından geliştirilen bir Windows sürümü",
+            "A) Microsoft firması tarafından geliştirilip lisanslanan, kapalı kaynaklı bir Windows işletim sistemi sürümü",
             "B) TÜBİTAK ULAKBİM tarafından geliştirilen, Linux tabanlı yerli işletim sistemi",
             "C) Apple'ın mobil işletim sistemi",
             "D) Bir kripto para cüzdanı yazılımı",
@@ -5260,7 +5260,7 @@
         {
           "soru": "Nesnelerin İnterneti (IoT) cihazlarının güvenliğiyle ilgili en sık dile getirilen risk aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Cihazların çok pahalı olması",
+            "A) Nesnelerin interneti cihazlarının satın alınmasının ve düzenli bakımının olağanüstü derecede pahalı olması nedeniyle bütçelerin aşılması",
             "B) Zayıf güvenlik önlemleri nedeniyle cihazların kötü amaçlı yazılımlarca ele geçirilip botnet oluşturmada kullanılabilmesi",
             "C) Cihazların internete hiç bağlanamaması",
             "D) Cihazların çok az veri üretmesi",
@@ -5272,7 +5272,7 @@
         {
           "soru": "'Bulut bilişim' (cloud computing) kavramı temelde neyi ifade eder?",
           "secenekler": [
-            "A) Verilerin yalnızca yerel sabit diskte saklanması",
+            "A) Tüm verilerin ve uygulamaların yalnızca kullanıcının kendi bilgisayarındaki yerel sabit diskte fiziksel olarak saklanması",
             "B) Bilgi işlem kaynaklarının (sunucu, depolama, yazılım) internet üzerinden talep üzerine sağlanması",
             "C) Hava durumu tahmin sistemleri",
             "D) Yalnızca e-posta hizmetleri",
@@ -5284,7 +5284,7 @@
         {
           "soru": "Sosyal mühendislik (social engineering) saldırıları temelde neyi hedef alır?",
           "secenekler": [
-            "A) Yalnızca donanım arızalarını",
+            "A) Yalnızca bilgisayar donanımındaki fiziksel arızaları ve bileşen bozulmalarını hedef almayı",
             "B) İnsan psikolojisini ve güvenini istismar ederek gizli bilgi elde etmeyi",
             "C) Yalnızca ağ yönlendiricilerini",
             "D) Yazılım lisans anahtarlarını",
@@ -5296,7 +5296,7 @@
         {
           "soru": "'Malware' (kötü amaçlı yazılım) kavramı hangi yazılım türlerini kapsar?",
           "secenekler": [
-            "A) Yalnızca virüsleri",
+            "A) Yalnızca bilgisayar sistemlerine bulaşan klasik virüs türlerini kapsar; solucan, truva atı ve fidye yazılımını içermez.",
             "B) Virüs, solucan, truva atı, casus yazılım ve fidye yazılımı gibi zarar verici tüm yazılımları",
             "C) Yalnızca reklam yazılımlarını",
             "D) Yalnızca işletim sistemi güncellemelerini",
@@ -5308,7 +5308,7 @@
         {
           "soru": "'Truva atı' (trojan horse) türü kötü amaçlı yazılımın temel özelliği nedir?",
           "secenekler": [
-            "A) Kendi kendine çoğalarak ağ üzerinde yayılır.",
+            "A) Herhangi bir kullanıcı etkileşimine gerek kalmadan kendi kendine çoğalarak ağ üzerindeki diğer cihazlara hızla yayılır.",
             "B) Zararsız veya faydalı bir yazılım gibi görünerek kullanıcıyı kandırıp sisteme sızar.",
             "C) Yalnızca donanımı fiziksel olarak bozar.",
             "D) Yalnızca e-posta sunucularını hedef alır.",
@@ -5320,7 +5320,7 @@
         {
           "soru": "Türkiye'de USOM (Ulusal Siber Olaylara Müdahale Merkezi) hangi kuruma bağlı olarak faaliyet göstermektedir?",
           "secenekler": [
-            "A) TÜBİTAK",
+            "A) TÜBİTAK (Türkiye Bilimsel ve Teknolojik Araştırma Kurumu)",
             "B) BTK (Bilgi Teknolojileri ve İletişim Kurumu)",
             "C) Milli Savunma Bakanlığı",
             "D) MİT",
@@ -5335,7 +5335,7 @@
             "A) Aracın müzik sistemini kontrol etmek",
             "B) Lazer ışınları göndererek çevredeki nesnelerin mesafe ve şeklini algılamak",
             "C) Yalnızca yakıt tüketimini ölçmek",
-            "D) Radyo dalgalarıyla iletişim kurmak",
+            "D) Radyo dalgaları yayarak diğer araçlar ve baz istasyonlarıyla sürekli kablosuz iletişim kurmak",
             "E) Aracın rengini algılamak"
           ],
           "dogruIndex": 1,
@@ -5344,7 +5344,7 @@
         {
           "soru": "Yapay zeka etiği tartışmalarında sıkça gündeme gelen 'algoritmik önyargı' (algorithmic bias) kavramı neyi ifade eder?",
           "secenekler": [
-            "A) Algoritmaların her zaman tarafsız sonuçlar üretmesi",
+            "A) Algoritmaların hiçbir koşulda hata yapmadan her zaman tümüyle tarafsız ve nesnel sonuçlar üretmesi",
             "B) Eğitim verisindeki mevcut önyargıların yapay zeka modelinin kararlarına yansıması",
             "C) Yalnızca donanım performansıyla ilgili bir sorun",
             "D) Algoritmaların internete bağlanamaması",
@@ -5356,7 +5356,7 @@
         {
           "soru": "'Edge computing' (uç bilişim) kavramı neyi ifade eder?",
           "secenekler": [
-            "A) Verilerin yalnızca merkezi bulut sunucularında işlenmesi",
+            "A) Tüm verilerin yalnızca uzaktaki merkezi bulut sunucularında toplanarak orada işlenmesi ve saklanması",
             "B) Verinin üretildiği kaynağa yakın yerel cihazlarda işlenerek gecikmenin azaltılması",
             "C) Yalnızca mobil uygulama geliştirme yöntemi",
             "D) İnternete bağlanmadan çalışan bir işletim sistemi",
@@ -5369,7 +5369,7 @@
           "soru": "Türkiye'de mobil ödeme ve dijital cüzdan uygulamalarının yaygınlaşmasında hangi düzenleyici kurum rol oynamaktadır?",
           "secenekler": [
             "A) TCMB (Türkiye Cumhuriyet Merkez Bankası)",
-            "B) MEB",
+            "B) MEB (Millî Eğitim Bakanlığı ve bağlı birimleri)",
             "C) YÖK",
             "D) Diyanet İşleri Başkanlığı",
             "E) TSE"
@@ -5382,7 +5382,7 @@
           "secenekler": [
             "A) İkisi aynı yöntemdir.",
             "B) Denetimli öğrenme etiketlenmiş verilerle eğitilirken, denetimsiz öğrenme etiketlenmemiş veride örüntü arar.",
-            "C) Denetimsiz öğrenme yalnızca görüntü verisiyle çalışır.",
+            "C) Denetimsiz öğrenme yöntemi yalnızca dijital görüntü ve fotoğraf verisiyle çalışabilir, metin ya da sayısal veriyle çalışamaz.",
             "D) Denetimli öğrenme internetsiz çalışamaz.",
             "E) Denetimsiz öğrenme yalnızca ses tanımada kullanılır."
           ],
@@ -5512,7 +5512,7 @@
         {
           "soru": "Güncel teknolojiler ile veri analizinde hangi yöntemler kullanılır?",
           "secenekler": [
-            "Veri madenciliği ve veri temizliği yöntemleri",
+            "Yalnızca veri madenciliği ve veri temizliği yöntemleri ile ön işleme adımları",
             "Veri madenciliği, veri temizliği ve veri görselleştirme yöntemleri",
             "Veri görselleştirme ve veri işleme yöntemleri",
             "Veri işleme ve veri madenciliği yöntemleri",
@@ -5526,7 +5526,7 @@
           "secenekler": [
             "Müşteri deneyimini iyileştirmek için müşteri odaklı bir yaklaşım kullanmak ve müşteri ihtiyaçlarını anlamak gerekir.",
             "Müşteri deneyimini iyileştirmek için teknolojiye güvenmek ve müşteri ihtiyaçlarını anlamak gerekmez.",
-            "Müşteri deneyimini iyileştirmek için sadece teknoloji kullanmak yeterli olur.",
+            "Müşteri deneyimini iyileştirmek için müşteri ihtiyaçlarına bakmadan yalnızca en yeni teknolojileri kullanmak her durumda tek başına yeterli olur.",
             "Müşteri deneyimini iyileştirmek için müşteri odaklı bir yaklaşım kullanmak gerekmez.",
             "Müşteri deneyimini iyileştirmek için müşteri ihtiyaçlarını anlamak gerekmez."
           ],
@@ -5669,7 +5669,7 @@
           "soru": "Dijital dönüşüm sürecinde en önemli etken ne olabilir?",
           "secenekler": [
             "Çalışanların motivasyonu",
-            "İnovasyon ve yenilikçilik",
+            "Sürekli inovasyon, yenilikçilik ve yaratıcı fikir geliştirme",
             "Bütçe sınırlamaları",
             "Dijital bilgi ve iletişim teknolojilerinin kullanımı",
             "Girişimcilerin yokluğu"
@@ -5728,7 +5728,7 @@
         {
           "soru": "Dijital dönüşüm sürecinde, 'veri analitiği' neden önemlidir?",
           "secenekler": [
-            "Yalnızca veri depolamak için",
+            "Yalnızca büyük miktarda veriyi güvenli biçimde depolamak ve arşivlemek için",
             "İş kararlarını desteklemek ve müşteri deneyimini iyileştirmek için",
             "Sistemlerin güncellenmesi için",
             "Yalnızca büyük şirketler için",
@@ -5740,7 +5740,7 @@
         {
           "soru": "Dijital dönüşümde 'siber güvenlik', neden kritik öneme sahiptir?",
           "secenekler": [
-            "Yalnızca büyük şirketler için",
+            "Yalnızca çok uluslu büyük ölçekli şirketler ve holdingler için",
             "Tüm işletmeler için veri ve sistemlerin korunması",
             "Sadece kamu kurumlarında",
             "Yalnızca donanım güvenliği için",
@@ -5776,7 +5776,7 @@
         {
           "soru": "Dijital dönüşümün bir bileşeni olan 'yapay zeka', hangi ihtiyaca cevap verir?",
           "secenekler": [
-            "Yalnızca büyük veri depolama ihtiyacına",
+            "Yalnızca çok büyük hacimli verilerin güvenli depolanması ihtiyacına",
             "Verilerin analiz edilmesi ve iş kararlarını desteklemek için",
             "Sistemlerin güncellenmesi için",
             "Yalnızca donanım ihtiyacının azaltılması için",
@@ -5788,7 +5788,7 @@
         {
           "soru": "Dijital dönüşümün faydalarından biri, 'maliyetlerin azaltılması' açısından neler sağlar?",
           "secenekler": [
-            "Yalnızca iş süreçlerinin hızlanmasını",
+            "Yalnızca günlük iş süreçlerinin hızlanmasını ve zaman kazanılmasını",
             "Operasyonel verimliliği artırarak maliyetlerin azaltılmasını",
             "Sadece büyük veri depolama ihtiyacını",
             "Yalnızca donanım ihtiyacının azaltılmasını",
@@ -5800,7 +5800,7 @@
         {
           "soru": "Dijital dönüşümde 'inovasyon', neden önemlidir?",
           "secenekler": [
-            "Yalnızca teknoloji yatırımlarını artırmak için",
+            "Yalnızca donanım ve yazılım gibi teknoloji yatırımlarını artırmak için",
             "Yenilikçi çözümler geliştirerek rekabet avantajı sağlamak için",
             "Sadece büyük şirketlerin büyümesi için",
             "Yalnızca kamu kurumlarında uygulanmak için",
@@ -5896,7 +5896,7 @@
         {
           "soru": "Teknoloji ve dijital dönüşüm nedir?",
           "secenekler": [
-            "Bir şirketin online satış yapmasıdır.",
+            "Yalnızca bir şirketin ürünlerini internet üzerinden online olarak satışa sunmasıdır.",
             "İnsanların hayatlarını kolaylaştırmak için geliştirilen teknolojilerdir.",
             "Üretimde makinaların kullanılmasıdır.",
             "Gelişmiş ülkelerin özelliği olan teknolojidir.",
@@ -6018,7 +6018,7 @@
         {
           "soru": "Türkiye'nin ilk insansız (pilotsuz) savaş uçağı (SİHA) hangisidir?",
           "secenekler": [
-            "A) Bayraktar TB2",
+            "A) Bayraktar TB2 silahlı insansız hava aracı",
             "B) Bayraktar KIZILELMA",
             "C) ANKA-3",
             "D) AKSUNGUR",
@@ -6130,7 +6130,7 @@
         {
           "soru": "Alper Gezeravcı'nın uzay yolculuğunu gerçekleştirdiği misyonun adı nedir?",
           "secenekler": [
-            "A) Artemis-1",
+            "A) Artemis-1 Ay yörünge görevi",
             "B) Crew-6",
             "C) Apollo-11",
             "D) Ax-3 (Axiom Mission 3)",
@@ -6187,7 +6187,7 @@
           "soru": "Türkiye'nin ilk yerli üretim elektrikli otomobili Togg'un üretim tesisi hangi ilimizdedir?",
           "secenekler": [
             "A) Bursa (Gemlik)",
-            "B) Kocaeli",
+            "B) Kocaeli (Gebze OSB)",
             "C) Sakarya",
             "D) İzmir",
             "E) Ankara"
