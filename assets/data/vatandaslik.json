@@ -5393,7 +5393,7 @@
             "4 yıl",
             "5 yıl",
             "6 yıl",
-            "7 yıl",
+            "7 yıl olup yalnızca bir kez görev yapılabilir",
             "5 yıl, ancak bir defa daha seçilebilir"
           ],
           "dogruIndex": 4,
@@ -5475,7 +5475,7 @@
           "soru": "Anayasanın 104. maddesinde belirtilen Cumhurbaşkanının görev ve yetkileri nelerdir?",
           "secenekler": [
             "Cumhurbaşkanı, devletin başıdır ve bu sıfatla Türkiye Cumhuriyeti adına ülkeyi ve milleti temsil eder, Anayasanın uygulanmasını sağlar, yasama, yürütme ve yargı organlarının düzenli ve uyumlu çalışmasını temin eder",
-            "Cumhurbaşkanı, devletin başıdır ve bu sıfatla Türkiye Cumhuriyeti adına ülkeyi ve milleti temsil eder, Anayasanın uygulanmasını sağlar",
+            "Cumhurbaşkanı, devletin başıdır ve bu sıfatla Türkiye Cumhuriyeti adına ülkeyi ve milleti temsil eder, Anayasanın uygulanmasını sağlar, ayrıca tek başına Anayasayı değiştirme ve yürürlükten kaldırma yetkisine sahiptir",
             "Cumhurbaşkanı, devletin başıdır ve bu sıfatla Türkiye Cumhuriyeti adına ülkeyi ve milleti temsil eder",
             "Cumhurbaşkanı, Anayasanın uygulanmasını sağlar, yasama, yürütme ve yargı organlarının düzenli ve uyumlu çalışmasını temin eder",
             "Cumhurbaşkanı, yasama, yürütme ve yargı organlarının düzenli ve uyumlu çalışmasını temin eder"
@@ -5487,7 +5487,7 @@
           "soru": "Türkiye Cumhuriyeti'nin kurucusu kimdir?",
           "secenekler": [
             "Mustafa Kemal Atatürk",
-            "İsmet İnönü",
+            "İkinci Cumhurbaşkanı İsmet İnönü",
             "Celal Bayar",
             "Adnan Menderes",
             "Fevzi Çakmak"
@@ -5523,7 +5523,7 @@
           "soru": "Anayasa Mahkemesinin görevi nedir?",
           "secenekler": [
             "Yasaların anayasaya uygunluğunu denetlemek",
-            "Yürütme erkini temsil etmek",
+            "Yürütme erkini temsil edip kanunları uygulamak",
             "Yargı erkini temsil etmek",
             "Yasama erkini temsil etmek",
             "İdari işleri düzenlemek"
@@ -5596,7 +5596,7 @@
           "secenekler": [
             "Devletin egemenliği anlamına gelir.",
             "Halkın, hak ve özgürlüklerini kullanma ve koruma yetkisine sahip olduğu, devletin de bu yetkileri korunması için görevli olduğu anlamına gelir.",
-            "Bireylerin, toplumun ve devletin tüm kurumlarının egemenliği anlamına gelir.",
+            "Bireylerin, toplumun ve devletin tüm kurumlarının ortak ve bölünebilir egemenliği anlamına gelip, bu egemenliğin belirli zümrelere devredilebileceğini ifade eder.",
             "Anayasanın güncellenmesi anlamına gelir.",
             "Yüksek mahkemelerin egemenliği anlamına gelir."
           ],
@@ -6126,7 +6126,7 @@
             "İnanç özgürlüğü",
             "Dil özgürlüğü",
             "Eğitim-öğretim özgürlüğü",
-            "Toplum özgürlüğü"
+            "Toplumsal dayanışma ve katılım özgürlüğü"
           ],
           "dogruIndex": 3,
           "aciklama": "Bu seçenek doğru cevaptır çünkü Anayasa'nın 2. maddesindeki açıklama, eğitim-öğretim özgürlüğünü ifade eder. Eğitim-öğretim özgürlüğü, Anayasa'nın 42. maddesindeki bir özgürlüktür."
@@ -6242,7 +6242,7 @@
         {
           "soru": "Anayasa'nın 2. maddesine göre Türkiye Cumhuriyeti'nin dayandığı temel nitelendirme aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Sosyalist bir hukuk devletidir",
+            "A) Sosyalist ve teokratik temelli bir hukuk devletidir",
             "B) Demokratik, laik ve sosyal bir hukuk devletidir",
             "C) Teokratik bir devlettir",
             "D) Federal bir devlettir",
@@ -6281,7 +6281,7 @@
             "A) Yalnızca dış politika yürütmek",
             "B) Kişinin temel hak ve hürriyetlerini, sosyal hukuk devleti ve adalet ilkeleriyle bağdaşmayacak surette sınırlayan engelleri kaldırmaya çalışmak",
             "C) Yalnızca ekonomik kalkınmayı sağlamak",
-            "D) Siyasi partileri denetlemek",
+            "D) Siyasi partilerin mali kaynaklarını ve iç işleyişini sürekli biçimde denetleyerek onların hangi programı benimseyeceğine devlet adına karar vermek",
             "E) Yalnızca milli savunmayı sağlamak"
           ],
           "dogruIndex": 1,
@@ -6302,7 +6302,7 @@
         {
           "soru": "Anayasa'nın 6. maddesine göre egemenlik kime aittir?",
           "secenekler": [
-            "A) TBMM'ye",
+            "A) Türkiye Büyük Millet Meclisine",
             "B) Cumhurbaşkanı'na",
             "C) Kayıtsız şartsız Millete",
             "D) Yargı organlarına",
@@ -6315,7 +6315,7 @@
           "soru": "Anayasa'nın 6. maddesi uyarınca aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
             "A) Hiçbir kimse veya organ, kaynağını Anayasadan almayan bir Devlet yetkisi kullanamaz.",
-            "B) Egemenlik yalnızca seçilmiş organlarca sınırsız kullanılır.",
+            "B) Egemenlik yalnızca seçilmiş organlarca ve yargı mercileri eliyle sınırsız ve denetimsiz biçimde kullanılır.",
             "C) Egemenlik devredilebilir bir haktır.",
             "D) Egemenlik yalnızca Cumhurbaşkanı eliyle kullanılır.",
             "E) Egemenlik kavramı 1982 Anayasası'nda yer almaz."
@@ -6364,7 +6364,7 @@
           "secenekler": [
             "A) Devlet organları yalnızca bazı işlemlerinde eşitlik ilkesine uymak zorundadır",
             "B) Herkes, dil, ırk, renk, cinsiyet, siyasi düşünce, felsefi inanç, din, mezhep ve benzeri sebeplerle ayırım gözetilmeksizin kanun önünde eşittir",
-            "C) Eşitlik ilkesi yalnızca Türk vatandaşları için değil yabancılar için de mutlak ve istisnasızdır",
+            "C) Eşitlik ilkesi yalnızca Türk vatandaşları için değil yabancılar için de her koşulda mutlak, istisnasız ve hiçbir kanunla sınırlanamaz niteliktedir",
             "D) Kadın-erkek eşitliğini sağlamaya yönelik özel tedbirler eşitlik ilkesine aykırıdır",
             "E) Eşitlik ilkesi yalnızca siyasi haklarla sınırlıdır"
           ],
@@ -6386,7 +6386,7 @@
         {
           "soru": "Anayasa'nın 12. maddesine göre temel hak ve hürriyetlerin niteliği ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Yalnızca Türk vatandaşlarına tanınan ayrıcalıklardır",
+            "A) Yalnızca Türk vatandaşlarına tanınan, devredilebilir ve kişinin vazgeçebileceği birtakım siyasi ayrıcalıklardan ibarettir",
             "B) Kişinin dokunulmaz, devredilmez, vazgeçilmez temel hak ve hürriyetlerini kapsar ve kişiye ödevler de yükler",
             "C) Yalnızca ekonomik haklardan ibarettir",
             "D) Kanunla dahi sınırlanamaz",
@@ -6399,7 +6399,7 @@
           "soru": "Anayasa'nın 14. maddesi neyi düzenler?",
           "secenekler": [
             "A) Temel hak ve hürriyetlerin kötüye kullanılamayacağını",
-            "B) Seçme ve seçilme yaşını",
+            "B) Seçme, seçilme ve halk oylamasına katılma yaşının on sekiz olduğunu",
             "C) TBMM'nin toplantı yeter sayısını",
             "D) Cumhurbaşkanının cezai sorumluluğunu",
             "E) Anayasa Mahkemesi'nin üye sayısını"
@@ -6422,7 +6422,7 @@
         {
           "soru": "Anayasa'nın 15. maddesine göre savaş, seferberlik veya olağanüstü hallerde dahi dokunulamayacak haklar arasında aşağıdakilerden hangisi sayılır?",
           "secenekler": [
-            "A) Seyahat özgürlüğü",
+            "A) Seyahat ve yerleşme özgürlüğü ile toplantı ve gösteri düzenleme hakkı",
             "B) Kişinin yaşama hakkı, maddi ve manevi varlığının bütünlüğü",
             "C) Toplantı ve gösteri yürüyüşü hakkı",
             "D) Basın özgürlüğü",
@@ -6435,7 +6435,7 @@
           "soru": "Anayasa'nın 15. maddesi uyarınca olağanüstü hallerde temel hak ve hürriyetlerin kullanılmasının durdurulmasında dahi geçerliliğini koruyan ilkelerden biri aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Suçluluğu mahkemece saptanıncaya kadar kimsenin suçlu sayılamayacağı (masumiyet karinesi)",
-            "B) Toplantı yapma hakkının sınırsızlığı",
+            "B) Toplantı ve gösteri yürüyüşü düzenleme hakkının olağanüstü hallerde dahi hiçbir biçimde sınırlanamaz oluşu",
             "C) Dernek kurma hakkının mutlaklığı",
             "D) Basın özgürlüğünün sınırsızlığı",
             "E) Seyahat hürriyetinin mutlaklığı"
@@ -6447,7 +6447,7 @@
           "soru": "Anayasa'nın 15. maddesine göre olağanüstü hallerde temel hak ve hürriyetlerin kullanılmasının durdurulabilmesi için hangi sınır geçerlidir?",
           "secenekler": [
             "A) Milletlerarası hukuktan doğan yükümlülükler ihlal edilmemek kaydıyla, durumun gerektirdiği ölçüde olması",
-            "B) Herhangi bir sınır aranmaz, Cumhurbaşkanı dilediği gibi durdurabilir",
+            "B) Herhangi bir sınır aranmaz; Cumhurbaşkanı, TBMM'nin onayına gerek olmaksızın dilediği süre ve ölçüde temel hakları durdurabilir",
             "C) Yalnızca TBMM'nin onayı yeterlidir, başka sınır yoktur",
             "D) Sadece ekonomik haklar sınırlanabilir, diğerleri sınırlanamaz",
             "E) Sınırlama süresi en fazla 24 saattir"
@@ -6458,7 +6458,7 @@
         {
           "soru": "Anayasa'nın 16. maddesine göre yabancıların temel hak ve hürriyetleri konusunda aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Yabancılara hiçbir temel hak tanınmaz",
+            "A) Yabancılara hiçbir temel hak ve hürriyet tanınmaz; bu kişiler yalnızca ikamet ettikleri sürece idari kararlarla korunur",
             "B) Yabancıların temel hak ve hürriyetleri, milletlerarası hukuka uygun olarak kanunla sınırlanabilir",
             "C) Yabancılar Türk vatandaşlarıyla her konuda tamamen eşit haklara sahiptir",
             "D) Yabancıların hakları yalnızca ikili anlaşmalarla belirlenir",
@@ -6471,7 +6471,7 @@
           "soru": "Anayasa'nın 17. maddesine göre aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Herkes yaşama, maddi ve manevi varlığını koruma ve geliştirme hakkına sahiptir; kimseye işkence ve eziyet yapılamaz",
-            "B) İşkence yasağı yalnızca gözaltı süresince geçerlidir",
+            "B) İşkence ve eziyet yasağı yalnızca gözaltı ve tutukluluk süresince geçerli olup, mahkumiyet sonrası infaz aşamasında uygulanmaz",
             "C) Tıbbi zorunluluklar dışında dahi rızasız tıbbi müdahale serbesttir",
             "D) Ölüm cezası her koşulda uygulanabilir",
             "E) Bu madde yalnızca Türk vatandaşlarını kapsar"
@@ -6554,7 +6554,7 @@
         {
           "soru": "Anayasa'nın 21. maddesine göre konut dokunulmazlığı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Konuta hiçbir şekilde girilemez",
+            "A) Konuta hiçbir şekilde girilemez; hakim kararı bulunsa dahi arama ve el koyma işlemi kesinlikle yapılamaz",
             "B) Usulüne göre verilmiş hakim kararı olmadıkça kimsenin konutuna girilemez, arama yapılamaz",
             "C) Konut araması yalnızca gece yapılabilir",
             "D) Konut dokunulmazlığı yalnızca ev sahiplerini korur",
@@ -6566,7 +6566,7 @@
         {
           "soru": "Anayasa'nın 22. maddesine göre haberleşmenin gizliliğine aşağıdaki hangi durumda istisna getirilebilir?",
           "secenekler": [
-            "A) Hiçbir durumda istisna getirilemez",
+            "A) Hiçbir durumda istisna getirilemez; milli güvenlik veya kamu düzeni gerekçesiyle dahi haberleşme denetlenemez",
             "B) Milli güvenlik, kamu düzeni, suç işlenmesinin önlenmesi gibi sebeplerle hakim kararıyla",
             "C) Yalnızca basın kuruluşlarının talebiyle",
             "D) Belediye meclisi kararıyla",
@@ -6580,7 +6580,7 @@
           "secenekler": [
             "A) Hiçbir sebeple sınırlanamaz",
             "B) Ancak suç soruşturması veya kovuşturması sebebiyle hakim kararına bağlı olarak",
-            "C) Yalnızca vergi borcu sebebiyle",
+            "C) Yalnızca vergi borcu veya kamuya olan mali yükümlülükler sebebiyle vergi dairesinin talebiyle",
             "D) Belediye başkanının onayı olmadan sınırlanamaz",
             "E) Sadece askerlik çağına gelenler için geçerlidir"
           ],
@@ -6590,7 +6590,7 @@
         {
           "soru": "Anayasa'nın 24. maddesine göre din kültürü ve ahlak bilgisi öğretimi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Tamamen isteğe bağlıdır, hiçbir okulda zorunlu değildir",
+            "A) Tamamen isteğe bağlı olup hiçbir örgün öğretim kurumunda zorunlu ders kapsamında yer almaz",
             "B) İlk ve ortaöğretim kurumlarında okutulan zorunlu dersler arasındadır",
             "C) Yalnızca özel okullarda okutulur",
             "D) Üniversitelerde zorunludur, ilköğretimde yoktur",
@@ -6602,7 +6602,7 @@
         {
           "soru": "Anayasa'nın 24. maddesine göre kimse, ibadet, dini ayin ve törenlere katılmaya zorlanabilir mi?",
           "secenekler": [
-            "A) Evet, kanunla zorlanabilir",
+            "A) Evet; kanunla düzenlenmek şartıyla belirli günlerde ibadete katılmaya zorlanabilir",
             "B) Hayır; kimse ibadete, dini ayin ve törenlere katılmaya zorlanamaz",
             "C) Yalnızca kamu görevlileri için zorunludur",
             "D) Yalnızca askerlik hizmetinde zorunludur",
@@ -6615,7 +6615,7 @@
           "soru": "Anayasa'nın 25. maddesine göre düşünce ve kanaat hürriyeti ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Herkes düşünce ve kanaat hürriyetine sahiptir; hiç kimse düşünce ve kanaatlerinden dolayı kınanamaz",
-            "B) Düşünce hürriyeti yalnızca yazılı basın için geçerlidir",
+            "B) Düşünce ve kanaat hürriyeti yalnızca yazılı ve görsel basın kuruluşları için geçerli olup bireyler bu haktan yararlanamaz",
             "C) Kanaatler her koşulda açıklanmak zorundadır",
             "D) Bu hürriyet yalnızca akademisyenlere tanınmıştır",
             "E) Düşünce açıklamaktan kaçınma hakkı yoktur"
@@ -6630,7 +6630,7 @@
             "B) Basın hürriyetini",
             "C) Toplantı hürriyetini",
             "D) Din hürriyetini",
-            "E) Seyahat hürriyetini"
+            "E) Seyahat ve yerleşme hürriyetini"
           ],
           "dogruIndex": 0,
           "aciklama": "27. madde, herkesin bilim ve sanatı serbestçe öğrenme ve öğretme, açıklama, yayma ve bu alanlarda her türlü araştırma hakkına sahip olduğunu düzenler."
@@ -6650,7 +6650,7 @@
         {
           "soru": "Anayasa'nın 29. maddesine göre süreli veya süresiz yayın çıkarılması hangi usule tabidir?",
           "secenekler": [
-            "A) Önceden izin alma ve mali teminat yatırma şartına",
+            "A) Kanunun öngördüğü biçimde önceden izin alınması, mali teminat yatırılması ve yetkili merciye kayıt yaptırılması şartlarının tümüne",
             "B) Kanunun gösterdiği şartlara uyulması kaydıyla önceden izin alınmasına ve mali teminat yatırılmasına bağlı değildir",
             "C) Yalnızca Basın-Yayın Kurumu onayına",
             "D) Yalnızca büyükşehir belediyesi iznine",
@@ -6662,7 +6662,7 @@
         {
           "soru": "Anayasa'nın 32. maddesinde düzenlenen düzeltme ve cevap hakkı ne zaman kullanılabilir?",
           "secenekler": [
-            "A) Yalnızca kişinin ölümünden sonra",
+            "A) Yalnızca kişinin ölümünden sonra yakınlarının başvurusuyla ve mahkemenin izin vermesi koşuluyla belirli bir süre içinde",
             "B) Kişilerin haysiyet ve şereflerine dokunulması veya kendileriyle ilgili gerçeğe aykırı yayın yapılması hallerinde",
             "C) Yalnızca ticari yayınlarda",
             "D) Yalnızca televizyon yayınlarında",
@@ -6687,7 +6687,7 @@
           "soru": "Anayasa'nın 34. maddesine göre toplantı ve gösteri yürüyüşü düzenleme hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Herkes önceden izin almadan silahsız ve saldırısız toplantı ve gösteri yürüyüşü düzenleme hakkına sahiptir",
-            "B) Toplantı yapmak için valilikten izin belgesi alınması gerekir",
+            "B) Toplantı ve gösteri yürüyüşü yapmak için önceden valilikten yazılı izin belgesi ve kolluk biriminin onayının alınması gerekir",
             "C) Toplantı hakkı yalnızca siyasi partilere tanınmıştır",
             "D) Gösteri yürüyüşleri her koşulda yasaktır",
             "E) Bu hak yalnızca gündüz saatlerinde kullanılabilir"
@@ -6710,7 +6710,7 @@
         {
           "soru": "Anayasa'nın 36. maddesine göre hak arama hürriyeti kapsamında güvence altına alınan haklardan biri aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Yalnızca dilekçe hakkı",
+            "A) Yalnızca yetkili idari makamlara dilekçe verme ve idari başvuruda bulunma hakkı olup, yargı mercilerine dava açma bu kapsamın tamamen dışında bırakılmıştır",
             "B) Meşru vasıta ve yollardan faydalanmak suretiyle yargı mercileri önünde davacı veya davalı olarak iddia ve savunma ile adil yargılanma hakkı",
             "C) Yalnızca af dileme hakkı",
             "D) Yalnızca dava açma yasağı",
@@ -6723,7 +6723,7 @@
           "soru": "Anayasa'nın 37. maddesinde düzenlenen 'kanuni hakim güvencesi' ilkesi neyi ifade eder?",
           "secenekler": [
             "A) Hiç kimsenin, kanunen tabi olduğu mahkemeden başka bir merci önüne çıkarılamayacağını",
-            "B) Hakimlerin siyasi parti üyesi olabileceğini",
+            "B) Hakimlerin ve savcıların siyasi parti üyesi olabileceğini ve seçimlerde aday gösterilebileceğini",
             "C) Davaların yalnızca Yargıtay'da görülebileceğini",
             "D) Mahkemelerin il valisine bağlı olduğunu",
             "E) Kanunla mahkeme kurulamayacağını"
@@ -6758,7 +6758,7 @@
         {
           "soru": "Anayasa'nın 40. maddesine göre temel hak ve hürriyetleri ihlal edilen kişilere tanınan güvence nedir?",
           "secenekler": [
-            "A) Yalnızca tazminat davası açma hakkı",
+            "A) Yalnızca uğranılan zarar için idare aleyhine tazminat davası açma hakkı olup, kanun yollarının gösterilmesi zorunluluğu bulunmaz",
             "B) Devlet, işlemlerinde ilgili kişilerin hangi kanun yolları ve mercilere başvurabileceğini belirtmek zorundadır",
             "C) Yalnızca af talep etme hakkı",
             "D) Bu maddede güvence yer almaz",
@@ -6782,7 +6782,7 @@
         {
           "soru": "Anayasa'nın 42. maddesine göre ilköğrenimle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) İlköğretim isteğe bağlıdır",
+            "A) İlköğretim isteğe bağlı olup yalnızca devlet okullarında parasızdır, özel okullarda ise ücrete tabidir",
             "B) İlköğretim kız ve erkek bütün vatandaşlar için zorunludur ve devlet okullarında parasızdır",
             "C) İlköğretim yalnızca erkek çocuklar için zorunludur",
             "D) İlköğretim ücreti velilerden alınır",
@@ -6794,7 +6794,7 @@
         {
           "soru": "Anayasa'nın 49. maddesine göre çalışma hakkı ve ödevi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Çalışma yalnızca bir haktır, ödev boyutu yoktur",
+            "A) Çalışma yalnızca bir hak olup ödev boyutu bulunmaz; devletin çalışanların yaşam düzeyini yükseltme yönünde herhangi bir yükümlülüğü yoktur",
             "B) Çalışma, herkesin hakkı ve ödevidir; devlet çalışanların hayat seviyesini yükseltmek için gerekli tedbirleri alır",
             "C) Çalışma hakkı yalnızca kamu personeline tanınmıştır",
             "D) Devletin işsizlikle mücadele yükümlülüğü yoktur",
@@ -6808,7 +6808,7 @@
           "secenekler": [
             "A) Çalışanlar ve işverenler önceden izin almaksızın sendika ve üst kuruluşlar kurma hakkına sahiptir",
             "B) Sendika kurmak için Bakanlar Kurulu izni gerekir",
-            "C) Sendika kurma hakkı yalnızca işçilere tanınmıştır, işverenlere tanınmamıştır",
+            "C) Sendika kurma hakkı yalnızca özel sektörde çalışan işçilere tanınmış olup, işverenler ve kamu görevlileri bu haktan yararlanamaz",
             "D) Sendikalar siyasi faaliyette bulunamaz kaydı yoktur, sınırsız serbestlik vardır",
             "E) Sendika kurma hakkı 1982 Anayasası'nda yer almaz"
           ],
@@ -6819,7 +6819,7 @@
           "soru": "Anayasa'nın 54. maddesine göre grev hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Toplu iş sözleşmesinin yapılması sırasında uyuşmazlık çıkması halinde işçiler grev hakkına sahiptir",
-            "B) Grev hakkı hiçbir şekilde sınırlanamaz",
+            "B) Grev hakkı hiçbir şekilde sınırlanamaz; olağanüstü hallerde ve genel sağlığı ilgilendiren işlerde dahi yasaklanamaz",
             "C) Grev hakkı yalnızca kamu görevlileri için tanınmıştır",
             "D) Lokavt Anayasa'da düzenlenmemiştir",
             "E) Grev kararı yalnızca hükümet tarafından alınabilir"
@@ -6843,7 +6843,7 @@
           "soru": "Anayasa'nın 60. maddesine göre sosyal güvenlik hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Herkes sosyal güvenlik hakkına sahiptir; devlet bu güvenliği sağlayacak gerekli tedbirleri alır ve teşkilatı kurar",
-            "B) Sosyal güvenlik yalnızca kamu çalışanlarına tanınmıştır",
+            "B) Sosyal güvenlik hakkı yalnızca kamu kurumlarında kadrolu olarak çalışan personele tanınmış olup diğer kişiler bu kapsamın dışındadır",
             "C) Sosyal güvenlik hakkı özel sigorta şirketleriyle sınırlıdır",
             "D) Bu madde yalnızca emeklilik yaşını düzenler",
             "E) Sosyal güvenlik hakkı 1982 Anayasası'nda yer almaz"
@@ -6878,7 +6878,7 @@
         {
           "soru": "Anayasa'nın 68. ve 69. maddelerine göre siyasi partilerle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Siyasi partilerin kapatılması TBMM kararıyla olur",
+            "A) Siyasi partilerin temelli kapatılmasına, Yargıtay Cumhuriyet Başsavcısının açacağı dava üzerine Türkiye Büyük Millet Meclisi karar verir",
             "B) Siyasi partilerin tüzük ve programları, kapatılması Anayasa Mahkemesi'nce, demokrasinin vazgeçilmez unsurlarıdır",
             "C) Siyasi partiler yalnızca il düzeyinde teşkilatlanabilir",
             "D) Siyasi partiler devletten hiçbir şekilde yardım alamaz",
@@ -6892,7 +6892,7 @@
           "secenekler": [
             "A) Her Türk kamu hizmetlerine girme hakkına sahiptir ve hizmete alınmada görevin gerektirdiği niteliklerden başka hiçbir ayrım gözetilemez",
             "B) Kamu hizmetine girmek yalnızca belirli illerde doğanlara tanınmıştır",
-            "C) Kamu hizmetine girme hakkı yalnızca üniversite mezunlarına tanınmıştır",
+            "C) Kamu hizmetine girme hakkı yalnızca dört yıllık üniversite mezunu olan ve belirli bir yaşın altındaki vatandaşlara tanınmış bir ayrıcalıktır ve başka koşul aranmaz",
             "D) Bu hak yalnızca erkeklere tanınmıştır",
             "E) Kamu hizmetine girme hakkı Anayasa'da düzenlenmez"
           ],
@@ -6904,7 +6904,7 @@
           "secenekler": [
             "A) Vatan hizmeti, her Türkün hakkı ve ödevidir; bu hizmetin Silahlı Kuvvetlerde veya kamu kesiminde ne şekilde yerine getirileceği kanunla düzenlenir",
             "B) Vatan hizmeti yalnızca gönüllülük esasına dayanır",
-            "C) Vatan hizmeti yalnızca erkekler için zorunludur, bu husus Anayasa'da yer almaz",
+            "C) Vatan hizmeti yalnızca on sekiz yaşını doldurmuş erkek vatandaşlar için zorunlu olup, bu hizmetin nasıl yerine getirileceği hususu Anayasa'da hiçbir biçimde düzenlenmemiştir",
             "D) Vatan hizmeti bedelli olarak dahi yerine getirilemez",
             "E) Bu madde Anayasa'da yer almaz"
           ],
@@ -6915,7 +6915,7 @@
           "soru": "Anayasa'nın 73. maddesine göre vergi ödevi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Herkes, kamu giderlerini karşılamak üzere, mali gücüne göre vergi ödemekle yükümlüdür",
-            "B) Vergi yükümlülüğü yalnızca çalışanlara aittir",
+            "B) Vergi ödeme yükümlülüğü yalnızca ücret geliri elde eden çalışanlara ait olup diğer gelir gruplarını kapsamaz",
             "C) Vergi, resim ve harçlar yönetmelikle konulup kaldırılabilir",
             "D) Vergi yükü adaletli dağılım ilkesine tabi değildir",
             "E) Yabancılar hiçbir şekilde vergi ödemez"
@@ -6927,7 +6927,7 @@
           "soru": "Anayasa'nın 74. maddesine göre dilekçe, bilgi edinme ve kamu denetçisine başvurma hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Vatandaşlar ve karşılıklılık esası gözetilmek kaydıyla Türkiye'de ikamet eden yabancılar, kendileriyle veya kamu ile ilgili dilek ve şikayetleri hakkında yetkili makamlara ve TBMM'ye yazıyla başvurma hakkına sahiptir",
-            "B) Bu hak yalnızca Türk vatandaşlarına tanınmıştır, yabancılara hiçbir koşulda tanınmaz",
+            "B) Dilekçe, bilgi edinme ve kamu denetçisine başvurma hakkı yalnızca Türk vatandaşlarına tanınmış olup, karşılıklılık esası gözetilse dahi Türkiye'de ikamet eden yabancılar bu haktan hiçbir koşulda ve hiçbir merci önünde yararlanamaz",
             "C) Kamu Denetçiliği Kurumu (Ombudsmanlık) Anayasa'da düzenlenmemiştir",
             "D) Dilekçe hakkı yalnızca sözlü başvuruyla kullanılabilir",
             "E) Bilgi edinme hakkı 1982 Anayasası'nın ilk halinde tam olarak bugünkü şekliyle yer almaktaydı"
@@ -6974,7 +6974,7 @@
         {
           "soru": "Halkoylamasına sunulan bir Anayasa değişikliği teklifinin kabul edilmiş sayılması için hangi oran yeterlidir?",
           "secenekler": [
-            "A) Kayıtlı seçmenlerin salt çoğunluğu",
+            "A) Seçmen kütüğüne kayıtlı tüm seçmenlerin salt çoğunluğunun kabul yönünde oy kullanması",
             "B) Halkoylamasına katılanların geçerli oylarının yarısından fazlası",
             "C) Katılanların üçte ikisi",
             "D) Katılanların beşte üçü",
@@ -6990,7 +6990,7 @@
             "B) Halkoylaması hiçbir zaman süre şartına bağlı değildir",
             "C) Halkoylaması yalnızca genel seçimlerle birlikte yapılabilir",
             "D) Halkoylaması kararı geri alınamaz bir işlemdir ve süre öngörülmemiştir",
-            "E) Halkoylaması tarihini yalnızca YSK belirler, Cumhurbaşkanının bu konuda rolü yoktur"
+            "E) Halkoylamasının yapılacağı tarihi yalnızca Yüksek Seçim Kurulu resen belirler; Cumhurbaşkanının halkoyuna sunma ya da tarih tayin etme konusunda hiçbir yetkisi ve rolü bulunmamaktadır"
           ],
           "dogruIndex": 0,
           "aciklama": "Anayasa değişikliğinin halkoylamasına sunulması sürecinde usul ve süreler ilgili kanunla (Halkoylaması Kanunu) somutlaştırılır; Cumhurbaşkanının halkoyuna sunma kararı bu sürecin başlangıcıdır."
@@ -7000,7 +7000,7 @@
           "secenekler": [
             "A) Doğrudan yayımlamak zorundadır, başka seçeneği yoktur",
             "B) Halkoylamasına sunabilir ya da bir daha görüşülmek üzere TBMM'ye geri gönderebilir",
-            "C) Anayasa Mahkemesi'ne şekil bakımından iptal davası açmak zorundadır",
+            "C) Değişikliği doğrudan Anayasa Mahkemesine göndererek hem şekil hem esas bakımından iptal davası açmak zorundadır",
             "D) Kanun hükmünde kararname çıkararak değişikliği iptal edebilir",
             "E) Yalnızca veto ederek tamamen reddedebilir"
           ],
@@ -7022,7 +7022,7 @@
         {
           "soru": "1982 Anayasası'nın başlangıç bölümünde vurgulanan temel ilkelerden biri aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) Kuvvetler birliği ilkesinin esas alınması",
+            "A) Yasama, yürütme ve yargı yetkilerinin tek elde toplandığı kuvvetler birliği ilkesinin devletin temel dayanağı olarak esas alınması",
             "B) Milli devlet, milli egemenlik anlayışı ve Atatürk milliyetçiliği doğrultusunda çağdaş medeniyet düzeyine ulaşma azmi",
             "C) Federal devlet yapısının benimsenmesi",
             "D) Çok hukukluluk ilkesinin kabulü",
@@ -7047,7 +7047,7 @@
           "soru": "1982 Anayasası'nın halkoylamasında kabul oranı yaklaşık olarak kaçtır?",
           "secenekler": [
             "A) %51",
-            "B) %65",
+            "B) %65 dolaylarında bir oran",
             "C) %91,4",
             "D) %99",
             "E) %75"
@@ -7058,7 +7058,7 @@
         {
           "soru": "1982 Anayasası'nın kabulü sürecinde aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Anayasa ile birlikte Cumhurbaşkanlığı için ayrı bir oylama yapılmamıştır",
+            "A) Anayasa'nın kabulü ile Cumhurbaşkanlığı seçimi birbirinden tamamen bağımsız tutulmuş, Cumhurbaşkanı için halkoylamasından ayrı ve farklı bir tarihte özel bir seçim düzenlenmiştir",
             "B) Halkoylamasında Anayasa'nın kabulü ile birlikte dönemin Milli Güvenlik Konseyi Başkanı'nın Cumhurbaşkanı seçilmesi de oylanmıştır",
             "C) Halkoylaması yalnızca Anayasa maddeleri üzerinde madde madde yapılmıştır",
             "D) Halkoylamasına yalnızca kadın seçmenler katılmıştır",
@@ -7070,7 +7070,7 @@
         {
           "soru": "1982 Anayasası'nın kabulünden önce yürürlükte olan geçici anayasal düzenleme aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) 1961 Anayasası'nın tamamı aynen yürürlükte kalmıştır",
+            "A) 12 Eylül 1980 sonrasında 1961 Anayasası'nın tamamı hiçbir değişiklik yapılmaksızın aynen yürürlükte bırakılmış, Milli Güvenlik Konseyi bu metnin tek bir hükmüne dahi müdahale etmemiş ve tüm kurumlar eski anayasal düzene göre işlemeye devam etmiştir",
             "B) 12 Eylül 1980 sonrasında çıkarılan Anayasa Düzeni Hakkında Kanun ile 1961 Anayasası'nın bir kısım hükümleri yürürlükten kaldırılmış, geri kalanı Milli Güvenlik Konseyi kararlarına aykırı olmamak kaydıyla uygulanmaya devam etmiştir",
             "C) Hiçbir anayasal metin yürürlükte bırakılmamıştır",
             "D) 1924 Anayasası tekrar yürürlüğe konmuştur",
@@ -7106,7 +7106,7 @@
         {
           "soru": "1982 Anayasası'nın 'Genel Esaslar' başlıklı birinci kısmında aşağıdakilerden hangisi düzenlenir?",
           "secenekler": [
-            "A) Sosyal ve ekonomik haklar",
+            "A) Sosyal ve ekonomik haklar ile ödevler ve bunların devlet tarafından hangi usullerle güvence altına alınacağı",
             "B) Devletin şekli, nitelikleri, egemenlik ve yasama-yürütme-yargı yetkilerinin genel tanımı",
             "C) Yargı organlarının teşkilat yapısı",
             "D) Siyasi partilerin mali denetimi",
@@ -7130,7 +7130,7 @@
         {
           "soru": "Anayasa Mahkemesi'nin bir kanunun iptali için doğrudan dava açma yoluyla yaptığı denetime ne ad verilir?",
           "secenekler": [
-            "A) Somut norm denetimi",
+            "A) Somut norm denetimi (def'i, itiraz usulü ile yapılan)",
             "B) Soyut norm denetimi (iptal davası)",
             "C) Bireysel başvuru",
             "D) Yüce Divan yargılaması",
@@ -7157,7 +7157,7 @@
             "A) Davayı derhal reddeder",
             "B) Anayasa Mahkemesi'ne başvurur ve Anayasa Mahkemesi'nin kararına kadar davayı bekletir",
             "C) Kendi kararıyla kanunu iptal eder",
-            "D) Kanunu doğrudan uygulamaz, herhangi bir üst mahkemeye başvurmaz",
+            "D) Kanunu doğrudan uygulamaz ve herhangi bir üst mahkemeye ya da Anayasa Mahkemesi'ne başvurmadan davayı kendisi sonuçlandırır",
             "E) Yasama organına yeni bir kanun çıkarması için çağrıda bulunur"
           ],
           "dogruIndex": 1,
@@ -7178,7 +7178,7 @@
         {
           "soru": "1961 Anayasası ile 1982 Anayasası arasındaki temel farklardan biri aşağıdakilerden hangisidir?",
           "secenekler": [
-            "A) 1961 Anayasası temel hak ve hürriyetleri daha sınırlayıcı, 1982 Anayasası ise daha geniş bir yaklaşımla düzenlemiştir",
+            "A) 1961 Anayasası temel hak ve hürriyetleri çok daha sınırlayıcı ve dar biçimde, 1982 Anayasası ise bunları çok daha geniş ve kapsamlı bir yaklaşımla ayrıntılı olarak düzenlemiştir",
             "B) 1961 Anayasası özgürlükçü, geniş bir hak kataloğu ve çift meclisli yapı getirirken 1982 Anayasası devlet otoritesini önceleyen, tek meclisli bir yapı benimsemiştir",
             "C) 1982 Anayasası ilk kez Anayasa Mahkemesi'ni kurmuştur",
             "D) 1961 Anayasası'nda Cumhurbaşkanlığı makamı yoktur",
@@ -7191,7 +7191,7 @@
           "soru": "Türk anayasa tarihinde 'kurucu meclis' kavramı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) 1961 Anayasası'nı hazırlayan Kurucu Meclis, Temsilciler Meclisi ve Milli Birlik Komitesi'nden oluşmuştur",
-            "B) Kurucu Meclis kavramı yalnızca 1982 Anayasası için kullanılmıştır",
+            "B) Kurucu Meclis kavramı Türk anayasa hukukunda yalnızca 1982 Anayasası'nı hazırlayan Danışma Meclisi için kullanılmıştır",
             "C) Kurucu Meclis olağan TBMM'nin başka bir adıdır",
             "D) 1924 Anayasası bir Kurucu Meclis tarafından hazırlanmamıştır",
             "E) Kurucu Meclis kavramı Türk anayasa tarihinde hiç kullanılmamıştır"
@@ -7202,7 +7202,7 @@
         {
           "soru": "1924 Anayasası ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) Yumuşak (esnek) bir anayasa olup adi kanunlarla aynı usulde değiştirilmiştir",
+            "A) Yumuşak ve son derece esnek nitelikte bir anayasa olup, herhangi bir nitelikli çoğunluk aranmaksızın adi kanunlarla tamamen aynı usulde kolayca değiştirilebilmekteydi",
             "B) Sert bir anayasadır ve değiştirilmesi nitelikli çoğunluk gerektirmiştir; ayrıca meclis hükümeti sisteminden kabine sistemine geçişi sağlamıştır",
             "C) Çift meclisli bir yapı öngörmüştür",
             "D) Anayasa Mahkemesi'ni kurmuştur",
@@ -7214,7 +7214,7 @@
         {
           "soru": "1921 Teşkilat-ı Esasiye Kanunu ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Güçler ayrılığı ilkesini benimsemiştir",
+            "A) Yasama, yürütme ve yargı arasında kesin ve tam güçler ayrılığı ilkesini açıkça benimsemiştir",
             "B) Yasama ve yürütme yetkisini TBMM'de toplayan meclis hükümeti sistemini benimsemiştir",
             "C) Cumhurbaşkanlığı makamını düzenlemiştir",
             "D) Çok partili hayata geçişi sağlamıştır",
@@ -7239,7 +7239,7 @@
           "soru": "Anayasa'nın 15. maddesi ile 13. maddesi arasındaki temel fark nedir?",
           "secenekler": [
             "A) 13. madde olağan dönemde, 15. madde ise olağanüstü hallerde (savaş, seferberlik, sıkıyönetim, OHAL) temel hak ve hürriyetlerin sınırlanması/durdurulmasını düzenler",
-            "B) İkisi de yalnızca olağanüstü hallerde uygulanır",
+            "B) Her ikisi de yalnızca savaş, seferberlik, sıkıyönetim ve OHAL gibi olağanüstü hallerde uygulanan, olağan dönemde ise hiçbir hükmü bulunmayan tamamen istisnai nitelikte maddelerdir",
             "C) 13. madde yalnızca ekonomik hakları kapsar",
             "D) 15. madde yalnızca yabancıları ilgilendirir",
             "E) Aralarında hiçbir fark yoktur, aynı hususu düzenlerler"
@@ -7253,7 +7253,7 @@
             "A) Her zaman kanun hükümleri esas alınır",
             "B) Usulüne göre yürürlüğe konulmuş temel hak ve özgürlüklere ilişkin milletlerarası andlaşma hükümleri esas alınır",
             "C) İkisi de uygulanmaz, yeni bir kanun çıkarılması beklenir",
-            "D) Anayasa Mahkemesi'nin her somut olayda ayrı karar vermesi zorunludur, genel bir kural yoktur",
+            "D) Anayasa Mahkemesi'nin her somut olayda hangi metnin uygulanacağına dair ayrı ayrı karar vermesi zorunludur, önceden belirlenmiş genel bir kural yoktur",
             "E) Cumhurbaşkanlığı kararnamesi esas alınır"
           ],
           "dogruIndex": 1,
@@ -7264,7 +7264,7 @@
           "secenekler": [
             "A) Milletlerarası andlaşmaların onaylanması TBMM'nin bu andlaşmayı bir kanunla uygun bulmasına bağlıdır",
             "B) Milletlerarası andlaşmalar hiçbir onay sürecine gerek olmadan doğrudan yürürlüğe girer",
-            "C) Onay yetkisi tamamen Dışişleri Bakanlığı'na aittir",
+            "C) Andlaşmaların onaylanması yetkisi tamamen ve münhasıran Dışişleri Bakanlığı ile Cumhurbaşkanlığı'na aittir, TBMM'nin rolü yoktur",
             "D) Onay için yalnızca Cumhurbaşkanlığı kararnamesi yeterlidir",
             "E) Ekonomik nitelikli olmayan hiçbir andlaşma TBMM onayına tabi değildir"
           ],
@@ -7274,7 +7274,7 @@
         {
           "soru": "Anayasa'nın 42. maddesine göre eğitim ve öğretim hürriyeti ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Eğitim kurumlarında disiplin dışında öğrencilere siyasi faaliyet yasağı yoktur",
+            "A) Eğitim ve öğretim kurumlarında disiplin gerekçeleri dışında öğrencilere her türlü siyasi faaliyet ve gösteri düzenleme konusunda hiçbir yasak ve sınırlama getirilemez",
             "B) Türkçeden başka hiçbir dil, eğitim ve öğretim kurumlarında Türk vatandaşlarına ana dilleri olarak okutulamaz ve öğretilemez, kanunla ayrık haller saklıdır",
             "C) Yükseköğretim kurumlarına giriş hiçbir şekilde sınırlanamaz",
             "D) Özel okullar Anayasa'da yasaklanmıştır",
@@ -7286,7 +7286,7 @@
         {
           "soru": "Anayasa'nın 26. maddesine göre düşünceyi açıklama ve yayma hürriyeti hangi araçlarla kullanılabilir?",
           "secenekler": [
-            "A) Yalnızca yazılı basın yoluyla",
+            "A) Yalnızca yazılı ve görsel basın yoluyla, resmi izin alınması koşuluyla toplu biçimde",
             "B) Söz, yazı, resim veya başka yollarla, tek başına veya toplu olarak",
             "C) Yalnızca resmi kurumlar aracılığıyla",
             "D) Yalnızca sanal ortamda",
@@ -7299,7 +7299,7 @@
           "soru": "Anayasa'nın 39. maddesinde düzenlenen 'ispat hakkı' neyi ifade eder?",
           "secenekler": [
             "A) Kamu görev ve hizmetinde bulunanlara karşı yapılan isnatların ancak hukukun öngördüğü hallerde ispatının istenebileceğini; ispatın diğer hallerde şeref ve haysiyeti korumak amacıyla sınırlanabileceğini",
-            "B) Yalnızca ceza davalarında sanığın susma hakkını",
+            "B) Yalnızca ceza davalarında sanığın susma hakkını, kendisini ve yakınlarını suçlayıcı beyanda bulunmaya zorlanamayacağını, tanıkların dinlenme usulünü ve tüm delillerin mahkemece toplanma biçimini ayrıntılı olarak düzenlediğini",
             "C) Sadece hukuk davalarında ispat yükünün davacıya ait olduğunu",
             "D) Yalnızca tanık dinletme hakkını",
             "E) Anayasa Mahkemesi kararlarının ispat aracı olarak kullanılamayacağını"
@@ -7311,7 +7311,7 @@
           "soru": "Anayasa'nın 65. maddesine göre devletin sosyal ve ekonomik alandaki görevlerinin sınırı nedir?",
           "secenekler": [
             "A) Devlet, mali kaynaklarının yeterliliği ölçüsünde bu görevleri yerine getirmekle yükümlüdür",
-            "B) Devletin sosyal ve ekonomik görevlerinin hiçbir sınırı yoktur",
+            "B) Devletin sosyal ve ekonomik alandaki görevlerinin mali kaynaklardan tamamen bağımsız olarak hiçbir sınırı ve koşulu bulunmamaktadır",
             "C) Bu görevler yalnızca belediyelere aittir",
             "D) Devlet bu görevleri yalnızca savaş zamanında yerine getirir",
             "E) Bu madde sosyal devlet ilkesini ortadan kaldırır"
@@ -7323,7 +7323,7 @@
           "soru": "Anayasa'nın 53. maddesine göre toplu iş sözleşmesi hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) İşçiler ve işverenler, karşılıklı olarak ekonomik ve sosyal durumlarını düzenlemek amacıyla toplu iş sözleşmesi yapma hakkına sahiptir",
-            "B) Toplu iş sözleşmesi hakkı yalnızca kamu işçilerine tanınmıştır",
+            "B) Toplu iş sözleşmesi yapma hakkı yalnızca kamu kurumlarında çalışan kadrolu işçilere tanınmış olup özel sektör çalışanlarını kapsam dışında bırakmaktadır",
             "C) Toplu iş sözleşmesi hakkı 1982 Anayasası'nda yer almaz",
             "D) Toplu iş sözleşmesi imzalanmadan grev yapılamayacağı hükmü yoktur",
             "E) Bu hak sadece işverenlere tanınmıştır"
@@ -7346,7 +7346,7 @@
         {
           "soru": "Anayasa'nın 50. maddesine göre kimlerin özel olarak korunması gerektiği düzenlenmiştir?",
           "secenekler": [
-            "A) Yalnızca kamu görevlileri",
+            "A) Yalnızca kamu görevlileri ile onların bakmakla yükümlü olduğu aile bireyleri çalışma şartları bakımından özel olarak korunur",
             "B) Küçükler, kadınlar ve bedeni veya ruhi yetersizliği olanlar çalışma şartları bakımından özel olarak korunur",
             "C) Yalnızca emekliler",
             "D) Yalnızca yabancı işçiler",
@@ -7359,7 +7359,7 @@
           "soru": "Anayasa'nın 174. maddesinde düzenlenen 'inkılap kanunlarının korunması' hükmüne göre aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Sayılan inkılap kanunları, Anayasa'nın halkoyu ile kabul edildiği tarihte yürürlükte bulunan hükümleriyle Anayasaya aykırı sayılamaz",
-            "B) İnkılap kanunları Anayasa'nın üstündedir ve hiçbir şekilde değiştirilemez",
+            "B) İnkılap kanunları normlar hiyerarşisinde Anayasa'nın da üstünde yer alır ve hiçbir koşulda değiştirilemez, kaldırılamaz veya sınırlandırılamaz",
             "C) İnkılap kanunları yalnızca sembolik niteliktedir, hukuken bağlayıcı değildir",
             "D) Bu madde 2017 değişikliğiyle yürürlükten kaldırılmıştır",
             "E) İnkılap kanunları listesi her yeni anayasa değişikliğinde yeniden belirlenir"
@@ -7394,7 +7394,7 @@
         {
           "soru": "Anayasa'nın 46. maddesine göre kamulaştırma bedeli ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Kamulaştırma bedeli hiçbir şekilde taksitle ödenemez",
+            "A) Kamulaştırma karşılığı olarak hesaplanan bedel hiçbir koşulda ve hiçbir istisna tanınmadan taksitle ödenemez, tamamı peşin ödenmek zorundadır",
             "B) Kamulaştırma karşılığı olarak hesaplanan bedelin bir kısmı, kanunda belirtilen hallerde taksitle ödenebilir",
             "C) Kamulaştırma bedelsiz yapılır",
             "D) Kamulaştırma yalnızca özel kişiler arasında yapılabilir",
@@ -7408,7 +7408,7 @@
           "secenekler": [
             "A) Devletleştirme hiçbir koşulda yapılamaz",
             "B) Kamu hizmeti niteliği taşıyan özel teşebbüsler, kamu yararının gerektirdiği hallerde kanunla devletleştirilebilir",
-            "C) Devletleştirme yalnızca yabancı sermayeli şirketlere uygulanabilir",
+            "C) Devletleştirme işlemi yalnızca yabancı sermayeli şirketlere ve ortaklıklara uygulanabilir, yerli özel teşebbüsler bu kapsamın dışında tutulmuştur",
             "D) Devletleştirilen teşebbüsün bedeli hiçbir şekilde ödenmez",
             "E) Devletleştirme kararı yalnızca Cumhurbaşkanlığı kararnamesiyle alınabilir"
           ],
@@ -7419,7 +7419,7 @@
           "soru": "Anayasa'nın 55. maddesinde düzenlenen 'ücrette adalet' ilkesine göre aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Devlet, çalışanların yaptıkları işe uygun adaletli bir ücret elde etmeleri için gerekli tedbirleri alır",
-            "B) Ücret tamamen işverenin takdirine bırakılmıştır",
+            "B) Çalışanların alacağı ücretin miktarı ve ödeme koşulları tamamen ve münhasıran işverenin serbest takdirine bırakılmıştır",
             "C) Asgari ücret Anayasa'da düzenlenmez",
             "D) Ücretin ödeme şekli ve zamanı kanunla dahi belirlenemez",
             "E) Bu madde yalnızca kamu çalışanlarını kapsar"
@@ -7431,7 +7431,7 @@
           "soru": "Anayasa'nın 57. maddesine göre konut hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Devlet, şehirlerin özelliklerini ve çevre şartlarını gözeten bir planlama çerçevesinde konut ihtiyacını karşılayacak tedbirleri alır",
-            "B) Konut hakkı yalnızca dar gelirli ailelere tanınmıştır",
+            "B) Anayasa'daki konut hakkı yalnızca dar ve sabit gelirli ailelere tanınmış olup devlet bu kesim dışındaki vatandaşlar için tedbir almakla yükümlü değildir",
             "C) Konut hakkı Anayasa'da düzenlenmez",
             "D) Devletin toplu konut projelerinde bulunma yükümlülüğü yoktur",
             "E) Bu madde yalnızca kentsel dönüşümü düzenler"
@@ -7443,7 +7443,7 @@
           "soru": "Anayasa'nın 58. maddesine göre gençliğin korunması ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Devlet, gençleri alkol düşkünlüğünden, uyuşturucu maddelerden, suçluluk, kumar ve benzeri kötü alışkanlıklardan ve cehaletten korumak için gerekli tedbirleri alır",
-            "B) Gençliğin korunması yalnızca ailelerin görevidir, devletin bu konuda yükümlülüğü yoktur",
+            "B) Gençliğin kötü alışkanlıklardan ve cehaletten korunması yalnızca ailelerin ve okulların görevi olup devletin bu konuda herhangi bir anayasal yükümlülüğü bulunmamaktadır",
             "C) Bu madde yalnızca eğitim çağındaki gençleri kapsar",
             "D) Gençlik örgütleri Anayasa'da yasaklanmıştır",
             "E) Bu madde 2017'de yürürlükten kaldırılmıştır"
@@ -7455,7 +7455,7 @@
           "soru": "Anayasa'nın 59. maddesi neyi düzenler?",
           "secenekler": [
             "A) Sporun kitlelere yayılmasını teşvik ve başarılı sporcuyu koruma görevini",
-            "B) Kamu görevlilerinin disiplin cezalarını",
+            "B) Kamu görevlilerinin disiplin cezalarını ve bu cezalara karşı yargı yoluna başvurma usulünü",
             "C) Anayasa Mahkemesi'nin görevlerini",
             "D) Milletvekili dokunulmazlığını",
             "E) Cumhurbaşkanının seçilme şartlarını"
@@ -7481,7 +7481,7 @@
             "A) Yurt dışındaki Türk vatandaşlarının aile birliğinin, çocuklarının eğitiminin, kültürel ihtiyaçlarının karşılanmasını ve sosyal güvenliklerini kolaylaştırıcı tedbirler alma",
             "B) Yurt dışındaki vatandaşlarla ilgili hiçbir düzenleme Anayasa'da yoktur",
             "C) Bu vatandaşların Türk vatandaşlığından çıkarılmasını kolaylaştırma",
-            "D) Yalnızca ekonomik yardım sağlama ile sınırlıdır",
+            "D) Devletin yükümlülüğü yalnızca yurt dışındaki vatandaşlara doğrudan ekonomik yardım ve maddi destek sağlanması ile sınırlı olup diğer sosyal ve kültürel alanları hiçbir biçimde kapsamaz",
             "E) Bu madde yalnızca işçi olarak çalışanları değil öğrencileri de tamamen kapsam dışı bırakır"
           ],
           "dogruIndex": 0,
@@ -7491,7 +7491,7 @@
           "soru": "Anayasa'nın 63. maddesi neyi düzenler?",
           "secenekler": [
             "A) Tarih, kültür ve tabiat varlıklarının ve değerlerinin korunmasını",
-            "B) Cumhurbaşkanının cezai sorumluluğunu",
+            "B) Cumhurbaşkanının cezai sorumluluğunu ve Yüce Divan'da yargılanma usulünü",
             "C) TBMM'nin toplantı yeter sayısını",
             "D) Milletvekilliğinin düşmesini",
             "E) Siyasi partilerin mali denetimini"
@@ -7503,7 +7503,7 @@
           "soru": "Anayasa'nın 64. maddesi hangi konuyu düzenler?",
           "secenekler": [
             "A) Sanatın ve sanatçının korunması, teşviki ve sanat eserlerinin korunması",
-            "B) Milletvekili seçilme yeterliliği",
+            "B) Milletvekili seçilme yeterliliğini ve adaylık için aranan öğrenim koşullarını",
             "C) Cumhurbaşkanı yardımcılarının atanması",
             "D) Yargıtay üyelerinin seçimi",
             "E) TBMM'nin denetim yolları"
@@ -7515,7 +7515,7 @@
           "soru": "Anayasa'nın 71. maddesine göre mal bildirimi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Kamu görevine girenlerin mal bildiriminde bulunmaları ve bu bildirimlerin hangi aralıklarla yenileneceği kanunla düzenlenir",
-            "B) Mal bildirimi yalnızca milletvekillerine özgüdür",
+            "B) Mal bildiriminde bulunma yükümlülüğü yalnızca milletvekillerine ve üst düzey kamu yöneticilerine özgü olup diğer kamu görevlilerini kapsamaz",
             "C) Mal bildirimi tamamen gönüllülük esasına dayanır",
             "D) Mal bildirimi hiçbir kanunla düzenlenmemiştir",
             "E) Mal bildirimi yalnızca emeklilikte istenir"
@@ -7526,7 +7526,7 @@
         {
           "soru": "Temel hak ve hürriyetlerin klasik sınıflandırmasında 'negatif statü hakları' hangi hak türünü ifade eder?",
           "secenekler": [
-            "A) Devletten olumlu bir edim isteme haklarını (sosyal haklar)",
+            "A) Devletten olumlu bir edim ve maddi destek isteme yetkisi veren sosyal ve ekonomik nitelikli talep haklarını (pozitif statü hakları)",
             "B) Devletin müdahale etmemesini isteme, kişiyi devlete karşı koruyan klasik özgürlükleri (kişi hakları)",
             "C) Devlet yönetimine katılma haklarını (siyasi haklar)",
             "D) Yalnızca ekonomik haklardan oluşan bir kategoriyi",
@@ -7540,7 +7540,7 @@
           "secenekler": [
             "A) Kişinin devlet yönetimine katılmasını sağlayan siyasi hakları (seçme, seçilme, siyasi parti kurma gibi)",
             "B) Kişinin devletten talep edebileceği sosyal yardımları",
-            "C) Kişinin devlete karşı korunmasını sağlayan klasik hak ve özgürlükleri",
+            "C) Kişinin devlete karşı korunmasını ve devletin müdahalesinden uzak kalmasını sağlayan klasik negatif statü hak ve özgürlüklerini",
             "D) Yalnızca ekonomik girişim özgürlüğünü",
             "E) Yalnızca dernek kurma hakkını"
           ],
@@ -7564,7 +7564,7 @@
           "secenekler": [
             "A) 1961 Anayasası daha çerçeve (ilkesel), 1982 Anayasası ise daha ayrıntılı (kazuistik) bir düzenleme tekniği benimsemiştir",
             "B) Her iki anayasa da aynı düzenleme tekniğini kullanır",
-            "C) 1982 Anayasası 1961'den daha kısa ve öz bir metindir",
+            "C) 1982 Anayasası, 1961 Anayasası'na kıyasla çok daha kısa, öz ve çerçeve nitelikte ilkesel bir metin olarak kaleme alınmış bir düzenlemedir",
             "D) 1961 Anayasası hiçbir temel hakkı düzenlememiştir",
             "E) 1982 Anayasası temel hakları hiç sınırlamamıştır"
           ],
@@ -7588,7 +7588,7 @@
           "secenekler": [
             "A) Osmanlı Devleti'nin ilk ve tek yazılı anayasasıdır ve I. Meşrutiyet döneminde ilan edilmiştir",
             "B) Cumhuriyet döneminde hazırlanmıştır",
-            "C) Çift meclisli bir yapıyı hiçbir şekilde öngörmemiştir",
+            "C) Meclis-i Umumi adı altında çift meclisli bir yasama yapısını hiçbir şekilde öngörmemiş, tek meclisli bir sistem kurmuştur",
             "D) Padişahın yetkilerini tamamen ortadan kaldırmıştır",
             "E) Anayasa Mahkemesi'ni kurmuştur"
           ],
@@ -7611,7 +7611,7 @@
           "soru": "2007 yılında yapılan anayasa değişikliğiyle Cumhurbaşkanının seçim usulünde ne değişmiştir?",
           "secenekler": [
             "A) Cumhurbaşkanı TBMM yerine doğrudan halk tarafından seçilmeye başlanmıştır",
-            "B) Cumhurbaşkanının görev süresi 5 yıldan 7 yıla çıkarılmıştır",
+            "B) Cumhurbaşkanının görev süresi 5 yıldan 7 yıla çıkarılmış ve yalnızca bir dönem için seçilebilmesi kuralı getirilmiştir",
             "C) Cumhurbaşkanlığı makamı ilk kez bu değişiklikle kurulmuştur",
             "D) Cumhurbaşkanının tarafsızlığı ilkesi kaldırılmıştır",
             "E) Bakanlar Kurulu bu değişiklikle kaldırılmıştır"
@@ -7624,7 +7624,7 @@
           "secenekler": [
             "A) Anayasa Mahkemesi'ne bireysel başvuru hakkının tanınması",
             "B) Cumhurbaşkanlığı hükümet sistemine geçilmesi",
-            "C) TBMM üye sayısının 600'e çıkarılması",
+            "C) TBMM üye sayısının 550'den 600'e çıkarılması ve seçilme yaşının düşürülmesi",
             "D) Seçim barajının %7'ye indirilmesi",
             "E) Başbakanlık makamının kaldırılması"
           ],
@@ -7636,7 +7636,7 @@
           "secenekler": [
             "A) Ölüm cezası, savaş ve çok yakın savaş tehdidi hali dışında tamamen kaldırılmıştır",
             "B) Cumhurbaşkanlığı hükümet sistemine geçilmiştir",
-            "C) Milletvekili sayısı 550'den 600'e çıkarılmıştır",
+            "C) Türkiye Büyük Millet Meclisi üye sayısı 550'den 600'e çıkarılmış ve seçim çevreleri yeniden düzenlenmiştir",
             "D) Seçilme yaşı 18'e indirilmiştir",
             "E) Bireysel başvuru hakkı tanınmıştır"
           ],
@@ -7662,7 +7662,7 @@
             "B) Anayasa Mahkemesi kararlarına karşı TBMM'ye itiraz edilebilir",
             "C) Anayasa Mahkemesi kararları yalnızca tarafları bağlar",
             "D) Anayasa Mahkemesi kararları Resmi Gazetede yayımlanmak zorunda değildir",
-            "E) Anayasa Mahkemesi'nin iptal kararları geriye yürür ve kazanılmış hakları da geçersiz kılar"
+            "E) Anayasa Mahkemesi'nin verdiği iptal kararları geçmişe etkili biçimde geriye yürür ve daha önceden kazanılmış olan tüm hakları da geçersiz kılar"
           ],
           "dogruIndex": 0,
           "aciklama": "153. madde, Anayasa Mahkemesi kararlarının kesin olduğunu ve yasama, yürütme, yargı organları ile idare makamlarını, gerçek ve tüzel kişileri bağladığını düzenler."
@@ -7683,7 +7683,7 @@
           "soru": "2001 yılında yapılan kapsamlı anayasa değişikliğiyle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Avrupa Birliği uyum sürecinde çok sayıda madde değiştirilerek temel hak ve hürriyetlerin kapsamı genişletilmiştir",
-            "B) Cumhurbaşkanlığı hükümet sistemine geçilmiştir",
+            "B) Parlamenter sistemden tamamen ayrılınarak Cumhurbaşkanlığı hükümet sistemine geçilmiş ve Bakanlar Kurulu kaldırılmıştır",
             "C) TBMM üye sayısı 600'e çıkarılmıştır",
             "D) Anayasa Mahkemesi ilk kez kurulmuştur",
             "E) Seçim barajı %7'ye indirilmiştir"
@@ -7698,7 +7698,7 @@
             "B) Yabancıların temel hak ve hürriyetleri, milletlerarası hukuka uygun olarak kanunla sınırlanabilirken vatandaşlar bakımından sınırlama yalnızca 13. maddedeki genel ölçütlere tabidir",
             "C) Vatandaşlar ile yabancılar arasında anayasal olarak hiçbir fark yoktur",
             "D) Yabancılar yalnızca ekonomik haklardan yararlanabilir",
-            "E) Yabancıların hakları uluslararası mahkemelerce belirlenir, Türk hukuku uygulanmaz"
+            "E) Yabancıların Türkiye'deki temel hak ve hürriyetleri yalnızca uluslararası mahkemeler ve organlar tarafından belirlenir; bu konuda Türk iç hukuku ve Anayasa hükümleri hiçbir biçimde uygulanmaz"
           ],
           "dogruIndex": 1,
           "aciklama": "16. madde, temel hak ve hürriyetlerin yabancılar için milletlerarası hukuka uygun olarak kanunla sınırlanabileceğini öngörerek vatandaşlardan farklı, ek bir sınırlama imkanı tanımıştır."
@@ -7719,7 +7719,7 @@
           "soru": "1982 Anayasası'nın (değişikliklerden önceki) ilk kabul edildiği haliyle kaç maddeden oluştuğu genel olarak kabul edilir?",
           "secenekler": [
             "A) 105 madde",
-            "B) 151 madde",
+            "B) 151 esas madde ile birlikte on altı geçici madde",
             "C) 177 madde ve geçici maddeler",
             "D) 23 madde",
             "E) 200 madde"
@@ -7731,7 +7731,7 @@
           "soru": "1924 Anayasası kaç maddeden oluşmaktaydı?",
           "secenekler": [
             "A) Yaklaşık 105 madde",
-            "B) 177 madde",
+            "B) 177 madde ve ek geçici hükümler",
             "C) 23 madde",
             "D) 300 madde",
             "E) 50 madde"
@@ -7743,7 +7743,7 @@
           "soru": "1982 Anayasası'nın başlangıç kısmında kuvvetler ayrılığı ilkesine ilişkin nasıl bir yorum benimsenmiştir?",
           "secenekler": [
             "A) Kuvvetler ayrılığının, devlet organları arasında üstünlük sıralaması anlamına gelmediği; belli devlet yetki ve görevlerinin kullanılmasından ibaret olduğu ve bu yetkilerin üstünlüğünün ancak Anayasa ve kanunlarda bulunduğu",
-            "B) Kuvvetler ayrılığının yalnızca yasama ile yürütme arasında geçerli olduğu",
+            "B) Kuvvetler ayrılığı ilkesinin yalnızca yasama ile yürütme organları arasında geçerli olduğu, yargı organının ise bu ayrılığın tamamen dışında bırakılarak yürütmeye bağlı kılındığı ve hiçbir bağımsızlığının bulunmadığı benimsenmiştir",
             "C) Yargı organının diğer organlara tabi olduğu",
             "D) Kuvvetler ayrılığı ilkesinin 1982 Anayasası'nda tamamen terk edildiği",
             "E) Yürütme organının diğer organlardan üstün olduğu"
@@ -7755,7 +7755,7 @@
           "soru": "Anayasa'nın 41. maddesine göre çocuk hakları ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Her çocuk, korunma ve bakımdan yararlanma, yüksek yararına açıkça aykırı olmadıkça, ana ve babasıyla kişisel ve doğrudan ilişki kurma ve sürdürme hakkına sahiptir",
-            "B) Çocuk hakları yalnızca kanunlarla düzenlenir, Anayasa'da yer almaz",
+            "B) Çocuk haklarına ilişkin tüm esaslar yalnızca çıkarılacak özel kanunlarla düzenlenir; bu hakların hiçbiri doğrudan Anayasa metninde yer almamakta ve anayasal güvenceye bağlanmamaktadır",
             "C) Devletin çocukları koruma yükümlülüğü yalnızca yetimler için geçerlidir",
             "D) Bu madde yalnızca eğitim çağındaki çocukları kapsar",
             "E) Çocuk hakları 1982 Anayasası'nın ilk halinde bugünkü kapsamıyla yer almaktaydı"
@@ -7793,7 +7793,7 @@
             "A) Kadın ve erkeklerin eşit haklara sahip olduğu ve devletin bu eşitliğin yaşama geçmesini sağlamakla yükümlü olduğu; bu çerçevede alınacak tedbirlerin eşitlik ilkesine aykırı yorumlanamayacağı",
             "B) Kadın-erkek eşitliği yalnızca kanunla düzenlenir, Anayasa'da yer almaz",
             "C) Bu maddeye göre pozitif ayrımcılık tedbirleri yasaktır",
-            "D) Çocuklar, yaşlılar, özürlüler ve harp/vazife şehitlerinin yakınları lehine alınacak tedbirler eşitlik ilkesine aykırıdır",
+            "D) Çocuklar, yaşlılar, özürlüler ile harp ve vazife şehitlerinin dul ve yetimleri lehine alınacak koruyucu tedbirler, kanun önünde eşitlik ilkesine açıkça aykırı sayılır ve bu nedenle hukuken uygulanamaz",
             "E) Bu değişiklikler 1982'nin ilk halinde zaten mevcuttu"
           ],
           "dogruIndex": 0,
@@ -7804,7 +7804,7 @@
           "secenekler": [
             "A) Anayasa, kanunlar ile eşit düzeydedir",
             "B) Anayasa, en üstte yer alan ve diğer tüm normların kendisine uygun olması gereken temel hukuk kaynağıdır",
-            "C) Anayasa, yönetmeliklerden daha alt bir konumdadır",
+            "C) Anayasa, normlar hiyerarşisinde tüzük ve yönetmeliklerden daha alt bir konumda yer alan tali nitelikte bir hukuk kaynağıdır",
             "D) Anayasa, yalnızca yasama organını bağlayan bir belgedir, hiyerarşi dışıdır",
             "E) Anayasa, kanun hükmünde kararnamelerin altında yer alır"
           ],
@@ -7817,7 +7817,7 @@
             "A) Milletlerarası andlaşmalar, usulüne göre yürürlüğe konulduktan sonra bunlar hakkında Anayasaya aykırılık iddiasıyla Anayasa Mahkemesi'ne başvurulamaz",
             "B) Her andlaşma için iptal davası açılabilir",
             "C) Yalnızca Cumhurbaşkanı andlaşmaların iptalini isteyebilir",
-            "D) Andlaşmalar yalnızca TBMM kararıyla iptal edilebilir",
+            "D) Usulüne göre yürürlüğe konulmuş milletlerarası andlaşmalar yalnızca TBMM'nin alacağı bir iptal kararı ile yürürlükten kaldırılabilir ve iç hukuk düzeninden çıkarılabilir",
             "E) Andlaşmalar hakkında itiraz yolu her zaman açıktır"
           ],
           "dogruIndex": 0,
@@ -7839,7 +7839,7 @@
           "soru": "Anayasa'nın 23. maddesine göre vatandaşın yurda giriş hakkı ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Vatandaş, sınır dışı edilemez ve yurda girme hakkından yoksun bırakılamaz",
-            "B) Vatandaş, mahkeme kararıyla sınır dışı edilebilir",
+            "B) Vatandaş, ancak kesinleşmiş bir mahkeme kararı bulunması halinde yurt dışına sınır dışı edilebilir",
             "C) Vatandaşın yurda girişi idari kararla engellenebilir",
             "D) Bu hak yalnızca doğumla vatandaşlık kazananlara tanınmıştır",
             "E) Yurda giriş hakkı kanunla tamamen kaldırılabilir"
@@ -7850,7 +7850,7 @@
         {
           "soru": "Anayasa'nın 25. maddesine göre kimse düşüncelerini açıklamaya zorlanabilir mi?",
           "secenekler": [
-            "A) Evet, kamu görevlileri için zorunludur",
+            "A) Evet; özellikle kamu görevlileri ve memurlar için düşüncelerini açıklamak yasal bir zorunluluktur",
             "B) Hayır; düşünce ve kanaatleri sebebiyle kınanamaz ve bunları açıklamaya zorlanamaz",
             "C) Yalnızca mahkeme huzurunda zorlanabilir",
             "D) Sadece seçim dönemlerinde zorlanabilir",
@@ -7863,7 +7863,7 @@
           "soru": "Anayasa'nın 6. maddesine göre 'egemenliğin kullanılması' ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Egemenliğin kullanılması hiçbir surette devredilemez ve bu yetki bir kişiye, zümreye veya sınıfa bırakılamaz",
-            "B) Egemenlik bir kişiye devredilebilir",
+            "B) Egemenliğin kullanılması, belirli koşullar altında bir kişiye veya belirli bir zümreye geçici olarak devredilebilir",
             "C) Egemenlik yalnızca zengin sınıfa aittir",
             "D) Egemenlik kullanımı sınırsızdır",
             "E) Egemenlik kullanımı yalnızca ordu tarafından denetlenir"
@@ -7875,7 +7875,7 @@
           "soru": "Anayasa'nın 11. ile 90. maddeleri birlikte değerlendirildiğinde normlar hiyerarşisinde temel hak ve özgürlüklere ilişkin usulüne uygun yürürlüğe konulmuş milletlerarası andlaşmaların konumu nasıldır?",
           "secenekler": [
             "A) Bu tür andlaşmalar, kanunlarla çatışması halinde kanun hükümlerine üstün tutulur",
-            "B) Bu tür andlaşmalar her zaman Anayasa'nın da üstündedir",
+            "B) Bu tür andlaşmalar, normlar hiyerarşisinde her zaman ve her koşulda Anayasa'nın da üstünde yer alır",
             "C) Bu tür andlaşmalar hiçbir bağlayıcılığa sahip değildir",
             "D) Bu tür andlaşmalar yalnızca tavsiye niteliğindedir",
             "E) Bu tür andlaşmalar yönetmeliklerin altında yer alır"
@@ -7887,7 +7887,7 @@
           "soru": "Anayasa'nın 5. maddesinde ifade edilen devlet görevleri ile 'sosyal devlet' ilkesi arasındaki ilişki nasıl açıklanabilir?",
           "secenekler": [
             "A) 5. madde, sosyal devlet ilkesinin somut yansıması olarak kişilerin önündeki ekonomik ve sosyal engelleri kaldırmayı devletin temel görevi sayar",
-            "B) 5. madde sosyal devlet ilkesiyle hiçbir ilgisi olmayan, yalnızca dış politikaya ilişkin bir maddedir",
+            "B) 5. madde, sosyal devlet ilkesiyle hiçbir bağlantısı bulunmayan, yalnızca devletin dış politika ve uluslararası ilişkilerdeki görevlerini düzenleyen teknik bir maddedir",
             "C) Sosyal devlet ilkesi yalnızca 2. maddede geçer, 5. maddeyle bağlantısı yoktur",
             "D) 5. madde sosyal devlet ilkesini açıkça reddeder",
             "E) 5. madde yalnızca ekonomik kalkınmayı düzenler, sosyal boyutu yoktur"
@@ -7899,7 +7899,7 @@
           "soru": "Anayasa'nın 104. maddesine göre Cumhurbaşkanının, TBMM'ce kabul edilen kanunları tekrar görüşülmek üzere TBMM'ye geri gönderme yetkisi hangi ilkeyle ilişkilidir?",
           "secenekler": [
             "A) Yasama ve yürütme organları arasındaki fren ve denge (karşılıklı denetim) mekanizmasıyla",
-            "B) Yargı bağımsızlığı ilkesiyle",
+            "B) Cumhurbaşkanının kanunları geri gönderme yetkisi, yargı bağımsızlığı ve hâkim teminatı ilkesiyle doğrudan ilişkilidir",
             "C) Mahalli idarelerin özerkliği ilkesiyle",
             "D) Basın hürriyeti ilkesiyle",
             "E) Sosyal devlet ilkesiyle"
@@ -7949,7 +7949,7 @@
             "A) Devlet, toprağın verimli olarak işletilmesini korumak ve geliştirmek, topraksız olan veya yeterli toprağı bulunmayan çiftçiye toprak sağlamak amacıyla gerekli tedbirleri alır",
             "B) Toprak mülkiyeti Anayasa'da düzenlenmez",
             "C) Çiftçilere toprak dağıtımı yasaktır",
-            "D) Bu madde yalnızca ormanları kapsar",
+            "D) Anayasa'nın bu maddesi yalnızca devlet ormanlarının ve orman arazilerinin korunmasını kapsamakta olup tarım topraklarına ve çiftçilere ilişkin hiçbir açık düzenleme içermemektedir",
             "E) Toprak mülkiyeti sınırlandırılamaz"
           ],
           "dogruIndex": 0,
@@ -7959,7 +7959,7 @@
           "soru": "Anayasa'nın 45. maddesi hangi konuyu düzenler?",
           "secenekler": [
             "A) Tarım, hayvancılık ve bu üretim dallarında çalışanların korunması",
-            "B) Milletvekili seçilme yeterliliği",
+            "B) Milletvekili seçilme yeterliliği ve seçilme yaşının belirlenmesine ilişkin esaslar",
             "C) Cumhurbaşkanının yemin metni",
             "D) Anayasa Mahkemesi'nin çalışma usulü",
             "E) TBMM İçtüzüğü'nün kabulü"
@@ -7974,7 +7974,7 @@
             "B) Yalnızca yerli şirketlere aittir",
             "C) Yalnızca yabancı şirketlere aittir",
             "D) Belediyelere aittir",
-            "E) Bu haklar tamamen serbest piyasaya bırakılmıştır"
+            "E) Bu haklar tamamen serbest piyasaya bırakılmış olup devletin herhangi bir düzenleme veya izin verme yetkisi yoktur"
           ],
           "dogruIndex": 0,
           "aciklama": "168. madde, tabii servetlerin ve kaynakların Devletin hüküm ve tasarrufu altında olduğunu; bunların aranması ve işletilmesi hakkının Devlete ait olduğunu, Devletin bu hakkını belli bir süre için gerçek ve tüzel kişilere devredebileceğini düzenler."
@@ -8034,7 +8034,7 @@
             "B) Piyasalara hiçbir şekilde müdahale etmemek",
             "C) Yalnızca ihracatı desteklemek",
             "D) Yalnızca kamu iktisadi teşebbüslerini yönetmek",
-            "E) Piyasaları tamamen özel sektöre bırakmak"
+            "E) Para ve sermaye piyasalarını tamamen özel sektöre bırakmak, hiçbir denetim yapmadan mal ve hizmet piyasalarındaki tekelleşme ve kartelleşmenin serbestçe oluşmasına izin vermek ve fiyatları tümüyle piyasanın kendi işleyişine terk etmek"
           ],
           "dogruIndex": 0,
           "aciklama": "167. madde, devletin para, kredi, sermaye, mal ve hizmet piyasalarının sağlıklı işlemesini sağlayıcı tedbirleri alacağını, tekelleşme ve kartelleşmeyi önleyeceğini düzenler."
@@ -8042,7 +8042,7 @@
         {
           "soru": "Türkiye'de çok partili hayata geçiş süreci ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
-            "A) Çok partili hayat 1921 Anayasası döneminde başlamıştır",
+            "A) Çok partili hayata geçiş, 1921 Teşkilât-ı Esasiye Anayasası döneminde Terakkiperver Cumhuriyet Fırkası'nın kuruluşuyla kalıcı biçimde başlamıştır",
             "B) Çok partili hayata geçiş denemeleri 1945-1946 yıllarında başlamış, 1950 seçimleriyle iktidar değişimi gerçekleşmiştir",
             "C) Çok partili hayat yalnızca 1982 Anayasası ile mümkün olmuştur",
             "D) Türkiye hiçbir zaman tek parti dönemi yaşamamıştır",
@@ -8102,7 +8102,7 @@
         {
           "soru": "Anayasa'nın 12. maddesine göre temel hak ve hürriyetlerin 'ödev' boyutu ne anlama gelir?",
           "secenekler": [
-            "A) Temel hak ve hürriyetler, kişiye yalnızca hak sağlar, hiçbir ödev yüklemez",
+            "A) Temel hak ve hürriyetler, kişiye yalnızca sınırsız haklar sağlar ve hiçbir koşulda topluma ya da diğer kişilere karşı herhangi bir ödev yüklemez",
             "B) Temel hak ve hürriyetler, kişinin topluma, ailesine ve diğer kişilere karşı ödev ve sorumluluklarını da içerir",
             "C) Ödev kavramı yalnızca kamu görevlileri için geçerlidir",
             "D) Ödev kavramı Anayasa'da yer almaz",
@@ -8127,7 +8127,7 @@
           "soru": "Anayasa'nın 69. maddesine göre siyasi partilerin mali denetimi ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Siyasi partilerin gelir ve giderlerinin denetimi Anayasa Mahkemesi'nce yapılır",
-            "B) Siyasi partilerin mali denetimi Sayıştay tarafından yapılır",
+            "B) Siyasi partilerin gelir, gider ve mal edinimlerine ilişkin mali denetimi yalnızca Sayıştay tarafından yapılır",
             "C) Siyasi partilerin mali denetimi TBMM tarafından yapılır",
             "D) Siyasi partilerin mali denetimi yapılmaz",
             "E) Mali denetim yalnızca iktidar partisine uygulanır"
@@ -8139,7 +8139,7 @@
           "soru": "Anayasa'nın 31. maddesi hangi konuyu düzenler?",
           "secenekler": [
             "A) Kamu tüzel kişilerinin elindeki basın dışı kitle haberleşme araçlarından yararlanma hakkını",
-            "B) Milletvekili dokunulmazlığını",
+            "B) Milletvekillerinin yasama dokunulmazlığının hangi hallerde ve hangi usulle kaldırılabileceğini",
             "C) Cumhurbaşkanının yemin metnini",
             "D) Anayasa değişikliği usulünü",
             "E) Yargıtay'ın görevlerini"
@@ -8151,7 +8151,7 @@
           "soru": "Anayasa'nın 30. maddesine göre kanuna uygun şekilde basın işletmesi olarak kurulan bir işletme ve eklentileri ve basın araçları hakkında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Suç aleti olduğu gerekçesiyle de olsa hiçbir şekilde el konulamaz, işletilmekten alıkonulamaz ya da müsadere edilemez",
-            "B) Herhangi bir suç soruşturmasında serbestçe el konulabilir",
+            "B) Herhangi bir suç soruşturmasında hâkim kararı aranmaksızın serbestçe el konulabilir, işletilmekten alıkonulabilir ve müsadere edilebilir",
             "C) Bu araçlar vergiden muaf tutulamaz",
             "D) Basın araçları yalnızca devlete ait olabilir",
             "E) Bu madde 1982 Anayasası'nda yer almaz"
@@ -8175,7 +8175,7 @@
           "soru": "Anayasa'nın 68. maddesine göre siyasi partilerin tüzük ve programları ile eylemleri hangi ilkelere aykırı olamaz?",
           "secenekler": [
             "A) Devletin bağımsızlığı, ülkesi ve milletiyle bölünmez bütünlüğü, insan haklarına dayanan demokratik ve laik Cumhuriyet ilkelerine",
-            "B) Yalnızca ekonomik kalkınma hedeflerine",
+            "B) Yalnızca beş yıllık kalkınma planlarında belirlenen ekonomik büyüme, sanayileşme ve tam istihdam hedeflerine uygunluk ile serbest piyasa kurallarına",
             "C) Yalnızca yerel yönetim politikalarına",
             "D) Sadece dış politika tercihlerine",
             "E) Hiçbir sınırlama yoktur, partiler tamamen serbesttir"
@@ -8189,7 +8189,7 @@
             "A) Tüm haklara uygulanabilecek ortak 'genel sınırlama sebepleri' listesi kaldırılmış, her hakkın yalnızca kendi maddesinde sayılan özel sebeplerle sınırlanabileceği bir sisteme geçilmiştir",
             "B) Temel haklar tamamen sınırlanamaz hale getirilmiştir",
             "C) Sınırlama yetkisi yönetmeliklere devredilmiştir",
-            "D) Sınırlama sebepleri genişletilerek çoğaltılmıştır",
+            "A) Tüm temel haklara uygulanabilecek ortak genel sınırlama sebepleri listesi korunmuş, buna ek olarak her hakkın kendi maddesine yeni özel sınırlama sebepleri eklenerek sınırlama sebepleri önemli ölçüde genişletilip çoğaltılmıştır",
             "E) Hiçbir değişiklik yapılmamıştır"
           ],
           "dogruIndex": 0,
@@ -8199,7 +8199,7 @@
           "soru": "Anayasa'nın 3. maddesine göre 'Türkiye Devleti, ülkesi ve milletiyle bölünmez bir bütündür' hükmü hangi ilkeyi ifade eder?",
           "secenekler": [
             "A) Üniter devlet yapısını ve devletin bütünlüğünü",
-            "B) Federal devlet yapısını",
+            "B) Federal devlet yapısını ve federe birimlerin özerkliğini esas alan bölünmüş bir yönetim anlayışını",
             "C) Konfederal birlik anlayışını",
             "D) Yerel yönetimlerin bağımsızlığını",
             "E) Çift meclisli yapıyı"
@@ -8210,7 +8210,7 @@
         {
           "soru": "Anayasa'nın 2. maddesinde yer alan 'Atatürk milliyetçiliğine bağlı' ifadesi hangi anlamda kullanılmıştır?",
           "secenekler": [
-            "A) Irkçı ve dışlayıcı bir milliyetçilik anlayışını",
+            "A) Irka ve etnik kökene dayalı, diğer toplulukları dışlayan katı ve ayrımcı bir milliyetçilik anlayışını benimseyen yaklaşımı",
             "B) Devletin ülkesi ve milletiyle bölünmez bütünlüğünü esas alan, hukuki ve kültürel temelli bir milliyetçilik anlayışını",
             "C) Yalnızca belirli bir etnik kökeni esas alan bir anlayışı",
             "D) Milliyetçiliğin tamamen reddedildiği bir anlayışı",
@@ -8223,7 +8223,7 @@
           "soru": "Anayasa'da düzenlenen 'kalkınma planları' ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Ekonomik, sosyal ve kültürel kalkınmayı planlama esası ve bu planların kanunla kabulü Anayasa'da düzenlenmiştir",
-            "B) Kalkınma planları yalnızca yerel yönetimlerce hazırlanır",
+            "B) Ekonomik, sosyal ve kültürel kalkınma planları yalnızca il özel idareleri ve belediyeler gibi yerel yönetimlerce hazırlanıp uygulanır",
             "C) Kalkınma planlarının Anayasa ile hiçbir ilgisi yoktur",
             "D) Kalkınma planları TBMM'nin onayına tabi değildir",
             "E) Kalkınma planları yalnızca özel sektörü bağlar"
@@ -8259,7 +8259,7 @@
           "soru": "Anayasa'nın 28. maddesine göre devlet, basın hürriyetinin kullanılmasında ihtiyaç duyulan gazetecilik mesleğine ilişkin olarak neyi kolaylaştırıcı tedbirler alır?",
           "secenekler": [
             "A) Basın ve haber alma hürriyetinin kullanılmasını sağlayacak tedbirleri alır",
-            "B) Yalnızca kamu yayın kuruluşlarını destekler",
+            "B) Yalnızca kamuya ait radyo ve televizyon yayın kuruluşlarını mali yönden destekleyici tedbirleri alır",
             "C) Yalnızca yabancı basın kuruluşlarını destekler",
             "D) Basın kuruluşlarının sayısını sınırlar",
             "E) Gazetecilerin örgütlenmesini yasaklar"
@@ -8274,7 +8274,7 @@
             "B) Hiçbir amaçla sınırlanamaz",
             "C) Yalnızca hava durumu gerekçesiyle",
             "D) Yalnızca trafik yoğunluğu gerekçesiyle",
-            "E) Yalnızca ekonomik gerekçelerle"
+            "E) Yalnızca ülkenin içinde bulunduğu ekonomik kriz, mali darboğaz ve bütçe açığı gibi ekonomik gerekçelerle ve kamu harcamalarının kısıtlanması amacıyla sınırlanabilir"
           ],
           "dogruIndex": 0,
           "aciklama": "34. madde, toplantı ve gösteri yürüyüşü düzenleme hakkının ancak kanunla, milli güvenlik, kamu düzeni, suç işlenmesinin önlenmesi, genel sağlık ve genel ahlakın ya da başkalarının hak ve özgürlüklerinin korunması amacıyla sınırlanabileceğini düzenler."
@@ -8297,7 +8297,7 @@
             "A) Kişinin, kanunsuz işlemler nedeniyle uğradığı zararın da kanunda belirtilen usullere göre devletçe tazmin edilmesi ilkesi",
             "B) Devletin hiçbir tazminat yükümlülüğü yoktur",
             "C) Zarar yalnızca ceza davası sonunda tazmin edilebilir",
-            "D) Tazminat yalnızca kamu görevlilerine tanınmıştır",
+            "D) Tazminat isteme güvencesi yalnızca kamu görevlilerine ve onların birinci derece yakınlarına tanınmış bir hak niteliğindedir",
             "E) Bu madde tazminatla ilgili hiçbir hüküm içermez"
           ],
           "dogruIndex": 0,
@@ -8309,7 +8309,7 @@
             "A) Anayasa hükümleri yorumlanırken başlangıçta ifade edilen temel ilkelerin de dikkate alınması gerekir",
             "B) Başlangıç kısmı hiçbir yorum faaliyetinde kullanılamaz",
             "C) Başlangıç kısmı yalnızca tarihi bir hatıra niteliğindedir",
-            "D) Başlangıç kısmı sadece TBMM tutanaklarında yer alır, Anayasa metninde değildir",
+            "D) Başlangıç kısmı yalnızca TBMM tutanaklarında ve gerekçe metinlerinde yer alır, Anayasa metnine dahil değildir ve hiçbir bağlayıcılığı bulunmaz",
             "E) Başlangıç kısmı zamanla otomatik olarak geçersiz hale gelir"
           ],
           "dogruIndex": 0,
@@ -8322,7 +8322,7 @@
             "B) Her türlü andlaşma",
             "C) Yalnızca savunma andlaşmaları",
             "D) Yalnızca sınır andlaşmaları",
-            "E) Yalnızca insan hakları andlaşmaları"
+            "E) Yalnızca temel insan hak ve özgürlüklerine ilişkin uluslararası sözleşmeler ile bunlara ek protokoller, savaş halinde dahi hiçbir onaya gerek olmaksızın doğrudan Cumhurbaşkanı kararıyla yürürlüğe konulabilir ve iç hukukta kendiliğinden üstün hüküm doğurur"
           ],
           "dogruIndex": 0,
           "aciklama": "90. madde, ekonomik, ticari veya teknik ilişkileri düzenleyen ve süresi bir yılı aşmayan, devlet maliyesi bakımından yüklenme gerektirmeyen, kişi hallerine ve vatandaşların yabancı memleketlerdeki mülkiyet haklarına dokunmayan andlaşmaların, kanunla aksi öngörülmedikçe TBMM onayı aranmaksızın yürürlüğe konulabileceğini düzenler."
@@ -8334,7 +8334,7 @@
             "B) Milli menfaat kavramının Anayasa'da hiçbir karşılığı olmadığını",
             "C) Bireysel çıkarların her zaman milli menfaatlerin önünde geldiğini",
             "D) Bu ifadenin yalnızca ekonomik konularda geçerli olduğunu",
-            "E) Bu ilkenin 2017'de kaldırıldığını"
+            "E) Bu ilkenin 2017 Anayasa değişikliğiyle başlangıç metninden tamamen çıkarılıp yürürlükten kaldırıldığını ifade eder"
           ],
           "dogruIndex": 0,
           "aciklama": "Başlangıç metni, Türk milletinin milli çıkarlarının, milli varlığının, bölünmez bütünlüğünün her türlü düşünce ve mülahazanın üstünde ve önünde tutulması gerektiğini temel bir yol gösterici ilke olarak ortaya koyar."
@@ -8355,7 +8355,7 @@
           "soru": "Anayasa'nın 42. maddesine göre yükseköğretim kurumlarına girişte gözetilecek temel ilke nedir?",
           "secenekler": [
             "A) Devletin, maddi imkanlardan yoksun başarılı öğrencilerin öğrenimlerini sürdürebilmeleri amacıyla burslar ve başka yollarla gerekli yardımları yapması",
-            "B) Yükseköğretime giriş tamamen ücretlidir ve devlet destek sağlamaz",
+            "B) Yükseköğretime giriş tamamen ücretli olup, devlet maddi imkanlardan yoksun başarılı öğrencilere burs, kredi veya başka herhangi bir mali yardım sağlamakla yükümlü değildir",
             "C) Yükseköğretime giriş yalnızca belirli illerden mezun olanlara açıktır",
             "D) Yükseköğretim tamamen özel sektörün yetkisindedir",
             "E) Bu konuda Anayasa'da hüküm yoktur"
@@ -8367,7 +8367,7 @@
           "soru": "Anayasa'nın 26. maddesine göre düşünceyi açıklama ve yayma hürriyetinin sınırlanabileceği sebepler arasında aşağıdakilerden hangisi sayılır?",
           "secenekler": [
             "A) Milli güvenlik, kamu düzeni, suç işlenmesinin önlenmesi, genel ahlakın korunması gibi sebepler",
-            "B) Yalnızca hava koşulları",
+            "B) Yalnızca olumsuz hava koşulları, doğal afetler ve mevsimsel değişiklikler gibi tabii sebeplerle sınırlandırılabilir",
             "C) Yalnızca ekonomik kriz dönemleri",
             "D) Herhangi bir sınırlama sebebi Anayasa'da sayılmamıştır",
             "E) Yalnızca seçim dönemleri"
@@ -8379,7 +8379,7 @@
           "soru": "Anayasa'nın 56. maddesine göre sağlık hizmetleri ile ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "A) Devlet, herkesin hayatını beden ve ruh sağlığı içinde sürdürmesini sağlamak amacıyla sağlık kuruluşlarını tek elden planlayıp hizmet vermesini düzenler",
-            "B) Sağlık hizmetleri tamamen özel sektöre bırakılmıştır",
+            "B) Sağlık hizmetleri tamamen özel hastane ve kliniklere bırakılmış olup, devletin bu alanda planlama yapma, denetleme veya doğrudan hizmet sunma konusunda hiçbir görev ve yetkisi bulunmamaktadır",
             "C) Devletin sağlık alanında hiçbir görevi yoktur",
             "D) Bu madde yalnızca çevre kirliliğini düzenler, sağlıkla ilgisi yoktur",
             "E) Sağlık hizmetleri yalnızca kamu görevlilerine sunulur"
@@ -8393,7 +8393,7 @@
             "A) Düzeltme ve cevap hakkının kullanılma şekli kanunla düzenlenir ve bu hak ancak yargı kararıyla yerine getirilmediği takdirde sonuç doğurur",
             "B) Düzeltme ve cevap hakkı hiçbir usule tabi değildir, doğrudan kullanılır",
             "C) Bu hak yalnızca kamu görevlileri için tanınmıştır",
-            "D) Bu hak Anayasa'da yer almaz, sadece basın kanununda düzenlenir",
+            "D) Düzeltme ve cevap hakkı Anayasa'da hiçbir şekilde yer almaz; bu hak yalnızca Basın Kanunu ve ilgili yönetmeliklerde düzenlenmiş olup kullanımı tamamen idari makamların takdirine bırakılmıştır",
             "E) Bu hak yalnızca televizyon yayınları için geçerlidir"
           ],
           "dogruIndex": 0,
@@ -8403,7 +8403,7 @@
           "soru": "Anayasa'nın 65. maddesi ile 5. maddesi birlikte değerlendirildiğinde ortaya çıkan denge nedir?",
           "secenekler": [
             "A) Devletin sosyal görevlerini yerine getirme yükümlülüğü ile bu görevlerin mali kaynakların yeterliliği ölçüsünde yerine getirilmesi gerekliliği arasındaki denge",
-            "B) Yasama ile yürütme arasındaki denge",
+            "B) Yasama organının kanun yapma yetkisi ile yürütme organının bu kanunları uygulama görevi arasındaki karşılıklı fren ve denetim ilişkisinden doğan kuvvetler dengesi",
             "C) Merkezi idare ile yerel yönetimler arasındaki denge",
             "D) Adli yargı ile idari yargı arasındaki denge",
             "E) TBMM ile Cumhurbaşkanı arasındaki denge"
@@ -8417,7 +8417,7 @@
             "A) Kendisiyle ilgili kişisel veriler hakkında bilgilendirilme, bu verilere erişme, düzeltilmesini veya silinmesini talep etme",
             "B) Başkalarının kişisel verilerini serbestçe kullanma",
             "C) Kişisel verilerin hiçbir kurumda işlenmemesini talep etme (mutlak yasak)",
-            "D) Bu hak yalnızca kamu kurumlarına karşı ileri sürülebilir, özel kişilere karşı ileri sürülemez",
+            "D) Kişisel verilerin korunmasını isteme hakkı yalnızca kamu kurum ve kuruluşlarına karşı ileri sürülebilir; gerçek kişiler ve özel hukuk tüzel kişileri bu yükümlülüğün tamamen dışında tutulmuştur",
             "E) Bu hak 1982'nin ilk halinde tam olarak mevcuttu"
           ],
           "dogruIndex": 0,
@@ -8463,7 +8463,7 @@
           "soru": "Anayasa'nın 123. maddesine göre idarenin kuruluş ve görevleri hangi ilkeye dayanır?",
           "secenekler": [
             "A) Merkezden yönetim ve yerinden yönetim esaslarına dayanan idarenin kuruluş ve görevleri kanunla düzenlenir; idare, kuruluş ve görevleriyle bir bütündür",
-            "B) İdare tamamen merkeziyetçidir, yerinden yönetim yoktur",
+            "B) İdare tamamen merkeziyetçi bir esasa dayanır; il özel idaresi, belediye ve köy gibi yerinden yönetim kuruluşlarına Anayasa'da hiçbir şekilde yer verilmemiştir",
             "C) İdare tamamen özerktir, kanunla düzenlenmez",
             "D) İdarenin bütünlüğü ilkesi 1982 Anayasası'nda yer almaz",
             "E) İdare yalnızca yürütmenin değil yargının bir parçasıdır"
@@ -8574,7 +8574,7 @@
           "secenekler": [
             "A) Kanun yapmak",
             "B) Bütçeyi onaylamak",
-            "C) Savaş ilanı",
+            "C) Savaş ilanına karar verme ve Türk Silahlı Kuvvetleri'nin yabancı ülkelere gönderilmesine izin verme yetkisini kullanmak",
             "D) Cumhurbaşkanlığı kararnamesini doğrudan değiştirmek",
             "E) Uluslararası anlaşmaları onaylamak"
           ],
@@ -8600,7 +8600,7 @@
         {
           "soru": "TBMM'nin yürütmeyi denetleme yollarından biri olan 'gensoru' kime yöneltilebilir?",
           "secenekler": [
-            "A) Yalnızca Cumhurbaşkanı'na",
+            "A) Yalnızca Cumhurbaşkanı'na ve onun doğrudan atadığı üst düzey kamu görevlilerine",
             "B) Cumhurbaşkanı yardımcıları ve bakanlara",
             "C) Anayasa Mahkemesi üyelerine",
             "D) Danıştay Başkanı'na",
@@ -8706,7 +8706,7 @@
         {
           "soru": "Bir kanun teklifinin yasalaşması için TBMM'de hangi çoğunluk gereklidir?",
           "secenekler": [
-            "A) Üçte iki çoğunluk",
+            "A) Türkiye Büyük Millet Meclisi üye tamsayısının üçte iki çoğunluğu",
             "B) Beşte üç çoğunluk",
             "C) Salt çoğunluk",
             "D) Toplantıya katılanların salt çoğunluğu",
@@ -8826,7 +8826,7 @@
         {
           "soru": "TBMM olağanüstü toplantıya kim tarafından çağrılabilir?",
           "secenekler": [
-            "A) Yalnızca TBMM Başkanı",
+            "A) Yalnızca Türkiye Büyük Millet Meclisi Başkanı, kendi takdiriyle",
             "B) Cumhurbaşkanı veya TBMM Başkanı",
             "C) Yalnızca Cumhurbaşkanı",
             "D) Anayasa Mahkemesi",
@@ -8864,7 +8864,7 @@
           "secenekler": [
             "A) İkisi aynı anlama gelir.",
             "B) Sorumsuzluk mecliste söylenen söz ve oylar için mutlak; dokunulmazlık ise kaldırılabilir.",
-            "C) Dokunulmazlık mutlak; sorumsuzluk kaldırılabilir.",
+            "C) Dokunulmazlık, mecliste söylenen söz ve oylar için mutlak bir koruma sağlar; sorumsuzluk ise Genel Kurul kararıyla her zaman kaldırılabilir niteliktedir.",
             "D) Sorumsuzluk yalnızca ceza davalarında geçerlidir.",
             "E) Dokunulmazlık yalnızca hapis cezası için geçerlidir."
           ],
@@ -8934,7 +8934,7 @@
         {
           "soru": "Anayasa'ya göre milletvekilliği ile bağdaşmayan görevlere ilişkin genel ilke nedir?",
           "secenekler": [
-            "A) Milletvekilleri her türlü kamu görevini milletvekilliğiyle birlikte yürütebilir",
+            "A) Milletvekilleri, devlet ve kamu tüzel kişiliklerindeki her türlü resmi görevi ve yönetim kurulu üyeliğini milletvekilliğiyle birlikte serbestçe yürütebilir",
             "B) Milletvekilleri, devlet ve kamu tüzel kişilerinde ve bunların katıldığı teşebbüs ve ortaklıklarda görev alamaz",
             "C) Milletvekilleri yalnızca özel sektörde çalışamaz",
             "D) Milletvekilleri belediye başkanlığı yapabilir",
@@ -8971,7 +8971,7 @@
           "soru": "Bir kanun teklifinin TBMM'ye sunulabilmesi için en az kaç milletvekilinin imzası gereklidir?",
           "secenekler": [
             "A) En az 1 milletvekili yeterlidir, asgari imza sayısı aranmaz",
-            "B) En az 10 milletvekili",
+            "B) En az 10 milletvekilinin birlikte imzalayıp Meclis Başkanlığına sunması",
             "C) En az 20 milletvekili",
             "D) En az 1/3 milletvekili",
             "E) En az salt çoğunluk"
@@ -8982,7 +8982,7 @@
         {
           "soru": "Yasama sorumsuzluğu (kürsü dokunulmazlığı) milletvekilliği sona erdikten sonra da geçerli midir?",
           "secenekler": [
-            "A) Hayır, milletvekilliği bitince tüm koruma sona erer",
+            "A) Hayır, milletvekilliği sona erdiği anda meclisteki oy, söz ve düşünce açıklamalarına ilişkin sorumsuzluk dahil tüm koruma kendiliğinden ortadan kalkar ve kişi bu açıklamalarından dolayı yargılanabilir",
             "B) Evet, meclis çalışmalarındaki oy, söz ve düşünce açıklamalarına ilişkin sorumsuzluk süreklidir ve milletvekilliği bittikten sonra da devam eder",
             "C) Yalnızca bir yıl daha devam eder",
             "D) Sadece Cumhurbaşkanı'nın onayıyla devam eder",
@@ -8995,7 +8995,7 @@
           "soru": "TBMM'deki ihtisas (daimi) komisyonlarının temel işlevi nedir?",
           "secenekler": [
             "A) Kanun tekliflerini Genel Kurul öncesinde ayrıntılı biçimde inceleyip görüş oluşturmak",
-            "B) Doğrudan kanun çıkarmak",
+            "B) Genel Kurul'a hiç sevk etmeden kanun tekliflerini doğrudan kanunlaştırıp yürürlüğe koymak",
             "C) Cumhurbaşkanı'nı seçmek",
             "D) Anayasa değişikliklerini halkoyuna sunmak",
             "E) Bakanları atamak"
@@ -9018,7 +9018,7 @@
         {
           "soru": "'Meclis soruşturması' hangi kişiler hakkında açılabilir?",
           "secenekler": [
-            "A) Sadece milletvekilleri hakkında",
+            "A) Sadece milletvekilleri hakkında, görevleriyle ilgili işledikleri iddia edilen suçlar dolayısıyla",
             "B) Cumhurbaşkanı yardımcıları ve bakanlar hakkında, görevleriyle ilgili suç işledikleri iddiasıyla",
             "C) Sadece yargı mensupları hakkında",
             "D) Sadece yerel yönetim başkanları hakkında",
@@ -9043,7 +9043,7 @@
           "soru": "TBMM'de 'genel görüşme' aşağıdakilerden hangisini ifade eder?",
           "secenekler": [
             "A) Toplumu ve devlet faaliyetlerini ilgilendiren belli bir konunun Genel Kurulda görüşülmesini",
-            "B) Bir bakanın Yüce Divan'da yargılanmasını",
+            "B) Bir bakanın görevi sırasında işlediği suç nedeniyle Yüce Divan sıfatıyla Anayasa Mahkemesi'nde yargılanmasını",
             "C) Anayasa değişikliği tekliflerinin ikinci kez görüşülmesini",
             "D) Bütçe kanununun madde madde oylanmasını",
             "E) Milletvekili dokunulmazlığının kaldırılmasını"
@@ -9066,7 +9066,7 @@
         {
           "soru": "Yasama dokunulmazlığı TBMM Genel Kurulu kararıyla kaldırılan bir milletvekili hakkında ne olur?",
           "secenekler": [
-            "A) Milletvekilliği kendiliğinden düşer",
+            "A) Milletvekilliği, ayrıca bir Genel Kurul kararına gerek kalmaksızın kendiliğinden düşer",
             "B) Hakkındaki soruşturma ve kovuşturma süreci normal şekilde devam edebilir",
             "C) Bir daha hiçbir suçtan yargılanamaz",
             "D) Görevine son verilene kadar yurt dışına çıkamaz",
@@ -9078,7 +9078,7 @@
         {
           "soru": "Bir milletvekilinin istifası hangi usulle kesinleşir?",
           "secenekler": [
-            "A) İstifa dilekçesinin noterden onaylanmasıyla",
+            "A) İstifa dilekçesinin bir noter huzurunda onaylanıp Yüksek Seçim Kurulu'na sunulmasıyla",
             "B) İstifanın TBMM Başkanlığına yazılı olarak bildirilip Genel Kurulda okunmasıyla",
             "C) Cumhurbaşkanı'nın onayıyla",
             "D) Anayasa Mahkemesi'nin kararıyla",
@@ -9117,7 +9117,7 @@
             "A) Çerçeve kanun",
             "B) Uygun bulma kanunu",
             "C) Yetki kanunu",
-            "D) Torba kanun",
+            "D) Birden çok konuyu tek metinde bir araya getiren torba kanun düzenlemesi",
             "E) Bütçe kanunu"
           ],
           "dogruIndex": 1,
@@ -9258,7 +9258,7 @@
         {
           "soru": "Yasama dokunulmazlığının temel amacı nedir?",
           "secenekler": [
-            "A) Milletvekillerini her türlü hukuki sorumluluktan tamamen muaf tutmak",
+            "A) Milletvekillerini cezai, hukuki ve mali her türlü sorumluluktan görevleri süresince ve sonrasında tamamen ve süresiz biçimde muaf tutmak",
             "B) Milletvekillerini keyfi soruşturma ve kovuşturmalara karşı koruyarak yasama görevini bağımsız yürütebilmelerini sağlamak",
             "C) Milletvekillerine vergi muafiyeti tanımak",
             "D) Milletvekillerinin özel hukuk borçlarını ortadan kaldırmak",
@@ -9285,7 +9285,7 @@
             "A) Devlet hiçbir harcama yapamaz",
             "B) Bir önceki yılın bütçesi, yeniden değerleme oranına göre artırılarak uygulanır",
             "C) TBMM feshedilir",
-            "D) Cumhurbaşkanı doğrudan yeni bütçe ilan eder",
+            "D) Cumhurbaşkanı, TBMM'nin onayına sunmaksızın kararnameyle doğrudan yeni bir yıllık bütçe hazırlayıp ilan eder",
             "E) Anayasa Mahkemesi geçici bütçe hazırlar"
           ],
           "dogruIndex": 1,
@@ -9297,7 +9297,7 @@
             "A) Kural olarak açık oyla, İçtüzükte belirtilen bazı durumlarda gizli oyla",
             "B) Her zaman gizli oyla",
             "C) Her zaman parmak kaldırma usulüyle",
-            "D) Yalnızca elektronik oylama ile, hiçbir istisnası yoktur",
+            "D) Yalnızca elektronik oylama sistemiyle yapılır ve bu kuralın İçtüzükte öngörülmüş hiçbir istisnası bulunmamaktadır",
             "E) Her zaman aleni ad okunarak oylanır"
           ],
           "dogruIndex": 0,
@@ -9306,7 +9306,7 @@
         {
           "soru": "Milletvekili sayısının seçim çevrelerine (illere) göre dağılımı hangi kurum tarafından belirlenir?",
           "secenekler": [
-            "A) TBMM Başkanlığı",
+            "A) Türkiye Büyük Millet Meclisi Başkanlık Divanı",
             "B) Yüksek Seçim Kurulu (YSK)",
             "C) İçişleri Bakanlığı",
             "D) Anayasa Mahkemesi",
@@ -9318,7 +9318,7 @@
         {
           "soru": "Anayasa'nın 80. maddesine göre TBMM üyeleri, meclisteki temsil görevini kimin adına yürütür?",
           "secenekler": [
-            "A) Yalnızca seçildikleri seçim çevresi adına",
+            "A) Yalnızca seçildikleri il ve seçim çevresindeki seçmenler adına, o bölgenin çıkarlarını gözeterek",
             "B) Yalnızca kendilerini seçen seçmenler adına",
             "C) Seçildikleri bölgeyi veya kendilerini seçenleri değil, bütün Milleti temsil ederler",
             "D) Yalnızca partileri adına",
@@ -9354,7 +9354,7 @@
         {
           "soru": "Yasama dokunulmazlığı, milletvekili hakkında ileri sürülen hangi zaman diliminde işlenmiş suçlar için geçerlidir?",
           "secenekler": [
-            "A) Yalnızca seçimden sonra işlenen suçlar için",
+            "A) Yalnızca milletvekili seçildikten sonra görevi süresince işlendiği ileri sürülen suçlar için",
             "B) Yalnızca seçimden önce işlenen suçlar için",
             "C) Hem seçimden önce hem de seçildikten sonra işlendiği ileri sürülen suçlar için",
             "D) Yalnızca milletvekilliği bittikten sonra işlenen suçlar için",
@@ -9366,7 +9366,7 @@
         {
           "soru": "TBMM İçtüzüğü ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
-            "A) İçtüzük, Anayasa'ya aykırı hükümler içerebilir",
+            "A) İçtüzük, gerekli görüldüğünde Anayasa'ya aykırı hükümler içerebilir ve bu hükümler hiçbir yargı denetimine tabi değildir",
             "B) İçtüzük, Anayasa'ya aykırı olamaz ve Anayasa Mahkemesi'nin norm denetimine tabidir",
             "C) İçtüzük yalnızca TBMM Başkanı tarafından tek başına değiştirilebilir",
             "D) İçtüzük hiçbir zaman değiştirilemez",
@@ -9382,7 +9382,7 @@
             "B) TBMM'nin devletin gelir ve giderlerini onaylama ve denetleme yetkisini",
             "C) TBMM'nin Cumhurbaşkanı seçme yetkisini",
             "D) TBMM'nin af ilan etme yetkisini",
-            "E) TBMM'nin milletlerarası andlaşmaları onaylama yetkisini"
+            "E) TBMM'nin milletlerarası andlaşmaları uygun bulma kanunuyla onaylama ve gerektiğinde tek taraflı feshetme yetkisini"
           ],
           "dogruIndex": 1,
           "aciklama": "Bütçe hakkı, parlamentoların tarihsel olarak en temel yetkilerinden biri olup TBMM'nin devletin gelir ve giderlerini bütçe kanunuyla onaylama ve uygulamayı denetleme yetkisini ifade eder."
@@ -9403,7 +9403,7 @@
           "soru": "TBMM'nin yürütmeyi denetleme yollarına (yazılı soru, meclis araştırması, meclis soruşturması vb.) sahip olmasının temel gerekçesi nedir?",
           "secenekler": [
             "A) Kuvvetler ayrılığı ilkesi gereği yürütmenin hesap verebilirliğini ve şeffaflığını sağlamak",
-            "B) Yürütmeyi tamamen ortadan kaldırmak",
+            "B) Yürütme organını tamamen ortadan kaldırarak tüm idari ve icrai yetkileri yasama organının bünyesinde toplamak",
             "C) Yalnızca muhalefet partilerine ayrıcalık tanımak",
             "D) Cumhurbaşkanı'nın günlük işlerine müdahale etmek",
             "E) Yargı kararlarını denetlemek"
@@ -9438,7 +9438,7 @@
         {
           "soru": "TBMM'nin Sayıştay tarafından hazırlanan raporları hangi amaçla kullanır?",
           "secenekler": [
-            "A) Yalnızca arşivlemek amacıyla",
+            "A) Yalnızca resmi Meclis arşivlerinde süresiz saklanmak ve gelecekteki tarihi kayıtlara esas oluşturmak amacıyla",
             "B) Kamu idarelerinin hesap ve işlemlerinin denetimi ve kesin hesap kanununun görüşülmesi sürecinde",
             "C) Yalnızca yerel yönetimleri feshetmek amacıyla",
             "D) Cumhurbaşkanını yargılamak amacıyla",
