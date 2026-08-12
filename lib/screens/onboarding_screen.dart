@@ -66,9 +66,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           'Lisans / Önlisans / Ortaöğretim — sorular sınavına göre gelir.'),
       ('🔄', 'Soruları güncelle',
           'Yeni eklenen soruları tek dokunuşla indir.'),
-      ('🔔', 'Saatli konu bildirimi (Yeni)',
-          'Seçtiğin derste, seçtiğin saatte akılda kalıcı kodlama, motivasyon '
-              've "bunu biliyor musun?" bildirimi al.'),
+      // NOT: "Saatli konu/ders bildirimi" maddesi buradan kaldırıldı — bu
+      // özellik AYARLAR'da değil ANASAYFA'da olduğu için (kullanıcı isteği),
+      // "Ayarlardaki özellikler" listesinde yer alması yanıltıcıydı.
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),

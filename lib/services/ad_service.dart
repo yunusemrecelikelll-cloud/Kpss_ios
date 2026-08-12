@@ -23,21 +23,41 @@ class AdService {
   AdService._();
   static final AdService instance = AdService._();
 
-  /// Bir ödüllü reklam izleme başına verilen kredi.
-  static const int odulKrediSayisi = 2;
+  /// Bir ödüllü reklam izleme başına verilen kredi (kullanıcı isteği: her
+  /// reklam 1 hak versin).
+  static const int odulKrediSayisi = 1;
 
   // GERÇEK AdMob ödüllü reklam birim kimlikleri (birim adı: kpss_rewarded).
   // Native App ID'ler: AndroidManifest.xml + ios/Runner/Info.plist.
   static const String _androidRewarded = 'ca-app-pub-2208830315848722/6997660328';
   static const String _iosRewarded = 'ca-app-pub-2208830315848722/3832561079';
 
+  // ⚠️ GEÇİŞ (interstitial) reklam birim kimlikleri — kısa reklam (test/oyun/
+  // düello sonunda). ŞU AN GOOGLE'IN RESMÎ TEST BİRİMLERİ kullanılıyor; gelir
+  // için AdMob'da "kpss_interstitial" adıyla GERÇEK birim oluşturup buradaki
+  // iki değeri değiştir (rewarded'da yaptığın gibi). Test birimi mağazaya
+  // gönderilebilir ama gelir getirmez.
+  static const String _androidInterstitialTest =
+      'ca-app-pub-3940256099942544/1033173712';
+  static const String _iosInterstitialTest =
+      'ca-app-pub-3940256099942544/4411468910';
+
   bool _baslatildi = false;
   RewardedAd? _reklam;
   bool _yukleniyor = false;
 
+  // Geçiş reklamı durumu.
+  InterstitialAd? _gecis;
+  bool _gecisYukleniyor = false;
+
   String get _birimId {
     if (kIsWeb) return _androidRewarded;
     return Platform.isIOS ? _iosRewarded : _androidRewarded;
+  }
+
+  String get _gecisBirimId {
+    if (kIsWeb) return _androidInterstitialTest;
+    return Platform.isIOS ? _iosInterstitialTest : _androidInterstitialTest;
   }
 
   /// main.dart'ta bir kez çağrılır. Reklam SDK'sını başlatır ve ilk reklamı
@@ -49,9 +69,72 @@ class AdService {
       await MobileAds.instance.initialize();
       _baslatildi = true;
       _onYukle();
+      _gecisOnYukle();
     } catch (e) {
       debugPrint('AdService.baslat hatası: $e');
     }
+  }
+
+  /// Bir sonraki GEÇİŞ (interstitial) reklamını ön yükler.
+  void _gecisOnYukle() {
+    if (!_baslatildi || _gecisYukleniyor || _gecis != null) return;
+    _gecisYukleniyor = true;
+    InterstitialAd.load(
+      adUnitId: _gecisBirimId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _gecis = ad;
+          _gecisYukleniyor = false;
+        },
+        onAdFailedToLoad: (err) {
+          _gecis = null;
+          _gecisYukleniyor = false;
+          debugPrint('AdService: geçiş reklamı yüklenemedi: ${err.code} ${err.message}');
+        },
+      ),
+    );
+  }
+
+  /// KISA GEÇİŞ REKLAMI (kullanıcı isteği: test/oyun/düello sonunda kısa reklam;
+  /// hak sayfasındaki uzun ödüllü reklam gibi olmasın). [premium] true ise HİÇ
+  /// gösterilmez (premium'da hiçbir yerde reklam yok). Ödül yoktur; sadece
+  /// gösterilir ve kapanır. Reklam hazır değilse sessizce geçer (akışı bloklamaz).
+  Future<void> gecisReklamiGoster({required bool premium}) async {
+    if (premium) return; // premium: kesinlikle reklam yok
+    if (kIsWeb || kDebugMode) return; // web/debug: reklam yok, akış bozulmasın
+    if (!(Platform.isAndroid || Platform.isIOS)) return;
+    if (!_baslatildi) await baslat();
+    if (_gecis == null) {
+      _gecisOnYukle();
+      // Kısa bir yükleme şansı; gelmezse sessizce vazgeç (akışı bekletme).
+      for (var i = 0; i < 8 && _gecis == null; i++) {
+        await Future.delayed(const Duration(milliseconds: 150));
+      }
+    }
+    final ad = _gecis;
+    if (ad == null) return;
+    _gecis = null;
+    final tamam = Completer<void>();
+    ad.fullScreenContentCallback = FullScreenContentCallback(
+      onAdDismissedFullScreenContent: (ad) {
+        ad.dispose();
+        _gecisOnYukle();
+        if (!tamam.isCompleted) tamam.complete();
+      },
+      onAdFailedToShowFullScreenContent: (ad, err) {
+        ad.dispose();
+        _gecisOnYukle();
+        if (!tamam.isCompleted) tamam.complete();
+      },
+    );
+    try {
+      await ad.show();
+    } catch (e) {
+      debugPrint('AdService: geçiş reklamı gösterilemedi: $e');
+      if (!tamam.isCompleted) tamam.complete();
+    }
+    return tamam.future;
   }
 
   /// Bir sonraki reklamı hazırda tutmak için ön yükler.

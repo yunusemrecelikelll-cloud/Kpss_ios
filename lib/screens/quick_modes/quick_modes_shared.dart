@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/question.dart';
 import '../../models/subject.dart';
+import '../../services/ad_service.dart';
 import '../../services/remote_question_service.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
@@ -254,6 +255,9 @@ class GameResultScreen extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 18, 20, 28),
             children: [
+              // Oyun sonunda KISA geçiş reklamı (premium hariç) — görünmez,
+              // bir kez tetikler (kullanıcı isteği: her oyun sonunda kısa reklam).
+              const _GecisReklamTetik(),
               Center(
                 child: DsIllustration(emoji: emoji, size: 96, glowColor: isimaRengi),
               ),
@@ -438,4 +442,29 @@ class QuickModeResultCard extends StatelessWidget {
       retryLabel: retryLabel,
     );
   }
+}
+
+/// Görünmez yardımcı: oyun sonuç ekranı açılınca BİR KEZ kısa geçiş reklamı
+/// tetikler (premium'da hiç göstermez). GameResultScreen stateless olduğundan
+/// "bir kez" güvencesi bu küçük stateful widget'ın initState'inde sağlanır.
+class _GecisReklamTetik extends StatefulWidget {
+  const _GecisReklamTetik();
+  @override
+  State<_GecisReklamTetik> createState() => _GecisReklamTetikState();
+}
+
+class _GecisReklamTetikState extends State<_GecisReklamTetik> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final premium = context.read<StorageService>().isPremiumUser();
+      // ignore: unawaited_futures
+      AdService.instance.gecisReklamiGoster(premium: premium);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) => const SizedBox.shrink();
 }

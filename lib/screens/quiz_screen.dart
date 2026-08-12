@@ -8,6 +8,7 @@ import '../services/quiz_engine.dart';
 import '../services/timer_service.dart';
 import '../services/sound_service.dart';
 import '../services/tts_service.dart';
+import '../services/ad_service.dart';
 import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
 import '../services/in_app_notice_service.dart';
@@ -420,6 +421,10 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
       // ignore: unawaited_futures
       CloudSyncService().syncUp(storage);
     }
+    if (!mounted) return;
+    // Test sonunda KISA geçiş reklamı (kullanıcı isteği) — premium'da HİÇ
+    // gösterilmez. Reklam yoksa/başarısızsa sessizce geçer, sonuç ekranı yine açılır.
+    await AdService.instance.gecisReklamiGoster(premium: storage.isPremiumUser());
     if (!mounted) return;
     if (isPlacementExam) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(

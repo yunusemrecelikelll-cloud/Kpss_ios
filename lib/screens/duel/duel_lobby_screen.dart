@@ -10,6 +10,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
+import '../hak_satin_al_screen.dart';
 import '../premium_screen.dart';
 import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration;
 import 'duel_play_screen.dart';
@@ -71,22 +72,64 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
     return n.isEmpty ? 'Oyuncu' : n;
   }
 
-  /// Ücretsiz kullanıcı için günlük hak kontrolü; hak yoksa Premium'a yönlendirir
-  /// ve false döner. Hak varsa bir hak tüketir ve true döner.
+  /// Düelloya giriş kontrolü. Premium => sınırsız. Ücretsizde önce GÜNLÜK bedava
+  /// hak kullanılır; o bittiyse kullanıcının HAK bakiyesinden (reklamla/satın
+  /// alarak kazandığı) 1 hak harcayarak girebilir (kullanıcı isteği). Hiç hak
+  /// da yoksa hak kazanma/premium seçeneği sunulur ve false döner.
   Future<bool> _consumePlayOrGate() async {
     final storage = context.read<StorageService>();
     if (storage.isPremiumUser()) return true;
     final state = storage.getGamePlayState(kDuelloGameId);
     final left = (kFreeDuelloDaily - (state['plays'] as int)).clamp(0, kFreeDuelloDaily);
-    if (left <= 0) {
-      if (!mounted) return false;
-      ustBildirim('Bugünkü ücretsiz Düello hakkın bitti '
-            '($kFreeDuelloDaily/gün). Sınırsız için Premium\'a geç.', tur: UstBildirimTuru.hata);
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+    if (left > 0) {
+      await storage.useGamePlay(kDuelloGameId);
+      return true;
+    }
+    // Günlük bedava hak bitti — HAK bakiyesinden harca (varsa).
+    if (storage.getHaklar() > 0) {
+      final onay = await showDialog<bool>(
+        context: context,
+        builder: (dc) => AlertDialog(
+          title: const Text('Hak kullan?'),
+          content: Text('Bugünkü bedava Düello hakkın bitti. '
+              '1 hak kullanarak devam edebilirsin.\n\nMevcut hakların: ${storage.getHaklar()}'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(dc, false), child: const Text('Vazgeç')),
+            TextButton(onPressed: () => Navigator.pop(dc, true), child: const Text('1 Hak Kullan')),
+          ],
+        ),
+      );
+      if (onay == true && await storage.hakHarca(1)) {
+        if (mounted) {
+          ustBildirim('1 hak kullanıldı. Kalan: ${storage.getHaklar()}',
+              tur: UstBildirimTuru.bilgi);
+        }
+        return true;
+      }
       return false;
     }
-    await storage.useGamePlay(kDuelloGameId);
-    return true;
+    // Hiç hak yok — hak kazanma sayfasına yönlendir (reklam izle) ya da premium.
+    if (!mounted) return false;
+    final secim = await showDialog<String>(
+      context: context,
+      builder: (dc) => AlertDialog(
+        title: const Text('Düello hakkın kalmadı'),
+        content: const Text('Bugünkü bedava hakların bitti ve hak bakiyen yok. '
+            'Reklam izleyip hak kazanabilir ya da Premium ile sınırsız oynayabilirsin.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(dc, 'iptal'), child: const Text('Vazgeç')),
+          TextButton(onPressed: () => Navigator.pop(dc, 'hak'), child: const Text('Hak Kazan')),
+          TextButton(onPressed: () => Navigator.pop(dc, 'premium'), child: const Text('Premium')),
+        ],
+      ),
+    );
+    if (!mounted) return false;
+    if (secim == 'hak') {
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const HakSatinAlScreen()));
+    } else if (secim == 'premium') {
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+    }
+    return false;
   }
 
   void _snack(String msg) {

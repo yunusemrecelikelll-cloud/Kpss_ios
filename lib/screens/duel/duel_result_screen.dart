@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/ad_service.dart';
 import '../../services/data_service.dart';
 import '../../services/duel_service.dart';
 import '../../services/remote_question_service.dart';
@@ -102,6 +103,14 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
       // Solo pratik: puanı hemen (bir kez) ödüllendir.
       WidgetsBinding.instance.addPostFrameCallback((_) => _awardOnce(widget.soloScore));
     }
+    // Düello/oyun sonunda KISA geçiş reklamı (kullanıcı isteği: Düello'ya
+    // katılan tüm kullanıcılar için, premium hariç). Reklam yoksa sessiz geçer.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final premium = context.read<StorageService>().isPremiumUser();
+      // ignore: unawaited_futures
+      AdService.instance.gecisReklamiGoster(premium: premium);
+    });
   }
 
   /// Maçta kazanılan skoru bir kez haftalık lig puanı + XP + sezon XP'sine

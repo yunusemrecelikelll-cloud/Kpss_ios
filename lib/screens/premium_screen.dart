@@ -302,10 +302,8 @@ class _PremiumScreenState extends State<PremiumScreen> {
         ],
         _PremiumHero(c: c),
         const SizedBox(height: 22),
-        DsSectionHeader(title: 'Ücretsiz mi, Premium mi?'),
-        const SizedBox(height: 6),
-        const _FeatureComparisonTable(),
-        const SizedBox(height: 24),
+        // Kullanıcı isteği: PAKETLER en üstte (hero'nun hemen altında),
+        // premium ayrıcalıkları/karşılaştırma tablosu ALTTA.
         DsSectionHeader(title: 'Planını seç'),
         const SizedBox(height: 6),
         _PlanCard(
@@ -389,6 +387,11 @@ class _PremiumScreenState extends State<PremiumScreen> {
             ],
           ),
         ),
+        // ── Premium ayrıcalıkları / karşılaştırma (paketlerin ALTINDA) ──
+        const SizedBox(height: 26),
+        DsSectionHeader(title: 'Premium Ayrıcalıkları'),
+        const SizedBox(height: 6),
+        const _FeatureComparisonTable(),
         // ── Geliştirme derlemesine özel test kısayolu ──
         //
         // ÖNEMLİ: Bu buton ödemeyi atladığı için App Store denetiminde
@@ -589,6 +592,7 @@ class _FeatureComparisonTable extends StatelessWidget {
 
   /// (emoji, özellik adı, ücretsiz değeri — null ise ✕, premium değeri)
   static const _rows = <(String, String, String?, String)>[
+    ('🚫', 'Reklamsız Deneyim', 'Test/oyun sonu reklam', 'Hiç reklam yok'),
     ('📚', 'Konu başına soru havuzu', '20 soru', 'Sınırsıza yakın'),
     ('❌', 'Yanlışlarım Bankası', null, 'Tüm yanlışları tekrar çöz'),
     ('🃏', 'Kart Oyunu & Solitaire', 'Günde 10 oyun', 'Sınırsız oyun'),

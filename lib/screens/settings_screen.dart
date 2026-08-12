@@ -115,6 +115,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// "Soruları Güncelle" o an kontrol/indirme yapıyor mu.
   bool _checkingUpdate = false;
 
+  /// "Oyun Kartlarını Güncelle" o an kontrol/indirme yapıyor mu.
+  bool _checkingCards = false;
+
   /// "Çıkış Yap" akışı.
   ///
   /// Tek adımlık bir onay yetiyor: çıkmak GERİ ALINABİLİR bir işlem, kullanıcı
@@ -317,6 +320,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// Son kontrol tarihinin saklandığı ayar anahtarı (ISO 8601 metin).
   static const String _kSonKontrolKey = 'sonSoruGuncellemeKontrolu';
 
+  /// Oyun kartları son güncelleme kontrolü (ISO 8601 metin).
+  static const String _kSonKartKontrolKey = 'sonKartGuncellemeKontrolu';
+
   static const List<String> _kAyKisa = [
     'Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz',
     'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara',
@@ -325,11 +331,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
   /// 2026-07-21 → "21 Tem 2026"
   String _tarihMetni(DateTime d) => '${d.day} ${_kAyKisa[d.month - 1]} ${d.year}';
 
+  /// 2026-07-21 14:30 → "21 Tem 2026, 14:30" (saat+dakika iki haneli).
+  String _tarihSaatMetni(DateTime d) {
+    final ss = d.hour.toString().padLeft(2, '0');
+    final dd = d.minute.toString().padLeft(2, '0');
+    return '${_tarihMetni(d)}, $ss:$dd';
+  }
+
   /// Ayarlardan son kontrol tarihini okur (yoksa null).
   DateTime? _sonKontrol(StorageService storage) {
     final raw = storage.getSettings()[_kSonKontrolKey];
     if (raw is! String) return null;
     return DateTime.tryParse(raw);
+  }
+
+  /// Oyun kartları için son kontrol tarihini okur (yoksa null).
+  DateTime? _sonKartKontrol(StorageService storage) {
+    final raw = storage.getSettings()[_kSonKartKontrolKey];
+    if (raw is! String) return null;
+    return DateTime.tryParse(raw);
+  }
+
+  /// "Oyun Kartlarını Güncelle" — kart havuzu, derslerin konu içeriğinden ve
+  /// güncel soru bankasından beslendiği için uzak içeriği yeniler (soru
+  /// güncellemesiyle AYNI mekanizma: RemoteQuestionService.checkAndUpdate).
+  Future<void> _kartGuncelle() async {
+    final remote = context.read<RemoteQuestionService>();
+    final storage = context.read<StorageService>();
+    setState(() => _checkingCards = true);
+    final sonuc = await remote.checkAndUpdate();
+    if (sonuc.sonuc != UpdateOutcome.hata) {
+      await storage.saveSettings(
+          {_kSonKartKontrolKey: DateTime.now().toIso8601String()});
+    }
+    if (!mounted) return;
+    setState(() => _checkingCards = false);
+    final String mesaj;
+    switch (sonuc.sonuc) {
+      case UpdateOutcome.guncellendi:
+        mesaj = 'Oyun kartları güncellendi.';
+      case UpdateOutcome.zatenGuncel:
+        mesaj = 'Oyun kartları zaten güncel.';
+      case UpdateOutcome.hata:
+        mesaj = 'Güncelleme kontrol edilemedi, internetini kontrol et.';
+    }
+    ustBildirim(mesaj);
   }
 
   Future<void> _soruGuncelle() async {
@@ -1015,7 +1061,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               return Text(
                                 son == null
                                     ? 'Henüz kontrol edilmedi'
-                                    : 'Son kontrol: ${_tarihMetni(son)}',
+                                    : 'Son güncelleme: ${_tarihSaatMetni(son)}',
                                 style: TextStyle(fontSize: 11.5, color: c.textFaint),
                               );
                             }),
@@ -1054,6 +1100,76 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         onPressed: () {
                           context.read<SoundService>().click();
                           _soruGuncelle();
+                        },
+                      ),
+                    ),
+                  // ── Oyun Kartlarını Güncelle (kullanıcı isteği: soru
+                  // güncellemesiyle AYNI yerde, aynı mekanizma) ──
+                  const SizedBox(height: 16),
+                  Divider(color: c.border, height: 1),
+                  const SizedBox(height: 14),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DsIconBadge(
+                          icon: Icons.style_rounded,
+                          color: c.gold,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Oyun Kartlarını Güncelle',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
+                            const SizedBox(height: 2),
+                            Builder(builder: (_) {
+                              final son = _sonKartKontrol(storage);
+                              return Text(
+                                son == null
+                                    ? 'Henüz güncellenmedi'
+                                    : 'Son güncelleme: ${_tarihSaatMetni(son)}',
+                                style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                              );
+                            }),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Kart Eşleştirme oyunundaki kartlar, güncel ders içeriğinden '
+                    'beslenir. Yeni içerik için dokun.',
+                    style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
+                  ),
+                  const SizedBox(height: 12),
+                  if (_checkingCards)
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: c.gold),
+                        ),
+                        const SizedBox(width: 10),
+                        Text('Kontrol ediliyor…',
+                            style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      ],
+                    )
+                  else
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: DsPillButton(
+                        label: 'Oyun Kartlarını Güncelle',
+                        color: c.gold,
+                        leadingIcon: Icons.refresh,
+                        onPressed: () {
+                          context.read<SoundService>().click();
+                          _kartGuncelle();
                         },
                       ),
                     ),
