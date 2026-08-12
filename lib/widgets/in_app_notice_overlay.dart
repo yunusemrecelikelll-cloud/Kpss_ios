@@ -252,7 +252,12 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                   right: 0,
                   child: SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 6, right: 10),
+                      // AppBar'ın ALTINA indirildi (kToolbarHeight): sağ üstteki
+                      // pili, ekranların AppBar aksiyon butonlarıyla (bilgi/geri
+                      // yükle/sıfırla vb.) hem GÖRSEL hem DOKUNMA olarak
+                      // çakışıyordu — bu tek değişiklik tüm ekranlarda çakışmayı
+                      // giderir (kullanıcı isteği: çakışan yerleri düzelt).
+                      padding: const EdgeInsets.only(top: kToolbarHeight + 4, right: 10),
                       child: _GlobalHakPili(
                         haklar: storage.getHaklar(),
                         onTap: () {

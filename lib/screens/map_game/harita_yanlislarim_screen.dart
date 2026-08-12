@@ -246,7 +246,12 @@ class _YanlisTestScreenState extends State<_YanlisTestScreen> {
   void _tap(TurkeyProvince p) {
     if (_sonuc) return;
     context.read<SoundService>().click();
-    final dogru = p.id == _k['dogruId'];
+    // Bölge/Komşu modlarında tek doğru il yoktur: kaydedilen `dogruIds`
+    // listesindeki HERHANGİ bir il doğru sayılır. Diğer modlarda tek `dogruId`.
+    final dogruIds = (_k['dogruIds'] as List?)?.cast<String>() ?? const <String>[];
+    final dogru = dogruIds.isNotEmpty
+        ? dogruIds.contains(p.id)
+        : p.id == _k['dogruId'];
     setState(() {
       _sonuc = true;
       _dogruMu = dogru;
@@ -255,7 +260,7 @@ class _YanlisTestScreenState extends State<_YanlisTestScreen> {
       _cozulen++;
       context
           .read<StorageService>()
-          .removeMapWrong(_k['soru'] as String, _k['dogruId'] as String);
+          .removeMapWrong(_k['soru'] as String, _k['dogruId'] as String? ?? '');
     }
   }
 

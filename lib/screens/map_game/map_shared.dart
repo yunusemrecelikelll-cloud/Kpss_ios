@@ -26,7 +26,7 @@ const String kMapGameId = 'haritaoyunu';
 /// (İli Bul, Bölgeyi Bul, Komşu İl, Ürün/Tarih Haritası, İklim Avı) her soru
 /// için tanınan deneme hakkı — kullanıcı 3 kez yanlış dokunursa doğru cevap
 /// gösterilip bir sonraki soruya geçilir.
-const int kMapMaxAttempts = 2;
+const int kMapMaxAttempts = 3;
 
 /// Bölgelere göre ayırt edici renk paleti — Bölgeyi Bul modunda ve genel
 /// harita gösteriminde kullanılır.
@@ -359,6 +359,11 @@ Future<void> haritaYanlisKaydet(
   required List<String> secilenAdlar,
   required String modId,
   required String modAd,
+  // Tekrar-testte KABUL EDİLEBİLİR il id'leri. Bölge/Komşu modlarında tek bir
+  // doğru il yoktur (dogruId boş kalır); bu liste sayesinde tekrar-test bu
+  // kayıtları da çözebilir (eskiden dogruId:'' olduğu için ASLA çözülemiyor ve
+  // her dokunuş yanlış görünüyordu).
+  List<String> dogruIds = const [],
 }) async {
   // Kullanıcı isteği: sonuç afişi çıkarken önceki "Kalan hak" afişi (SnackBar)
   // üst üste binmesin — sonuç gösterildiği an (bu fonksiyon çağrıldığında)
@@ -369,6 +374,7 @@ Future<void> haritaYanlisKaydet(
     'soru': soru,
     'dogruId': dogruId,
     'dogruAd': dogruAd,
+    if (dogruIds.isNotEmpty) 'dogruIds': dogruIds,
     'secilenIds': secilenIds,
     'secilenAdlar': secilenAdlar,
     'mod': modId,

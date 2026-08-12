@@ -372,7 +372,7 @@ class StorageService extends ChangeNotifier {
     final s = getStreak();
     if (s['lastDate'] == today) return s;
     final yesterday = DateTime.now().subtract(const Duration(days: 1)).toString().split(' ')[0];
-    s['count'] = (s['lastDate'] == yesterday) ? (s['count'] as int) + 1 : 1;
+    s['count'] = (s['lastDate'] == yesterday) ? ((s['count'] as num?)?.toInt() ?? 0) + 1 : 1;
     s['lastDate'] = today;
     await _set('streak', s);
     return s;

@@ -113,6 +113,7 @@ class _KomsuIlScreenState extends State<KomsuIlScreen> {
       soru: '"${_target.ad}"nin komşularından birini seç',
       dogruId: '',
       dogruAd: '${_target.ad}\'nin komşuları',
+      dogruIds: _target.komsular, // tekrar-testte kabul edilen iller
       secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
       secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
       modId: kKomsuIlGameId,

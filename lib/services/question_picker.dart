@@ -34,17 +34,23 @@ class QuestionPicker {
     final usedKeys = topicId != null ? storage.getUsedQuestions(topicId) : <String>[];
     final unused = allQuestions.where((q) => !usedKeys.contains(q.key)).toList();
 
-    List<Question> pool;
     if (unused.length >= count) {
-      pool = unused;
-    } else if (unused.isNotEmpty) {
-      final used = allQuestions.where((q) => usedKeys.contains(q.key)).toList()..shuffle(_rng);
-      pool = [...unused, ...used];
-    } else {
-      pool = List.of(allQuestions);
+      // Yeterli KULLANILMAMIŞ soru var: yalnızca onlardan karıştırıp seç.
+      final pool = List.of(unused)..shuffle(_rng);
+      return pool.take(count).toList();
     }
-
-    pool = List.of(pool)..shuffle(_rng);
+    if (unused.isNotEmpty) {
+      // Kullanılmamışlar yetmiyor: HEPSİNİ garanti dahil et (karışık), kalan
+      // boşluğu kullanılmışlarla doldur. Böylece henüz görülmemiş sorular
+      // ASLA elenmez (eski kod tüm havuzu yeniden karıştırıp bazı yeni
+      // soruları düşürebiliyordu).
+      final unusedShuffled = List.of(unused)..shuffle(_rng);
+      final used = allQuestions.where((q) => usedKeys.contains(q.key)).toList()..shuffle(_rng);
+      final eksik = count - unusedShuffled.length;
+      return [...unusedShuffled, ...used.take(eksik)];
+    }
+    // Hepsi kullanılmış: tüm havuzdan karışık seç.
+    final pool = List.of(allQuestions)..shuffle(_rng);
     return pool.take(count).toList();
   }
 }

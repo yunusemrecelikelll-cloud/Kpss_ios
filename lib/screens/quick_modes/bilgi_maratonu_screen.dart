@@ -41,6 +41,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
   bool _lastCorrect = false;
   int _streak = 0;
   int _best = 0;
+  bool _yeniRekor = false; // bu oturumda eski rekor gerçekten AŞILDI mı
 
   @override
   void initState() {
@@ -79,6 +80,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
       _ptr = 0;
       _best = storage.getBestMarathonStreak();
       _streak = 0;
+      _yeniRekor = false;
       _given = null;
       _showResult = false;
       _finished = false;
@@ -118,7 +120,11 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
       return;
     }
     final storage = context.read<StorageService>();
+    // GERÇEK yeni rekor mu (eski rekoru AŞTI mı) — eşitlik rekor sayılmaz.
+    // build() bunu kullanır; `_streak >= _best` demek, _best güncellendikten
+    // sonra eşitlikte de "yeni rekor" gösterirdi (hatalıydı).
     if (_streak > _best) {
+      _yeniRekor = true;
       await storage.setBestMarathonStreak(_streak);
       _best = _streak;
     }
@@ -155,7 +161,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
     }
     if (_finished) {
       final colors = context.watch<ThemeProvider>().colors;
-      final beatBest = _streak >= _best && _streak > 0;
+      final beatBest = _yeniRekor && _streak > 0;
       return GameResultScreen(
         title: '🏃 Bilgi Maratonu',
         emoji: beatBest ? '🏆' : (_streak >= 10 ? '🎉' : (_streak >= 4 ? '💪' : '📚')),

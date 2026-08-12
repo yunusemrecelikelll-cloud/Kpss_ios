@@ -123,6 +123,9 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       soru: '"$_target" Bölgesi\'nden bir il seç',
       dogruId: '',
       dogruAd: '$_target Bölgesi',
+      // O bölgedeki TÜM iller tekrar-testte kabul edilir.
+      dogruIds:
+          kTurkeyProvinces.where((p) => p.bolge == _target).map((p) => p.id).toList(),
       secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
       secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
       modId: kBolgeBulGameId,

@@ -420,12 +420,18 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
     final q = _questions[idx];
     final correct = optionIdx == q.dogruIndex;
-    // Geçen süre: solo'da o sorunun KENDİ başlangıcına göre, online'da
-    // `startedAt + idx * perQ` senkron başlangıcına göre hesaplanır.
-    final DateTime questionStart = widget.isSolo
-        ? (_soloQuestionStart ?? _now)
-        : _startedAt!.add(Duration(milliseconds: idx * _perQ * 1000));
-    final elapsedMs = _now.difference(questionStart).inMilliseconds.clamp(0, _perQ * 1000);
+    // Geçen süre: solo'da o sorunun KENDİ başlangıcına göre; online'da bu
+    // sorunun İÇİNDE geçen EFEKTİF süre (erken geçiş kaydırması _timeShiftMs
+    // DAHİL) kullanılır. Aksi hâlde "herkes cevapladı" erken geçişinden sonra
+    // geçen süre eksik ölçülür ve hız bonusu HAKSIZ ŞİŞERDİ.
+    final int elapsedMs;
+    if (widget.isSolo) {
+      final questionStart = _soloQuestionStart ?? _now;
+      elapsedMs = _now.difference(questionStart).inMilliseconds.clamp(0, _perQ * 1000);
+    } else {
+      elapsedMs =
+          (_effectiveElapsedMs - idx * _perQ * 1000).clamp(0, _perQ * 1000);
+    }
 
     setState(() => _mySelections[idx] = optionIdx);
 

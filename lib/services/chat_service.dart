@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
 import '../firebase_bootstrap.dart';
@@ -342,10 +343,15 @@ class ChatService {
   /// vermiyorsa (yeni koleksiyon, insan onayı bekleniyor) sessizce yutar.
   Future<void> _notifyUser(String uid, String message, {String type = 'info'}) async {
     if (!isConfigured) return;
+    final fromUid = FirebaseAuth.instance.currentUser?.uid;
+    if (fromUid == null) return;
     try {
       await _db.collection(notificationsCollection).doc(uid).collection('items').add({
         'type': type,
         'message': message,
+        // Firestore kuralı gereği bildirimi yazanın uid'i (kaynak izlenebilirliği
+        // + sahte sistem bildirimi enjeksiyonunu engelleme).
+        'fromUid': fromUid,
         'createdAt': FieldValue.serverTimestamp(),
       });
     } catch (e) {

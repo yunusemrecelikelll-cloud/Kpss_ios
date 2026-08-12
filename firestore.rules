@@ -110,19 +110,46 @@ service cloud.firestore {
       // kural içinde alan-alan karşılaştırılması kırılgandır ve zaten her
       // oyuncu soruları oynayabilmek için okumak zorunda, yani gizlilik
       // kazancı yok.
+      // Güncellemede DEĞİŞMEZ alanlar korunur VE yazan kişi ODANIN İÇİNDE
+      // olmak zorundadır (host, mevcut oyuncu ya da o an KATILMAKTA olan yeni
+      // oyuncu). Böylece odaya hiç girmemiş rastgele bir kullanıcı başka bir
+      // odanın skor/durum/oyuncu alanlarını BOZAMAZ (griefing/skor enjeksiyonu
+      // yüzeyi daraltıldı). Not: aynı odadaki bir oyuncunun BAŞKA oyuncunun
+      // skorunu yazması hâlâ kural düzeyinde tümüyle engellenemez (dinamik map
+      // anahtarları) — tam anti-cheat Cloud Functions ister.
       allow update: if girisli()
                     && request.resource.data.code == resource.data.code
                     && request.resource.data.hostUid == resource.data.hostUid
                     && request.resource.data.mode == resource.data.mode
-                    && request.resource.data.maxPlayers == resource.data.maxPlayers;
+                    && request.resource.data.maxPlayers == resource.data.maxPlayers
+                    && (
+                      request.auth.uid == resource.data.hostUid
+                      || (resource.data.playerUids is list
+                          && request.auth.uid in resource.data.playerUids)
+                      || (request.resource.data.playerUids is list
+                          && request.auth.uid in request.resource.data.playerUids)
+                    );
 
-      // Odayı yalnızca sahibi silebilir. "Hesabımı Sil" akışı da tam olarak
-      // bunu yapar (hostUid == kendi uid'i olan odaları siler).
+      // Silme: normalde yalnızca oda sahibi. AMA "hayalet oda" temizliği için
+      // (kullanıcı isteği: her oda 2 saatte kapansın) SÜRESİ DOLMUŞ ya da
+      // TAMAMEN BOŞ odaları giriş yapmış herhangi bir kullanıcı da silebilir —
+      // bu odalar zaten geçersiz olduğundan güvenli. "Hesabımı Sil" akışı da
+      // host olarak kendi odalarını siler.
       allow delete: if girisli()
-                    && request.auth.uid == resource.data.hostUid;
+                    && (
+                      request.auth.uid == resource.data.hostUid
+                      || (resource.data.expiresAt is timestamp
+                          && resource.data.expiresAt < request.time)
+                      || (resource.data.players is map
+                          && resource.data.players.size() == 0)
+                    );
 
+      // Uygulama duel_rooms altında alt koleksiyon KULLANMIYOR (sorular/oyuncular
+      // ana dokümanda). Bu yüzden alt koleksiyon yazımı tamamen kapatıldı
+      // (eskiden "girisli()" ile herkese açıktı — gereksiz yazma yüzeyi).
       match /{sub=**} {
-        allow read, write: if girisli();
+        allow read: if girisli();
+        allow write: if false;
       }
     }
 
@@ -162,7 +189,12 @@ service cloud.firestore {
         // kümeyle sınırlı ve `message` en fazla 200 karakter. İstemci
         // tarafında bu yazmayı yalnızca ChatService._notifyUser tetikliyor ve
         // metni kullanıcıdan almıyor (bkz. chat_service.dart).
+        // GÜVENLİK: Bildirimi yazan (fromUid) KENDİ uid'ini yazmak ZORUNDA —
+        // böylece sahte "sistem bildirimi" enjekte eden anonim/kimliksiz yazma
+        // engellenir ve kötüye kullanımda kaynak izlenebilir. type sabit küme,
+        // message en fazla 200 karakter.
         allow create: if girisli()
+                      && request.resource.data.fromUid == request.auth.uid
                       && request.resource.data.type in ['info', 'report_notice']
                       && request.resource.data.message is string
                       && request.resource.data.message.size() <= 200;
@@ -184,8 +216,14 @@ service cloud.firestore {
     // Güncelleme kapalı: gönderilmiş mesaj sonradan değiştirilemez.
     match /chat_messages/{msgId} {
       allow read: if girisli();
+      // Mesajı yalnızca sahibi yazabilir; ayrıca metin ve gönderen adı MAKUL
+      // uzunlukta olmak zorunda (dev doküman/spam yazımı ve UI taşması önlenir).
       allow create: if girisli()
-                    && request.resource.data.senderUid == request.auth.uid;
+                    && request.resource.data.senderUid == request.auth.uid
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() <= 500
+                    && (!('senderName' in request.resource.data)
+                        || request.resource.data.senderName.size() <= 40);
       allow delete: if girisli()
                     && resource.data.senderUid == request.auth.uid;
       allow update: if false;
@@ -209,7 +247,14 @@ service cloud.firestore {
 
       match /messages/{msgId} {
         // Üst thread'in katılımcısı olmak şart.
-        allow read, create, delete: if girisli()
+        allow read, delete: if girisli()
+          && request.auth.uid in
+             get(/databases/$(database)/documents/dm_threads/$(threadId))
+               .data.participants;
+        // Oluştururken AYRICA senderUid = yazan olmak zorunda — böylece iki
+        // kişilik thread içinde karşı tarafın kimliğiyle mesaj yazılamaz.
+        allow create: if girisli()
+          && request.resource.data.senderUid == request.auth.uid
           && request.auth.uid in
              get(/databases/$(database)/documents/dm_threads/$(threadId))
                .data.participants;

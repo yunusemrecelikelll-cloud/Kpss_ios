@@ -150,6 +150,10 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   Timer? _studyTicker;
   String? _studySubjectId;
   bool _studySaved = false;
+  // _finish() birden çok yerden (süre bitti / son soru / "Testi Bitir") ve hızlı
+  // çift dokunmayla çağrılabilir; bu bayrak ÇİFT bitişi (çift istatistik/çift
+  // sonuç ekranı) engeller.
+  bool _finishing = false;
 
   /// Kullanıcının seçtiği süreyle (madde 1) çalışan düz geri sayım aktif mi?
   /// (Deneme/tam sınav modunun kendi geri sayımından ayrıdır.)
@@ -379,6 +383,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
   }
 
   Future<void> _finish() async {
+    // Çift bitişi engelle (süre bitişi + buton + son soru aynı anda tetikleyebilir).
+    if (_finishing) return;
+    _finishing = true;
     final quiz = context.read<QuizEngine>();
     // Fix 1: Yanlışlarım oturumları genel "attempts/solved" istatistiklerine
     // dahil edilmez — bu bayrak quiz.finish() state'i sıfırlamadan ÖNCE
