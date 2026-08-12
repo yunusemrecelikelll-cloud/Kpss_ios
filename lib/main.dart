@@ -59,6 +59,14 @@ Future<void> main() async {
   // (bkz. StorageService.hesapProfilineGec).
   if (aktifKullanici != null && !aktifKullanici.isAnonymous) {
     await storage.hesapProfilineGec(aktifKullanici.uid);
+  } else {
+    // MİSAFİR GÜVENCESİ (kullanıcı isteği): Giriş yapmamış kullanıcı KESİNLİKLE
+    // premium görünmesin. iOS'ta StoreKit aboneliği geri yükleyip misafir
+    // profiline premium yazmış olabilir; açılışta misafir profilini free'ye
+    // sabitle. (Gerçek premium, kullanıcı giriş yapınca buluttan geri gelir.)
+    if (storage.isPremiumUser()) {
+      await storage.setUserPlan('free');
+    }
   }
   // Günlük Çalışma Planı hatırlatmaları için yerel bildirim altyapısını
   // hazırla. Desteklenmeyen platformlarda (web/masaüstü) ya da izin

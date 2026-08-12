@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import 'auth_service.dart';
 import 'cloud_sync_service.dart';
 import 'presence_service.dart';
 import 'storage_service.dart';
@@ -248,28 +249,34 @@ class PurchaseService extends ChangeNotifier {
           // backend'e gönderilip Apple/Google API'leriyle doğrulanmalı ve
           // premium SADECE doğrulama başarılıysa açılmalı. Bkz. IAP_SETUP.md.
           // ------------------------------------------------------------
+          // KRİTİK (kullanıcı isteği): Premium yalnızca GERÇEKTEN GİRİŞ YAPMIŞ
+          // (anonim değil) hesaba tanımlanır. iOS'ta StoreKit, uygulama silinip
+          // yeniden kurulunca Apple ID'ye bağlı aboneliği "restored" olarak
+          // tekrar yayınlar; bu olayı MİSAFİR profiline yazarsak giriş yapmamış
+          // kullanıcı premium görünürdü. Bu yüzden girişli değilse premium AÇMA
+          // — kullanıcı giriş yapınca zaten buluttan (syncDown) geri gelir.
+          final girisli = AuthService().isRealSignedIn;
           if (purchase.productID == kOgrenciPremiumId ||
               purchase.productID == kTamPremiumId) {
-            await _storage.setUserPlan('premium');
-            // Satın alma anında girişliyse buluta hemen yansıt — böylece
-            // başka bir cihazda/kurulumda tekrar giriş yapınca premium
-            // durumu kaybolmuş görünmez (bkz. CloudSyncService.syncDown).
-            // ignore: unawaited_futures
-            CloudSyncService().syncUp(_storage);
-            // Yönetici panelindeki premium/ücretsiz etiketi beklemeden
-            // tazelensin (2 dk'lık nabız gazını atla).
-            // ignore: unawaited_futures
-            PresenceService.instance.bildir(_storage, zorla: true);
+            if (girisli) {
+              await _storage.setUserPlan('premium');
+              // ignore: unawaited_futures
+              CloudSyncService().syncUp(_storage);
+              // ignore: unawaited_futures
+              PresenceService.instance.bildir(_storage, zorla: true);
+            }
+            // Girişli değilse: premium yazma. (Restore edilen abonelik, kullanıcı
+            // giriş yapınca premium_screen'deki "Satın alımları geri yükle" ya da
+            // buluttan senkron ile hesaba bağlanır.)
           } else if (purchase.productID == kHakPaketiId &&
               purchase.status == PurchaseStatus.purchased) {
-            // TÜKETİLEBİLİR hak paketi: cüzdana ekle. "restored" durumunda
-            // EKLEME (tüketilebilir ürünler geri yüklenmez; yoksa çift sayım
-            // olurdu — yalnızca yeni 'purchased' olayında ekleriz).
-            await _storage.hakEkle(kHakPaketiMiktar);
-            // Girişliyse satın alınan hakları hemen buluta yaz — cihaz
-            // değişiminde/yeniden kurulumda kaybolmasın (bkz. CloudSyncService).
-            // ignore: unawaited_futures
-            CloudSyncService().syncUp(_storage);
+            // TÜKETİLEBİLİR hak paketi: cüzdana ekle (yalnızca yeni 'purchased';
+            // "restored"da tüketilebilir eklenmez). Bu da hesaba bağlı olsun.
+            if (girisli) {
+              await _storage.hakEkle(kHakPaketiMiktar);
+              // ignore: unawaited_futures
+              CloudSyncService().syncUp(_storage);
+            }
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);

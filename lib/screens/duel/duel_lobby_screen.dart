@@ -118,7 +118,6 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
         mode: _mode,
         hostName: _playerName,
         subjectFilter: cfg.subjectIds,
-        excludeSubjectFilter: cfg.excludeSubjectIds,
         topicId: cfg.topicId,
         maxPlayers: cfg.maxPlayers,
         isPublic: cfg.isPublic,
@@ -760,9 +759,8 @@ class _RoomCard extends StatelessWidget {
 
 /// Oda kurma yapılandırması.
 class _RoomConfig {
+  /// Seçili ders id'leri (boş => tüm derslerden karışık; birden fazla olabilir).
   final List<String> subjectIds;
-  /// "Karışık" seçiminde hariç tutulan ders id'leri (kullanıcı isteği).
-  final List<String> excludeSubjectIds;
   final String? topicId;
   final int maxPlayers;
   final bool isPublic;
@@ -770,7 +768,6 @@ class _RoomConfig {
   final int questionCount;
   const _RoomConfig({
     required this.subjectIds,
-    this.excludeSubjectIds = const [],
     required this.topicId,
     required this.maxPlayers,
     required this.isPublic,
@@ -806,9 +803,11 @@ class _CreateRoomSheet extends StatefulWidget {
 }
 
 class _CreateRoomSheetState extends State<_CreateRoomSheet> {
-  String? _selectedSubjectId; // null => Karışık (tüm dersler)
-  String? _selectedTopicId; // null => Karışık (seçili ders içinde)
-  final Set<String> _excludeSubjectIds = {}; // Karışık'ta hariç tutulan dersler
+  // Seçili dersler (kullanıcı isteği: BİRDEN FAZLA ders seçilebilir). Boş küme
+  // => "Karışık" (tüm derslerden). Konu seçimi yalnızca TEK ders seçiliyken
+  // gösterilir (birden fazla ders varken konu anlamsız).
+  final Set<String> _selectedSubjectIds = {};
+  String? _selectedTopicId; // yalnızca tek ders seçiliyken anlamlı
   late double _maxPlayers;
   bool _isPublic = true;
   late int _secondsPerQuestion;
@@ -817,10 +816,13 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
   bool get _isRoyale => widget.mode == DuelService.modeRoyale;
   bool get _isSolo => widget.solo;
 
-  Subject? get _selectedSubject {
-    if (_selectedSubjectId == null) return null;
+  /// Tam olarak TEK ders seçiliyse o dersi döndürür (konu seçimi için); aksi
+  /// hâlde null (Karışık ya da çoklu ders).
+  Subject? get _tekSeciliDers {
+    if (_selectedSubjectIds.length != 1) return null;
+    final id = _selectedSubjectIds.first;
     for (final s in widget.subjects) {
-      if (s.id == _selectedSubjectId) return s;
+      if (s.id == id) return s;
     }
     return null;
   }
@@ -838,7 +840,8 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
     final c = context.watch<ThemeProvider>().colors;
     final minP = _isRoyale ? 10 : 2;
     final maxP = _isRoyale ? 50 : 10;
-    final subject = _selectedSubject;
+    final subject = _tekSeciliDers;
+    final vurgu = _isRoyale ? c.gold : c.violetL;
     return Padding(
       padding: EdgeInsets.only(
         left: 20, right: 20, top: 20,
@@ -866,104 +869,83 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                     : '${_isRoyale ? "👑 Royale" : "⚔️ Düello"} Odası Kur',
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
             const SizedBox(height: 4),
-            Text('Ders seçmezsen tüm derslerden karışık sorular gelir.',
+            Text('Bir ya da birden fazla ders seç; hiç seçmezsen tüm derslerden '
+                'karışık gelir. Tek ders seçersen konu da seçebilirsin.',
                 style: TextStyle(fontSize: 12, color: c.textFaint)),
-            const SizedBox(height: 10),
-            Text('Ders', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 6),
+            const SizedBox(height: 14),
+            // ── Ders (ÇOKLU seçim) ──
+            _BolumBaslik(baslik: 'Ders', renk: vurgu, ikon: Icons.menu_book_rounded),
+            const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
-                ChoiceChip(
-                  label: const Text('🔀 Karışık'),
-                  selected: _selectedSubjectId == null,
-                  onSelected: (_) => setState(() {
-                    _selectedSubjectId = null;
+                _SecimCipi(
+                  etiket: '🔀 Karışık',
+                  secili: _selectedSubjectIds.isEmpty,
+                  renk: vurgu,
+                  onTap: () => setState(() {
+                    _selectedSubjectIds.clear();
                     _selectedTopicId = null;
                   }),
                 ),
                 for (final s in widget.subjects)
-                  ChoiceChip(
-                    label: Text('${s.icon} ${s.ad}'),
-                    selected: _selectedSubjectId == s.id,
-                    onSelected: (_) => setState(() {
-                      _selectedSubjectId = s.id;
-                      _selectedTopicId = null; // ders değişince konu sıfırlanır
+                  _SecimCipi(
+                    etiket: '${s.icon} ${s.ad}',
+                    secili: _selectedSubjectIds.contains(s.id),
+                    renk: vurgu,
+                    onTap: () => setState(() {
+                      if (_selectedSubjectIds.contains(s.id)) {
+                        _selectedSubjectIds.remove(s.id);
+                      } else {
+                        _selectedSubjectIds.add(s.id);
+                      }
+                      // Konu seçimi yalnızca TEK ders seçiliyken geçerli;
+                      // çoklu/karışıkta sıfırlanır.
+                      if (_selectedSubjectIds.length != 1) _selectedTopicId = null;
                     }),
                   ),
               ],
             ),
-            // "Karışık" seçiliyken (ders seçilmemişken) istenen dersleri HARİÇ
-            // tutma (kullanıcı isteği). Seçilen dersler soru havuzundan çıkarılır.
-            if (_selectedSubjectId == null) ...[
-              const SizedBox(height: 16),
-              Text('Hariç tut (isteğe bağlı)',
-                  style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-              const SizedBox(height: 4),
-              Text('Karışıkta seçtiğin dersler gelmez. Hepsini hariç tutamazsın.',
-                  style: TextStyle(fontSize: 11, color: c.textFaint)),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final s in widget.subjects)
-                    FilterChip(
-                      label: Text('${s.icon} ${s.ad}'),
-                      selected: _excludeSubjectIds.contains(s.id),
-                      showCheckmark: false,
-                      avatar: _excludeSubjectIds.contains(s.id)
-                          ? const Icon(Icons.block, size: 16)
-                          : null,
-                      onSelected: (sel) => setState(() {
-                        if (sel) {
-                          // En az bir ders kalmalı — hepsini hariç tutmayı engelle.
-                          if (_excludeSubjectIds.length < widget.subjects.length - 1) {
-                            _excludeSubjectIds.add(s.id);
-                          }
-                        } else {
-                          _excludeSubjectIds.remove(s.id);
-                        }
-                      }),
-                    ),
-                ],
-              ),
-            ],
+            // Konu seçimi: SADECE tek ders seçiliyken görünür (kullanıcı isteği:
+            // birden fazla ders seçilirse konu seçimi gözükmesin).
             if (subject != null && subject.konular.isNotEmpty) ...[
               const SizedBox(height: 16),
-              Text('Konu', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-              const SizedBox(height: 6),
+              _BolumBaslik(baslik: 'Konu', renk: vurgu, ikon: Icons.topic_rounded),
+              const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
                 children: [
-                  ChoiceChip(
-                    label: const Text('🔀 Karışık (bu ders)'),
-                    selected: _selectedTopicId == null,
-                    onSelected: (_) => setState(() => _selectedTopicId = null),
+                  _SecimCipi(
+                    etiket: '🔀 Karışık (bu ders)',
+                    secili: _selectedTopicId == null,
+                    renk: vurgu,
+                    onTap: () => setState(() => _selectedTopicId = null),
                   ),
                   for (final t in subject.konular)
-                    ChoiceChip(
-                      label: Text(t.baslik),
-                      selected: _selectedTopicId == t.id,
-                      onSelected: (_) => setState(() => _selectedTopicId = t.id),
+                    _SecimCipi(
+                      etiket: t.baslik,
+                      secili: _selectedTopicId == t.id,
+                      renk: vurgu,
+                      onTap: () => setState(() => _selectedTopicId = t.id),
                     ),
                 ],
               ),
             ],
             const SizedBox(height: 16),
-            Text('Süre (soru başına)', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 6),
+            _BolumBaslik(baslik: 'Süre (soru başına)', renk: vurgu, ikon: Icons.timer_rounded),
+            const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
                 for (final sec in kDuelSecondsOptions)
-                  ChoiceChip(
-                    label: Text('$sec sn'),
-                    selected: _secondsPerQuestion == sec,
-                    onSelected: (_) => setState(() => _secondsPerQuestion = sec),
+                  _SecimCipi(
+                    etiket: '$sec sn',
+                    secili: _secondsPerQuestion == sec,
+                    renk: vurgu,
+                    onTap: () => setState(() => _secondsPerQuestion = sec),
                   ),
               ],
             ),
@@ -972,17 +954,18 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                 style: TextStyle(
                     fontSize: 11, color: c.textFaint, fontStyle: FontStyle.italic)),
             const SizedBox(height: 16),
-            Text('Soru sayısı', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
-            const SizedBox(height: 6),
+            _BolumBaslik(baslik: 'Soru sayısı', renk: vurgu, ikon: Icons.format_list_numbered_rounded),
+            const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
                 for (final q in kDuelQuestionCountOptions)
-                  ChoiceChip(
-                    label: Text('$q soru'),
-                    selected: _questionCount == q,
-                    onSelected: (_) => setState(() => _questionCount = q),
+                  _SecimCipi(
+                    etiket: '$q soru',
+                    secili: _questionCount == q,
+                    renk: vurgu,
+                    onTap: () => setState(() => _questionCount = q),
                   ),
               ],
             ),
@@ -1016,10 +999,10 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                 trailingIcon: Icons.arrow_forward,
                 color: _isRoyale ? c.gold : c.violetL,
                 onPressed: () => Navigator.of(context).pop(_RoomConfig(
-                  subjectIds: _selectedSubjectId == null ? const [] : [_selectedSubjectId!],
-                  excludeSubjectIds:
-                      _selectedSubjectId == null ? _excludeSubjectIds.toList() : const [],
-                  topicId: _selectedSubjectId == null ? null : _selectedTopicId,
+                  subjectIds: _selectedSubjectIds.toList(),
+                  // Konu yalnızca TEK ders seçiliyken uygulanır.
+                  topicId:
+                      _selectedSubjectIds.length == 1 ? _selectedTopicId : null,
                   maxPlayers: _maxPlayers.round(),
                   isPublic: _isPublic,
                   secondsPerQuestion: _secondsPerQuestion,
@@ -1028,6 +1011,94 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Oda kurma sayfasındaki bölüm başlığı — küçük renkli ikon + başlık
+/// (temaya uygun tasarım).
+class _BolumBaslik extends StatelessWidget {
+  final String baslik;
+  final Color renk;
+  final IconData ikon;
+  const _BolumBaslik({required this.baslik, required this.renk, required this.ikon});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Row(
+      children: [
+        Container(
+          width: 24,
+          height: 24,
+          decoration: BoxDecoration(
+            color: renk.withValues(alpha: 0.16),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(ikon, size: 15, color: renk),
+        ),
+        const SizedBox(width: 8),
+        Text(baslik,
+            style: TextStyle(
+                fontSize: 13, fontWeight: FontWeight.w800, color: c.text)),
+      ],
+    );
+  }
+}
+
+/// Oda kurma sayfasındaki temalı seçim çipi (ders/konu/süre/soru sayısı için).
+/// Seçiliyken vurgu rengiyle dolar; değilken cam yüzey. Çoklu seçim de bunu
+/// kullanır (aynı görünüm).
+class _SecimCipi extends StatelessWidget {
+  final String etiket;
+  final bool secili;
+  final Color renk;
+  final VoidCallback onTap;
+  const _SecimCipi({
+    required this.etiket,
+    required this.secili,
+    required this.renk,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+          decoration: BoxDecoration(
+            color: secili ? renk : c.glass2,
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+                color: secili ? renk : c.border,
+                width: secili ? 1.5 : 1),
+            boxShadow: secili
+                ? [BoxShadow(color: renk.withValues(alpha: 0.35), blurRadius: 8)]
+                : null,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (secili) ...[
+                const Icon(Icons.check_rounded, size: 15, color: Colors.white),
+                const SizedBox(width: 5),
+              ],
+              Text(etiket,
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w800,
+                    color: secili ? Colors.white : c.textDim,
+                  )),
+            ],
+          ),
         ),
       ),
     );
