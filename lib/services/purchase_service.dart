@@ -271,9 +271,14 @@ class PurchaseService extends ChangeNotifier {
           } else if (purchase.productID == kHakPaketiId &&
               purchase.status == PurchaseStatus.purchased) {
             // TÜKETİLEBİLİR hak paketi: cüzdana ekle (yalnızca yeni 'purchased';
-            // "restored"da tüketilebilir eklenmez). Bu da hesaba bağlı olsun.
+            // "restored"da tüketilebilir eklenmez). Premium aboneliğin aksine
+            // hak paketi HERKESE açık (misafir de satın alabilir) — tüketilebilir
+            // olduğu için StoreKit'in reinstall'da yeniden yayınlama/premium
+            // sızıntısı sorunu burada YOKTUR. Paranın karşılığı kesin verilsin.
+            await _storage.hakEkle(kHakPaketiMiktar);
+            // Yalnızca girişliyse buluta yaz (misafirin hakkı yerelde kalır,
+            // reklamla kazanılan hak gibi).
             if (girisli) {
-              await _storage.hakEkle(kHakPaketiMiktar);
               // ignore: unawaited_futures
               CloudSyncService().syncUp(_storage);
             }
