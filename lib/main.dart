@@ -36,12 +36,27 @@ Future<void> main() async {
   final storage = StorageService();
   await storage.init();
 
+  // TAZE KURULUM: Uygulama silinip yeniden kurulduğunda SharedPreferences
+  // temizlenir ama iOS'ta Firebase oturumu KEYCHAIN'de kalır. Bu durumda
+  // hesaptan otomatik çıkış yap — böylece kullanıcı "misafir" olarak açılışta
+  // giriş seçeneğini görür; tekrar giriş yapınca istatistik + premium buluttan
+  // geri gelir (bkz. AccountLoginScreen.syncDown). Kullanıcı isteği.
+  var aktifKullanici =
+      isFirebaseConfigured ? FirebaseAuth.instance.currentUser : null;
+  if (storage.isFreshInstall()) {
+    await storage.markInstalled();
+    if (aktifKullanici != null) {
+      try {
+        await AuthService().signOut();
+      } catch (_) {}
+      aktifKullanici = null;
+    }
+  }
+
   // HESABA BAĞLI PROFİL: Önceki oturumdan kalıcı bir Google/Apple girişi
   // varsa, daha ilk kare çizilmeden o hesabın YEREL profiline geç — böylece
   // farklı hesaplar birbirinin istatistiklerini/premium'unu asla görmez
   // (bkz. StorageService.hesapProfilineGec).
-  final aktifKullanici =
-      isFirebaseConfigured ? FirebaseAuth.instance.currentUser : null;
   if (aktifKullanici != null && !aktifKullanici.isAnonymous) {
     await storage.hesapProfilineGec(aktifKullanici.uid);
   }

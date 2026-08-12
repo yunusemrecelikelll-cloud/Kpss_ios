@@ -118,6 +118,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
         mode: _mode,
         hostName: _playerName,
         subjectFilter: cfg.subjectIds,
+        excludeSubjectFilter: cfg.excludeSubjectIds,
         topicId: cfg.topicId,
         maxPlayers: cfg.maxPlayers,
         isPublic: cfg.isPublic,
@@ -760,6 +761,8 @@ class _RoomCard extends StatelessWidget {
 /// Oda kurma yapılandırması.
 class _RoomConfig {
   final List<String> subjectIds;
+  /// "Karışık" seçiminde hariç tutulan ders id'leri (kullanıcı isteği).
+  final List<String> excludeSubjectIds;
   final String? topicId;
   final int maxPlayers;
   final bool isPublic;
@@ -767,6 +770,7 @@ class _RoomConfig {
   final int questionCount;
   const _RoomConfig({
     required this.subjectIds,
+    this.excludeSubjectIds = const [],
     required this.topicId,
     required this.maxPlayers,
     required this.isPublic,
@@ -776,8 +780,8 @@ class _RoomConfig {
 }
 
 /// Süre (saniye) seçenekleri — host'un soru başına verdiği süreyi seçtiği
-/// sabit liste (kullanıcı isteğiyle 10-20-30-40-50 sn'ye yükseltildi).
-const List<int> kDuelSecondsOptions = [10, 20, 30, 40, 50];
+/// sabit liste (kullanıcı isteğiyle genişletildi: 10-15-20-30-45-60-90-120 sn).
+const List<int> kDuelSecondsOptions = [10, 15, 20, 30, 45, 60, 90, 120];
 
 /// Soru başına VARSAYILAN (normal) süre — süre seçicinin altında bilgi notu
 /// olarak gösterilir ve yeni oda/solo kurulurken ön seçili değerdir.
@@ -804,6 +808,7 @@ class _CreateRoomSheet extends StatefulWidget {
 class _CreateRoomSheetState extends State<_CreateRoomSheet> {
   String? _selectedSubjectId; // null => Karışık (tüm dersler)
   String? _selectedTopicId; // null => Karışık (seçili ders içinde)
+  final Set<String> _excludeSubjectIds = {}; // Karışık'ta hariç tutulan dersler
   late double _maxPlayers;
   bool _isPublic = true;
   late int _secondsPerQuestion;
@@ -889,6 +894,42 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   ),
               ],
             ),
+            // "Karışık" seçiliyken (ders seçilmemişken) istenen dersleri HARİÇ
+            // tutma (kullanıcı isteği). Seçilen dersler soru havuzundan çıkarılır.
+            if (_selectedSubjectId == null) ...[
+              const SizedBox(height: 16),
+              Text('Hariç tut (isteğe bağlı)',
+                  style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
+              const SizedBox(height: 4),
+              Text('Karışıkta seçtiğin dersler gelmez. Hepsini hariç tutamazsın.',
+                  style: TextStyle(fontSize: 11, color: c.textFaint)),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final s in widget.subjects)
+                    FilterChip(
+                      label: Text('${s.icon} ${s.ad}'),
+                      selected: _excludeSubjectIds.contains(s.id),
+                      showCheckmark: false,
+                      avatar: _excludeSubjectIds.contains(s.id)
+                          ? const Icon(Icons.block, size: 16)
+                          : null,
+                      onSelected: (sel) => setState(() {
+                        if (sel) {
+                          // En az bir ders kalmalı — hepsini hariç tutmayı engelle.
+                          if (_excludeSubjectIds.length < widget.subjects.length - 1) {
+                            _excludeSubjectIds.add(s.id);
+                          }
+                        } else {
+                          _excludeSubjectIds.remove(s.id);
+                        }
+                      }),
+                    ),
+                ],
+              ),
+            ],
             if (subject != null && subject.konular.isNotEmpty) ...[
               const SizedBox(height: 16),
               Text('Konu', style: TextStyle(fontSize: 12.5, color: c.textDim, fontWeight: FontWeight.w700)),
@@ -976,6 +1017,8 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                 color: _isRoyale ? c.gold : c.violetL,
                 onPressed: () => Navigator.of(context).pop(_RoomConfig(
                   subjectIds: _selectedSubjectId == null ? const [] : [_selectedSubjectId!],
+                  excludeSubjectIds:
+                      _selectedSubjectId == null ? _excludeSubjectIds.toList() : const [],
                   topicId: _selectedSubjectId == null ? null : _selectedTopicId,
                   maxPlayers: _maxPlayers.round(),
                   isPublic: _isPublic,

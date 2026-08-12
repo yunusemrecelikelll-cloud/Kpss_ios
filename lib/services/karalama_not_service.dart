@@ -53,6 +53,10 @@ class KaralamaNot {
   final double w;
   final double h;
   final int createdAt; // ms epoch
+  /// Notun KAYNAĞI: hangi ders/konu testinde ya da "KPSS Düello"da alındığı
+  /// (kullanıcı isteği: Notlarım'da her notun üzerinde kaynağı yazsın). Boş
+  /// olabilir (eski/serbest notlar).
+  final String kaynak;
 
   const KaralamaNot({
     required this.id,
@@ -62,6 +66,7 @@ class KaralamaNot {
     required this.w,
     required this.h,
     required this.createdAt,
+    this.kaynak = '',
   });
 
   static final Random _rnd = Random();
@@ -87,6 +92,7 @@ class KaralamaNot {
         'w': w,
         'h': h,
         't': createdAt,
+        'kaynak': kaynak,
         'ciz': cizgiler.map((e) => e.toJson()).toList(),
       };
 
@@ -107,6 +113,7 @@ class KaralamaNot {
         w: (j['w'] as num?)?.toDouble() ?? 300,
         h: (j['h'] as num?)?.toDouble() ?? 200,
         createdAt: (j['t'] as num?)?.toInt() ?? 0,
+        kaynak: j['kaynak'] as String? ?? '',
       );
     } catch (_) {
       return null;
@@ -136,6 +143,30 @@ class KaralamaNotService {
   Future<void> ekle(StorageService storage, KaralamaNot not) async {
     final list = getir(storage);
     list.insert(0, not);
+    final kirpik = list.take(_maxNot).toList();
+    await storage.saveSettings({_key: kirpik.map((e) => e.toJson()).toList()});
+  }
+
+  /// Aynı id'li not varsa GÜNCELLER (en üste taşımadan içeriğini değiştirir),
+  /// yoksa en üste EKLER. Not defterleri (test karalaması / KPSS Düello)
+  /// otomatik kayıtta bunu kullanır; böylece aç-kapa tekrar edince yeni yeni
+  /// kopyalar oluşmaz, tek not güncellenir (kullanıcı isteği: çıkınca otomatik
+  /// kaydet). [not] boşsa (metin+çizim yok) ilgili kayıt SİLİNİR.
+  Future<void> upsert(StorageService storage, KaralamaNot not) async {
+    final list = getir(storage);
+    final idx = list.indexWhere((n) => n.id == not.id);
+    if (not.bos) {
+      if (idx >= 0) {
+        list.removeAt(idx);
+        await storage.saveSettings({_key: list.map((e) => e.toJson()).toList()});
+      }
+      return;
+    }
+    if (idx >= 0) {
+      list[idx] = not;
+    } else {
+      list.insert(0, not);
+    }
     final kirpik = list.take(_maxNot).toList();
     await storage.saveSettings({_key: kirpik.map((e) => e.toJson()).toList()});
   }

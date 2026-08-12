@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../services/karalama_not_service.dart';
-import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
-import '../utils/ust_bildirim.dart';
 
 /// Test ekranlarında sorunun hemen altında açılan KARALAMA (scratchpad) katmanı
 /// (kullanıcı isteği). İçinde hem PARMAKLA ÇİZİM hem de YAZI yazılabilir; alan
@@ -22,7 +20,9 @@ import '../utils/ust_bildirim.dart';
 /// basit kullanım için burada kendi state'ini korur.
 class KaralamaKatmani extends StatefulWidget {
   final VoidCallback onKapat;
-  const KaralamaKatmani({super.key, required this.onKapat});
+  /// Notun kaynağı (hangi ders/konu testi) — Notlarım'da not üzerinde gösterilir.
+  final String? kaynak;
+  const KaralamaKatmani({super.key, required this.onKapat, this.kaynak});
 
   @override
   State<KaralamaKatmani> createState() => _KaralamaKatmaniState();
@@ -63,9 +63,22 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
   Size _tuvalBoyut = const Size(300, 200);
 
   final KaralamaNotService _notSvc = KaralamaNotService();
+  // Bu karalama oturumunun SABİT not id'si — otomatik kayıtta upsert için
+  // kullanılır (aç-kapa ederken yeni kopyalar oluşmasın; tek not güncellensin).
+  final String _notId = KaralamaNot.yeniId();
+  // dispose'ta context'e erişmemek için StorageService referansı erken alınır.
+  StorageService? _storage;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _storage ??= context.read<StorageService>();
+  }
 
   @override
   void dispose() {
+    // Ağaçtan silinirken (test ekranından çıkış) sessizce otomatik kaydet.
+    _otomatikKaydet();
     _yaziFocus.dispose();
     _yaziCtrl.dispose();
     super.dispose();
@@ -96,16 +109,15 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
     setState(() => _zoom = (_zoom + delta).clamp(0.5, 3.0));
   }
 
-  Future<void> _kaydet() async {
-    final metin = _yaziCtrl.text;
-    if (_cizgiler.isEmpty && metin.trim().isEmpty) {
-      ustBildirim('Kaydedilecek bir şey yok.');
-      return;
-    }
-    context.read<SoundService>().click();
+  /// Otomatik kayıt (kullanıcı isteği: "Kaydet" butonu yok; çıkınca/kapanınca
+  /// kendiliğinden kaydolsun). Sabit [_notId] ile upsert edildiği için aç-kapa
+  /// ederken tek not güncellenir. Boşsa (yazı+çizim yok) ilgili kayıt silinir.
+  Future<void> _otomatikKaydet() async {
+    final storage = _storage;
+    if (storage == null) return;
     final not = KaralamaNot(
-      id: KaralamaNot.yeniId(),
-      metin: metin,
+      id: _notId,
+      metin: _yaziCtrl.text,
       metinRenk: _renk.toARGB32(),
       cizgiler: _cizgiler
           .where((z) => z.noktalar.isNotEmpty)
@@ -120,12 +132,9 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
       w: _tuvalBoyut.width,
       h: _tuvalBoyut.height,
       createdAt: DateTime.now().millisecondsSinceEpoch,
+      kaynak: (widget.kaynak ?? '').trim(),
     );
-    await _notSvc.ekle(context.read<StorageService>(), not);
-    if (mounted) {
-      ustBildirim('Not kaydedildi 📝 (Anasayfa → Notlar)',
-          tur: UstBildirimTuru.basari);
-    }
+    await _notSvc.upsert(storage, not);
   }
 
   @override
@@ -199,26 +208,15 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                         size: 19, color: c.textDim),
                     onPressed: _temizle,
                   ),
-                  // Kaydet (kullanıcı isteği): yazı+çizim Notlar'a kaydedilir.
-                  TextButton.icon(
-                    onPressed: _kaydet,
-                    style: TextButton.styleFrom(
-                      visualDensity: VisualDensity.compact,
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      backgroundColor: c.violet.withValues(alpha: 0.16),
-                      foregroundColor: c.violet,
-                    ),
-                    icon: const Icon(Icons.save_rounded, size: 17),
-                    label: const Text('Kaydet',
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w900)),
-                  ),
+                  // Not: Ayrı "Kaydet" butonu YOK (kullanıcı isteği) — çıkınca
+                  // ya da kapanınca otomatik kaydedilir.
                   IconButton(
                     tooltip: 'Kapat',
                     visualDensity: VisualDensity.compact,
                     icon: Icon(Icons.close_rounded, size: 20, color: c.text),
                     onPressed: () {
                       _klavyeKapat(); // panel kapanınca klavye de kapansın
+                      _otomatikKaydet(); // çıkınca otomatik kaydet
                       widget.onKapat();
                     },
                   ),
@@ -343,44 +341,8 @@ class _KaralamaKatmaniState extends State<KaralamaKatmani> {
                         ),
                       ),
                     ),
-                    // Yaz modunda sağ altta yüzen "Klavyeyi kapat" butonu
-                    // (kullanıcı isteği).
-                    if (!_cizimModu)
-                      Positioned(
-                        right: 12,
-                        bottom: 12,
-                        child: GestureDetector(
-                          onTap: _klavyeKapat,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: c.violet,
-                              borderRadius: BorderRadius.circular(999),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.25),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 3),
-                                ),
-                              ],
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.keyboard_hide_rounded,
-                                    size: 16, color: Colors.white),
-                                SizedBox(width: 6),
-                                Text('Klavyeyi kapat',
-                                    style: TextStyle(
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.white)),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                    // Not: Ayrı "Klavyeyi kapat" butonu YOK (kullanıcı isteği);
+                    // not defteri kapanınca klavye kendiliğinden kapanır.
                   ],
                 );
               }),

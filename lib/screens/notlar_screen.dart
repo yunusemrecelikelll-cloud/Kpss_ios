@@ -176,6 +176,38 @@ class _NotKarti extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      // ── Kaynak rozeti (hangi ders/konu ya da KPSS Düello) ──
+                      if (not.kaynak.trim().isNotEmpty) ...[
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 3),
+                          decoration: BoxDecoration(
+                            color: ink.withValues(alpha: 0.08),
+                            borderRadius: BorderRadius.circular(999),
+                            border: Border.all(color: ink.withValues(alpha: 0.15)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.label_important_outline_rounded,
+                                  size: 12, color: ink.withValues(alpha: 0.6)),
+                              const SizedBox(width: 4),
+                              Flexible(
+                                child: Text(
+                                  not.kaynak.trim(),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 10.5,
+                                      fontWeight: FontWeight.w800,
+                                      color: ink.withValues(alpha: 0.7)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
                       // ── Çizim önizlemesi ──
                       if (not.cizimVar) ...[
                         AspectRatio(

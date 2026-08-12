@@ -10393,7 +10393,7 @@
           "aciklama": "Kullanıcı, faiz oranını ve borç tutarını doğru olarak hesaplayabilir."
         },
         {
-          "soru": "Bir yatırımcının 1000 TL'lik bir yatırım yaptığı ve 1 yıl içinde %10 kazancı olan bir projeye katıldı. Yatırımcı ne kadar para kazandı?",
+          "soru": "Bir yatırımcı 1000 TL'lik bir yatırım yaptı ve 1 yıl içinde %10 kazanç sağlayan bir projeye katıldı. Yatırımcı ne kadar para kazandı?",
           "secenekler": [
             "110 TL",
             "100 TL",
@@ -10401,8 +10401,8 @@
             "130 TL",
             "140 TL"
           ],
-          "dogruIndex": 0,
-          "aciklama": "Kullanıcı, kazancı doğru olarak hesaplayabilir."
+          "dogruIndex": 1,
+          "aciklama": "Kazanç = 1000 TL x %10 = 100 TL. (Yatırımın toplam değeri 1100 TL olur; ancak soru yalnızca kazancı sorduğu için cevap 100 TL.)"
         },
         {
           "soru": "Bir malın orjinal fiyatı 200 TL'dir. %15 indirim uygulanmıştır. Malın indirimli fiyatı kaç TL'dir?",
@@ -22903,18 +22903,6 @@
           "aciklama": "Ağırlık varyansı 16 kg^2, ağırlık standard sapması 4 kg ve ağırlık ortalaması 60 kg ile uyumlu. Bu nedenle bu seçeneği seçmek doğru olabilir."
         },
         {
-          "soru": "Bir grafikte, x eksenindeki bir noktanın y ekseni üzerindeki karşılığı 3 birim, x eksenindeki başka bir noktanın y ekseni üzerindeki karşılığı da 7 birim. Grafikte, x eksenindeki bu iki nokta arasındaki mesafe 10 birimdir. Grafikte, x eksenindeki bu iki nokta arasındaki y ekseni üzerindeki mesafe ne kadardır?",
-          "secenekler": [
-            "4 birim",
-            "10 birim",
-            "12 birim",
-            "6 birim",
-            "8 birim"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Grafikte, x eksenindeki bu iki nokta arasındaki x ekseni üzerinde 10 birim mesafe olduğu için, bu iki nokta arasındaki y ekseni üzerindeki mesafe da 10 birimdir. Bu nedenle bu seçeneği seçmek doğru olabilir."
-        },
-        {
           "soru": "Bir veri kümesinde, 20 öğrencinin vücut uzunlukları ölçüsü yapılmıştı. Vücut uzunluk ortalaması 170 cm, vücut uzunluk varyansı 50 cm^2 ve vücut uzunluk standard sapması 7 cm. Bu veri kümesinde, 20 öğrencinin en uzun öğrencinin vücut uzunluğu ne kadardır?",
           "secenekler": [
             "190 cm",
@@ -22925,18 +22913,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Vücut uzunluk varyansı 50 cm^2, vücut uzunluk standard sapması 7 cm ve vücut uzunluk ortalaması 170 cm ile uyumlu. Bu nedenle bu seçeneği seçmek doğru olabilir."
-        },
-        {
-          "soru": "Bir grafikte y-ekseni üzerinde 0'dan 100'e kadar olan değerler için x-ekseni üzerinde 0 ile 5 arasında değişen değerler ile doğru orantılı bir doğrusal ilişki vardır. Grafikte x-ekseni üzerinde 0 ve 5 arasında olan bir değer için y-ekseni üzerinde kaç değer olduğu tahmin edilebilir?",
-          "secenekler": [
-            "5",
-            "10",
-            "20",
-            "25",
-            "30"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Grafikte x-ekseni üzerinde 0'dan 100'e kadar olan değerler için x-ekseni üzerinde 0 ile 5 arasında değişen değerler ile doğru orantılı bir doğrusal ilişki vardır."
         },
         {
           "soru": "Veri setinde 25 öğrencinin 10, 20 ve 30 puanlarından oluşmaktadır. Ortalama puan 20, standart sapma 8'dir. Bu verilerden 10, 20 ve 30 puanlarından oluşan bir öğrencinin puanının ortalamanın kaç katı olduğunu bulmak için kaç öğrenci örneklenmesi gerekecektir?",
@@ -23011,30 +22987,6 @@
           "aciklama": "Doğru, çubuk grafik öğrencinin ders çalışma saatlerini, sınavda aldıkları notları gösterir."
         },
         {
-          "soru": "Bir grafikte x ekseni için 20-50 aralığında 8 adet veri noktası verilmiştir. Bu verilerin ortalaması 35 ile 40 arasında değişmektedir. Grafikte x ekseni için 20-50 aralığında veri noktası bulunmayan bir x değeri verilmiştir. Bu x değerinin grafikte hangi y değerini temsil ettiğini bulunuz.",
-          "secenekler": [
-            "15",
-            "30",
-            "45",
-            "60",
-            "Bu verilere göre bir x değeri belirlenemez."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bu x değeri grafikte gösterilmemiş olduğu için bu değerin temsil ettiği y değerini bulmakta güçlük çekebilir."
-        },
-        {
-          "soru": "Bir grafikte x ekseni için 20-50 aralığında 8 adet veri noktası verilmiştir. Bu verilerin ortalaması 35 ile 40 arasında değişmektedir. Grafikte y ekseni için 1000-1500 aralığında veri noktası bulunmayan bir y değeri verilmiştir. Bu y değerinin grafikte hangi x değerini temsil ettiğini bulunuz.",
-          "secenekler": [
-            "20",
-            "30",
-            "40",
-            "Bu verilere göre bir x değeri belirlenemez.",
-            "60"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Bu y değeri grafikte gösterilmemiş olduğu için bu değerin temsil ettiği x değerini bulmakta güçlük çekebilir."
-        },
-        {
           "soru": "Grafikte gösterilen veri setinin aritmetik ortalamasını hesaplamak için hangi formül kullanılır?",
           "secenekler": [
             "Σx / n",
@@ -23045,18 +22997,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Grafikteki veri setinin aritmetik ortalamasını hesaplamak için doğru formül Σx / n'dir. Kullanıcılar bu formülü seçme olasılığı yüksek olabilir."
-        },
-        {
-          "soru": "İki farklı dağılımın ortalamaları aynı ise, iki dağılımın medyanları da aynıdır.",
-          "secenekler": [
-            "Doğru, medyanlar ortalamalarla aynı şekilde ölçülür.",
-            "Yanlış, medyanlar ortalamalardan daha küçük olabilir.",
-            "Yanlış, medyanlar ortalamalardan daha büyük olabilir.",
-            "Yanlış, medyanlar ortalamalardan bağımsız olabilir.",
-            "Yanlış, medyanlar sadece sıralı veri setlerinde ölçülür."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneği doğru seçenlerin büyük bir kısmı, medyanların ortalamalardan bağımsız olabileceğini düşünecektir. Ancak, iki dağılımın ortalamaları aynı ise, bu durum medyanların da aynı olması için bir zorunluluk değildir. Doğru cevabı seçenlerin, medyanların ortalamalardan bağımsız olabileceğini düşünmemeleri gerekir."
         },
         {
           "soru": "Bir grafikte, grafikte gösterilen veri kümesinin ortalaması 10, medyanı 8 ve modu 12'dir. Bu grafikte, veri kümesinin modu hangi değerdir?",
@@ -23107,18 +23047,6 @@
           "aciklama": "Asimetrik dağılımlarda ortalama ve medyan farklı olmalıdır."
         },
         {
-          "soru": "Bir grafikte, x ekseninin her bir birimi 1 dakika ile temsil ediyorsa, y ekseninin her bir birimi kaç dakika ile temsil edilebilir?",
-          "secenekler": [
-            "0,5 dakika",
-            "1 dakika",
-            "5 dakika",
-            "10 dakika",
-            "15 dakika"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Y ekseninin her bir birimi 1 dakika ile temsil edilebilir."
-        },
-        {
           "soru": "Bir grafikte, veri noktaları arasında bir trend oluşturacak kadar fazla veri noktası varsa, hangi grafik tipinin kullanılması en uygun olur?",
           "secenekler": [
             "Bar Grafiği",
@@ -23167,42 +23095,6 @@
           "aciklama": "Standart sapma ve ortalama formüllerini kullanmak, öğrencinin notunun ortalamanın kaç puan üstü olduğunu bulmak için doğru hesaplama yöntemidir."
         },
         {
-          "soru": "Bir grafikte, 100 öğrencinin not ortalaması 85, ortalamanın standart sapması 10'dur. Grafikte 4 öğrenci 90 notuna sahiptir. Bu öğrencilerin not ortalaması kaçtır?",
-          "secenekler": [
-            "90",
-            "85",
-            "95",
-            "Not ortalaması hesaplanamaz.",
-            "Not ortalaması 100'dür."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu öğrencilerin not ortalaması, sadece bu 4 öğrencinin not ortalaması hesaplanmamıştır. Diğer öğrencilerin not ortalaması hesaplanmamıştır ve bu nedenle not ortalaması hesaplanamaz."
-        },
-        {
-          "soru": "Bir grafikte, 100 öğrencinin sınavda aldıkları puanlar 1-50 arasında değişmektedir. Grafikteki verileri analize tabi tuttuğumuzda, öğrencilerin %60'ı 30-40 puan aralığındadır. Bu bulguya göre, öğrencilerin sınavda aldıkları en yüksek puanın kaç olduğu sorulur.",
-          "secenekler": [
-            "40",
-            "30",
-            "50",
-            "20",
-            "10"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu cevabın seçilmesinde, grafikteki verilerin %60'ının 30-40 puan aralığındadır. Dolayısıyla en yüksek puanın 40 olması en mantıklı sonuç olarak görülür."
-        },
-        {
-          "soru": "Bir grafikte, bir şehirde 1000 kişinin yaşadığı bir mahallenin, o mahalledeki 1000 kişinin 50 yaş ve üzeri nüfusunun %25'i 65 yaş ve üzeri nüfustur. Bu verilere göre, 65 yaş ve üzeri nüfusun ne kadarı 50 yaş ve üzeri nüfustur?",
-          "secenekler": [
-            "60",
-            "70",
-            "75",
-            "80",
-            "90"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu cevabın seçilmesinde, 65 yaş ve üzeri nüfusu %25 olarak hesaplanmış ve 50 yaş ve üzeri nüfusun %75'ini oluşturduğu hesaplanmıştır."
-        },
-        {
           "soru": "Bir tabloda, 10 öğrencinin sınavda aldıkları puanlar 50-100 arasında değişmektedir. Bu verilere göre, öğrencilerin en düşük puanı ne kadardır?",
           "secenekler": [
             "50",
@@ -23239,54 +23131,6 @@
           "aciklama": "Standart sapma, bir veri kümesindeki değerlerin dağılımını ölçer."
         },
         {
-          "soru": "Bir grafikte, sıcaklık 10°C, nem %60, basınç 1013 mbar olan bir noktada 20°C, %40, 1015 mbar olan bir noktaya 10 mm yağış düşer.",
-          "secenekler": [
-            "Yağışın sebebi, sıcaklık ve nem arasındaki farktır.",
-            "Yağışın sebebi, basınç arasındaki farktır.",
-            "Yağışın sebebi, sıcaklık ve basınç arasındaki farktır.",
-            "Yağışın sebebi, nem ve basınç arasındaki farktır.",
-            "Yağışın sebebi, sıcaklık ve nem ile basınç arasındaki farktır."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru, basınç arasındaki fark, yağışın sebebidir. Yüksek basınca sahip olan yerden low'a yağış düşer."
-        },
-        {
-          "soru": "Bir grafikte, yükselme hızı 10 m/s, düşme hızı 15 m/s olan bir cismin, bir nokta hareket halindedir. Cismin hızı ne kadardır?",
-          "secenekler": [
-            "5 m/s",
-            "15 m/s",
-            "10 m/s",
-            "25 m/s",
-            "20 m/s"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru, cismin yükselme ve düşme hızları arasındaki fark, cismin hızıdır."
-        },
-        {
-          "soru": "Bir grafikte, sıcaklık 20°C, nem %50, basınç 1013 mbar olan bir nokta, sıcaklık 15°C, nem %60, basınç 1015 mbar olan bir noktaya 10 mm yağış düşer. Yağışın sebebi ne kadardır?",
-          "secenekler": [
-            "5 mm",
-            "10 mm",
-            "15 mm",
-            "20 mm",
-            "25 mm"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru, bu değer yağışın sebebidir."
-        },
-        {
-          "soru": "Bir grafikte, bir noktanın sıcaklık 20°C, nem %60, basınç 1013 mbar olan bir noktadan 10 mm yağış düşer. Yağışın sebebi nedir?",
-          "secenekler": [
-            "Sıcaklık ve nem arasındaki fark",
-            "Basınç arasındaki fark",
-            "Sıcaklık ve basınç arasındaki fark",
-            "Nem ve basınç arasındaki fark",
-            "Sıcaklık ve nem ile basınç arasındaki fark"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru, basınç arasındaki fark, yağışın sebebidir."
-        },
-        {
           "soru": "Bir veri setinin ortalaması 80, medyanı 75 ve modu 85'tir. Bu veri setinin veri dağılımı hangisidir?",
           "secenekler": [
             "İkinci kuartil",
@@ -23297,18 +23141,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Mod, veri setinin en sık görülen veri değeridir."
-        },
-        {
-          "soru": "Bir grafikte, x ekseni üzerinde 10, y ekseni üzerinde de 5 nokta vardır. Bu grafikte kaç segment vardır?",
-          "secenekler": [
-            "5",
-            "10",
-            "20",
-            "15",
-            "12"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Grafikte 5 nokta, 4 segment oluşturur."
         },
         {
           "soru": "Bir veri setinde, 25 veri vardır. Bu veri setinin ortalaması 80, medyanı 75'tir. Bu veri setinin ilk kuartil ve üçüncü kuartil değerleri hangisidir?",
@@ -42240,30 +42072,6 @@
           "aciklama": "Bu seçenek doğru. f(x) = 2x + 1 fonksiyonunun grafiği x eksenine göre yansıtıldığında ortaya çıkan fonksiyon f(x) = -2x + 1 olur."
         },
         {
-          "soru": "Hangi fonksiyonun grafik alanı, parabol bir grafik alanıdır?",
-          "secenekler": [
-            "f(x) = x^2 + 2",
-            "f(x) = -x^2 - 2",
-            "f(x) = x^2 + 1",
-            "f(x) = -x^2 + 1",
-            "f(x) = x^2 - 1"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçenek doğru. f(x) = x^2 + 2 fonksiyonunun grafik alanı parabol bir grafik alanıdır."
-        },
-        {
-          "soru": "Hangi fonksiyonun grafik alanı, parabol bir grafik alanıdır ve x eksenine göre keskindir?",
-          "secenekler": [
-            "f(x) = x^2 + 1",
-            "f(x) = -x^2 + 1",
-            "f(x) = x^2 - 1",
-            "f(x) = -x^2 - 1",
-            "f(x) = x^2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek doğru. f(x) = x^2 - 1 fonksiyonunun grafik alanı parabol bir grafik alanıdır ve x eksenine göre keskindir."
-        },
-        {
           "soru": "Fonksiyonlar için bir örnek verin.",
           "secenekler": [
             "f(x) = 2x + 1",
@@ -42360,54 +42168,6 @@
           "aciklama": "Bu seçenek doğru, çünkü diferansiyel, fonksiyonun domainini ve range'ini artırırmış."
         },
         {
-          "soru": "Bir fonksiyonun grafiksel temsilinde x = -2 ve x = 3 olan iki geçiş noktası vardır. Fonksiyonun x > 2 için 2x + 1 ve x < 2 için 3 - x gibi bir ifadeye sahip olduğunu varsayalım. Fonksiyonun x = 2 noktasında ne olduğunu söyleyin.",
-          "secenekler": [
-            "x = 1",
-            "x = 2",
-            "x = 3",
-            "x = 4",
-            "x = 5"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Fonksiyonun x > 2 için 2x + 1 ve x < 2 için 3 - x gibi bir ifadeye sahip olduğunu varsaydığını hatırlamak önemlidir. Bu nedenle, x = 2 noktasında fonksiyonun 3 - x ifadesini kullanması gerekir. 3 - x ifadesinin x = 2 değerinde ne olduğunu hesaplamak için 3 - 2 = 1 olarak hesaplayabiliriz."
-        },
-        {
-          "soru": "Bir fonksiyonun grafiksel temsilinde, x = 2 olan nokta hangi noktanın grafiksel temsilinde de yer alacaktır?",
-          "secenekler": [
-            "x = 0",
-            "x = -2",
-            "x = 4",
-            "x = 1",
-            "x = 3"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek doğru çünkü bir fonksiyonun grafiksel temsilinde x = 2 olan nokta, x = 4 olan noktanın grafiksel temsilinde de yer alacaktır. İki nokta arasındaki x değerleri arasında bir ilişki olduğu için x = 0, x = -2 veya x = 1 veya x = 3 olan noktalarda bu ilişki oluşmayacaktır."
-        },
-        {
-          "soru": "Bir fonksiyon f(x) = 2x + 1 ise, x = 2 olan noktanın grafiksel temsilinde hangi noktanın grafiksel temsilinde de yer alacaktır?",
-          "secenekler": [
-            "y = 4",
-            "y = 5",
-            "y = 6",
-            "y = 3",
-            "y = 7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçenek doğru çünkü bir fonksiyon f(x) = 2x + 1 ise, x = 2 olan noktanın grafiksel temsilinde y = 5 olan noktanın grafiksel temsilinde de yer alacaktır. İki nokta arasındaki y değerleri arasında bir ilişki olduğu için y = 4 veya y = 6 veya y = 3 veya y = 7 olan noktalarda bu ilişki oluşmayacaktır."
-        },
-        {
-          "soru": "Bir fonksiyonun grafiksel temsilinde, x = 2 olan noktanın grafik üzerinde ne durumla temsil edileceğine karar vermeye yararız. Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi nedir?",
-          "secenekler": [
-            "Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi, x ekseni ile y ekseni aynı yönde gitmektedir.",
-            "Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi, x ekseni ile y ekseni zıt yönde gitmektedir.",
-            "Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi, x ekseni ile y ekseni arasında herhangi bir ilişki yoktur.",
-            "Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi, x ekseni ile y ekseni aynı yönde gitmemektedir.",
-            "Fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisi, x ekseni ile y ekseni arasında ters orantılı bir ilişki vardır."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Kullanıcılar doğru cevabı seçmiş olabilecekleri için, fonksiyonun grafiksel temsilinin x ekseni ile olan ilişkisinin doğru bir şekilde anlaşılmasını sağlamak için, x ekseni ile y ekseni aynı yönde gitmektedir."
-        },
-        {
           "soru": "Bir fonksiyonun tanımlandığı domaini bulan f(x) = |x-2| olan fonksiyonun domainini bulmak için kaç tane kritik nokta vardır?",
           "secenekler": [
             "2 tane",
@@ -42418,30 +42178,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu cevabı seçenler, fonksiyonun tanımlandığı domaininin sadece 2'den farklı tüm gerçek sayıları kapsadığını ve 2 kritik nokta olmadığı için 1 tane kritik nokta olduğunu düşünmüş olabilir."
-        },
-        {
-          "soru": "Bir fonksiyonun grafiklerini çizmek için f(x) = 2x^2 - 5x + 1 ve g(x) = 2x^2 + 3x - 2 olan iki fonksiyonun doğrusal bileşeni nedir?",
-          "secenekler": [
-            "y = -5x + 1",
-            "y = 3x - 2",
-            "y = 2x + 3",
-            "y = 2x - 1",
-            "y = -3x + 2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu cevabı seçenler, fonksiyonların doğrusal bileşenini bulmak için f(x) - g(x) şeklinde bir ifade kullanmış olabilir. Sonuç olarak doğrusal bileşen 2x + 3 olarak bulunur."
-        },
-        {
-          "soru": "Bir fonksiyonun grafiklerini çizmek için f(x) = x^2 + 3x - 2 ve g(x) = x^2 - 3x + 5 olan iki fonksiyonun birleşim noktası nedir?",
-          "secenekler": [
-            "x = 1",
-            "x = -1",
-            "x = 2",
-            "x = -2",
-            "x = 3"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu cevabı seçenler, fonksiyonların birleşim noktasını bulmak için f(x) = g(x) şeklinde bir ifade kullanmış olabilir. Sonuç olarak birleşim noktası x = 2 olarak bulunur."
         },
         {
           "soru": "f(x) = 2x + 1 fonksiyonu için, f(-2) değerini bulunuz.",
@@ -42502,18 +42238,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "f(x) = x^2 - 4x + 3 yukarı açılan bir paraboldür (a = 1 > 0), bu nedenle bir maksimum değeri yoktur; fonksiyon sınırsız artar. Ancak bir minimum değeri vardır: tepe noktası x = -b/2a = 2 iken f(2) = 4 - 8 + 3 = -1 olarak bulunur. Seçenekler arasında bu minimum değeri (-1) içeren tek seçenek A'dır."
-        },
-        {
-          "soru": "f(x) = x^2 + 2x + 1 fonksiyonunun buiten değerinin grafik üzerinde gösterimi nedir?",
-          "secenekler": [
-            "Parabol",
-            "Doğru",
-            "Çevre",
-            "Düzlem",
-            "Küre"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x) = x^2 + 2x + 1 ikinci dereceden (kareli terim içeren) bir fonksiyondur; bu tür fonksiyonlarin grafiği parabol şeklindedir."
         },
         {
           "soru": "f(x) = 2x + 1 fonksiyonu için, f(3) kaçtır?",
@@ -42612,18 +42336,6 @@
           "aciklama": "Doğru cevap"
         },
         {
-          "soru": "Bir fonksiyonun grafikte x ekseni üzerinde olan noktası (0, 3) ise, fonksiyonun x = 0 olduğunda değerini alması gereken değer nedir?",
-          "secenekler": [
-            "f(x) = 3",
-            "f(x) = 2x + 3",
-            "f(x) = 3x + 1",
-            "f(x) = 2x - 1",
-            "f(x) = 3x - 2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Eğer yanlış şıksa, fonksiyonun grafikte x ekseni üzerinde olan noktası (0, 3) ise, fonksiyonun x = 0 olduğunda değerini alması gereken değer 3 olacaktır."
-        },
-        {
           "soru": "Bir fonksiyonun göreceli azalmış bir fonksiyonu nedir?",
           "secenekler": [
             "Fonksiyonun grafikte sağa doğru kaymasıdır.",
@@ -42670,18 +42382,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Fonksiyonun grafiksel temsili x-y düzlemi üzerinde yapılır. Ancak x ekseni üzerinde bir nokta eklenir."
-        },
-        {
-          "soru": "Bir fonksiyonun grafiksel temsilinden, fonksiyonun bir noktası (2,3) için y değeri 5 olmadığının anlaşılması için bir gösterge olarak hangi seçenekten yararlanılır?",
-          "secenekler": [
-            "Fonksiyonun y ekseni ile x ekseni arasında bir kesinti vardır.",
-            "Fonksiyonun grafiksel temsilinde bir nokta (2,5) vardır.",
-            "Fonksiyonun her x değerine karşılık gelen y değeri 5 değildir.",
-            "Fonksiyonun y ekseni ile x ekseni arasında bir birleşim vardır.",
-            "Fonksiyonun grafiksel temsilinde bir nokta (2,3) yoktur."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneğin neden doğru seçileceği: Eğer fonksiyonun grafiksel temsilinde her x değerine karşılık gelen y değeri 5 değilse, bu sorunun doğru bir gösterge olarak seçilmesi demektir."
         },
         {
           "soru": "Bir fonksiyonun y değerinin x değerinden bağımsız olduğu anlaşılması için hangi gösterge kullanılır?",

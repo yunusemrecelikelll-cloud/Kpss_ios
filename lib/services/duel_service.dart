@@ -492,33 +492,33 @@ class DuelService {
   /// [totalQuestions] host'un seçtiği süre/soru sayısı yapılandırmasıdır ve
   /// olduğu gibi oda dokümanına yazılır — [DuelPlayScreen] (online) bu
   /// alanları odadan okuyup zamanlayıcıyı/soru döngüsünü buna göre çalıştırır.
-  Future<String> createRoom({
-    required String mode,
-    required String hostName,
+  /// Verilen ders/konu filtresine göre TAZE bir soru havuzu toplar ve Firestore
+  /// map listesine çevirir. Hem [createRoom] hem "Tekrar Oyna" için taze soru
+  /// üreten [resetRoomFresh] bunu kullanır (böylece rematch'te AYNI değil YENİ
+  /// sorular gelir — kullanıcı isteği).
+  ///
+  /// [excludeSubjectFilter]: "Karışık" seçiminde hariç tutulacak ders id'leri.
+  /// Döndürür: (questionMaps, topicAd).
+  Future<(List<Map<String, dynamic>>, String?)> _collectQuestionMaps({
     required List<String> subjectFilter,
-    required int maxPlayers,
-    required bool isPublic,
+    required List<String> excludeSubjectFilter,
+    required String? topicId,
+    required int total,
     required List<Subject> subjects,
     required RemoteQuestionService remote,
-    String? roomName,
-    String? topicId,
-    int perQuestionSeconds = 30,
-    int? totalQuestions,
   }) async {
-    _requireConfigured();
-    final uid = await ensureSignedIn();
-
-    final total = totalQuestions ?? (mode == modeRoyale ? 15 : 10);
-
     // Ders filtresi uygula.
-    final filtered = subjectFilter.isEmpty
+    List<Subject> filtered = subjectFilter.isEmpty
         ? subjects
         : subjects.where((s) => subjectFilter.contains(s.id)).toList();
+    // Karışık'ta hariç tutulan dersleri çıkar (kullanıcı isteği: istenen
+    // ders(ler)i hariç tutabilme). Yalnızca ders seçili DEĞİLKEN anlamlı.
+    if (subjectFilter.isEmpty && excludeSubjectFilter.isNotEmpty) {
+      filtered = filtered.where((s) => !excludeSubjectFilter.contains(s.id)).toList();
+    }
     final poolSubjects = filtered.isEmpty ? subjects : filtered;
 
-    // Konu filtresi uygula: topicId verilmişse SADECE o konudan soru topla
-    // (ders(ler) içinde o id'ye sahip konuyu bul); bulunamazsa (tutarsız/eski
-    // veri) sessizce tüm derse geri dön.
+    // Konu filtresi uygula: topicId verilmişse SADECE o konudan soru topla.
     List<Subject> effectiveSubjects = poolSubjects;
     String? topicAd;
     if (topicId != null) {
@@ -538,14 +538,40 @@ class DuelService {
       remote,
       rnd: _rnd,
     );
-    if (pool.length < total) {
-      // Yeterli soru yoksa yine de eldeki kadarla devam et (en az 5 iste).
-      if (pool.length < 5) {
-        throw const RoomUnavailableException('Soru havuzu yüklenemedi, tekrar dene.');
-      }
+    if (pool.length < 5) {
+      throw const RoomUnavailableException('Soru havuzu yüklenemedi, tekrar dene.');
     }
     final chosen = pool.take(total).toList();
-    final questionMaps = chosen.map(_questionToMap).toList();
+    return (chosen.map(_questionToMap).toList(), topicAd);
+  }
+
+  Future<String> createRoom({
+    required String mode,
+    required String hostName,
+    required List<String> subjectFilter,
+    required int maxPlayers,
+    required bool isPublic,
+    required List<Subject> subjects,
+    required RemoteQuestionService remote,
+    String? roomName,
+    String? topicId,
+    List<String> excludeSubjectFilter = const [],
+    int perQuestionSeconds = 30,
+    int? totalQuestions,
+  }) async {
+    _requireConfigured();
+    final uid = await ensureSignedIn();
+
+    final total = totalQuestions ?? (mode == modeRoyale ? 15 : 10);
+
+    final (questionMaps, topicAd) = await _collectQuestionMaps(
+      subjectFilter: subjectFilter,
+      excludeSubjectFilter: excludeSubjectFilter,
+      topicId: topicId,
+      total: total,
+      subjects: subjects,
+      remote: remote,
+    );
 
     final code = await _generateUniqueCode();
     final now = DateTime.now();
@@ -558,6 +584,9 @@ class DuelService {
       'hostName': hostName,
       'mode': mode,
       'subjectFilter': subjectFilter,
+      // "Karışık"ta hariç tutulan dersler — rematch'te taze soru toplarken de
+      // aynı hariç tutma uygulanabilsin diye saklanır.
+      'excludeSubjectFilter': excludeSubjectFilter,
       'topicId': topicId,
       'topicAd': topicAd,
       'maxPlayers': maxPlayers,
@@ -567,7 +596,7 @@ class DuelService {
       'autoStartAt': Timestamp.fromDate(now.add(autoStartAfter)),
       'startedAt': null,
       'perQuestionSeconds': perQuestionSeconds,
-      'totalQuestions': chosen.length,
+      'totalQuestions': questionMaps.length,
       'lastElimRound': 0,
       // Erken geçiş durumu (bkz. skipToNextIfAllAnswered). Baştan yazılıyor ki
       // ilk kaydırma bir "alan oluşturma" değil, düz bir güncelleme olsun.
@@ -774,9 +803,111 @@ class DuelService {
         updates['players.$uid.answers'] = <String, dynamic>{};
         updates['players.$uid.eliminated'] = false;
         updates['players.$uid.eliminatedAtRound'] = FieldValue.delete();
+        // Rematch'te herkes tekrar "hazır değil" başlasın.
+        updates['players.$uid.ready'] = false;
       }
       tx.update(ref, updates);
     });
+  }
+
+  /// "Tekrar Oyna" — AMA YENİ SORULARLA (kullanıcı isteği: odaya dönünce aynı
+  /// sorular gelmesin). Odanın ders/konu/hariç filtresini ve soru sayısını
+  /// kullanarak TAZE bir soru havuzu toplar, sonra odayı 'waiting'e alıp
+  /// skor/cevap/eleme/hazır alanlarını sıfırlar. Ağ hatasında çağıran, eski
+  /// [resetRoom]'a (aynı soruları karıştıran) düşebilir.
+  Future<void> resetRoomFresh({
+    required String roomId,
+    required List<Subject> subjects,
+    required RemoteQuestionService remote,
+  }) async {
+    _requireConfigured();
+    final ref = _rooms.doc(roomId);
+    final snap = await ref.get();
+    if (!snap.exists) return;
+    final data = snap.data()!;
+    if ((data['status'] as String?) != 'finished') return;
+
+    final subjectFilter =
+        List<String>.from(data['subjectFilter'] as List? ?? const []);
+    final excludeSubjectFilter =
+        List<String>.from(data['excludeSubjectFilter'] as List? ?? const []);
+    final topicId = data['topicId'] as String?;
+    final total = (data['totalQuestions'] as num?)?.toInt() ??
+        (data['questions'] as List? ?? const []).length;
+
+    final (questionMaps, _) = await _collectQuestionMaps(
+      subjectFilter: subjectFilter,
+      excludeSubjectFilter: excludeSubjectFilter,
+      topicId: topicId,
+      total: total <= 0 ? 10 : total,
+      subjects: subjects,
+      remote: remote,
+    );
+
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final d = doc.data()!;
+      if ((d['status'] as String?) != 'finished') return;
+      final players = Map<String, dynamic>.from(d['players'] as Map? ?? const {});
+      final updates = <String, dynamic>{
+        'status': 'waiting',
+        'startedAt': null,
+        'autoStartAt': null,
+        'timeShiftMs': 0,
+        'lastSkippedIndex': -1,
+        'lastElimRound': 0,
+        'questions': questionMaps,
+        'totalQuestions': questionMaps.length,
+      };
+      for (final uid in players.keys) {
+        updates['players.$uid.score'] = 0;
+        updates['players.$uid.answers'] = <String, dynamic>{};
+        updates['players.$uid.eliminated'] = false;
+        updates['players.$uid.eliminatedAtRound'] = FieldValue.delete();
+        updates['players.$uid.ready'] = false;
+      }
+      tx.update(ref, updates);
+    });
+  }
+
+  /// Kurucu bir oyuncuyu odadan ATAR (kullanıcı isteği). Yalnızca çağıran host
+  /// ise ve hedef host'un kendisi değilse çalışır. Atılan oyuncunun cihazı
+  /// `watchRoom` üzerinden kendini oyuncular arasında bulamayınca odadan çıkar.
+  Future<void> kickPlayer(String roomId, String targetUid) async {
+    _requireConfigured();
+    final uid = currentUid;
+    if (uid == null || uid == targetUid) return;
+    final ref = _rooms.doc(roomId);
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final data = doc.data()!;
+      if ((data['hostUid'] as String?) != uid) return; // sadece kurucu atabilir
+      tx.update(ref, {
+        'players.$targetUid': FieldValue.delete(),
+        'playerUids': FieldValue.arrayRemove([targetUid]),
+        'kicked': FieldValue.arrayUnion([targetUid]),
+      });
+    });
+  }
+
+  /// Odada hiç oyuncu kalmadıysa odayı tamamen siler (kullanıcı isteği: boş oda
+  /// otomatik kapansın). Bekleme odası ekranı bunu tetikler.
+  Future<void> closeIfEmpty(String roomId) async {
+    if (!isConfigured) return;
+    final ref = _rooms.doc(roomId);
+    try {
+      await _db.runTransaction((tx) async {
+        final doc = await tx.get(ref);
+        if (!doc.exists) return;
+        final players = Map<String, dynamic>.from(
+            doc.data()!['players'] as Map? ?? const {});
+        if (players.isEmpty) tx.delete(ref);
+      });
+    } catch (e) {
+      debugPrint('DuelService.closeIfEmpty başarısız: $e');
+    }
   }
 
   // ── Cevap gönderme ──

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../services/data_service.dart';
 import '../../services/duel_service.dart';
+import '../../services/remote_question_service.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
@@ -65,14 +67,30 @@ class _DuelResultScreenState extends State<DuelResultScreen> {
     if (_resetting) return;
     setState(() => _resetting = true);
     context.read<SoundService>().click();
+    final remote = context.read<RemoteQuestionService>();
     try {
-      await _duel.resetRoom(widget.roomId!);
+      // Taze soru havuzuyla yeniden başlat (kullanıcı isteği: odaya dönünce
+      // AYNI sorular gelmesin). Ders verisini yükleyip odanın filtresine göre
+      // yeni sorular toplanır. Herhangi bir hata olursa eski (aynı soruları
+      // karıştıran) resetRoom'a düşülür ki oyun yine de tekrar başlayabilsin.
+      final subjects = (await context.read<DataService>().loadAll())
+          .where((x) => x.konular.isNotEmpty)
+          .toList();
+      await _duel.resetRoomFresh(
+        roomId: widget.roomId!,
+        subjects: subjects,
+        remote: remote,
+      );
       // Başarılıysa stream 'waiting' yayınlar ve _maybeReturnToWaiting devreye
       // girer; ayrıca burada beklemeye gerek yok.
     } catch (e) {
-      if (mounted) {
-        setState(() => _resetting = false);
-        ustBildirim('Tekrar başlatılamadı, yeniden dene.');
+      try {
+        await _duel.resetRoom(widget.roomId!);
+      } catch (_) {
+        if (mounted) {
+          setState(() => _resetting = false);
+          ustBildirim('Tekrar başlatılamadı, yeniden dene.');
+        }
       }
     }
   }

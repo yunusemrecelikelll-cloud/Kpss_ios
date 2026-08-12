@@ -674,6 +674,9 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                   offset: _karalamaAcik ? Offset.zero : const Offset(0, 1.15),
                   child: KaralamaKatmani(
                     onKapat: () => setState(() => _karalamaAcik = false),
+                    // Notlarım'da not üzerinde kaynağı göstermek için ders/konu
+                    // etiketi (konu varsa konu, yoksa ders adı).
+                    kaynak: widget.topicBaslik ?? widget.subjectAd,
                   ),
                 ),
               ),

@@ -17,6 +17,7 @@ import '../quick_modes/quick_modes_shared.dart' show kQuickModeOptionLetters;
 import '../quiz_screen.dart' show sikMetni;
 import '../tools_hub_screen.dart' show HowToPlayButton;
 import 'duel_lobby_screen.dart' show kDuelloGameId;
+import 'duel_notepad.dart';
 import 'duel_result_screen.dart';
 
 /// Senkronize oyun ekranı. TÜM oyuncular `startedAt` + `soruIndex *
@@ -80,6 +81,12 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   // saniyede dört kez (ticker hızında) istek gitmesini engeller; asıl
   // tekrar koruması yine sunucudaki `lastSkippedIndex` koşuludur.
   int _skipRequestedForIndex = -1;
+
+  // Son 5 saniyede tik-tak sesi için: en son tik çalınan (soru, saniye) çifti.
+  // Aynı saniye içinde ticker birden çok kez çalıştığından tekrar çalmayı
+  // önler; soru değişince de sıfırlanır.
+  int _tickLastIndex = -1;
+  int _tickLastSec = -1;
 
   bool _soloLoading = true;
 
@@ -264,16 +271,35 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
     return _players[uid]?.eliminated == true;
   }
 
+  /// Son 5 saniyede her tam saniyede bir tik-tak sesi çalar (kullanıcı isteği).
+  /// Aynı saniyede tekrar çalmayı ve soru değişince kalıntı çalmayı engeller.
+  void _maybePlayTick(int idx) {
+    if (idx < 0 || idx >= _total) return;
+    final remainingSec = (_remainingMs(idx).clamp(0, _perQ * 1000) / 1000).ceil();
+    if (idx != _tickLastIndex) {
+      // Yeni soruya geçildi: faz ve sayaç sıfırlanır.
+      _tickLastIndex = idx;
+      _tickLastSec = -1;
+      context.read<SoundService>().resetTickPhase();
+    }
+    if (remainingSec >= 1 && remainingSec <= 5 && remainingSec != _tickLastSec) {
+      _tickLastSec = remainingSec;
+      context.read<SoundService>().tick();
+    }
+  }
+
   void _onTick() {
     if (!mounted) return;
     _now = DateTime.now();
 
     if (widget.isSolo) {
+      _maybePlayTick(_soloIndex);
       _soloTick();
       return;
     }
 
     final idx = _currentIndex;
+    _maybePlayTick(idx);
 
     // Oyun bitti mi?
     if (_startedAt != null && idx >= _total && _total > 0) {
@@ -534,6 +560,7 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
               : (_isRoyale ? '👑 KPSS Royale' : '⚔️ KPSS Düello')),
           leading: IconButton(icon: const Icon(Icons.close), onPressed: _confirmQuit),
           actions: const [
+            DuelNotepadButton(),
             HowToPlayButton(
               title: '⚔️ Nasıl Oynanır?',
               body: "Düello'da bir rakiple, Royale'de birden çok oyuncuyla aynı "
@@ -543,11 +570,13 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
             ),
           ],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(4),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 4,
-              color: progress < 0.3 ? c.danger : null,
+            preferredSize: const Size.fromHeight(8),
+            child: _CountdownBand(
+              progress: progress,
+              urgent: remainingSec <= 5,
+              base: widget.isSolo ? c.mint : (_isRoyale ? c.gold : c.violetL),
+              danger: c.danger,
+              track: c.border,
             ),
           ),
         ),
@@ -1310,6 +1339,58 @@ class _SpectatorBanner extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: color)),
+    );
+  }
+}
+
+/// Soru başına geri sayım bandı — AppBar'ın altında, temaya uygun gradyanlı
+/// ilerleme çubuğu. Süre azaldıkça çubuk kısalır; son 5 saniyede kırmızı
+/// gradyana döner ve hafifçe parlar (kullanıcı isteği: "temaya uygun yeniden
+/// tasarla"). Genişlik animasyonlu (250 ms) olduğundan ticker adımları arasında
+/// akıcı ilerler.
+class _CountdownBand extends StatelessWidget {
+  final double progress; // 1.0 (dolu/başlangıç) → 0.0 (süre bitti)
+  final bool urgent; // son 5 saniye
+  final Color base;
+  final Color danger;
+  final Color track;
+  const _CountdownBand({
+    required this.progress,
+    required this.urgent,
+    required this.base,
+    required this.danger,
+    required this.track,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final Color c1 = urgent ? danger : base;
+    final Color c2 = urgent ? danger.withValues(alpha: 0.65) : base.withValues(alpha: 0.55);
+    return Container(
+      height: 8,
+      color: track.withValues(alpha: 0.35),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: LayoutBuilder(
+          builder: (context, box) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.linear,
+              width: box.maxWidth * progress.clamp(0.0, 1.0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [c1, c2]),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(6),
+                  bottomRight: Radius.circular(6),
+                ),
+                boxShadow: urgent
+                    ? [BoxShadow(color: danger.withValues(alpha: 0.6), blurRadius: 8)]
+                    : null,
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

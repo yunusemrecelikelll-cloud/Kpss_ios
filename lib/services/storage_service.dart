@@ -14,10 +14,24 @@ class StorageService extends ChangeNotifier {
 
   static const _usersKey = 'kpss_v2_users';
   static const _activeKey = 'kpss_v2_active_user';
+  // Kurulum işareti: uygulama silinip yeniden kurulunca SharedPreferences
+  // (iOS'ta NSUserDefaults, Android'de prefs) TEMİZLENİR ama iOS'ta Firebase
+  // oturumu KEYCHAIN'de kalır. Bu işaretin yokluğu "taze kurulum" demektir;
+  // main.dart bunu görüp keychain'de kalan oturumu kapatır (kullanıcı isteği:
+  // yeniden yüklemede hesaptan çıkılmış olsun, tekrar girişte veriler dönsün).
+  static const _installKey = 'kpss_v2_install_marker';
 
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
     _activeUser = _prefs?.getString(_activeKey) ?? '';
+  }
+
+  /// SharedPreferences'te kurulum işareti yoksa taze (yeni) kurulumdur.
+  bool isFreshInstall() => _prefs?.getString(_installKey) == null;
+
+  /// Kurulum işaretini koyar (bir daha taze sayılmaz).
+  Future<void> markInstalled() async {
+    await _prefs?.setString(_installKey, '1');
   }
 
   String _safe(String name) {
@@ -38,6 +52,15 @@ class StorageService extends ChangeNotifier {
     final u = forUser ?? _activeUser;
     return u.isEmpty ? 'kpss_v2_legacy_' : 'kpss_v2_${_safe(u)}_';
   }
+
+  /// KPSS Düello not defteri (kullanıcı isteği): oyun sırasında alınan serbest
+  /// notlar. Kullanıcıya (aktif profile) özel saklanır ve oturumlar arası kalır.
+  String getDuelNote() {
+    final v = _get('duelNote', '');
+    return v is String ? v : '';
+  }
+
+  Future<void> setDuelNote(String text) => _set('duelNote', text);
 
   dynamic _get(String key, [dynamic fallback]) {
     final raw = _prefs?.getString(_prefix() + key);
