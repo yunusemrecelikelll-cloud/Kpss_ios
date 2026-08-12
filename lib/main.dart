@@ -30,6 +30,12 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 /// yapar. Diğer tüm ekranlarda (testler hariç) pil görünür.
 final ValueNotifier<bool> anasayfaKokunde = ValueNotifier<bool>(true);
 
+/// Sağ üstteki global hak pilini GEÇİCİ olarak gizler — sağ üstte kendi AppBar
+/// aksiyonu (ör. "Nasıl Oynanır?" bilgi butonu) olan ve pili ile ÇAKIŞAN
+/// ekranlar (ör. KPSS Düello lobisi) açılırken true, kapanırken false yapar.
+/// (KPSS Düello'da haklar/bilgi butonu çakışması düzeltmesi — kullanıcı isteği.)
+final ValueNotifier<bool> hakPiliGizle = ValueNotifier<bool>(false);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFirebaseIfConfigured();
@@ -146,8 +152,21 @@ class KpssApp extends StatelessWidget {
       // arkadaşlık isteği geldiğinde üstten kayan afiş gösterir (test
       // sırasında erteler, uygulama arka plandaysa yerel bildirime düşer).
       // builder kullanıldığı için hangi ekran açık olursa olsun çalışır.
-      builder: (context, child) =>
-          InAppNoticeOverlay(child: child ?? const SizedBox.shrink()),
+      //
+      // GLOBAL KLAVYE KAPATMA (kullanıcı isteği): metin alanı DIŞINDA herhangi
+      // bir yere dokununca klavye kapanır (yazı alanına dokununca yine açılır —
+      // metin alanları taparken odağı kendileri aldığı için etkilenmez). Sohbet
+      // dahil tüm ekranlarda geçerli.
+      builder: (context, child) => GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          final scope = FocusScope.of(context);
+          if (!scope.hasPrimaryFocus && scope.focusedChild != null) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        },
+        child: InAppNoticeOverlay(child: child ?? const SizedBox.shrink()),
+      ),
       home: const SplashScreen(),
     );
   }

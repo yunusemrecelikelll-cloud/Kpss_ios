@@ -113,6 +113,8 @@ class DuelRoom {
   final DateTime? createdAt;
   final DateTime? autoStartAt;
   final DateTime? startedAt;
+  /// Odanın otomatik kapanma anı (açılıştan 2 saat sonra). null ise eski oda.
+  final DateTime? expiresAt;
   final int perQuestionSeconds;
   final int totalQuestions;
   final List<Question> questions;
@@ -155,6 +157,7 @@ class DuelRoom {
     required this.createdAt,
     required this.autoStartAt,
     required this.startedAt,
+    this.expiresAt,
     required this.perQuestionSeconds,
     required this.totalQuestions,
     required this.questions,
@@ -166,6 +169,15 @@ class DuelRoom {
 
   bool get isRoyale => mode == 'royale';
   bool get isFull => players.length >= maxPlayers;
+
+  /// Odanın 2 saatlik ömrü doldu mu? expiresAt yoksa createdAt+2s'e bakar.
+  bool get suresiDoldu {
+    final e = expiresAt;
+    if (e != null) return DateTime.now().isAfter(e);
+    final c = createdAt;
+    if (c != null) return DateTime.now().isAfter(c.add(DuelService.odaOmru));
+    return false;
+  }
 
   /// subjectFilter id'lerini okunur ders adlarına çevirir ("Tüm dersler
   /// karışık" boşsa) — [RoomSummary.subjectsLabel] ile aynı mantık.
@@ -223,6 +235,7 @@ class DuelRoom {
       createdAt: toDate(data['createdAt']),
       autoStartAt: toDate(data['autoStartAt']),
       startedAt: toDate(data['startedAt']),
+      expiresAt: toDate(data['expiresAt']),
       perQuestionSeconds: (data['perQuestionSeconds'] as num?)?.toInt() ?? 30,
       totalQuestions: (data['totalQuestions'] as num?)?.toInt() ?? 10,
       questions: questions,
@@ -319,6 +332,12 @@ class DuelService {
 
   /// Oda dolmazsa otomatik başlama süresi (oda kurulduktan sonra).
   static const Duration autoStartAfter = Duration(minutes: 2);
+
+  /// Bir odanın azami ömrü (kullanıcı isteği): açıldıktan 2 saat sonra oda
+  /// OTOMATİK kapanır/silinir — kullanıcı oynayıp uygulamayı kapatınca kalan
+  /// "hayalet" odalar sonsuza dek listede kalmasın diye. Süre dolduğunda oyun
+  /// ekranı kullanıcıyı uyarır ve oda silinir (bkz. DuelPlayScreen).
+  static const Duration odaOmru = Duration(hours: 2);
 
   static const String modeDuello = 'duello';
   static const String modeRoyale = 'royale';
@@ -594,6 +613,8 @@ class DuelService {
       'status': 'waiting',
       'createdAt': FieldValue.serverTimestamp(),
       'autoStartAt': Timestamp.fromDate(now.add(autoStartAfter)),
+      // Oda 2 saat sonra otomatik kapanır (bkz. odaOmru / closeIfExpired).
+      'expiresAt': Timestamp.fromDate(now.add(odaOmru)),
       'startedAt': null,
       'perQuestionSeconds': perQuestionSeconds,
       'totalQuestions': questionMaps.length,
@@ -646,6 +667,12 @@ class DuelService {
       final doc = await tx.get(ref);
       if (!doc.exists) throw const RoomUnavailableException('Oda artık mevcut değil.');
       final data = doc.data()!;
+      // Süresi dolmuş (2 saat) "hayalet" odaya katılmayı reddet ve odayı SİL —
+      // kullanıcı isteği (katılınca hemen atan eski odalar temizlensin).
+      if (_suresiDoldu(data)) {
+        tx.delete(ref);
+        throw const RoomUnavailableException('Bu odanın süresi dolmuş, kapatıldı.');
+      }
       final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
       final alreadyIn = players.containsKey(uid);
       final status = data['status'] as String? ?? 'waiting';
@@ -693,6 +720,24 @@ class DuelService {
         .map((snap) {
       final list = snap.docs
           .where((d) => mode == null || (d.data()['mode'] as String?) == mode)
+          // Süresi dolmuş (2 saat) ya da boş "hayalet" odaları GİZLE ve arka
+          // planda SİL — kullanıcı isteği: bu tür odalar listede kalmasın,
+          // katılınca hemen atmasın (bkz. closeIfExpired/closeIfEmpty).
+          .where((d) {
+            final data = d.data();
+            final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
+            if (_suresiDoldu(data)) {
+              // ignore: unawaited_futures
+              closeIfExpired(d.id);
+              return false;
+            }
+            if (players.isEmpty) {
+              // ignore: unawaited_futures
+              closeIfEmpty(d.id);
+              return false;
+            }
+            return true;
+          })
           .map((d) {
         final data = d.data();
         final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
@@ -908,6 +953,35 @@ class DuelService {
     } catch (e) {
       debugPrint('DuelService.closeIfEmpty başarısız: $e');
     }
+  }
+
+  /// Süresi (2 saat) dolmuş odayı siler (kullanıcı isteği: her oda 2 saat sonra
+  /// otomatik kapansın). Ayrıca `expiresAt` alanı hiç olmayan ESKİ odalar için
+  /// `createdAt + odaOmru` ile geriye dönük hesaplar. İstisna fırlatmaz.
+  Future<void> closeIfExpired(String roomId) async {
+    if (!isConfigured) return;
+    final ref = _rooms.doc(roomId);
+    try {
+      await _db.runTransaction((tx) async {
+        final doc = await tx.get(ref);
+        if (!doc.exists) return;
+        if (_suresiDoldu(doc.data()!)) tx.delete(ref);
+      });
+    } catch (e) {
+      debugPrint('DuelService.closeIfExpired başarısız: $e');
+    }
+  }
+
+  /// Oda verisinden süresinin dolup dolmadığını hesaplar. `expiresAt` yoksa
+  /// `createdAt + odaOmru`ya bakar; ikisi de yoksa (çok eski/bozuk) süresi
+  /// dolmuş sayılır (temizlensin).
+  bool _suresiDoldu(Map<String, dynamic> data) {
+    final now = DateTime.now();
+    final exp = data['expiresAt'];
+    if (exp is Timestamp) return now.isAfter(exp.toDate());
+    final created = data['createdAt'];
+    if (created is Timestamp) return now.isAfter(created.toDate().add(odaOmru));
+    return true;
   }
 
   // ── Cevap gönderme ──

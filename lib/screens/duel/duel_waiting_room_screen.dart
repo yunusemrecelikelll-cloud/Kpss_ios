@@ -51,6 +51,17 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
     // Oda kurucusu YOKSA (ayrılmış) ve yeterli (>=2) oyuncu varsa: sınav
     // OTOMATİK başlar (startRoom transaction'ı çift-başlatmayı engeller).
     final room = _room;
+    // Oda 2 saatlik ömrünü doldurduysa (hayalet oda) uyar, sil ve çık.
+    if (room != null && room.suresiDoldu && !_closed) {
+      _closed = true;
+      _duel.closeIfExpired(widget.roomId);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        ustBildirim('Odanın süresi doldu, kapatıldı.', tur: UstBildirimTuru.hata);
+        Navigator.of(context).maybePop();
+      });
+      return;
+    }
     if (room != null && room.status == 'waiting') {
       // Boş oda otomatik kapansın (kullanıcı isteği): hiç oyuncu kalmadıysa
       // odayı sil. Transaction içinde tekrar boşluk kontrolü yapılır.

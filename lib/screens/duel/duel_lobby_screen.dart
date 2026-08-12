@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../main.dart' show hakPiliGizle;
 import '../../models/subject.dart';
 import '../../services/data_service.dart';
 import '../../services/duel_service.dart';
@@ -46,6 +47,10 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
   @override
   void initState() {
     super.initState();
+    // Sağ üstteki global hak pilini bu ekranda GİZLE — AppBar'daki "Nasıl
+    // Oynanır?" bilgi butonuyla çakışıyordu (kullanıcı isteği). Hak bilgisi
+    // bu ekranda üst kartta zaten gösteriliyor.
+    hakPiliGizle.value = true;
     // Kayıtlı kullanıcı adı varsa onu, yoksa rastgele bir oyuncu adı öner.
     final storage = context.read<StorageService>();
     final existing = storage.getUserName();
@@ -63,6 +68,8 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
 
   @override
   void dispose() {
+    // Ekrandan çıkınca global hak pili yeniden görünsün.
+    hakPiliGizle.value = false;
     _nameCtrl.dispose();
     super.dispose();
   }
@@ -316,6 +323,41 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                           ],
                         ),
                       ),
+                      // Hak bakiyesi (bilet) — global pili bu ekranda gizli
+                      // olduğu için burada gösterilir; dokununca Hak Satın Al.
+                      if (!premium) ...[
+                        const SizedBox(width: 8),
+                        InkWell(
+                          borderRadius: BorderRadius.circular(999),
+                          onTap: () {
+                            context.read<SoundService>().click();
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => const HakSatinAlScreen()));
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: c.gold.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(999),
+                              border: Border.all(color: c.gold.withValues(alpha: 0.4)),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text('🎟️', style: TextStyle(fontSize: 13)),
+                                const SizedBox(width: 4),
+                                Text('${storage.getHaklar()}',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w900,
+                                        color: c.text)),
+                                const SizedBox(width: 2),
+                                Icon(Icons.add_circle_outline, size: 14, color: c.gold),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 ),

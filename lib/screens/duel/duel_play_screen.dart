@@ -19,6 +19,7 @@ import '../tools_hub_screen.dart' show HowToPlayButton;
 import 'duel_lobby_screen.dart' show kDuelloGameId;
 import 'duel_notepad.dart';
 import 'duel_result_screen.dart';
+import '../../utils/ust_bildirim.dart';
 
 /// Senkronize oyun ekranı. TÜM oyuncular `startedAt` + `soruIndex *
 /// perQuestionSeconds` hesabıyla (istemci tarafında Timer ile) AYNI anda AYNI
@@ -81,6 +82,9 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
   // saniyede dört kez (ticker hızında) istek gitmesini engeller; asıl
   // tekrar koruması yine sunucudaki `lastSkippedIndex` koşuludur.
   int _skipRequestedForIndex = -1;
+
+  // Oda 2 saatlik ömrünü doldurduğunda uyarı+silme bir kez tetiklensin.
+  bool _suresiDolduIslendi = false;
 
   // Son 5 saniyede tik-tak sesi için: en son tik çalınan (soru, saniye) çifti.
   // Aynı saniye içinde ticker birden çok kez çalıştığından tekrar çalmayı
@@ -490,6 +494,20 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
         // Erken geçiş kaydırması: soru indeksi ve geri sayım BUNU da hesaba
         // katar, yoksa "herkes cevapladı" atlaması bu cihazda görünmezdi.
         _timeShiftMs = room.timeShiftMs;
+
+        // Oda 2 saatlik ömrünü doldurduysa (kullanıcı isteği): yarış sürüyor
+        // olsa bile uyar, odayı sil ve ekrandan çık. Bir kez tetiklenir.
+        if (room.suresiDoldu && !_suresiDolduIslendi) {
+          _suresiDolduIslendi = true;
+          _duel.closeIfExpired(widget.roomId!);
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (!mounted) return;
+            ustBildirim('Odanın süresi (2 saat) doldu, oda kapatıldı.',
+                tur: UstBildirimTuru.hata);
+            Navigator.of(context).popUntil((r) => r.isFirst);
+          });
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
 
         if (room.status == 'finished') {
           _handleFinish();

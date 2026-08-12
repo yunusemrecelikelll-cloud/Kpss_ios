@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart' show anasayfaKokunde, rootNavigatorKey;
+import '../main.dart' show anasayfaKokunde, hakPiliGizle, rootNavigatorKey;
 import '../screens/hak_satin_al_screen.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
@@ -243,7 +243,11 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
               valueListenable: anasayfaKokunde,
               builder: (context, kokte, _) {
                 if (kokte) return const SizedBox.shrink();
-                return Positioned(
+                return ValueListenableBuilder<bool>(
+                  valueListenable: hakPiliGizle,
+                  builder: (context, gizle, _) {
+                    if (gizle) return const SizedBox.shrink();
+                    return Positioned(
                   top: 0,
                   right: 0,
                   child: SafeArea(
@@ -261,6 +265,8 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
                       ),
                     ),
                   ),
+                    );
+                  },
                 );
               },
             ),
