@@ -455,15 +455,29 @@ class NotificationService {
   /// (bkz. main.dart) 7 gün ileriyi doldurmak fazlasıyla yeterli.
   static const int _kMotivasyonGunSayisi = 7;
 
+  /// GÜNDE kaç motivasyon/mentör/karışık not bildirimi (kullanıcı isteği: günde
+  /// 3, farklı saatlerde). Kimlikler 9200 + (gün*3 + slot) → 9200..9220,
+  /// diğer aralıklarla (9101..9184, 9300..9389, 9401..9490) çakışmaz.
+  static const int _kMotivasyonSlot = 3;
+
+  /// 3 bildirim için gün-içi zaman pencereleri (dakika): sabah, ikindi, akşam.
+  /// Her gün her pencerede pencere içinde RASTGELE bir dakika seçilir; plan ve
+  /// ders bildirimi saatlerine ±20 dk yakınsa kaydırılır (çakışma önleme).
+  static const List<(int, int)> _kMotivPencereler = [
+    (10 * 60, 11 * 60 + 30), // 10:00–11:30
+    (14 * 60 + 30, 16 * 60), // 14:30–16:00
+    (19 * 60 + 30, 21 * 60), // 19:30–21:00
+  ];
+
   static const String _kMotivChannelId = 'kpss_motivasyon';
   static const String _kMotivChannelName = 'Günlük Motivasyon';
   static const String _kMotivChannelDesc =
       'Her akşam kısa bir motivasyon ve çalışma hatırlatması gönderir.';
 
-  /// SADECE motivasyon bildirimlerini (9200..9206) iptal eder.
+  /// SADECE motivasyon bildirimlerini (9200..9220) iptal eder.
   Future<void> cancelMotivation() async {
     if (!destekleniyorMu || !_hazir) return;
-    for (var i = 0; i < _kMotivasyonGunSayisi; i++) {
+    for (var i = 0; i < _kMotivasyonGunSayisi * _kMotivasyonSlot; i++) {
       try {
         await _plugin.cancel(_kMotivasyonBaseId + i);
       } catch (e) {
@@ -472,6 +486,59 @@ class NotificationService {
       }
     }
   }
+
+  /// Belirli bir takvim günündeki (weekday) "meşgul" dakikaları toplar:
+  /// çalışma planı seansları (başlangıç) + ders bildirimleri. Motivasyon
+  /// bildirimleri bunlara ±20 dk yaklaşmayacak biçimde kaydırılır.
+  Set<int> _mesgulDakikalar(StorageService storage, int weekday) {
+    final set = <int>{};
+    try {
+      for (final e in StudyPlanService(storage).getActivePlan()) {
+        if (e.gun == weekday) set.add(e.baslangicDakikaToplam);
+      }
+    } catch (_) {/* yut */}
+    try {
+      for (final d in DersBildirimService().getir(storage)) {
+        if (d.aktif && d.gun == weekday) set.add(d.dakikaToplam);
+      }
+    } catch (_) {/* yut */}
+    return set;
+  }
+
+  /// [pencere] içinde, [mesgul] dakikalara ±20 dk uzak rastgele bir dakika seçer.
+  /// Uygun bulunamazsa pencere ortasını döndürür (yine de bildirim kurulsun).
+  int _cakismasizDakika((int, int) pencere, Set<int> mesgul) {
+    final (bas, son) = pencere;
+    final aralik = (son - bas).clamp(1, 24 * 60);
+    for (var deneme = 0; deneme < 12; deneme++) {
+      final dk = bas + _rastgele.nextInt(aralik);
+      final cakisma = mesgul.any((m) => (m - dk).abs() < 20);
+      if (!cakisma) return dk;
+    }
+    return bas + aralik ~/ 2;
+  }
+
+  /// Karışık ders notu (kullanıcı isteği): tüm derslerin "bunu biliyor musun /
+  /// kısa anlatım / kodlama" içeriklerinden rastgele KISA bir metin.
+  String _karisikDersNotu() {
+    final havuz = <String>[];
+    for (final ders in kBildirimIcerikleri.values) {
+      for (final tur in const ['biliyor', 'anlatim', 'kodlama']) {
+        havuz.addAll(ders[tur] ?? const <String>[]);
+      }
+    }
+    if (havuz.isEmpty) return 'Bugün birkaç soru çözmeye ne dersin?';
+    return havuz[_rastgele.nextInt(havuz.length)];
+  }
+
+  /// Mentörlük/koçluk tonunda kısa cümleler (slot 3 — akşam).
+  static const List<String> _mentorGovdeler = [
+    'Bugün ne öğrendin? 5 dakikanı ayır, aklında kalanları hızlıca tekrar et. 🧠',
+    'Küçük ama düzenli adımlar büyük fark yaratır. Yarın için 1 hedef belirle. 🎯',
+    'Zor gün müydü? Sorun değil — yarın yeni bir sayfa. Sen yapabilirsin. 💪',
+    'Bir konuyu birine anlatabiliyorsan, onu gerçekten öğrenmişsindir. Dene! 🗣️',
+    'Molalar da çalışmanın parçası. İyi dinlen, zihnin yarın daha keskin olsun. 🌙',
+  ];
 
   /// Önümüzdeki [_kMotivasyonGunSayisi] gün için HER GÜN akşam 18:00–20:00
   /// arasında RASTGELE bir saatte bir motivasyon bildirimi kurar (kullanıcı
@@ -507,39 +574,52 @@ class NotificationService {
     final detaylar = _motivasyonDetaylar();
     final simdi = tz.TZDateTime.now(tz.local);
 
-    for (var i = 0; i < _kMotivasyonGunSayisi; i++) {
-      // 18:00 (=1080 dk) ile 20:00 (=1200 dk) arası rastgele dakika.
-      final toplamDk = 18 * 60 + _rastgele.nextInt(120); // 1080..1199
-      final saat = toplamDk ~/ 60;
-      final dakika = toplamDk % 60;
-      var an = tz.TZDateTime(
-        tz.local,
-        simdi.year,
-        simdi.month,
-        simdi.day,
-        saat,
-        dakika,
-      ).add(Duration(days: i));
-      // Bugünün penceresi çoktan geçtiyse (ör. saat 21:00) bugünü atla.
-      if (!an.isAfter(simdi)) continue;
-
-      try {
-        await _plugin.zonedSchedule(
-          _kMotivasyonBaseId + i,
-          _doldur(_secRastgele(_motivBasliklar), ad),
-          _doldur(_secRastgele(_motivGovdeler), ad),
-          an,
-          detaylar,
-          // Motivasyon dakikası dakikasına gelmek zorunda değil; alarm izni
-          // istememek için inexact yeterli (plan mantığıyla aynı yaklaşım).
-          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-          payload: 'motivasyon',
+    for (var g = 0; g < _kMotivasyonGunSayisi; g++) {
+      final gun = simdi.add(Duration(days: g));
+      final mesgul = _mesgulDakikalar(storage, gun.weekday);
+      for (var slot = 0; slot < _kMotivasyonSlot; slot++) {
+        final dk = _cakismasizDakika(_kMotivPencereler[slot], mesgul);
+        var an = tz.TZDateTime(
+          tz.local, gun.year, gun.month, gun.day, dk ~/ 60, dk % 60,
         );
-      } catch (e) {
-        debugPrint('NotificationService: motivasyon (gün +$i) kurulamadı: $e');
+        // Geçmiş bir an (ör. bugünün sabahı geçtiyse) atlanır.
+        if (!an.isAfter(simdi)) continue;
+
+        // Slotlara göre içerik: sabah=motivasyon, ikindi=karışık ders notu,
+        // akşam=mentörlük (kullanıcı isteği: motivasyon + mentörlük + kısa
+        // karışık ders notları).
+        final String baslik;
+        final String govde;
+        switch (slot) {
+          case 0:
+            baslik = _doldur(_secRastgele(_motivBasliklar), ad);
+            govde = _doldur(_secRastgele(_motivGovdeler), ad);
+          case 1:
+            baslik = '💡 Bunu biliyor musun?';
+            govde = _karisikDersNotu();
+          default:
+            baslik = '🎓 Günün Mentörü';
+            govde = _secRastgele(_mentorGovdeler);
+        }
+
+        try {
+          await _plugin.zonedSchedule(
+            _kMotivasyonBaseId + (g * _kMotivasyonSlot + slot),
+            baslik,
+            govde,
+            an,
+            detaylar,
+            // Dakikası dakikasına gelmek zorunda değil; alarm izni istememek
+            // için inexact yeterli (plan mantığıyla aynı yaklaşım).
+            androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+            payload: 'motivasyon',
+          );
+        } catch (e) {
+          debugPrint('NotificationService: motivasyon (gün +$g slot $slot) kurulamadı: $e');
+        }
       }
     }
-    debugPrint('NotificationService: günlük motivasyon bildirimleri kuruldu.');
+    debugPrint('NotificationService: günlük 3 motivasyon/mentör/not bildirimi kuruldu.');
   }
 
   NotificationDetails _motivasyonDetaylar() {
