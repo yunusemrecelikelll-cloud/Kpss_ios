@@ -235,17 +235,50 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                DsIllustration(emoji: '🔐', glowColor: c.violetL),
-                const SizedBox(height: 16),
-                Text('Hesabınla devam et',
-                    style: TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w900, color: c.text)),
-                const SizedBox(height: 8),
-                Text(
-                  'Giriş yap; ilerlemen buluta yedeklensin, sohbete ve '
-                  'düelloya katıl, cihaz değiştirsen de kaldığın yerden devam et.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 13, height: 1.5, color: c.textFaint),
+                // ── Temaya uygun gradyanlı hero ──
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        c.violet.withValues(alpha: 0.28),
+                        c.violetL.withValues(alpha: 0.10),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(22),
+                    border: Border.all(color: c.violetL.withValues(alpha: 0.35)),
+                  ),
+                  child: Column(
+                    children: [
+                      DsIllustration(emoji: '🔐', glowColor: c.violetL),
+                      const SizedBox(height: 14),
+                      Text('Hesabınla devam et',
+                          style: TextStyle(
+                              fontSize: 21, fontWeight: FontWeight.w900, color: c.text)),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Giriş yap; ilerlemen buluta yedeklensin, cihaz değiştirsen '
+                        'de kaldığın yerden devam et.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
+                      ),
+                      const SizedBox(height: 16),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          _AvantajCipi(c: c, emoji: '☁️', metin: 'Bulut yedek'),
+                          _AvantajCipi(c: c, emoji: '💬', metin: 'Sohbet'),
+                          _AvantajCipi(c: c, emoji: '⚔️', metin: 'Düello'),
+                          _AvantajCipi(c: c, emoji: '🎁', metin: 'Davet ödülü'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 28),
                 if (_busy)
@@ -458,6 +491,28 @@ class _DavetKoduBolumuState extends State<_DavetKoduBolumu> {
           ],
         ],
       ],
+    );
+  }
+}
+
+/// Giriş hero'sundaki küçük avantaj çipi (emoji + kısa metin).
+class _AvantajCipi extends StatelessWidget {
+  final dynamic c;
+  final String emoji;
+  final String metin;
+  const _AvantajCipi({required this.c, required this.emoji, required this.metin});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: c.glass2,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: c.border),
+      ),
+      child: Text('$emoji $metin',
+          style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w700, color: c.text)),
     );
   }
 }

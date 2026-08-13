@@ -169,6 +169,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
         hostName: _playerName,
         subjectFilter: cfg.subjectIds,
         topicId: cfg.topicId,
+        roomName: cfg.roomName,
         maxPlayers: cfg.maxPlayers,
         isPublic: cfg.isPublic,
         subjects: _subjects,
@@ -847,6 +848,8 @@ class _RoomConfig {
   /// Seçili ders id'leri (boş => tüm derslerden karışık; birden fazla olabilir).
   final List<String> subjectIds;
   final String? topicId;
+  /// Kurucunun belirlediği oda adı (boşsa rastgele ad üretilir).
+  final String? roomName;
   final int maxPlayers;
   final bool isPublic;
   final int secondsPerQuestion;
@@ -854,6 +857,7 @@ class _RoomConfig {
   const _RoomConfig({
     required this.subjectIds,
     required this.topicId,
+    this.roomName,
     required this.maxPlayers,
     required this.isPublic,
     required this.secondsPerQuestion,
@@ -893,10 +897,17 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
   // gösterilir (birden fazla ders varken konu anlamsız).
   final Set<String> _selectedSubjectIds = {};
   String? _selectedTopicId; // yalnızca tek ders seçiliyken anlamlı
+  final TextEditingController _odaAdiCtrl = TextEditingController();
   late double _maxPlayers;
   bool _isPublic = true;
   late int _secondsPerQuestion;
   late int _questionCount;
+
+  @override
+  void dispose() {
+    _odaAdiCtrl.dispose();
+    super.dispose();
+  }
 
   bool get _isRoyale => widget.mode == DuelService.modeRoyale;
   bool get _isSolo => widget.solo;
@@ -948,12 +959,85 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                 ),
               ),
             ),
-            Text(
-                _isSolo
-                    ? '🎯 Tek Başına Yarış'
-                    : '${_isRoyale ? "👑 Royale" : "⚔️ Düello"} Odası Kur',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
-            const SizedBox(height: 4),
+            // ── Temaya uygun başlık şeridi ──
+            Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [vurgu.withValues(alpha: 0.22), vurgu.withValues(alpha: 0.06)],
+                ),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: vurgu.withValues(alpha: 0.35)),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 44, height: 44,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: vurgu.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(_isSolo ? '🎯' : (_isRoyale ? '👑' : '⚔️'),
+                        style: const TextStyle(fontSize: 22)),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            _isSolo
+                                ? 'Tek Başına Yarış'
+                                : '${_isRoyale ? "Royale" : "Düello"} Odası Kur',
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
+                        const SizedBox(height: 2),
+                        Text(
+                            _isSolo
+                                ? 'Ayarları seç, hemen başla.'
+                                : 'Odanı yapılandır ve arkadaşlarını davet et.',
+                            style: TextStyle(fontSize: 11.5, color: c.textDim)),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            // ── Oda adı (yalnızca çok oyunculu — kullanıcı isteği: kurucu
+            // oda ismini belirleyebilsin) ──
+            if (!_isSolo) ...[
+              _BolumBaslik(baslik: 'Oda adı', renk: vurgu, ikon: Icons.badge_rounded),
+              const SizedBox(height: 8),
+              TextField(
+                controller: _odaAdiCtrl,
+                maxLength: 30,
+                textCapitalization: TextCapitalization.sentences,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: c.text),
+                decoration: InputDecoration(
+                  counterText: '',
+                  hintText: 'Örn. Kaymakamlık Kampı (boş bırakırsan rastgele ad)',
+                  hintStyle: TextStyle(fontSize: 12.5, color: c.textFaint),
+                  filled: true,
+                  fillColor: c.glass2,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: c.border),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: c.border),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: vurgu, width: 1.5),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
             Text('Bir ya da birden fazla ders seç; hiç seçmezsen tüm derslerden '
                 'karışık gelir. Tek ders seçersen konu da seçebilirsin.',
                 style: TextStyle(fontSize: 12, color: c.textFaint)),
@@ -1088,6 +1172,9 @@ class _CreateRoomSheetState extends State<_CreateRoomSheet> {
                   // Konu yalnızca TEK ders seçiliyken uygulanır.
                   topicId:
                       _selectedSubjectIds.length == 1 ? _selectedTopicId : null,
+                  roomName: _odaAdiCtrl.text.trim().isEmpty
+                      ? null
+                      : _odaAdiCtrl.text.trim(),
                   maxPlayers: _maxPlayers.round(),
                   isPublic: _isPublic,
                   secondsPerQuestion: _secondsPerQuestion,

@@ -87,8 +87,16 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   '• Lig\'de: kullanıcı adın ve haftalık/toplam skor bilgin (diğer '
                   'kullanıcılarla karşılaştırma için)\n'
                   '• KPSS Düello/Royale\'de: oyuncu adın, oda içindeki cevapların ve skorun '
-                  '(maç süresince, diğer oda oyuncularıyla paylaşılır)\n\n'
-                  'Bu veriler sen silinene ya da hesabını kapatana kadar sunucuda kalır.',
+                  '(maç süresince, diğer oda oyuncularıyla paylaşılır)\n'
+                  '• DAVET (referans) sistemini kullanırsan: sahteciliği önlemek amacıyla '
+                  'cihazının anonim kimliği (iOS "identifierForVendor" / Android reklam-dışı '
+                  'cihaz kimliği), hangi davet kodunu kullandığın ve daveti kimin gönderdiği '
+                  'bilgisi tutulur. Bu, aynı cihazda davet kodunun defalarca kullanılıp '
+                  'ödül farm\'lanmasını engellemek içindir; cihaz kimliği pazarlama/takip '
+                  'için KULLANILMAZ ve üçüncü taraflarla paylaşılmaz.\n\n'
+                  'Bu veriler sen silinene ya da hesabını kapatana kadar sunucuda kalır. '
+                  '(Not: davet sahteciliğini kalıcı olarak önlemek için cihaz-davet kaydı, '
+                  'hesap silinse bile anonim biçimde saklanabilir.)',
             ),
             _Section(
               title: '4. Uygulama içi satın alma',

@@ -1,8 +1,13 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show RenderRepaintBoundary;
 import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../screens/account_login_screen.dart';
 import '../services/auth_service.dart';
@@ -80,11 +85,66 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
   void _kopyala() {
     if (_kod == null) return;
     context.read<SoundService>().click();
-    Clipboard.setData(ClipboardData(
-        text: 'KPSS Hazırlık uygulamasına davet kodum: $_kod\n'
-            'Uygulamayı indir, girişte bu kodu gir; ikimiz de kazanalım!'));
+    Clipboard.setData(ClipboardData(text: _davetMetni()));
     ustBildirim('Davet mesajı kopyalandı — arkadaşlarına gönder!',
         tur: UstBildirimTuru.basari);
+  }
+
+  String _davetMetni() =>
+      'KPSS Hazırlık uygulamasına davet kodum: ${_kod ?? ""}\n\n'
+      '16.000+ soru, konu anlatımı, deneme sınavları, KPSS Düello ve oyunlar! '
+      'Uygulamayı indir, giriş ekranındaki "Davet kodum var" bölümüne bu kodu gir; '
+      'ikimiz de 1 gün premium kazanalım. 🎁';
+
+  /// Davet GÖRSELİ oluşturup sistem paylaş menüsüyle paylaşır (kullanıcı isteği:
+  /// paylaş butonu YENİ bir fotoğraf oluştursun; davet kodu + uygulama içeriği +
+  /// davet koduyla gelince ne olduğu yazsın). Görsel ekran DIŞINDA (off-screen)
+  /// çizilip PNG olarak yakalanır, geçici dosyaya yazılıp paylaşılır.
+  Future<void> _gorselPaylas() async {
+    if (_kod == null) return;
+    context.read<SoundService>().click();
+    final c = context.read<ThemeProvider>().colors;
+    final boundaryKey = GlobalKey();
+    final overlay = Overlay.of(context);
+    final entry = OverlayEntry(
+      builder: (_) => Positioned(
+        left: -3000, // ekran dışı ama boyanır
+        top: 0,
+        child: Material(
+          type: MaterialType.transparency,
+          child: RepaintBoundary(
+            key: boundaryKey,
+            child: _PaylasGorseli(kod: _kod!, c: c),
+          ),
+        ),
+      ),
+    );
+    overlay.insert(entry);
+    try {
+      // Bir-iki kare bekle ki off-screen widget boyanmış olsun.
+      await Future.delayed(const Duration(milliseconds: 350));
+      final boundary = boundaryKey.currentContext?.findRenderObject()
+          as RenderRepaintBoundary?;
+      if (boundary == null) {
+        entry.remove();
+        return;
+      }
+      final image = await boundary.toImage(pixelRatio: 3);
+      final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+      entry.remove();
+      if (bytes == null) return;
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/kpss_davet_$_kod.png');
+      await file.writeAsBytes(bytes.buffer.asUint8List());
+      await Share.shareXFiles([XFile(file.path)], text: _davetMetni());
+    } catch (e) {
+      if (entry.mounted) entry.remove();
+      if (mounted) {
+        ustBildirim('Görsel paylaşılamadı, bunun yerine metin kopyalandı.',
+            tur: UstBildirimTuru.hata);
+        Clipboard.setData(ClipboardData(text: _davetMetni()));
+      }
+    }
   }
 
   void _nasilYapilir(BuildContext context) {
@@ -295,6 +355,31 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
           else
             Text('Davet kodu yüklenemedi, internetini kontrol et.',
                 style: TextStyle(fontSize: 12, color: c.textFaint)),
+          if (_kod != null) ...[
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  child: DsPillButton(
+                    label: 'Görsel Paylaş',
+                    leadingIcon: Icons.ios_share_rounded,
+                    color: c.violetL,
+                    onPressed: _gorselPaylas,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: DsPillButton(
+                    label: 'Kopyala',
+                    leadingIcon: Icons.copy_rounded,
+                    color: c.violetL,
+                    filled: false,
+                    onPressed: _kopyala,
+                  ),
+                ),
+              ],
+            ),
+          ],
           const SizedBox(height: 12),
           // Kazanımlar + kalan premium
           Row(
@@ -333,6 +418,91 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
           Text(alt,
               maxLines: 1, overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 11, color: c.textDim)),
+        ],
+      ),
+    );
+  }
+}
+
+/// Paylaşılacak davet GÖRSELİ (off-screen çizilip PNG'e dönüştürülür): gradyanlı
+/// kart, uygulama adı, büyük davet kodu, "davet koduyla gelince ne olur" ve
+/// uygulama içeriği. Sabit boyutlu (paylaşımda net görünsün).
+class _PaylasGorseli extends StatelessWidget {
+  final String kod;
+  final dynamic c;
+  const _PaylasGorseli({required this.kod, required this.c});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 420,
+      padding: const EdgeInsets.all(28),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.alphaBlend(c.violet.withValues(alpha: 0.35), const Color(0xFF120A22)),
+            Color.alphaBlend(c.violetL.withValues(alpha: 0.20), const Color(0xFF0B0715)),
+          ],
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text('📚 KPSS Hazırlık',
+              style: TextStyle(
+                  fontSize: 26, fontWeight: FontWeight.w900, color: Colors.white)),
+          const SizedBox(height: 6),
+          const Text('Soru Bankası · Konu Anlatımı · Deneme · Düello · Oyunlar',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 13, color: Color(0xFFCFC6E6))),
+          const SizedBox(height: 22),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+            ),
+            child: Column(
+              children: [
+                const Text('DAVET KODUM',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 2,
+                        color: Color(0xFFCFC6E6))),
+                const SizedBox(height: 6),
+                Text(kod,
+                    style: const TextStyle(
+                        fontSize: 44,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 8,
+                        color: Colors.white)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 22),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD97706).withValues(alpha: 0.18),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: const Color(0xFFD97706).withValues(alpha: 0.5)),
+            ),
+            child: const Text(
+              '🎁 Bu kodla uygulamayı indirip YENİ hesapla giriş yapana da, '
+              'beni davet edene de 1’er GÜN PREMIUM!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 14, height: 1.4, fontWeight: FontWeight.w700, color: Colors.white),
+            ),
+          ),
+          const SizedBox(height: 18),
+          const Text('16.000+ soru • güncel içerik • ücretsiz',
+              style: TextStyle(fontSize: 12, color: Color(0xFFB7ADCE))),
         ],
       ),
     );
