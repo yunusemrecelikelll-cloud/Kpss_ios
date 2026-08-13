@@ -84,6 +84,11 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       debugPrint('Giriş sonrası syncDown hatası (giriş yine de başarılı): $e');
     }
 
+    // YENİ HESAP MI? syncDown sonrası isim ONAYLI ise bu hesap DAHA ÖNCE
+    // kullanılmış demektir (dönüş kullanıcısı); onaylı değilse yeni hesap.
+    // Davet ödülü yalnızca YENİ hesaplara verilir (kullanıcı isteği).
+    final yeniHesap = !storage.getNameConfirmed();
+
     // 4) İSMİ SOR: bu hesap ismini daha önce onaylamadıysa bir kez sor. Aktif
     //    profil ARTIK bu hesabın profili olduğu için (adım 1) isim doğru yere
     //    yazılır — hesaplar arası karışma olmaz. Onaylanınca bir daha sorulmaz.
@@ -114,7 +119,8 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     // 6) DAVET KODU: kullanıcı giriş öncesinde bir davet kodu girdiyse ŞİMDİ
     //    (giriş doğrulandıktan sonra) uygula. Cihaz/hesap tekilliği burada
     //    kontrol edilir; sonuç kullanıcıya bildirilir.
-    final davetSonuc = await InviteService().bekleyenDavetiUygula(storage);
+    final davetSonuc =
+        await InviteService().bekleyenDavetiUygula(storage, yeniHesap: yeniHesap);
     if (!mounted) return;
     _davetSonucBildir(davetSonuc);
 
@@ -128,8 +134,8 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     switch (s) {
       case DavetSonuc.basari:
         ustBildirim(
-            '🎉 Davet onaylandı! Seni davet eden kişiye +${InviteService.kOdulHak} hak '
-            've 1 gün premium tanımlandı.',
+            '🎉 Davet onaylandı! Sana 1 gün premium tanımlandı; seni davet eden '
+            'kişiye de 1 gün premium eklendi.',
             tur: UstBildirimTuru.basari);
       case DavetSonuc.cihazKullanildi:
         ustBildirim(
@@ -138,6 +144,11 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
             tur: UstBildirimTuru.hata);
       case DavetSonuc.hesapKullanildi:
         ustBildirim('⚠️ Bu hesap zaten bir davet kodu kullanmış.',
+            tur: UstBildirimTuru.hata);
+      case DavetSonuc.hesapEski:
+        ustBildirim(
+            '⚠️ Davet ödülü yalnızca YENİ hesaplara verilir. Bu hesap daha önce '
+            'oluşturulduğu için davet kodu geçerli değil.',
             tur: UstBildirimTuru.hata);
       case DavetSonuc.kendiKodun:
         ustBildirim('⚠️ Kendi davet kodunu kullanamazsın.',
@@ -431,13 +442,13 @@ class _DavetKoduBolumuState extends State<_DavetKoduBolumu> {
                   const SizedBox(height: 8),
                   Text(
                     'Bu davet kodu KAYDEDİLDİ. Şimdi yukarıdan Google ya da Apple ile '
-                    'giriş yaptığında davet otomatik olarak ONAYLANACAK ve seni davet '
-                    'eden kişiye +${InviteService.kOdulHak} hak ile 1 günlük premium '
-                    'hediye edilecek.\n\n'
-                    'Güvenlik: Her cihaz bir davet kodunu yalnızca BİR KEZ '
+                    'giriş yaptığında davet otomatik olarak ONAYLANACAK: HEM SANA hem de '
+                    'seni davet eden kişiye 1’er gün premium hediye edilecek.\n\n'
+                    'Güvenlik: Ödül yalnızca YENİ hesaplara verilir (daha önce hesabın '
+                    'varsa geçerli olmaz). Her cihaz davet kodunu yalnızca BİR KEZ '
                     'kullanabilir; aynı cihazda farklı hesaplarla tekrar tekrar davet '
-                    'kullanılamaz. Kendi kodunu kullanamazsın. Bu yüzden giriş '
-                    'yapmadan ödül tanımlanmaz — önce giriş yapman gerekir.',
+                    'kullanılamaz ve kendi kodunu kullanamazsın. Bu yüzden giriş yapmadan '
+                    'ödül tanımlanmaz — önce giriş yapman gerekir.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 11.5, height: 1.45, color: c.textDim),
                   ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../screens/account_login_screen.dart';
 import '../services/auth_service.dart';
 import '../services/invite_service.dart';
 import '../services/sound_service.dart';
@@ -117,8 +118,8 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
                 'App Store / Google Play’den KPSS Hazırlık’ı kursun.'),
             _adim(c, '3', 'Girişte kodu girsin',
                 'Arkadaşın giriş ekranındaki "Davet kodum var" bölümüne senin kodunu yazsın ve Google/Apple ile GİRİŞ YAPSIN.'),
-            _adim(c, '4', 'Ödülünü al 🎉',
-                'Arkadaşın giriş yaptığı an sana +${InviteService.kOdulHak} hak ve 1 gün premium tanımlanır. Uygulamayı bir sonraki açışında otomatik yüklenir.'),
+            _adim(c, '4', 'Ödülünüzü alın 🎉',
+                'Arkadaşın YENİ hesapla giriş yaptığı an HEM SANA hem de ona 1’er gün premium tanımlanır. Her yeni davetle senin premium süren BİRİKİR (3 kişi = 3 gün). Uygulamayı bir sonraki açışında otomatik yüklenir.'),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.all(12),
@@ -179,29 +180,52 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
     final storage = context.watch<StorageService>();
     final auth = context.watch<AuthService>();
 
-    // Giriş yapılmamışsa kısa yönlendirme.
+    // Giriş yapılmamışsa: kartı yine göster ama dokununca GİRİŞ ekranına
+    // yönlendir (davet kodu hesaba bağlı olduğu için giriş şart — kullanıcı
+    // isteği: misafirde de görünsün, tıklayınca girişe gitsin).
     if (!auth.isRealSignedIn) {
       return DsCard(
-        accent: c.violetL,
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            DsIconBadge(icon: Icons.card_giftcard_rounded, color: c.violetL, size: 40, glow: false),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                'Arkadaşını davet et, her davetten +${InviteService.kOdulHak} hak '
-                've 1 gün premium kazan! Başlamak için giriş yap.',
-                style: TextStyle(fontSize: 12.5, height: 1.35, color: c.text),
-              ),
+        accent: c.gold,
+        padding: EdgeInsets.zero,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(kDsRadius),
+          onTap: () {
+            context.read<SoundService>().click();
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                DsIconBadge(
+                    icon: Icons.card_giftcard_rounded, color: c.gold, size: 40, glow: false),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Davet Et & Kazan',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
+                      const SizedBox(height: 2),
+                      Text(
+                        'Arkadaşını davet et, her ikiniz de 1 gün premium kazanın! '
+                        'Davet kodunu görmek için giriş yap.',
+                        style: TextStyle(fontSize: 12, height: 1.35, color: c.textDim),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right_rounded, color: c.violetL),
+              ],
             ),
-          ],
+          ),
         ),
       );
     }
 
     final kazananSayi = storage.getInviteEarnedCount();
-    final kazananHak = storage.getInviteEarnedHak();
     final premiumKalan = storage.getBonusPremiumRemaining();
 
     return DsCard(
@@ -221,7 +245,7 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
                     Text('Davet Et & Kazan',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
-                    Text('Her davet: +${InviteService.kOdulHak} hak · 1 gün premium',
+                    Text('Her yeni davet: ikinize de 1 gün premium',
                         style: TextStyle(fontSize: 11.5, color: c.textDim)),
                   ],
                 ),
@@ -276,8 +300,8 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
           Row(
             children: [
               Expanded(
-                child: _ozet(c, '🎟️', '$kazananSayi kişi',
-                    '$kazananHak hak kazandın'),
+                child: _ozet(c, '👥', '$kazananSayi kişi',
+                    '$kazananSayi gün premium kazandın'),
               ),
               const SizedBox(width: 10),
               Expanded(

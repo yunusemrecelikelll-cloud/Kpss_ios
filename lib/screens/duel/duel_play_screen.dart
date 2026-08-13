@@ -85,6 +85,8 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
 
   // Oda 2 saatlik ömrünü doldurduğunda uyarı+silme bir kez tetiklensin.
   bool _suresiDolduIslendi = false;
+  // Oda silindiğinde (kurucu çıktı vb.) yönlendirme bir kez yapılsın.
+  bool _odaKapandiIslendi = false;
 
   // Son 5 saniyede tik-tak sesi için: en son tik çalınan (soru, saniye) çifti.
   // Aynı saniye içinde ticker birden çok kez çalıştığından tekrar çalmayı
@@ -484,11 +486,20 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
           if (snap.connectionState == ConnectionState.waiting) {
             return const Scaffold(body: Center(child: CircularProgressIndicator()));
           }
-          return const Scaffold(
-            body: Center(
-              child: Padding(padding: EdgeInsets.all(24), child: _EmptyNote(emoji: '🚪', text: 'Oda bulunamadı.')),
-            ),
-          );
+          // Oda silindi (kurucu çıktı / oda kapandı). Kullanıcı BOŞ EKRANDA
+          // KALMASIN: uyar ve KPSS Düello lobisine geri dön (kullanıcı isteği).
+          if (!_odaKapandiIslendi) {
+            _odaKapandiIslendi = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              ustBildirim('Oda kapatıldı (kurucu ayrıldı).',
+                  tur: UstBildirimTuru.hata);
+              // Oyun ekranı bekleme odasının YERİNE geçtiği (pushReplacement)
+              // için tek pop, KPSS Düello lobisine döner.
+              Navigator.of(context).maybePop();
+            });
+          }
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
         }
         // Room verilerini state alanlarına aktar (ticker bunları kullanır).
         _questions = room.questions;

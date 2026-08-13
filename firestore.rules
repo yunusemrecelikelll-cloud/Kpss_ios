@@ -427,8 +427,6 @@ service cloud.firestore {
       allow create: if girisli()
                     && request.resource.data.fromUid == request.auth.uid
                     && request.auth.uid != ownerUid
-                    && request.resource.data.hak is number
-                    && request.resource.data.hak <= 50
                     && request.resource.data.premiumGun is number
                     && request.resource.data.premiumGun <= 1;
       allow update: if false;

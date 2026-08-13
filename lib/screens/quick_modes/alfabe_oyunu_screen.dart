@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../data/alfabe_sorulari.dart';
 import '../../services/sound_service.dart';
+import '../../services/ad_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/design_system.dart';
@@ -380,6 +381,10 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
     _autoNext?.cancel();
     setState(() => _finished = true);
     final storage = context.read<StorageService>();
+    // Oyun sonu KISA geçiş reklamı (premium hariç) — bu oyun GameResultScreen
+    // kullanmadığı için reklam elle tetiklenir (kullanıcı isteği).
+    // ignore: unawaited_futures
+    AdService.instance.gecisReklamiGoster(premium: storage.isPremiumUser());
     await storage.setLastRoundStats(kAlfabeOyunuGameId,
         correct: _dogruSayi, wrong: _yanlisSayi);
     // Rekor DOĞRU sayısı (oyun-içi sağ üstteki rekor + tanıtım ekranı bunu

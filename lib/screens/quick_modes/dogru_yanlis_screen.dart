@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../data/dogru_yanlis_data.dart';
 import '../../services/sound_service.dart';
+import '../../services/ad_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
@@ -158,6 +159,10 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   Future<void> _bitir() async {
     setState(() => _asama = _Asama.bitis);
     final storage = context.read<StorageService>();
+    // Oyun sonu KISA geçiş reklamı (premium hariç) — bu oyun GameResultScreen
+    // kullanmadığı için reklam elle tetiklenir (kullanıcı isteği).
+    // ignore: unawaited_futures
+    AdService.instance.gecisReklamiGoster(premium: storage.isPremiumUser());
     final yeni = await storage.submitHighScore(kDogruYanlisGameId, _dogruSayisi);
     await storage.setLastRoundStats(
       kDogruYanlisGameId,

@@ -512,17 +512,12 @@ class StorageService extends ChangeNotifier {
   bool getInviteRedeemed() => getSettings()['inviteRedeemed'] == true;
   Future<void> setInviteRedeemed(bool v) => saveSettings({'inviteRedeemed': v});
 
-  /// Davetle kazanılan toplam ödül sayısı ve toplam hak (anasayfa widget'ında
-  /// "kaç kişi davet ettin / ne kadar kazandın" göstermek için).
+  /// Davetle KAYIT OLAN kişi sayısı (anasayfa widget'ında "kaç kişi davet
+  /// ettin / kaç gün premium kazandın" göstermek için — her davet = 1 gün).
   int getInviteEarnedCount() =>
       ((getSettings()['inviteEarnedCount'] as num?) ?? 0).toInt();
-  int getInviteEarnedHak() =>
-      ((getSettings()['inviteEarnedHak'] as num?) ?? 0).toInt();
-  Future<void> addInviteEarned({required int hak}) async {
-    await saveSettings({
-      'inviteEarnedCount': getInviteEarnedCount() + 1,
-      'inviteEarnedHak': getInviteEarnedHak() + hak,
-    });
+  Future<void> addInviteEarned() async {
+    await saveSettings({'inviteEarnedCount': getInviteEarnedCount() + 1});
   }
 
   Map<String, dynamic> getNotificationSettings() =>
