@@ -9,6 +9,7 @@ import '../models/badge.dart';
 import '../services/auth_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/quiz_engine.dart';
+import '../widgets/davet_kazan_karti.dart';
 import '../widgets/hak_kazan_sheet.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
@@ -325,6 +326,10 @@ class _HomeScreenState extends State<HomeScreen> {
             // 3) Premium özet / "geç" widget'ı (kullanıcı isteği): premium'da
             // durum özeti, ücretsizde yükseltme daveti. Tek kompakt kart.
             _PremiumOzetKarti(premium: premium),
+            const SizedBox(height: kDsGap),
+            // 3b) Davet Et & Kazan (kullanıcı isteği): davet kodu + kazanımlar +
+            // kalan bonus premium süresi.
+            const DavetKazanKarti(),
             const SizedBox(height: kDsGap),
             // 4) Günlük Çalışma Planı kartı.
             const StudyPlanCard(),

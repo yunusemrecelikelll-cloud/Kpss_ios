@@ -99,6 +99,18 @@ class AccountDeletionService {
       await _db.collection(ChatService.notificationsCollection).doc(uid).delete();
     });
 
+    // 3b) Davet ödülü gelen kutusu — 'invite_rewards/{uid}/items/*'.
+    // (invite_claims/{cihaz} SİLİNMEZ — cihaz-tekilliği kalıcıdır; hesap
+    // silinse bile o cihaz davet farm'ı için tekrar kullanılamamalı.)
+    await _adim('invite_rewards', () async {
+      final items = await _db
+          .collection('invite_rewards')
+          .doc(uid)
+          .collection('items')
+          .get();
+      await _deleteDocs(items.docs.map((d) => d.reference).toList());
+    });
+
     // 4) Engellenen kullanıcı listesi — 'blocked_users/{uid}/users/*'
     await _adim('blocked_users', () async {
       final users = await _db

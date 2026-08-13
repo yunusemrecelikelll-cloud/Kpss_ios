@@ -34,6 +34,16 @@ class StorageService extends ChangeNotifier {
     await _prefs?.setString(_installKey, '1');
   }
 
+  // Bekleyen davet kodu GLOBAL (kullanıcıya özel DEĞİL) saklanır: kullanıcı
+  // kodu GİRİŞ YAPMADAN ÖNCE (misafirken) girer, giriş sonrası hesap profiline
+  // geçilince de okunabilmesi gerekir (bkz. invite_service.redeemPendingInvite).
+  static const _pendingInviteKey = 'kpss_v2_pending_invite';
+  String getPendingInviteCode() => _prefs?.getString(_pendingInviteKey) ?? '';
+  Future<void> setPendingInviteCode(String kod) async =>
+      _prefs?.setString(_pendingInviteKey, kod.trim());
+  Future<void> clearPendingInviteCode() async =>
+      _prefs?.remove(_pendingInviteKey);
+
   String _safe(String name) {
     final buf = StringBuffer();
     for (final ch in name.runes) {
@@ -468,7 +478,52 @@ class StorageService extends ChangeNotifier {
 
   String getUserPlan() => (getSettings()['plan'] as String?) ?? 'free';
   Future<void> setUserPlan(String plan) => saveSettings({'plan': plan});
-  bool isPremiumUser() => getUserPlan() == 'premium';
+
+  /// BONUS (süreli) premium bitiş anı (ms epoch). Davet ödülü olarak verilen
+  /// "1 gün premium" bunu ileri taşır. Abonelik premium'undan (plan=='premium')
+  /// ayrıdır; ikisinden HERHANGİ biri aktifse kullanıcı premium sayılır.
+  int getBonusPremiumUntilMs() =>
+      ((getSettings()['bonusPremiumUntil'] as num?) ?? 0).toInt();
+
+  /// Bonus premium hâlâ geçerli mi (bitiş anı gelecekte mi).
+  bool get bonusPremiumAktif =>
+      getBonusPremiumUntilMs() > DateTime.now().millisecondsSinceEpoch;
+
+  /// Bonus premium için KALAN süre (bitmişse Duration.zero).
+  Duration getBonusPremiumRemaining() {
+    final ms = getBonusPremiumUntilMs() - DateTime.now().millisecondsSinceEpoch;
+    return ms > 0 ? Duration(milliseconds: ms) : Duration.zero;
+  }
+
+  /// Bonus premium süresine [gun] gün EKLER (mevcut kalan süre gelecekteyse onun
+  /// üstüne, değilse şimdiden itibaren). Davet ödülü uygular.
+  Future<void> addBonusPremiumDays(int gun) async {
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final mevcut = getBonusPremiumUntilMs();
+    final taban = mevcut > now ? mevcut : now;
+    await saveSettings({'bonusPremiumUntil': taban + gun * 24 * 60 * 60 * 1000});
+  }
+
+  bool isPremiumUser() => getUserPlan() == 'premium' || bonusPremiumAktif;
+
+  // ── Davet (referans) istatistikleri ──────────────────────────────────────
+  /// Bu cihazın/hesabın bir davet kodunu ZATEN kullanıp kullanmadığı (yerel
+  /// hızlı kontrol; asıl tekillik cihaz kimliğiyle Firestore'da uygulanır).
+  bool getInviteRedeemed() => getSettings()['inviteRedeemed'] == true;
+  Future<void> setInviteRedeemed(bool v) => saveSettings({'inviteRedeemed': v});
+
+  /// Davetle kazanılan toplam ödül sayısı ve toplam hak (anasayfa widget'ında
+  /// "kaç kişi davet ettin / ne kadar kazandın" göstermek için).
+  int getInviteEarnedCount() =>
+      ((getSettings()['inviteEarnedCount'] as num?) ?? 0).toInt();
+  int getInviteEarnedHak() =>
+      ((getSettings()['inviteEarnedHak'] as num?) ?? 0).toInt();
+  Future<void> addInviteEarned({required int hak}) async {
+    await saveSettings({
+      'inviteEarnedCount': getInviteEarnedCount() + 1,
+      'inviteEarnedHak': getInviteEarnedHak() + hak,
+    });
+  }
 
   Map<String, dynamic> getNotificationSettings() =>
       Map<String, dynamic>.from(getSettings()['notifications'] as Map);

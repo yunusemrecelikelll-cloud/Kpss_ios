@@ -11,6 +11,7 @@ import 'services/remote_question_service.dart';
 import 'services/tts_service.dart';
 import 'services/ad_service.dart';
 import 'services/ders_bildirim_service.dart';
+import 'services/invite_service.dart';
 import 'services/notification_service.dart';
 import 'services/study_plan_service.dart';
 import 'theme/theme_provider.dart';
@@ -72,6 +73,8 @@ Future<void> main() async {
     // sabitle. (Gerçek premium, kullanıcı giriş yapınca buluttan geri gelir.)
     if (storage.isPremiumUser()) {
       await storage.setUserPlan('free');
+      // Bonus (davet) premium'u da misafirde sıfırla — kaçak premium olmasın.
+      await storage.saveSettings({'bonusPremiumUntil': 0});
     }
   }
   // Günlük Çalışma Planı hatırlatmaları için yerel bildirim altyapısını
@@ -118,6 +121,17 @@ Future<void> main() async {
               : const [],
           storage: storage)
       .catchError((e) => debugPrint('Açılışta ders bildirimi kurulumu: $e'));
+
+  // DAVET ÖDÜLLERİ: bu hesabı biri davet koduyla kullandıysa, gelen kutusundaki
+  // (+50 hak / +1 gün premium) ödülleri açılışta uygula (yalnızca giriş
+  // yapmışsa). Açılışı yavaşlatmasın diye beklenmez.
+  if (aktifKullanici != null && !aktifKullanici.isAnonymous) {
+    // ignore: unawaited_futures
+    InviteService().gelenOdulleriUygula(storage).catchError((e) {
+      debugPrint('Açılışta davet ödülü hatası: $e');
+      return 0;
+    });
+  }
 
   runApp(
     MultiProvider(

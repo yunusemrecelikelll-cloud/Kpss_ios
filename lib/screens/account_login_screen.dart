@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
 import '../services/cloud_sync_service.dart';
+import '../services/invite_service.dart';
 import '../services/presence_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
@@ -110,9 +111,45 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     // ignore: unawaited_futures
     PresenceService.instance.bildir(storage);
 
+    // 6) DAVET KODU: kullanıcı giriş öncesinde bir davet kodu girdiyse ŞİMDİ
+    //    (giriş doğrulandıktan sonra) uygula. Cihaz/hesap tekilliği burada
+    //    kontrol edilir; sonuç kullanıcıya bildirilir.
+    final davetSonuc = await InviteService().bekleyenDavetiUygula(storage);
+    if (!mounted) return;
+    _davetSonucBildir(davetSonuc);
+
     if (!mounted) return;
     ustBildirim('Giriş başarılı! 🎉', tur: UstBildirimTuru.basari);
     Navigator.of(context).pop();
+  }
+
+  /// Davet uygulama sonucunu kullanıcıya bildirir (uygulama içi uyarı).
+  void _davetSonucBildir(DavetSonuc s) {
+    switch (s) {
+      case DavetSonuc.basari:
+        ustBildirim(
+            '🎉 Davet onaylandı! Seni davet eden kişiye +${InviteService.kOdulHak} hak '
+            've 1 gün premium tanımlandı.',
+            tur: UstBildirimTuru.basari);
+      case DavetSonuc.cihazKullanildi:
+        ustBildirim(
+            '⚠️ Bu cihazda daha önce bir davet kodu kullanılmış. '
+            'Her cihaz davet kodunu yalnızca bir kez kullanabilir.',
+            tur: UstBildirimTuru.hata);
+      case DavetSonuc.hesapKullanildi:
+        ustBildirim('⚠️ Bu hesap zaten bir davet kodu kullanmış.',
+            tur: UstBildirimTuru.hata);
+      case DavetSonuc.kendiKodun:
+        ustBildirim('⚠️ Kendi davet kodunu kullanamazsın.',
+            tur: UstBildirimTuru.hata);
+      case DavetSonuc.gecersizKod:
+        ustBildirim('⚠️ Girdiğin davet kodu geçersiz.', tur: UstBildirimTuru.hata);
+      case DavetSonuc.koddYok:
+        break; // sessiz
+      case DavetSonuc.hata:
+        ustBildirim('Davet kodu şu an işlenemedi, internetini kontrol et.',
+            tur: UstBildirimTuru.hata);
+    }
   }
 
   /// Giriş sonrası bir kez gösterilen isim penceresi. [onDolgu] ön-dolgu metni
@@ -239,11 +276,177 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 11.5, color: c.textFaint),
                 ),
+                const SizedBox(height: 22),
+                // ── Davet kodum var (kullanıcı isteği) ──
+                SizedBox(width: 320, child: _DavetKoduBolumu()),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Giriş ekranındaki "Davet kodum var" bölümü: kullanıcı önce kodu girer,
+/// "Kontrol Et" ile geçerliliği doğrulanır; geçerliyse kod BEKLEMEYE alınır ve
+/// GİRİŞ YAPTIKTAN SONRA otomatik onaylanacağı uzun bir açıklamayla bildirilir.
+class _DavetKoduBolumu extends StatefulWidget {
+  @override
+  State<_DavetKoduBolumu> createState() => _DavetKoduBolumuState();
+}
+
+class _DavetKoduBolumuState extends State<_DavetKoduBolumu> {
+  final _ctrl = TextEditingController();
+  final _invite = InviteService();
+  bool _acik = false;
+  bool _kontrol = false;
+  String? _gecerliAd; // kod geçerliyse davet edenin adı
+  String? _hata;
+
+  @override
+  void initState() {
+    super.initState();
+    // Daha önce girilip beklemede kalan kod varsa alanı ön-doldur.
+    final bekleyen = context.read<StorageService>().getPendingInviteCode();
+    if (bekleyen.isNotEmpty) {
+      _ctrl.text = bekleyen;
+      _acik = true;
+    }
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _kontrolEt() async {
+    final kod = _ctrl.text.trim();
+    if (kod.length != 6) {
+      setState(() {
+        _hata = 'Davet kodu 6 haneli olmalı.';
+        _gecerliAd = null;
+      });
+      return;
+    }
+    context.read<SoundService>().click();
+    setState(() {
+      _kontrol = true;
+      _hata = null;
+      _gecerliAd = null;
+    });
+    final sonuc = await _invite.koduDogrula(kod);
+    if (!mounted) return;
+    setState(() => _kontrol = false);
+    if (sonuc == null) {
+      setState(() => _hata = 'Bu kod geçerli değil. Doğru yazdığından emin ol.');
+      return;
+    }
+    // Geçerli: kodu beklemeye al.
+    await context.read<StorageService>().setPendingInviteCode(kod);
+    if (!mounted) return;
+    setState(() => _gecerliAd = sonuc.name);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        // Aç/kapa başlığı
+        InkWell(
+          onTap: () => setState(() => _acik = !_acik),
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.card_giftcard_rounded, size: 18, color: c.violetL),
+                const SizedBox(width: 6),
+                Text('Davet kodum var',
+                    style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w800,
+                        color: c.violetL)),
+                Icon(_acik ? Icons.expand_less : Icons.expand_more,
+                    size: 20, color: c.violetL),
+              ],
+            ),
+          ),
+        ),
+        if (_acik) ...[
+          const SizedBox(height: 6),
+          TextField(
+            controller: _ctrl,
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.number,
+            maxLength: 6,
+            style: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.w900, letterSpacing: 6, color: c.text),
+            decoration: InputDecoration(
+              counterText: '',
+              hintText: '6 haneli kod',
+              filled: true,
+              fillColor: c.glass2,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: c.border),
+              ),
+            ),
+            onChanged: (_) => setState(() {
+              _gecerliAd = null;
+              _hata = null;
+            }),
+          ),
+          const SizedBox(height: 8),
+          DsPillButton(
+            label: _kontrol ? 'Kontrol ediliyor…' : 'Kontrol Et',
+            color: c.violetL,
+            onPressed: _kontrol ? null : _kontrolEt,
+          ),
+          if (_hata != null) ...[
+            const SizedBox(height: 8),
+            Text(_hata!,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12, color: c.danger, fontWeight: FontWeight.w700)),
+          ],
+          if (_gecerliAd != null) ...[
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: c.success.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: c.success.withValues(alpha: 0.4)),
+              ),
+              child: Column(
+                children: [
+                  Text('✅ Kod geçerli — $_gecerliAd seni davet ediyor',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w800, color: c.text)),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Bu davet kodu KAYDEDİLDİ. Şimdi yukarıdan Google ya da Apple ile '
+                    'giriş yaptığında davet otomatik olarak ONAYLANACAK ve seni davet '
+                    'eden kişiye +${InviteService.kOdulHak} hak ile 1 günlük premium '
+                    'hediye edilecek.\n\n'
+                    'Güvenlik: Her cihaz bir davet kodunu yalnızca BİR KEZ '
+                    'kullanabilir; aynı cihazda farklı hesaplarla tekrar tekrar davet '
+                    'kullanılamaz. Kendi kodunu kullanamazsın. Bu yüzden giriş '
+                    'yapmadan ödül tanımlanmaz — önce giriş yapman gerekir.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 11.5, height: 1.45, color: c.textDim),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ],
+      ],
     );
   }
 }

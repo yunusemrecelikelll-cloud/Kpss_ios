@@ -403,6 +403,37 @@ service cloud.firestore {
       allow delete: if sahip(uid) || yonetici();
     }
 
+    // ── Davet (referans) cihaz kayıtları — sahtecilik koruması ─────────────
+    // Doküman kimliği = CİHAZ kimliği (IDFV/Android ID). Bir cihaz bir davet
+    // kodunu YALNIZCA 1 KEZ kullanabilir: kayıt bir kez oluşturulur, ASLA
+    // güncellen/silinemez (silinebilseydi kullanıcı silip yeniden davet
+    // farm'layabilirdi). Yazan, kendini claimer yazmak ve kendi kodunu
+    // kullanmamak zorunda. Okuma: transaction'ın var-mı kontrolü için girişli.
+    match /invite_claims/{deviceId} {
+      allow read: if girisli();
+      allow create: if girisli()
+                    && request.resource.data.claimerUid == request.auth.uid
+                    && request.resource.data.inviterUid is string
+                    && request.resource.data.inviterUid != request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    // ── Davet ödülü gelen kutusu ───────────────────────────────────────────
+    // invite_rewards/{davetEden}/items/{id}. Ödülü DAVET EDİLEN yazar, davet
+    // EDEN okuyup uygular ve siler. KRİTİK: fromUid == yazan VE yazan != kutu
+    // sahibi — böylece kimse KENDİNE ödül yazamaz (self-reward engellendi).
+    match /invite_rewards/{ownerUid}/items/{itemId} {
+      allow read, delete: if sahip(ownerUid);
+      allow create: if girisli()
+                    && request.resource.data.fromUid == request.auth.uid
+                    && request.auth.uid != ownerUid
+                    && request.resource.data.hak is number
+                    && request.resource.data.hak <= 50
+                    && request.resource.data.premiumGun is number
+                    && request.resource.data.premiumGun <= 1;
+      allow update: if false;
+    }
+
     // ── Varsayılan: her şey kapalı ─────────────────────────────────────────
     // Yukarıda açıkça izin verilmeyen hiçbir yola erişilemez.
     match /{document=**} {
