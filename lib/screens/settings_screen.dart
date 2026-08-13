@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../services/account_deletion_service.dart';
@@ -17,29 +16,11 @@ import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
 import 'hak_satin_al_screen.dart';
 import 'premium_screen.dart';
-import 'quiz_screen.dart'
-    show
-        kAutoSecsPerQ,
-        kSureOnayarlariSn,
-        kMinTestDakika,
-        kMaxTestDakika,
-        kVarsayilanSoruCevapModu;
+import 'quiz_screen.dart' show kVarsayilanSoruCevapModu;
 import 'privacy_policy_screen.dart';
 import 'splash_screen.dart';
 import '../widgets/resmi_kurum_feragati.dart';
 import '../utils/ust_bildirim.dart';
-
-// ── Test süresi ──
-// Süre artık test öncesi sorulmuyor; buradaki tercih doğrudan uygulanıyor
-// (bkz. quiz_screen.dart → testSuresiHesapla).
-/// Kullanıcının elle girebileceği "soru başına saniye" alt/üst sınırı.
-/// Üst sınır, 120 soruluk denemede toplam sürenin [kMaxTestDakika] içinde
-/// kalmasını garanti eder (toplam süre ayrıca orada da kırpılır).
-const int _kMinSnPerQ = 5;
-const int _kMaxSnPerQ = 150;
-
-/// Örnek süre metinlerinin hesaplandığı deneme sınavı uzunluğu.
-const int _kOrnekSoruSayisi = 120;
 
 // ── Soru cevap modu ──
 // Konu testlerinde bir şık işaretlendikten sonraki davranışı belirler.
@@ -93,15 +74,6 @@ const List<_SoruCevapSecenegi> _kSinavTuruSecenekleri = [
     'İleri düzey, ayrıntı ve uzmanlık isteyen sorular (zor).',
   ),
 ];
-
-/// 400 → "6 dk 40 sn" gibi kısa Türkçe süre metni.
-String _sureMetni(int sn) {
-  final dk = sn ~/ 60;
-  final kalan = sn % 60;
-  if (dk == 0) return '$kalan sn';
-  if (kalan == 0) return '$dk dk';
-  return '$dk dk $kalan sn';
-}
 
 /// JS karşılığı: renderSettings() (src/js/app.js).
 class SettingsScreen extends StatefulWidget {
@@ -416,51 +388,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     ustBildirim(mesaj);
   }
 
-  // ── Test süresi tercihi ──────────────────────────────────────────────
-
-  /// Süre modunu kaydeder (`auto` | `perq` | `off`).
-  void _setTimerMode(StorageService storage, String mod, String mesaj) {
-    context.read<SoundService>().click();
-    storage.saveSettings({'timerMode': mod});
-    ustBildirim(mesaj);
-  }
-
-  /// Soru başına saniyeyi kaydeder.
-  void _setSecsPerQ(StorageService storage, int sn) {
-    context.read<SoundService>().click();
-    storage.saveSettings({'secsPerQ': sn});
-    ustBildirim('Soru başına $sn saniye seçildi.');
-  }
-
-  /// Preset'ler yetmezse kullanıcı kendi "soru başına saniye" değerini yazar.
-  Future<void> _ozelSureGir(StorageService storage, int mevcut) async {
-    context.read<SoundService>().click();
-    final sn = await showDialog<int>(
-      context: context,
-      builder: (_) => _OzelSureDialog(mevcut: mevcut),
-    );
-    if (sn == null || !mounted) return;
-    storage.saveSettings({'secsPerQ': sn});
-    ustBildirim('Soru başına $sn saniye ayarlandı.');
-  }
-
-  /// Seçili ayarın pratikte ne anlama geldiğini anlatan açıklama metni.
-  String _sureAciklamasi(String mod, int secsPerQ) {
-    if (mod == 'off') {
-      return '♾️ Süresiz: denemede de geri sayım olmaz, istediğin kadar '
-          'düşünebilirsin.';
-    }
-    final soruBasina = mod == 'perq' ? secsPerQ : kAutoSecsPerQ;
-    final toplam = _sureMetni(_kOrnekSoruSayisi * soruBasina);
-    final yirmi = _sureMetni(20 * soruBasina);
-    final bas = mod == 'auto'
-        ? '🤖 Otomatik: KPSS oranına göre soru başına $kAutoSecsPerQ sn.'
-        : '✏️ Soru başına $soruBasina sn.';
-    return '$bas\n'
-        '• $_kOrnekSoruSayisi soruluk denemede ≈ $toplam\n'
-        '• 20 soruluk denemede ≈ $yirmi';
-  }
-
   /// Sosyal medya hesabını açar: kullanıcının UYGULAMASI varsa (Instagram
   /// için özel şema, Threads için app-link) doğrudan uygulamada, yoksa web'de.
   Future<void> _sosyalAc(BuildContext context,
@@ -491,8 +418,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final c = themeProvider.colors;
     final settings = storage.getSettings();
     final soundOn = settings['soundEnabled'] != false;
-    final timerMode = (settings['timerMode'] as String?) ?? 'auto';
-    final secsPerQ = (settings['secsPerQ'] as int?) ?? 65;
     final soruCevapModu = (settings['soruCevapModu'] as String?) ?? kVarsayilanSoruCevapModu;
     final premium = storage.isPremiumUser();
     final cloudBackup = storage.getCloudBackupEnabled();
@@ -511,7 +436,150 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // ── HESAP (kullanıcı isteği: en başta) ──────────────────────
+            const DsSectionHeader(title: '👤 Hesap'),
+            const SizedBox(height: 8),
+            DsCard(
+              accent: premium ? c.gold : null,
+              padding: const EdgeInsets.all(14),
+              child: Row(
+                children: [
+                  DsIconBadge(
+                      emoji: '💎', color: c.gold, size: 42, circle: false, glow: false),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Text('Planın:',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
+                            const SizedBox(width: 8),
+                            DsChip(
+                              label: premium ? 'PREMIUM' : 'ÜCRETSİZ',
+                              color: premium ? c.gold : c.textDim,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Premium paketinde detaylı grafikler, özel testler ve VIP ayrıcalıklar yer alır.',
+                          style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
+                        ),
+                        const SizedBox(height: 12),
+                        DsPillButton(
+                          label: 'Ayrıntıları Gör',
+                          color: c.gold,
+                          trailingIcon: Icons.arrow_forward,
+                          onPressed: () {
+                            context.read<SoundService>().click();
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: kDsGap),
+            DsCard(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Column(
+                children: [
+                  // NOT: Bildirim tercih anahtarları KALDIRILDI (proje henüz
+                  // bildirim paketi içermiyor); gerçek destek eklenince geri
+                  // konabilir. App Store Guideline 2.1: çalışmayan görünür
+                  // özellik reddi sebebidir.
+                  SwitchListTile(
+                    secondary: DsIconBadge(
+                        icon: Icons.cloud_upload_outlined,
+                        color: c.mint,
+                        size: 42,
+                        circle: false,
+                        glow: false),
+                    title: Text('Bulut yedekleme',
+                        style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                    subtitle: Text(
+                        'Açıkken test sonuçların, rozetlerin ve çalışma sürelerin '
+                        'hesabına yedeklenir; yeni cihazda giriş yapınca geri gelir. '
+                        'Kapalıyken hiçbir veri yüklenmez.',
+                        style: TextStyle(fontSize: 12, color: c.textFaint)),
+                    value: cloudBackup,
+                    onChanged: (v) {
+                      storage.setCloudBackupEnabled(v);
+                      ustBildirim(v
+                              ? 'Bulut yedekleme açıldı — ilerlemen bundan sonra hesabına yedeklenecek.'
+                              : 'Bulut yedekleme kapatıldı — yeni veri yüklenmeyecek.');
+                    },
+                  ),
+                  // App Store 5.1.1(v): giriş yapılmışsa hesap silme sunulur.
+                  // Giriş yapılmamışsa buradan giriş ekranına yönlendirilir.
+                  if (!girisYapildi)
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.login_rounded,
+                          color: c.violet,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Giriş Yap',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                      subtitle: Text(
+                          'Hesabınla giriş yap; ilerlemeni taşı, sohbet ve düelloya katıl.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () {
+                        context.read<SoundService>().click();
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const AccountLoginScreen(),
+                        ));
+                      },
+                    ),
+                  if (girisYapildi) ...[
+                    Divider(height: 1, color: c.border),
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.logout_rounded,
+                          color: c.violetL,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Çıkış Yap',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
+                      subtitle: Text(
+                          'Hesabından çıkarsın. Cihazdaki ilerlemen silinmez.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () => _cikisYap(),
+                    ),
+                    Divider(height: 1, color: c.border),
+                    ListTile(
+                      leading: DsIconBadge(
+                          icon: Icons.person_remove_outlined,
+                          color: c.danger,
+                          size: 42,
+                          circle: false,
+                          glow: false),
+                      title: Text('Hesabımı Sil',
+                          style: TextStyle(fontWeight: FontWeight.w700, color: c.danger)),
+                      subtitle: Text(
+                          'Hesabını ve tüm verilerini kalıcı olarak siler. Geri alınamaz.',
+                          style: TextStyle(fontSize: 12, color: c.textFaint)),
+                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
+                      onTap: () => _hesabiSil(storage),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+
             // ── GÖRÜNÜM ─────────────────────────────────────────────────
+            const SizedBox(height: 20),
             DsSectionHeader(
                 title: premium ? '🎨 Görünüm (9/9 tema açık)' : '🎨 Görünüm (3/9 tema açık)'),
             const SizedBox(height: 8),
@@ -520,29 +588,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Tam 3 sütun (satırda 3 tema): kartın sabit genişliği yerine
-                  // kullanılabilir genişliği 3'e bölüp her kartı o genişliğe
-                  // sabitliyoruz — böylece 9 tema düzgün 3x3 dizilir.
+                  // TEK SATIR, YANA KAYDIRMALI (kullanıcı isteği): kart boyutu
+                  // eski 3x3 dizilimdekiyle aynı kalır (genişlik/3'e yakın),
+                  // 9 tema tek satırda yatay kaydırılır. Sağ kenardaki tema
+                  // yarım ve SİLİK görünsün diye sağa doğru solma maskesi
+                  // (ShaderMask) uygulanır — böylece kullanıcı sağa
+                  // kaydırabileceğini anlar.
                   LayoutBuilder(
                     builder: (context, constraints) {
                       const bosluk = 10.0;
+                      // ~3.3 kart görünür: 3 tam + sağda yarım (silik) peek.
                       final kartGenislik =
-                          (constraints.maxWidth - bosluk * 2) / 3;
-                      return Wrap(
-                        spacing: bosluk,
-                        runSpacing: bosluk,
-                        children: [
-                          for (final entry in kThemes.entries)
-                            SizedBox(
-                              width: kartGenislik,
-                              child: _ThemeSwatch(
-                                colors: entry.value,
-                                active: themeProvider.themeId == entry.key,
-                                locked: !premium && !kFreeThemeIds.contains(entry.key),
-                                onTap: () async {
+                          (constraints.maxWidth - bosluk * 3) / 3.3;
+                      return SizedBox(
+                        height: 108,
+                        child: ShaderMask(
+                          shaderCallback: (rect) => const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [Colors.white, Colors.white, Colors.transparent],
+                            stops: [0.0, 0.80, 1.0],
+                          ).createShader(rect),
+                          blendMode: BlendMode.dstIn,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            padding: EdgeInsets.zero,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: kThemes.length,
+                            itemBuilder: (context, i) {
+                              final entry = kThemes.entries.elementAt(i);
+                              return Container(
+                                width: kartGenislik,
+                                margin: const EdgeInsets.only(right: bosluk),
+                                child: _ThemeSwatch(
+                                  colors: entry.value,
+                                  active: themeProvider.themeId == entry.key,
+                                  locked: !premium && !kFreeThemeIds.contains(entry.key),
+                                  onTap: () async {
                             context.read<SoundService>().click();
                             final ok = await themeProvider.setTheme(entry.key);
-                            if (!mounted) return;
+                            if (!context.mounted) return;
                             if (!ok) {
                               Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
@@ -561,11 +646,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             );
                                   },
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                   if (!premium) ...[
                     const SizedBox(height: 12),
                     Text(
@@ -666,100 +753,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
 
-            // ── TEST SÜRESİ ─────────────────────────────────────────────
-            const SizedBox(height: 20),
-            const DsSectionHeader(title: '⏱️ Deneme Sınavı Süresi'),
-            const SizedBox(height: 8),
-            DsCard(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Bu ayar 120 soruluk KPSS genel deneme sınavı için geçerlidir. '
-                    'Konu testlerinde süre sınırı yoktur — istediğin kadar '
-                    'düşünebilirsin. Sınava girerken süre artık sorulmaz.',
-                    style: TextStyle(fontSize: 12.5, height: 1.35, color: c.textFaint),
-                  ),
-                  const SizedBox(height: 12),
-                  const Text('Süre hesaplama modu', style: TextStyle(fontWeight: FontWeight.w700)),
-                  const SizedBox(height: 10),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 8,
-                    children: [
-                      _ChoiceButton(
-                        label: '🤖 Otomatik',
-                        selected: timerMode == 'auto',
-                        onTap: () => _setTimerMode(storage, 'auto', 'Otomatik süre modu seçildi.'),
-                      ),
-                      _ChoiceButton(
-                        label: '✏️ Soru başına saniye',
-                        selected: timerMode == 'perq',
-                        onTap: () => _setTimerMode(storage, 'perq', 'Soru başına süre modu seçildi.'),
-                      ),
-                      _ChoiceButton(
-                        label: '♾️ Süresiz',
-                        selected: timerMode == 'off',
-                        onTap: () => _setTimerMode(storage, 'off', 'Süresiz mod seçildi.'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 14),
-                  // "Soru başına saniye" bölümü — sadece o mod seçiliyken aktif.
-                  Opacity(
-                    opacity: timerMode == 'perq' ? 1 : 0.4,
-                    child: IgnorePointer(
-                      ignoring: timerMode != 'perq',
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Her soru için süre:',
-                              style: TextStyle(fontSize: 12.5, color: c.textFaint)),
-                          const SizedBox(height: 10),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: [
-                              for (final n in kSureOnayarlariSn)
-                                _ChoiceButton(
-                                  label: '$n sn',
-                                  selected: secsPerQ == n,
-                                  onTap: () => _setSecsPerQ(storage, n),
-                                ),
-                              _ChoiceButton(
-                                label: kSureOnayarlariSn.contains(secsPerQ)
-                                    ? '⌨️ Kendim gireyim'
-                                    : '⌨️ $secsPerQ sn',
-                                selected: !kSureOnayarlariSn.contains(secsPerQ),
-                                onTap: () => _ozelSureGir(storage, secsPerQ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  // Seçilen ayarın pratikte ne anlama geldiğini açıkla.
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: c.violetL.withValues(alpha: 0.12),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: c.border),
-                    ),
-                    child: Text(
-                      _sureAciklamasi(timerMode, secsPerQ),
-                      style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textDim),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // ── SORU CEVAP ──────────────────────────────────────────────
             const SizedBox(height: 20),
             // ── SINAV TÜRÜ ──────────────────────────────────────────────
             // Gireceğin KPSS sınavı. Seçim tüm uygulamada geçerli
@@ -857,172 +850,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     'sonraki soruya geçilir; açıklamalar sınav sonunda görünür.',
                     style: TextStyle(fontSize: 11.5, height: 1.35, color: c.textFaint),
                   ),
-                ],
-              ),
-            ),
-
-            // ── HESAP ───────────────────────────────────────────────────
-            const SizedBox(height: 20),
-            const DsSectionHeader(title: '👤 Hesap'),
-            const SizedBox(height: 8),
-            DsCard(
-              accent: premium ? c.gold : null,
-              padding: const EdgeInsets.all(14),
-              child: Row(
-                children: [
-                  DsIconBadge(
-                      emoji: '💎', color: c.gold, size: 42, circle: false, glow: false),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          children: [
-                            Text('Planın:',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w800, fontSize: 14, color: c.text)),
-                            const SizedBox(width: 8),
-                            DsChip(
-                              label: premium ? 'PREMIUM' : 'ÜCRETSİZ',
-                              color: premium ? c.gold : c.textDim,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          'Premium paketinde detaylı grafikler, özel testler ve VIP ayrıcalıklar yer alır.',
-                          style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
-                        ),
-                        const SizedBox(height: 12),
-                        DsPillButton(
-                          label: 'Ayrıntıları Gör',
-                          color: c.gold,
-                          trailingIcon: Icons.arrow_forward,
-                          onPressed: () {
-                            context.read<SoundService>().click();
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: kDsGap),
-            DsCard(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Column(
-                children: [
-                  // NOT: Buradaki "Hatırlatma bildirimleri" ve "Güncelleme
-                  // bildirimleri" anahtarları KALDIRILDI. Sebebi: projede
-                  // hiçbir bildirim paketi yok (flutter_local_notifications /
-                  // firebase_messaging kurulu değil) ve kaydedilen tercihler
-                  // ('reminders' / 'updates') kod tabanında hiçbir yerden
-                  // okunmuyordu — yani kullanıcı "günlük hatırlatıcı al" diyor,
-                  // hiçbir bildirim asla gelmiyordu. Çalışmayan görünür özellik
-                  // App Store Guideline 2.1 reddi sebebidir.
-                  // Gerçek bildirim desteği eklendiğinde buraya geri konabilir.
-                  SwitchListTile(
-                    secondary: DsIconBadge(
-                        icon: Icons.cloud_upload_outlined,
-                        color: c.mint,
-                        size: 42,
-                        circle: false,
-                        glow: false),
-                    title: Text('Bulut yedekleme',
-                        style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                    subtitle: Text(
-                        'Açıkken test sonuçların, rozetlerin ve çalışma sürelerin '
-                        'hesabına yedeklenir; yeni cihazda giriş yapınca geri gelir. '
-                        'Kapalıyken hiçbir veri yüklenmez.',
-                        style: TextStyle(fontSize: 12, color: c.textFaint)),
-                    value: cloudBackup,
-                    onChanged: (v) {
-                      // Bu anahtar GERÇEKTEN yedeklemeyi denetler:
-                      // CloudSyncService.syncUp kapalıyken hiçbir şey yüklemez.
-                      // (Eskiden bu kontrol yoktu ve ayar kapalı olsa bile veri
-                      // buluta gidiyordu.)
-                      storage.setCloudBackupEnabled(v);
-                      ustBildirim(v
-                              ? 'Bulut yedekleme açıldı — ilerlemen bundan sonra hesabına yedeklenecek.'
-                              : 'Bulut yedekleme kapatıldı — yeni veri yüklenmeyecek.');
-                    },
-                  ),
-                  // App Store İnceleme Kuralı 5.1.1(v): hesap oluşturmayı
-                  // destekleyen uygulamalar hesabın UYGULAMA İÇİNDEN
-                  // silinmesini de sunmak zorundadır.
-                  //
-                  // Yalnızca GİRİŞ YAPMIŞ kullanıcıda gösteriliyor: giriş
-                  // yapılmamışken ortada silinecek bir hesap yoktur, seçenek
-                  // yalnızca kafa karıştırır. (Yerel ilerlemeyi temizlemek
-                  // isteyen kullanıcı için uygulamayı kaldırmak yeterli.)
-                  // Giriş YAPILMAMIŞSA: giriş ekranına yönlendiren tek giriş
-                  // noktası. Sohbet ekranından giriş butonları KALDIRILDI;
-                  // giriş artık yalnızca buradan (ve buranın açtığı ekrandan)
-                  // yapılıyor.
-                  if (!girisYapildi)
-                    ListTile(
-                      leading: DsIconBadge(
-                          icon: Icons.login_rounded,
-                          color: c.violet,
-                          size: 42,
-                          circle: false,
-                          glow: false),
-                      title: Text('Giriş Yap',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                      subtitle: Text(
-                          'Hesabınla giriş yap; ilerlemeni taşı, sohbet ve düelloya katıl.',
-                          style: TextStyle(fontSize: 12, color: c.textFaint)),
-                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
-                      onTap: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => const AccountLoginScreen(),
-                        ));
-                      },
-                    ),
-                  if (girisYapildi) ...[
-                    Divider(height: 1, color: c.border),
-                    // "Çıkış Yap", "Hesabımı Sil"in ÜSTÜNDE duruyor: ikisi de
-                    // hesapla ilgili ama biri geri alınabilir, diğeri değil.
-                    // Yıkıcı olanı en alta koymak yanlışlıkla dokunma riskini
-                    // azaltır.
-                    ListTile(
-                      leading: DsIconBadge(
-                          icon: Icons.logout_rounded,
-                          color: c.violetL,
-                          size: 42,
-                          circle: false,
-                          glow: false),
-                      title: Text('Çıkış Yap',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: c.text)),
-                      subtitle: Text(
-                          'Hesabından çıkarsın. Cihazdaki ilerlemen silinmez.',
-                          style: TextStyle(fontSize: 12, color: c.textFaint)),
-                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
-                      onTap: () => _cikisYap(),
-                    ),
-                    Divider(height: 1, color: c.border),
-                    ListTile(
-                      leading: DsIconBadge(
-                          icon: Icons.person_remove_outlined,
-                          color: c.danger,
-                          size: 42,
-                          circle: false,
-                          glow: false),
-                      title: Text('Hesabımı Sil',
-                          style: TextStyle(fontWeight: FontWeight.w700, color: c.danger)),
-                      subtitle: Text(
-                          'Hesabını ve tüm verilerini kalıcı olarak siler. Geri alınamaz.',
-                          style: TextStyle(fontSize: 12, color: c.textFaint)),
-                      trailing: Icon(Icons.chevron_right, size: 18, color: c.textFaint),
-                      onTap: () => _hesabiSil(storage),
-                    ),
-                  ],
                 ],
               ),
             ),
@@ -1354,34 +1181,6 @@ class _ThemeSwatch extends StatelessWidget {
   }
 }
 
-class _ChoiceButton extends StatelessWidget {
-  final String label;
-  final bool selected;
-  final VoidCallback onTap;
-  const _ChoiceButton({required this.label, required this.selected, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    // Bazı temalarda (ör. Kraliyet Altını) `primary` parlak/açık bir renk
-    // olabiliyor; sabit beyaz metin böyle durumlarda okunaksız kalıyordu.
-    // Arka planın parlaklığına göre kontrast rengi hesaplanır.
-    final onPrimary = ThemeData.estimateBrightnessForColor(scheme.primary) == Brightness.dark
-        ? Colors.white
-        : Colors.black87;
-    return selected
-        ? ElevatedButton(
-            onPressed: onTap,
-            style: ElevatedButton.styleFrom(backgroundColor: scheme.primary, foregroundColor: onPrimary),
-            child: Text(label),
-          )
-        : OutlinedButton(
-            onPressed: onTap,
-            child: Text(label),
-          );
-  }
-}
-
 /// Başlık + altında soluk açıklama içeren, seçili durumu belirgin radyo satırı.
 /// Uzun açıklamalar satır satır sarar; taşma olmaz.
 class _RadioSecenek extends StatelessWidget {
@@ -1447,118 +1246,6 @@ class _RadioSecenek extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-/// Kullanıcının kendi "soru başına saniye" değerini yazdığı küçük pencere.
-///
-/// Preset'ler ([kSureOnayarlariSn]) çoğu kullanıcıya yeter; daha uzun/kısa
-/// süre isteyenler buradan [_kMinSnPerQ]–[_kMaxSnPerQ] aralığında değer girer.
-class _OzelSureDialog extends StatefulWidget {
-  final int mevcut;
-  const _OzelSureDialog({required this.mevcut});
-
-  @override
-  State<_OzelSureDialog> createState() => _OzelSureDialogState();
-}
-
-class _OzelSureDialogState extends State<_OzelSureDialog> {
-  late final TextEditingController _ctrl;
-  String? _hata;
-
-  @override
-  void initState() {
-    super.initState();
-    _ctrl = TextEditingController(text: '${widget.mevcut}');
-  }
-
-  @override
-  void dispose() {
-    _ctrl.dispose();
-    super.dispose();
-  }
-
-  /// Girilen değeri doğrular; geçersizse `null` döner ve hatayı gösterir.
-  int? _dogrula() {
-    final ham = _ctrl.text.trim();
-    if (ham.isEmpty) {
-      setState(() => _hata = 'Lütfen bir süre gir.');
-      return null;
-    }
-    final sn = int.tryParse(ham);
-    if (sn == null) {
-      setState(() => _hata = 'Sadece rakam gir.');
-      return null;
-    }
-    if (sn < _kMinSnPerQ) {
-      setState(() => _hata = 'En az $_kMinSnPerQ saniye olmalı.');
-      return null;
-    }
-    if (sn > _kMaxSnPerQ) {
-      setState(() => _hata = 'En fazla $_kMaxSnPerQ saniye girebilirsin.');
-      return null;
-    }
-    return sn;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    final sn = int.tryParse(_ctrl.text.trim());
-    return AlertDialog(
-      title: const Text('⌨️ Soru başına süre'),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Her soru için kaç saniye ayrılsın? ($_kMinSnPerQ–$_kMaxSnPerQ sn)',
-              style: TextStyle(fontSize: 12.5, color: c.textDim),
-            ),
-            const SizedBox(height: 14),
-            TextField(
-              controller: _ctrl,
-              keyboardType: TextInputType.number,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(3),
-              ],
-              autofocus: true,
-              decoration: InputDecoration(
-                labelText: 'Soru başına süre',
-                border: const OutlineInputBorder(),
-                errorText: _hata,
-                suffixText: 'sn',
-              ),
-              onChanged: (_) => setState(() => _hata = null),
-            ),
-            if (sn != null && sn >= _kMinSnPerQ && sn <= _kMaxSnPerQ) ...[
-              const SizedBox(height: 10),
-              Text(
-                '$_kOrnekSoruSayisi soruluk denemede ≈ ${_sureMetni(_kOrnekSoruSayisi * sn)}\n'
-                'Toplam süre $kMinTestDakika–$kMaxTestDakika dk aralığında tutulur.',
-                style: TextStyle(fontSize: 12, height: 1.35, color: c.textFaint),
-              ),
-            ],
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('Vazgeç'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            final d = _dogrula();
-            if (d == null) return;
-            Navigator.pop(context, d);
-          },
-          child: const Text('Kaydet'),
-        ),
-      ],
     );
   }
 }

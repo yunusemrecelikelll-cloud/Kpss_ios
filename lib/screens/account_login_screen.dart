@@ -227,102 +227,215 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
     final auth = context.watch<AuthService>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Hesap')),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // ── Temaya uygun gradyanlı hero ──
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        c.violet.withValues(alpha: 0.28),
-                        c.violetL.withValues(alpha: 0.10),
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(22),
-                    border: Border.all(color: c.violetL.withValues(alpha: 0.35)),
-                  ),
-                  child: Column(
-                    children: [
-                      DsIllustration(emoji: '🔐', glowColor: c.violetL),
-                      const SizedBox(height: 14),
-                      Text('Hesabınla devam et',
-                          style: TextStyle(
-                              fontSize: 21, fontWeight: FontWeight.w900, color: c.text)),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Giriş yap; ilerlemen buluta yedeklensin, cihaz değiştirsen '
-                        'de kaldığın yerden devam et.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
-                      ),
-                      const SizedBox(height: 16),
-                      Wrap(
-                        alignment: WrapAlignment.center,
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          _AvantajCipi(c: c, emoji: '☁️', metin: 'Bulut yedek'),
-                          _AvantajCipi(c: c, emoji: '💬', metin: 'Sohbet'),
-                          _AvantajCipi(c: c, emoji: '⚔️', metin: 'Düello'),
-                          _AvantajCipi(c: c, emoji: '🎁', metin: 'Davet ödülü'),
+      // AppBar zemini şeffaf — arkadaki profesyonel gradyan yukarı kadar aksın.
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text('Hesap'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      // ── Profesyonel, temaya uygun geçişli (gradyan) arka plan ──
+      // Üstte hafif mor parıltı, ortada zemin, altta ikincil zemin +
+      // gül/altın tonundan çok ince bir sıcaklık — sade beyaz yerine derin,
+      // kurumsal bir his verir.
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              c.violet.withValues(alpha: 0.30),
+              c.bg,
+              c.bg2,
+              c.violetL.withValues(alpha: 0.14),
+            ],
+            stops: const [0.0, 0.34, 0.72, 1.0],
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // ── Temaya uygun gradyanlı hero (kullanıcı: "bu tasarım güzel") ──
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          c.violet.withValues(alpha: 0.34),
+                          c.violetL.withValues(alpha: 0.12),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 28),
-                if (_busy)
-                  const Padding(
-                    padding: EdgeInsets.all(12),
-                    child: CircularProgressIndicator(),
-                  )
-                else ...[
-                  SizedBox(
-                    width: 300,
-                    child: DsPillButton(
-                      label: 'Google ile Giriş Yap',
-                      color: c.violet,
-                      leadingIcon: Icons.g_mobiledata_rounded,
-                      onPressed: () => _signIn(auth.signInWithGoogle),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: c.violetL.withValues(alpha: 0.40)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: c.violet.withValues(alpha: 0.22),
+                          blurRadius: 26,
+                          offset: const Offset(0, 12),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        DsIllustration(emoji: '🔐', glowColor: c.violetL),
+                        const SizedBox(height: 14),
+                        Text('Hesabınla devam et',
+                            style: TextStyle(
+                                fontSize: 21, fontWeight: FontWeight.w900, color: c.text)),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Giriş yap; ilerlemen buluta yedeklensin, cihaz değiştirsen '
+                          'de kaldığın yerden devam et.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
+                        ),
+                        const SizedBox(height: 16),
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            _AvantajCipi(c: c, emoji: '☁️', metin: 'Bulut yedek'),
+                            _AvantajCipi(c: c, emoji: '💬', metin: 'Sohbet'),
+                            _AvantajCipi(c: c, emoji: '⚔️', metin: 'Düello'),
+                            _AvantajCipi(c: c, emoji: '🎁', metin: 'Davet ödülü'),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  if (auth.isAppleSignInAvailable) ...[
-                    const SizedBox(height: 12),
+                  const SizedBox(height: 26),
+                  if (_busy)
+                    const Padding(
+                      padding: EdgeInsets.all(12),
+                      child: CircularProgressIndicator(),
+                    )
+                  else ...[
+                    // ── "Giriş Seçenekleri" ayıracı (butonların üstünde) ──
                     SizedBox(
-                      width: 300,
-                      // DÜZELTİLDİ: dolu (filled) buton koyu temada c.text
-                      // beyaza yakın olduğu için beyaz yazıyla birleşip
-                      // okunmuyordu. Dış çizgili stilde yazı/simge vurgu
-                      // renginin kendisi olur — her temada zeminle kontrastlı.
-                      child: DsPillButton(
-                        label: 'Apple ile Giriş Yap',
-                        color: c.text,
-                        filled: false,
-                        leadingIcon: Icons.apple,
-                        onPressed: () => _signIn(auth.signInWithApple),
+                      width: 320,
+                      child: Row(
+                        children: [
+                          Expanded(child: Divider(color: c.border, thickness: 1)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            child: Text(
+                              'Giriş Seçenekleri',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: 0.5,
+                                color: c.textFaint,
+                              ),
+                            ),
+                          ),
+                          Expanded(child: Divider(color: c.border, thickness: 1)),
+                        ],
                       ),
                     ),
+                    const SizedBox(height: 16),
+                    // ── Google: markaya uygun BEYAZ buton + gerçek Google "G" logosu ──
+                    _SosyalGirisButonu(
+                      logo: const _GoogleLogo(size: 22),
+                      label: 'Google ile devam et',
+                      arkaPlan: Colors.white,
+                      yazi: const Color(0xFF1F1F1F),
+                      kenar: const Color(0xFFDADCE0),
+                      onPressed: () => _signIn(auth.signInWithGoogle),
+                    ),
+                    if (auth.isAppleSignInAvailable) ...[
+                      const SizedBox(height: 12),
+                      // ── Apple: markaya uygun SİYAH buton + Apple logosu ──
+                      _SosyalGirisButonu(
+                        logo: const Icon(Icons.apple, color: Colors.white, size: 26),
+                        label: 'Apple ile devam et',
+                        arkaPlan: const Color(0xFF000000),
+                        yazi: Colors.white,
+                        onPressed: () => _signIn(auth.signInWithApple),
+                      ),
+                    ],
                   ],
+                  const SizedBox(height: 18),
+                  Text(
+                    'Hesabın yoksa endişelenme — ilk girişte otomatik oluşturulur.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                  ),
+                  const SizedBox(height: 22),
+                  // ── Davet kodum var (kullanıcı isteği) ──
+                  SizedBox(width: 320, child: _DavetKoduBolumu()),
                 ],
-                const SizedBox(height: 20),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Google / Apple gibi kimlik sağlayıcıları için MARKAYA UYGUN giriş butonu:
+/// solda gerçek logo, ortada net etiket, marka renkleri (beyaz/siyah) — her
+/// temada aynı görünür, App Store/Play marka kılavuzlarına uyar ve profesyonel
+/// durur.
+class _SosyalGirisButonu extends StatelessWidget {
+  final Widget logo;
+  final String label;
+  final Color arkaPlan;
+  final Color yazi;
+  final Color? kenar;
+  final VoidCallback onPressed;
+
+  const _SosyalGirisButonu({
+    required this.logo,
+    required this.label,
+    required this.arkaPlan,
+    required this.yazi,
+    required this.onPressed,
+    this.kenar,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 320,
+      height: 54,
+      child: Material(
+        color: arkaPlan,
+        borderRadius: BorderRadius.circular(14),
+        elevation: 2,
+        shadowColor: Colors.black.withValues(alpha: 0.25),
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              border: kenar != null ? Border.all(color: kenar!, width: 1.2) : null,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                logo,
+                const SizedBox(width: 12),
                 Text(
-                  'Hesabın yoksa endişelenme — ilk girişte otomatik oluşturulur.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                  label,
+                  style: TextStyle(
+                    fontSize: 15.5,
+                    fontWeight: FontWeight.w700,
+                    color: yazi,
+                    letterSpacing: 0.2,
+                  ),
                 ),
-                const SizedBox(height: 22),
-                // ── Davet kodum var (kullanıcı isteği) ──
-                SizedBox(width: 320, child: _DavetKoduBolumu()),
               ],
             ),
           ),
@@ -330,6 +443,98 @@ class _AccountLoginScreenState extends State<AccountLoginScreen> {
       ),
     );
   }
+}
+
+/// Gerçek Google "G" logosu — 4 renkli resmî vektör (dört ayrı yol).
+/// İnternet/asset gerekmeden, offline uygulamada da net çizilir.
+class _GoogleLogo extends StatelessWidget {
+  final double size;
+  const _GoogleLogo({required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CustomPaint(painter: _GoogleLogoPainter()),
+    );
+  }
+}
+
+class _GoogleLogoPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double w = size.width;
+    final double h = size.height;
+    final Paint paint = Paint()..style = PaintingStyle.fill;
+
+    // Mavi
+    paint.color = const Color(0xFF4285F4);
+    canvas.drawPath(
+      Path()
+        ..moveTo(w * 0.9505, h * 0.5115)
+        ..cubicTo(w * 0.9505, h * 0.4771, w * 0.9474, h * 0.444, w * 0.9417, h * 0.4122)
+        ..lineTo(w * 0.5, h * 0.4122)
+        ..lineTo(w * 0.5, h * 0.5992)
+        ..lineTo(w * 0.7642, h * 0.5992)
+        ..cubicTo(w * 0.7528, h * 0.6606, w * 0.7182, h * 0.7126, w * 0.6668, h * 0.7474)
+        ..lineTo(w * 0.6668, h * 0.8677)
+        ..lineTo(w * 0.8218, h * 0.8677)
+        ..cubicTo(w * 0.9125, h * 0.784, w * 0.9505, h * 0.6606, w * 0.9505, h * 0.5115)
+        ..close(),
+      paint,
+    );
+
+    // Yeşil
+    paint.color = const Color(0xFF34A853);
+    canvas.drawPath(
+      Path()
+        ..moveTo(w * 0.5, h)
+        ..cubicTo(w * 0.6353, h, w * 0.7488, h * 0.9551, w * 0.8218, h * 0.8677)
+        ..lineTo(w * 0.6668, h * 0.7474)
+        ..cubicTo(w * 0.6238, h * 0.7763, w * 0.5688, h * 0.7936, w * 0.5, h * 0.7936)
+        ..cubicTo(w * 0.3695, h * 0.7936, w * 0.259, h * 0.7054, w * 0.2196, h * 0.5868)
+        ..lineTo(w * 0.0593, h * 0.5868)
+        ..lineTo(w * 0.0593, h * 0.711)
+        ..cubicTo(w * 0.1319, h * 0.8551, w * 0.2811, h, w * 0.5, h)
+        ..close(),
+      paint,
+    );
+
+    // Sarı
+    paint.color = const Color(0xFFFBBC05);
+    canvas.drawPath(
+      Path()
+        ..moveTo(w * 0.2196, h * 0.5868)
+        ..cubicTo(w * 0.2096, h * 0.5579, w * 0.2039, h * 0.527, w * 0.2039, h * 0.4952)
+        ..cubicTo(w * 0.2039, h * 0.4634, w * 0.2096, h * 0.4325, w * 0.2196, h * 0.4036)
+        ..lineTo(w * 0.2196, h * 0.2794)
+        ..lineTo(w * 0.0593, h * 0.2794)
+        ..cubicTo(w * 0.0215, h * 0.3542, w * 0, h * 0.4227, w * 0, h * 0.4952)
+        ..cubicTo(w * 0, h * 0.5677, w * 0.0215, h * 0.6362, w * 0.0593, h * 0.711)
+        ..lineTo(w * 0.2196, h * 0.5868)
+        ..close(),
+      paint,
+    );
+
+    // Kırmızı
+    paint.color = const Color(0xFFEA4335);
+    canvas.drawPath(
+      Path()
+        ..moveTo(w * 0.5, h * 0.1968)
+        ..cubicTo(w * 0.5738, h * 0.1968, w * 0.64, h * 0.2221, w * 0.6921, h * 0.2718)
+        ..lineTo(w * 0.8305, h * 0.1334)
+        ..cubicTo(w * 0.7484, h * 0.0569, w * 0.6353, h * 0, w * 0.5, h * 0)
+        ..cubicTo(w * 0.2811, h * 0, w * 0.1319, h * 0.1449, w * 0.0593, h * 0.2794)
+        ..lineTo(w * 0.2196, h * 0.4036)
+        ..cubicTo(w * 0.259, h * 0.285, w * 0.3695, h * 0.1968, w * 0.5, h * 0.1968)
+        ..close(),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 /// Giriş ekranındaki "Davet kodum var" bölümü: kullanıcı önce kodu girer,

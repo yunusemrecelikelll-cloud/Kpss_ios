@@ -21,10 +21,11 @@ import '../utils/exam_dates.dart';
 import '../utils/ust_bildirim.dart';
 
 /// Anasayfa "Davet Et & Kazan" kartı (kullanıcı isteği):
-/// - Kullanıcının kendi davet kodu + kopyala/paylaş.
+/// - Kullanıcının kendi davet kodu + kopyala/görsel paylaş.
 /// - "Nasıl yapılır" adımları.
-/// - Her davetten kazanılanlar: **+50 hak** ve **1 gün premium**.
-/// - Şu ana kadar davetlerden kazanılan toplam (kişi + hak).
+/// - Her yeni davette HEM davet edene HEM de kod ile giren yeni hesaba
+///   **1 gün premium** (davet edende BİRİKİR: 3 kişi = 3 gün).
+/// - Şu ana kadar davetlerden kazanılan toplam (kişi + kazanılan gün).
 /// - Bonus premium KALAN süresi (saat:dakika, canlı sayar).
 ///
 /// Yalnızca GİRİŞ YAPMIŞ kullanıcıda anlamlıdır (kod hesaba bağlı); giriş yoksa
@@ -278,12 +279,23 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const AccountLoginScreen()));
           },
-          child: Padding(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  c.violet.withValues(alpha: 0.28),
+                  c.gold.withValues(alpha: 0.16),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(kDsRadius),
+            ),
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
                 DsIconBadge(
-                    icon: Icons.card_giftcard_rounded, color: c.gold, size: 40, glow: false),
+                    icon: Icons.card_giftcard_rounded, color: c.gold, size: 42, glow: false),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -291,7 +303,7 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
                     children: [
                       Text('Davet Et & Kazan',
                           style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
+                              fontSize: 15.5, fontWeight: FontWeight.w900, color: c.text)),
                       const SizedBox(height: 2),
                       Text(
                         'Arkadaşını davet et, her ikiniz de 1 gün premium kazanın! '
@@ -311,136 +323,195 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
 
     final kazananSayi = storage.getInviteEarnedCount();
     final premiumKalan = storage.getBonusPremiumRemaining();
+    final premiumAktif = premiumKalan > Duration.zero;
 
     return DsCard(
       accent: c.gold,
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              DsIconBadge(icon: Icons.card_giftcard_rounded, color: c.gold, size: 40, glow: false),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Davet Et & Kazan',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
-                    Text('Her yeni davet: ikinize de 1 gün premium',
-                        style: TextStyle(fontSize: 11.5, color: c.textDim)),
-                  ],
-                ),
+          // ── Gradyanlı başlık şeridi (temaya uygun mor→altın geçiş) ──
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(14, 12, 6, 12),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  c.violet.withValues(alpha: 0.32),
+                  c.gold.withValues(alpha: 0.20),
+                ],
               ),
-              IconButton(
-                icon: Icon(Icons.help_outline_rounded, color: c.violetL),
-                tooltip: 'Nasıl yapılır?',
-                onPressed: () => _nasilYapilir(context),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          // Davet kodu
-          if (_yukleniyor)
-            Center(child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: c.gold)),
-            ))
-          else if (_kod != null)
-            InkWell(
-              onTap: _kopyala,
-              borderRadius: BorderRadius.circular(12),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                decoration: BoxDecoration(
-                  color: c.glass2,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: c.border),
-                ),
-                child: Row(
-                  children: [
-                    Text('Kodun:', style: TextStyle(fontSize: 12.5, color: c.textDim)),
-                    const SizedBox(width: 8),
-                    Text(_kod!,
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w900,
-                            letterSpacing: 4, color: c.text)),
-                    const Spacer(),
-                    Icon(Icons.copy_rounded, size: 18, color: c.violetL),
-                    const SizedBox(width: 4),
-                    Text('Paylaş', style: TextStyle(
-                        fontSize: 12.5, fontWeight: FontWeight.w800, color: c.violetL)),
-                  ],
-                ),
-              ),
-            )
-          else
-            Text('Davet kodu yüklenemedi, internetini kontrol et.',
-                style: TextStyle(fontSize: 12, color: c.textFaint)),
-          if (_kod != null) ...[
-            const SizedBox(height: 10),
-            Row(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(kDsRadius)),
+            ),
+            child: Row(
               children: [
-                Expanded(
-                  child: DsPillButton(
-                    label: 'Görsel Paylaş',
-                    leadingIcon: Icons.ios_share_rounded,
-                    color: c.violetL,
-                    onPressed: _gorselPaylas,
-                  ),
-                ),
+                DsIconBadge(
+                    icon: Icons.card_giftcard_rounded, color: c.gold, size: 42, glow: false),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: DsPillButton(
-                    label: 'Kopyala',
-                    leadingIcon: Icons.copy_rounded,
-                    color: c.violetL,
-                    filled: false,
-                    onPressed: _kopyala,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Davet Et & Kazan',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w900, color: c.text)),
+                      const SizedBox(height: 1),
+                      Text('Her yeni davet: ikinize de 1 gün premium',
+                          style: TextStyle(fontSize: 11.5, color: c.textDim)),
+                    ],
                   ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.help_outline_rounded, color: c.violetL),
+                  tooltip: 'Nasıl yapılır?',
+                  onPressed: () => _nasilYapilir(context),
                 ),
               ],
             ),
-          ],
-          const SizedBox(height: 12),
-          // Kazanımlar + kalan premium
-          Row(
-            children: [
-              Expanded(
-                child: _ozet(c, '👥', '$kazananSayi kişi',
-                    '$kazananSayi gün premium kazandın'),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: premiumKalan > Duration.zero
-                    ? _ozet(c, '💎', 'Premium aktif', 'Kalan: ${_kalanSure(premiumKalan)}')
-                    : _ozet(c, '💎', 'Premium yok', 'Davet et, 1 gün kazan'),
-              ),
-            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ── Davet kodu (altın tonlu, öne çıkan kutu) ──
+                if (_yukleniyor)
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2, color: c.gold)),
+                    ),
+                  )
+                else if (_kod != null)
+                  InkWell(
+                    onTap: _kopyala,
+                    borderRadius: BorderRadius.circular(14),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            c.gold.withValues(alpha: 0.18),
+                            c.violetL.withValues(alpha: 0.10),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: c.gold.withValues(alpha: 0.45)),
+                      ),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('DAVET KODUN',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w800,
+                                      letterSpacing: 1.5,
+                                      color: c.textFaint)),
+                              const SizedBox(height: 2),
+                              Text(_kod!,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w900,
+                                      letterSpacing: 5,
+                                      color: c.text)),
+                            ],
+                          ),
+                          const Spacer(),
+                          Icon(Icons.copy_rounded, size: 18, color: c.violetL),
+                          const SizedBox(width: 4),
+                          Text('Kopyala',
+                              style: TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w800,
+                                  color: c.violetL)),
+                        ],
+                      ),
+                    ),
+                  )
+                else
+                  Text('Davet kodu yüklenemedi, internetini kontrol et.',
+                      style: TextStyle(fontSize: 12, color: c.textFaint)),
+                if (_kod != null) ...[
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: DsPillButton(
+                          label: 'Görsel Paylaş',
+                          leadingIcon: Icons.ios_share_rounded,
+                          color: c.gold,
+                          onPressed: _gorselPaylas,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: DsPillButton(
+                          label: 'Kopyala',
+                          leadingIcon: Icons.copy_rounded,
+                          color: c.violetL,
+                          filled: false,
+                          onPressed: _kopyala,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+                const SizedBox(height: 12),
+                // ── Kazanımlar + kalan premium (temaya uygun tonlu rozetler) ──
+                Row(
+                  children: [
+                    Expanded(
+                      child: _ozet(c, '👥', '$kazananSayi kişi',
+                          '$kazananSayi gün premium kazandın', c.violetL),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: premiumAktif
+                          ? _ozet(c, '💎', 'Premium aktif',
+                              'Kalan: ${_kalanSure(premiumKalan)}', c.gold)
+                          : _ozet(c, '💎', 'Premium yok',
+                              'Davet et, 1 gün kazan', c.gold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _ozet(dynamic c, String emoji, String ust, String alt) {
+  Widget _ozet(dynamic c, String emoji, String ust, String alt, Color renk) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
       decoration: BoxDecoration(
-        color: c.glass,
+        color: renk.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: renk.withValues(alpha: 0.30)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('$emoji $ust',
-              maxLines: 1, overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: c.text)),
           const SizedBox(height: 2),
           Text(alt,
-              maxLines: 1, overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 11, color: c.textDim)),
         ],
       ),
