@@ -6,6 +6,7 @@ import '../models/subject.dart';
 import '../data/kategori_eslestirme_data.dart';
 import '../games/solitaire_engine.dart';
 import '../services/sound_service.dart';
+import '../services/ad_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
@@ -251,6 +252,8 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
   bool _booted = false;
   bool _finished = false;
   bool _lost = false;
+  // Oyun sonu geçiş reklamı bir kez gösterilsin (premium hariç).
+  bool _sonReklamGosterildi = false;
 
   /// Bu oyuncunun güncel coin/altın bakiyesi (StorageService ile senkron).
   int _coins = 0;
@@ -367,6 +370,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
       _booted = true;
       _finished = false;
       _lost = false;
+      _sonReklamGosterildi = false;
       _kazanilanCoin = 0;
       _coins = storage.getSolitaireCoins();
       _flashKategori = null;
@@ -386,6 +390,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
       _locked = false;
       _finished = false;
       _lost = false;
+      _sonReklamGosterildi = false;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
@@ -713,6 +718,17 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
     final c = context.watch<ThemeProvider>().colors;
     final vurgu = kazandi ? c.mint : c.rose;
     final kurtarilabilir = !kazandi && _coins >= kMarketFiyat;
+
+    // Oyun sonu KISA geçiş reklamı (premium hariç) — bir kez. Bu ekran
+    // GameResultScreen kullanmadığı için reklam elle tetiklenir.
+    if (!_sonReklamGosterildi) {
+      _sonReklamGosterildi = true;
+      final premium = context.read<StorageService>().isPremiumUser();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // ignore: unawaited_futures
+        AdService.instance.gecisReklamiGoster(premium: premium);
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(title: const Text('🃏 Eşleştirme Solitaire')),

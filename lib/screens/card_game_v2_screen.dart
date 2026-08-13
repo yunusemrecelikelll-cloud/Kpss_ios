@@ -5,6 +5,7 @@ import '../models/subject.dart';
 import '../games/card_game_engine.dart' show ciftRengi, kYanlisRengi;
 import '../games/card_game_v2_engine.dart';
 import '../services/sound_service.dart';
+import '../services/ad_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
@@ -489,13 +490,23 @@ class _V2PlayScreenState extends State<_V2PlayScreen> with TickerProviderStateMi
       Future.delayed(const Duration(milliseconds: 500), () {
         if (!mounted) return;
         setState(() => _passed = true);
+        _oyunSonuReklami();
       });
     } else if (_engine.isFailed) {
       Future.delayed(const Duration(milliseconds: 500), () {
         if (!mounted) return;
         setState(() => _passed = false);
+        _oyunSonuReklami();
       });
     }
+  }
+
+  /// Oyun sonunda KISA geçiş reklamı (premium hariç) — bu ekran GameResultScreen
+  /// kullanmadığı için reklamı elle tetikler.
+  void _oyunSonuReklami() {
+    final premium = context.read<StorageService>().isPremiumUser();
+    // ignore: unawaited_futures
+    AdService.instance.gecisReklamiGoster(premium: premium);
   }
 
   void _handleTap(String side, int i) {

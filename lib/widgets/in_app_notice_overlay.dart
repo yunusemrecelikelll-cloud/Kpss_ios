@@ -3,14 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart' show anasayfaKokunde, hakPiliGizle, rootNavigatorKey;
-import '../screens/hak_satin_al_screen.dart';
 import '../services/auth_service.dart';
 import '../services/chat_service.dart';
 import '../services/in_app_notice_service.dart';
 import '../services/notification_service.dart';
 import '../services/presence_service.dart';
-import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/theme_provider.dart';
 
@@ -227,54 +224,17 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final storage = context.watch<StorageService>();
     final b = _cizilen;
-    // Global hak göstergesi: premium DEĞİLSE, test AÇIK DEĞİLSE ve anasayfa
-    // kökünde DEĞİLSEK (anasayfa kendi çipini gösterir) sağ üstte küçük bir pil
-    // olarak görünür — kullanıcı nerede olursa olsun hak bakiyesini görür.
-    final hakPiliGoster = !storage.isPremiumUser() && !_servis.testAktif;
+    // NOT: Global "yüzen hak pili" KALDIRILDI (kullanıcı isteği: haklar
+    // göstergesi YALNIZCA anasayfada, kendi üst çipinde görünsün). Diğer
+    // ekranlarda (test/oyun) hak bittiğinde ilgili ekran zaten "Hak Kazan /
+    // Hak Satın Al" yönlendirmesini kendisi gösterir. Böylece pili hiçbir
+    // ekranda AppBar butonlarıyla çakışmaz.
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Stack(
         children: [
           widget.child,
-          if (hakPiliGoster)
-            ValueListenableBuilder<bool>(
-              valueListenable: anasayfaKokunde,
-              builder: (context, kokte, _) {
-                if (kokte) return const SizedBox.shrink();
-                return ValueListenableBuilder<bool>(
-                  valueListenable: hakPiliGizle,
-                  builder: (context, gizle, _) {
-                    if (gizle) return const SizedBox.shrink();
-                    return Positioned(
-                  top: 0,
-                  right: 0,
-                  child: SafeArea(
-                    child: Padding(
-                      // AppBar'ın ALTINA indirildi (kToolbarHeight): sağ üstteki
-                      // pili, ekranların AppBar aksiyon butonlarıyla (bilgi/geri
-                      // yükle/sıfırla vb.) hem GÖRSEL hem DOKUNMA olarak
-                      // çakışıyordu — bu tek değişiklik tüm ekranlarda çakışmayı
-                      // giderir (kullanıcı isteği: çakışan yerleri düzelt).
-                      padding: const EdgeInsets.only(top: kToolbarHeight + 4, right: 10),
-                      child: _GlobalHakPili(
-                        haklar: storage.getHaklar(),
-                        onTap: () {
-                          context.read<SoundService>().click();
-                          rootNavigatorKey.currentState?.push(
-                            MaterialPageRoute(
-                                builder: (_) => const HakSatinAlScreen()),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                    );
-                  },
-                );
-              },
-            ),
           if (b != null)
             Positioned(
               top: 0,
@@ -413,63 +373,6 @@ class _InAppNoticeOverlayState extends State<InAppNoticeOverlay>
               ),
             ),
         ],
-      ),
-    );
-  }
-}
-
-/// Ekranın sağ üstünde yüzen küçük hak (bilet) göstergesi — anasayfadaki üst
-/// panel çipiyle aynı dil. Test dışında her ekranda görünür (bkz.
-/// InAppNoticeOverlay). Dokununca Hak Satın Al ekranına gider. Yalnızca
-/// ücretsiz kullanıcıda çizilir.
-class _GlobalHakPili extends StatelessWidget {
-  final int haklar;
-  final VoidCallback onTap;
-  const _GlobalHakPili({required this.haklar, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(999),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color.alphaBlend(c.violet.withValues(alpha: 0.18), c.bg2),
-            borderRadius: BorderRadius.circular(999),
-            border:
-                Border.all(color: c.violet.withValues(alpha: 0.40), width: 1),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.22),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          padding: const EdgeInsets.fromLTRB(9, 5, 5, 5),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('🎟️', style: TextStyle(fontSize: 13)),
-              const SizedBox(width: 4),
-              Text('$haklar',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w900, fontSize: 14, color: c.text)),
-              const SizedBox(width: 5),
-              Container(
-                width: 18,
-                height: 18,
-                alignment: Alignment.center,
-                decoration:
-                    BoxDecoration(color: c.violet, shape: BoxShape.circle),
-                child: const Icon(Icons.add, size: 13, color: Colors.white),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
