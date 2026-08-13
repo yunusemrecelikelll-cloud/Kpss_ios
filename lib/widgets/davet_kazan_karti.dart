@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
+import '../utils/exam_dates.dart';
 import '../utils/ust_bildirim.dart';
 
 /// Anasayfa "Davet Et & Kazan" kartı (kullanıcı isteği):
@@ -27,6 +29,22 @@ import '../utils/ust_bildirim.dart';
 ///
 /// Yalnızca GİRİŞ YAPMIŞ kullanıcıda anlamlıdır (kod hesaba bağlı); giriş yoksa
 /// kısa bir "giriş yap" yönlendirmesi gösterir.
+/// Paylaşımlarda DÖNÜŞÜMLÜ kullanılan motivasyon/çekici cümleler (kullanıcı
+/// isteği: her paylaşımda farklı olsun). Görsel ve metin paylaşımında rastgele
+/// biri seçilir.
+const List<String> kDavetMotivasyonlar = [
+  'Hemen ücretsiz topluluğa katıl, 20.000’i aşkın soru ile çalış!',
+  'Atama hayalin bir davet uzağında — birlikte çalışalım, birlikte kazanalım!',
+  'Boş vaktini net’e çevir: her gün birkaç soru, sınavda büyük fark!',
+  'Yalnız çalışma! KPSS Düello’da yarış, eğlenerek öğren, hızlan!',
+  'Bugün başlayan yarın kazanır. Sen de bu kervana katıl!',
+  '20.000+ soru, konu anlatımı ve denemeler cebinde — hemen indir!',
+  'Sınav yaklaşıyor; kaybedecek günün yok. Şimdi başla, farkı gör!',
+  'Doğru kaynak + düzenli tekrar = atama. Gerisini uygulama halleder!',
+  'Arkadaşınla yarış, birlikte çalış; motivasyonun hiç düşmesin!',
+  'Küçük adımlar büyük atamalar getirir. İlk adımı bugün at!',
+];
+
 class DavetKazanKarti extends StatefulWidget {
   const DavetKazanKarti({super.key});
 
@@ -36,9 +54,13 @@ class DavetKazanKarti extends StatefulWidget {
 
 class _DavetKazanKartiState extends State<DavetKazanKarti> {
   final _invite = InviteService();
+  final _rnd = Random();
   String? _kod;
   bool _yukleniyor = true;
   Timer? _saat; // kalan premium süreyi dakikada bir tazeler
+
+  String _rastgeleMotivasyon() =>
+      kDavetMotivasyonlar[_rnd.nextInt(kDavetMotivasyonlar.length)];
 
   @override
   void initState() {
@@ -90,9 +112,9 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
         tur: UstBildirimTuru.basari);
   }
 
-  String _davetMetni() =>
+  String _davetMetni([String? motivasyon]) =>
       'KPSS Hazırlık uygulamasına davet kodum: ${_kod ?? ""}\n\n'
-      '16.000+ soru, konu anlatımı, deneme sınavları, KPSS Düello ve oyunlar! '
+      '${motivasyon ?? _rastgeleMotivasyon()}\n\n'
       'Uygulamayı indir, giriş ekranındaki "Davet kodum var" bölümüne bu kodu gir; '
       'ikimiz de 1 gün premium kazanalım. 🎁';
 
@@ -104,6 +126,8 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
     if (_kod == null) return;
     context.read<SoundService>().click();
     final c = context.read<ThemeProvider>().colors;
+    // Her paylaşımda FARKLI motivasyon (kullanıcı isteği) — görsel ve metinde aynı.
+    final motivasyon = _rastgeleMotivasyon();
     final boundaryKey = GlobalKey();
     final overlay = Overlay.of(context);
     final entry = OverlayEntry(
@@ -114,7 +138,7 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
           type: MaterialType.transparency,
           child: RepaintBoundary(
             key: boundaryKey,
-            child: _PaylasGorseli(kod: _kod!, c: c),
+            child: _PaylasGorseli(kod: _kod!, c: c, motivasyon: motivasyon),
           ),
         ),
       ),
@@ -136,7 +160,7 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
       final dir = await getTemporaryDirectory();
       final file = File('${dir.path}/kpss_davet_$_kod.png');
       await file.writeAsBytes(bytes.buffer.asUint8List());
-      await Share.shareXFiles([XFile(file.path)], text: _davetMetni());
+      await Share.shareXFiles([XFile(file.path)], text: _davetMetni(motivasyon));
     } catch (e) {
       if (entry.mounted) entry.remove();
       if (mounted) {
@@ -430,7 +454,8 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
 class _PaylasGorseli extends StatelessWidget {
   final String kod;
   final dynamic c;
-  const _PaylasGorseli({required this.kod, required this.c});
+  final String motivasyon;
+  const _PaylasGorseli({required this.kod, required this.c, required this.motivasyon});
 
   @override
   Widget build(BuildContext context) {
@@ -484,8 +509,71 @@ class _PaylasGorseli extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 22),
+          const SizedBox(height: 20),
+          // ── Sınavlara kalan süre (motivasyon) ──
+          Builder(builder: (_) {
+            final now = DateTime.now();
+            // En yakın sınava kalan gün — başlık motivasyonu için.
+            int? enYakinGun;
+            for (final e in kExamTypes) {
+              final g = nextExamDate(e, now: now).difference(
+                  DateTime(now.year, now.month, now.day)).inDays;
+              if (enYakinGun == null || g < enYakinGun) enYakinGun = g;
+            }
+            return Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFE11D48).withValues(alpha: 0.20),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: const Color(0xFFE11D48).withValues(alpha: 0.5)),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        enYakinGun != null
+                            ? '⏳ İlk KPSS sınavına yalnızca $enYakinGun gün kaldı!'
+                            : '⏳ KPSS yaklaşıyor!',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        motivasyon,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 12.5, height: 1.35, color: Color(0xFFF3D6DE)),
+                      ),
+                      const SizedBox(height: 10),
+                      for (final e in kExamTypes)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('KPSS ${e.label}',
+                                  style: const TextStyle(
+                                      fontSize: 12.5, fontWeight: FontWeight.w700,
+                                      color: Colors.white)),
+                              Text(
+                                  formatCountdown(nextExamDate(e, now: now), now: now),
+                                  style: const TextStyle(
+                                      fontSize: 12.5, fontWeight: FontWeight.w900,
+                                      color: Color(0xFFFFD9A6))),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+              ],
+            );
+          }),
           Container(
+            width: double.infinity,
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
               color: const Color(0xFFD97706).withValues(alpha: 0.18),
@@ -500,8 +588,9 @@ class _PaylasGorseli extends StatelessWidget {
                   fontSize: 14, height: 1.4, fontWeight: FontWeight.w700, color: Colors.white),
             ),
           ),
-          const SizedBox(height: 18),
-          const Text('16.000+ soru • güncel içerik • ücretsiz',
+          const SizedBox(height: 16),
+          const Text('20.000+ soru • konu anlatımı • deneme • düello • ücretsiz',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12, color: Color(0xFFB7ADCE))),
         ],
       ),
