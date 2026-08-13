@@ -274,34 +274,32 @@ service cloud.firestore {
     }
 
     // ── Kullanıcı adı → e-posta eşlemesi ───────────────────────────────────
-    // Doküman kimliği = kullanıcı adının KÜÇÜK HARFE çevrilmiş hâli. Benzersizlik
-    // böyle garanti edilir: Firestore'da aynı kimlikte iki doküman olamaz.
-    // Alanlar: email (string), uid (string), username (string — orijinal yazım).
+    // Doküman kimliği = kullanıcı adının KÜÇÜK HARFE çevrilmiş hâli.
+    // Alanlar: email (string), uid (string), username (string).
     //
-    // GÜVENLİK NOTU — BİLEREK HERKESE AÇIK OKUMA:
-    // Bu koleksiyon giriş YAPMAMIŞ kullanıcılar tarafından da okunabilir olmak
-    // ZORUNDA. Sebebi: kullanıcı adıyla giriş akışında istemci, şifreyi Firebase
-    // Auth'a göndermeden ÖNCE kullanıcı adını e-postaya çevirmek durumundadır ve
-    // o anda henüz kimliği doğrulanmamıştır. Okumayı `girisli()` ile kısıtlamak
-    // kullanıcı adıyla girişi tamamen bozar.
+    // GÜVENLİK — OKUMA ARTIK SAHİBE KAPALI (e-posta sızıntısı kapatıldı):
+    // Eskiden okuma herkese açıktı çünkü "kullanıcı adı + şifre" ile giriş,
+    // şifreyi Auth'a göndermeden ÖNCE adı e-postaya çevirmek zorundaydı ve o an
+    // kimlik doğrulanmamış oluyordu. O giriş yöntemi KALDIRILDI (artık yalnızca
+    // Google/Apple). Dolayısıyla herkese açık okumanın gerekçesi kalmadı; açık
+    // bırakmak yalnızca "usernames koleksiyonunu çekip tüm e-postaları topla"
+    // saldırısına kapı aralıyordu.
     //
-    // BUNUN BEDELİ: kullanıcı adı ↔ e-posta ilişkisi herkese görünür olur; bir
-    // kullanıcı adını bilen, o hesabın e-posta adresini de öğrenebilir. Bu,
-    // kullanıcı adı tabanlı girişin DOĞASINDA olan bir ödünleşmedir. Kullanıcı
-    // e-postalarının gizli kalması gerekiyorsa kullanıcı adıyla giriş
-    // kaldırılmalı ve yalnızca e-posta ile giriş tercih edilmelidir.
+    // Yeni kural: kullanıcı YALNIZCA kendi kaydını okuyabilir/sorgulayabilir
+    // (uid == auth.uid). "Hesabımı Sil" akışı bu kaydı `where('uid'==uid)` ile
+    // sorgulayıp sildiği için bu izin yeterli ve gerekli; başka hiçbir yer bu
+    // koleksiyonu okumaz. Not: koleksiyonda ESKİDEN kalmış e-postalı belgeler
+    // varsa artık dışarıya görünmez, ama tümüyle temizlemek için Console'dan
+    // eski `usernames` belgelerini silmek en temizi.
     match /usernames/{usernameKey} {
-      allow read: if true;
+      allow read: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
 
-      // Yalnızca kendi adına rezervasyon yapılabilir: yazılan uid, isteği yapan
-      // kullanıcının uid'i olmak zorunda. Böylece başkasının adına kullanıcı adı
-      // kapatılamaz.
+      // Yalnızca kendi adına rezervasyon yapılabilir.
       allow create: if request.auth != null
                     && request.resource.data.uid == request.auth.uid;
 
-      // Güncelleme/silme yalnızca kaydın sahibine açık. "Hesabımı Sil" akışının
-      // bu dokümanı da silmesi gerekir — yoksa kullanıcı adı kalıcı olarak
-      // rezerve kalır ve bir daha kimse alamaz.
+      // Güncelleme/silme yalnızca kaydın sahibine açık ("Hesabımı Sil" buna dayanır).
       allow update, delete: if request.auth != null
                     && resource.data.uid == request.auth.uid;
     }
