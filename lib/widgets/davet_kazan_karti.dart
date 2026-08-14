@@ -135,6 +135,10 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
     if (_kod == null) return;
     context.read<SoundService>().click();
     final c = context.read<ThemeProvider>().colors;
+    // Kullanıcı adı — kodun üstünde altın yazacak (biçim: ad baş harfleri büyük,
+    // SOYİSİM tamamen büyük). Boşsa isim satırı gösterilmez.
+    final isimHam = context.read<StorageService>().getUserName();
+    final isim = bicimlendirKullaniciAdi(isimHam);
     // Her paylaşımda FARKLI motivasyon (kullanıcı isteği) — görsel ve metinde aynı.
     final motivasyon = _rastgeleMotivasyon();
     // iPad paylaş popover'ının çıkacağı konum (bu kartın ekrandaki dikdörtgeni).
@@ -159,7 +163,8 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
                 type: MaterialType.transparency,
                 child: RepaintBoundary(
                   key: boundaryKey,
-                  child: _PaylasGorseli(kod: _kod!),
+                  child: _PaylasGorseli(
+                      kod: _kod!, isim: isim.isEmpty ? null : isim),
                 ),
               ),
             ),
@@ -563,6 +568,32 @@ const int kOzellikKonuSayisi = 101;
 const String kOzellikTestSayisi = '20.000+';
 const int kOzellikOyunSayisi = 15;
 
+// ── Türkçe'ye duyarlı isim biçimlendirme (paylaşım görseli) ────────────────
+// Dart'ın toUpperCase/toLowerCase'i Türkçe'de i↔İ ve ı↔I dönüşümünü YANLIŞ
+// yapar; burada bu iki harf elle düzeltilir.
+String _trUpper(String s) =>
+    s.replaceAll('ı', 'I').replaceAll('i', 'İ').toUpperCase();
+String _trLower(String s) =>
+    s.replaceAll('I', 'ı').replaceAll('İ', 'i').toLowerCase();
+
+/// Bir kelimeyi "Baş harfi büyük, kalanı küçük" yapar (Türkçe uyumlu).
+String _trBasHarf(String w) {
+  if (w.isEmpty) return w;
+  return _trUpper(w.substring(0, 1)) + _trLower(w.substring(1));
+}
+
+/// Kullanıcı isim biçimi (kullanıcı isteği): SON kelime (soyisim) TAMAMEN
+/// BÜYÜK; ondan önceki tüm isimler yalnızca baş harfi büyük.
+/// "yunus emre çelik" → "Yunus Emre ÇELİK", "ahmet yılmaz" → "Ahmet YILMAZ".
+/// Tek kelimeyse yalnızca baş harfi büyük olur. Boşsa boş döner.
+String bicimlendirKullaniciAdi(String ham) {
+  final p = ham.trim().split(RegExp(r'\s+')).where((e) => e.isNotEmpty).toList();
+  if (p.isEmpty) return '';
+  if (p.length == 1) return _trBasHarf(p.first);
+  final oncekiler = [for (var i = 0; i < p.length - 1; i++) _trBasHarf(p[i])];
+  return '${oncekiler.join(' ')} ${_trUpper(p.last)}';
+}
+
 /// Paylaşılacak davet GÖRSELİ — Instagram Story / WhatsApp için 9:16 (SABİT
 /// 540×960 mantıksal; pixelRatio 2 ile 1080×1920 PNG). Koyu premium mor/lacivert
 /// zemin, neon parıltılar, altın vurgular. TÜM dinamik alanlar (davet kodu +
@@ -571,7 +602,11 @@ const int kOzellikOyunSayisi = 15;
 /// sabitlerden/merkezî sınav takviminden gelir.
 class _PaylasGorseli extends StatelessWidget {
   final String kod;
-  const _PaylasGorseli({required this.kod});
+
+  /// Biçimlendirilmiş kullanıcı adı (kodun üstünde altın yazı). Boş/null ise
+  /// isim satırı gösterilmez.
+  final String? isim;
+  const _PaylasGorseli({required this.kod, this.isim});
 
   // Premium palet (görsel her zaman koyu premium; temadan bağımsız).
   static const _bgTop = Color(0xFF211452);
@@ -683,6 +718,21 @@ class _PaylasGorseli extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w800,
                               letterSpacing: 3, color: _soft)),
+                      // Kullanıcı adı — kodun HEMEN ÜSTÜNDE, altın premium yazı
+                      // (ad baş harfleri büyük, SOYİSİM tamamen büyük). Boşsa yok.
+                      if (isim != null && isim!.isNotEmpty) ...[
+                        const SizedBox(height: 4),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(isim!,
+                              style: const TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 0.5,
+                                  color: _goldStrong,
+                                  height: 1.1)),
+                        ),
+                      ],
                       const SizedBox(height: 6),
                       FittedBox(
                         fit: BoxFit.scaleDown,
@@ -715,19 +765,26 @@ class _PaylasGorseli extends StatelessWidget {
                 // 5) Özellik kartları
                 Row(
                   children: [
-                    Expanded(child: _statTile(Icons.menu_book_rounded, '$kOzellikDersSayisi', 'DERS', null)),
+                    Expanded(child: _statTile(Icons.menu_book_rounded, '$kOzellikDersSayisi', 'DERS', 'Tüm alanlar')),
                     const SizedBox(width: 8),
-                    Expanded(child: _statTile(Icons.auto_stories_rounded, '$kOzellikKonuSayisi', 'KONU', null)),
+                    Expanded(child: _statTile(Icons.auto_stories_rounded, '$kOzellikKonuSayisi', 'KONU', 'Anlatım+Özet')),
                     const SizedBox(width: 8),
-                    Expanded(child: _statTile(Icons.fact_check_rounded, kOzellikTestSayisi, 'TEST', 'açıklamalı')),
+                    Expanded(child: _statTile(Icons.fact_check_rounded, kOzellikTestSayisi, 'SORU', 'Açıklamalı')),
                     const SizedBox(width: 8),
-                    Expanded(child: _statTile(Icons.sports_esports_rounded, '$kOzellikOyunSayisi', 'OYUN', null)),
+                    Expanded(child: _statTile(Icons.sports_esports_rounded, '$kOzellikOyunSayisi', 'OYUN', 'Pekiştir')),
                   ],
                 ),
                 const SizedBox(height: 8),
                 _wideTile(Icons.emoji_events_rounded, 'DENEME & DÜELLO',
                     'Kendini test et, rakiplerinle yarış!'),
-                const SizedBox(height: 18),
+                const SizedBox(height: 8),
+                // Orta bölüm ek bilgisi (uygulamayla ilgili)
+                const Text(
+                    'Konu anlatımı + video özet • Akıllı tekrar • Zayıf konu analizi',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 10, height: 1.3, color: _soft, letterSpacing: 0.1)),
+                const SizedBox(height: 16),
                 // 6) Sınavlara kalan süre
                 const Text('SINAVLARA KALAN SÜRE',
                     style: TextStyle(
@@ -754,7 +811,14 @@ class _PaylasGorseli extends StatelessWidget {
                     Expanded(child: _subFeature(Icons.wifi_off_rounded, 'OFFLINE', 'ÇALIŞMA')),
                   ],
                 ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 8),
+                // Alt özellik ek bilgisi (uygulamayla ilgili gerçek özellikler)
+                const Text(
+                    'Rozet • Seviye/XP • Günlük görev • Çalışma serisi • Yanlışlarım Bankası',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 9.5, height: 1.3, color: _soft, letterSpacing: 0.1)),
+                const SizedBox(height: 16),
                 // 8) CTA
                 const Text('HEMEN İNDİR, KODU GİR',
                     textAlign: TextAlign.center,
