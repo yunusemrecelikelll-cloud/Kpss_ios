@@ -121,33 +121,57 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
 
   /// Davet GÖRSELİ oluşturup sistem paylaş menüsüyle paylaşır (kullanıcı isteği:
   /// paylaş butonu YENİ bir fotoğraf oluştursun; davet kodu + uygulama içeriği +
-  /// davet koduyla gelince ne olduğu yazsın). Görsel ekran DIŞINDA (off-screen)
-  /// çizilip PNG olarak yakalanır, geçici dosyaya yazılıp paylaşılır.
+  /// davet koduyla gelince ne olduğu yazsın).
+  ///
+  /// TESTFLIGHT/iOS DÜZELTMESİ: Görsel eskiden ekran DIŞINDA (left:-3000)
+  /// çiziliyordu; gerçek iOS'ta (Impeller) ekran dışı katman çoğu zaman
+  /// BOYANMIYOR ve `toImage` boş/başarısız dönüyordu → "çalışmıyor". Artık
+  /// görsel ekranın İÇİNDE (sol üst) çizilir — böylece kesinlikle layout edilip
+  /// boyanır — ve üstüne konan OPAK bir katmanla kullanıcıdan gizlenir.
+  /// RepaintBoundary kendi katmanını yakaladığı için üstteki kapak görüntüyü
+  /// etkilemez. Ayrıca sabit gecikme yerine GERÇEK kare beklenir ve iPad'de
+  /// paylaş popover'ı için `sharePositionOrigin` verilir (yoksa iOS hata verir).
   Future<void> _gorselPaylas() async {
     if (_kod == null) return;
     context.read<SoundService>().click();
     final c = context.read<ThemeProvider>().colors;
     // Her paylaşımda FARKLI motivasyon (kullanıcı isteği) — görsel ve metinde aynı.
     final motivasyon = _rastgeleMotivasyon();
+    // iPad paylaş popover'ının çıkacağı konum (bu kartın ekrandaki dikdörtgeni).
+    final kutu = context.findRenderObject() as RenderBox?;
+    final Rect paylasKonumu = (kutu != null && kutu.hasSize)
+        ? (kutu.localToGlobal(Offset.zero) & kutu.size)
+        : (Offset.zero & const Size(120, 120));
     final boundaryKey = GlobalKey();
     final overlay = Overlay.of(context);
     final entry = OverlayEntry(
-      builder: (_) => Positioned(
-        left: -3000, // ekran dışı ama boyanır
-        top: 0,
-        child: Material(
-          type: MaterialType.transparency,
-          child: RepaintBoundary(
-            key: boundaryKey,
-            child: _PaylasGorseli(kod: _kod!, c: c, motivasyon: motivasyon),
+      builder: (_) => Stack(
+        children: [
+          // Yakalanacak görsel EKRAN İÇİNDE (sol üst): kesinlikle boyanır.
+          Positioned(
+            left: 0,
+            top: 0,
+            child: Material(
+              type: MaterialType.transparency,
+              child: RepaintBoundary(
+                key: boundaryKey,
+                child: _PaylasGorseli(kod: _kod!, c: c, motivasyon: motivasyon),
+              ),
+            ),
           ),
-        ),
+          // Tüm ekranı kaplayan OPAK katman — görseli kullanıcıdan gizler
+          // (yakalama RepaintBoundary'nin kendi katmanından yapıldığı için bu
+          // kapak görüntüye dahil olmaz).
+          Positioned.fill(child: ColoredBox(color: c.bg)),
+        ],
       ),
     );
     overlay.insert(entry);
     try {
-      // Bir-iki kare bekle ki off-screen widget boyanmış olsun.
-      await Future.delayed(const Duration(milliseconds: 350));
+      // Sabit gecikme yerine GERÇEK kare(ler)i bekle — böylece widget layout
+      // edilip boyanmış olur (yavaş cihazda 350ms yetmeyebiliyordu).
+      await WidgetsBinding.instance.endOfFrame;
+      await WidgetsBinding.instance.endOfFrame;
       final boundary = boundaryKey.currentContext?.findRenderObject()
           as RenderRepaintBoundary?;
       if (boundary == null) {
@@ -156,12 +180,17 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
       }
       final image = await boundary.toImage(pixelRatio: 3);
       final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+      image.dispose();
       entry.remove();
       if (bytes == null) return;
       final dir = await getTemporaryDirectory();
       final file = File('${dir.path}/kpss_davet_$_kod.png');
       await file.writeAsBytes(bytes.buffer.asUint8List());
-      await Share.shareXFiles([XFile(file.path)], text: _davetMetni(motivasyon));
+      await Share.shareXFiles(
+        [XFile(file.path)],
+        text: _davetMetni(motivasyon),
+        sharePositionOrigin: paylasKonumu,
+      );
     } catch (e) {
       if (entry.mounted) entry.remove();
       if (mounted) {
