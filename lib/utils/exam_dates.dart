@@ -32,6 +32,26 @@ DateTime nextExamDate(ExamInfo info, {DateTime? now}) {
   return date;
 }
 
+/// Bugünden (yalnızca TARİH — saat hesaba katılmaz) sınava kalan GÜN sayısı.
+/// [nextExamDate] geçmiş tarihi otomatik bir sonraki yıla kaydırdığı için sonuç
+/// NEGATİF olmaz; sınav günüyse 0 döner. Paylaşım görseli "XX GÜN KALDI"
+/// kartlarında bunu kullanır — her çağrıda cihazın güncel tarihine göre hesaplar.
+int daysUntilExam(ExamInfo info, {DateTime? now}) {
+  final today = now ?? DateTime.now();
+  final todayStart = DateTime(today.year, today.month, today.day);
+  final exam = nextExamDate(info, now: today);
+  final examStart = DateTime(exam.year, exam.month, exam.day);
+  return examStart.difference(todayStart).inDays;
+}
+
+/// Görsel/kart için kısa durum metni: "23 GÜN KALDI" ya da sınav günü
+/// "SINAV BUGÜN!". Negatif değer asla üretilmez (bkz. [daysUntilExam]).
+String examDaysLabel(ExamInfo info, {DateTime? now}) {
+  final g = daysUntilExam(info, now: now);
+  if (g <= 0) return 'SINAV BUGÜN!';
+  return '$g GÜN KALDI';
+}
+
 /// "2 Ay 5 Gün" gibi, YALNIZCA ay + gün hassasiyetinde bir geri sayım metni
 /// üretir (kullanıcı isteği: saat/dakika gösterme). Saat:dakika hesaba
 /// katılmaz; kalan süre bugünün gününden sınav gününe kadar hesaplanır.
