@@ -13,6 +13,7 @@ import '../widgets/davet_kazan_karti.dart';
 import '../widgets/hak_kazan_sheet.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
+import '../services/league_service.dart';
 import '../services/remote_question_service.dart';
 import '../theme/design_system.dart';
 import '../theme/subject_colors.dart';
@@ -449,34 +450,20 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const SizedBox(height: kDsGap),
-            Row(
-              children: [
-                Expanded(
-                  child: _MiniAksiyonKarti(
-                    emoji: '🏆',
-                    baslik: 'Lig',
-                    renk: c.warn,
-                    onTap: () {
-                      context.read<SoundService>().click();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => const LeagueScreen()));
-                    },
-                  ),
-                ),
-                const SizedBox(width: kDsGap),
-                Expanded(
-                  child: _MiniAksiyonKarti(
-                    emoji: '📈',
-                    baslik: 'İstatistik',
-                    renk: c.success,
-                    onTap: () {
-                      context.read<SoundService>().click();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => const DetailedStatsScreen()));
-                    },
-                  ),
-                ),
-              ],
+            // Geniş Lig widget'ı (kullanıcı isteği: çalışma planı kadar geniş;
+            // üzerinde KAÇINCI SIRADA + HANGİ LİGDE olduğu yazar; dokununca lig
+            // sayfasına gider).
+            const _LigWidget(),
+            const SizedBox(height: kDsGap),
+            _MiniAksiyonKarti(
+              emoji: '📈',
+              baslik: 'İstatistik',
+              renk: c.success,
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const DetailedStatsScreen()));
+              },
             ),
             const SizedBox(height: kDsGap),
             // 7) En iyi / en zayıf ders özeti (kullanıcı isteği).
@@ -1608,6 +1595,125 @@ class _PremiumOzetKarti extends StatelessWidget {
 
 /// Kompakt aksiyon kartı — Akılda Kalıcı Kodlama kartlarıyla AYNI boy/stil
 /// (emoji rozeti + başlık yan yana), yazı ORTALI. Dokununca ilgili ekrana gider.
+/// Anasayfadaki GENİŞ Lig widget'ı (kullanıcı isteği). Kullanıcının bu haftaki
+/// SIRA numarasını ve LİG kademesini gösterir; dokununca Lig ekranına gider.
+/// Çevrimiçi karşılaştırma (giriş + internet) varsa gerçek sıra gelir; yoksa
+/// yerel haftalık puandan kademe gösterilir, sıra "—" olur.
+class _LigWidget extends StatefulWidget {
+  const _LigWidget();
+
+  @override
+  State<_LigWidget> createState() => _LigWidgetState();
+}
+
+class _LigWidgetState extends State<_LigWidget> {
+  Future<LeagueResult?>? _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = LeagueService().computeMyLeagueTier(context.read<StorageService>());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final storage = context.watch<StorageService>();
+    final weekly = storage.getWeeklyPoints();
+    final renk = c.gold;
+
+    return FutureBuilder<LeagueResult?>(
+      future: _future,
+      builder: (context, snap) {
+        final result = snap.data;
+        final loading = snap.connectionState == ConnectionState.waiting;
+        // Kademe: çevrimiçi sonuç varsa ondan, yoksa yerel puandan (aynı eşikler).
+        final tier = result?.tier ?? tierForPoints(weekly);
+        final rank = result?.myRank;
+
+        final String altSatir;
+        if (rank != null) {
+          altSatir = '$rank. sıra • $weekly puan';
+        } else if (loading) {
+          altSatir = 'Sıralama yükleniyor…';
+        } else {
+          altSatir = '$weekly puan';
+        }
+
+        return DsCard(
+          accent: renk,
+          gradient: _kartZeminGradyani(renk, c.isLight),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          onTap: () {
+            context.read<SoundService>().click();
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const LeagueScreen()));
+          },
+          child: Row(
+            children: [
+              // Kademe rozeti (emoji)
+              Container(
+                width: 48,
+                height: 48,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: renk.withValues(alpha: c.isLight ? 0.14 : 0.18),
+                  border: Border.all(color: renk.withValues(alpha: 0.5), width: 1.4),
+                ),
+                child: Text(tier.icon, style: const TextStyle(fontSize: 26)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('🏆 HAFTALIK LİG',
+                        style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.8,
+                            color: renk)),
+                    const SizedBox(height: 2),
+                    Text('${tier.label} Lig',
+                        style: TextStyle(
+                            fontSize: 16.5, fontWeight: FontWeight.w900, color: c.text)),
+                    const SizedBox(height: 2),
+                    Text(altSatir,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 12.5, fontWeight: FontWeight.w700, color: c.textDim)),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              // Sıra numarası büyük (varsa) + ok
+              if (rank != null) ...[
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('$rank.',
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.w900, color: renk, height: 1.0)),
+                    Text('sıra',
+                        style: TextStyle(
+                            fontSize: 10, fontWeight: FontWeight.w700, color: c.textFaint)),
+                  ],
+                ),
+                const SizedBox(width: 8),
+              ],
+              Icon(Icons.chevron_right_rounded, color: c.violetL),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
 class _MiniAksiyonKarti extends StatelessWidget {
   final String emoji;
   final String baslik;

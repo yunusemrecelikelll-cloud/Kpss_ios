@@ -16,26 +16,20 @@ const _tiersByRank = [
   LeagueTier.bronz,
 ];
 
-/// Her kademenin gerektirdiği yüzdelik dilim eşiği (bkz. LeagueService._tierFor).
+/// Kademenin kısa niteliksel etiketi (kişi sayısı satırında gösterilir).
 String _esikMetni(LeagueTier t) => switch (t) {
-      LeagueTier.efsane => 'En üst %5',
-      LeagueTier.elmas => 'İlk %15',
-      LeagueTier.platin => 'İlk %30',
-      LeagueTier.altin => 'İlk %50',
-      LeagueTier.gumus => 'İlk %75',
+      LeagueTier.efsane => 'Zirvedekiler',
+      LeagueTier.elmas => 'Üst kademe',
+      LeagueTier.platin => 'İleri kademe',
+      LeagueTier.altin => 'Orta-üst kademe',
+      LeagueTier.gumus => 'Gelişen kademe',
       LeagueTier.bronz => 'Başlangıç kademesi',
     };
 
-/// Her kademenin HAFTALIK PUAN aralığı (kullanıcı isteği: "hangi puan hangi
-/// lig" — kademelerin üzerinde yazılır). Eşikler _localTierFallback ile aynıdır.
-String _puanAraligi(LeagueTier t) => switch (t) {
-      LeagueTier.efsane => '500+ puan',
-      LeagueTier.elmas => '300–499 puan',
-      LeagueTier.platin => '150–299 puan',
-      LeagueTier.altin => '60–149 puan',
-      LeagueTier.gumus => '20–59 puan',
-      LeagueTier.bronz => '0–19 puan',
-    };
+/// Her kademenin HAFTALIK PUAN aralığı — TEK KAYNAK LeagueTier.pointRange
+/// (bkz. league_service.dart). Kademe ataması da aynı sınırları kullandığı için
+/// ekranda yazan aralık ile kullanıcının bulunduğu lig HER ZAMAN tutarlıdır.
+String _puanAraligi(LeagueTier t) => t.pointRange;
 
 /// Podyum renkleri — ilk üç sıra için altın / gümüş / bronz aksan.
 /// KASITLI SABİT: madalya sıralaması evrensel bir kimliktir (1. altın, 2. gümüş,
@@ -230,16 +224,9 @@ class _LeagueScreenState extends State<LeagueScreen> {
     );
   }
 
-  /// Çevrimiçi karşılaştırma yapılamadığında (offline/giriş yok) sadece
-  /// yerel puana göre kaba bir kademe tahmini gösterir.
-  LeagueTier _localTierFallback(int weeklyPoints) {
-    if (weeklyPoints >= 500) return LeagueTier.efsane;
-    if (weeklyPoints >= 300) return LeagueTier.elmas;
-    if (weeklyPoints >= 150) return LeagueTier.platin;
-    if (weeklyPoints >= 60) return LeagueTier.altin;
-    if (weeklyPoints >= 20) return LeagueTier.gumus;
-    return LeagueTier.bronz;
-  }
+  /// Çevrimiçi karşılaştırma yapılamadığında (offline/giriş yok) yerel puana
+  /// göre kademe — çevrimiçi ile AYNI mutlak eşikleri kullanır (tek kaynak).
+  LeagueTier _localTierFallback(int weeklyPoints) => tierForPoints(weeklyPoints);
 }
 
 /// Üstteki premium vitrin: koyu lacivert–mor degrade zemin + altın aksan.
@@ -357,9 +344,9 @@ class _VitrinKarti extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: _rozet(
-                    'Dilim',
-                    result == null ? '—' : '%${result!.percentile.round()}',
-                    Icons.trending_up_rounded,
+                    'Sıra',
+                    result == null ? '—' : '${result!.myRank}.',
+                    Icons.leaderboard_rounded,
                     vurgu,
                   ),
                 ),

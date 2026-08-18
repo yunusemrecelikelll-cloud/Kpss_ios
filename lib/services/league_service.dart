@@ -27,6 +27,40 @@ extension LeagueTierLabel on LeagueTier {
         LeagueTier.elmas => '💎',
         LeagueTier.efsane => '👑',
       };
+
+  /// Bu kademeye girmek için gereken ALT PUAN sınırı (dahil). TEK KAYNAK:
+  /// hem kademe ataması ([tierForPoints]) hem ekranda gösterilen aralık bundan
+  /// türetilir; böylece "puanım X ama farklı ligdeyim" tutarsızlığı olmaz.
+  int get minPoints => switch (this) {
+        LeagueTier.bronz => 0,
+        LeagueTier.gumus => 200,
+        LeagueTier.altin => 400,
+        LeagueTier.platin => 600,
+        LeagueTier.elmas => 800,
+        LeagueTier.efsane => 1000,
+      };
+
+  /// Ekranda gösterilen haftalık puan aralığı (kademenin üstünde yazar).
+  String get pointRange => switch (this) {
+        LeagueTier.bronz => '0–199 puan',
+        LeagueTier.gumus => '200–399 puan',
+        LeagueTier.altin => '400–599 puan',
+        LeagueTier.platin => '600–799 puan',
+        LeagueTier.elmas => '800–999 puan',
+        LeagueTier.efsane => '1000+ puan',
+      };
+}
+
+/// Haftalık lig PUANINA göre (MUTLAK, yüzdelik değil) kademe. Efsane 1000+;
+/// her kademe 200 puan aralığında. Kullanıcı isteği: puan hangi kademedeyse
+/// ekranda o kademe yazsın. Tek eşleme kaynağı burasıdır.
+LeagueTier tierForPoints(int points) {
+  if (points >= 1000) return LeagueTier.efsane;
+  if (points >= 800) return LeagueTier.elmas;
+  if (points >= 600) return LeagueTier.platin;
+  if (points >= 400) return LeagueTier.altin;
+  if (points >= 200) return LeagueTier.gumus;
+  return LeagueTier.bronz;
 }
 
 /// Gerçek zamanlı Firestore skorlarına göre hesaplanan lig sonucu.
@@ -39,6 +73,11 @@ class LeagueResult {
   final int myRate;
   /// Bu haftaki (Pazartesi'den bugüne) lig puanı — bkz. StorageService.getWeeklyPoints.
   final int myWeeklyPoints;
+
+  /// Kullanıcının bu haftaki genel SIRA numarası (1 = birinci). Kendisinden
+  /// daha yüksek puanlı katılımcı sayısı + 1. (Anasayfa lig widget'ında
+  /// "X. sıra" olarak gösterilir.)
+  final int myRank;
 
   /// Her kademede bu hafta kaç kişi yer aldığı (kullanıcı isteği: "lig başına
   /// kişi sayısı görünsün"). Her katılımcının puanı kendi yüzdelik dilimine,
@@ -60,6 +99,7 @@ class LeagueResult {
     required this.totalParticipants,
     required this.myRate,
     required this.myWeeklyPoints,
+    this.myRank = 1,
     this.tierCounts = const {},
     this.leaderName,
     this.leaderPoints = 0,
@@ -235,12 +275,13 @@ class LeagueService {
 
       if (points.isEmpty) {
         return LeagueResult(
-          tier: _tierFor(0),
+          tier: tierForPoints(myPoints),
           percentile: 0,
           totalParticipants: 1,
           myRate: myOverall.rate,
           myWeeklyPoints: myPoints,
-          tierCounts: {_tierFor(0): 1},
+          myRank: 1,
+          tierCounts: {tierForPoints(myPoints): 1},
           leaderName: leaderName,
           leaderPoints: leaderPoints,
           leaderIsMe: leaderIsMe,
@@ -249,24 +290,25 @@ class LeagueService {
 
       final below = points.where((p) => p < myPoints).length;
       final percentile = (below / points.length) * 100;
+      // SIRA numarası: benden daha yüksek puanlı kaç kişi var + 1.
+      final myRank = points.where((p) => p > myPoints).length + 1;
 
-      // Kademe dağılımı: her katılımcının puanını kendi yüzdelik dilimine, o
-      // dilimi de bir kademeye eşleyip say. Böylece "her ligde kaç kişi var"
-      // gösterilebilir (kullanıcı isteği).
+      // Kademe dağılımı MUTLAK puana göre: her katılımcının puanı doğrudan bir
+      // kademeye eşlenir. Böylece "her ligde kaç kişi var" doğru sayılır ve
+      // ekrandaki puan aralıklarıyla tam tutarlı olur.
       final tierCounts = {for (final t in LeagueTier.values) t: 0};
       for (final p in points) {
-        final altta = points.where((x) => x < p).length;
-        final pct = (altta / points.length) * 100;
-        final t = _tierFor(pct);
+        final t = tierForPoints(p);
         tierCounts[t] = tierCounts[t]! + 1;
       }
 
       return LeagueResult(
-        tier: _tierFor(percentile),
+        tier: tierForPoints(myPoints),
         percentile: percentile,
         totalParticipants: points.length,
         myRate: myOverall.rate,
         myWeeklyPoints: myPoints,
+        myRank: myRank,
         tierCounts: tierCounts,
         leaderName: leaderName,
         leaderPoints: leaderPoints,
@@ -276,14 +318,5 @@ class LeagueService {
       debugPrint('LeagueService.computeMyLeagueTier başarısız (offline olabilir): $e');
       return null;
     }
-  }
-
-  LeagueTier _tierFor(double percentile) {
-    if (percentile >= 95) return LeagueTier.efsane;
-    if (percentile >= 85) return LeagueTier.elmas;
-    if (percentile >= 70) return LeagueTier.platin;
-    if (percentile >= 50) return LeagueTier.altin;
-    if (percentile >= 25) return LeagueTier.gumus;
-    return LeagueTier.bronz;
   }
 }

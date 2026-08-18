@@ -15,6 +15,7 @@ import '../services/auth_service.dart';
 import '../services/invite_service.dart';
 import '../services/sound_service.dart';
 import '../services/storage_service.dart';
+import '../services/store_links_service.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import '../utils/exam_dates.dart';
@@ -60,6 +61,11 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
   bool _yukleniyor = true;
   Timer? _saat; // kalan premium süreyi dakikada bir tazeler
 
+  /// Mağaza linkleri/ID'leri — Firestore'dan çekilir (yoksa varsayılan).
+  /// Görselde ve WhatsApp/paylaş metninde kullanılır. Böylece Google Play
+  /// linki hazır olunca uygulama güncellenmeden yalnızca Firestore'dan gelir.
+  StoreLinks _links = StoreLinks.defaults;
+
   String _rastgeleMotivasyon() =>
       kDavetMotivasyonlar[_rnd.nextInt(kDavetMotivasyonlar.length)];
 
@@ -67,6 +73,9 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
   void initState() {
     super.initState();
     _kodYukle();
+    StoreLinksService().fetch().then((l) {
+      if (mounted) setState(() => _links = l);
+    });
     _saat = Timer.periodic(const Duration(seconds: 30), (_) {
       if (mounted) setState(() {});
     });
@@ -114,10 +123,28 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
   }
 
   String _davetMetni([String? motivasyon]) =>
-      'KPSS Hazırlık uygulamasına davet kodum: ${_kod ?? ""}\n\n'
+      '${_links.appName} uygulamasına davet kodum: ${_kod ?? ""}\n\n'
       '${motivasyon ?? _rastgeleMotivasyon()}\n\n'
       'Uygulamayı indir, giriş ekranındaki "Davet kodum var" bölümüne bu kodu gir; '
-      'ikimiz de 1 gün premium kazanalım. 🎁';
+      'ikimiz de 1 gün premium kazanalım. 🎁\n\n'
+      '${_magazaMetni()}';
+
+  /// WhatsApp/mesaj altına eklenen indirme bölümü — App Store ve Google Play
+  /// linkleri + ID'leri (arama yerine ID ile bulunabilsin diye). Google Play
+  /// linki henüz yoksa "yakında" + isimle arama yazılır.
+  String _magazaMetni() {
+    final b = StringBuffer('📲 İndir:\n');
+    b.writeln('🍎 App Store: ${_links.iosUrl}');
+    b.writeln('   (App Store ID: ${_links.iosId})');
+    if (_links.androidVar) {
+      b.writeln('🤖 Google Play: ${_links.androidUrl}');
+      b.writeln('   (Google Play ID: ${_links.androidId})');
+    } else {
+      b.writeln('🤖 Google Play: yakında — "${_links.appName}" olarak ara');
+      b.writeln('   (Google Play ID: ${_links.androidId})');
+    }
+    return b.toString().trimRight();
+  }
 
   /// Davet GÖRSELİ oluşturup sistem paylaş menüsüyle paylaşır (kullanıcı isteği:
   /// paylaş butonu YENİ bir fotoğraf oluştursun; davet kodu + uygulama içeriği +
@@ -164,7 +191,7 @@ class _DavetKazanKartiState extends State<DavetKazanKarti> {
                 child: RepaintBoundary(
                   key: boundaryKey,
                   child: _PaylasGorseli(
-                      kod: _kod!, isim: isim.isEmpty ? null : isim),
+                      kod: _kod!, isim: isim.isEmpty ? null : isim, links: _links),
                 ),
               ),
             ),
@@ -606,7 +633,10 @@ class _PaylasGorseli extends StatelessWidget {
   /// Biçimlendirilmiş kullanıcı adı (kodun üstünde altın yazı). Boş/null ise
   /// isim satırı gösterilmez.
   final String? isim;
-  const _PaylasGorseli({required this.kod, this.isim});
+
+  /// Mağaza linkleri/ID'leri (alt rozetler + ID satırı için).
+  final StoreLinks links;
+  const _PaylasGorseli({required this.kod, this.isim, required this.links});
 
   // Premium palet (görsel her zaman koyu premium; temadan bağımsız).
   static const _bgTop = Color(0xFF211452);
@@ -673,9 +703,16 @@ class _PaylasGorseli extends StatelessWidget {
                               )),
                     ),
                     const SizedBox(width: 10),
-                    const Text('KPSS Hazırlık',
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.w900, color: Colors.white)),
+                    // Uygulama adı TAM olarak (kullanıcı isteği) — Firestore'daki
+                    // appName'den gelir, varsayılan "KPSS Hazırlık".
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(links.appName,
+                            style: const TextStyle(
+                                fontSize: 28, fontWeight: FontWeight.w900, color: Colors.white)),
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 6),
@@ -830,13 +867,25 @@ class _PaylasGorseli extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 19, fontWeight: FontWeight.w900, color: _goldStrong)),
                 const SizedBox(height: 10),
+                // ── Mağaza rozetleri: gerçek Apple + Google Play logoları ──
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _storeBadge(Icons.apple, 'App Store'),
+                    _storeBadge(
+                        const Icon(Icons.apple, color: Colors.white, size: 22),
+                        'App Store'),
                     const SizedBox(width: 10),
-                    _storeBadge(Icons.shop_rounded, 'Google Play'),
+                    _storeBadge(const _GooglePlayLogo(size: 18), 'Google Play'),
                   ],
+                ),
+                const SizedBox(height: 8),
+                // ── ID ile bul (arama yerine) — kullanıcı isteği ──
+                Text(
+                  'Aramak yerine ID ile bul  •  App Store ID: ${links.iosId}  •  '
+                  'Google Play: ${links.androidId}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 9, height: 1.3, color: _soft, letterSpacing: 0.1),
                 ),
               ],
             ),
@@ -996,8 +1045,8 @@ class _PaylasGorseli extends StatelessWidget {
     );
   }
 
-  /// Mağaza rozeti (yalnızca etiket — sahte URL yok).
-  Widget _storeBadge(IconData icon, String label) {
+  /// Mağaza rozeti — solda gerçek mağaza logosu (Apple / Google Play), sağda ad.
+  Widget _storeBadge(Widget logo, String label) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -1008,7 +1057,7 @@ class _PaylasGorseli extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 16, color: Colors.white),
+          logo,
           const SizedBox(width: 6),
           Text(label,
               style: const TextStyle(
@@ -1017,4 +1066,81 @@ class _PaylasGorseli extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Google Play'in kendi 4 renkli "play" üçgeni logosu — internet/asset
+/// gerekmeden, offline üretilen görselde de doğru renkte çizilir.
+class _GooglePlayLogo extends StatelessWidget {
+  final double size;
+  const _GooglePlayLogo({required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: CustomPaint(painter: _GooglePlayPainter()),
+    );
+  }
+}
+
+class _GooglePlayPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double w = size.width;
+    final double h = size.height;
+    // Sağa bakan "play" üçgeni: sol kenar dikey, sağda tepe noktası. Dört renkli
+    // parça (mavi üst, yeşil alt, sarı alt-sağ, kırmızı üst-sağ).
+    final left = w * 0.14;
+    final topY = h * 0.06;
+    final botY = h * 0.94;
+    final midY = h * 0.50;
+    final tipX = w * 0.92;
+    final foldX = w * 0.60; // sağ tarafta kırmızı/sarı katlanma noktası
+    final p = Paint()..style = PaintingStyle.fill;
+
+    // Mavi (üst-sol)
+    p.color = const Color(0xFF00C3FF);
+    canvas.drawPath(
+      Path()
+        ..moveTo(left, topY)
+        ..lineTo(left, midY)
+        ..lineTo(foldX, midY)
+        ..close(),
+      p,
+    );
+    // Yeşil (alt-sol)
+    p.color = const Color(0xFF00E676);
+    canvas.drawPath(
+      Path()
+        ..moveTo(left, botY)
+        ..lineTo(left, midY)
+        ..lineTo(foldX, midY)
+        ..close(),
+      p,
+    );
+    // Kırmızı (üst-sağ, tepeye doğru)
+    p.color = const Color(0xFFFF3D4A);
+    canvas.drawPath(
+      Path()
+        ..moveTo(left, topY)
+        ..lineTo(foldX, midY)
+        ..lineTo(tipX, midY)
+        ..close(),
+      p,
+    );
+    // Sarı (alt-sağ, tepeye doğru)
+    p.color = const Color(0xFFFFCE00);
+    canvas.drawPath(
+      Path()
+        ..moveTo(left, botY)
+        ..lineTo(foldX, midY)
+        ..lineTo(tipX, midY)
+        ..close(),
+      p,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
