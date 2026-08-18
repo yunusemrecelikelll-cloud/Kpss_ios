@@ -203,9 +203,9 @@ class QuizEngine extends ChangeNotifier {
     // çözülüp lig puanı/XP FARM'lanabilirdi (lig rekabetçi + sunucu-kurallı).
     // Bu, quiz_screen'deki `if (!wrongBankMode)` istatistik korumasıyla tutarlı.
     if (!isWrongBankMode && !isPlacementExam) {
-      // Haftalık lig puanı: her doğru cevap 1 puan (kullanıcı isteği — eskiden
-      // 10'du). Yani lig puanı = bu haftaki doğru cevap sayısı (bkz. LeagueService).
-      await storage.addWeeklyPoints(dogru);
+      // Haftalık lig puanı: her doğru cevap 5 puan (kullanıcı isteği — 10→1→5).
+      // Efsane 1000 eşiği ≈ haftada 200 doğru (bkz. LeagueService).
+      await storage.addWeeklyPoints(dogru * 5);
       // Toplam XP (kalıcı, seviye sistemi) + Sezon XP (aylık) — ikisi de doğru
       // başına 5 XP; haftalık lig puanından ayrı alanlardır.
       await storage.addXp(dogru * 5);

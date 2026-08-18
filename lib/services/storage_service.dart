@@ -958,7 +958,7 @@ class StorageService extends ChangeNotifier {
   int getTotalXp() => ((_get('total_xp', 0) as num?) ?? 0).toInt();
 
   /// QuizEngine.finish() içinde her doğru cevap için çağrılır (bkz. XP=5/doğru,
-  /// haftalık lig puanı=1/doğru — birbirinden bağımsız iki katsayı).
+  /// haftalık lig puanı=5/doğru — birbirinden bağımsız iki katsayı).
   Future<void> addXp(int amount) async {
     if (amount <= 0) return;
     await _set('total_xp', getTotalXp() + amount);
