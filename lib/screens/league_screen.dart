@@ -48,7 +48,7 @@ Color _madalyaRengi(int sira, Color varsayilan) => switch (sira) {
 /// Lig — JS: renderLeague.
 ///
 /// Haftalık lig puanına (bkz. StorageService.getWeeklyPoints — her doğru
-/// cevap +10 puan, her Pazartesi sıfırlanır) göre, Firestore'daki `league_scores`
+/// cevap +1 puan, her Pazartesi sıfırlanır) göre, Firestore'daki `league_scores`
 /// koleksiyonunda BU HAFTA yayınlanmış diğer kullanıcılarla karşılaştırılarak
 /// gerçek zamanlı bir yüzdelik dilim + kademe (Bronz→Efsane) hesaplanır
 /// (bkz. LeagueService). Firebase yapılandırılmamışsa / giriş yapılmamışsa /
@@ -195,7 +195,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
                       Expanded(
                         child: Text(
                           'Her hafta Pazartesi puanlar sıfırlanır ve yeni bir haftalık turnuva başlar — '
-                          'her doğru cevap 10 puan kazandırır.',
+                          'her doğru cevap 1 puan kazandırır.',
                           style: TextStyle(fontSize: 11.5, height: 1.5, color: c.textFaint, fontWeight: FontWeight.w600),
                         ),
                       ),
