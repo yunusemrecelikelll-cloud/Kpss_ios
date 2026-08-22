@@ -6042,18 +6042,6 @@
           "aciklama": "Yıllık sıcaklık farkının küçük olması, o yerin denizin ılımanlaştırıcı etkisi altında, yani büyük olasılıkla kıyıya yakın denizel bir iklime sahip olduğunu gösterir."
         },
         {
-          "soru": "Aşağıdakilerden hangisi enlem, yükselti, bakı ve karasallık faktörlerinin sıcaklık üzerindeki etkisini DOĞRU sınıflandırır?",
-          "secenekler": [
-            "Enlem: güneş ışınlarının geliş açısını belirler; Yükselti: atmosfer kalınlığına bağlı sıcaklık düşüşünü belirler; Bakı: yamacın güneş alma yönünü belirler; Karasallık: denize uzaklığa bağlı sıcaklık farkını belirler",
-            "Enlem ve yükselti aynı faktördür, bakı ve karasallık da aynı faktördür",
-            "Yalnızca enlem sıcaklığı etkiler, diğerleri etkisizdir",
-            "Bakı yalnızca yağışı etkiler, sıcaklıkla ilgisi yoktur",
-            "Karasallık yalnızca yağışı etkiler, sıcaklıkla ilgisi yoktur"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Enlem güneş ışınlarının geliş açısını, yükselti atmosferin incelmesine bağlı sıcaklık düşüşünü, bakı yamacın güneşe dönük olup olmadığını, karasallık ise denize uzaklığa bağlı sıcaklık farkını belirleyen birbirinden bağımsız dört ayrı faktördür."
-        },
-        {
           "soru": "Bir bölgede kışların çok sert, yazların ise çok sıcak geçtiği ve bu iki mevsim arasındaki geçişin hızlı olduğu gözlemleniyorsa, bu bölge için en olası açıklama aşağıdakilerden hangisidir?",
           "secenekler": [
             "Bölge deniz kıyısındadır ve denizin ılımanlaştırıcı etkisi güçlü biçimde hissedilir",
@@ -9073,18 +9061,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Platoların suları genellikle sürekli akar ve ovaların kenarlarında bulunur."
-        },
-        {
-          "soru": "Hangi yer şekil tipi denizler ve okyanusları oluşturur?",
-          "secenekler": [
-            "Geniş ve yüksek düzlükler olan platolar",
-            "Düden",
-            "Denizler ve okyanuslar",
-            "Düzler",
-            "Bölünmüşler"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçeneği seçen kişi, doğru bir şekilde denizler ve okyanusları oluşturan yer şekil tipini tanımlamıştır."
         },
         {
           "soru": "Hangi yer şekil tipi dağları oluşturur?",
@@ -17396,18 +17372,6 @@
           "aciklama": "Kestane ağacı, nemli ve ılıman iklim koşullarını sever; Aydın ve Orhangazi çevresindeki orman örtüsü ve uygun iklim, kestane yetiştiriciliğinin (orman altı tarımın) bu bölgelerde yaygınlaşmasını sağlamıştır."
         },
         {
-          "soru": "Toprak analizi yaptırarak bilinçli gübreleme uygulamasının tarımsal üretime katkısı aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Toprak analizinin tarımsal verimle hiçbir ilgisinin bulunmaması",
-            "B) Toprak analizinin yalnızca sanayi bölgelerinde yapılabilmesi",
-            "C) Bilinçsiz ve aşırı gübre kullanımının her zaman verimi artırması",
-            "D) Toprağın eksik olduğu besin maddelerinin belirlenip yalnızca ihtiyaç duyulan gübrenin uygulanarak hem verimin artması hem de gereksiz gübre maliyetinin ve çevre kirliliğinin önlenmesi",
-            "E) Gübrelemenin toprağın yapısını hiç etkilememesi"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Toprak analizi, topraktaki besin maddesi eksikliklerinin belirlenmesini sağlar; buna göre yapılan bilinçli gübreleme, hem gereksiz gübre masrafının önüne geçer hem de aşırı gübrelemenin yol açabileceği çevre kirliliğini azaltarak verimliliği artırır."
-        },
-        {
           "soru": "Türkiye'nin tekstil ve hazır giyim ihracatında Avrupa Birliği (AB) ülkelerine yönelmesinde etkili olan temel coğrafi faktör aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Türkiye'nin Avrupa Birliği ülkelerine coğrafi olarak çok uzak, buna karşın Güney Amerika kıtasına oldukça yakın bir konumda yer alması",
@@ -18586,18 +18550,6 @@
           "aciklama": "Karadeniz'in her mevsim yağışlı, nemli iklimi, bölgede gür ve geniş orman alanlarının oluşmasını sağlamış; bu da bölgeyi Türkiye'nin ormancılık faaliyeti bakımından en zengin bölgesi hâline getirmiştir."
         },
         {
-          "soru": "Aşağıdakilerden hangisi bölgelerin isimlendirilmesinde kullanılan yöntemle ilgili doğru bir bilgidir?",
-          "secenekler": [
-            "Bölgeler genellikle kıyısı bulundukları denizin adını (Marmara, Ege, Akdeniz, Karadeniz) ya da coğrafi konumlarını (İç Anadolu, Doğu Anadolu, Güneydoğu Anadolu) yansıtacak şekilde adlandırılmıştır",
-            "Bölgeler yalnızca rastgele sayılarla adlandırılmıştır",
-            "Bölgeler yalnızca kurucu illerin adını taşır",
-            "Bölgeler yalnızca nüfus büyüklüğüne göre adlandırılmıştır",
-            "Bölge isimlerinin coğrafyayla hiçbir ilgisi yoktur"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Türkiye'nin 7 coğrafi bölgesinin adları, ya kıyısı bulundukları denizden (Marmara, Ege, Akdeniz, Karadeniz) ya da Anadolu içindeki konumlarından (İç Anadolu, Doğu Anadolu, Güneydoğu Anadolu) türetilmiştir."
-        },
-        {
           "soru": "Aşağıdakilerden hangisi Doğu Anadolu Bölgesi'nin tarım açısından sınırlı olmasının, buna karşın hayvancılığın öne çıkmasının doğal nedenini en iyi açıklar?",
           "secenekler": [
             "Yüksek rakım ve kısa yetişme (vejetasyon) süresinin tarla bitkilerinin çeşitliliğini sınırlaması, ancak geniş çayır-mera alanlarının hayvancılığa imkan tanıması",
@@ -19294,18 +19246,6 @@
           "aciklama": "Ege Bölgesi, Akdeniz'e kıyıda olduğu için bu seçeneğin doğru olduğundan emin olabilir."
         },
         {
-          "soru": "Türkiye'nin hangi coğrafi bölgesi, Marmara Bölgesi'ne en yakın?",
-          "secenekler": [
-            "Karadeniz Bölgesi",
-            "İç Anadolu Bölgesi",
-            "Akdeniz Bölgesi",
-            "Marmara Bölgesi",
-            "Ege Bölgesi"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Marmara Bölgesi, seçeneğin kendisi olduğu için seçilmesi beklenmez."
-        },
-        {
           "soru": "Türkiye'nin coğrafi bölgeleri arasında en büyük bölge hangisidir?",
           "secenekler": [
             "Akdeniz Bölgesi",
@@ -19544,18 +19484,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Marmara Bölgesi, elverişli konumu, ulaşım ağları, sanayi kuruluşları ve İstanbul'un ticaret-finans merkezi olması sayesinde küçük yüzölçümüne rağmen ekonomik ağırlığı en yüksek bölgedir."
-        },
-        {
-          "soru": "Bir bölgenin yüzölçümü ile o bölgenin il sayısı arasında birebir bir ilişki var mıdır?",
-          "secenekler": [
-            "A) Evet, yüzölçümü büyük olan bölge her zaman en fazla ile sahiptir",
-            "B) Hayır; Doğu Anadolu yüzölçümü en büyük bölge olmasına rağmen illeri geniş alanlı olduğundan il sayısı başka bölgelerde daha fazla olabilir",
-            "C) Evet, il sayısı sadece nüfusa bağlıdır",
-            "D) Hayır, il sayısı yalnızca denize kıyısı olan bölgelerde fazladır",
-            "E) Evet, il sayısı yalnızca yüzölçümüyle belirlenir"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Yüzölçümü büyüklüğü, bir bölgedeki il sayısını doğrudan belirlemez; iller tarihi, idari ve nüfus faktörlerine göre şekillenmiştir, bu yüzden yüzölçümü küçük olan Karadeniz gibi bölgeler daha fazla sayıda ile sahip olabilir."
         },
         {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin en az yüzölçümüne sahip coğrafi bölgesidir?",
@@ -22559,18 +22487,6 @@
         },
         {
           "soru": "Bir haritanın ölçeği 1:50.000'dir. Haritanın üzerinde 1 cm genişliği 50.000 m uzunluğa karşılık gelir. Haritanın ölçek ne anlama gelir?",
-          "secenekler": [
-            "Haritanın ölçek 1:100.000'dir.",
-            "Haritanın ölçek 1:50.000'dir.",
-            "Haritanın ölçek 1:200.000'dir.",
-            "Haritanın ölçek 1:500.000'dir.",
-            "Haritanın ölçek 1:1.000.000'dir."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu seçeneğe doğru seçmek, ölçek kavramını doğru olarak anlamış olacaktır."
-        },
-        {
-          "soru": "Bir haritanın ölçek 1:50.000'dir. Haritanın üzerinde 1 cm uzunluğunda 50.000 m genişliği vardır. Hangi seçeneğin doğru olduğu anlaşılabilir?",
           "secenekler": [
             "Haritanın ölçek 1:100.000'dir.",
             "Haritanın ölçek 1:50.000'dir.",
@@ -26185,42 +26101,6 @@
           "aciklama": "Diri fay yoğunluğunun düşük olduğu Orta Karadeniz'in iç kesimleri ile Güneydoğu Anadolu'nun bazı platoluk alanları, Türkiye ortalamasına göre nispeten daha düşük deprem riski taşıyan bölgeler arasında sayılır."
         },
         {
-          "soru": "1939 Erzincan depremi ile ilgili aşağıdaki bilgilerden hangisi doğrudur?",
-          "secenekler": [
-            "A) Doğu Anadolu Fay Hattı'nın güney ucunda gerçekleşmiştir",
-            "B) Cumhuriyet döneminin en yıkıcı depremlerinden biri olarak Kuzey Anadolu Fay Hattı'nın doğu kesiminde gerçekleşmiştir",
-            "C) Ege graben sisteminde meydana gelmiştir",
-            "D) Volkanik kökenli bir depremdir",
-            "E) Yalnızca kıyı bölgelerini etkilemiştir"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "26/27 Aralık 1939'da meydana gelen Erzincan depremi, KAFH'nin doğu kesiminde gerçekleşmiş, o döneme kadarki Cumhuriyet tarihinin en büyük can kaybına yol açan depremlerinden biri olmuştur."
-        },
-        {
-          "soru": "6 Şubat 2023'te gerçekleşen Kahramanmaraş depremlerinin (Pazarcık ve Elbistan) en dikkat çeken özelliklerinden biri aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Aynı gün içinde, aynı fay sistemi üzerinde birbirinden bağımsız iki büyük depremin (Pazarcık ve Elbistan) art arda gerçekleşmesi",
-            "B) Depremlerin volkanik patlamayla birlikte gerçekleşmesi",
-            "C) Depremlerin yalnızca Ege kıyılarını etkilemesi",
-            "D) Depremlerin Kuzey Anadolu Fay Hattı'nın batı ucunda olması",
-            "E) Depremlerin tsunami dışında hiçbir etkisinin olmaması"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "6 Şubat 2023'te önce Pazarcık, ardından aynı gün içinde Elbistan merkezli iki büyük deprem, Doğu Anadolu Fay Hattı ve ona bağlı kırıklar üzerinde art arda gerçekleşmiş; bu durum olayın etkisini olağanüstü boyutlara taşımıştır."
-        },
-        {
-          "soru": "1999 Kocaeli (Gölcük) depreminde Adapazarı'nda görülen ağır hasarın önemli bir nedeni olarak gösterilen jeolojik olay aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Volkanik kül birikimi",
-            "B) Zemin sıvılaşması (alüvyal, su bakımından doygun gevşek zeminlerin taşıma gücünü kaybetmesi)",
-            "C) Deniz suyu seviyesinin yükselmesi",
-            "D) Çığ düşmesi",
-            "E) Kaya düşmesi"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Adapazarı, Sakarya Nehri'nin taşıdığı alüvyal, gevşek ve yer altı suyu bakımından doygun bir zemin üzerinde kurulduğu için 1999 depreminde zemin sıvılaşması yaşanmış; binalar yan yatarak veya batarak ağır hasar görmüştür."
-        },
-        {
           "soru": "1999 Gölcük depreminin ardından İzmit Körfezi'nde gözlemlenen, deniz suyunun kıyıya aniden yükselip alçalması olayı hangi doğa olayına örnektir?",
           "secenekler": [
             "A) Gelgit",
@@ -26327,18 +26207,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "1912 Mürefte-Şarköy depremi, KAFH'nin Saros Körfezi'nden Marmara'ya uzanan batı kesiminde gerçekleşmiş, Trakya'da geniş çaplı hasara yol açmıştır."
-        },
-        {
-          "soru": "Deprem sonrası yapılan saha incelemelerinde, bir binanın komşusundaki benzer yükseklikteki binalara göre çok daha ağır hasar görmesi durumunda, aşağıdaki faktörlerden hangisinin sorgulanması öncelikli olmalıdır?",
-          "secenekler": [
-            "A) Binanın dış cephe rengi",
-            "B) Binanın zemin etüdü, kullanılan malzeme kalitesi ve statik projeye uygunluğu",
-            "C) Binanın çatı eğimi",
-            "D) Binanın çevresindeki ağaç sayısı",
-            "E) Binanın kapı sayısı"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Aynı bölgede, benzer sarsıntıya maruz kalan binalar arasındaki hasar farkı genellikle zemin koşulları, malzeme kalitesi, işçilik ve projeye uygunluk gibi mühendislik faktörleriyle açıklanır; bu yüzden saha incelemeleri öncelikle bu unsurlara odaklanır."
         },
         {
           "soru": "Bir depremin yerin altındaki kırılmanın başladığı asıl noktasına ne ad verilir?",
@@ -26449,18 +26317,6 @@
           "aciklama": "'Tutun' aşamasında kişi, altına sığındığı sağlam bir masa veya eşyaya sıkıca tutunarak hem başını-boynunu korur hem de sarsıntı sırasında eşyanın yer değiştirmesini/kaymasını engellemeye çalışır."
         },
         {
-          "soru": "Deprem tehlike haritalarının temel amacı aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Yalnızca turistik bölgeleri göstermek",
-            "B) Bir bölgenin gelecekte maruz kalabileceği yer sarsıntısı şiddetini tahmin ederek yapılaşma ve planlama kararlarına temel oluşturmak",
-            "C) Yalnızca geçmişte olan depremleri arşivlemek",
-            "D) Hava durumu tahmini yapmak",
-            "E) Tarım arazilerinin verimliliğini göstermek"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Deprem tehlike haritaları, bir bölgenin zemin özellikleri ve fay yakınlığına göre gelecekte maruz kalabileceği sarsıntı düzeyini tahmin ederek imar planlaması, yapı yönetmeliği ve sigorta uygulamalarına temel oluşturur."
-        },
-        {
           "soru": "DASK (Doğal Afet Sigortaları Kurumu) kapsamındaki zorunlu deprem sigortası hangi tür binalar için zorunludur?",
           "secenekler": [
             "A) Yalnızca devlete ait kamu kurumu, okul ve hastane binaları için",
@@ -26495,30 +26351,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Düzenli tatbikatlar, öğrencilerin ve personelin 'çök-kapan-tutun' gibi doğru davranışları ve güvenli tahliye yollarını tekrar tekrar uygulayarak gerçek bir deprem anında panik yapmadan otomatik olarak doğru tepki vermesini sağlamayı amaçlar."
-        },
-        {
-          "soru": "Bir binanın 'deprem performans analizi' yaptırılmasının amacı aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Binanın estetik görünümünü değerlendirmek",
-            "B) Binanın mevcut taşıyıcı sisteminin olası bir depremde ne düzeyde hasar görebileceğini bilimsel olarak belirlemek",
-            "C) Binanın kira bedelini hesaplamak",
-            "D) Binanın yalıtım kalitesini ölçmek",
-            "E) Binanın yangına dayanıklılığını test etmek"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Deprem performans analizi, mühendislik hesaplarıyla bir binanın taşıyıcı sisteminin (kolon, kiriş, temel) belirli şiddetteki bir depremde ne kadar hasar görebileceğini, güçlendirme gerekip gerekmediğini ortaya koyar."
-        },
-        {
-          "soru": "Aşağıdakilerden hangisi bir binanın deprem sırasında 'yumuşak kat' (zemin katın diğer katlara göre çok daha az perde duvara sahip olması) etkisiyle çökme riskinin artmasına örnektir?",
-          "secenekler": [
-            "A) Zemin katın dükkan olarak kullanılması amacıyla çok sayıda duvarın kaldırılıp geniş vitrin boşlukları bırakılması",
-            "B) Tüm katların özdeş duvar düzenine sahip olması",
-            "C) Binanın çatısının hafif malzemeden yapılması",
-            "D) Binanın bodrum katının bulunmaması",
-            "E) Binanın güneye bakan cephesinin cam olması"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Ticari kullanım amacıyla zemin katta duvarların kaldırılıp geniş vitrinler açılması, o katın yanal rijitliğini büyük ölçüde azaltır; bu 'yumuşak kat' etkisi depremde zemin katın çökmesine ve üst katların altında kalmasına yol açabilir."
         },
         {
           "soru": "Bir yapının deprem sırasında burulma (torsiyon) etkisiyle daha fazla hasar görmesine yol açan tasarım hatası aşağıdakilerden hangisidir?",
@@ -26581,18 +26413,6 @@
           "aciklama": "Yamaç eteğindeki bitki örtüsünü tamamen kaldırmak, kök sisteminin toprağı tutma etkisini ortadan kaldırarak heyelan riskini artırır; bu nedenle önlem değil, riski büyüten bir uygulamadır."
         },
         {
-          "soru": "Bir heyelanın 'akma (flow)' türü ile 'kayma (slide)' türü arasındaki temel fark aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Akma türünde malzeme sıvı benzeri davranarak akarken, kayma türünde kütle belirli bir düzlem boyunca bütünlüğünü büyük ölçüde koruyarak hareket eder",
-            "B) Akma türü yalnızca kar üzerinde, kayma türü yalnızca denizde gerçekleşir",
-            "C) İkisi arasında hiçbir fark yoktur",
-            "D) Akma türü yalnızca kayalarda, kayma türü yalnızca toprakta gerçekleşir",
-            "E) Kayma türü yalnızca volkanik alanlarda görülür"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Akma tipi kütle hareketlerinde su içeriği yüksek malzeme akışkan bir davranış sergilerken, kayma tipi hareketlerde toprak/kaya kütlesi belirli bir kayma yüzeyi boyunca göreli bütünlüğünü koruyarak yer değiştirir."
-        },
-        {
           "soru": "Türkiye'de heyelan riski değerlendirmesi yapılırken dikkate alınan faktörlerden biri olan 'jeolojik yapı' unsuru neyi ifade eder?",
           "secenekler": [
             "A) Yalnızca bölgede yaşayan insan sayısına bağlı nüfus yoğunluğu ve kentsel yapılaşma oranı",
@@ -26641,18 +26461,6 @@
           "aciklama": "Ağaç gövdelerinin dipte eğilmesi ('sarhoş orman' görünümü), zeminde yeni çatlakların ve küçük çökmelerin oluşması, yamacın yavaş yavaş hareket etmeye başladığının tipik erken belirtileridir."
         },
         {
-          "soru": "Çığ (kar çığı) oluşumunda en belirleyici faktör aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Düz arazide biriken ince kar tabakası",
-            "B) Dik yamaçlarda biriken kalın ve dengesiz kar kütlesinin ani bir tetikleyiciyle harekete geçmesi",
-            "C) Yaz mevsiminde sıcaklığın artması",
-            "D) Deniz seviyesindeki değişim",
-            "E) Yağmur yağışının hiç olmaması"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çığ, genellikle 25-45 derece eğimli yamaçlarda biriken kalın ve iç yapısı dengesiz kar tabakasının; ses, titreşim, ek kar yükü veya sıcaklık değişimi gibi bir tetikleyiciyle aniden aşağı doğru kaymasıyla oluşur."
-        },
-        {
           "soru": "Türkiye'de çığ afetinin en sık can kaybına yol açtığı meslek/faaliyet grubu aşağıdakilerden hangisidir?",
           "secenekler": [
             "A) Kıyı balıkçılığı yapanlar",
@@ -26665,18 +26473,6 @@
           "aciklama": "Doğu Anadolu'nun yüksek ve dağlık geçitlerinde kışın kar küreme ekipleri, yol açma çalışanları ve bu yollardan geçmek zorunda kalan yolcular, çığ afetinin en sık can kaybına yol açtığı gruplar arasında yer alır."
         },
         {
-          "soru": "Çığ riskinin azaltılmasına yönelik yapısal önlemlerden biri olan 'çığ kesici/tutucu bariyerler' hangi işlevi görür?",
-          "secenekler": [
-            "A) Kar yağışını tamamen engellemek",
-            "B) Yamaçta oluşan kar kütlesinin bütün halde aşağı kaymasını fiziksel olarak bölerek veya durdurarak enerjisini azaltmak",
-            "C) Bölgenin sıcaklığını yükseltmek",
-            "D) Yamacın eğimini tamamen düzleştirmek",
-            "E) Yağış miktarını azaltmak"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çığ kesici bariyerler, yamaca yerleştirilen ızgara veya ağ yapılarla biriken kar kütlesinin büyük ve tek parça halinde kaymasını engelleyerek olası bir çığın enerjisini ve boyutunu azaltmayı amaçlar."
-        },
-        {
           "soru": "Aşağıdakilerden hangisi çığ oluşumunu tetikleyen doğal veya insan kaynaklı faktörlerden biri DEĞİLDİR?",
           "secenekler": [
             "A) Ani sıcaklık artışı",
@@ -26687,30 +26483,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Çığ, biriken kar kütlesinin varlığını gerektirir; bir bölgede yıl boyunca hiç yağış (kar) görülmemesi, çığ oluşumu için gerekli temel malzemenin (kar) bulunmadığı anlamına gelir ve bu nedenle tetikleyici değil, engelleyici bir durumdur."
-        },
-        {
-          "soru": "Kar çığının 'toz çığı' türü ile 'ıslak/blok çığı' türü arasındaki temel fark aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Toz çığı kuru, ince ve hafif kardan oluşup çok yüksek hızla hareket ederken; ıslak çığ daha ağır, su içeriği yüksek kar kütlesinden oluşur ve nispeten daha yavaş fakat çok yıkıcı hareket eder",
-            "B) İkisi arasında hiçbir fark yoktur",
-            "C) Toz çığı yalnızca yazın, ıslak çığ yalnızca kışın oluşur",
-            "D) Toz çığı yalnızca denizde, ıslak çığ yalnızca karada oluşur",
-            "E) Toz çığı yalnızca gece, ıslak çığ yalnızca gündüz oluşur"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Toz çığları, kuru ve ince kar tanecikleriyle oluşan, havada asılı kalarak çok yüksek hızlara ulaşabilen çığ türüyken; ıslak/blok çığları daha yoğun, nemli kar kütlelerinden oluşur ve göreli olarak yavaş ama büyük kütleleriyle çok yıkıcı olabilir."
-        },
-        {
-          "soru": "Türkiye'de meteoroloji ve AFAD tarafından yayımlanan çığ risk uyarılarının temel amacı aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Turizm gelirlerini artırmak",
-            "B) Riskli bölgelerdeki yol kullanıcılarını ve yerleşimleri önceden bilgilendirerek can kaybını azaltmak",
-            "C) Tarımsal üretimi planlamak",
-            "D) Orman yangınlarını önlemek",
-            "E) Deniz taşımacılığını düzenlemek"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çığ risk uyarıları, kar yağışı ve sıcaklık verilerine dayanarak riskli bölgelerdeki yolları kullanan sürücüleri, kar küreme ekiplerini ve yerel halkı önceden uyararak olası can kayıplarını azaltmayı hedefler."
         },
         {
           "soru": "Aşağıdaki illerden hangisi, yüksek rakımlı dağlık arazisi nedeniyle Türkiye'de çığ riskinin en yoğun izlendiği iller arasında YER ALMAZ?",
@@ -29799,18 +29571,6 @@
           "aciklama": "Doğu Karadeniz Bölümü, Türkiye'nin her mevsim en fazla yağış alan kesimidir; bu bol ve düzenli yağış, buradaki akarsuların yıl boyunca nispeten yüksek ve dengeli bir su akımına (debiye) sahip olmasını sağlar."
         },
         {
-          "soru": "Kayseri yöresinden doğup Kızılırmak'a katılan Göksu (Sarımsaklı) gibi kollarla, Silifke/Mersin yöresindeki Göksu Nehri arasındaki ilişki için aşağıdakilerden hangisi doğrudur?",
-          "secenekler": [
-            "A) Aynı isme sahip olsalar da bu iki akarsu birbirinden tamamen bağımsızdır; biri Kızılırmak'ın bir kolu, diğeri Akdeniz'e dökülen ayrı bir akarsudur",
-            "B) İkisi aslında aynı akarsuyun farklı isimlerle anılan parçalarıdır",
-            "C) İkisi de doğrudan Ege Denizi'ne dökülür",
-            "D) İkisi de Van Gölü'ne dökülür",
-            "E) İkisi de yapay sulama kanalıdır"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Türkiye'de aynı ya da benzer adı taşıyan birden fazla akarsu bulunabilir; Kayseri yöresinde Kızılırmak'a katılan bir kol ile Silifke/Mersin yöresinde Akdeniz'e dökülen Göksu Nehri, isim benzerliğine rağmen tamamen farklı havzalarda yer alan bağımsız akarsulardır."
-        },
-        {
           "soru": "Akarsu rejimi kavramı en doğru biçimde aşağıdakilerden hangisiyle tanımlanır?",
           "secenekler": [
             "A) Bir akarsuyun denize döküldüğü ağız kısmında ölçülen ortalama tuzluluk oranı ile su sıcaklığının birlikte değerlendirilmesi",
@@ -29881,18 +29641,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Bir akarsuyun enerji potansiyeli, taşıdığı su miktarı (debi) ile aktığı yatağın eğimine (birim mesafedeki yükseklik farkına) bağlıdır; yüksek debi ve dik eğim bir araya geldiğinde enerji potansiyeli artar."
-        },
-        {
-          "soru": "Fırat Nehri'nin enerji potansiyelinin yüksek olmasının temel nedeni aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Yalnızca çok uzun bir akarsu olması",
-            "B) Yüksek debiye sahip olmasının yanında Doğu ve Güneydoğu Anadolu'nun dağlık/engebeli arazisinde derin vadilerden geçerek belirgin bir eğimle akması",
-            "C) Kışın tamamen donması",
-            "D) Denize çok yakın bir noktadan doğması",
-            "E) Yalnızca yağmur sularıyla beslenmesi"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Fırat, hem yüksek debisi hem de Doğu ve Güneydoğu Anadolu'nun engebeli arazisinde derin vadiler oluşturarak belirgin bir eğimle akması sayesinde yüksek hidroelektrik enerji potansiyeline sahiptir."
         },
         {
           "soru": "Çoruh Nehri'nin, görece kısa bir akarsu olmasına rağmen yüksek enerji potansiyeline sahip olmasının nedeni aşağıdakilerden hangisidir?",
@@ -35772,18 +35520,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Denizyolu ulaşımı, en eski ve yaygın ulaşım türüdür. İnsanlık tarihi boyunca birçok kültürün denizyolu ulaşımını kullanması nedeniyle bu seçenek doğru cevaptır."
-        },
-        {
-          "soru": "Ulaştırma türleri arasında hangisi deniz yolu ile gerçekleşmektedir?",
-          "secenekler": [
-            "Hava yolu",
-            "Demir yolu",
-            "Deniz yolu",
-            "Karayolu",
-            "Bunlardan hiçbiri"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Deniz yolu ile gerçekleşen ulaştırma türüdür. Doğru cevaptır."
         },
         {
           "soru": "İnsan ve mal taşımacılığında en çok kullanılan ulaşım türü nedir?",
@@ -44059,18 +43795,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Göreme Milli Parkı, volkanik tüf aşınmasıyla oluşan peri bacaları gibi doğal oluşumları, içlerine oyulmuş kaya kiliseleri ve yerleşimler gibi insan yapımı kültürel unsurlarla bir arada barındırdığından UNESCO tarafından hem doğal hem kültürel miras özelliği taşıyan 'karma miras alanı' olarak kabul edilmiştir."
-        },
-        {
-          "soru": "Türkiye'de turizmin bölgesel gelişmişlik farkını azaltmadaki potansiyel rolü en çok hangi örnekle açıklanabilir?",
-          "secenekler": [
-            "Doğu ve Güneydoğu Anadolu'daki kültürel-tarihi mirasın (Nemrut Dağı, Ani Harabeleri, Göbeklitepe gibi) turizme kazandırılarak bölgeye ekonomik girdi sağlanması",
-            "Turizmin yalnızca zaten gelişmiş kıyı bölgelerinde yoğunlaştırılması",
-            "Turizm yatırımlarının yalnızca büyük şehirlerde yapılması",
-            "Turizmin kırsal bölgelerden tamamen çekilmesi",
-            "Turizm gelirinin yalnızca yabancı yatırımcılara aktarılması"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Nemrut Dağı, Ani Harabeleri ve Göbeklitepe gibi bölgesel açıdan görece az gelişmiş illerdeki zengin kültürel mirasın turizme kazandırılması, bu bölgelere ekonomik girdi ve istihdam sağlayarak bölgeler arası gelişmişlik farkının azaltılmasına katkıda bulunabilir."
         },
         {
           "soru": "Türkiye'de 'alternatif turizm' kavramı kapsamında değerlendirilebilecek faaliyetlerden biri aşağıdakilerden hangisidir?",

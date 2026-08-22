@@ -934,18 +934,6 @@
           "aciklama": "Bu seçenek, seslerin niteliği, yoğunluğu ve süresini üretilme şekline göre belirlenmesini doğru olarak ifade eder."
         },
         {
-          "soru": "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, farklı niteliklere sahiptir. Bu seslerin niteliği, dilin hangi konumlarda oluşturulmasıyla belirlenir?",
-          "secenekler": [
-            "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, farklı niteliklere sahiptir.",
-            "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, aynı niteliklere sahiptir.",
-            "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, sesin niteliğine göre belirlenir.",
-            "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, sesin yoğunluğuna göre belirlenir.",
-            "Dilin farklı konumlarda oluşturulmasıyla üretilen sesler, sesin süresine göre belirlenir."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçenek, dilin farklı konumlarda oluşturulmasıyla üretilen seslerin farklı niteliklere sahip olduğunu doğru olarak ifade eder."
-        },
-        {
           "soru": "Seslerin niteliği, yoğunluğu ve süresi, sesin üretilme şekline göre belirlenir. Sesin üretilme şeklini, sesin niteliği neye göre belirlenir?",
           "secenekler": [
             "Sesin niteliği, sesin üretilme şekline göre belirlenir.",
@@ -2767,18 +2755,6 @@
           "aciklama": "Yapısal kelimesi, cümlelerin birbirine eklenerek uzun cümleler oluşturabilmesinden bahsetmektedir. Bu nedenle doğru cevaptır."
         },
         {
-          "soru": "Aşağıdaki paragrafın genel anlamı nedir? Türk dilinin zenginleşmesi ve gelişmesi için dilbilgisi kurallarının yanı sıra yazım kuralları da büyük önem taşımaktadır. Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar. Bu kurallar olmadan, dilin anlamı ve yapısı bozulur. Örneğin, nokta ve virgül gibi noktalama işaretlerinin doğru kullanımı, cümlelerin anlamını değiştirebilir. Aynı şekilde, büyük ve küçük harflerin doğru kullanımı da önemlidir. Büyük harfler, cümlelerin başlangıcını ve özel isimlerin başını gösterirken, küçük harfler cümlelerin geri kalan kısmını oluşturur. Bu nedenle, yazım kurallarına uymak, dilin doğru ve etkili bir şekilde kullanılmasını sağlar.",
-          "secenekler": [
-            "Türkçenin zenginleşmesi için yazım kurallarına uymak önemlidir.",
-            "Yazım kuralları, yalnızca dilin resmî ve akademik yazışmalardaki kullanımını etkiler, günlük konuşma dilinde önemsizdir.",
-            "Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar.",
-            "Yazım kuralları, dilin zenginleşmesine engel olur.",
-            "Yazım kuralları, sadece noktalama işaretlerini düzenler."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek, paragrafın genel anlamını doğru bir şekilde ifade etmektedir. Paragraf, yazım kurallarının dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlama konusundaki önemini vurgulamaktadır."
-        },
-        {
           "soru": "Aşağıdaki cümlede 'i' harfi hangi kurala göre büyük harfle yazılmıştır? 'İstanbul, Türkiye'nin en büyük şehridir.'",
           "secenekler": [
             "Cümlenin başlangıcında olduğu için",
@@ -2827,18 +2803,6 @@
           "aciklama": "Bu seçenek doğrudur. Türkçe kelimelerde 'o' yerine 'ö' kullanılır."
         },
         {
-          "soru": "Aşağıdaki paragrafın genel anlamı nedir? Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar. Bu kurallar, cümlelerin anlamını değiştirebilir. Örneğin, nokta ve virgül gibi noktalama işaretlerinin doğru kullanımı, cümlelerin anlamını değiştirebilir. Aynı şekilde, büyük ve küçük harflerin doğru kullanımı da önemlidir. Büyük harfler, cümlelerin başlangıcını ve özel isimlerin başını gösterirken, küçük harfler cümlelerin geri kalan kısmını oluşturur.",
-          "secenekler": [
-            "Yazım kuralları, dilin sadece resmi kullanımını etkiler.",
-            "Yazım kuralları, cümlelerin anlamını değiştirebilir.",
-            "Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar.",
-            "Yazım kuralları, büyük ve küçük harflerin kullanımını düzenlemez.",
-            "Yazım kuralları, noktalama işaretlerinin kullanımını düzenlemez."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek, paragrafın genel anlamını doğru bir şekilde ifade etmektedir."
-        },
-        {
           "soru": "Aşağıdaki cümledeki 'ü' harfinin yazım kuralı hangisidir? 'Ülkemizde üretilen ürünler, dünya çapında talep görmektedir.'",
           "secenekler": [
             "Türkçe kelimelerde 'u' yerine 'ü' kullanılır.",
@@ -2849,18 +2813,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Bu seçenek doğrudur. Türkçe kelimelerde 'u' yerine 'ü' kullanılır."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın genel anlamı nedir? Türkçenin doğru ve etkili bir şekilde kullanılabilmesi için yazım kurallarına uymak önemlidir. Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar. Bu kurallar, cümlelerin anlamını değiştirebilir. Örneğin, nokta ve virgül gibi noktalama işaretlerinin doğru kullanımı, cümlelerin anlamını değiştirebilir. Aynı şekilde, büyük ve küçük harflerin doğru kullanımı da önemlidir.",
-          "secenekler": [
-            "Yazım kuralları, dilin sadece resmi kullanımını etkiler.",
-            "Yazım kuralları, cümlelerin anlamını değiştirebilir.",
-            "Yazım kuralları, dilin doğru ve anlaşılır bir şekilde kullanılmasını sağlar.",
-            "Yazım kuralları, büyük ve küçük harflerin kullanımını düzenlemez.",
-            "Yazım kuralları, noktalama işaretlerinin kullanımını düzenlemez."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek, paragrafın genel anlamını doğru bir şekilde ifade etmektedir."
         },
         {
           "soru": "Aşağıdaki cümledeki 'ı' harfinin yazım kuralı hangisidir? 'Kısa bir süre sonra, ıslak bir havayı hissettim.'",
@@ -5236,30 +5188,6 @@
           "aciklama": "'Bir gün gelir mi bilmiyorum.' cümlesinde 'gelir mi' kalıbı gerçek bir soru sormamakta, belirsizlik/kuşku bildiren bir yan cümle olarak kullanılmaktadır; bu nedenle cümle sonuna soru işareti değil nokta konur. Diğer seçeneklerin tamamı gerçek soru cümleleridir."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisinde ünlem işareti yalnızca seslenme sözünden sonra, cümlenin geri kalanına nokta konularak kullanılmıştır?",
-          "secenekler": [
-            "Ahmet! Buraya gel.",
-            "Ahmet buraya gel!",
-            "Ahmet, buraya gel!",
-            "Ahmet buraya! gel.",
-            "Ahmet buraya gel."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Ahmet! Buraya gel.' cümlesinde seslenme sözü olan 'Ahmet'ten hemen sonra ünlem işareti konmuş, cümlenin geri kalanı ayrı bir cümle olarak noktayla bitirilmiştir. Bu, seslenme sözlerinde kullanılabilen özel bir noktalama biçimidir."
-        },
-        {
-          "soru": "Aşağıdaki cümlelerin hangisinde üç nokta doğru kullanılmıştır?",
-          "secenekler": [
-            "Ona söylemek istedim ama...",
-            "Ona söylemek... istedim ama.",
-            "Ona... söylemek istedim ama.",
-            "Ona söylemek istedim... ama...",
-            "...Ona söylemek istedim ama."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Ona söylemek istedim ama...' cümlesinde üç nokta, sözün bilerek yarıda bırakıldığını, tamamlanmadığını göstermek için cümlenin sonunda doğru biçimde kullanılmıştır. Diğer seçeneklerde üç nokta anlamsız yerlere konmuştur."
-        },
-        {
           "soru": "Aşağıdaki cümlelerin hangisinde üç nokta, bir alıntıda bir bölümün atlandığını göstermek için kullanılmıştır?",
           "secenekler": [
             "\"Ne mutlu Türk'üm diyene...\" sözü çok bilinir.",
@@ -5318,18 +5246,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Bu bitki (kişniş) mutfaklarda sıkça kullanılır.' cümlesinde parantez, bir sözcüğün başka bir adını veya açıklamasını vermek için doğru biçimde kullanılmıştır. Diğer seçeneklerde bu işlev virgül, tire, iki nokta ya da tırnak işaretiyle yanlış biçimde karşılanmaya çalışılmıştır."
-        },
-        {
-          "soru": "Aşağıdaki cümlelerin hangisinde uzun çizgi (konuşma çizgisi) diyalogda doğru kullanılmıştır?",
-          "secenekler": [
-            "— Bugün okula gitmeyeceğim, dedi çocuk.",
-            "-Bugün okula gitmeyeceğim, dedi çocuk.",
-            "'Bugün okula gitmeyeceğim, dedi çocuk.",
-            "(Bugün okula gitmeyeceğim), dedi çocuk.",
-            "\"—Bugün okula gitmeyeceğim\", dedi çocuk."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'— Bugün okula gitmeyeceğim, dedi çocuk.' cümlesinde uzun çizgi, karşılıklı konuşmalarda (diyaloglarda) her konuşmacının sözünün başına konarak doğru biçimde kullanılmıştır. Diğer seçeneklerde kısa tire, tırnak işareti gibi farklı işaretlerle bu işlev karşılanmaya çalışılmıştır."
         },
         {
           "soru": "Aşağıdaki cümlelerin hangisinde kısa çizgi (tire) sözcükler arasındaki bağlantıyı göstermek için doğru kullanılmıştır?",
@@ -5522,18 +5438,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Babam \"Dikkatli ol.\" dedi.' cümlesinde başkasından aktarılan söz tırnak işaretiyle doğru biçimde gösterilmiştir."
-        },
-        {
-          "soru": "Aşağıdaki cümlelerin hangisinde uzun çizgi (konuşma çizgisi) doğru kullanılmıştır?",
-          "secenekler": [
-            "— Yarın gelir misin, diye sordu arkadaşım.",
-            "-Yarın gelir misin, diye sordu arkadaşım.",
-            "'Yarın gelir misin, diye sordu arkadaşım.",
-            "(Yarın gelir misin), diye sordu arkadaşım.",
-            "\"—Yarın gelir misin\", diye sordu arkadaşım."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'— Yarın gelir misin, diye sordu arkadaşım.' cümlesinde uzun çizgi, karşılıklı konuşmalarda konuşmacının sözünün başına doğru biçimde konmuştur."
         },
         {
           "soru": "Aşağıdaki cümlelerin hangisinde 'yani' sözcüğünden önce virgül doğru kullanılmıştır?",
@@ -6888,18 +6792,6 @@
           "aciklama": "Paragrafın ana fikri, dilin bir toplumun kültürel mirasının önemli bir parçası olduğu ve toplumun tarihini, geleneklerini ve değerlerini yansıttığıdır."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisi, 'sözcükte anlam' konusuna ilişkindir? 'Sözcüklerin anlamları, cümlelerin anlamını belirler.', 'Cümlelerin yapısı, sözcüklerin anlamlarını etkiler.', 'Sözcüklerin anlamları, kültürel özelliklere bağlıdır.', 'Sözcüklerin anlamları, tarih boyunca değişmez.', 'Sözcüklerin anlamları, konuşmacının amaçlarına bağlıdır.'",
-          "secenekler": [
-            "Sözcüklerin anlamları, cümlelerin anlamını belirler.",
-            "Cümlelerin yapısı, sözcüklerin anlamlarını etkiler.",
-            "Sözcüklerin anlamları, kültürel özelliklere bağlıdır.",
-            "Sözcüklerin anlamları, tarih boyunca değişmez.",
-            "Sözcüklerin anlamları, konuşmacının amaçlarına bağlıdır."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçenek doğru çünkü sözcüklerin anlamları, cümlelerin anlamını belirler."
-        },
-        {
           "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Bir sözcüğün anlamı, o sözcüğün kullanıldığı bağlam tarafından belirlenir. Aynı sözcük, farklı bağlamlarda farklı anlamlara gelebilir. Örneğin, 'banka' sözcüğü, finansal bir kurum olarak kullanıldığında, bir nehrin kenarına gelen anlamında kullanıldığında farklı anlamlara gelir.'",
           "secenekler": [
             "Sözcüklerin anlamları, bağlamsal olarak belirlenir.",
@@ -6910,54 +6802,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Paragrafın ana fikri, sözcüklerin anlamlarının, o sözcüklerin kullanıldığı bağlam tarafından belirlendiğidir."
-        },
-        {
-          "soru": "Aşağıdaki cümleler hangisinde, 'sözcükte anlam' konusuna ilişkin bir örnek verilir? 'Sözcüklerin anlamları, cümlelerin anlamını belirler.', 'Cümlelerin yapısı, sözcüklerin anlamlarını etkiler.', 'Sözcük 'ev', farklı bağlamlarda farklı anlamlara gelebilir.', 'Sözcüklerin anlamları, tarih boyunca değişmez.', 'Sözcüklerin anlamları, konuşmacının amaçlarına bağlıdır.'",
-          "secenekler": [
-            "Sözcüklerin anlamları, cümlelerin anlamını belirler.",
-            "Cümlelerin yapısı, sözcüklerin anlamlarını etkiler.",
-            "Sözcük 'ev', farklı bağlamlarda farklı anlamlara gelebilir.",
-            "Sözcüklerin anlamları, tarih boyunca değişmez.",
-            "Sözcüklerin anlamları, konuşmacının amaçlarına bağlıdır."
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu seçenek doğru çünkü bu cümle, 'sözcükte anlam' konusuna ilişkin bir örnek verir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Bir dilin sözcükleri, o dilin kültürel özelliklerini taşır. Bir dilin sözcük dağarcığında, certain bir alanda uzmanlık gerektiren sözcükler bulunması, o toplumun o alanda gelişmiş olduğunun göstergesi olabilir. Örneğin, bir dilin sözcük dağarcığında, denizcilik alanında uzmanlık gerektiren sözcükler bulunması, o toplumun denizcilik alanında gelişmiş olduğunun göstergesi olabilir.'",
-          "secenekler": [
-            "Bir dilin sözcükleri, o dilin kültürel özelliklerini taşır.",
-            "Bir dilin sözcük dağarcığı, o dilin konuşulduğu toplumun tarihi hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun coğrafi konumu hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun ekonomisi hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun politik sistemi hakkında bilgi verir."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragrafın ana fikri, bir dilin sözcüklerinin, o dilin kültürel özelliklerini taşıdığıdır."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Dil, bir toplumun kültürel mirasının önemli bir parçasıdır. İnsanların düşüncelerini, duygularını ve deneyimlerini ifade etmede kullanılan dil, aynı zamanda bir toplumun tarihini, geleneklerini ve değerlerini yansıtır. Bir dilin sözcükleri, grameri ve telaffuzu, o dilin konuşulduğu toplumun kültürel özelliklerini taşır.'",
-          "secenekler": [
-            "Dil, bir toplumun kültürel mirasının önemli bir parçasıdır.",
-            "Dil, sadece düşünceleri ifade eder.",
-            "Dil, tarih ve gelenekleri yansıtmaz.",
-            "Dil, toplumun değerlerini değiştirir.",
-            "Dil, sadece belirli bir alanda uzmanlık gerektirir."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragrafın ana fikri, dilin bir toplumun kültürel mirasının önemli bir parçası olduğudur."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Bir dilin sözcükleri, o dilin konuşulduğu toplumun kültürel özelliklerini taşır. Bir dilin sözcük dağarcığında, certain bir alanda uzmanlık gerektiren sözcükler bulunması, o toplumun o alanda gelişmiş olduğunun göstergesi olabilir. Örneğin, bir dilin sözcük dağarcığında, tıp alanında uzmanlık gerektiren sözcükler bulunması, o toplumun tıp alanında gelişmiş olduğunun göstergesi olabilir.'",
-          "secenekler": [
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun kültürel özelliklerini taşır.",
-            "Bir dilin sözcük dağarcığı, o dilin konuşulduğu toplumun tarihi hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun coğrafi konumu hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun ekonomisi hakkında bilgi verir.",
-            "Bir dilin sözcükleri, o dilin konuşulduğu toplumun politik sistemi hakkında bilgi verir."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragrafın ana fikri, bir dilin sözcüklerinin, o dilin konuşulduğu toplumun kültürel özelliklerini taşıdığıdır."
         },
         {
           "soru": "Okuyucunun, 'Sözcükte Anlam' konusunda bilgi sahibi olmasını sağlayan bir metin aşağıda verilmiştir. Metinde bahsedilen 'sözcük' ne ifade etmektedir?",
@@ -8864,18 +8708,6 @@
           "aciklama": "'Toplantı 45 dakika sürdü.' cümlesi ölçülebilir, somut bir süre bilgisi verir; kişisel bir yorum, beğeni ya da değerlendirme içermez, bu nedenle nesneldir. Diğer seçeneklerin tamamı kişisel görüş ve değerlendirme bildirir."
         },
         {
-          "soru": "\"Bu sokak, geçen hafta yağan yağmur yüzünden hâlâ çamurluydu.\" cümlesindeki neden-sonuç ilişkisinde 'sonuç' bildiren bölüm aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Geçen hafta yağan yağmur",
-            "Bu sokak",
-            "Hâlâ çamurluydu",
-            "Geçen hafta",
-            "Yağmur yüzünden"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Cümlede 'geçen hafta yağan yağmur' neden, 'hâlâ çamurluydu' ise bu nedenin doğurduğu sonuçtur."
-        },
-        {
           "soru": "\"Kitap raftan düştü ve sayfaları buruştu.\" cümlesindeki iki eylem arasındaki ilişki aşağıdakilerden hangisidir?",
           "secenekler": [
             "Amaç-sonuç",
@@ -9054,18 +8886,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Cümlede iki kardeş huy bakımından birbiriyle kıyaslanmakta, aralarındaki fark ortaya konmaktadır. Bu, karşılaştırma ilişkisine örnektir."
-        },
-        {
-          "soru": "\"Sonuç itibarıyla, ekip bu projeyi başarıyla tamamladı.\" cümlesinde anlamca gereksiz kullanılan sözcük öbeği aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Sonuç itibarıyla",
-            "Ekip",
-            "Bu kapsamlı ve önemli projeyi",
-            "Başarıyla",
-            "Tamamladı"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Sonuç itibarıyla' ifadesi cümlenin anlamına yeni bir bilgi katmamakta, yalnızca söylemi uzatan bir dolgu ifadesi olarak kullanılmıştır; çıkarıldığında cümlenin anlamı değişmez."
         },
         {
           "soru": "\"Bütün öğrenciler sınava girdiği hâlde sadece birkaçı yüksek puan aldı.\" cümlesinden aşağıdakilerden hangisi kesin olarak çıkarılabilir?",
@@ -10804,18 +10624,6 @@
           "aciklama": "Doğru, çünkü paragraf dil ve kimlik arasındaki ilişkiyi açıklamaya çalışıyor."
         },
         {
-          "soru": "Aşağıdaki paragrafı okuyunuz. Paragrafa göre, yazarın görüşü nedir? 'Edebiyat, bir toplumun kültürünü, tarihini ve değerlerini yansıtan önemli bir araçtır. Türk edebiyatı, Türk milletinin tarihini, kültürünü ve değerlerini yansıtan zengin bir edebiyattır. Edebiyat, toplumun ruhunu yansıtan önemli bir araçtır.'",
-          "secenekler": [
-            "Edebiyat, toplumun kültürünü yansıtmaz",
-            "Edebiyat, toplumun tarihini yansıtmaz",
-            "Edebiyat, toplumun değerlerini yansıtan önemli bir araçtır",
-            "Türk edebiyatı, Türk milletinin tarihini ve kültürünü yansıtmaz",
-            "Edebiyat, toplumun ruhunu yansıtan önemli bir araçtır"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru, porque paragraf edebiyatın toplumun ruhunu yansıtan önemli bir araç olduğunu söylüyor."
-        },
-        {
           "soru": "Aşağıdaki paragrafı okuyunuz. Paragrafa göre, yazarın amacı nedir? 'Dil, bir milletin kimliğini belirleyen en önemli unsurlardan biridir. Bir milletin dili, o milletin tarihini, kültürünü ve diğer milletlerle olan ilişkilerini yansıtan zengin bir araçtır.'",
           "secenekler": [
             "Türk dilinin diğer dillerden üstün olduğunu kanıtlamak",
@@ -10826,114 +10634,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Doğru, porque paragraf dil ve kimlik arasındaki ilişkiyi açıklamaya çalışıyor."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? Güneş, Dünya'nın enerji kaynaklarının büyük çoğunluğunu sağlıyor. Bitkiler fotosentez yaparak güneşten gelen enerjiyi kullanıyorlar. Hayvanlar ise bu bitkileri yiyerek veya bitki yiyen diğer hayvanları yiyerek bu enerjiye ulaşıyorlar. Bu şekilde, tüm canlıların yaşamını sürdürebilmeleri için gerekli olan enerji, _______________ yoluyla elde ediliyor. A) Fotosentez B) Solunum C) Besin zinciri D) Hücre bölünmesi E) Çıkartma",
-          "secenekler": [
-            "Fotosentez",
-            "Solunum",
-            "Besin zinciri",
-            "Hücre bölünmesi",
-            "Çıkartma"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Besin zinciri, canlıların birbirleriyle ve çevreleriyle etkileşim halinde enerji elde etme şeklini tanımlar. Bu, paragrafta tarif edilen enerji elde etme yoludur."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın genel meaningini en iyi şekilde yansıtan cümle hangisidir? Dünya'nın manyetik alanı, gezegenimizi güneş rüzgarlarının zararlı etkilerinden korur. Manyetik alan, aynı zamanda Dünya'nın coğrafi kutuplarını belirler ve manyetik kuzey ile coğrafi kuzey arasında bir fark olmasını sağlar. Bu durum, navigasyon için önemli sonuçlar doğurur. Ayrıca, manyetik alan, jeofizik araştırmalarda da önemli bir rol oynar. A) Manyetik alan, Dünya'yı güneş rüzgarlarından korur ve navigasyon için önemli bir araçtır. B) Manyetik alan, gezegenin coğrafi kutuplarını belirler ve jeofizik araştırmalarda kullanılır. C) Manyetik alan, sadece navigasyon için önemlidir. D) Manyetik alan, güneş rüzgarlarına karşı koruma sağlamaz. E) Manyetik alan, Dünya'nın manyetik kutuplarını belirlemez.",
-          "secenekler": [
-            "Manyetik alan, Dünya'yı güneş rüzgarlarından korur ve navigasyon için önemli bir araçtır.",
-            "Manyetik alan, gezegenin coğrafi kutuplarını belirler ve jeofizik araştırmalarda kullanılır.",
-            "Manyetik alan, sadece navigasyon için önemlidir.",
-            "Manyetik alan, güneş rüzgarlarına karşı koruma sağlamaz.",
-            "Manyetik alan, Dünya'nın manyetik kutuplarını belirlemez."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragraf, manyetik alanın güneş rüzgarlarına karşı koruma sağladığını ve navigasyon için önemli olduğunu vurgular. Bu, paragrafın genel meaningini en iyi şekilde yansıtan seçenektir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? İnsanların yaşam kalitesini artırmak için yapılan çalışmalarda, _______________ önemli bir rol oynar. A) Sağlık hizmetleri B) Eğitim C) Çevre koruma D) Altyapı geliştirme E) Tümünün kombinasyonu",
-          "secenekler": [
-            "Sağlık hizmetleri",
-            "Eğitim",
-            "Çevre koruma",
-            "Altyapı geliştirme",
-            "Tümünün kombinasyonu"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Tüm bu faktörlerin bir arada olması, insanların yaşam kalitelerini artırmak için en etkili yoludur."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? Bilimsel araştırmalar, _______________ yoluyla gerçekleştirilir. A) Deneysel yöntemler B) Teorik analiz C) Gözlemsel çalışmalar D) Matematiksel modelleme E) Tümünün bir bileşimi",
-          "secenekler": [
-            "Deneysel yöntemler",
-            "Teorik analiz",
-            "Gözlemsel çalışmalar",
-            "Matematiksel modelleme",
-            "Tümünün bir bileşimi"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bilimsel araştırmalar, genellikle bu yöntemlerin bir bileşimiyle gerçekleştirilir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan cümle hangisidir? İklim değişikliği, dünya genelinde önemli bir sorun olarak görülmektedir. Bu sorun, sera gazlarının atmosfere salınması sonucu ortaya çıkmaktadır. İklim değişikliğinin neden olduğu etkiler, daha sıcak hava dalgaları, daha şiddetli fırtınalar ve deniz seviyesinin yükselmesi gibi olaylardır. Bu etkiler, insanların yaşam koşullarını olumsuz yönde etkilemektedir. A) İklim değişikliği, sera gazlarının atmosfere salınması sonucu ortaya çıkan bir sorundur. B) İklim değişikliği, insanların yaşam koşullarını olumsuz yönde etkileyen bir olaydır. C) İklim değişikliği, sadece daha sıcak hava dalgalarına neden olur. D) İklim değişikliği, deniz seviyesinin yükselmesine neden olmaz. E) İklim değişikliği, insanların yaşam koşullarını olumlu yönde etkiler.",
-          "secenekler": [
-            "İklim değişikliği, sera gazlarının atmosfere salınması sonucu ortaya çıkan bir sorundur.",
-            "İklim değişikliği, insanların yaşam koşullarını olumsuz yönde etkileyen bir olaydır.",
-            "İklim değişikliği, sadece daha sıcak hava dalgalarına neden olmaz, daha geniş bir etkiye sahiptir.",
-            "İklim değişikliği, deniz seviyesinin yükselmesine neden olur.",
-            "İklim değişikliği, insanların yaşam koşullarını olumsuz yönde etkiler, olumlu yönde etkilemez."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragraf, iklim değişikliğinin sera gazlarının atmosfere salınması sonucu ortaya çıktığını belirtir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? Ülkemizde eğitim, _______________ yoluyla gerçekleştirilir. A) Özel okul sistemi B) Kamu okulları C) Özel ve kamu okullarının bir bileşimi D) Evde eğitim E) Dini kurumlar",
-          "secenekler": [
-            "Yalnızca özel okulların oluşturduğu eğitim sistemi",
-            "Kamu okulları",
-            "Özel ve kamu okullarının bir bileşimi",
-            "Evde eğitim",
-            "Dini kurumlar"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Eğitim, özel ve kamu okullarının bir bileşimi yoluyla gerçekleştirilir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan cümle hangisidir? Üretimde verimliliği artırmak için, _______________ önemlidir. A) Yeni teknoloji kullanımını benimsemek B) İşgücü maliyetlerini azaltmak C) Üretim hattını optimize etmek D) Kalite kontrolünü artırmak E) Tümünün kombinasyonu",
-          "secenekler": [
-            "Yeni teknoloji kullanımını benimsemek",
-            "İşgücü maliyetlerini azaltmak",
-            "Üretim hattını optimize etmek",
-            "Kalite kontrolünü artırmak",
-            "Tümünün kombinasyonu"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Verimliliği artırmak için, bu faktörlerin tümünün bir kombinasyonuna ihtiyaç duyulur."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın boş bırakılan yerini doldurmak için en uygun ifade hangisidir? Çevre koruma, _______________ yoluyla gerçekleştirilir. A) Atık yönetimi B) Ormanların korunması C) Hava kirliliğinin azaltılması D) Su kaynaklarının korunması E) Tümünün bir bileşimi",
-          "secenekler": [
-            "Atık yönetimi",
-            "Ormanların korunması",
-            "Hava kirliliğinin azaltılması",
-            "Su kaynaklarının korunması",
-            "Tümünün bir bileşimi"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Çevre koruma, bu faktörlerin tümünün bir bileşimiyle gerçekleştirilir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın anlamını en iyi şekilde yansıtan cümle hangisidir? Sosyal medya, günümüzde _______________ bir araç olarak kullanılmaktadır. A) İnsanlar arası iletişim B) Reklam ve pazarlama C) Eğlence D) Eğitim E) Tümünün kombinasyonu",
-          "secenekler": [
-            "İnsanlar arası iletişim",
-            "Reklam ve pazarlama",
-            "Eğlence",
-            "Eğitim",
-            "Tümünün kombinasyonu"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Sosyal medya, bu tüm yönlerin bir kombinasyonuna sahiptir."
         },
         {
           "soru": "İnsanların çoğu yaşamın anlamını bulmaya çalışır. Bazıları, mutluluk ve huzurun ne olduğuyla ilgilenirken, diğerleri, hayatın amacını veya kaderini aramaya çalışır. Birçoğu da, yaşamın anlamını bulmak için, kendilerine sorar: \"Ben neyim?\" veya \"Ben neredeyim?\" Bu sorular, insanın kendisinden ve çevresinden gelen bilgilerle, anlam bulma arayışını ifade eder. İnsanların kendilerine ve çevrelere olan tutumlarıyla, anlam bulma arayışlarını da etkiler. Örneğin, bir insanın, kendisinin ne olduğuyla ilgili bir algısı olabilir ve bu algı, onun anlam bulma arayışını da şekillendirir. Bu gibi örneklerde, insanın kendinden ve çevresinden gelen bilgilerle, anlam bulma arayışını, anlam bulma arayışının bir sonucu olarak değerlendirebiliriz. Anlam bulma arayışının bir sonucu olarak, insan, kendisiyle ilgili daha fazla bilgi edinebilir ve bu bilgilerle, anlam bulma arayışını daha derin bir anlayışla sürdürebilir.",
@@ -13224,18 +12924,6 @@
           "aciklama": "'Kalem' sözcüğü herhangi bir yapım ya da çekim eki almamış, kök hâlindeki bir isimdir. Diğer seçeneklerin tamamı bu köke çeşitli ekler getirilerek oluşturulmuştur."
         },
         {
-          "soru": "'Tanımak' fiilinin kökü aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Tanı-",
-            "Tan-",
-            "Tanım-",
-            "Tanı",
-            "Tanıma"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Tanımak' fiilinin kökü 'tanı-'dır; bu, daha küçük anlamlı bir parçaya ayrılamayan bir fiil köküdür. '-mak' ise ayrı bir mastar (isim-fiil) ekidir."
-        },
-        {
           "soru": "Aşağıdaki sözcüklerden hangisinde, kök ünlüyle başlayan bir ek almadığı için ünlü düşmesi yaşanmamıştır?",
           "secenekler": [
             "Ağzı (ağız + ı)",
@@ -13486,18 +13174,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Karabiber' sözcüğü 'kara' (sıfat) ve 'biber' (isim) sözcüklerinin birleşmesiyle oluşmuştur; sıfat + isim kalıbına örnektir."
-        },
-        {
-          "soru": "'Anlamak' fiilinin kökü aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Anla-",
-            "An-",
-            "Anlam-",
-            "Anlayış",
-            "Anla"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Anlamak' fiilinin kökü 'anla-'dır; bu, daha küçük anlamlı bir parçaya ayrılamayan bir fiil köküdür. '-mak' ise ayrı bir mastar ekidir."
         },
         {
           "soru": "'Görgüsüzlük' sözcüğündeki yapım eklerinin sırası aşağıdakilerin hangisinde doğru verilmiştir?",
@@ -16167,42 +15843,6 @@
           "aciklama": "Paragrafın son cümlesinde yer alan 'Bu nedenle, edebiyatın önemi yadsınamaz' ifadesi, metnin tamamının edebiyatın insan hayatındaki önemini vurgulamaya yönelik olduğunu ortaya koyar. İnsan doğası, toplumsal sorunlar, kültürler arası iletişim ve hayal gücü ise bu genel temayı destekleyen alt örneklerdir."
         },
         {
-          "soru": "Aşağıdaki cümlelerin hangisi basit cümledir? A) Ali okula gitti. B) Ali okula gitti ve kitaplarını aldı. C) Ali okula gitti, kitaplarını aldı ve eve döndü. D) Ali okula gitti, kitaplarını aldı, eve döndü ve televizyonu izledi. E) Ali okula gitmedi.",
-          "secenekler": [
-            "A) Ali okula gitti.",
-            "B) Ali okula gitti ve kitaplarını aldı.",
-            "C) Ali okula gitti, kitaplarını aldı ve eve döndü.",
-            "D) Ali okula gitti, kitaplarını aldı, eve döndü ve televizyonu izledi.",
-            "E) Ali okula gitmedi."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu cümle tek bir yargı bildirir ve içinde başka bir cümleyi bağlayan 've', 'ancak' gibi bir bağlaç ya da ek bir yüklem bulunmaz; bu nedenle yapı bakımından basit cümledir."
-        },
-        {
-          "soru": "Aşağıdaki cümlelerin hangisi özne-nesne-söyleni cümle sıralamasına sahiptir? A) Ali okula gitti. B) Kitapları Ali tarafından okunuyor. C) Ali kitabını okudu. D) Okulda öğrenciler var. E) Kitap okunuyor.",
-          "secenekler": [
-            "A) Ali okula gitti.",
-            "B) Kitapları Ali tarafından okunuyor.",
-            "C) Ali kitabını okudu.",
-            "D) Okulda öğrenciler var.",
-            "E) Kitap okunuyor."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu cümle, özne-nesne-söyleni cümle sıralamasına sahiptir, çünkü 'Ali' özne, 'okula' nesne ve 'gitti' söylenidir."
-        },
-        {
-          "soru": "Aşağıdaki cümlelerin hangisi aktif cümledir? A) Kitap okunuyor. B) Ali kitabını okudu. C) Kitapları Ali tarafından okunuyor. D) Okulda öğrenciler var. E) Kitap okundu.",
-          "secenekler": [
-            "A) Kitap okunuyor.",
-            "B) Ali kitabını okudu.",
-            "C) Kitapları Ali tarafından okunuyor.",
-            "D) Okulda öğrenciler var.",
-            "E) Kitap okundu."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bu cümle, aktif bir cümledir, çünkü 'Ali' özne, 'kitabını' nesne ve 'okuduy' söylenidir."
-        },
-        {
           "soru": "Örnek 1: Cümlelerin cinsi belirlenmesi",
           "secenekler": [
             "Bu metin, okurların eğitimle ilgili önemli konuları hakkında bilgi sahibi olması için yazılmıştır.",
@@ -16249,18 +15889,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu seçeneği seçen kullanıcılar, paragrafın cümleleri arasında bir bağlama sağlayan cümle paragrafın başında ya da sonunda olduğunu düşünmüş olabilirler."
-        },
-        {
-          "soru": "Paragraf: Güzellik, zamanın içinde değişmez. İnsanların algıları, estetik anlayışları değişir, ama güzellik kalır. Bir şey güzelse, o güzelliği kaybeder mi? İnsanların algıları değişir mi? Değmez. Ama güzellik, insanoğlunun algıladığı bir şeydir. Dolayısıyla güzellik, zamanın içinde değişebilir. Bir şey güzelse, o güzelliği kaybedebilir. İşte bu yüzden güzellik, zamanın içinde değişebilir. Güzellik, bir şeyin özelliğidir. Bir şeyin özelliğini, o şeyin doğasıdır. Bir şeyin doğası, o şeyin özelliklerini belirler. Bir şeyin özelliklerini, o şeyin doğası belirler. İşte bu yüzden güzellik, bir şeyin doğasıyla ilgili bir şeydir. Bir şeyin doğası, o şeyin güzelliğini belirler. İşte bu yüzden güzellik, bir şeyin doğasıyla ilgili bir şeydir. Güzellik, bir şeyin özelliğidir. Bir şeyin özelliğini, o şeyin doğasıdır. Bir şeyin doğası, o şeyin özelliklerini belirler. Bir şeyin özelliklerini, o şeyin doğası belirler. İşte bu yüzden güzellik, bir şeyin doğasıyla ilgili bir şeydir. Bir şeyin doğası, o şeyin güzelliğini belirler. İşte bu yüzden güzellik, bir şeyin doğasıyla ilgili bir şeydir.",
-          "secenekler": [
-            "Güzellik, zamanın içinde değişmez.",
-            "Bir şey güzelse, o güzelliği kaybedebilir.",
-            "Güzellik, bir şeyin doğasıyla ilgili bir şeydir.",
-            "İnsanların algıları değişmez.",
-            "Güzellik, bir şeyin doğasıdır."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçen, güzellik kavramının değişebileceğini anlamış olabilir. Paragrafda, güzellik kavramının değişebileceği vurgulanmaktadır."
         },
         {
           "soru": "Aşağıdaki cümlelerden hangisi yapı bakımından basit cümledir?",
@@ -17290,18 +16918,6 @@
           "aciklama": "Bu cümle, anlamsızdır."
         },
         {
-          "soru": "Dilimizde, anlatım bozukluklarına neden olan bazı dil unsurları vardır. Bunlardan biri de 'anlam yitimi'dir. Anlam yitimi, bir cümlenin ilk bölümünün anlamsız kaldığı bir durumdur. Bu durum, cümlenin anlamını kaybettirmektedir. Örnek olarak: 'Yanlış yolda yürüyen bir adam, bir ağaç gördü ve...'. Bu cümlede, 'yanlış yolda yürüyen bir adam' ifadesi, cümlenin anlamını yitirmektedir. Bu duruma neden olan dil unsuru nedir?",
-          "secenekler": [
-            "Kavram yitimi",
-            "Anlam yitimi",
-            "Dil yitimi",
-            "Anlam kayması",
-            "Anlam değişimi"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Anlam yitimi, bir cümlenin ilk bölümünün anlamsız kaldığı bir durumudur. Bu durum, cümlenin anlamını kaybettirmektedir. Bu nedenle, bu seçenek, doğru cevap olmalıdır."
-        },
-        {
           "soru": "Paragrafını okuyun ve cevabını seçin: Türkçe dilinde anlatım bozukluklarından biri olan 'hata' nedir? Hata, dilde kullanılan sözcüklerin ya da cümlelerin birbirini izleyen sırayla yanlış kullanılmasına denir. Örneğin, 'Benim arabası çok güzeldir' cümlesinde 'arabası' kelimesi 'arabamın' ya da 'arabımın' yerine kullanıldığından hata yapılmış olur. Bu hataların pek çoğu dilbilgisi ve gramer kurallarına uymayan cümleler ya da sözcüklerden kaynaklanır.",
           "secenekler": [
             "Bir sözcüğün ya da cümlenin yerine anlamca ilgisiz başka bir sözcük ya da bambaşka bir cümlenin bilinçsizce kullanılması durumudur",
@@ -17312,18 +16928,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu seçenek doğru cevaptır, hata dilde kullanılan sözcüklerin ya da cümlelerin birbirini izleyen sırayla yanlış kullanılmasına denir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? Dil, insanlığın en önemli iletişim araçlarından birisidir. İnsanlar düşüncelerini, duygularını ve isteklerini dil yoluyla birbirlerine aktararak anlaşabilirler. Ancak dilin doğru ve etkili kullanılması için gerekli olan becerilerden biri de anlatımın bozukluklardan arınmış olmasıdır. Anlatım bozuklukları, dilin yanlış veya eksik kullanılması sonucu ortaya çıkandur. Bu tür bozukluklar, iletişimi zorlaştırabilir ve yanlış anlaşılmaya neden olabilir. Örneğin, cümlelerin uzun ve karmaşık olması, yanlış kelime seçimi, noktalama işaretlerinin yanlış kullanılması gibi hatalar, anlatım bozukluklarına örnek olarak verilebilir. Bu nedenle, etkili iletişim için anlatımın doğru ve açık olması gerekmektedir.",
-          "secenekler": [
-            "Anlatımın doğru ve açık olması",
-            "Dilin doğru ve etkili kullanılması",
-            "İnsanların düşüncelerini, duygularını ve isteklerini dil yoluyla birbirlerine aktarması",
-            "Anlatım bozukluklarının önlenmesi",
-            "Dilin yanlış veya eksik kullanılması"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragrafın son cümlesinde vurgulandığı üzere metnin ana fikri, anlatım bozukluklarından kaçınarak dilin doğru ve açık bir şekilde kullanılmasının etkili iletişim için gerekli olduğudur; paragrafta verilen diğer bilgiler (dilin önemi, anlatım bozukluğu örnekleri) bu ana fikri desteklemek amacıyla sunulmuştur. Bu nedenle doğru cevap A şıkkıdır."
         },
         {
           "soru": "Aşağıdaki cümlelerin hangisinde belirgin bir anlatım bozukluğu vardır?",
@@ -19319,18 +18923,6 @@
           "aciklama": "'anlattı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
-          "soru": "\"Öğretmen dün öğrencilere yeni konuyu anlattı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğretmen",
-            "anlattı",
-            "öğrencilere",
-            "yeni konuyu",
-            "dün"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'öğrencilere' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Öğretmen dün öğrencilere yeni konuyu anlattı.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
           "secenekler": [
             "Öğretmen",
@@ -19341,18 +18933,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'dün' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Öğretmen dün öğrencilere yeni konuyu anlattı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğretmen",
-            "anlattı",
-            "öğrencilere",
-            "yeni konuyu",
-            "dün"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni konuyu' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Annem bu sabah pazardan taze sebzeler aldı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -19403,18 +18983,6 @@
           "aciklama": "'bu sabah' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
-          "soru": "\"Annem bu sabah pazardan taze sebzeler aldı.\" Bu cümlenin belirtisiz nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Annem",
-            "aldı",
-            "semtteki büyük pazardan",
-            "taze sebzeler",
-            "bu sabah"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'taze sebzeler' ögesi herhangi bir hâl eki almadan yükleme yakın durduğu için belirtisiz nesnedir ve 'ne' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Mimar geçen yıl şehir merkezinde büyük bir bina inşa etti.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Mimar",
@@ -19439,18 +19007,6 @@
           "aciklama": "'inşa etti' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
-          "soru": "\"Mimar geçen yıl şehir merkezinde büyük bir bina inşa etti.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Mimar",
-            "inşa etti",
-            "şehir merkezinde",
-            "büyük bir bina",
-            "geçen yıl"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'şehir merkezinde' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Mimar geçen yıl şehir merkezinde büyük bir bina inşa etti.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
           "secenekler": [
             "Mimar",
@@ -19461,18 +19017,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'geçen yıl' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Mimar geçen yıl şehir merkezinde büyük bir bina inşa etti.\" Bu cümlenin belirtisiz nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Mimar",
-            "inşa etti",
-            "şehir merkezinde",
-            "büyük bir bina",
-            "geçen yıl"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'büyük bir bina' ögesi herhangi bir hâl eki almadan yükleme yakın durduğu için belirtisiz nesnedir ve 'ne' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Yazar yeni romanını okuyucularına hızlıca tanıttı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -19499,18 +19043,6 @@
           "aciklama": "'tanıttı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
-          "soru": "\"Yazar yeni romanını okuyucularına hızlıca tanıttı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Yazar",
-            "tanıttı",
-            "okuyucularına",
-            "yeni romanını",
-            "hızlıca"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'okuyucularına' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Yazar yeni romanını okuyucularına hızlıca tanıttı.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
           "secenekler": [
             "Yazar",
@@ -19521,18 +19053,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'hızlıca' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Yazar yeni romanını okuyucularına hızlıca tanıttı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Yazar",
-            "tanıttı",
-            "okuyucularına",
-            "yeni romanını",
-            "hızlıca"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni romanını' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Çocuklar bahçede akşama kadar top oynadı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -19569,18 +19089,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'bahçede' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve edat tümleci ögeleridir."
-        },
-        {
-          "soru": "\"Çocuklar bahçede akşama kadar top oynadı.\" Bu cümlenin edat tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Çocuklar",
-            "oynadı",
-            "okulun bahçesinde",
-            "top",
-            "akşama kadar"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'akşama kadar' söz öbeği bir edatla kurulduğu için edat tümlecidir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
           "soru": "\"Çocuklar bahçede akşama kadar top oynadı.\" Bu cümlenin belirtisiz nesnesi aşağıdakilerden hangisidir?",
@@ -19631,30 +19139,6 @@
           "aciklama": "'hastasına' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
         },
         {
-          "soru": "\"Doktor hastasına yeni ilacı dikkatlice önerdi.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Doktor",
-            "önerdi",
-            "hastasına",
-            "yeni ilacı",
-            "dikkatlice"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'dikkatlice' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Doktor hastasına yeni ilacı dikkatlice önerdi.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Doktor",
-            "önerdi",
-            "hastasına",
-            "yeni ilacı",
-            "dikkatlice"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni ilacı' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Müdür bu konuyu toplantıda çalışanlarıyla tartıştı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Müdür",
@@ -19677,30 +19161,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "'tartıştı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, edat tümleci) yükleme çeşitli sorular sorularak bulunur."
-        },
-        {
-          "soru": "\"Müdür bu konuyu toplantıda çalışanlarıyla tartıştı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Müdür",
-            "tartıştı",
-            "toplantıda",
-            "bu konuyu",
-            "çalışanlarıyla"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'toplantıda' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve edat tümleci ögeleridir."
-        },
-        {
-          "soru": "\"Müdür bu konuyu toplantıda çalışanlarıyla tartıştı.\" Bu cümlenin edat tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Müdür",
-            "tartıştı",
-            "toplantıda",
-            "bu önemli konuyu",
-            "çalışanlarıyla"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'çalışanlarıyla' söz öbeği bir edatla kurulduğu için edat tümlecidir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
           "soru": "\"Müdür bu konuyu toplantıda çalışanlarıyla tartıştı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
@@ -19751,30 +19211,6 @@
           "aciklama": "'rehbere' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve edat tümleci ögeleridir."
         },
         {
-          "soru": "\"Turistler rehbere tarihi kaleyi büyük bir hayranlıkla sordu.\" Bu cümlenin edat tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Turistler",
-            "sordu",
-            "rehbere",
-            "surlarla çevrili tarihi kaleyi",
-            "büyük bir hayranlıkla"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'büyük bir hayranlıkla' söz öbeği bir edatla kurulduğu için edat tümlecidir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Turistler rehbere tarihi kaleyi büyük bir hayranlıkla sordu.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Turistler",
-            "sordu",
-            "rehbere",
-            "tarihi kaleyi",
-            "büyük bir hayranlıkla"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'tarihi kaleyi' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve edat tümleci ögeleridir."
-        },
-        {
           "soru": "\"Ressam yeni tablosunu galeriye erkenden teslim etti.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Ressam",
@@ -19785,18 +19221,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Ressam' bu cümlede yüklemde bildirilen işi yapan ögedir, yani öznedir. Diğer seçenekler ise sırasıyla yüklem, dolaylı tümleç, nesne ve zarf tümleci görevindeki ögelerdir."
-        },
-        {
-          "soru": "\"Ressam yeni tablosunu galeriye erkenden teslim etti.\" Bu cümlenin yüklemi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Ressam",
-            "teslim etti",
-            "galeriye",
-            "yeni tablosunu",
-            "erkenden"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'teslim etti' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
           "soru": "\"Ressam yeni tablosunu galeriye erkenden teslim etti.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
@@ -19823,18 +19247,6 @@
           "aciklama": "'erkenden' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
-          "soru": "\"Ressam yeni tablosunu galeriye erkenden teslim etti.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Ressam",
-            "teslim etti",
-            "şehrin merkezindeki galeriye",
-            "yeni tablosunu",
-            "erkenden"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni tablosunu' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Şirket yeni ürününü müşterilere geçen ay tanıttı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Şirket",
@@ -19859,18 +19271,6 @@
           "aciklama": "'tanıttı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
-          "soru": "\"Şirket yeni ürününü müşterilere geçen ay tanıttı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Şirket",
-            "tanıttı",
-            "müşterilere",
-            "yeni ürününü",
-            "geçen ay"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'müşterilere' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Şirket yeni ürününü müşterilere geçen ay tanıttı.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
           "secenekler": [
             "Şirket",
@@ -19881,18 +19281,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'geçen ay' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Şirket yeni ürününü müşterilere geçen ay tanıttı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Şirket",
-            "tanıttı",
-            "müşterilere",
-            "yeni ürününü",
-            "geçen ay"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni ürününü' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Gazeteci bu haberi okurlarına hemen duyurdu.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -19917,18 +19305,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "'duyurdu' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
-        },
-        {
-          "soru": "\"Gazeteci bu haberi okurlarına hemen duyurdu.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Gazeteci",
-            "duyurdu",
-            "okurlarına",
-            "bu haberi",
-            "hemen"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'okurlarına' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Gazeteci bu haberi okurlarına hemen duyurdu.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
@@ -20003,18 +19379,6 @@
           "aciklama": "'sessizce' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
-          "soru": "\"Aşçı özel yemeğini konuklara sessizce sundu.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Aşçı",
-            "sundu",
-            "salondaki tüm konuklara",
-            "özel yemeğini",
-            "sessizce"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'özel yemeğini' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Bahçıvan toprağa yeni fidanlar dikkatlice dikti.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Bahçıvan",
@@ -20049,30 +19413,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'toprağa' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
-        },
-        {
-          "soru": "\"Bahçıvan toprağa yeni fidanlar dikkatlice dikti.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Bahçıvan",
-            "dikti",
-            "toprağa",
-            "yeni fidanlar",
-            "dikkatlice"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'dikkatlice' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Bahçıvan toprağa yeni fidanlar dikkatlice dikti.\" Bu cümlenin belirtisiz nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Bahçıvan",
-            "dikti",
-            "verimli kara toprağa",
-            "yeni fidanlar",
-            "dikkatlice"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni fidanlar' ögesi herhangi bir hâl eki almadan yükleme yakın durduğu için belirtisiz nesnedir ve 'ne' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Mühendis şehre yeni köprüyü birkaç ayda tamamladı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -20111,30 +19451,6 @@
           "aciklama": "'şehre' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
         },
         {
-          "soru": "\"Mühendis şehre yeni köprüyü birkaç ayda tamamladı.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Mühendis",
-            "tamamladı",
-            "şehre",
-            "yeni köprüyü",
-            "birkaç ayda"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'birkaç ayda' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Mühendis şehre yeni köprüyü birkaç ayda tamamladı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Mühendis",
-            "tamamladı",
-            "şehre",
-            "yeni köprüyü",
-            "birkaç ayda"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni köprüyü' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Öğrenci ödevini öğretmenine zamanında teslim etti.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Öğrenci",
@@ -20145,30 +19461,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Öğrenci' bu cümlede yüklemde bildirilen işi yapan ögedir, yani öznedir. Diğer seçenekler ise sırasıyla yüklem, dolaylı tümleç, nesne ve zarf tümleci görevindeki ögelerdir."
-        },
-        {
-          "soru": "\"Öğrenci ödevini öğretmenine zamanında teslim etti.\" Bu cümlenin yüklemi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğrenci",
-            "teslim etti",
-            "öğretmenine",
-            "ödevini",
-            "zamanında"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'teslim etti' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, zarf tümleci) yükleme çeşitli sorular sorularak bulunur."
-        },
-        {
-          "soru": "\"Öğrenci ödevini öğretmenine zamanında teslim etti.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğrenci",
-            "teslim etti",
-            "öğretmenine",
-            "ödevini",
-            "zamanında"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'öğretmenine' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Öğrenci ödevini öğretmenine zamanında teslim etti.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
@@ -20231,30 +19523,6 @@
           "aciklama": "'halka' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve zarf tümleci ögeleridir."
         },
         {
-          "soru": "\"Belediye yeni parkı halka geçen hafta açtı.\" Bu cümlenin zarf tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Belediye",
-            "açtı",
-            "halka",
-            "yeni parkı",
-            "geçen hafta"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'geçen hafta' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Belediye yeni parkı halka geçen hafta açtı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Belediye",
-            "açtı",
-            "halka",
-            "yeni parkı",
-            "geçen hafta"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni parkı' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Sporcu madalyasını ailesine sonunda gösterdi.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Sporcu",
@@ -20301,18 +19569,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'sonunda' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Sporcu madalyasını ailesine sonunda gösterdi.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Sporcu",
-            "gösterdi",
-            "onu bekleyen ailesine",
-            "madalyasını",
-            "sonunda"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'madalyasını' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
         },
         {
           "soru": "\"Bakan yeni projeyi basına detaylıca açıkladı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
@@ -20363,18 +19619,6 @@
           "aciklama": "'detaylıca' sözcüğü/söz öbeği hâl eki almadan yüklemi zaman ya da tarz bakımından tamamladığı için zarf tümlecidir; 'ne zaman/nasıl' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
         },
         {
-          "soru": "\"Bakan yeni projeyi basına detaylıca açıkladı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Bakan",
-            "açıkladı",
-            "toplantıdaki basına",
-            "yeni projeyi",
-            "detaylıca"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'yeni projeyi' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve zarf tümleci ögeleridir."
-        },
-        {
           "soru": "\"Antrenör genç sporcuyu millî takıma büyük bir özenle hazırladı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Antrenör",
@@ -20399,42 +19643,6 @@
           "aciklama": "'hazırladı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, edat tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
-          "soru": "\"Antrenör genç sporcuyu millî takıma büyük bir özenle hazırladı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Antrenör",
-            "hazırladı",
-            "millî takıma",
-            "genç sporcuyu",
-            "büyük bir özenle"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'millî takıma' sözcüğü hâl eki alarak yükleme 'kime/nereye/nerede/nereden' sorularından birini cevaplandırdığı için dolaylı tümleçtir. Diğer seçenekler özne, yüklem, nesne ve edat tümleci ögeleridir."
-        },
-        {
-          "soru": "\"Antrenör genç sporcuyu millî takıma büyük bir özenle hazırladı.\" Bu cümlenin edat tümleci aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Antrenör",
-            "hazırladı",
-            "millî takıma",
-            "genç sporcuyu",
-            "büyük bir özenle"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'büyük bir özenle' söz öbeği bir edatla kurulduğu için edat tümlecidir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve nesnedir."
-        },
-        {
-          "soru": "\"Antrenör genç sporcuyu millî takıma büyük bir özenle hazırladı.\" Bu cümlenin belirtili nesnesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Antrenör",
-            "hazırladı",
-            "millî takıma",
-            "genç sporcuyu",
-            "büyük bir özenle"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'genç sporcuyu' ögesi '-i' belirtme hâli ekini aldığı için belirtili nesnedir ve 'neyi/kimi' sorusuna cevap verir. Diğer seçenekler özne, yüklem, dolaylı tümleç ve edat tümleci ögeleridir."
-        },
-        {
           "soru": "\"Aile yeni evi kredi ile bankadan satın aldı.\" Bu cümlenin öznesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Aile",
@@ -20445,18 +19653,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Aile' bu cümlede yüklemde bildirilen işi yapan ögedir, yani öznedir. Diğer seçenekler ise sırasıyla yüklem, dolaylı tümleç, nesne ve edat tümleci görevindeki ögelerdir."
-        },
-        {
-          "soru": "\"Aile yeni evi kredi ile bankadan satın aldı.\" Bu cümlenin yüklemi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Aile",
-            "satın aldı",
-            "bankadan",
-            "yeni evi",
-            "kredi ile"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'satın aldı' bu cümlede yargıyı bildiren çekimli fiildir, yani yüklemdir. Cümledeki diğer ögeler (özne, dolaylı tümleç, nesne, edat tümleci) yükleme çeşitli sorular sorularak bulunur."
         },
         {
           "soru": "\"Aile yeni evi kredi ile bankadan satın aldı.\" Bu cümlenin dolaylı tümleci aşağıdakilerden hangisidir?",
@@ -20723,30 +19919,6 @@
           "aciklama": "Doğru seçtiğin için, paragrafın anlamı karakterlerin edebiyatta kullanıldığı amaçlar."
         },
         {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? Bir destan, bir olayı veya bir konuyu anlatan uzun bir hikayedir. Destanlar, genellikle kahramanlar ve kahramanların karşılaştıkları zorluklar, zaferler ve yenilgilerle ilgili olur. Destanlar, okuyucuları kahramanların deneyimlerini ve duygularını hissetmelerine yardımcı olur.",
-          "secenekler": [
-            "Bir destan, bir olayı veya bir konuyu anlatan uzun bir hikayedir.",
-            "Destanlar, okuyucuları kahramanların deneyimlerini ve duygularını hissetmelerine yardımcı olur.",
-            "Destanlar, genellikle kahramanlar ve kahramanların karşılaştıkları zorluklar, zaferler ve yenilgilerle ilgili olur.",
-            "Bir destan, kısa bir hikayedir.",
-            "Destanlar, okuyucuları kahramanların deneyimlerini hissedemelerine yardımcı olur."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru seçtiğin için, paragrafın ana fikri destanın tanımı."
-        },
-        {
-          "soru": "Aşağıdaki paragrafın anlamı nedir? Karakter, edebiyatta kullanılan bir terimdir. Karakterler, yazarların fikirlerini ve duygularını aktarmak için kullanılır. Karakterler, okuyucuların kendilerini bulabilmeleri için yaratılır. Bazı karakterler, okuyucuları güldürürken, bazıları okuyucuları ağlatır.",
-          "secenekler": [
-            "Karakter, edebiyatta kullanılan bir terimdir.",
-            "Karakterler, genellikle okuyucuları güldürür ve ağlatır.",
-            "Karakterler, yazarların fikirlerini ve duygularını aktarmak için kullanılır.",
-            "Karakterler, okuyucuların kendilerini bulabilmeleri için yaratılır.",
-            "Karakterler, sadece okuyucuları güldürür."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru seçtiğin için, paragrafın anlamı karakterin tanımı."
-        },
-        {
           "soru": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Anlattı",
@@ -20769,30 +19941,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinde 'anlattı' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğrencilere",
-            "Anlattı",
-            "Sabırla",
-            "Yeni konuyu",
-            "Öğretmen"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinde 'yeni konuyu' sözü, cümlenin belirtili nesne ögesidir."
-        },
-        {
-          "soru": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğretmen",
-            "Anlattı",
-            "Öğrencilere",
-            "Yeni konuyu",
-            "Sabırla"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinde 'öğrencilere' sözü, cümlenin dolaylı tümleç ögesidir."
         },
         {
           "soru": "'Öğretmen dün öğrencilere yeni konuyu sabırla anlattı.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
@@ -20829,18 +19977,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'Annem pazardan taze sebze aldı.' cümlesinde 'aldı' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Annem pazardan taze sebze aldı.' cümlesinin belirtisiz nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Taze sebze",
-            "Aldı",
-            "Annem",
-            "İçeri",
-            "Yakındaki pazardan"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Annem pazardan taze sebze aldı.' cümlesinde 'taze sebze' sözü, cümlenin belirtisiz nesne ögesidir."
         },
         {
           "soru": "'Annem pazardan taze sebze aldı.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
@@ -20901,18 +20037,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Çocuklar bahçede akşama kadar neşeyle oynadı.' cümlesinde 'bahçede' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
-          "soru": "'Çocuklar bahçede akşama kadar neşeyle oynadı.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Okulun bahçesinde",
-            "Akşama kadar",
-            "Çocuklar",
-            "Neşeyle",
-            "Oynadı"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Çocuklar bahçede akşama kadar neşeyle oynadı.' cümlesinde 'akşama kadar' sözü, cümlenin edat tümleci ögesidir."
         },
         {
           "soru": "'Mimar bu binayı iki yılda özenle tasarladı.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
@@ -20987,18 +20111,6 @@
           "aciklama": "'Kardeşim yarın sınava erkenden hazırlanacak.' cümlesinde 'kardeşim' sözü, cümlenin özne ögesidir."
         },
         {
-          "soru": "'Kardeşim yarın sınava erkenden hazırlanacak.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "İçeri",
-            "Erkenden",
-            "Kardeşim",
-            "Hazırlanacak",
-            "Yarınki zorlu sınava"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Kardeşim yarın sınava erkenden hazırlanacak.' cümlesinde 'hazırlanacak' sözü, cümlenin yüklem ögesidir."
-        },
-        {
           "soru": "'Kardeşim yarın sınava erkenden hazırlanacak.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Erkenden",
@@ -21033,42 +20145,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinde 'yazar' sözü, cümlenin özne ögesidir."
-        },
-        {
-          "soru": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "İçeri",
-            "Buluşturdu",
-            "Büyük bir heyecanla",
-            "Yazar",
-            "Yeni romanını"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinde 'buluşturdu' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Buluşturdu",
-            "İçeri",
-            "Yazar",
-            "Yeni romanını",
-            "Büyük bir heyecanla"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinde 'yeni romanını' sözü, cümlenin belirtili nesne ögesidir."
-        },
-        {
-          "soru": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Büyük bir heyecanla",
-            "Buluşturdu",
-            "Uzun zamandır beklenen yeni romanını",
-            "Yazar",
-            "İçeri"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Yazar yeni romanını okurlarla büyük bir heyecanla buluşturdu.' cümlesinde 'büyük bir heyecanla' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
           "soru": "'Şoför yolcuları otobüs durağında sabırla bekletti.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
@@ -21107,18 +20183,6 @@
           "aciklama": "'Şoför yolcuları otobüs durağında sabırla bekletti.' cümlesinde 'yolcuları' sözü, cümlenin belirtili nesne ögesidir."
         },
         {
-          "soru": "'Şoför yolcuları otobüs durağında sabırla bekletti.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Sabırla",
-            "Bekletti",
-            "Otobüs durağında",
-            "Şoför",
-            "Bekleyen tüm yolcuları"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Şoför yolcuları otobüs durağında sabırla bekletti.' cümlesinde 'otobüs durağında' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
           "soru": "'Şoför yolcuları otobüs durağında sabırla bekletti.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Yolcuları",
@@ -21141,18 +20205,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinde 'ressam' sözü, cümlenin özne ögesidir."
-        },
-        {
-          "soru": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Tablosunu",
-            "Müzeye",
-            "Yerleştirdi",
-            "Büyük bir titizlikle",
-            "Ressam"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinde 'yerleştirdi' sözü, cümlenin yüklem ögesidir."
         },
         {
           "soru": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
@@ -21179,18 +20231,6 @@
           "aciklama": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinde 'müzeye' sözü, cümlenin dolaylı tümleç ögesidir."
         },
         {
-          "soru": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Yerleştirdi",
-            "Büyük bir titizlikle",
-            "Müzeye",
-            "Yeni tamamladığı tablosunu",
-            "Ressam"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Ressam tablosunu müzeye büyük bir titizlikle yerleştirdi.' cümlesinde 'büyük bir titizlikle' sözü, cümlenin zarf tümleci ögesidir."
-        },
-        {
           "soru": "'Doktor hastasına yeni ilacı dikkatle önerdi.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Önerdi",
@@ -21213,18 +20253,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Doktor hastasına yeni ilacı dikkatle önerdi.' cümlesinde 'önerdi' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Doktor hastasına yeni ilacı dikkatle önerdi.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Yeni ilacı",
-            "Doktor",
-            "Önerdi",
-            "Hastasına",
-            "Dikkatle"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Doktor hastasına yeni ilacı dikkatle önerdi.' cümlesinde 'yeni ilacı' sözü, cümlenin belirtili nesne ögesidir."
         },
         {
           "soru": "'Doktor hastasına yeni ilacı dikkatle önerdi.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
@@ -21347,42 +20375,6 @@
           "aciklama": "'Yolcular uçağa hızla bindi.' cümlesinde 'hızla' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
-          "soru": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Heyecanla",
-            "Sınav sonuçlarını",
-            "İçeri",
-            "Öğrenciler",
-            "Bekliyordu"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinde 'öğrenciler' sözü, cümlenin özne ögesidir."
-        },
-        {
-          "soru": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğrenciler",
-            "İçeri",
-            "Sınav sonuçlarını",
-            "Bekliyordu",
-            "Heyecanla"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinde 'bekliyordu' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Sınav sonuçlarını",
-            "Bekliyordu",
-            "Heyecanla",
-            "Sınıftaki tüm öğrenciler",
-            "İçeri"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinde 'sınav sonuçlarını' sözü, cümlenin belirtili nesne ögesidir."
-        },
-        {
           "soru": "'Öğrenciler sınav sonuçlarını heyecanla bekliyordu.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "İçeri",
@@ -21479,18 +20471,6 @@
           "aciklama": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinde 'dağıttı' sözü, cümlenin yüklem ögesidir."
         },
         {
-          "soru": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Büyük bir titizlikle",
-            "Postacı",
-            "Evlere",
-            "Dağıttı",
-            "Mektupları"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinde 'mektupları' sözü, cümlenin belirtili nesne ögesidir."
-        },
-        {
           "soru": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Postacı",
@@ -21501,18 +20481,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinde 'evlere' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
-          "soru": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Dağıttı",
-            "Büyük bir titizlikle",
-            "Bu sabah gelen mektupları",
-            "Postacı",
-            "Evlere"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Postacı mektupları evlere büyük bir titizlikle dağıttı.' cümlesinde 'büyük bir titizlikle' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
           "soru": "'Balıkçı ağını sabaha karşı denize attı.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
@@ -21563,18 +20531,6 @@
           "aciklama": "'Balıkçı ağını sabaha karşı denize attı.' cümlesinde 'denize' sözü, cümlenin dolaylı tümleç ögesidir."
         },
         {
-          "soru": "'Balıkçı ağını sabaha karşı denize attı.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Attı",
-            "Açıktaki derin denize",
-            "Sabaha karşı",
-            "Balıkçı",
-            "Ağını"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Balıkçı ağını sabaha karşı denize attı.' cümlesinde 'sabaha karşı' sözü, cümlenin edat tümleci ögesidir."
-        },
-        {
           "soru": "'Yolculuk boyunca herkes sessizce oturdu.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Herkes",
@@ -21611,30 +20567,6 @@
           "aciklama": "'Yolculuk boyunca herkes sessizce oturdu.' cümlesinde 'sessizce' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
-          "soru": "'Yolculuk boyunca herkes sessizce oturdu.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Yolculuk boyunca",
-            "Herkes",
-            "Oturdu",
-            "İçeri",
-            "Hiç konuşmadan sessizce"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Yolculuk boyunca herkes sessizce oturdu.' cümlesinde 'yolculuk boyunca' sözü, cümlenin edat tümleci ögesidir."
-        },
-        {
-          "soru": "'Mühendisler bu proje için özenle çalıştı.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Çalıştı",
-            "İçeri",
-            "Mühendisler",
-            "Bu proje için",
-            "Özenle"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Mühendisler bu proje için özenle çalıştı.' cümlesinde 'mühendisler' sözü, cümlenin özne ögesidir."
-        },
-        {
           "soru": "'Mühendisler bu proje için özenle çalıştı.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Çalıştı",
@@ -21659,18 +20591,6 @@
           "aciklama": "'Mühendisler bu proje için özenle çalıştı.' cümlesinde 'özenle' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
-          "soru": "'Mühendisler bu proje için özenle çalıştı.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Mühendisler",
-            "Çalıştı",
-            "İçeri",
-            "Özenle",
-            "Bu proje için"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'Mühendisler bu proje için özenle çalıştı.' cümlesinde 'bu proje için' sözü, cümlenin edat tümleci ögesidir."
-        },
-        {
           "soru": "'Terzi elbiseyi müşteriye özenle teslim etti.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Terzi",
@@ -21681,18 +20601,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Terzi elbiseyi müşteriye özenle teslim etti.' cümlesinde 'terzi' sözü, cümlenin özne ögesidir."
-        },
-        {
-          "soru": "'Terzi elbiseyi müşteriye özenle teslim etti.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Müşteriye",
-            "Terzi",
-            "Teslim etti",
-            "Elbiseyi",
-            "Özenle"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Terzi elbiseyi müşteriye özenle teslim etti.' cümlesinde 'teslim etti' sözü, cümlenin yüklem ögesidir."
         },
         {
           "soru": "'Terzi elbiseyi müşteriye özenle teslim etti.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
@@ -21743,18 +20651,6 @@
           "aciklama": "'Kaptan gemiyi limana ustalıkla yanaştırdı.' cümlesinde 'kaptan' sözü, cümlenin özne ögesidir."
         },
         {
-          "soru": "'Kaptan gemiyi limana ustalıkla yanaştırdı.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Kaptan",
-            "Ustalıkla",
-            "Limana",
-            "Yanaştırdı",
-            "Gemiyi"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Kaptan gemiyi limana ustalıkla yanaştırdı.' cümlesinde 'yanaştırdı' sözü, cümlenin yüklem ögesidir."
-        },
-        {
           "soru": "'Kaptan gemiyi limana ustalıkla yanaştırdı.' cümlesinin belirtili nesne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Yanaştırdı",
@@ -21791,18 +20687,6 @@
           "aciklama": "'Kaptan gemiyi limana ustalıkla yanaştırdı.' cümlesinde 'ustalıkla' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
-          "soru": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Müdüre",
-            "Raporu",
-            "Sundu",
-            "Muhasebeci",
-            "Büyük bir titizlikle"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinde 'muhasebeci' sözü, cümlenin özne ögesidir."
-        },
-        {
           "soru": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Müdüre",
@@ -21837,18 +20721,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinde 'müdüre' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
-          "soru": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinin zarf tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Sundu",
-            "Aylık hazırladığı mali raporu",
-            "Muhasebeci",
-            "Büyük bir titizlikle",
-            "Müdüre"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "'Muhasebeci raporu müdüre büyük bir titizlikle sundu.' cümlesinde 'büyük bir titizlikle' sözü, cümlenin zarf tümleci ögesidir."
         },
         {
           "soru": "'Terzi kumaşı ustaca kesti.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
@@ -21911,30 +20783,6 @@
           "aciklama": "'Çocuklar top yüzünden birbirine girdi.' cümlesinde 'çocuklar' sözü, cümlenin özne ögesidir."
         },
         {
-          "soru": "'Çocuklar top yüzünden birbirine girdi.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Küçük bir top yüzünden",
-            "Çocuklar",
-            "Birbirine girdi",
-            "İçeri",
-            "Geçen hafta"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Çocuklar top yüzünden birbirine girdi.' cümlesinde 'birbirine girdi' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Çocuklar top yüzünden birbirine girdi.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Birbirine girdi",
-            "Top yüzünden",
-            "Geçen hafta",
-            "İçeri",
-            "Çocuklar"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Çocuklar top yüzünden birbirine girdi.' cümlesinde 'top yüzünden' sözü, cümlenin edat tümleci ögesidir."
-        },
-        {
           "soru": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Halk",
@@ -21959,42 +20807,6 @@
           "aciklama": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinde 'toplandı' sözü, cümlenin yüklem ögesidir."
         },
         {
-          "soru": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Meydanlarda",
-            "İçeri",
-            "Toplandı",
-            "Bu karara karşı",
-            "Halk"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinde 'meydanlarda' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
-          "soru": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Halk",
-            "Bu karara karşı",
-            "Toplandı",
-            "Şehrin büyük meydanlarında",
-            "İçeri"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "'Halk, bu karara karşı meydanlarda toplandı.' cümlesinde 'bu karara karşı' sözü, cümlenin edat tümleci ögesidir."
-        },
-        {
-          "soru": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinin özne ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Öğrenciler",
-            "İçeri",
-            "Proje için",
-            "Gitti",
-            "Kütüphaneye"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinde 'öğrenciler' sözü, cümlenin özne ögesidir."
-        },
-        {
           "soru": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinin yüklem ögesi aşağıdakilerden hangisidir?",
           "secenekler": [
             "Gitti",
@@ -22005,30 +20817,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinde 'gitti' sözü, cümlenin yüklem ögesidir."
-        },
-        {
-          "soru": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinin dolaylı tümleç ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Proje için",
-            "Gitti",
-            "İçeri",
-            "Öğrenciler",
-            "Kütüphaneye"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinde 'kütüphaneye' sözü, cümlenin dolaylı tümleç ögesidir."
-        },
-        {
-          "soru": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinin edat tümleci ögesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "Gitti",
-            "Kütüphaneye",
-            "Proje için",
-            "İçeri",
-            "Öğrenciler"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "'Öğrenciler proje için kütüphaneye gitti.' cümlesinde 'proje için' sözü, cümlenin edat tümleci ögesidir."
         },
         {
           "soru": "Aşağıdaki cümlelerin hangisinde özne, yüklemin bildirdiği işi yapan değil, o işten etkilenen bir sözde öznedir?",
@@ -23388,18 +22176,6 @@
           "aciklama": "Bilgi teknolojilerinin yeni fırsatlar yaratmak için önemli olduğu için bu seçenek doğru."
         },
         {
-          "soru": "Aydınlatıcı bir dil, okuyucuları nasıl etkiler? Aydınlatıcı dil, okuyucuları daha iyi anlamaya ve daha fazla bilgi almaya teşvik eder. Ancak, okuyucuların dikkatini dağıtabilir ve metnin anlamlılığını azaltabilir. Aydınlatıcı dil, okuyucuların metnin içeriğinden daha fazla bilgi almalarını sağlar. Ancak, metnin anlamını kaybettirebilir.",
-          "secenekler": [
-            "Aydınlatıcı dil, okuyucuları daha iyi anlamaya ve daha fazla bilgi almaya teşvik eder.",
-            "Aydınlatıcı dil, okuyucuların dikkatini dağıtabilir ve metnin anlamlılığını azaltabilir.",
-            "Aydınlatıcı dil, okuyucuların metnin içeriğinden daha fazla bilgi almalarını sağlar.",
-            "Aydınlatıcı dil, metnin anlamını kaybettirebilir.",
-            "Aydınlatıcı dil, okuyucuları etkilemez."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçen, aydınlatıcı dilin okuyucuları daha iyi anlamaya ve daha fazla bilgi almaya teşvik ettiğini düşünmüş olabilir. Ancak bu seçenekte, aydınlatıcı dilin okuyucuların dikkatini dağıtabileceği ve metnin anlamlılığını azaltabileceği unutulabilir."
-        },
-        {
           "soru": "Bir kütüphane rafında soldan sağa doğru Damla, Efe, Kaya, Melis ve Berkay olmak üzere 5 kitap dizilmiştir. (1) Melis adlı kitap rafın en sağındadır. (2) Damla adlı kitap, Melis adlı kitabın hemen solundadır. (3) Efe adlı kitap, soldan sayıldığında birinci sıradadır. (4) Damla adlı kitap, Berkay adlı kitabın hemen sağındadır. Buna göre soldan beşinci sırada hangi kitap vardır?",
           "secenekler": [
             "Melis",
@@ -24010,18 +22786,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Doğrudan bildirilen ipuçları ile 'değildir' biçimindeki eleyici ipuçları birlikte uygulandığında, her kişi için tek bir olası değer kalana dek seçenekler elenir ve eşleştirme tek bir biçimde (Kaya - balık, Efe - papağan, Damla - tavşan, Melis - köpek, Berkay - kedi) sabitlenir. Buna göre Berkay'ın beslediği evcil hayvan kedidir."
-        },
-        {
-          "soru": "Aylin, Oğuz, Yiğit, Rana ve Songül adlı 5 kişiden her birinin içeceği farklıdır ve bu kişiler çay, kahve, ayran, limonata, maden suyu seçeneklerinden birine sahiptir. (1) Songül'ün içeceği çaydır. (2) Aylin'in içeceği ayran değildir. (3) Rana'nın içeceği maden suyudur. (4) Oğuz'un içeceği ayrandır. (5) Yiğit'in içeceği limonata değildir. Buna göre Rana'nın içeceği nedir?",
-          "secenekler": [
-            "maden suyu",
-            "kahve",
-            "buz gibi soğuk limonata",
-            "ayran",
-            "çay"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğrudan bildirilen ipuçları ile 'değildir' biçimindeki eleyici ipuçları birlikte uygulandığında, her kişi için tek bir olası değer kalana dek seçenekler elenir ve eşleştirme tek bir biçimde (Aylin - limonata, Oğuz - ayran, Yiğit - kahve, Rana - maden suyu, Songül - çay) sabitlenir. Buna göre Rana'nın içeceği maden suyudur."
         },
         {
           "soru": "Yavuz, Zerrin, Kadir, Leyla ve Vildan adlı 5 kişiden her birinin çaldığı enstrüman farklıdır ve bu kişiler gitar, keman, piyano, flüt, davul seçeneklerinden birine sahiptir. (1) Leyla'nın çaldığı enstrüman kemandır. (2) Kadir'in çaldığı enstrüman gitardır. (3) Vildan'ın çaldığı enstrüman flüt değildir. (4) Zerrin'in çaldığı enstrüman flüttür. (5) Yavuz'un çaldığı enstrüman piyanodur. Buna göre Kadir'in çaldığı enstrüman nedir?",
@@ -25715,18 +24479,6 @@
           "aciklama": "C seçeneği doğru cevaptır. Paragraf, yazarın düşüncelerini geliştirmektedir."
         },
         {
-          "soru": "Aşağıdaki paragrafın ana fikri nedir? 'Ülkemizde eğitim sistemi, birçok alanda olduğu gibi sürekli değişime uğramaktadır. Bu değişimlerin amacı, öğrencilere daha iyi bir eğitim vermek ve onları gelecekteki hayatlarına hazırlamaktır. Ancak bu değişimlerin bazen olumlu bazen de olumsuz sonuçları olabilir. Örneğin, yeni eğitim sistemlerinin uygulanması, bazı öğrencilerin zorluklarla karşılaşmasına neden olabilir. Buna karşın, bu sistemler sayesinde öğrencilerin daha çok şey öğrenmesi ve gelişmesi de mümkündür. Dolayısıyla, eğitim sistemindeki değişimlerin öğrenciler üzerindeki etkileri hakkında daha fazla araştırma yapılması gerekmektedir.'",
-          "secenekler": [
-            "Eğitim sistemindeki değişimlerin öğrenciler üzerindeki etkileri",
-            "Eğitim sistemindeki değişimlerin amacı",
-            "Eğitim sistemindeki değişimlerin olumlu sonuçları",
-            "Eğitim sistemindeki değişimlerin olumsuz sonuçları",
-            "Eğitim sistemindeki değişimlerin gelecekteki etkileri"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paragrafın ana fikri, eğitim sistemindeki değişimlerin öğrenciler üzerindeki etkileri hakkında bilgi vermektir."
-        },
-        {
           "soru": "Aşağıdaki paragrafı okuyunuz. 'Tarih, insanlığın geçmişini inceleyen bir bilim dalıdır. Geçmişte yaşanan olaylar, insanların bugün ve gelecekteki hayatlarını şekillendirmektedir. Dolayısıyla, tarihi olayları incelemek ve anlamak, günümüzü ve geleceğimizi daha iyi anlamak için önemlidir. Ancak, tarihi olayları incelemek bazen zor olabilir. Çünkü, tarihi olaylar hakkında bilgi veren kaynaklar bazen eksik veya yanlış olabilir. Bu nedenle, tarihi olayları inceleyenler, kaynakların güvenilirliğini kontrol etmek zorundadırlar.' Paragrafa göre, neden tarihi olayları incelemek önemlidir?",
           "secenekler": [
             "Tarihi olayları incelemek, geçmişte yaşananları anlamak için önemlidir.",
@@ -25737,18 +24489,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Paragrafa göre, tarihi olayları incelemek, günümüzü ve geleceğimizi daha iyi anlamak için önemlidir."
-        },
-        {
-          "soru": "Aşağıdaki paragrafı okuyunuz. 'Edebiyat, bir toplumun kültürel ve sosyal yapısını yansıtan bir sanattır. Edebi eserler, toplumun değerlerini, inançlarını ve geleneklerini içerir. Dolayısıyla, bir toplumun edebiyatını incelemek, o toplumun kültürel ve sosyal yapısını anlamak için önemlidir. Ancak, edebiyatın sadece bu amaçla incelendiğini düşünmek yanlış olacaktır. Edebiyat, aynı zamanda insanların duygularını, düşüncelerini ve experiencesini ifade etmenin bir aracıdır. Bu nedenle, edebiyatı incelemek, insanları ve toplumları daha iyi anlamak için önemlidir.' Paragrafa göre, neden edebiyatı incelemek önemlidir?",
-          "secenekler": [
-            "Edebiyatı incelemek, bir toplumun kültürel ve sosyal yapısını anlamak için önemlidir.",
-            "Edebiyatı incelemek, insanların duygularını, düşüncelerini ve experiencesini anlamak için önemlidir.",
-            "Edebiyatı incelemek, edebi eserleri incelemek için önemlidir.",
-            "Edebiyatı incelemek, bir toplumun değerlerini, inançlarını ve geleneklerini öğrenmek için önemlidir.",
-            "Edebiyatı incelemek, insanları ve toplumları daha iyi anlamak için önemlidir."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Paragrafa göre, edebiyatı incelemek, insanları ve toplumları daha iyi anlamak için önemlidir. Bu, paragrafın ana fikridir."
         },
         {
           "soru": "Aşağıdaki paragrafı okuyunuz. 'İnsanların düşünceleri ve davranışları, onların kültürel ve sosyal çevreleri tarafından şekillenir. Dolayısıyla, insanların düşünceleri ve davranışlarını anlamak için, onların kültürel ve sosyal çevrelerini incelemek önemlidir. Ancak, insanların düşünceleri ve davranışları, sadece kültürel ve sosyal çevreleri tarafından şekillenmez. Aynı zamanda, insanların kişisel experiencesi ve özellikleri de onların düşünceleri ve davranışlarını etkiler. Bu nedenle, insanların düşünceleri ve davranışlarını anlamak için, hem kültürel ve sosyal çevrelerini hem de kişisel experiencesini ve özelliklerini incelemek gerekir.' Paragrafa göre, neden insanların düşünceleri ve davranışlarını anlamak için hem kültürel ve sosyal çevrelerini hem de kişisel experiencesini ve özelliklerini incelemek gerekir?",
@@ -25929,18 +24669,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Doğru cevap, çünkü sorular sormak ve okuyucuyu düşündürmek, okuyucunun thoughtsini geliştirmek için etkili bir yoldur."
-        },
-        {
-          "soru": "Okuyucunun dikkatini çekmek ve onu metne çekmek için yazarların kullandığı yöntemlerden biri olan 'sürpriz' unsurunun amacı nedir?",
-          "secenekler": [
-            "Okuyucunun metni yeniden okumaya yönlendirmek",
-            "Okuyucunun dikkatini çekmek ve onu metne çekmek",
-            "Okuyucunun metni anlamasını kolaylaştırmak",
-            "Okuyucunun metni uzun ve karmaşık bulmasını sağlamak",
-            "Okuyucunun metni kısa ve basit bulmasını sağlamak"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru, çünkü sürpriz unsurunun amacı okuyucunun dikkatini çekmek ve onu metne çekmektir."
         },
         {
           "soru": "Aşağıdaki paragrafı okuyunuz. '...Bir gün, küçük bir kasabada yaşayan bir adam, kasabanın dışında bulunan bir ormana gitmeye karar verdi. Ormanda yürürken, bir ağacın altında duran ve elinde bir kedi bulunan birini gördü. Adam, bu kişinin kim olduğunu ve ne yapmak istediğini merak etti...'. Bu paragrafta kullanılan anlatım biçimi hangisidir?",
@@ -35288,18 +34016,6 @@
           "aciklama": "Kaçırılan fırsatın bir daha ele geçmeyebileceğini 'Fırsat her zaman kapıyı çalmaz' atasözü anlatır."
         },
         {
-          "soru": "“Uzun süredir görüşmeyen dostlar bir araya gelince eski günlerden söz edip duygulandı.” Bu durumda 'çok özlemek, hasret gidermek' anlamına gelen deyim hangisidir?",
-          "secenekler": [
-            "hasret gidermek",
-            "burun kıvırmak",
-            "kulak asmamak",
-            "göz ardı etmek",
-            "el etek çekmek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Özlem duyulan birine kavuşup özlemi dindirmek 'hasret gidermek' deyimiyle karşılanır."
-        },
-        {
           "soru": "Aşağıdaki cümlelerin hangisinde deyim anlamına UYGUN kullanılMAMIŞTIR?",
           "secenekler": [
             "Zor işi kolayca bitirince göğsü kabardı, gururlandı.",
@@ -35658,18 +34374,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Kişinin kendi kusurlarını göremeyip başkalarını suçlaması 'kendi kusurunu görmemek' ifadesiyle karşılanır."
-        },
-        {
-          "soru": "İyilik yaptığı kişiden kötülük gören adam, 'Besle kargayı, oysun gözünü,' diyerek üzüntüsünü dile getirdi.\n\nBu durum aşağıdaki atasözlerinden hangisiyle en iyi anlatılır?",
-          "secenekler": [
-            "Damlaya damlaya göl olur.",
-            "Besle kargayı, oysun gözünü.",
-            "Sona kalan dona kalır.",
-            "Ateş olmayan yerden duman çıkmaz.",
-            "Ayağını yorganına göre uzat."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "İyilik ettiği kişiden kötülük görme durumu, doğrudan 'Besle kargayı, oysun gözünü' atasözüyle anlatılır."
         },
         {
           "soru": "Küçük bir tartışmayı büyütüp iyice içinden çıkılmaz hâle getiren taraflar, sonunda hepten ayrı düştü.\n\nBu durum aşağıdaki deyimlerden hangisiyle karşılanır?",
@@ -41494,18 +40198,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Anlamlı ve kurallı diziliş 'Yorgun yolcular ağacın gölgesinde dinlendi.' biçimindedir; özne 'yorgun yolcular', yüklem sonda 'dinlendi'dir."
-        },
-        {
-          "soru": "“sabır / her / anahtarı / kapının / değildir / ama / çoğunun / anahtarıdır”\n\nBu sözcüklerle anlamlı ve kurallı bir cümle kurulduğunda YÜKLEM hangisidir?",
-          "secenekler": [
-            "anahtarıdır",
-            "sabır",
-            "değildir",
-            "kapının",
-            "çoğunun"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Cümle 'Sabır, her kapının anahtarı değildir ama çoğunun anahtarıdır.' biçiminde kurulur; yüklem sondaki 'anahtarıdır'dır."
         },
         {
           "soru": "“(1) güzelliği (2) bilenler (3) sadeliğin (4) gösterişten (5) kaçınır”\n\nBu sözcükler anlamlı ve kurallı biçimde sıralandığında hangisi doğru olur?",
@@ -62730,18 +61422,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Parça, zorluklar karşısında esnek davranmanın katı direnmekten daha etkili olduğunu anlatır."
-        },
-        {
-          "soru": "Gerçek cömertlik, elinde çok olandan biraz vermek değildir. Asıl cömert olan, azına rağmen paylaşabilendir. Sofrası zaten dolu olanın bir lokma ikram etmesi kolaydır; ama kendi de aç olduğu hâlde ekmeğini bölen insan, gerçek yüreğini gösterir. Vermenin değeri, verilenin miktarıyla değil, verirken katlanılan özveriyle ölçülür. Bu yüzden bazen küçük bir yardım, koca bir servetten daha ağır basar.\n\nBu parçaya göre bir yardımın değeri neyle ölçülür?",
-          "secenekler": [
-            "Verilen şeyin miktarının büyüklüğüyle",
-            "Verirken katlanılan özveriyle",
-            "Yardım edilen kişinin sayısıyla",
-            "Yardımın herkes tarafından görülmesiyle",
-            "Verenin ne kadar zengin olduğuyla"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Parça, bir yardımın değerinin miktarla değil, verirken katlanılan özveriyle ölçüldüğünü belirtir."
         },
         {
           "soru": "Yazar, bu kitabında tarihi tozlu raflardan indirip sokağa çıkarıyor. Padişahların fermanlarından çok, o dönemde yaşayan sıradan bir esnafın gününü, bir çocuğun oyununu, bir evin mutfağından yükselen kokuyu anlatıyor. Böylece uzak ve soğuk görünen geçmiş, birdenbire canlı, sıcak ve tanıdık bir hâle geliyor. Okur, tarihi bir olaylar dizisi olarak değil, bir zamanlar gerçekten yaşanmış bir hayat olarak duyumsuyor.\n\nBu parçada sözü edilen kitabın tarihe yaklaşımıyla ilgili olarak aşağıdakilerden hangisi söylenebilir?",

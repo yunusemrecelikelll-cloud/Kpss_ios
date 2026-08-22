@@ -1062,18 +1062,6 @@
           "aciklama": "Hukuk Muhakemeleri Kanunu, özel hukuk uyuşmazlıklarında izlenecek yargılama usulünü düzenleyen bir usul kanunudur."
         },
         {
-          "soru": "'Hak düşürücü süre' ile 'zamanaşımı' arasındaki temel fark nedir?",
-          "secenekler": [
-            "A) İkisi de aynı hukuki sonucu doğurur",
-            "B) Hak düşürücü sürenin geçmesiyle hak tamamen sona erer ve hâkim bunu resen dikkate alır; zamanaşımında ise borç doğal borca dönüşür ve taraf ileri sürmezse hâkim resen dikkate almaz",
-            "C) Zamanaşımı yalnızca ceza hukukunda uygulanır",
-            "D) Hak düşürücü süre yalnızca özel hukukta uygulanır",
-            "E) Zamanaşımı süresi hiçbir şekilde durmaz veya kesilmez"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Hak düşürücü sürenin dolmasıyla hak kendiliğinden ortadan kalkar ve hâkim bunu taraflar ileri sürmese bile resen gözetir; zamanaşımında ise alacak doğal borca dönüşür ve zamanaşımı definin ileri sürülmesi gerekir."
-        },
-        {
           "soru": "Ceza hukukunda 'mülkilik ilkesi' neyi ifade eder?",
           "secenekler": [
             "A) Ceza kanunlarının yalnızca taşınmaz mallara ve gayrimenkullere yönelik olarak işlenen suçlar bakımından uygulanabileceğini ifade etmesini",
@@ -1950,18 +1938,6 @@
           "aciklama": "Hukuki ilişki, hukuk kurallarınca öngörülen ve taraflar arasında karşılıklı hak ve yükümlülükler doğuran bağı ifade eder; örneğin bir sözleşmeden doğan alacaklı-borçlu ilişkisi tipik bir hukuki ilişki örneğidir."
         },
         {
-          "soru": "Hukukun temel kavramlarından biri olan \"Hukukun Kaynakları\" konusunda, \"Din ve Ahlak\" kavramı hangi kaynaktan kaynaklanır?",
-          "secenekler": [
-            "Devlet",
-            "Sivil toplum",
-            "Din ve Ahlak",
-            "Kanun",
-            "İnsan"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Din ve Ahlak hukukun temel kavramlarından biridir ve hukukun kaynaklarından biridir."
-        },
-        {
           "soru": "Hukukun temel kavramlarından biri olan 'Hukuk' ne amaçla ortaya çıkmıştır?",
           "secenekler": [
             "Toplumun huzurunu ve düzenini sağlamak",
@@ -2584,18 +2560,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Bu seçenek doğru cevabı vermiş olacak çünkü hukuk genel ve özel olmak üzere iki niteliğe sahiptir."
-        },
-        {
-          "soru": "Hukuk sistemleri, yasama, yargı ve yürütme organlarından oluşur. Bu çerçevede yargı organı, hangi organın görevlerini denetler?",
-          "secenekler": [
-            "Yürütme organı",
-            "Yasama organı",
-            "Yargı organı",
-            "Herhangi bir organ",
-            "Yargı organı değil"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Yargı organı, yasama ve yürütme organlarının görevlerini denetler."
         },
         {
           "soru": "Hukukun temel kavramlarından biri olan 'hukukun üstünlüğü'ne göre, hangi organın hukukun üstünlüğünü sağlamakla sorumlu?",
@@ -3304,18 +3268,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bir davranış kalıbının örf ve adet hukuku kuralı sayılabilmesi için sadece maddi unsur yetmez; ayrıca topluluğun bu kurala uyulmasını hukuken zorunlu görmesi (manevi unsur) gerekir. Salt nezaket kuralları bu inancı taşımaz."
-        },
-        {
-          "soru": "Örf ve adet hukukunun 'yazısız kaynak' olarak nitelendirilmesinin nedeni aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Herhangi bir resmi organ tarafından yazılı bir metin hâlinde, belirli bir usulle konulmuş olmaması, toplumsal uygulamadan doğması",
-            "B) İçeriğinin hiçbir zaman kayıt altına alınamaması",
-            "C) Yalnızca sözlü sözleşmelerde geçerli olması",
-            "D) Kanunlardan sonra yürürlüğe girmiş olması",
-            "E) Sadece göçebe topluluklarda uygulanabilmesi"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Örf ve adet hukuku, yetkili bir organ tarafından belirli bir usulle yazılı metin hâlinde konulmuş bir kaynak değildir; toplumsal hayat içinde kendiliğinden, fiilî uygulama yoluyla oluşur."
         },
         {
           "soru": "Ticaret hukukunda, sözleşmede boşluk bulunan bir konuda 'ticari örf ve adete' başvurulması, örf ve adet hukukunun hangi işlevini gösterir?",
@@ -5652,18 +5604,6 @@
           "aciklama": "1982 Anayasası, kabul edildiği tarihten bugüne kadar çeşitli değişikliklerle birlikte yürürlükte kalmaya devam ederek Türk anayasa tarihinde en uzun süre yürürlükte kalan anayasa olma özelliğini taşımaktadır."
         },
         {
-          "soru": "Türkiye Cumhuriyeti Anayasasının 2. maddesinde hangi ilke yer almaktadır?",
-          "secenekler": [
-            "Laiklik",
-            "Sosyal Devlet",
-            "Demokratik Devlet",
-            "Hukuk Devleti",
-            "Cumhuriyet"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "1982 Anayasası'nın 1. maddesi Türkiye Devleti'nin bir Cumhuriyet olduğunu belirtir; 2. madde ise bu Cumhuriyetin niteliklerini (demokratik, laik ve sosyal hukuk devleti) düzenleyerek Cumhuriyet ilkesinin anayasal çerçevesini tamamlar."
-        },
-        {
           "soru": "1982 Anayasasının 10. maddesinde hangi hak yer almaktadır?",
           "secenekler": [
             "Din ve Vicdan Özgürlüğü",
@@ -6862,18 +6802,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "66. madde, Türk Devletine vatandaşlık bağı ile bağlı olan herkesin Türk olduğunu düzenler; vatandaşlık kanunun gösterdiği şartlarla kazanılır ve ancak kanunda belirtilen hallerde kaybedilir."
-        },
-        {
-          "soru": "Anayasa'nın 67. maddesine göre seçme, seçilme ve siyasi faaliyette bulunma hakları ile ilgili aşağıdakilerden hangisi doğrudur?",
-          "secenekler": [
-            "A) Vatandaşlar, kanunda gösterilen şartlara uygun olarak seçme, seçilme ve bağımsız olarak veya bir siyasi parti içinde siyasi faaliyette bulunma hakkına sahiptir",
-            "B) Seçimler açık oy, açık sayım ilkesine göre yapılır",
-            "C) Silah altında bulunan er ve erbaşlar oy kullanabilir",
-            "D) Ceza infaz kurumunda bulunan hükümlülerin tamamı oy kullanabilir",
-            "E) Seçimler yalnızca 7 yılda bir yapılır"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "67. madde, vatandaşların kanunda gösterilen şartlara uygun olarak seçme, seçilme ve bağımsız olarak veya bir siyasi parti içinde siyasi faaliyette bulunma haklarına sahip olduğunu; seçimlerin serbest, eşit, gizli, tek dereceli, genel oy, açık sayım ve döküm esaslarına göre yapılacağını düzenler."
         },
         {
           "soru": "Anayasa'nın 68. ve 69. maddelerine göre siyasi partilerle ilgili aşağıdakilerden hangisi doğrudur?",
@@ -15406,18 +15334,6 @@
           "aciklama": "104. madde, kararname ile kanunun aynı konuda farklı hükümler içermesi halinde kanun hükümlerinin uygulanacağını açıkça düzenler; bu, kanunun kararnameye üstünlüğünün doğal bir sonucudur."
         },
         {
-          "soru": "Cumhurbaşkanlığı kararnamesi çıkarılamayacak konulardan biri olan 'Anayasada münhasıran kanunla düzenlenmesi öngörülen konular' ifadesi neyi amaçlar?",
-          "secenekler": [
-            "A) Anayasa'nın açıkça sadece kanunla düzenleneceğini belirttiği alanlarda (örneğin vergi, suç ve ceza) yürütmenin kararname yoluyla düzenleme yapmasını engellemek",
-            "B) Cumhurbaşkanının hiçbir konuda düzenleme yapmasını engellemek",
-            "C) Yalnızca ekonomik konularda kararname çıkarılmasını yasaklamak",
-            "D) Bu ifadenin uygulamada hiçbir anlamı yoktur",
-            "E) Yalnızca yerel yönetimlerle ilgili konularda geçerlidir"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu kısıtlama, Anayasa'nın açıkça 'kanunla düzenlenir' dediği alanlarda (vergi, suç-ceza, temel haklar gibi) yürütmenin kararname yoluyla yasama yetkisini fiilen gasp etmesini önlemeyi amaçlar; kuvvetler ayrılığının bir güvencesidir."
-        },
-        {
           "soru": "Cumhurbaşkanlığı kararnamesi ile daha önce kanunla düzenlenmiş bir konuda düzenleme yapılabilir mi?",
           "secenekler": [
             "A) Hayır; Anayasa'da kararname ile düzenleneceği belirtilmeyen, daha önce kanunla düzenlenmiş konularda kararname çıkarılamaz",
@@ -17727,18 +17643,6 @@
           "aciklama": "Bu seçenek doğru cevaptır. Yerel yönetimler, kamu hizmetlerinin sunulmasını sağlamak, kamu kaynaklarının yönetimi ve kamu hizmetlerinin denetimini sağlamak için yetkilendirilmiştir."
         },
         {
-          "soru": "Anayasa'nın 138. maddesine göre hakimlerin bağımsızlığı ilkesiyle ilgili aşağıdakilerden hangisi doğrudur?",
-          "secenekler": [
-            "A) Hiçbir organ, makam, merci veya kişi yargı yetkisinin kullanılmasında mahkemelere ve hakimlere emir ve talimat veremez, genelge gönderemez, tavsiye ve telkinde bulunamaz",
-            "B) Adalet Bakanlığı hakimlere talimat verebilir",
-            "C) TBMM hakimlere görüşlerini iletebilir",
-            "D) Cumhurbaşkanı bireysel davalarda hakimlere talimat verebilir",
-            "E) Yalnızca üst dereceli mahkemeler alt dereceli mahkemelere talimat verebilir"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "138. madde, yargı bağımsızlığının güvencesi olarak hiçbir organ, makam, merci veya kişinin yargı yetkisinin kullanılmasında mahkemelere ve hakimlere emir ve talimat veremeyeceğini, genelge gönderemeyeceğini, tavsiye ve telkinde bulunamayacağını düzenler."
-        },
-        {
           "soru": "Anayasa'nın 138. maddesine göre yasama meclisinde görülmekte olan bir dava hakkında ne yapılamaz?",
           "secenekler": [
             "A) Yargı yetkisinin kullanılmasıyla ilgili soru sorulamaz, görüşme yapılamaz veya herhangi bir beyanda bulunulamaz",
@@ -17751,18 +17655,6 @@
           "aciklama": "138. madde, görülmekte olan bir dava hakkında yasama meclisinde yargı yetkisinin kullanılmasıyla ilgili soru sorulamayacağını, görüşme yapılamayacağını veya herhangi bir beyanda bulunulamayacağını düzenleyerek yargı bağımsızlığını yasama organına karşı da güvence altına alır."
         },
         {
-          "soru": "Anayasa'nın 138. maddesine göre yasama ve yürütme organları ile idarenin mahkeme kararları karşısındaki konumu nedir?",
-          "secenekler": [
-            "A) Mahkeme kararlarına uymak zorundadırlar; bu organlar ve idare, mahkeme kararlarını hiçbir suretle değiştiremez ve bunların yerine getirilmesini geciktiremez",
-            "B) Yürütme, mahkeme kararlarını dilediği gibi değiştirebilir",
-            "C) Yasama, mahkeme kararlarını kanunla geçersiz kılabilir",
-            "D) İdare, mahkeme kararlarının yerine getirilmesini süresiz erteleyebilir",
-            "E) Bu konuda Anayasa'da hüküm yoktur"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "138. madde, yasama ve yürütme organları ile idarenin mahkeme kararlarına uymak zorunda olduğunu; bu organların mahkeme kararlarını hiçbir şekilde değiştiremeyeceğini ve yerine getirilmesini geciktiremeyeceğini açıkça düzenler."
-        },
-        {
           "soru": "Anayasa'nın 139. maddesinde düzenlenen 'hakimlik ve savcılık teminatı' neyi güvence altına alır?",
           "secenekler": [
             "A) Hakimlerin ve savcıların azlolunamayacağını, kendileri istemedikçe Anayasada gösterilen yaştan önce emekliye ayrılamayacağını",
@@ -17773,18 +17665,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "139. madde, hakimlerin ve savcıların azlolunamayacağını, kendileri istemedikçe Anayasada gösterilen yaştan önce emekliye ayrılamayacağını ve bir mahkemenin veya kadronun kaldırılması sebebiyle de olsa aylık, ödenek ve diğer özlük haklarından yoksun bırakılamayacağını düzenler."
-        },
-        {
-          "soru": "Anayasa'nın 140. maddesine göre hakimlik ve savcılık mesleğine ilişkin aşağıdakilerden hangisi doğrudur?",
-          "secenekler": [
-            "A) Hakimler ve savcılar adli ve idari yargı hakim ve savcıları olarak görev yapar; bu mesleklere alınma, atanma, hakları ve ödevleri kanunla düzenlenir",
-            "B) Hakimler yalnızca adli yargıda görev yapabilir",
-            "C) Savcılar yargı bağımsızlığına tabi değildir",
-            "D) Hakimlik mesleğine giriş için hiçbir sınav şartı yoktur",
-            "E) Bu konuda Anayasa'da hüküm yoktur"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "140. madde, hakim ve savcıların adli ve idari yargı hakim ve savcıları olarak görev yaptığını; mesleğe kabul, atanma, hak ve ödevler ile diğer özlük işlerinin kanunla düzenleneceğini belirtir."
         },
         {
           "soru": "Hakimler ve Savcılar Kurulu'na (HSK) kim başkanlık eder?",
@@ -17845,18 +17725,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "155. madde, Danıştay üyelerinin, kanunda gösterilen nitelik ve usullere göre bir kısmının HSK'ce, bir kısmının ise Cumhurbaşkanınca seçileceğini düzenler; bu, idari yargının üst mahkemesinin oluşumunda karma bir usul öngörür."
-        },
-        {
-          "soru": "Danıştay'ın görev ve yetkileri arasında aşağıdakilerden hangisi sayılır?",
-          "secenekler": [
-            "A) İdari uyuşmazlıkları çözmek, idari yargının ilk ve son derece mahkemesi olarak görev yapmak, tüzük tasarılarını inceleme gibi danışma görevlerini yerine getirmek",
-            "B) Yalnızca ceza davalarına bakmak",
-            "C) Yalnızca anayasa değişikliklerini denetlemek",
-            "D) Yalnızca hukuk davalarına bakmak",
-            "E) Yalnızca seçim uyuşmazlıklarını çözmek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Danıştay, idari uyuşmazlıkları çözen, idari yargının en üst mahkemesi olan ve bazı konularda idareye danışmanlık (istişari) görevi de yürüten bir kurumdur."
         },
         {
           "soru": "Anayasa'nın 160. maddesine göre Sayıştay'ın temel görevi nedir?",
@@ -17953,18 +17821,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Anayasa Mahkemesi Genel Kurulunda kararlar, kural olarak toplantıya katılanların salt çoğunluğuyla alınır; ancak siyasi parti kapatma davalarında olduğu gibi bazı konularda Anayasa özel nitelikli çoğunluklar öngörür."
-        },
-        {
-          "soru": "Anayasa Mahkemesi üyeliğine seçilebilmek için aranan mesleki kökenler arasında aşağıdakilerden hangisi sayılır?",
-          "secenekler": [
-            "A) Yükseköğretim kurumlarının hukuk, iktisat ve siyasal bilimler alanlarında görev yapan öğretim üyeleri, üst kademe yöneticileri, avukatlar ile birinci sınıf hakim ve savcılar",
-            "B) Yalnızca askeri personel",
-            "C) Yalnızca belediye başkanları",
-            "D) Yalnızca milletvekilleri",
-            "E) Yalnızca gazeteciler"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Anayasa Mahkemesi üyeliğine, ilgili alanlarda öğretim üyeliği yapmış akademisyenler, üst kademe kamu yöneticileri, avukatlar ve birinci sınıf hakim-savcılar gibi belirli mesleki kökenlerden gelen kişiler arasından seçim yapılır."
         },
         {
           "soru": "Uyuşmazlık Mahkemesi Başkanı kim tarafından seçilir?",
@@ -18205,18 +18061,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "2017 değişikliği sonrasında askeri yargı organlarının kaldırılmasıyla, askeri personelin yargılanması kural olarak genel adli ve idari yargı mahkemelerinin görev alanına dahil edilmiştir."
-        },
-        {
-          "soru": "Yargıtay'ın temel görevi nedir?",
-          "secenekler": [
-            "A) Adliye mahkemelerince (hukuk ve ceza) verilen ve kanunun başka bir adli yargı merciine bırakmadığı karar ve hükümlerin son inceleme merci olarak incelenmesi ve karara bağlanması",
-            "B) İdari uyuşmazlıkları çözmek",
-            "C) Anayasaya uygunluk denetimi yapmak",
-            "D) Milletvekili seçimlerini yönetmek",
-            "E) Belediye başkanlarını denetlemek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Yargıtay, adliye mahkemelerince verilen ve kanunun başka bir adli yargı merciine bırakmadığı karar ve hükümlerin son inceleme mercii olup adli yargının en üst mahkemesidir."
         },
         {
           "soru": "Danıştay ile Yargıtay arasındaki temel fark nedir?",
@@ -20919,18 +20763,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Madde 69'a göre siyasi partilerin faaliyetleri, parti içi düzenlemeleri ve işleyişleri demokrasi ilkelerine uygun olur; bu, parti içi demokrasinin Anayasal bir gereklilik olduğunu ortaya koyar."
-        },
-        {
-          "soru": "Bir siyasi partinin kapatılmasına karar verilebilmesi için genel olarak aranan ölçüt aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) Partinin tüzük ve programının yanı sıra, üyelerinin eylem ve söylemlerinin de yoğunlaştığı odak hâline gelen beyan ve faaliyetlerin Anayasa'da öngörülen yasaklara aykırılık oluşturması",
-            "B) Yalnızca bir üyenin kişisel bir açıklama yapmış olması",
-            "C) Partinin seçimde beklenenden düşük oy alması",
-            "D) Partinin genel merkezinin belirli bir şehirde bulunması",
-            "E) Partinin kongre tarihini ertelemiş olması"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Anayasa'nın öngördüğü kapatma rejiminde, bir partinin kapatılabilmesi için tüzük ve programının yanı sıra, o partinin üyelerinin eylem ve beyanlarının yoğunlaştığı 'odak' hâline gelmiş nitelikte Anayasa'da sayılan yasaklara aykırı faaliyetlerin varlığı aranır."
         },
         {
           "soru": "Anayasa'nın 68. maddesine göre bir vatandaşın partiden ayrılma hakkı hakkında aşağıdakilerden hangisi doğrudur?",
@@ -24021,18 +23853,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Tam yargı davası, idarenin işlem veya eylemi nedeniyle kişisel hakkı ihlal edilenlerin açtığı, tazminat amaçlı bir dava türüdür."
-        },
-        {
-          "soru": "İptal davası açabilmek için aranan 'menfaat ihlali' şartı ile tam yargı davasında aranan 'hak ihlali' şartı arasındaki fark nedir?",
-          "secenekler": [
-            "A) Menfaat ihlali daha geniş ve dolaylı bir ilgiyi yeterli sayarken, hak ihlali sübjektif ve doğrudan bir hakkın zedelenmesini gerektirir",
-            "B) İkisi aynı anlama gelir",
-            "C) Hak ihlali daha geniş bir kavramdır",
-            "D) Menfaat ihlali sadece memurlar için geçerlidir",
-            "E) Hak ihlali iptal davasında aranır"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "İptal davasında menfaat ihlali yeterliyken, tam yargı davasında davacının sübjektif bir hakkının doğrudan ihlal edilmiş olması aranır."
         },
         {
           "soru": "İptal davası açma süresi, kural olarak idare mahkemelerinde kaç gündür?",

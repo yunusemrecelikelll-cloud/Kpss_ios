@@ -1939,18 +1939,6 @@
           "aciklama": "TMSF; bankalardaki tasarruf mevduatını güvence altına almak ve gerektiğinde sorunlu bankaların yönetimini devralarak çözüm süreçlerini yürütmekle görevlidir."
         },
         {
-          "soru": "Kamu İhale Kurumu'nun görevi nedir?",
-          "secenekler": [
-            "A) Kamu kurumlarının mal, hizmet ve yapım işi alımlarını düzenlemek ve ihale sürecini denetlemek",
-            "B) Vergi denetimi yapmak",
-            "C) Belediye bütçelerini onaylamak",
-            "D) Dış ticaret anlaşmaları yapmak",
-            "E) Kamu personel alımlarını yürütmek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Kamu İhale Kurumu; 4734 sayılı Kamu İhale Kanunu çerçevesinde kamu alımlarının şeffaf, rekabetçi ve usulüne uygun yürütülmesini denetleyen kurumdur."
-        },
-        {
           "soru": "Gelir İdaresi Başkanlığı'nın (GİB) temel görevi nedir?",
           "secenekler": [
             "A) Vergi politikalarını uygulamak ve vergi toplamak",
@@ -2935,18 +2923,6 @@
           "aciklama": "Kamu Maliye Bakanlığı, Maliye Müdürlüğü ve Maliye Komitesi birlikte mali yönetim ile ilgilenmektedir."
         },
         {
-          "soru": "Kamu kurum ve kuruluşlarında, mali yönetiminde hangi unsur önemli bir yere sahiptir?",
-          "secenekler": [
-            "Mali Kontrol",
-            "Mali Yönetim",
-            "Mali Denetim",
-            "Mali İdare",
-            "Mali Politika"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Mali yönetim önemli bir yere sahiptir."
-        },
-        {
           "soru": "Kamu kurum ve kuruluşlarındaki mali yönetim, hangi prensiplere göre yönetilir?",
           "secenekler": [
             "Hesap Hukuku",
@@ -3125,18 +3101,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "VakıfBank, Vakıflar Genel Müdürlüğü'ne bağlı mazbut vakıfların atıl nakit kaynaklarını bankacılık faaliyetleri yoluyla ekonomiye kazandırmak amacıyla kurulmuştur."
-        },
-        {
-          "soru": "TCMB'nin para politikası aracı olan 'zorunlu karşılık' uygulaması nasıl tanımlanır?",
-          "secenekler": [
-            "A) Bankaların topladıkları mevduat ve bazı yükümlülüklerin belirli bir oranını Merkez Bankası nezdinde tutma zorunluluğu",
-            "B) Bankaların kâr paylarının vergilendirilmesi",
-            "C) Bankaların şube sayısının sınırlandırılması",
-            "D) Bankaların yurt dışına açacağı şube sayısı kotası",
-            "E) Bankaların personel istihdam oranı zorunluluğu"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Zorunlu karşılık; bankaların topladıkları mevduat ve belirli yükümlülüklerin belirli bir yüzdesini TCMB nezdinde bulundurma zorunluluğudur ve hem para politikası hem finansal istikrar aracı olarak kullanılır."
         },
         {
           "soru": "TCMB zorunlu karşılık oranlarını artırdığında piyasada beklenen etki genellikle hangisidir?",
@@ -3353,18 +3317,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Kesin hesap kanunu; geçmiş bir mali yıla ait bütçe uygulama sonuçlarını, yani bütçe kanunuyla verilen harcama ve gelir yetkisinin fiilen ne şekilde kullanıldığını gösteren ve TBMM'ce kabul edilen kanundur."
-        },
-        {
-          "soru": "Sayıştay'ın bütçe sürecindeki temel işlevi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "A) TBMM adına kamu idarelerinin gelir, gider ve mallarını denetlemek (dış denetim)",
-            "B) Bütçe kanun tasarısını hazırlamak",
-            "C) Vergi oranlarını belirlemek",
-            "D) Merkez bankası faiz kararlarını almak",
-            "E) Kamu bankalarını yönetmek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Sayıştay; TBMM adına kamu idarelerinin gelir, gider ve mal edinme işlemlerini denetleyen anayasal bir dış denetim organıdır ve bu denetim bulgularını raporlar halinde TBMM'ye sunar."
         },
         {
           "soru": "Sayıştay'ın klasik denetim görevinin yanı sıra sahip olduğu 'hesap yargılaması' işlevi ne anlama gelir?",

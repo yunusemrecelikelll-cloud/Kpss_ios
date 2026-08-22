@@ -3165,18 +3165,6 @@
           "aciklama": "Prens David, Gürcü-İslam devletinin kurucusudur. Bu nedenle bu seçenek doğru cevaptır."
         },
         {
-          "soru": "Gazneliler Devleti'nin en büyük imparatorluğunu kurmus Türk-İslam devleti hangisidir?",
-          "secenekler": [
-            "Gazneliler",
-            "Selçuklu",
-            "Büyük Selçuklu",
-            "Gürcü-İslam",
-            "Bu devletin özelliği yoktur."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Gazneliler Devleti, en büyük imparatorluğunu kurmuştur. Bu nedenle bu seçenek doğru cevaptır."
-        },
-        {
           "soru": "Selçuklu Devleti'nin kurucusu kimdir?",
           "secenekler": [
             "Yabgu Bula",
@@ -11960,18 +11948,6 @@
           "aciklama": "Dikkatli okuyan ve Atatürk'ün ilkeleri ile ilgili bilgi sahibi öğrenci bu seçeneği doğru olarak seçer."
         },
         {
-          "soru": "Atatürk'ün ilkelerinden hangisi Türkiye'nin cumhuriyetleşmesiyle alakalıdır?",
-          "secenekler": [
-            "Millî Birlik",
-            "Cumhuriyet",
-            "İnkılapçılık",
-            "Türk Dilinin Kabulü",
-            "Hilafetin Kaldırılması"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Dikkatli okuyan ve Atatürk'ün ilkeleri ile ilgili bilgi sahibi öğrenci bu seçeneği doğru olarak seçer."
-        },
-        {
           "soru": "Atatürk'ün ilkelerinden hangisi Türk dilinin kullanılmasıyla alakalıdır?",
           "secenekler": [
             "Millî Birlik",
@@ -11981,18 +11957,6 @@
             "Hilafetin Kaldırılması"
           ],
           "dogruIndex": 3,
-          "aciklama": "Dikkatli okuyan ve Atatürk'ün ilkeleri ile ilgili bilgi sahibi öğrenci bu seçeneği doğru olarak seçer."
-        },
-        {
-          "soru": "Atatürk'ün ilkelerinden hangisi cumhuriyetin kurulmasıyla alakalıdır?",
-          "secenekler": [
-            "Millî Birlik",
-            "Cumhuriyet",
-            "İnkılapçılık",
-            "Türk Dilinin Kabulü",
-            "Hilafetin Kaldırılması"
-          ],
-          "dogruIndex": 1,
           "aciklama": "Dikkatli okuyan ve Atatürk'ün ilkeleri ile ilgili bilgi sahibi öğrenci bu seçeneği doğru olarak seçer."
         },
         {
@@ -15257,18 +15221,6 @@
           "aciklama": "Mevlana'nın Masnavi-i Manavi'sinin en çok tanınmış olduğu doğru bir bilgi olduğundan bu seçeneği seçen kişi doğru bir karar vermiş olacaktır."
         },
         {
-          "soru": "Türk İslam Medeniyetinin gelişiminde en önemli etkenin ne olduğu konusunda hangi görüşe göre, Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmuş ve yerine İslam medeniyeti gelmiştir?",
-          "secenekler": [
-            "Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmuş ve yerine İslam medeniyeti gelmiştir.",
-            "Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmuş, ancak Türkler İslam medeniyetinin bir parçası haline gelmiştir.",
-            "Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmuş, ancak Türkler kendi kültürlerini korumuştur.",
-            "Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmuş, ancak Türkler İslam medeniyetinin bir parçası haline gelmiştir ve kendi kültürlerini korumuştur.",
-            "Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyeti yok olmamış, aksine Türkler İslam medeniyetinin bir parçası haline gelmiştir."
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu görüşün doğru olmaması, Türklerin İslam'ı kabul etmesiyle birlikte Türk kültürü ve medeniyetinin yok olmadığına ve Türklerin İslam medeniyetinin bir parçası haline gelmesine dair bilgilere dayandırılabilir."
-        },
-        {
           "soru": "Türk İslam Medeniyetinin gelişiminde hangi unsurun etkisi en büyüktür?",
           "secenekler": [
             "Savaşlar",
@@ -17227,18 +17179,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "1934 yılında çıkarılan Soyadı Kanunu ile Türkiye Büyük Millet Meclisi, Mustafa Kemal'e özel olarak 'Atatürk' soyadını vermiştir; bu nedenle onun soyadı Atatürk'tür."
-        },
-        {
-          "soru": "Cumhuriyetin ilanıyla birlikte Türkiye'nin başlangıçta ne olduğu belirlendi?",
-          "secenekler": [
-            "Cumhuriyet",
-            "Monarşi",
-            "Demokrasi",
-            "Totalitarizm",
-            "Anayasal Monarşi"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "29 Ekim 1923'te Cumhuriyetin ilanıyla birlikte Türkiye'nin yönetim biçimi resmî olarak cumhuriyet olarak belirlenmiş ve Mustafa Kemal Türkiye Büyük Millet Meclisi tarafından ilk cumhurbaşkanı seçilmiştir."
         },
         {
           "soru": "Türkiye'nin ilk anayasası hangi tarihte kabul edilmiştir?",

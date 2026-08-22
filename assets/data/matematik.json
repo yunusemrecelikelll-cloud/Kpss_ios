@@ -1091,18 +1091,6 @@
           "aciklama": "Taban aynı olduğunda çarpmada üsler toplanır, bölmede üsler çıkarılır: 5^4 × 5^1 = 5^5. Sonra 5^5 ÷ 5^2 = 5^3 = 125."
         },
         {
-          "soru": "|3 − 8| + |-5 + 2| − |1 − 9| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-2",
-            "2",
-            "6",
-            "0",
-            "4"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Önce parantez içleri hesaplanır: 3−8=−5, -5+2=−3, 1−9=−8. Mutlak değerler alınır: |−5|=5, |−3|=3, |−8|=8. Sonuç: 5 + 3 − 8 = 0."
-        },
-        {
           "soru": "|10 − 4| + |-6 + 3| − |2 − 8| işleminin sonucu kaçtır?",
           "secenekler": [
             "3",
@@ -1329,18 +1317,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu seçeneği seçenler, bir sayının altındaki en küçük tam sayının, sayının katını olacağını düşündüğü için seçmiş olabilirler."
-        },
-        {
-          "soru": "Bir sayının karesinin karesini bulmak için, sayının karesini hangi sayı ile çarpman gerekir?",
-          "secenekler": [
-            "1",
-            "0",
-            "2",
-            "-1",
-            "-2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bu seçeneği seçenler, bir sayının karesinin karesini, sayının karesini 1 ile çarparak bulacağını düşündüğü için seçmiş olabilirler."
         },
         {
           "soru": "Bir sayının rakamlarının basamaklarını değiştirerek oluşturulan yeni bir sayının 10'un katlarından birini olması için hangi şarta uyması gerekir?",
@@ -1667,18 +1643,6 @@
           "aciklama": "Bu öğrenci, 1000'in 10'un 100 kere çarpması gerektiğini düşünürse, 100000'i 1000'in 10'un katı olarak kabul edecektir, ancak bu doğru değildir."
         },
         {
-          "soru": "(-3) × 3 + (-2) × 2 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-21",
-            "-13",
-            "13",
-            "5",
-            "-7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-3)×3 = -9, (-2)×2 = -4. Toplam: -9 + (-4) = -13."
-        },
-        {
           "soru": "3 tabanında yazılan (121)₃ sayısının 10'luk taban karşılığı kaçtır?",
           "secenekler": [
             "19",
@@ -1689,18 +1653,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Taban dönüşümünde her basamak bulunduğu konumun taban kuvvetiyle çarpılır: (121)₃ = 1×3²+2×3¹+1×3⁰ = 9+6+1 = 16."
-        },
-        {
-          "soru": "|-10| − |14| + |-2| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "2",
-            "26",
-            "-2",
-            "-26",
-            "-4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-10|=10, |14|=14, |-2|=2. İşlem: 10 − 14 + 2 = -2."
         },
         {
           "soru": "4 sayısının 2 tabanındaki karşılığı nedir?",
@@ -2003,30 +1955,6 @@
           "aciklama": "Taban dönüşümünde her basamak bulunduğu konumun taban kuvvetiyle çarpılır: (445)₇ = 4×7²+4×7¹+5×7⁰ = 196+28+5 = 229."
         },
         {
-          "soru": "7 × (-8) + (-9) × (-2) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "74",
-            "-74",
-            "-23",
-            "-38",
-            "38"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Çarpma işlemleri önce yapılır: 7×(-8) = -56, (-9)×(-2) = 18. Toplam: -56 + (18) = -38."
-        },
-        {
-          "soru": "|-1| − |5| + |-8| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-4",
-            "14",
-            "2",
-            "-14",
-            "4"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-1|=1, |5|=5, |-8|=8. İşlem: 1 − 5 + 8 = 4."
-        },
-        {
           "soru": "43264 sayısı en yakın binliğe yuvarlandığında kaç olur?",
           "secenekler": [
             "45000",
@@ -2073,18 +2001,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "En küçük 5 basamaklı tek doğal sayı 10001'dir. En küçük 2 basamaklı tek doğal sayı 11'dir. Toplam: 10001 + 11 = 10012."
-        },
-        {
-          "soru": "(-3) × (-9) + (-3) × 12 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-9",
-            "-81",
-            "9",
-            "3",
-            "45"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-3)×(-9) = 27, (-3)×12 = -36. Toplam: 27 + (-36) = -9."
         },
         {
           "soru": "190685 sayısında 1 rakamının basamak değeri kaçtır?",
@@ -2147,30 +2063,6 @@
           "aciklama": "1933 sayısı 1900 ile 2000 arasındadır. 1933 sayısının 1900'a uzaklığı 33, 2000'a uzaklığı 67'dir. Daha yakın olan 1900'e yuvarlanır."
         },
         {
-          "soru": "|-6| − |13| + |-2| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-7",
-            "21",
-            "-21",
-            "5",
-            "-5"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-6|=6, |13|=13, |-2|=2. İşlem: 6 − 13 + 2 = -5."
-        },
-        {
-          "soru": "(-7) × (-8) + 2 × 4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-64",
-            "64",
-            "48",
-            "79",
-            "176"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-7)×(-8) = 56, 2×4 = 8. Toplam: 56 + (8) = 64."
-        },
-        {
           "soru": "4^2 × 4^1 ÷ 4^2 işleminin sonucu kaçtır?",
           "secenekler": [
             "4",
@@ -2181,18 +2073,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Aynı tabanlı üslü sayılarda çarpmada üsler toplanır, bölmede üsler çıkarılır: 4^2×4^1÷4^2 = 4^(2+1-2) = 4^1 = 4."
-        },
-        {
-          "soru": "12 × (-9) + (-11) × (-12) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "24",
-            "45",
-            "-24",
-            "240",
-            "-240"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Çarpma işlemleri önce yapılır: 12×(-9) = -108, (-11)×(-12) = 132. Toplam: -108 + (132) = 24."
         },
         {
           "soru": "9! ÷ 7! işleminin sonucu kaçtır?",
@@ -2229,18 +2109,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "3260296 sayısının rakamları: 3 , 2 , 6 , 0 , 2 , 9 , 6. Toplamları: 3 + 2 + 6 + 0 + 2 + 9 + 6 = 28."
-        },
-        {
-          "soru": "(-5) × 6 + (-8) × 4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "62",
-            "-62",
-            "-126",
-            "-2",
-            "-51"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-5)×6 = -30, (-8)×4 = -32. Toplam: -30 + (-32) = -62."
         },
         {
           "soru": "8 tabanında yazılan (701)₈ sayısının 10'luk taban karşılığı kaçtır?",
@@ -2291,18 +2159,6 @@
           "aciklama": "8!/6! ifadesinde 6!'e kadar olan ortak çarpanlar sadeleşir, geriye 8'den 7'e kadar olan çarpanlar kalır: 8 × 7 = 56."
         },
         {
-          "soru": "|-15| − |7| + |-10| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-18",
-            "-32",
-            "16",
-            "18",
-            "32"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-15|=15, |7|=7, |-10|=10. İşlem: 15 − 7 + 10 = 18."
-        },
-        {
           "soru": "2545 sayısı en yakın yüzlüğe yuvarlandığında kaç olur?",
           "secenekler": [
             "2500",
@@ -2325,18 +2181,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "4! = 4 × 3 × 2 × 1 = 24."
-        },
-        {
-          "soru": "2 × (-11) + (-5) × (-11) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "33",
-            "77",
-            "-77",
-            "46",
-            "-33"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Çarpma işlemleri önce yapılır: 2×(-11) = -22, (-5)×(-11) = 55. Toplam: -22 + (55) = 33."
         },
         {
           "soru": "En büyük 4 basamaklı çift doğal sayı ile en küçük 4 basamaklı tek doğal sayının toplamı kaçtır?",
@@ -2399,18 +2243,6 @@
           "aciklama": "130297 sayısının rakamları: 1 , 3 , 0 , 2 , 9 , 7. Toplamları: 1 + 3 + 0 + 2 + 9 + 7 = 22."
         },
         {
-          "soru": "(-12) × 6 + (-7) × 6 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-198",
-            "-114",
-            "-96",
-            "114",
-            "30"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-12)×6 = -72, (-7)×6 = -42. Toplam: -72 + (-42) = -114."
-        },
-        {
           "soru": "En küçük 5 basamaklı çift doğal sayı ile en büyük 6 basamaklı tek doğal sayının toplamı kaçtır?",
           "secenekler": [
             "1009999",
@@ -2433,18 +2265,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Aynı tabanlı üslü sayılarda çarpmada üsler toplanır, bölmede üsler çıkarılır: 3^6×3^4÷3^3 = 3^(6+4-3) = 3^7 = 2187."
-        },
-        {
-          "soru": "(-9) × 9 + (-6) × 10 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "21",
-            "-123",
-            "-261",
-            "-141",
-            "141"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-9)×9 = -81, (-6)×10 = -60. Toplam: -81 + (-60) = -141."
         },
         {
           "soru": "3! (3 faktöriyel) işleminin sonucu kaçtır?",
@@ -2471,18 +2291,6 @@
           "aciklama": "273 sayısı sürekli 7'ye bölünüp kalanlar aşağıdan yukarıya yazılır: 273 ÷ 7 = 39 kalan 0; 39 ÷ 7 = 5 kalan 4; 5 ÷ 7 = 0 kalan 5. Bu işlem sonunda 273 sayısının 7 tabanındaki karşılığı (540)₇ olarak bulunur."
         },
         {
-          "soru": "|-15| − |7| + |-7| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-29",
-            "13",
-            "15",
-            "-15",
-            "29"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-15|=15, |7|=7, |-7|=7. İşlem: 15 − 7 + 7 = 15."
-        },
-        {
           "soru": "Aşağıdaki sayılardan hangisi hem çift hem de asal olmayan bir sayıdır?",
           "secenekler": [
             "7",
@@ -2493,18 +2301,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "8 çift bir sayıdır ve 1, 2, 4, 8 gibi ikiden fazla böleni olduğundan asal değildir. 2 ise asal olan tek çift sayıdır."
-        },
-        {
-          "soru": "|-2| − |2| + |-13| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-13",
-            "-17",
-            "17",
-            "11",
-            "13"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-2|=2, |2|=2, |-13|=13. İşlem: 2 − 2 + 13 = 13."
         },
         {
           "soru": "Ardışık 6 doğal sayının toplamı 99'dir. Bu sayılardan en küçüğü ile en büyüğünün çarpımı kaçtır?",
@@ -2639,18 +2435,6 @@
           "aciklama": "346902 sayısında 6 rakamı binler basamağındadır. Basamak değeri = rakam × basamağın konum değeri = 6 × 1000 = 6000."
         },
         {
-          "soru": "(-6) × (-10) + (-10) × 11 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-270",
-            "70",
-            "-50",
-            "50",
-            "-34"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-6)×(-10) = 60, (-10)×11 = -110. Toplam: 60 + (-110) = -50."
-        },
-        {
           "soru": "2^4 × 2^3 ÷ 2^1 işleminin sonucu kaçtır?",
           "secenekler": [
             "256",
@@ -2757,18 +2541,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "1571042 sayısının rakamları: 1 , 5 , 7 , 1 , 0 , 4 , 2. Toplamları: 1 + 5 + 7 + 1 + 0 + 4 + 2 = 20."
-        },
-        {
-          "soru": "(-4) × (-5) + 2 × 8 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "36",
-            "4",
-            "45",
-            "-36",
-            "76"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-4)×(-5) = 20, 2×8 = 16. Toplam: 20 + (16) = 36."
         },
         {
           "soru": "En büyük 6 basamaklı tek doğal sayı ile en küçük 6 basamaklı tek doğal sayının toplamı kaçtır?",
@@ -2927,18 +2699,6 @@
           "aciklama": "Ardışık 6 sayı x, x+1, ..., x+5 olsun. Toplamları 6x + 15 = 213 olduğundan x = 33 bulunur. En küçük sayı x = 33."
         },
         {
-          "soru": "|-1| − |4| + |-14| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-19",
-            "-11",
-            "19",
-            "9",
-            "11"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-1|=1, |4|=4, |-14|=14. İşlem: 1 − 4 + 14 = 11."
-        },
-        {
           "soru": "212 sayısının 6 tabanındaki karşılığı nedir?",
           "secenekler": [
             "003",
@@ -3047,18 +2807,6 @@
           "aciklama": "Taban dönüşümünde her basamak bulunduğu konumun taban kuvvetiyle çarpılır: (220)₃ = 2×3²+2×3¹+0×3⁰ = 18+6+0 = 24."
         },
         {
-          "soru": "9 × (-6) + (-8) × (-9) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-126",
-            "126",
-            "-18",
-            "33",
-            "18"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Çarpma işlemleri önce yapılır: 9×(-6) = -54, (-8)×(-9) = 72. Toplam: -54 + (72) = 18."
-        },
-        {
           "soru": "682093 sayısının rakamları toplamı kaçtır?",
           "secenekler": [
             "26",
@@ -3095,18 +2843,6 @@
           "aciklama": "En büyük 3 basamaklı çift doğal sayı 998'dir. En büyük 2 basamaklı çift doğal sayı 98'dir. Toplam: 998 + 98 = 1096."
         },
         {
-          "soru": "(-5) × (-6) + 5 × 10 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "80",
-            "-80",
-            "91",
-            "-20",
-            "140"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-5)×(-6) = 30, 5×10 = 50. Toplam: 30 + (50) = 80."
-        },
-        {
           "soru": "Aşağıdaki sayılardan hangisi irrasyonel bir sayıdır?",
           "secenekler": [
             "√2",
@@ -3117,18 +2853,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "√2, tam kare olmayan bir sayının kareköküdür ve ondalık açılımı hiç tekrar etmeden sonsuza gider; bu nedenle irrasyoneldir. Diğerleri tam sayı ya da kesir biçiminde yazılabildiğinden rasyoneldir."
-        },
-        {
-          "soru": "(-3) × (-2) + 4 × 8 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "50",
-            "43",
-            "38",
-            "-38",
-            "-26"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Çarpma işlemleri önce yapılır: (-3)×(-2) = 6, 4×8 = 32. Toplam: 6 + (32) = 38."
         },
         {
           "soru": "6 tabanında yazılan (422)₆ sayısının 10'luk taban karşılığı kaçtır?",
@@ -3143,30 +2867,6 @@
           "aciklama": "Taban dönüşümünde her basamak bulunduğu konumun taban kuvvetiyle çarpılır: (422)₆ = 4×6²+2×6¹+2×6⁰ = 144+12+2 = 158."
         },
         {
-          "soru": "|-9| − |4| + |-3| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "16",
-            "-16",
-            "6",
-            "8",
-            "-8"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-9|=9, |4|=4, |-3|=3. İşlem: 9 − 4 + 3 = 8."
-        },
-        {
-          "soru": "|-15| − |3| + |-4| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "16",
-            "-22",
-            "22",
-            "-16",
-            "14"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-15|=15, |3|=3, |-4|=4. İşlem: 15 − 3 + 4 = 16."
-        },
-        {
           "soru": "En büyük 4 basamaklı tek doğal sayı ile en küçük 5 basamaklı tek doğal sayının toplamı kaçtır?",
           "secenekler": [
             "19990",
@@ -3177,18 +2877,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "En büyük 4 basamaklı tek doğal sayı 9999'dir. En küçük 5 basamaklı tek doğal sayı 10001'dir. Toplam: 9999 + 10001 = 20000."
-        },
-        {
-          "soru": "|-13| − |4| + |-1| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "8",
-            "-10",
-            "10",
-            "18",
-            "-18"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-13|=13, |4|=4, |-1|=1. İşlem: 13 − 4 + 1 = 10."
         },
         {
           "soru": "331 sayısının 7 tabanındaki karşılığı nedir?",
@@ -3249,18 +2937,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "42956 sayısının rakamları: 4 , 2 , 9 , 5 , 6. Toplamları: 4 + 2 + 9 + 5 + 6 = 26."
-        },
-        {
-          "soru": "|-5| − |8| + |-14| işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-27",
-            "-11",
-            "27",
-            "9",
-            "11"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değer bir sayının işaretsiz (sıfıra uzaklık) değeridir: |-5|=5, |8|=8, |-14|=14. İşlem: 5 − 8 + 14 = 11."
         },
         {
           "soru": "10^3 × 10^4 ÷ 10^2 işleminin sonucu kaçtır?",
@@ -7768,18 +7444,6 @@
           "aciklama": "Doğru cevaptır çünkü rasyonel sayının karekökünü bulmak için kök işlemini uygulayarak bulursunuz."
         },
         {
-          "soru": "9/11 − 5/8 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "4/3",
-            "17/88",
-            "9/44",
-            "-17/88",
-            "2/11"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Paydaların ortak katı (EKOK) 88'dir. 9/11 = 9/88, 5/8 = 5/88. Fark: 9/88 − 5/88 = 17/88."
-        },
-        {
           "soru": "3/4 × 9/7 işleminin sadeleştirilmiş sonucu kaçtır?",
           "secenekler": [
             "1",
@@ -7790,18 +7454,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Kesirlerde çarpma işleminde paylar kendi aralarında, paydalar kendi aralarında çarpılır: (3×9)/(4×7) = 27/28 = 27/28 (sadeleştirilmiş)."
-        },
-        {
-          "soru": "9/4 − 7/12 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "19/12",
-            "-5/3",
-            "5/3",
-            "-1/4",
-            "7/4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Paydaların ortak katı (EKOK) 12'dir. 9/4 = 9/12, 7/12 = 7/12. Fark: 9/12 − 7/12 = 5/3."
         },
         {
           "soru": "4/11 + 5/8 işleminin sonucu kaçtır?",
@@ -8212,18 +7864,6 @@
           "aciklama": "Önce parantez içi işlem yapılır: 3/4 + 1/9 = 31/36. Ardından: 31/36 − 5/6 = 1/36."
         },
         {
-          "soru": "7/9 − 1/5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "5/9",
-            "26/45",
-            "-26/45",
-            "3/2",
-            "3/5"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Paydaların ortak katı (EKOK) 45'dir. 7/9 = 7/45, 1/5 = 1/45. Fark: 7/45 − 1/45 = 26/45."
-        },
-        {
           "soru": "7/12 + 9/5 işleminin sonucu kaçtır?",
           "secenekler": [
             "12/5",
@@ -8296,18 +7936,6 @@
           "aciklama": "Bileşik kesri tam sayılı kesre çevirmek için pay paydaya bölünür: 46 ÷ 9 = 5 kalan 1. Sonuç: 5 tam 1/9."
         },
         {
-          "soru": "7/3 − 1/9 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "20/9",
-            "7/3",
-            "19/9",
-            "-1",
-            "-20/9"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paydaların ortak katı (EKOK) 9'dir. 7/3 = 7/9, 1/9 = 1/9. Fark: 7/9 − 1/9 = 20/9."
-        },
-        {
           "soru": "5/6 + 3/5 işleminin sonucu kaçtır?",
           "secenekler": [
             "22/15",
@@ -8330,18 +7958,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Paydaların ortak katı (EKOK) 77'dir. 2/7 = 2/77, 7/11 = 7/77. Toplam: 2/77 + 7/77 = 71/77."
-        },
-        {
-          "soru": "9/5 − 3/4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "21/20",
-            "6",
-            "1",
-            "11/10",
-            "-21/20"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paydaların ortak katı (EKOK) 20'dir. 9/5 = 9/20, 3/4 = 3/20. Fark: 9/20 − 3/20 = 21/20."
         },
         {
           "soru": "72 adetlik bir top grubunun 7/8'i kullanılmıştır. Kullanılmayan (kalan) miktar kaç adettir?",
@@ -8428,30 +8044,6 @@
           "aciklama": "Önce parantez içi işlem yapılır: 2/3 − 4/7 = 2/21. Ardından: 2/21 + 5/4 = 113/84."
         },
         {
-          "soru": "8/7 − 5/8 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "15/28",
-            "-3",
-            "1/2",
-            "29/56",
-            "-29/56"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Paydaların ortak katı (EKOK) 56'dir. 8/7 = 8/56, 5/8 = 5/56. Fark: 8/56 − 5/56 = 29/56."
-        },
-        {
-          "soru": "7/3 − 7/5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "14/15",
-            "1",
-            "-14/15",
-            "0",
-            "13/15"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paydaların ortak katı (EKOK) 15'dir. 7/3 = 7/15, 7/5 = 7/15. Fark: 7/15 − 7/15 = 14/15."
-        },
-        {
           "soru": "200 ürünün %15'i kusurlu ise kaç kusurlu ürün vardır?",
           "secenekler": [
             "30",
@@ -8498,18 +8090,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Toplamın yüzdesini bulmak için toplam, yüzde oranıyla çarpılıp 100'e bölünür: 120 × 15 ÷ 100 = 18."
-        },
-        {
-          "soru": "9/5 − 8/9 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "8/9",
-            "-41/45",
-            "-1/4",
-            "14/15",
-            "41/45"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Paydaların ortak katı (EKOK) 45'dir. 9/5 = 9/45, 8/9 = 8/45. Fark: 9/45 − 8/45 = 41/45."
         },
         {
           "soru": "5/3 × 5/7 işleminin sadeleştirilmiş sonucu kaçtır?",
@@ -8704,18 +8284,6 @@
           "aciklama": "Önce parantez içi işlem yapılır: 1/4 − 8/9 = -23/36. Ardından: -23/36 + 1/8 = -37/72."
         },
         {
-          "soru": "7/11 − 2/9 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "41/99",
-            "-41/99",
-            "14/33",
-            "5/2",
-            "40/99"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Paydaların ortak katı (EKOK) 99'dir. 7/11 = 7/99, 2/9 = 2/99. Fark: 7/99 − 2/99 = 41/99."
-        },
-        {
           "soru": "5/11 + 7/9 işleminin sonucu kaçtır?",
           "secenekler": [
             "3/5",
@@ -8750,18 +8318,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Tam sayılı kesiri bileşik kesre çevirmek için tam kısım paydayla çarpılıp paya eklenir: (6×3)+1 = 19, payda aynı kalır: 19/3."
-        },
-        {
-          "soru": "5/7 − 1/4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "1/2",
-            "13/28",
-            "4/3",
-            "-13/28",
-            "3/7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Paydaların ortak katı (EKOK) 28'dir. 5/7 = 5/28, 1/4 = 1/28. Fark: 5/28 − 1/28 = 13/28."
         },
         {
           "soru": "6 tam 7/8 sayısının bileşik kesir karşılığı nedir?",
@@ -22843,18 +22399,6 @@
           "aciklama": "Göreli frekans = bir grubun frekansı/toplam frekans formülüyle bulunur: 15/60 = 1/4 (sadeleştirilmiş)."
         },
         {
-          "soru": "Bir veri kümesinde bulunan verileri gruplandırmak için kullanılan yönteme 'Veri Gruplandırması' denir. Veri gruplandırmasını yapmak için aşağıdaki yöntemlerden hangisi en uygun yöntemdir?",
-          "secenekler": [
-            "Veri analizi",
-            "Veri gruplandırması",
-            "Veri sınıflandırması",
-            "Veri özetleme",
-            "Veri görselleştirme"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Veri gruplandırması, verileri belli kriterlere göre gruplandırmak anlamına gelir. En uygun yöntemdir."
-        },
-        {
           "soru": "Bir dağılım grafiği oluşturmak için kullanılan veri grubuna 'Veri Dizisi' denir. Veri dizisinin istatistiksel özelliklerinden hangisi grafikte en çok görülecektir?",
           "secenekler": [
             "Ortalama",
@@ -23105,18 +22649,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Bu cevabın seçilmesinde, en düşük puanın 50 olması en mantıklı sonuç olarak görülür."
-        },
-        {
-          "soru": "Bir grafikte 10 öğrencinin sınav puanları dağılımını göstermek için kullanılan bir grafik türü nedir?",
-          "secenekler": [
-            "Hesap Makinesi Grafik",
-            "Bar Grafik",
-            "Hattı Çizimli Grafik",
-            "Sabit Puan Grafik",
-            "Pek çok veri türünde kullanılan bir grafik türü olan Histogram"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Hem doğru, çünkü öğrenci puanları dağılımını göstermek için kullanılan bir grafik türüdür."
         },
         {
           "soru": "İstatistiksel veri analizi için kullanılan bir yöntemdir.",
@@ -26235,18 +25767,6 @@
           "aciklama": "Bu cevabı seçen kişi, 3'ün tek böleninin 1 ve kendisi olduğunu bilerek seçmiş olabilir."
         },
         {
-          "soru": "Asal bir sayının tek bir pozitif tam böleninin 1 ve kendisi olmasıdır.",
-          "secenekler": [
-            "Asal bir sayının en az iki pozitif tam böleni vardır.",
-            "Asal bir sayının tek bir pozitif tam böleninin 1 ve kendisi olmasıdır.",
-            "Asal bir sayı, kendisi hariç en az iki pozitif tam böleni vardır.",
-            "Asal bir sayının bir pozitif tam böleni vardır.",
-            "Asal bir sayının bir pozitif tam böleni yoktur."
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Kullanıcı, doğru seçeneği seçer. Asal bir sayının tek bir pozitif tam böleninin 1 ve kendisi olmasıdır."
-        },
-        {
           "soru": "Bir sayının asal olup olmadığını belirlerken, ilk olarak 1 ve kendisi hariç tüm bölenlerini kontrol ederiz. Bu sayede sayının asal olup olmadığını anlarız. Aşağıdaki örneklerde 15 sayısının asal olup olmadığını belirleyelim. 15 sayısını bölenler nelerdir?",
           "secenekler": [
             "1, 3 ve 5",
@@ -26485,18 +26005,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Asal sayının tek bir böleni vardır, bu nedenle bu seçenek doğru."
-        },
-        {
-          "soru": "Bir sayının en büyük ortak böleni (EBOB) nedir?",
-          "secenekler": [
-            "Sayının en büyük böleni.",
-            "Sayının en küçük böleni.",
-            "Sayının en büyük asal böleni.",
-            "Sayının en küçük asal böleni.",
-            "Sayının en büyük ortak böleni."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Sayının en büyük ortak böleni, bu nedenle bu seçenek doğru."
         },
         {
           "soru": "Bir sayının çarpanlarına ayırması, hangi yöntemi kullanır?",
@@ -31360,18 +30868,6 @@
           "aciklama": "1 < 2x - 3 → 4 < 2x → 2 < x; 2x - 3 < 7 → 2x < 10 → x < 5. Birleşim: 2 < x < 5."
         },
         {
-          "soru": "Bir sayının mutlak değeri 8'dir ve bu sayı negatiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "8",
-            "-8",
-            "0",
-            "−16",
-            "16"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "|x| = 8 → x = 8 veya x = -8. Sayının negatif olduğu belirtildiğinden x = -8."
-        },
-        {
           "soru": "x − 4 > 2x + 1 eşitsizliğinin çözüm kümesi nedir?",
           "secenekler": [
             "x > -5",
@@ -32260,66 +31756,6 @@
           "aciklama": "Mutlak değerler her zaman pozitiftir: |-1|=1, |-8|=8, |6|=6. Sonuç: 1+8−6 = 3."
         },
         {
-          "soru": "Bir sayının mutlak değeri 11'dir ve bu sayı negatiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "0",
-            "-11",
-            "11",
-            "-12",
-            "-10"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "|sayı| = 11 olduğundan sayı 11 ya da -11 olabilir. Sayının negatif olması koşuluyla sayı -11'dir."
-        },
-        {
-          "soru": "Bir sayının mutlak değeri 15'dir ve bu sayı pozitiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "-15",
-            "0",
-            "16",
-            "15",
-            "14"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "|sayı| = 15 olduğundan sayı 15 ya da -15 olabilir. Sayının pozitif olması koşuluyla sayı 15'dir."
-        },
-        {
-          "soru": "Bir sayının mutlak değeri 6'dir ve bu sayı negatiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "-6",
-            "-5",
-            "6",
-            "0",
-            "-7"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "|sayı| = 6 olduğundan sayı 6 ya da -6 olabilir. Sayının negatif olması koşuluyla sayı -6'dir."
-        },
-        {
-          "soru": "Bir sayının mutlak değeri 20'dir ve bu sayı pozitiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "-20",
-            "20",
-            "19",
-            "0",
-            "21"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "|sayı| = 20 olduğundan sayı 20 ya da -20 olabilir. Sayının pozitif olması koşuluyla sayı 20'dir."
-        },
-        {
-          "soru": "Bir sayının mutlak değeri 9'dir ve bu sayı negatiftir. Bu sayı kaçtır?",
-          "secenekler": [
-            "-9",
-            "-8",
-            "0",
-            "9",
-            "-10"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "|sayı| = 9 olduğundan sayı 9 ya da -9 olabilir. Sayının negatif olması koşuluyla sayı -9'dir."
-        },
-        {
           "soru": "x² < 25 eşitsizliğinin çözüm kümesi nedir?",
           "secenekler": [
             "-6 < x < 6",
@@ -32378,66 +31814,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "x² < 64 → |x| < 8 → -8 < x < 8."
-        },
-        {
-          "soru": "Sayı doğrusunda x > -5 ve x ≤ 8 koşullarının her ikisini de sağlayan aralık hangisidir?",
-          "secenekler": [
-            "[-5, 8]",
-            "(-5, 11]",
-            "(-5, 8)",
-            "(-5, 13]",
-            "(-5, 8]"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "x > -5 (açık uç) ve x ≤ 8 (kapalı uç) → aralık (-5, 8]."
-        },
-        {
-          "soru": "Sayı doğrusunda x ≥ -2 ve x < 6 koşullarının her ikisini de sağlayan aralık hangisidir?",
-          "secenekler": [
-            "(-2, 6)",
-            "[-2, 6)",
-            "[-2, 6]",
-            "[-4, 6)",
-            "[-2, 10)"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "x ≥ -2 (kapalı uç) ve x < 6 (açık uç) → aralık [-2, 6)."
-        },
-        {
-          "soru": "Sayı doğrusunda x > -7 ve x ≥ 3 koşullarının her ikisini de sağlayan aralık hangisidir?",
-          "secenekler": [
-            "(-7, 3]",
-            "(-7, 5]",
-            "[-7, 3]",
-            "(-8, 3]",
-            "(-7, 3)"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "x > -7 (açık uç) ve x ≥ 3 (kapalı uç) → aralık (-7, 3]."
-        },
-        {
-          "soru": "Sayı doğrusunda x ≥ -1 ve x ≤ 9 koşullarının her ikisini de sağlayan aralık hangisidir?",
-          "secenekler": [
-            "[-1, 9]",
-            "[-1, 10]",
-            "[-1, 9)",
-            "(-1, 9]",
-            "(-1, 9)"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "x ≥ -1 (kapalı uç) ve x ≤ 9 (kapalı uç) → aralık [-1, 9]."
-        },
-        {
-          "soru": "Sayı doğrusunda x > -4 ve x < 10 koşullarının her ikisini de sağlayan aralık hangisidir?",
-          "secenekler": [
-            "(-4, 11)",
-            "(-4, 14)",
-            "(-4, 10)",
-            "[-4, 10)",
-            "[-4, 10]"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "x > -4 (açık uç) ve x < 10 (açık uç) → aralık (-4, 10)."
         },
         {
           "soru": "3x + 2 > 14 veya 4x - 3 < -19 eşitsizliğinin çözüm kümesi nedir?",
@@ -32560,30 +31936,6 @@
           "aciklama": "Bu doğru yoludur, çünkü x^2 - 4x + 4 = (x - 2)^2 ifadesini doğrudan gerçekleştirmiştir."
         },
         {
-          "soru": "|x + 3| = x + 3 ise x =",
-          "secenekler": [
-            "0",
-            "-3",
-            "3",
-            "-2",
-            "2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu doğru yoludur, çünkü |x + 3| ifadesi x + 3 ile kalmalıdır, bu nedenle x = 3'dür."
-        },
-        {
-          "soru": "|2x + 1| = 2x + 1 ise 2x + 1 =",
-          "secenekler": [
-            "0",
-            "-1",
-            "1",
-            "-2",
-            "2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bu doğru yoludur, çünkü |2x + 1| ifadesi 2x + 1 ile kalmalıdır, bu nedenle 2x + 1 = 2'dir."
-        },
-        {
           "soru": "x^2 - 9 = (x - 3)^2 ise x - 3 =",
           "secenekler": [
             "x",
@@ -32594,18 +31946,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Bu doğru yoludur, çünkü x^2 - 9 = (x - 3)^2 ifadesini doğrudan gerçekleştirmiştir."
-        },
-        {
-          "soru": "|3x - 2| = 3x - 2 ise 3x - 2 =",
-          "secenekler": [
-            "0",
-            "-2",
-            "2",
-            "-4",
-            "4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bu doğru yoludur, çünkü |3x - 2| ifadesi 3x - 2 ile kalmalıdır, bu nedenle 3x - 2 = 2'dir."
         },
         {
           "soru": "x^2 >= 0 ve x^2 <= 2 için x değerleri nelerdir?",
@@ -32644,18 +31984,6 @@
           "aciklama": "Büyük ihtimalle bu seçeneği seçenler, fonksiyonun minimum değerini bulmak için mutlak değer fonksiyonunu kullanabildiler."
         },
         {
-          "soru": "x^2 + 4x + 4 = (x + 2)^2 formuna dönüştürülen bir fonksiyonun minimum değeri kaçtır?",
-          "secenekler": [
-            "0",
-            "2",
-            "-2",
-            "4",
-            "1"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçenler, x^2 + 4x + 4 = (x + 2)^2 formunu kullanabildiler."
-        },
-        {
           "soru": "f(x) = |x^2 - 4| fonksiyonunun minimum ve maksimum değerleri ne şekildedir?",
           "secenekler": [
             "Minimum 0, Maksimum 2",
@@ -32692,18 +32020,6 @@
           "aciklama": "5 ile 11 arasındaki tam sayılar 6, 7, 8, 9 ve 10'dur. Seçeneklerde verilen 6, 7, 8 ve 9 değerlerinin tümü bu aralığa dahil olduğundan, tek bir sayı yerine 'tümünü' seçeneği doğru kabul edilir."
         },
         {
-          "soru": "Eğer |x - 2| < 3 ise x kaçtır?",
-          "secenekler": [
-            "-1",
-            "1",
-            "5",
-            "7",
-            "-1 < x < 5"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "|x - 2| < 3 eşitsizliği -3 < x - 2 < 3 şeklinde açılır. Eşitsizliğin her tarafına 2 eklenirse -1 < x < 5 bulunur."
-        },
-        {
           "soru": "Eğer x > 2 ve x < 5 ise x kaçtır?",
           "secenekler": [
             "2",
@@ -32714,18 +32030,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "x > 2 ve x < 5 koşullarının ikisi de aynı anda sağlanmalıdır. Bu iki eşitsizlik kesiştirildiğinde 2 < x < 5 aralığı elde edilir."
-        },
-        {
-          "soru": "Eğer x < -1 veya x > 2 ise x kaçtır?",
-          "secenekler": [
-            "-2",
-            "-1",
-            "1",
-            "3",
-            "x < -1 veya x > 2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "x < -1 veya x > 2 koşulu zaten iki ayrı aralığın birleşimini ifade eder; bu nedenle çözüm kümesi doğrudan x < -1 veya x > 2'dir."
         },
         {
           "soru": "x^2 - 4x + 3 > 0 ifadesinin geçerli olduğu sayısal değerler dizisidir.",
@@ -32750,42 +32054,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Büyük ihtimalle bu seçeneği seçenler için |x| = 0 ilişkisi doğru gibi gelebilir."
-        },
-        {
-          "soru": "x > 0 ise |x| = x dir. Eğer x < 0 ise |x| = -x dir. Eğer x = 0 ise |x| = 0 dir.",
-          "secenekler": [
-            "x > 0 ise |x| = x dir.",
-            "x < 0 ise |x| = -x dir.",
-            "x = 0 ise |x| = 0 dir.",
-            "x = 0 ise |x| = x dir.",
-            "|x| = -x"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x > 0 olduğu için |x| = x ilişkisi doğru gibi gelebilir."
-        },
-        {
-          "soru": "x < 0 ise |x| = -x dir. Eğer x > 0 ise |x| = x dir. Eğer x = 0 ise |x| = 0 dir.",
-          "secenekler": [
-            "x > 0 ise |x| = x dir.",
-            "x < 0 ise |x| = -x dir.",
-            "x = 0 ise |x| = 0 dir.",
-            "x = 0 ise |x| = x dir.",
-            "|x| = -x"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x < 0 olduğu için |x| = -x ilişkisi doğru gibi gelebilir."
-        },
-        {
-          "soru": "x > 0 ise |x| = x dir. Eğer x < 0 ise |x| = -x dir. Eğer x = 0 ise |x| = 0 dir. |x| = 0 ilişkisi x = 0 olduğunda gerçekleşir.",
-          "secenekler": [
-            "x > 0 ise |x| = x dir.",
-            "x < 0 ise |x| = -x dir.",
-            "x = 0 ise |x| = 0 dir.",
-            "x = 0 ise |x| = x dir.",
-            "|x| = -x"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Büyük ihtimalle bu seçeneği seçenler için x = 0 olduğu için |x| = 0 ilişkisi doğru gibi gelebilir."
         },
         {
           "soru": "Eşitsizlikler ile ilgili bir sorudur. x > 3 olduğunda x^2 - 4x + 3 > ?",
@@ -34202,198 +33470,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "69/6 = 11.50 olduğundan paket sayısı bu değerin tam sayı olmayan kısmı nedeniyle yukarı yuvarlanır: en az 12 paketya ihtiyaç vardır (son paket tam dolu olmasa da yine de bir paket daha gerekir)."
-        },
-        {
-          "soru": "8 < x < 12 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "(8, 12)",
-            "[8, 12)",
-            "(8, 12]",
-            "[8, 12]",
-            "(12, 8)"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "8 < x < 12 ifadesinde x=8 sınırı dahil değildir (açık, normal parantez), x=12 sınırı ise dahil değildir (açık, normal parantez). Bu nedenle doğru gösterim (8, 12) şeklindedir."
-        },
-        {
-          "soru": "5 < x ≤ 9 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "(5, 9)",
-            "(5, 9]",
-            "[5, 9]",
-            "[5, 9)",
-            "(9, 5]"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "5 < x ≤ 9 ifadesinde x=5 sınırı dahil değildir (açık, normal parantez), x=9 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim (5, 9] şeklindedir."
-        },
-        {
-          "soru": "-1 ≤ x < 2 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[-1, 2]",
-            "(-1, 2]",
-            "(-1, 2)",
-            "[-1, 2)",
-            "[2, -1)"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "-1 ≤ x < 2 ifadesinde x=-1 sınırı dahildir (kapalı, köşeli parantez), x=2 sınırı ise dahil değildir (açık, normal parantez). Bu nedenle doğru gösterim [-1, 2) şeklindedir."
-        },
-        {
-          "soru": "-8 < x ≤ 0 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[-8, 0]",
-            "(-8, 0)",
-            "[-8, 0)",
-            "(-8, 0]",
-            "(0, -8]"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "-8 < x ≤ 0 ifadesinde x=-8 sınırı dahil değildir (açık, normal parantez), x=0 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim (-8, 0] şeklindedir."
-        },
-        {
-          "soru": "-1 < x ≤ 3 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[-1, 3]",
-            "[-1, 3)",
-            "(-1, 3]",
-            "(3, -1]",
-            "(-1, 3)"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "-1 < x ≤ 3 ifadesinde x=-1 sınırı dahil değildir (açık, normal parantez), x=3 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim (-1, 3] şeklindedir."
-        },
-        {
-          "soru": "-3 ≤ x ≤ 6 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[-3, 6]",
-            "[-3, 6)",
-            "(-3, 6]",
-            "[6, -3]",
-            "(-3, 6)"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "-3 ≤ x ≤ 6 ifadesinde x=-3 sınırı dahildir (kapalı, köşeli parantez), x=6 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim [-3, 6] şeklindedir."
-        },
-        {
-          "soru": "2 ≤ x ≤ 15 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[2, 15)",
-            "(2, 15]",
-            "[2, 15]",
-            "(2, 15)",
-            "[15, 2]"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "2 ≤ x ≤ 15 ifadesinde x=2 sınırı dahildir (kapalı, köşeli parantez), x=15 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim [2, 15] şeklindedir."
-        },
-        {
-          "soru": "8 ≤ x ≤ 19 eşitsizliğinin çözüm kümesi aralık (interval) notasyonuyla nasıl gösterilir?",
-          "secenekler": [
-            "[8, 19)",
-            "(8, 19)",
-            "[8, 19]",
-            "(8, 19]",
-            "[19, 8]"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "8 ≤ x ≤ 19 ifadesinde x=8 sınırı dahildir (kapalı, köşeli parantez), x=19 sınırı ise dahildir (kapalı, köşeli parantez). Bu nedenle doğru gösterim [8, 19] şeklindedir."
-        },
-        {
-          "soru": "|12| + |2| + |14| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "33",
-            "25",
-            "-28",
-            "26",
-            "28"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |12|=12, |2|=2, |14|=14. Sonuç: 12 + 2 + 14 = 28."
-        },
-        {
-          "soru": "|1| + |-6| - |5| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "12",
-            "-2",
-            "3",
-            "-10",
-            "2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |1|=1, |-6|=6, |5|=5. Sonuç: 1 + 6 - 5 = 2."
-        },
-        {
-          "soru": "|11| + |1| - |-2| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "5",
-            "13",
-            "-10",
-            "14",
-            "10"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |11|=11, |1|=1, |-2|=2. Sonuç: 11 + 1 - 2 = 10."
-        },
-        {
-          "soru": "|9| + |-6| - |-1| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "16",
-            "4",
-            "20",
-            "-14",
-            "14"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |9|=9, |-6|=6, |-1|=1. Sonuç: 9 + 6 - 1 = 14."
-        },
-        {
-          "soru": "|-4| - |3| - |4| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "3",
-            "-2",
-            "-3",
-            "-11",
-            "11"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |-4|=4, |3|=3, |4|=4. Sonuç: 4 - 3 - 4 = -3."
-        },
-        {
-          "soru": "|3| + |-5| - |-2| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "3",
-            "6",
-            "-6",
-            "10",
-            "0"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |3|=3, |-5|=5, |-2|=2. Sonuç: 3 + 5 - 2 = 6."
-        },
-        {
-          "soru": "|11| + |-15| - |0| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "-4",
-            "26",
-            "29",
-            "-26",
-            "27"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |11|=11, |-15|=15, |0|=0. Sonuç: 11 + 15 - 0 = 26."
-        },
-        {
-          "soru": "|14| + |-3| - |2| ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "15",
-            "17",
-            "19",
-            "-15",
-            "9"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Mutlak değerler her zaman negatif olamaz: |14|=14, |-3|=3, |2|=2. Sonuç: 14 + 3 - 2 = 15."
         }
       ]
     },
@@ -34468,18 +33544,6 @@
           "aciklama": "Kuvvetin kuvveti alınırken üsler çarpılır: (2^2)^2 = 2^(2.2) = 2^4 = 16."
         },
         {
-          "soru": "3^x = 9 olduğuna göre x kaçtır?",
-          "secenekler": [
-            "1",
-            "3",
-            "2",
-            "4",
-            "-2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "9 sayısı 3 tabanının kaçıncı kuvveti olduğuna bakılır: 3^2 = 9 olduğundan x = 2."
-        },
-        {
           "soru": "2^x = 8 olduğuna göre x kaçtır?",
           "secenekler": [
             "0",
@@ -34502,30 +33566,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 4^3 : 4^1 = 4^(3-1) = 4^2 = 16."
-        },
-        {
-          "soru": "5^-3 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/15",
-            "125",
-            "-1/125",
-            "1/125",
-            "1/625"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 5^-3 = 1/5^3 = 1/125."
-        },
-        {
-          "soru": "3^-1 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "-1/3",
-            "0/3",
-            "1/9",
-            "3",
-            "1/3"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 3^-1 = 1/3^1 = 1/3."
         },
         {
           "soru": "3^2 . 3^2 işleminin sonucu kaçtır?",
@@ -34636,18 +33676,6 @@
           "aciklama": "Kuvvetin kuvveti alınırken üsler çarpılır: (2^3)^3 = 2^(3.3) = 2^9 = 512."
         },
         {
-          "soru": "10^0 - 1^0 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "1",
-            "10",
-            "-1",
-            "0",
-            "2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "10^0=1 ve 1^0=1 olduğundan fark 1-1=0 eder."
-        },
-        {
           "soru": "4^2 . 4^3 işleminin sonucu kaçtır?",
           "secenekler": [
             "4096",
@@ -34672,18 +33700,6 @@
           "aciklama": "Aynı tabanlı üslü sayılar çarpılırken üsler toplanır: 3^4 . 3^4 = 3^(4+4) = 3^8 = 6561."
         },
         {
-          "soru": "(-3)^3 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-27",
-            "28",
-            "81",
-            "27",
-            "9"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Üs çift ise sonuç pozitif, tek ise tabanla aynı işarette (negatif) olur. Burada üs 3 olduğundan sonuç negatiftir: (-3)^3 = -27."
-        },
-        {
           "soru": "27^(1/3) ifadesinin değeri kaçtır?",
           "secenekler": [
             "27",
@@ -34694,18 +33710,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Kesirli üslü ifade köklü ifadeye karşılık gelir: 27^(1/3) = 3√27 = 3, çünkü 3^3 = 27."
-        },
-        {
-          "soru": "5^-2 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "-1/25",
-            "1/25",
-            "1/10",
-            "1/125",
-            "25"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 5^-2 = 1/5^2 = 1/25."
         },
         {
           "soru": "9^5 ve 3^10 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
@@ -34754,54 +33758,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Kesirli üslü ifade köklü ifadeye karşılık gelir: 100^(1/2) = 2√100 = 10, çünkü 10^2 = 100."
-        },
-        {
-          "soru": "3^-2 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/6",
-            "9",
-            "1/27",
-            "-1/9",
-            "1/9"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 3^-2 = 1/3^2 = 1/9."
-        },
-        {
-          "soru": "2^-1 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/2",
-            "1/4",
-            "0/2",
-            "2",
-            "-1/2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 2^-1 = 1/2^1 = 1/2."
-        },
-        {
-          "soru": "(-6)^2 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "37",
-            "-6",
-            "-36",
-            "36",
-            "-216"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Üs çift ise sonuç pozitif, tek ise tabanla aynı işarette (negatif) olur. Burada üs 2 olduğundan sonuç pozitiftir: (-6)^2 = 36."
-        },
-        {
-          "soru": "(-2)^4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-8",
-            "17",
-            "-16",
-            "-32",
-            "16"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Üs çift ise sonuç pozitif, tek ise tabanla aynı işarette (negatif) olur. Burada üs 4 olduğundan sonuç pozitiftir: (-2)^4 = 16."
         },
         {
           "soru": "b^4 . b^1 : b^4 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
@@ -34862,18 +33818,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "243 sayısı 3 tabanının kaçıncı kuvveti olduğuna bakılır: 3^5 = 243 olduğundan x = 5."
-        },
-        {
-          "soru": "2^-3 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "8",
-            "1/16",
-            "-1/8",
-            "1/6",
-            "1/8"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 2^-3 = 1/2^3 = 1/8."
         },
         {
           "soru": "3^3 ve 3^1 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
@@ -34970,30 +33914,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Kuvvetin kuvveti alınırken üsler çarpılır: (3^2)^3 = 3^(2.3) = 3^6 = 729."
-        },
-        {
-          "soru": "(-3)^0 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-3",
-            "1",
-            "0",
-            "-1",
-            "3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'dir (taban negatif olsa bile): (-3)^0 = 1."
-        },
-        {
-          "soru": "4^-1 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "4",
-            "-1/4",
-            "1/4",
-            "1/16",
-            "0/4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 4^-1 = 1/4^1 = 1/4."
         },
         {
           "soru": "2^4 ve 4^2 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
@@ -35128,18 +34048,6 @@
           "aciklama": "4^0=1 ve 9^0=1 olduğundan çarpım 1.1=1 eder."
         },
         {
-          "soru": "3^6 : 3^5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "3",
-            "-3",
-            "177147",
-            "9",
-            "1"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 3^6 : 3^5 = 3^(6-5) = 3^1 = 3."
-        },
-        {
           "soru": "2^3 . 2^2 işleminin sonucu kaçtır?",
           "secenekler": [
             "16",
@@ -35222,18 +34130,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 3^3 : 3^1 = 3^(3-1) = 3^2 = 9."
-        },
-        {
-          "soru": "4^2 : 4^1 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "1",
-            "-1",
-            "4",
-            "16",
-            "64"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 4^2 : 4^1 = 4^(2-1) = 4^1 = 4."
         },
         {
           "soru": "4^1 . 4^2 işleminin sonucu kaçtır?",
@@ -35330,18 +34226,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Kesirli üslü ifade köklü ifadeye karşılık gelir: 16^(1/4) = 4√16 = 2, çünkü 2^4 = 16."
-        },
-        {
-          "soru": "(-3)^4 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-243",
-            "81",
-            "-81",
-            "-27",
-            "82"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Üs çift ise sonuç pozitif, tek ise tabanla aynı işarette (negatif) olur. Burada üs 4 olduğundan sonuç pozitiftir: (-3)^4 = 81."
         },
         {
           "soru": "3^3 . 3^2 işleminin sonucu kaçtır?",
@@ -35452,18 +34336,6 @@
           "aciklama": "Aynı tabanlı üslü sayılar çarpılırken üsler toplanır: 5^3 . 5^4 = 5^(3+4) = 5^7 = 78125."
         },
         {
-          "soru": "3^x = 27 olduğuna göre x kaçtır?",
-          "secenekler": [
-            "2",
-            "-3",
-            "3",
-            "5",
-            "4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "27 sayısı 3 tabanının kaçıncı kuvveti olduğuna bakılır: 3^3 = 27 olduğundan x = 3."
-        },
-        {
           "soru": "16^(1/2) ifadesinin değeri kaçtır?",
           "secenekler": [
             "5",
@@ -35536,18 +34408,6 @@
           "aciklama": "16 sayısı 2 tabanının kaçıncı kuvveti olduğuna bakılır: 2^4 = 16 olduğundan x = 4."
         },
         {
-          "soru": "(-3)^2 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-3",
-            "10",
-            "-27",
-            "9",
-            "-9"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Üs çift ise sonuç pozitif, tek ise tabanla aynı işarette (negatif) olur. Burada üs 2 olduğundan sonuç pozitiftir: (-3)^2 = 9."
-        },
-        {
           "soru": "2^4 ve 2^2 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "2^2 > 2^4",
@@ -35558,18 +34418,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Taban 1'den büyük olduğunda üssü büyük olan ifade daha büyüktür; 4 > 2 olduğundan 2^4 > 2^2 olur."
-        },
-        {
-          "soru": "2^-2 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "4",
-            "-1/4",
-            "0/4",
-            "1/8",
-            "1/4"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 2^-2 = 1/2^2 = 1/4."
         },
         {
           "soru": "2^10 ve 4^5 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
@@ -35632,18 +34480,6 @@
           "aciklama": "Kesirli üslü ifade köklü ifadeye karşılık gelir: 49^(1/2) = 2√49 = 7, çünkü 7^2 = 49."
         },
         {
-          "soru": "5^0 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "0",
-            "1",
-            "5",
-            "-1",
-            "1/5"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'dir: 5^0 = 1."
-        },
-        {
           "soru": "b^5 . b^3 : b^1 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
           "secenekler": [
             "b^9",
@@ -35678,18 +34514,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "3125 sayısı 5 tabanının kaçıncı kuvveti olduğuna bakılır: 5^5 = 3125 olduğundan x = 5."
-        },
-        {
-          "soru": "4^-3 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/12",
-            "1/64",
-            "1/256",
-            "64",
-            "-1/64"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Negatif üslü bir sayı, tabanın pozitif üslü halinin çarpmaya göre tersidir: 4^-3 = 1/4^3 = 1/64."
         },
         {
           "soru": "Üslü sayılar ile ilgili bir ifade veriliyor: (x^2 + y^2) / (x + y)^2. Bu ifadeyi en basit haliyle ifade eden fonksiyon hangisidir?",
@@ -35752,30 +34576,6 @@
           "aciklama": "Katsayıları doğru bir şekilde hesaplamış olabileceği için doğru cevaptır."
         },
         {
-          "soru": "Bir x^2 + 5x + 6 = 0 denkleminin kökü olarak x'in değerini bulunuz.",
-          "secenekler": [
-            "-1, -6",
-            "1, -6",
-            "-2, 3",
-            "-1, 6",
-            "2, -3"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İki farklı kök olan bir denklemin kökü olarak x'in değerini bulduğunu doğru olarak tahmin etmiş olabilir."
-        },
-        {
-          "soru": "Üslü sayılara ilişkin bir ifade verilmiştir. x^2 + 5x + 6 = (x + 3)(x + 2) formülünü kullanarak, x^2 + 5x + 6'nın faktörlerinin çarpımı ne olur?",
-          "secenekler": [
-            "(x + 3)(x + 2)",
-            "x^2 + 5x + 12",
-            "x^2 + 5x - 12",
-            "x^2 - 5x + 12",
-            "x^2 - 5x - 12"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceğine dair açıklama... doğru formülü seçmiş olması muhtemeldir."
-        },
-        {
           "soru": "x^2 + 4x + 4 = (x + 2)^2 formülünü kullanarak, x^2 + 4x + 4'nın faktörlerinin çarpımı ne olur?",
           "secenekler": [
             "(x + 2)^2",
@@ -35783,18 +34583,6 @@
             "x^2 + 4x + 4",
             "x^2 - 4x + 4",
             "x^2 - 4x - 4"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceğine dair açıklama... doğru formülü seçmiş olması muhtemeldir."
-        },
-        {
-          "soru": "x^2 - 9 = (x + 3)(x - 3) formülünü kullanarak, x^2 - 9'un faktörlerinin çarpımı ne olur?",
-          "secenekler": [
-            "(x + 3)(x - 3)",
-            "x^2 - 9",
-            "x^2 + 9",
-            "x^2 + 3x - 9",
-            "x^2 - 3x + 9"
           ],
           "dogruIndex": 0,
           "aciklama": "Eğer yanlış şıksa neden seçmiş olabileceğine dair açıklama... doğru formülü seçmiş olması muhtemeldir."
@@ -35870,30 +34658,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Bu doğru, çünkü x^2 = 16, x = ±√16, x = ±4, bu yüzden x = -4."
-        },
-        {
-          "soru": "Bir sayının 4. kuvvetinin 3. kuvveti ile çarpılması sonucu 729 elde edilir. X sayısının kaçıncı kuvveti olduğunu bulalım.",
-          "secenekler": [
-            "5. kuvveti",
-            "4. kuvveti",
-            "6. kuvveti",
-            "3. kuvveti",
-            "7. kuvveti"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Büyük ihtimalle doğru seçilmiştir çünkü 3. kuvvetinin 3. kuvveti ile çarpılması sonucu 729 elde edilir."
-        },
-        {
-          "soru": "Bir sayının üssü negatif bir sayı ise, bu sayı kaçıncı kök olarak ifade edilebilir?",
-          "secenekler": [
-            "-1",
-            "1",
-            "2",
-            "-2",
-            "0"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Verilen kural çerçevesinde, negatif üssü olan bir sayı 1. kök olarak ifade edilir; bu nedenle doğru seçenek B'dir."
         },
         {
           "soru": "2^3 * 2^4 işleminin sonucu kaçtır?",
@@ -36076,18 +34840,6 @@
           "aciklama": "8^4 = (2^3)^4 = 2^12 olduğundan 8^4 ile 2^12 birbirine eşittir."
         },
         {
-          "soru": "4^-2 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/64",
-            "-16",
-            "1/16",
-            "16",
-            "1/4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 4^-2 = 1/4^2 = 1/16."
-        },
-        {
           "soru": "(4^4)^2 işleminin sonucu kaçtır?",
           "secenekler": [
             "65536",
@@ -36146,18 +34898,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Çarpma ve bölmede üsler sırasıyla toplanır ve çıkarılır: b^1 . b^7 : b^4 = b^(1+7-4) = b^4."
-        },
-        {
-          "soru": "12^0 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1",
-            "11",
-            "-1",
-            "0",
-            "12"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'e eşittir: 12^0 = 1."
         },
         {
           "soru": "(2/4)^3 ifadesinin değeri kaçtır?",
@@ -36220,18 +34960,6 @@
           "aciklama": "Aynı tabanlı üslü sayılar çarpılırken üsler toplanır: 2^1 . 2^5 = 2^(1+5) = 2^6 = 64."
         },
         {
-          "soru": "6^-4 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1296",
-            "1/7776",
-            "1/216",
-            "1/1296",
-            "-1296"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 6^-4 = 1/6^4 = 1/1296."
-        },
-        {
           "soru": "4^5 ve 4^3 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "4^5 = 4^3",
@@ -36266,18 +34994,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 6^2 : 6^1 = 6^(2-1) = 6^1 = 6."
-        },
-        {
-          "soru": "(-9)^3 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "729",
-            "-729",
-            "-711",
-            "-720",
-            "-728"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-9)^3 = -729."
         },
         {
           "soru": "2^6 . 2^3 : 2^1 işleminin sonucu kaçtır?",
@@ -36388,18 +35104,6 @@
           "aciklama": "Bir kesrin kuvveti alınırken hem pay hem payda aynı kuvvete yükseltilir: (3/2)^2 = 3^2/2^2 = 9/4 = 9/4 (sadeleştirilmiş)."
         },
         {
-          "soru": "4^-4 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/256",
-            "1/1024",
-            "1/64",
-            "256",
-            "-256"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 4^-4 = 1/4^4 = 1/256."
-        },
-        {
           "soru": "125^1 ve 5^5 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "5^5 < 125^1",
@@ -36412,18 +35116,6 @@
           "aciklama": "125^1 = (5^3)^1 = 5^3 olur. 5 > 3 olduğundan 5^5 > 5^3, yani 125^1 < 5^5'dir."
         },
         {
-          "soru": "(-4)^5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-1020",
-            "-1024",
-            "-1023",
-            "1024",
-            "-1016"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-4)^5 = -1024."
-        },
-        {
           "soru": "125^2 ve 5^6 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "125^2 = 2.5^6",
@@ -36434,18 +35126,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "125^2 = (5^3)^2 = 5^6 olduğundan 125^2 ile 5^6 birbirine eşittir."
-        },
-        {
-          "soru": "83^0 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "-1",
-            "82",
-            "83",
-            "1",
-            "0"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'e eşittir: 83^0 = 1."
         },
         {
           "soru": "3^6 . 3^3 : 3^1 işleminin sonucu kaçtır?",
@@ -36532,18 +35212,6 @@
           "aciklama": "Aynı tabanlı üslü sayılar bölünürken üsler çıkarılır: 7^6 : 7^3 = 7^(6-3) = 7^3 = 343."
         },
         {
-          "soru": "92^0 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "92",
-            "91",
-            "0",
-            "1",
-            "-1"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'e eşittir: 92^0 = 1."
-        },
-        {
           "soru": "b^6 . b^7 : b^3 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
           "secenekler": [
             "b^7",
@@ -36628,18 +35296,6 @@
           "aciklama": "Bir sayının 1. kuvveti kendisine eşittir: 62^1 = 62."
         },
         {
-          "soru": "(-5)^3 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-125",
-            "125",
-            "-120",
-            "-124",
-            "-115"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-5)^3 = -125."
-        },
-        {
           "soru": "3^7 : 3^4 işleminin sonucu kaçtır?",
           "secenekler": [
             "81",
@@ -36688,18 +35344,6 @@
           "aciklama": "16807 sayısı 7 tabanının kaçıncı kuvveti olduğuna bakılır: 7^5 = 16807 olduğundan x = 5."
         },
         {
-          "soru": "2^-4 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/8",
-            "16",
-            "1/16",
-            "1/32",
-            "-16"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 2^-4 = 1/2^4 = 1/16."
-        },
-        {
           "soru": "5^4 : 5^1 işleminin sonucu kaçtır?",
           "secenekler": [
             "625",
@@ -36724,18 +35368,6 @@
           "aciklama": "Bir kesrin kuvveti alınırken hem pay hem payda aynı kuvvete yükseltilir: (6/2)^3 = 6^3/2^3 = 216/8 = 27/1 (sadeleştirilmiş)."
         },
         {
-          "soru": "3^-3 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/9",
-            "27",
-            "1/27",
-            "-27",
-            "1/81"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 3^-3 = 1/3^3 = 1/27."
-        },
-        {
           "soru": "b^4 . b^7 : b^2 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
           "secenekler": [
             "b^9",
@@ -36758,18 +35390,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Bir sayının 1. kuvveti kendisine eşittir: 7^1 = 7."
-        },
-        {
-          "soru": "(-7)^5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-16793",
-            "-16806",
-            "16807",
-            "-16807",
-            "-16800"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-7)^5 = -16807."
         },
         {
           "soru": "4^3 ve 4^2 sayıları karşılaştırıldığında aşağıdakilerden hangisi doğrudur?",
@@ -36880,18 +35500,6 @@
           "aciklama": "125^1 = (5^3)^1 = 5^3 olduğundan 125^1 ile 5^3 birbirine eşittir."
         },
         {
-          "soru": "(-9)^2 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-81",
-            "82",
-            "81",
-            "90",
-            "72"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Negatif bir tabanın üssü, üs çift olduğunda pozitif olur: (-9)^2 = 81."
-        },
-        {
           "soru": "2^2 . 2^3 işleminin sonucu kaçtır?",
           "secenekler": [
             "32",
@@ -36926,18 +35534,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Çarpma ve bölmede üsler sırasıyla toplanır ve çıkarılır: 5^3 . 5^1 : 5^1 = 5^(3+1-1) = 5^3 = 125."
-        },
-        {
-          "soru": "(-2)^5 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-32",
-            "32",
-            "-30",
-            "-31",
-            "-28"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-2)^5 = -32."
         },
         {
           "soru": "7^4 . 7^2 işleminin sonucu kaçtır?",
@@ -37192,18 +35788,6 @@
           "aciklama": "Taban 1'den büyük olduğunda üssü büyük olan ifade daha büyüktür; 6 > 4 olduğundan 4^6 > 4^4 olur."
         },
         {
-          "soru": "5^-4 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1/125",
-            "-625",
-            "1/3125",
-            "625",
-            "1/625"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Negatif üslü bir ifade, tabanın pozitif üslü hâlinin çarpmaya göre tersidir: 5^-4 = 1/5^4 = 1/625."
-        },
-        {
           "soru": "b^8 . b^1 : b^3 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
           "secenekler": [
             "b^5",
@@ -37262,18 +35846,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Çarpma ve bölmede üsler sırasıyla toplanır ve çıkarılır: 5^4 . 5^2 : 5^3 = 5^(4+2-3) = 5^3 = 125."
-        },
-        {
-          "soru": "73^0 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "73",
-            "1",
-            "-1",
-            "0",
-            "72"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Sıfırdan farklı her sayının 0. kuvveti 1'e eşittir: 73^0 = 1."
         },
         {
           "soru": "(3/2)^3 ifadesinin değeri kaçtır?",
@@ -37370,18 +35942,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "25^2 = (5^2)^2 = 5^4 olduğundan 25^2 ile 5^4 birbirine eşittir."
-        },
-        {
-          "soru": "(-6)^3 işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-216",
-            "-210",
-            "-204",
-            "216",
-            "-215"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Negatif bir tabanın üssü, üs tek olduğunda negatif olur: (-6)^3 = -216."
         },
         {
           "soru": "b^7 . b^3 : b^2 işleminin sonucu aşağıdakilerden hangisidir? (b≠0)",
@@ -37668,30 +36228,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "√300 ifadesi, 300=100.3 olacak şekilde tam kare çarpana ayrılır: √300 = √(10^2.3) = 10√3."
-        },
-        {
-          "soru": "(√2 + √13) . (√2 - √13) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-10",
-            "-11",
-            "26",
-            "15",
-            "11"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "(x+y)(x-y)=x^2-y^2 özdeşliğinden (√2+√13)(√2-√13) = 2 - 13 = -11."
-        },
-        {
-          "soru": "1/(√2 - 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√2 - 2)/2",
-            "(√2 + 2)/3",
-            "√2 - 2",
-            "(√2 - 2)/2",
-            "(√2 + 3)/2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Pay ve payda eşlenik olan (√2 + 2) ile çarpılır; payda (√2)^2-2^2 = 2-4 = -2 olur ve sonuç (-√2 - 2)/2 elde edilir."
         },
         {
           "soru": "√243 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -38090,30 +36626,6 @@
           "aciklama": "√192 ifadesi, 192=64.3 olacak şekilde tam kare çarpana ayrılır: √192 = √(8^2.3) = 8√3."
         },
         {
-          "soru": "1/(√3 - 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√3 + 2)/2",
-            "(√3 + 3)/1",
-            "-√2 - 2",
-            "√3 - 2",
-            "-√3 - 2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Pay ve payda eşlenik olan (√3 + 2) ile çarpılır; payda (√3)^2-2^2 = 3-4 = -1 olur ve sonuç -√3 - 2 elde edilir."
-        },
-        {
-          "soru": "(√4 + √8) . (√4 - √8) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-3",
-            "4",
-            "12",
-            "-4",
-            "32"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "(x+y)(x-y)=x^2-y^2 özdeşliğinden (√4+√8)(√4-√8) = 4 - 8 = -4."
-        },
-        {
           "soru": "∛56 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
           "secenekler": [
             "∛7",
@@ -38342,18 +36854,6 @@
           "aciklama": "Kök derecesi ve kök içi aynı olan terimlerde katsayılar + işlemine göre birleştirilir: 4√7 + 9√7 = (4+9)√7 = 13√7."
         },
         {
-          "soru": "1/(√11 - 4) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√11 + 5)/5",
-            "(-√11 - 4)/5",
-            "√11 - 4",
-            "(√11 - 4)/5",
-            "(√11 + 4)/6"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Pay ve payda eşlenik olan (√11 + 4) ile çarpılır; payda (√11)^2-4^2 = 11-16 = -5 olur ve sonuç (-√11 - 4)/5 elde edilir."
-        },
-        {
           "soru": "√3 . √4 işleminin sonucu (en sade hâliyle) kaçtır?",
           "secenekler": [
             "12",
@@ -38424,18 +36924,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Payda ve pay √5 ile çarpılır: 30/√5 = 30√5/5 = 6√5 (çünkü 30/5 = 6)."
-        },
-        {
-          "soru": "(√9 + √10) . (√9 - √10) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "1",
-            "0",
-            "90",
-            "-1",
-            "19"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "(x+y)(x-y)=x^2-y^2 özdeşliğinden (√9+√10)(√9-√10) = 9 - 10 = -1."
         },
         {
           "soru": "∛24 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -38510,18 +36998,6 @@
           "aciklama": "√250 ifadesi, 250=25.10 olacak şekilde tam kare çarpana ayrılır: √250 = √(5^2.10) = 5√10."
         },
         {
-          "soru": "1/(√10 - 4) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√10 + 5)/6",
-            "(-√10 - 4)/6",
-            "(√10 + 4)/7",
-            "(√10 - 4)/6",
-            "√10 - 4"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Pay ve payda eşlenik olan (√10 + 4) ile çarpılır; payda (√10)^2-4^2 = 10-16 = -6 olur ve sonuç (-√10 - 4)/6 elde edilir."
-        },
-        {
           "soru": "√8 . √5 işleminin sonucu (en sade hâliyle) kaçtır?",
           "secenekler": [
             "3√10",
@@ -38580,18 +37056,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "(x+y)^2 = x^2+2xy+y^2 özdeşliğinden (√13+√15)^2 = 13+15+2√(13.15) = 28 + 2√195."
-        },
-        {
-          "soru": "(√8 + √11) . (√8 - √11) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-2",
-            "-3",
-            "88",
-            "3",
-            "19"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "(x+y)(x-y)=x^2-y^2 özdeşliğinden (√8+√11)(√8-√11) = 8 - 11 = -3."
         },
         {
           "soru": "15/√5 ifadesinin paydası rasyonel yapılmış (sadeleştirilmiş) hâli nedir?",
@@ -38676,18 +37140,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "∛320 ifadesi 320=4^3.5 şeklinde tam küp çarpana ayrılır: ∛320 = ∛(4^3.5) = 4∛5."
-        },
-        {
-          "soru": "(√12 + √13) . (√12 - √13) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "25",
-            "1",
-            "-1",
-            "156",
-            "0"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "(x+y)(x-y)=x^2-y^2 özdeşliğinden (√12+√13)(√12-√13) = 12 - 13 = -1."
         },
         {
           "soru": "√10 . √13 işleminin sonucu (en sade hâliyle) kaçtır?",
@@ -38796,18 +37248,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "√28 ifadesi, 28=4.7 olacak şekilde tam kare çarpana ayrılır: √28 = √(2^2.7) = 2√7."
-        },
-        {
-          "soru": "1/(√6 - 3) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√6 - 3)/3",
-            "(√6 - 3)/3",
-            "√6 - 3",
-            "(√6 + 4)/3",
-            "(√6 + 3)/4"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Pay ve payda eşlenik olan (√6 + 3) ile çarpılır; payda (√6)^2-3^2 = 6-9 = -3 olur ve sonuç (-√6 - 3)/3 elde edilir."
         },
         {
           "soru": "1/(√10 - 3) ifadesinin paydası rasyonel yapılmış hâli nedir?",
@@ -38966,18 +37406,6 @@
           "aciklama": "Köklü sayının karesi, aynı zamanda bir diğer köklü sayının küpüdür. Eğer köklü sayının karesinin kökü x, köklü sayının küpünün kökü ise y ise, x^2 = y^3 = (2a)^3 (a √3)3 = 8a^3 √3 − 3a √3 + 3a^2. Bu durum y = (2a)^3 (a √3)3 = 8a^3 √3 − 3a √3 + 3a^2 ise x = √(8a^3 √3 − 3a √3 + 3a^2)."
         },
         {
-          "soru": "Bir sayının karekökü, 2x + 1 ise, 4x^2 + 4x + 1 =?",
-          "secenekler": [
-            "16x^2 + 8x + 1",
-            "16x^2 + 4x + 1",
-            "4x^2 + 4x + 1",
-            "16x^2 - 4x + 1",
-            "4x^2 - 4x + 1"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bir sayının karekökü, 2x + 1 ise, (2x + 1)^2 = 4x^2 + 4x + 1."
-        },
-        {
           "soru": "Bir sayının kökü bir tam sayının karesi ise o sayının kökü tam sayının küpüdür mi?",
           "secenekler": [
             "Evet, doğru",
@@ -39060,18 +37488,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Doğru çünkü 4^3 = 64, 2^3 = 8, 16^ (1/3) = 2,52"
-        },
-        {
-          "soru": "Kök bir sayının karesi 1000'den küçük ise, o sayı hangi aralıkta olabilir?",
-          "secenekler": [
-            "(-10, 10)",
-            "(-100, -10)",
-            "(-10, 10]",
-            "(-100, -10]",
-            "(-31.6227766, 31.6227766)"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Burada öğrenci, x^2 < 1000 olan x için x'in aralığı bulmaya çalışacak ve (-31.6227766, 31.6227766) aralığına ulaşacaktır."
         },
         {
           "soru": "Bir sayının karesi 1000'den büyüktür. Bu sayının kaçarlı olduğu hakkında ne gibi bir sonuç çıkartabiliriz?",
@@ -39230,18 +37646,6 @@
           "aciklama": "Kök derecesi ve kök içi aynı olan terimlerde katsayılar toplanır: 3√6 + 10√6 = (3+10)√6 = 13√6."
         },
         {
-          "soru": "1/(√5 - 6) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√5 - 6)/-1",
-            "(√5 + 6)/31",
-            "(-√5 + 6)/31",
-            "(-√5 - 6)/32",
-            "(-√5 - 6)/31"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√5+6) ile çarpılır: 1/(√5-6) = (√5+6) / ((√5-6)(√5+6)) = (√5+6) / (5-36) = (-√5 - 6)/31."
-        },
-        {
           "soru": "√33 : √3 işleminin sonucu kaçtır?",
           "secenekler": [
             "√12",
@@ -39350,30 +37754,6 @@
           "aciklama": "Önce her kök sadeleştirilir: √72 = 6√2, √32 = 4√2. Aynı köklü terimler çıkarılır: 6√2 - 4√2 = (6-4)√2 = 2√2."
         },
         {
-          "soru": "(√6 + √5) . (√6 - √5) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "11",
-            "3",
-            "2",
-            "1",
-            "-1"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√6+√5)(√6-√5) = (√6)² - (√5)² = 6 - 5 = 1."
-        },
-        {
-          "soru": "(√6 + √4) . (√6 - √4) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "10",
-            "1",
-            "-2",
-            "2",
-            "3"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√6+√4)(√6-√4) = (√6)² - (√4)² = 6 - 4 = 2."
-        },
-        {
           "soru": "∛80 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
           "secenekler": [
             "2∛9",
@@ -39444,18 +37824,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Payda, eşleniğiyle (√17 - √8) çarpılarak rasyonel yapılır: 1/(√17+√8) = (√17 - √8) / ((√17+√8)(√17 - √8)) = (√17 - √8) / (17-8) = (√17 - √8)/9."
-        },
-        {
-          "soru": "1/(√7 - 6) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√7 + 6)/29",
-            "(-√7 - 6)/29",
-            "(-√7 + 6)/29",
-            "-√7 - 6",
-            "(-√7 - 6)/30"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Payda ile paydanın eşleniği (√7+6) ile çarpılır: 1/(√7-6) = (√7+6) / ((√7-6)(√7+6)) = (√7+6) / (7-36) = (-√7 - 6)/29."
         },
         {
           "soru": "(√3 - √11)^2 işleminin açılımı aşağıdakilerden hangisidir?",
@@ -39540,18 +37908,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Aynı dereceli köklerin çarpımında kök içleri çarpılır: √11 . √5 = √55."
-        },
-        {
-          "soru": "(√8 + √7) . (√8 - √7) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "2",
-            "-1",
-            "15",
-            "1",
-            "3"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√8+√7)(√8-√7) = (√8)² - (√7)² = 8 - 7 = 1."
         },
         {
           "soru": "√13 . √11 işleminin sonucu (en sade hâliyle) kaçtır?",
@@ -39734,18 +38090,6 @@
           "aciklama": "Kök derecesi ve kök içi aynı olan terimlerde katsayılar toplanır: 10√10 + 6√10 = (10+6)√10 = 16√10."
         },
         {
-          "soru": "(√20 + √15) . (√20 - √15) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "5",
-            "35",
-            "-5",
-            "6",
-            "4"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√20+√15)(√20-√15) = (√20)² - (√15)² = 20 - 15 = 5."
-        },
-        {
           "soru": "(√13 + √10)^2 işleminin açılımı aşağıdakilerden hangisidir?",
           "secenekler": [
             "3 + 2√130",
@@ -39768,18 +38112,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "∛54 ifadesi, 54=3³×2 olacak şekilde tam küp çarpana ayrılır: ∛54 = ∛(3³×2) = 3∛2."
-        },
-        {
-          "soru": "1/(√5 + 4) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√5 - 4)/11",
-            "-√5 + 4",
-            "(√5 - 4)/11",
-            "(-√5 + 4)/12",
-            "(-√5 + 4)/11"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√5-4) ile çarpılır: 1/(√5+4) = (√5-4) / ((√5+4)(√5-4)) = (√5-4) / (5-16) = (-√5 + 4)/11."
         },
         {
           "soru": "(√4 + √14)^2 işleminin açılımı aşağıdakilerden hangisidir?",
@@ -39816,18 +38148,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Payda, eşleniğiyle (√10 + √7) çarpılarak rasyonel yapılır: 1/(√10-√7) = (√10 + √7) / ((√10-√7)(√10 + √7)) = (√10 + √7) / (10-7) = (√10 + √7)/3."
-        },
-        {
-          "soru": "(√7 + √5) . (√7 - √5) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "12",
-            "3",
-            "1",
-            "-2",
-            "2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√7+√5)(√7-√5) = (√7)² - (√5)² = 7 - 5 = 2."
         },
         {
           "soru": "6√15 + 6√15 işleminin sonucu kaçtır?",
@@ -39914,30 +38234,6 @@
           "aciklama": "Payda, eşleniğiyle (√13 - √10) çarpılarak rasyonel yapılır: 1/(√13+√10) = (√13 - √10) / ((√13+√10)(√13 - √10)) = (√13 - √10) / (13-10) = (√13 - √10)/3."
         },
         {
-          "soru": "(√18 + √2) . (√18 - √2) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-16",
-            "20",
-            "15",
-            "17",
-            "16"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√18+√2)(√18-√2) = (√18)² - (√2)² = 18 - 2 = 16."
-        },
-        {
-          "soru": "1/(√17 + 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√17 - 2)/15",
-            "(-√17 + 2)/13",
-            "(√17 - 2)/13",
-            "(√17 + 2)/13",
-            "(√17 - 2)/14"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Payda ile paydanın eşleniği (√17-2) ile çarpılır: 1/(√17+2) = (√17-2) / ((√17+2)(√17-2)) = (√17-2) / (17-4) = (√17 - 2)/13."
-        },
-        {
           "soru": "1/(√19 - √5) ifadesinin paydası rasyonel yapılmış hâli nedir?",
           "secenekler": [
             "(√19 + √5)/-14",
@@ -39972,18 +38268,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "√27 ifadesi, 27=3²×3 olacak şekilde tam kare çarpana ayrılır: √27 = √(3²×3) = 3√3."
-        },
-        {
-          "soru": "1/(√12 + 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√12 - 2)/9",
-            "(-√12 + 2)/8",
-            "(√12 - 2)/10",
-            "(√12 + 2)/8",
-            "(√12 - 2)/8"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√12-2) ile çarpılır: 1/(√12+2) = (√12-2) / ((√12+2)(√12-2)) = (√12-2) / (12-4) = (√12 - 2)/8."
         },
         {
           "soru": "12√5 - 3√5 işleminin sonucu kaçtır?",
@@ -40032,18 +38316,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Aynı dereceli köklerin bölümünde kök içleri bölünür: √90 : √9 = √(90/9) = √10."
-        },
-        {
-          "soru": "(√18 + √9) . (√18 - √9) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "10",
-            "27",
-            "-9",
-            "8",
-            "9"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√18+√9)(√18-√9) = (√18)² - (√9)² = 18 - 9 = 9."
         },
         {
           "soru": "√2016 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -40154,18 +38426,6 @@
           "aciklama": "Aynı dereceli köklerin bölümünde kök içleri bölünür: √12 : √2 = √(12/2) = √6."
         },
         {
-          "soru": "(√20 + √11) . (√20 - √11) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "31",
-            "9",
-            "10",
-            "-9",
-            "8"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√20+√11)(√20-√11) = (√20)² - (√11)² = 20 - 11 = 9."
-        },
-        {
           "soru": "√5 . √8 işleminin sonucu (en sade hâliyle) kaçtır?",
           "secenekler": [
             "3√10",
@@ -40226,18 +38486,6 @@
           "aciklama": "(√6+√5)² = (√6)² + 2.√6.√5 + (√5)² = 6 + 5 + 2√30 = 11 + 2√30."
         },
         {
-          "soru": "1/(√8 - 6) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√8 - 6)/2",
-            "(-√8 - 6)/29",
-            "(√8 + 6)/28",
-            "(-√8 + 6)/28",
-            "(-√8 - 6)/28"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√8+6) ile çarpılır: 1/(√8-6) = (√8+6) / ((√8-6)(√8+6)) = (√8+6) / (8-36) = (-√8 - 6)/28."
-        },
-        {
           "soru": "√175 - √28 işleminin sonucu (en sade hâliyle) kaçtır?",
           "secenekler": [
             "3√8",
@@ -40248,18 +38496,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Önce her kök sadeleştirilir: √175 = 5√7, √28 = 2√7. Aynı köklü terimler çıkarılır: 5√7 - 2√7 = (5-2)√7 = 3√7."
-        },
-        {
-          "soru": "(√16 + √2) . (√16 - √2) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "18",
-            "14",
-            "15",
-            "13",
-            "-14"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√16+√2)(√16-√2) = (√16)² - (√2)² = 16 - 2 = 14."
         },
         {
           "soru": "√60 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -40274,18 +38510,6 @@
           "aciklama": "√60 ifadesi, 60=2²×15 olacak şekilde tam kare çarpana ayrılır: √60 = √(2²×15) = 2√15."
         },
         {
-          "soru": "(√6 + √2) . (√6 - √2) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "-4",
-            "3",
-            "5",
-            "8",
-            "4"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√6+√2)(√6-√2) = (√6)² - (√2)² = 6 - 2 = 4."
-        },
-        {
           "soru": "9√11 - 6√11 işleminin sonucu kaçtır?",
           "secenekler": [
             "54√11",
@@ -40296,42 +38520,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Kök derecesi ve kök içi aynı olan terimlerde katsayılar çıkarılır: 9√11 - 6√11 = (9-6)√11 = 3√11."
-        },
-        {
-          "soru": "1/(√7 + 3) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√7 + 3)/4",
-            "(-√7 + 3)/3",
-            "(-√7 - 3)/2",
-            "(√7 - 3)/2",
-            "(-√7 + 3)/2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√7-3) ile çarpılır: 1/(√7+3) = (√7-3) / ((√7+3)(√7-3)) = (√7-3) / (7-9) = (-√7 + 3)/2."
-        },
-        {
-          "soru": "(√13 + √7) . (√13 - √7) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "6",
-            "-6",
-            "20",
-            "7",
-            "5"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√13+√7)(√13-√7) = (√13)² - (√7)² = 13 - 7 = 6."
-        },
-        {
-          "soru": "1/(√15 + 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√15 - 2)/11",
-            "(√15 - 2)/12",
-            "(√15 + 2)/11",
-            "(√15 - 2)/13",
-            "(-√15 + 2)/11"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Payda ile paydanın eşleniği (√15-2) ile çarpılır: 1/(√15+2) = (√15-2) / ((√15+2)(√15-2)) = (√15-2) / (15-4) = (√15 - 2)/11."
         },
         {
           "soru": "1/(√14 + √13) ifadesinin paydası rasyonel yapılmış hâli nedir?",
@@ -40404,18 +38592,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Aynı dereceli köklerin çarpımında kök içleri çarpılır: √12 . √10 = √120. 120=2²×30 olduğundan √120 = 2√30."
-        },
-        {
-          "soru": "1/(√6 + 6) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√6 + 6)/32",
-            "(-√6 - 6)/30",
-            "(√6 - 6)/30",
-            "(-√6 + 6)/31",
-            "(-√6 + 6)/30"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√6-6) ile çarpılır: 1/(√6+6) = (√6-6) / ((√6+6)(√6-6)) = (√6-6) / (6-36) = (-√6 + 6)/30."
         },
         {
           "soru": "√2600 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -40550,18 +38726,6 @@
           "aciklama": "Aynı dereceli köklerin çarpımında kök içleri çarpılır: √4 . √8 = √32. 32=4²×2 olduğundan √32 = 4√2."
         },
         {
-          "soru": "1/(√10 - 2) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(√10 + 2)/6",
-            "(√10 + 2)/8",
-            "(√10 + 2)/7",
-            "(√10 - 2)/6",
-            "(-√10 - 2)/6"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Payda ile paydanın eşleniği (√10+2) ile çarpılır: 1/(√10-2) = (√10+2) / ((√10-2)(√10+2)) = (√10+2) / (10-4) = (√10 + 2)/6."
-        },
-        {
           "soru": "√847 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
           "secenekler": [
             "11√6",
@@ -40584,18 +38748,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Önce her kök sadeleştirilir: √72 = 6√2, √18 = 3√2. Aynı köklü terimler toplanır: 6√2 + 3√2 = (6+3)√2 = 9√2."
-        },
-        {
-          "soru": "1/(√3 - 5) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√3 + 5)/22",
-            "(√3 + 5)/22",
-            "(-√3 - 5)/23",
-            "(-√3 - 5)/22",
-            "(-√3 - 5)/-2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Payda ile paydanın eşleniği (√3+5) ile çarpılır: 1/(√3-5) = (√3+5) / ((√3-5)(√3+5)) = (√3+5) / (3-25) = (-√3 - 5)/22."
         },
         {
           "soru": "∛448 ifadesinin en sade hâli aşağıdakilerden hangisidir?",
@@ -40658,30 +38810,6 @@
           "aciklama": "Kök derecesi ve kök içi aynı olan terimlerde katsayılar toplanır: 6√5 + 3√5 = (6+3)√5 = 9√5."
         },
         {
-          "soru": "(√18 + √14) . (√18 - √14) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "32",
-            "5",
-            "4",
-            "3",
-            "-4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√18+√14)(√18-√14) = (√18)² - (√14)² = 18 - 14 = 4."
-        },
-        {
-          "soru": "(√18 + √5) . (√18 - √5) işleminin sonucu kaçtır?",
-          "secenekler": [
-            "13",
-            "-13",
-            "12",
-            "14",
-            "23"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Toplam ile farkın çarpımı, terimlerin karelerinin farkına eşittir: (√18+√5)(√18-√5) = (√18)² - (√5)² = 18 - 5 = 13."
-        },
-        {
           "soru": "√216 + √150 işleminin sonucu (en sade hâliyle) kaçtır?",
           "secenekler": [
             "366",
@@ -40692,18 +38820,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Önce her kök sadeleştirilir: √216 = 6√6, √150 = 5√6. Aynı köklü terimler toplanır: 6√6 + 5√6 = (6+5)√6 = 11√6."
-        },
-        {
-          "soru": "1/(√2 + 4) ifadesinin paydası rasyonel yapılmış hâli nedir?",
-          "secenekler": [
-            "(-√2 + 4)/15",
-            "(-√2 + 4)/-2",
-            "(-√2 - 4)/14",
-            "(√2 - 4)/14",
-            "(-√2 + 4)/14"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Payda ile paydanın eşleniği (√2-4) ile çarpılır: 1/(√2+4) = (√2-4) / ((√2+4)(√2-4)) = (√2-4) / (2-16) = (-√2 + 4)/14."
         },
         {
           "soru": "8√13 + 11√13 işleminin sonucu kaçtır?",
@@ -40800,30 +38916,6 @@
       },
       "sorular": [
         {
-          "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(-2) = -4 ve f(-1) = -2 olduğuna göre f(4) kaçtır?",
-          "secenekler": [
-            "9",
-            "6",
-            "10",
-            "-6",
-            "8"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f(x)=ax+b olsun. f(-2)=-4 ve f(-1)=-2 denklemlerinin ortak çözümünden a=2, b=0 bulunur. Buna göre f(4) = 2.4 + 0 = 8."
-        },
-        {
-          "soru": "f(x) = 3x - 6 fonksiyonuna göre f⁻¹(-6) kaçtır?",
-          "secenekler": [
-            "3",
-            "1",
-            "0",
-            "2",
-            "-1"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "f⁻¹(x) = (x-(-6))/3 olduğundan f⁻¹(-6) = (-6-(-6))/3 = 0/3 = 0. (Kontrol: f(0) = 3.0+-6 = -6.)"
-        },
-        {
           "soru": "f(x) = -2x + 6 ve g(x) = x - 2 fonksiyonlarına göre (g∘f)(5) kaçtır?",
           "secenekler": [
             "-7",
@@ -40834,18 +38926,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Önce f(5) hesaplanır: f(5) = -2.5+6 = -4. Sonra bu değer g'de x yerine yazılır: g(-4) = 1.-4+-2 = -6. Yani (g∘f)(5) = -6."
-        },
-        {
-          "soru": "f(x) = -2x + 6 fonksiyonuna göre f(-2) kaçtır?",
-          "secenekler": [
-            "8",
-            "-2",
-            "10",
-            "12",
-            "2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "f(x) kuralında x yerine -2 yazılır: f(-2) = -2.(-2) + (6) = 4 + (6) = 10."
         },
         {
           "soru": "f(x) = 2x + 3 ve g(x) = 2x + 4 fonksiyonlarına göre (f∘g)(1) kaçtır?",
@@ -40860,18 +38940,6 @@
           "aciklama": "Önce g(1) hesaplanır: g(1) = 2.1+4 = 6. Sonra bu değer f'de x yerine yazılır: f(6) = 2.6+3 = 15. Yani (f∘g)(1) = 15."
         },
         {
-          "soru": "f(x) = 1/(x + 4) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "-4",
-            "4",
-            "-2",
-            "-3",
-            "-5"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (-4) = 0 denkleminden x = -4 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = -2x + 7 fonksiyonuna göre f(-6) kaçtır?",
           "secenekler": [
             "17",
@@ -40884,18 +38952,6 @@
           "aciklama": "f(x) kuralında x yerine -6 yazılır: f(-6) = -2.(-6) + (7) = 12 + (7) = 19."
         },
         {
-          "soru": "f(x) = 1/(x - 7) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "8",
-            "6",
-            "7",
-            "9",
-            "-7"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (7) = 0 denkleminden x = 7 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = 2x + 9 fonksiyonuna göre f(3) kaçtır?",
           "secenekler": [
             "15",
@@ -40906,18 +38962,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "f(x) kuralında x yerine 3 yazılır: f(3) = 2.(3) + (9) = 6 + (9) = 15."
-        },
-        {
-          "soru": "f(x) = 1/(x - 0) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "0",
-            "2",
-            "1",
-            "3",
-            "-1"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (0) = 0 denkleminden x = 0 değeri fonksiyonu tanımsız kılar."
         },
         {
           "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(-5) = 20 ve f(4) = -7 olduğuna göre f(-4) kaçtır?",
@@ -40968,18 +39012,6 @@
           "aciklama": "f(x)=ax+b olsun. f(5)=22 ve f(-4)=-14 denklemlerinin ortak çözümünden a=4, b=2 bulunur. Buna göre f(4) = 4.4 + 2 = 18."
         },
         {
-          "soru": "f(x) = -3x - 4 fonksiyonuna göre f⁻¹(-4) kaçtır?",
-          "secenekler": [
-            "2",
-            "1",
-            "-3",
-            "0",
-            "-1"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "f⁻¹(x) = (x-(-4))/-3 olduğundan f⁻¹(-4) = (-4-(-4))/-3 = 0/-3 = 0. (Kontrol: f(0) = -3.0+-4 = -4.)"
-        },
-        {
           "soru": "f(x) = 3x^2 + 2x - 6 fonksiyonuna göre f(-2) kaçtır?",
           "secenekler": [
             "-16",
@@ -40990,42 +39022,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "x yerine -2 yazılır: f(-2) = 3.(-2)^2 + 2.(-2) + -6 = 12 + -4 + -6 = 2."
-        },
-        {
-          "soru": "f(x) = 3x - 2 fonksiyonuna göre f⁻¹(-20) kaçtır?",
-          "secenekler": [
-            "-3",
-            "-7",
-            "-5",
-            "6",
-            "-6"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f⁻¹(x) = (x-(-2))/3 olduğundan f⁻¹(-20) = (-20-(-2))/3 = -18/3 = -6. (Kontrol: f(-6) = 3.-6+-2 = -20.)"
-        },
-        {
-          "soru": "f(x) = 1/(x - 3) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "4",
-            "-3",
-            "3",
-            "5",
-            "2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (3) = 0 denkleminden x = 3 değeri fonksiyonu tanımsız kılar."
-        },
-        {
-          "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(-3) = 4 ve f(-2) = 1 olduğuna göre f(-1) kaçtır?",
-          "secenekler": [
-            "5",
-            "-1",
-            "-2",
-            "-5",
-            "1"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "f(x)=ax+b olsun. f(-3)=4 ve f(-2)=1 denklemlerinin ortak çözümünden a=-3, b=-5 bulunur. Buna göre f(-1) = -3.-1 + -5 = -2."
         },
         {
           "soru": "f(x) = -3x + 10 fonksiyonuna göre f(-3) kaçtır?",
@@ -41064,18 +39060,6 @@
           "aciklama": "f(x)=ax+b olsun. f(-3)=-1 ve f(-2)=1 denklemlerinin ortak çözümünden a=2, b=5 bulunur. Buna göre f(-5) = 2.-5 + 5 = -5."
         },
         {
-          "soru": "f(x) = -2x + 1 fonksiyonuna göre f(2) kaçtır?",
-          "secenekler": [
-            "1",
-            "-5",
-            "2",
-            "-1",
-            "-3"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f(x) kuralında x yerine 2 yazılır: f(2) = -2.(2) + (1) = -4 + (1) = -3."
-        },
-        {
           "soru": "f(x) = x^2 - 3 fonksiyonuna göre f(-4) kaçtır?",
           "secenekler": [
             "15",
@@ -41086,18 +39070,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "x yerine -4 yazılır: f(-4) = 1.(-4)^2 + 0.(-4) + -3 = 16 + 0 + -3 = 13."
-        },
-        {
-          "soru": "f(x) = 2x + 5 fonksiyonuna göre f⁻¹(-1) kaçtır?",
-          "secenekler": [
-            "-2",
-            "-1",
-            "-3",
-            "3",
-            "-4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "f⁻¹(x) = (x-(5))/2 olduğundan f⁻¹(-1) = (-1-(5))/2 = -6/2 = -3. (Kontrol: f(-3) = 2.-3+5 = -1.)"
         },
         {
           "soru": "f(x) = 3x - 5 fonksiyonu için aşağıdakilerden hangisi doğrudur?",
@@ -41122,30 +39094,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Önce g(1) hesaplanır: g(1) = 1.1+-5 = -4. Sonra bu değer f'de x yerine yazılır: f(-4) = -2.-4+2 = 10. Yani (f∘g)(1) = 10."
-        },
-        {
-          "soru": "f(x) = 1/(x - 1) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "2",
-            "3",
-            "-1",
-            "1",
-            "0"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (1) = 0 denkleminden x = 1 değeri fonksiyonu tanımsız kılar."
-        },
-        {
-          "soru": "f(x) = 5 - x fonksiyonuna göre f(f(2)) kaçtır?",
-          "secenekler": [
-            "0",
-            "2",
-            "3",
-            "5",
-            "-2"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Önce f(2) = 5 - 2 = 3 bulunur. Sonra bu değer tekrar f'de yerine yazılır: f(3) = 5 - 3 = 2. Dolayısıyla f(f(2)) = 2."
         },
         {
           "soru": "f(x) = x^2 - 1x - 4 fonksiyonuna göre f(2) kaçtır?",
@@ -41182,18 +39130,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "f(x)=ax+b olsun. f(-4)=-15 ve f(2)=-3 denklemlerinin ortak çözümünden a=2, b=-7 bulunur. Buna göre f(-5) = 2.-5 + -7 = -17."
-        },
-        {
-          "soru": "f(x) = -2x - 1 fonksiyonuna göre f⁻¹(-3) kaçtır?",
-          "secenekler": [
-            "1",
-            "10",
-            "0",
-            "-1",
-            "2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f⁻¹(x) = (x-(-1))/-2 olduğundan f⁻¹(-3) = (-3-(-1))/-2 = -2/-2 = 1. (Kontrol: f(1) = -2.1+-1 = -3.)"
         },
         {
           "soru": "f(x) = x^2 fonksiyonu için f(-3) ve f(3) değerleri karşılaştırıldığında ne söylenebilir?",
@@ -41316,18 +39252,6 @@
           "aciklama": "x yerine -4 yazılır: f(-4) = 3.(-4)^2 + 0.(-4) + 4 = 48 + 0 + 4 = 52."
         },
         {
-          "soru": "f(x) = 1/(x + 5) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "-6",
-            "5",
-            "-4",
-            "-5",
-            "-3"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (-5) = 0 denkleminden x = -5 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = 4x + 3 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(15) kaçtır?",
           "secenekler": [
             "2",
@@ -41436,18 +39360,6 @@
           "aciklama": "Önce g(1) hesaplanır: g(1) = 2.1+4 = 6. Sonra bu değer f'de x yerine yazılır: f(6) = 2.6+-2 = 10. Yani (f∘g)(1) = 10."
         },
         {
-          "soru": "f(x) = x^2 - 3x + 3 fonksiyonuna göre f(2) kaçtır?",
-          "secenekler": [
-            "3",
-            "2",
-            "-1",
-            "0",
-            "1"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "x yerine 2 yazılır: f(2) = 1.(2)^2 + -3.(2) + 3 = 4 + -6 + 3 = 1."
-        },
-        {
           "soru": "f(x) = 4x ve g(x) = x - 5 fonksiyonlarına göre (g∘f)(-2) kaçtır?",
           "secenekler": [
             "-12",
@@ -41458,18 +39370,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Önce f(-2) hesaplanır: f(-2) = 4.-2+0 = -8. Sonra bu değer g'de x yerine yazılır: g(-8) = 1.-8+-5 = -13. Yani (g∘f)(-2) = -13."
-        },
-        {
-          "soru": "f(x) = 4x + 6 fonksiyonuna göre f(-2) kaçtır?",
-          "secenekler": [
-            "8",
-            "-6",
-            "2",
-            "-14",
-            "-2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f(x) kuralında x yerine -2 yazılır: f(-2) = 4.(-2) + (6) = -8 + (6) = -2."
         },
         {
           "soru": "f(x) = 3x - 7 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(2) kaçtır?",
@@ -41484,18 +39384,6 @@
           "aciklama": "f(x)=ax+b için f⁻¹(x)=(x-b)/a'dır. f⁻¹(2) = (2-(-7))/3 = 9/3 = 3."
         },
         {
-          "soru": "f(x) = 1/(x + 2) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "-1",
-            "-3",
-            "2",
-            "0",
-            "-2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (-2) = 0 denkleminden x = -2 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(2) = 7 ve f(-3) = -13 olduğuna göre f(-4) kaçtır?",
           "secenekler": [
             "-13",
@@ -41506,18 +39394,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "f(x)=ax+b olsun. f(2)=7 ve f(-3)=-13 denklemlerinin ortak çözümünden a=4, b=-1 bulunur. Buna göre f(-4) = 4.-4 + -1 = -17."
-        },
-        {
-          "soru": "f(x) = 5x + 7 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(-8) kaçtır?",
-          "secenekler": [
-            "-4",
-            "-8",
-            "2",
-            "-3",
-            "-2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "f(x)=ax+b için f⁻¹(x)=(x-b)/a'dır. f⁻¹(-8) = (-8-(7))/5 = -15/5 = -3."
         },
         {
           "soru": "f(x) = 2x - 1 ve g(x) = x + 3 fonksiyonlarına göre (g∘f)(5) kaçtır?",
@@ -41532,30 +39408,6 @@
           "aciklama": "Önce f(5) hesaplanır: f(5) = 2.5+-1 = 9. Sonra bu değer g'de x yerine yazılır: g(9) = 1.9+3 = 12. Yani (g∘f)(5) = 12."
         },
         {
-          "soru": "f(x) = 3x^2 - 2x - 4 fonksiyonuna göre f(1) kaçtır?",
-          "secenekler": [
-            "-4",
-            "-9",
-            "-3",
-            "-2",
-            "3"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "x yerine 1 yazılır: f(1) = 3.(1)^2 + -2.(1) + -4 = 3 + -2 + -4 = -3."
-        },
-        {
-          "soru": "f(x) = 1/(x - 2) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "-2",
-            "3",
-            "2",
-            "4",
-            "1"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (2) = 0 denkleminden x = 2 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(1) = 5 ve f(-4) = -10 olduğuna göre f(-3) kaçtır?",
           "secenekler": [
             "-5",
@@ -41566,18 +39418,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "f(x)=ax+b olsun. f(1)=5 ve f(-4)=-10 denklemlerinin ortak çözümünden a=3, b=2 bulunur. Buna göre f(-3) = 3.-3 + 2 = -7."
-        },
-        {
-          "soru": "f(x) = 1/(x - 8) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "7",
-            "9",
-            "10",
-            "-8",
-            "8"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (8) = 0 denkleminden x = 8 değeri fonksiyonu tanımsız kılar."
         },
         {
           "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(5) = 16 ve f(3) = 12 olduğuna göre f(-1) kaçtır?",
@@ -41652,18 +39492,6 @@
           "aciklama": "x yerine 3 yazılır: f(3) = 3.(3)^2 + 2.(3) + -3 = 27 + 6 + -3 = 30."
         },
         {
-          "soru": "f(x) = 1/(x + 8) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "8",
-            "-8",
-            "-6",
-            "-9",
-            "-7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (-8) = 0 denkleminden x = -8 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = 2x + 2 ve g(x) = 2x + 2 fonksiyonlarına göre (g∘f)(-5) kaçtır?",
           "secenekler": [
             "-8",
@@ -41700,18 +39528,6 @@
           "aciklama": "f(x) kuralında x yerine 6 yazılır: f(6) = 4.(6) + (3) = 24 + (3) = 27."
         },
         {
-          "soru": "f(x) = -3x - 8 fonksiyonuna göre f⁻¹(-26) kaçtır?",
-          "secenekler": [
-            "3",
-            "6",
-            "7",
-            "-6",
-            "5"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "f⁻¹(x) = (x-(-8))/-3 olduğundan f⁻¹(-26) = (-26-(-8))/-3 = -18/-3 = 6. (Kontrol: f(6) = -3.6+-8 = -26.)"
-        },
-        {
           "soru": "f(x) = -3x - 6 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(0) kaçtır?",
           "secenekler": [
             "-2",
@@ -41724,18 +39540,6 @@
           "aciklama": "f(x)=ax+b için f⁻¹(x)=(x-b)/a'dır. f⁻¹(0) = (0-(-6))/-3 = 6/-3 = -2."
         },
         {
-          "soru": "f(x) = 1/(x + 6) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "-4",
-            "-7",
-            "-5",
-            "-6",
-            "6"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (-6) = 0 denkleminden x = -6 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = -2x + 3 ve g(x) = -x - 5 fonksiyonlarına göre (f∘g)(4) kaçtır?",
           "secenekler": [
             "-9",
@@ -41746,18 +39550,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Önce g(4) hesaplanır: g(4) = -1.4+-5 = -9. Sonra bu değer f'de x yerine yazılır: f(-9) = -2.-9+3 = 21. Yani (f∘g)(4) = 21."
-        },
-        {
-          "soru": "Doğrusal (birinci dereceden) bir f fonksiyonu için f(-5) = -13 ve f(0) = -3 olduğuna göre f(2) kaçtır?",
-          "secenekler": [
-            "-1",
-            "3",
-            "2",
-            "-16",
-            "1"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f(x)=ax+b olsun. f(-5)=-13 ve f(0)=-3 denklemlerinin ortak çözümünden a=2, b=-3 bulunur. Buna göre f(2) = 2.2 + -3 = 1."
         },
         {
           "soru": "f(x) = 5x + 2 fonksiyonuna göre f(1) kaçtır?",
@@ -41820,30 +39612,6 @@
           "aciklama": "f(x) kuralında x yerine -5 yazılır: f(-5) = -3.(-5) + (8) = 15 + (8) = 23."
         },
         {
-          "soru": "f(x) = 3x fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(-3) kaçtır?",
-          "secenekler": [
-            "-1",
-            "2",
-            "-2",
-            "-3",
-            "0"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x)=ax+b için f⁻¹(x)=(x-b)/a'dır. f⁻¹(-3) = (-3-(0))/3 = -3/3 = -1."
-        },
-        {
-          "soru": "f(x) = 1/(x - 6) fonksiyonu hangi x değeri için tanımsızdır?",
-          "secenekler": [
-            "6",
-            "-6",
-            "8",
-            "7",
-            "5"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Bir kesrin paydası sıfır olamaz. x - (6) = 0 denkleminden x = 6 değeri fonksiyonu tanımsız kılar."
-        },
-        {
           "soru": "f(x) = -x^2 - 4x + 1 fonksiyonuna göre f(-3) kaçtır?",
           "secenekler": [
             "2",
@@ -41878,18 +39646,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "f(x) kuralında x yerine 7 yazılır: f(7) = 3.(7) + (-9) = 21 + (-9) = 12."
-        },
-        {
-          "soru": "f(x) = 4x - 6 ve g(x) = -2x + 4 fonksiyonlarına göre (g∘f)(2) kaçtır?",
-          "secenekler": [
-            "4",
-            "1",
-            "-1",
-            "0",
-            "2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Önce f(2) hesaplanır: f(2) = 4.2+-6 = 2. Sonra bu değer g'de x yerine yazılır: g(2) = -2.2+4 = 0. Yani (g∘f)(2) = 0."
         },
         {
           "soru": "f(x) = 5x - 6 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(4) kaçtır?",
@@ -41964,18 +39720,6 @@
           "aciklama": "y=2x eşitliğinde x ve y yer değiştirilirse x=2y olur; buradan y=x/2 bulunur, yani f⁻¹(x)=x/2."
         },
         {
-          "soru": "f(x) = 5x + 4 fonksiyonunun tersi f⁻¹ olduğuna göre f⁻¹(-11) kaçtır?",
-          "secenekler": [
-            "-3",
-            "-4",
-            "2",
-            "-2",
-            "-11"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x)=ax+b için f⁻¹(x)=(x-b)/a'dır. f⁻¹(-11) = (-11-(4))/5 = -15/5 = -3."
-        },
-        {
           "soru": "f(x) = 2x - 5 ve g(x) = -x - 4 fonksiyonlarına göre (g∘f)(0) kaçtır?",
           "secenekler": [
             "0",
@@ -41986,18 +39730,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Önce f(0) hesaplanır: f(0) = 2.0+-5 = -5. Sonra bu değer g'de x yerine yazılır: g(-5) = -1.-5+-4 = 1. Yani (g∘f)(0) = 1."
-        },
-        {
-          "soru": "f(x) = -3x - 4 fonksiyonuna göre f⁻¹(-7) kaçtır?",
-          "secenekler": [
-            "-2",
-            "0",
-            "-1",
-            "1",
-            "2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "f⁻¹(x) = (x-(-4))/-3 olduğundan f⁻¹(-7) = (-7-(-4))/-3 = -3/-3 = 1. (Kontrol: f(1) = -3.1+-4 = -7.)"
         },
         {
           "soru": "f(x) = 4x + 5 fonksiyonuna göre f(3) kaçtır?",
@@ -42180,18 +39912,6 @@
           "aciklama": "Bu cevabı seçenler, fonksiyonun tanımlandığı domaininin sadece 2'den farklı tüm gerçek sayıları kapsadığını ve 2 kritik nokta olmadığı için 1 tane kritik nokta olduğunu düşünmüş olabilir."
         },
         {
-          "soru": "f(x) = 2x + 1 fonksiyonu için, f(-2) değerini bulunuz.",
-          "secenekler": [
-            "-3",
-            "-1",
-            "1",
-            "3",
-            "5"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x) = 2x + 1 fonksiyonunda x yerine -2 yazılırsa f(-2) = 2x(-2) + 1 = -4 + 1 = -3 bulunur. Bu nedenle doğru cevap -3'tür (A seçeneği); B seçeneğindeki -1 değeri hatalı bir hesaptır."
-        },
-        {
           "soru": "f(x) = x^2 - 4x + 3 fonksiyonunun grafiğinde, fonksiyonun x eksenini kestiği noktaları bulunuz.",
           "secenekler": [
             "(1, 0), (3, 0)",
@@ -42214,18 +39934,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Simetri ekseni x = -b / 2a formülüyle bulunur. f(x) = x^2 - 2x - 3 için a = 1, b = -2 olduğundan x = -(-2) / (2x1) = 1 bulunur."
-        },
-        {
-          "soru": "f(x) = x^2 + 2x + 1 fonksiyonunun tepe noktasının koordinatları nedir?",
-          "secenekler": [
-            "(1, 0)",
-            "(-1, 0)",
-            "(0, 1)",
-            "(-1, 1)",
-            "(1, 1)"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "f(x) = x^2 + 2x + 1 = (x + 1)^2 olduğundan tepe noktasının x koordinatı x = -1'dir. f(-1) = (-1)^2 + 2x(-1) + 1 = 1 - 2 + 1 = 0 olduğundan tepe noktası (-1, 0)'dir."
         },
         {
           "soru": "f(x) = x^2 - 4x + 3 fonksiyonunun buiten değerinin maksimum ve minimum değerlerini bulunuz.",
@@ -42300,18 +40008,6 @@
           "aciklama": "Doğru cevap"
         },
         {
-          "soru": "f(x) = x^3 - 2x^2 + x - 1 fonksiyonunun 1 için değerini bulmak için x yerine 1 yazıldığında hesaplanan değer nedir?",
-          "secenekler": [
-            "1",
-            "0",
-            "-1",
-            "-2",
-            "-3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap"
-        },
-        {
           "soru": "f(x) = x^2 + 2x + 1 fonksiyonunun simetri ekseni nedir?",
           "secenekler": [
             "x = -2",
@@ -42346,18 +40042,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Soru setinde tanımlandığı haliyle bir fonksiyonun göreceli azalmış halı, fonksiyonun grafiğinin sağa doğru ötelenmesiyle ilişkilendirilir; bu yatay ötelemede fonksiyon değerleri x ekseni boyunca kayar, bu nedenle doğru seçenek E'dir."
-        },
-        {
-          "soru": "Bir fonksiyonun sabit bir fonksiyonu nedir?",
-          "secenekler": [
-            "Fonksiyonun grafikte sağa doğru kaymasıdır.",
-            "Fonksiyonun grafikte sola doğru kaymasıdır.",
-            "Fonksiyonun grafikte yukarı doğru kaymasıdır.",
-            "Fonksiyonun grafikte aşağı doğru kaymasıdır.",
-            "Fonksiyonun grafikte sağa doğru kayması ile sola doğru kayması arasında bir ilişki yoktur."
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Sabit bir fonksiyonda grafiğin sağa ya da sola kayması, fonksiyonun sabitliğini değiştirmez; bu iki kayma türü arasında doğrudan bir ilişki kurulamayacağını belirten E seçeneği bu nedenle doğru kabul edilir."
         },
         {
           "soru": "Bir fonksiyonun tersi nedir?",
@@ -42432,18 +40116,6 @@
           "aciklama": "Ücret fonksiyonu T(x) = 160 + 3·x biçimindedir. x=13 için T(13) = 160 + 3·13 = 160 + 39 = 199 TL."
         },
         {
-          "soru": "h(x) = 4x - 5 (x < 2) ; h(x) = -3x + 0 (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
-          "secenekler": [
-            "-4",
-            "3",
-            "-2",
-            "9",
-            "-9"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "-1 değeri x < 2 koşulunu sağladığından birinci parça kullanılır: h(-1) = -9."
-        },
-        {
           "soru": "f(x) = -4x + 3 ve g(x) = -6x - 3 fonksiyonlarına göre (g∘f)(6) kaçtır?",
           "secenekler": [
             "159",
@@ -42454,30 +40126,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Önce f(6) hesaplanır: f(6) = -4·(6)+(3) = -21. Sonra bu değer g fonksiyonunda x yerine yazılır: g(-21) = -6·(-21)+(-3) = 123. Yani (g∘f)(6) = 123."
-        },
-        {
-          "soru": "Ece iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 145 TL, her km için 6 TL; B planında sabit ücret 50 TL, her km için 11 TL alınmaktadır. Kaç km kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "19",
-            "11,47",
-            "24",
-            "-19",
-            "5,59"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "A planı: 145+6x, B planı: 50+11x. Eşitlik: 145+6x = 50+11x → 145-50 = (11-6)x → x = (95)/(5) = 19."
-        },
-        {
-          "soru": "g(x) = ax + b biçiminde bir doğrusal fonksiyon g(1) = -3 ve g(-5) = -39 koşullarını sağlıyor. Buna göre g(4) kaçtır?",
-          "secenekler": [
-            "-57",
-            "19",
-            "33",
-            "15",
-            "-15"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "a(x--5)=... yerine iki denklem kurulur: a·1+b=-3, a·-5+b=-39. Bu denklemlerin ortak çözümünden a=6, b=-9 bulunur. Buna göre g(4) = 6·4+-9 = 15."
         },
         {
           "soru": "h(x) = 1x^4 - 2x^2 - 2 fonksiyonu için aşağıdakilerden hangisi doğrudur?",
@@ -42504,18 +40152,6 @@
           "aciklama": "x yerine -2 yazılır: h(-2) = -3·(-2)^2 + 2·(-2) + 5 = -3·4 - 4 + 5 = -11."
         },
         {
-          "soru": "f(x) = -6x - 9 fonksiyonuna göre f(8) kaçtır?",
-          "secenekler": [
-            "57",
-            "-57",
-            "-78",
-            "-48",
-            "-7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "f(x) kuralında x yerine 8 yazılır: f(8) = -6·(8) - 9 = -48 - 9 = -57."
-        },
-        {
           "soru": "f(x) = 1/(x^2 - 81) fonksiyonu kaç farklı x değeri için tanımsızdır?",
           "secenekler": [
             "3",
@@ -42528,42 +40164,6 @@
           "aciklama": "Paydanın sıfır olduğu x değerleri f fonksiyonunu tanımsız yapar: x^2 - 81 = 0 → x^2 = 81 → x = 9 veya x = -9. Bu birbirinden farklı 2 değer olduğundan fonksiyon 2 farklı x değeri için tanımsızdır."
         },
         {
-          "soru": "g(x) = √(3x + 14) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "-3",
-            "5",
-            "4",
-            "-4",
-            "-5"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 3x + 14 ≥ 0 → x ≥ -14/3 = -4.67'dir. Bu koşulu sağlayan en küçük tam sayı x = -4'tir."
-        },
-        {
-          "soru": "g(x) = -4x - 1 fonksiyonuna göre g(4) kaçtır?",
-          "secenekler": [
-            "-17",
-            "17",
-            "-8",
-            "-1",
-            "-16"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "g(x) kuralında x yerine 4 yazılır: g(4) = -4·(4) - 1 = -16 - 1 = -17."
-        },
-        {
-          "soru": "g(x) = -7x + 4 (x < 1) ; g(x) = 6x - 6 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre g(-1) kaçtır?",
-          "secenekler": [
-            "-12",
-            "1",
-            "11",
-            "-11",
-            "-2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "-1 değeri x < 1 koşulunu sağladığından birinci parça kullanılır: g(-1) = 11."
-        },
-        {
           "soru": "f(x) = 1/((x-(5))·(x-(-1))) fonksiyonu hangi x değerleri için tanımsızdır?",
           "secenekler": [
             "x = 4 ve x = 6",
@@ -42574,66 +40174,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Payda sıfır olduğunda fonksiyon tanımsız olur: (x-(5))·(x-(-1)) = 0 denkleminden x = 5 veya x = -1 bulunur."
-        },
-        {
-          "soru": "f(x) = -7x - 3 (x < 1) ; f(x) = -6x + 1 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
-          "secenekler": [
-            "-9",
-            "5",
-            "-6",
-            "-5",
-            "-10"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "1 değeri x ≥ 1 koşulunu sağladığından ikinci parça kullanılır: f(1) = -5."
-        },
-        {
-          "soru": "f(x) = √(2x + 15) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "8",
-            "-7",
-            "-8",
-            "7",
-            "-6"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 2x + 15 ≥ 0 → x ≥ -15/2 = -7.50'dir. Bu koşulu sağlayan en küçük tam sayı x = -7'tir."
-        },
-        {
-          "soru": "f(x) = -3x + 2 (x < 1) ; f(x) = 6x + 4 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre f(3) kaçtır?",
-          "secenekler": [
-            "-7",
-            "22",
-            "20",
-            "-5",
-            "-22"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "3 değeri x ≥ 1 koşulunu sağladığından ikinci parça kullanılır: f(3) = 22."
-        },
-        {
-          "soru": "g(x) = -6x + 5 fonksiyonuna göre g(4) kaçtır?",
-          "secenekler": [
-            "3",
-            "14",
-            "-24",
-            "19",
-            "-19"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "g(x) kuralında x yerine 4 yazılır: g(4) = -6·(4) + 5 = -24 + 5 = -19."
-        },
-        {
-          "soru": "g(x) = -2x - 9 fonksiyonuna göre g(-6) kaçtır?",
-          "secenekler": [
-            "-3",
-            "12",
-            "52",
-            "-17",
-            "3"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "g(x) kuralında x yerine -6 yazılır: g(-6) = -2·(-6) - 9 = 12 - 9 = 3."
         },
         {
           "soru": "Bir kargo firması için sabit paketleme ücreti 60 TL, her kg için 4 TL ekleniyor. Cansu'nin 7 kg gönderi sonunda ödeyeceği toplam ücret kaç TL'dir?",
@@ -42684,18 +40224,6 @@
           "aciklama": "Önce g(3) hesaplanır: g(3) = -7·(3)+(1) = -20. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-20) = 5·(-20)+(1) = -99. Yani (f∘g)(3) = -99."
         },
         {
-          "soru": "f(x) = √(3x - 13) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "-5",
-            "4",
-            "-4",
-            "6",
-            "5"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 3x - 13 ≥ 0 → x ≥ 13/3 = 4.33'dir. Bu koşulu sağlayan en küçük tam sayı x = 5'tir."
-        },
-        {
           "soru": "h(x) = 1/((x-(-5))·(x-(-3))) fonksiyonu hangi x değerleri için tanımsızdır?",
           "secenekler": [
             "x = -5 ve x = -3",
@@ -42732,78 +40260,6 @@
           "aciklama": "x yerine 5 yazılır: g(5) = -2·(5)^2 + 4·(5) + 3 = -2·25 + 20 + 3 = -27."
         },
         {
-          "soru": "Bir sayı x için önce 5 ile çarpılıyor, sonra sonuca -5 ekleniyor, en son elde edilen değer 4 ile çarpılıyor ve sonuç 80 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "80",
-            "-5",
-            "4.25",
-            "21",
-            "5"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "İşlemler tersten çözülür: önce 80/4 = 20 bulunur (bu, 5x+-5 ifadesine eşittir). Sonra 5x+-5 = 20 denkleminden x = (20-(-5))/5 = 5 bulunur."
-        },
-        {
-          "soru": "h(x) = ax + b biçiminde bir doğrusal fonksiyon h(2) = 4 ve h(6) = 24 koşullarını sağlıyor. Buna göre h(-5) kaçtır?",
-          "secenekler": [
-            "31",
-            "-31",
-            "59",
-            "-19",
-            "-36"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "a(x-6)=... yerine iki denklem kurulur: a·2+b=4, a·6+b=24. Bu denklemlerin ortak çözümünden a=5, b=-6 bulunur. Buna göre h(-5) = 5·-5+-6 = -31."
-        },
-        {
-          "soru": "Aslı iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 190 TL, her GB için 5 TL; B planında sabit ücret 70 TL, her GB için 11 TL alınmaktadır. Kaç GB kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "20",
-            "16,25",
-            "7,5",
-            "26",
-            "-20"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "A planı: 190+5x, B planı: 70+11x. Eşitlik: 190+5x = 70+11x → 190-70 = (11-5)x → x = (120)/(6) = 20."
-        },
-        {
-          "soru": "f(x) = -7x - 5 fonksiyonuna göre f(-2) kaçtır?",
-          "secenekler": [
-            "-14",
-            "14",
-            "3",
-            "-9",
-            "9"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "f(x) kuralında x yerine -2 yazılır: f(-2) = -7·(-2) - 5 = 14 - 5 = 9."
-        },
-        {
-          "soru": "h(x) = -4x + 6 (x < -3) ; h(x) = 2x - 1 (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre h(-2) kaçtır?",
-          "secenekler": [
-            "-5",
-            "5",
-            "2",
-            "14",
-            "7"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "-2 değeri x ≥ -3 koşulunu sağladığından ikinci parça kullanılır: h(-2) = -5."
-        },
-        {
-          "soru": "Bir sayı x için önce 7 ile çarpılıyor, sonra sonuca -7 ekleniyor, en son elde edilen değer -3 ile çarpılıyor ve sonuç 63 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "-2",
-            "2",
-            "63",
-            "-3.33",
-            "16"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "İşlemler tersten çözülür: önce 63/-3 = -21 bulunur (bu, 7x+-7 ifadesine eşittir). Sonra 7x+-7 = -21 denkleminden x = (-21-(-7))/7 = -2 bulunur."
-        },
-        {
           "soru": "f(x) = -6x - 3 fonksiyonunun tanım kümesi [-7, 0] aralığı ile sınırlandırılmıştır. Bu durumda fonksiyonun değer kümesi (görüntü kümesi) nedir?",
           "secenekler": [
             "[39, -3]",
@@ -42816,18 +40272,6 @@
           "aciklama": "f(x) doğrusal ve katsayısı -6 olduğundan azalan bir fonksiyondur. f(-7)=39, f(0)=-3. Azalan olduğundan değer kümesi [-3, 39] aralığıdır."
         },
         {
-          "soru": "f(x) = √(4x + 6) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "2",
-            "0",
-            "-1",
-            "-2",
-            "1"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 4x + 6 ≥ 0 → x ≥ -6/4 = -1.50'dir. Bu koşulu sağlayan en küçük tam sayı x = -1'tir."
-        },
-        {
           "soru": "f(x) = 5x - 6 ve g(x) = 2x - 1 fonksiyonlarına göre (f∘g)(-4) kaçtır?",
           "secenekler": [
             "-26",
@@ -42838,30 +40282,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "Önce g(-4) hesaplanır: g(-4) = 2·(-4)+(-1) = -9. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-9) = 5·(-9)+(-6) = -51. Yani (f∘g)(-4) = -51."
-        },
-        {
-          "soru": "g(x) = -1x^2 + 1x - 6 fonksiyonuna göre g(-4) kaçtır?",
-          "secenekler": [
-            "-14",
-            "-26",
-            "-6",
-            "6",
-            "-2"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "x yerine -4 yazılır: g(-4) = -1·(-4)^2 + 1·(-4) - 6 = -1·16 - 4 - 6 = -26."
-        },
-        {
-          "soru": "Bir sayı x için önce -7 ile çarpılıyor, sonra sonuca 4 ekleniyor, en son elde edilen değer -4 ile çarpılıyor ve sonuç 124 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "127",
-            "4.29",
-            "-5",
-            "5",
-            "-21.71"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "İşlemler tersten çözülür: önce 124/-4 = -31 bulunur (bu, -7x+4 ifadesine eşittir). Sonra -7x+4 = -31 denkleminden x = (-31-(4))/-7 = 5 bulunur."
         },
         {
           "soru": "g(x) = 7x + 8 fonksiyonuna göre g⁻¹(22) kaçtır?",
@@ -42888,18 +40308,6 @@
           "aciklama": "f(x) = -2x^3 + 2x^2 + 1 ifadesi hem tek dereceli hem çift dereceli terimler içerdiğinden ne f(-x) = f(x) ne de f(-x) = -f(x) eşitliği her x için sağlanır; bu yüzden fonksiyon ne tektir ne de çifttir."
         },
         {
-          "soru": "Bir sayı x için önce 6 ile çarpılıyor, sonra sonuca 3 ekleniyor, en son elde edilen değer -3 ile çarpılıyor ve sonuç -63 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "-72",
-            "-13.5",
-            "3",
-            "-3",
-            "3.67"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İşlemler tersten çözülür: önce -63/-3 = 21 bulunur (bu, 6x+3 ifadesine eşittir). Sonra 6x+3 = 21 denkleminden x = (21-(3))/6 = 3 bulunur."
-        },
-        {
           "soru": "f(x) = -6x + 7 fonksiyonuna göre f⁻¹(-23) kaçtır?",
           "secenekler": [
             "131",
@@ -42924,18 +40332,6 @@
           "aciklama": "Paydanın sıfır olduğu x değerleri g fonksiyonunu tanımsız yapar: x^2 - 36 = 0 → x^2 = 36 → x = 6 veya x = -6. Bu birbirinden farklı 2 değer olduğundan fonksiyon 2 farklı x değeri için tanımsızdır."
         },
         {
-          "soru": "g(x) = -6x - 7 fonksiyonuna göre g(9) kaçtır?",
-          "secenekler": [
-            "-69",
-            "-61",
-            "61",
-            "-54",
-            "-4"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "g(x) kuralında x yerine 9 yazılır: g(9) = -6·(9) - 7 = -54 - 7 = -61."
-        },
-        {
           "soru": "f(x) = 3x^2 + 5x - 5 fonksiyonuna göre f(-1) kaçtır?",
           "secenekler": [
             "-16",
@@ -42958,18 +40354,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Payda sıfır olduğunda fonksiyon tanımsız olur: (x-(-1))·(x-(2)) = 0 denkleminden x = -1 veya x = 2 bulunur."
-        },
-        {
-          "soru": "Elif iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 150 TL, her ay için 6 TL; B planında sabit ücret 120 TL, her ay için 9 TL alınmaktadır. Kaç ay kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "10",
-            "-10",
-            "2",
-            "18",
-            "13"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "A planı: 150+6x, B planı: 120+9x. Eşitlik: 150+6x = 120+9x → 150-120 = (9-6)x → x = (30)/(3) = 10."
         },
         {
           "soru": "g(x) = -6x + 9 fonksiyonunun tanım kümesi [-7, -2] aralığı ile sınırlandırılmıştır. Bu durumda fonksiyonun değer kümesi (görüntü kümesi) nedir?",
@@ -43068,30 +40452,6 @@
           "aciklama": "x yerine -2 yazılır: f(-2) = -3·(-2)^2 - 3·(-2) + 2 = -3·4 + 6 + 2 = -4."
         },
         {
-          "soru": "f(x) = ax + b biçiminde bir doğrusal fonksiyon f(-4) = -7 ve f(-8) = -23 koşullarını sağlıyor. Buna göre f(1) kaçtır?",
-          "secenekler": [
-            "-5",
-            "13",
-            "-43",
-            "-13",
-            "14"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "a(x--8)=... yerine iki denklem kurulur: a·-4+b=-7, a·-8+b=-23. Bu denklemlerin ortak çözümünden a=4, b=9 bulunur. Buna göre f(1) = 4·1+9 = 13."
-        },
-        {
-          "soru": "g(x) = √(4x - 13) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "-3",
-            "3",
-            "4",
-            "-4",
-            "5"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 4x - 13 ≥ 0 → x ≥ 13/4 = 3.25'dir. Bu koşulu sağlayan en küçük tam sayı x = 4'tir."
-        },
-        {
           "soru": "f(x) = -5x - 4 ve g(x) = -5x - 5 fonksiyonlarına göre (g∘f)(-2) kaçtır?",
           "secenekler": [
             "5",
@@ -43116,18 +40476,6 @@
           "aciklama": "Önce f(6) hesaplanır: f(6) = -3·(6)+(6) = -12. Sonra bu değer g fonksiyonunda x yerine yazılır: g(-12) = 4·(-12)+(4) = -44. Yani (g∘f)(6) = -44."
         },
         {
-          "soru": "Bir sayı x için önce 3 ile çarpılıyor, sonra sonuca -3 ekleniyor, en son elde edilen değer 4 ile çarpılıyor ve sonuç 12 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "1.25",
-            "-2",
-            "7",
-            "2",
-            "12"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "İşlemler tersten çözülür: önce 12/4 = 3 bulunur (bu, 3x+-3 ifadesine eşittir). Sonra 3x+-3 = 3 denkleminden x = (3-(-3))/3 = 2 bulunur."
-        },
-        {
           "soru": "h(x) = -2x^2 - 5 fonksiyonuna göre h(-4) kaçtır?",
           "secenekler": [
             "3",
@@ -43150,18 +40498,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Payda sıfır olduğunda fonksiyon tanımsız olur: (x-(-4))·(x-(-3)) = 0 denkleminden x = -4 veya x = -3 bulunur."
-        },
-        {
-          "soru": "g(x) = -6x + 9 fonksiyonuna göre g(0) kaçtır?",
-          "secenekler": [
-            "3",
-            "9",
-            "-6",
-            "-9",
-            "0"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "g(x) kuralında x yerine 0 yazılır: g(0) = -6·(0) + 9 = 0 + 9 = 9."
         },
         {
           "soru": "g(x) = 7x + 2 fonksiyonuna göre g⁻¹(16) kaçtır?",
@@ -43210,18 +40546,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Ücret fonksiyonu T(x) = 60 + 7·x biçimindedir. x=11 için T(11) = 60 + 7·11 = 60 + 77 = 137 TL."
-        },
-        {
-          "soru": "f(x) = 3x + 1 fonksiyonuna göre f(-8) kaçtır?",
-          "secenekler": [
-            "-23",
-            "-24",
-            "23",
-            "-5",
-            "-4"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x) kuralında x yerine -8 yazılır: f(-8) = 3·(-8) + 1 = -24 + 1 = -23."
         },
         {
           "soru": "Bir elektrik faturası için sabit ücret 85 TL, her kWh için 10 TL ekleniyor. Selin'nin 12 kWh tüketim sonunda ödeyeceği toplam ücret kaç TL'dir?",
@@ -43284,18 +40608,6 @@
           "aciklama": "f(x) = -3x^3 + 3x ifadesindeki tüm terimlerin üsleri tek sayıdır (sabit terim yoktur), bu yüzden f(-x) = -f(x) eşitliği her x için sağlanır ve fonksiyon tektir."
         },
         {
-          "soru": "h(x) = ax + b biçiminde bir doğrusal fonksiyon h(2) = 5 ve h(-7) = -13 koşullarını sağlıyor. Buna göre h(5) kaçtır?",
-          "secenekler": [
-            "-19",
-            "-11",
-            "9",
-            "11",
-            "16"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "a(x--7)=... yerine iki denklem kurulur: a·2+b=5, a·-7+b=-13. Bu denklemlerin ortak çözümünden a=2, b=1 bulunur. Buna göre h(5) = 2·5+1 = 11."
-        },
-        {
           "soru": "f(x) = -5x - 3 fonksiyonuna göre f⁻¹(-38) kaçtır?",
           "secenekler": [
             "193",
@@ -43318,42 +40630,6 @@
           ],
           "dogruIndex": 1,
           "aciklama": "g⁻¹(x) = (x-(8))/-7 olduğundan g⁻¹(-6) = (-6-(8))/-7 = -14/-7 = 2. (Kontrol: g(2) = -7·2+(8) = -6.)"
-        },
-        {
-          "soru": "g(x) = ax + b biçiminde bir doğrusal fonksiyon g(5) = -4 ve g(-3) = 12 koşullarını sağlıyor. Buna göre g(-6) kaçtır?",
-          "secenekler": [
-            "12",
-            "-18",
-            "-10",
-            "18",
-            "6"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "a(x--3)=... yerine iki denklem kurulur: a·5+b=-4, a·-3+b=12. Bu denklemlerin ortak çözümünden a=-2, b=6 bulunur. Buna göre g(-6) = -2·-6+6 = 18."
-        },
-        {
-          "soru": "g(x) = -5x - 1 (x < -3) ; g(x) = -3x + 1 (x ≥ -3) biçiminde tanımlanan parçalı fonksiyona göre g(-8) kaçtır?",
-          "secenekler": [
-            "25",
-            "-39",
-            "23",
-            "41",
-            "39"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "-8 değeri x < -3 koşulunu sağladığından birinci parça kullanılır: g(-8) = 39."
-        },
-        {
-          "soru": "f(x) = √(5x - 18) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "5",
-            "4",
-            "3",
-            "-4",
-            "-3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 5x - 18 ≥ 0 → x ≥ 18/5 = 3.60'dir. Bu koşulu sağlayan en küçük tam sayı x = 4'tir."
         },
         {
           "soru": "g(x) = -3x^4 + 2 fonksiyonu için aşağıdakilerden hangisi doğrudur?",
@@ -43416,18 +40692,6 @@
           "aciklama": "Önce g(4) hesaplanır: g(4) = 5·(4)+(1) = 21. Sonra bu değer f fonksiyonunda x yerine yazılır: f(21) = 6·(21)+(2) = 128. Yani (f∘g)(4) = 128."
         },
         {
-          "soru": "f(x) = 5x - 4 (x < 0) ; f(x) = 2x + 4 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre f(4) kaçtır?",
-          "secenekler": [
-            "12",
-            "-12",
-            "16",
-            "24",
-            "4"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "4 değeri x ≥ 0 koşulunu sağladığından ikinci parça kullanılır: f(4) = 12."
-        },
-        {
           "soru": "f(x) = 6x + 0 ve g(x) = 2x - 6 fonksiyonlarına göre (f∘g)(-2) kaçtır?",
           "secenekler": [
             "-60",
@@ -43438,18 +40702,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Önce g(-2) hesaplanır: g(-2) = 2·(-2)+(-6) = -10. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-10) = 6·(-10)+(0) = -60. Yani (f∘g)(-2) = -60."
-        },
-        {
-          "soru": "h(x) = -4x + 6 (x < 0) ; h(x) = -2x + 1 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-1) kaçtır?",
-          "secenekler": [
-            "-10",
-            "5",
-            "8",
-            "10",
-            "3"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "-1 değeri x < 0 koşulunu sağladığından birinci parça kullanılır: h(-1) = 10."
         },
         {
           "soru": "Bir taksi için sayaç açılış ücreti 55 TL, her km için 4 TL ekleniyor. Zeynep'nin 12 km yolculuk sonunda ödeyeceği toplam ücret kaç TL'dir?",
@@ -43476,30 +40728,6 @@
           "aciklama": "f(x) doğrusal ve katsayısı -6 olduğundan azalan bir fonksiyondur. f(-6)=45, f(-3)=27. Azalan olduğundan değer kümesi [27, 45] aralığıdır."
         },
         {
-          "soru": "g(x) = -7x - 8 fonksiyonuna göre g(9) kaçtır?",
-          "secenekler": [
-            "-6",
-            "-79",
-            "71",
-            "-71",
-            "-63"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "g(x) kuralında x yerine 9 yazılır: g(9) = -7·(9) - 8 = -63 - 8 = -71."
-        },
-        {
-          "soru": "f(x) = -7x - 1 (x < -1) ; f(x) = 7x - 3 (x ≥ -1) biçiminde tanımlanan parçalı fonksiyona göre f(2) kaçtır?",
-          "secenekler": [
-            "11",
-            "-17",
-            "13",
-            "-15",
-            "-11"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "2 değeri x ≥ -1 koşulunu sağladığından ikinci parça kullanılır: f(2) = 11."
-        },
-        {
           "soru": "h(x) = 3x^3 - 3x fonksiyonu için aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "h fonksiyonu sabit bir fonksiyondur.",
@@ -43510,30 +40738,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "h(x) = 3x^3 - 3x ifadesindeki tüm terimlerin üsleri tek sayıdır (sabit terim yoktur), bu yüzden h(-x) = -h(x) eşitliği her x için sağlanır ve fonksiyon tektir."
-        },
-        {
-          "soru": "f(x) = -3x - 1 fonksiyonuna göre f(4) kaçtır?",
-          "secenekler": [
-            "13",
-            "-12",
-            "-13",
-            "-7",
-            "0"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "f(x) kuralında x yerine 4 yazılır: f(4) = -3·(4) - 1 = -12 - 1 = -13."
-        },
-        {
-          "soru": "g(x) = √(3x - 20) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "7",
-            "-6",
-            "6",
-            "8",
-            "-7"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 3x - 20 ≥ 0 → x ≥ 20/3 = 6.67'dir. Bu koşulu sağlayan en küçük tam sayı x = 7'tir."
         },
         {
           "soru": "f(x) = -3x^4 - 3x^2 + 2 fonksiyonu için aşağıdakilerden hangisi doğrudur?",
@@ -43608,30 +40812,6 @@
           "aciklama": "f⁻¹(x) = (x-(-8))/7 olduğundan f⁻¹(-22) = (-22-(-8))/7 = -14/7 = -2. (Kontrol: f(-2) = 7·-2+(-8) = -22.)"
         },
         {
-          "soru": "Ayşe iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 96 TL, her ay için 6 TL; B planında sabit ücret 60 TL, her ay için 12 TL alınmaktadır. Kaç ay kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "6",
-            "12",
-            "2",
-            "-6",
-            "8,67"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "A planı: 96+6x, B planı: 60+12x. Eşitlik: 96+6x = 60+12x → 96-60 = (12-6)x → x = (36)/(6) = 6."
-        },
-        {
-          "soru": "Bir sayı x için önce -7 ile çarpılıyor, sonra sonuca -8 ekleniyor, en son elde edilen değer 2 ile çarpılıyor ve sonuç -2 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "13",
-            "8.29",
-            "-1",
-            "1",
-            "-0.43"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İşlemler tersten çözülür: önce -2/2 = -1 bulunur (bu, -7x+-8 ifadesine eşittir). Sonra -7x+-8 = -1 denkleminden x = (-1-(-8))/-7 = -1 bulunur."
-        },
-        {
           "soru": "h(x) = 1/((x-(7))·(x-(-3))) fonksiyonu hangi x değerleri için tanımsızdır?",
           "secenekler": [
             "x = 7 ve x = -3",
@@ -43654,18 +40834,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Ücret fonksiyonu T(x) = 20 + 7·x biçimindedir. x=6 için T(6) = 20 + 7·6 = 20 + 42 = 62 TL."
-        },
-        {
-          "soru": "h(x) = √(2x - 9) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "6",
-            "-4",
-            "5",
-            "-5",
-            "4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 2x - 9 ≥ 0 → x ≥ 9/2 = 4.50'dir. Bu koşulu sağlayan en küçük tam sayı x = 5'tir."
         },
         {
           "soru": "g(x) = -3x^2 + 5x + 5 fonksiyonuna göre g(-4) kaçtır?",
@@ -43692,18 +40860,6 @@
           "aciklama": "f⁻¹(x) = (x-(-8))/-6 olduğundan f⁻¹(-20) = (-20-(-8))/-6 = -12/-6 = 2. (Kontrol: f(2) = -6·2+(-8) = -20.)"
         },
         {
-          "soru": "f(x) = -2x + 6 fonksiyonuna göre f(-4) kaçtır?",
-          "secenekler": [
-            "14",
-            "8",
-            "-26",
-            "-14",
-            "0"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "f(x) kuralında x yerine -4 yazılır: f(-4) = -2·(-4) + 6 = 8 + 6 = 14."
-        },
-        {
           "soru": "g(x) = 5x - 8 fonksiyonuna göre g⁻¹(7) kaçtır?",
           "secenekler": [
             "-0.25",
@@ -43728,42 +40884,6 @@
           "aciklama": "Ücret fonksiyonu T(x) = 90 + 15·x biçimindedir. x=12 için T(12) = 90 + 15·12 = 90 + 180 = 270 TL."
         },
         {
-          "soru": "Bir sayı x için önce -6 ile çarpılıyor, sonra sonuca -7 ekleniyor, en son elde edilen değer 3 ile çarpılıyor ve sonuç 51 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "-3.22",
-            "4",
-            "-4",
-            "-1.5",
-            "64"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İşlemler tersten çözülür: önce 51/3 = 17 bulunur (bu, -6x+-7 ifadesine eşittir). Sonra -6x+-7 = 17 denkleminden x = (17-(-7))/-6 = -4 bulunur."
-        },
-        {
-          "soru": "h(x) = ax + b biçiminde bir doğrusal fonksiyon h(-7) = -24 ve h(8) = 36 koşullarını sağlıyor. Buna göre h(3) kaçtır?",
-          "secenekler": [
-            "8",
-            "-4",
-            "-16",
-            "19",
-            "16"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "a(x-8)=... yerine iki denklem kurulur: a·-7+b=-24, a·8+b=36. Bu denklemlerin ortak çözümünden a=4, b=4 bulunur. Buna göre h(3) = 4·3+4 = 16."
-        },
-        {
-          "soru": "Bir sayı x için önce -7 ile çarpılıyor, sonra sonuca -9 ekleniyor, en son elde edilen değer -3 ile çarpılıyor ve sonuç 48 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "1",
-            "2.71",
-            "64",
-            "-1",
-            "2.14"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "İşlemler tersten çözülür: önce 48/-3 = -16 bulunur (bu, -7x+-9 ifadesine eşittir). Sonra -7x+-9 = -16 denkleminden x = (-16-(-9))/-7 = 1 bulunur."
-        },
-        {
           "soru": "h(x) = -4x - 6 fonksiyonuna göre h⁻¹(-18) kaçtır?",
           "secenekler": [
             "48",
@@ -43774,18 +40894,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "h⁻¹(x) = (x-(-6))/-4 olduğundan h⁻¹(-18) = (-18-(-6))/-4 = -12/-4 = 3. (Kontrol: h(3) = -4·3+(-6) = -18.)"
-        },
-        {
-          "soru": "g(x) = -5x + 1 fonksiyonuna göre g(3) kaçtır?",
-          "secenekler": [
-            "14",
-            "-15",
-            "-14",
-            "-1",
-            "-2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "g(x) kuralında x yerine 3 yazılır: g(3) = -5·(3) + 1 = -15 + 1 = -14."
         },
         {
           "soru": "h(x) = 3x^2 + 5x + 1 fonksiyonuna göre h(4) kaçtır?",
@@ -43800,18 +40908,6 @@
           "aciklama": "x yerine 4 yazılır: h(4) = 3·(4)^2 + 5·(4) + 1 = 3·16 + 20 + 1 = 69."
         },
         {
-          "soru": "f(x) = 5x - 5 fonksiyonuna göre f⁻¹(30) kaçtır?",
-          "secenekler": [
-            "155",
-            "7",
-            "5",
-            "175",
-            "-5"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "f⁻¹(x) = (x-(-5))/5 olduğundan f⁻¹(30) = (30-(-5))/5 = 35/5 = 7. (Kontrol: f(7) = 5·7+(-5) = 30.)"
-        },
-        {
           "soru": "Bir otopark için giriş ücreti 55 TL, her saat için 4 TL ekleniyor. Cansu'nin 18 saat park sonunda ödeyeceği toplam ücret kaç TL'dir?",
           "secenekler": [
             "127",
@@ -43822,18 +40918,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Ücret fonksiyonu T(x) = 55 + 4·x biçimindedir. x=18 için T(18) = 55 + 4·18 = 55 + 72 = 127 TL."
-        },
-        {
-          "soru": "f(x) = -5x - 6 fonksiyonuna göre f(4) kaçtır?",
-          "secenekler": [
-            "-7",
-            "-26",
-            "-20",
-            "-29",
-            "26"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "f(x) kuralında x yerine 4 yazılır: f(4) = -5·(4) - 6 = -20 - 6 = -26."
         },
         {
           "soru": "Bir baskı dükkanı için sabit kurulum ücreti 125 TL, her sayfa için 10 TL ekleniyor. Aslı'nin 11 sayfa baskı sonunda ödeyeceği toplam ücret kaç TL'dir?",
@@ -43860,30 +40944,6 @@
           "aciklama": "Paydanın sıfır olduğu x değerleri f fonksiyonunu tanımsız yapar: x^2 - 9 = 0 → x^2 = 9 → x = 3 veya x = -3. Bu birbirinden farklı 2 değer olduğundan fonksiyon 2 farklı x değeri için tanımsızdır."
         },
         {
-          "soru": "Gizem iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 102 TL, her kWh için 4 TL; B planında sabit ücret 90 TL, her kWh için 5 TL alınmaktadır. Kaç kWh kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "12",
-            "13",
-            "-12",
-            "21,33",
-            "1,33"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "A planı: 102+4x, B planı: 90+5x. Eşitlik: 102+4x = 90+5x → 102-90 = (5-4)x → x = (12)/(1) = 12."
-        },
-        {
-          "soru": "h(x) = √(4x + 9) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "2",
-            "-2",
-            "-1",
-            "3",
-            "-3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 4x + 9 ≥ 0 → x ≥ -9/4 = -2.25'dir. Bu koşulu sağlayan en küçük tam sayı x = -2'tir."
-        },
-        {
           "soru": "f(x) = -3x + 4 ve g(x) = -7x + 6 fonksiyonlarına göre (f∘g)(3) kaçtır?",
           "secenekler": [
             "67",
@@ -43894,42 +40954,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Önce g(3) hesaplanır: g(3) = -7·(3)+(6) = -15. Sonra bu değer f fonksiyonunda x yerine yazılır: f(-15) = -3·(-15)+(4) = 49. Yani (f∘g)(3) = 49."
-        },
-        {
-          "soru": "f(x) = 3x + 4 (x < 4) ; f(x) = -3x - 3 (x ≥ 4) biçiminde tanımlanan parçalı fonksiyona göre f(1) kaçtır?",
-          "secenekler": [
-            "1",
-            "-6",
-            "7",
-            "-7",
-            "0"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "1 değeri x < 4 koşulunu sağladığından birinci parça kullanılır: f(1) = 7."
-        },
-        {
-          "soru": "Bir sayı x için önce 2 ile çarpılıyor, sonra sonuca 7 ekleniyor, en son elde edilen değer 4 ile çarpılıyor ve sonuç -4 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "4",
-            "-9",
-            "-4",
-            "-1.38",
-            "-13"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İşlemler tersten çözülür: önce -4/4 = -1 bulunur (bu, 2x+7 ifadesine eşittir). Sonra 2x+7 = -1 denkleminden x = (-1-(7))/2 = -4 bulunur."
-        },
-        {
-          "soru": "Selin iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 100 TL, her dakika için 5 TL; B planında sabit ücret 60 TL, her dakika için 9 TL alınmaktadır. Kaç dakika kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "2,86",
-            "11,43",
-            "10",
-            "-10",
-            "14"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "A planı: 100+5x, B planı: 60+9x. Eşitlik: 100+5x = 60+9x → 100-60 = (9-5)x → x = (40)/(4) = 10."
         },
         {
           "soru": "f(x) = -2x - 7 fonksiyonunun tanım kümesi [-6, -2] aralığı ile sınırlandırılmıştır. Bu durumda fonksiyonun değer kümesi (görüntü kümesi) nedir?",
@@ -43968,30 +40992,6 @@
           "aciklama": "Paydanın sıfır olduğu x değerleri g fonksiyonunu tanımsız yapar: x^2 - 25 = 0 → x^2 = 25 → x = 5 veya x = -5. Bu birbirinden farklı 2 değer olduğundan fonksiyon 2 farklı x değeri için tanımsızdır."
         },
         {
-          "soru": "g(x) = -5x - 9 fonksiyonuna göre g(-6) kaçtır?",
-          "secenekler": [
-            "-21",
-            "21",
-            "30",
-            "49",
-            "-20"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "g(x) kuralında x yerine -6 yazılır: g(-6) = -5·(-6) - 9 = 30 - 9 = 21."
-        },
-        {
-          "soru": "h(x) = √(2x - 7) fonksiyonunun tanımlı olabilmesi için x en az kaç tam sayı olmalıdır?",
-          "secenekler": [
-            "-3",
-            "5",
-            "4",
-            "3",
-            "-4"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Karekök içinin negatif olmaması gerekir: 2x - 7 ≥ 0 → x ≥ 7/2 = 3.50'dir. Bu koşulu sağlayan en küçük tam sayı x = 4'tir."
-        },
-        {
           "soru": "f(x) = 3x - 2 ve g(x) = 7x - 5 fonksiyonlarına göre (g∘f)(5) kaçtır?",
           "secenekler": [
             "86",
@@ -44002,30 +41002,6 @@
           ],
           "dogruIndex": 0,
           "aciklama": "Önce f(5) hesaplanır: f(5) = 3·(5)+(-2) = 13. Sonra bu değer g fonksiyonunda x yerine yazılır: g(13) = 7·(13)+(-5) = 86. Yani (g∘f)(5) = 86."
-        },
-        {
-          "soru": "Bir sayı x için önce 3 ile çarpılıyor, sonra sonuca 4 ekleniyor, en son elde edilen değer -3 ile çarpılıyor ve sonuç -66 çıkıyor. Başlangıçtaki x sayısı kaçtır?",
-          "secenekler": [
-            "-73",
-            "-6",
-            "-26",
-            "7.78",
-            "6"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "İşlemler tersten çözülür: önce -66/-3 = 22 bulunur (bu, 3x+4 ifadesine eşittir). Sonra 3x+4 = 22 denkleminden x = (22-(4))/3 = 6 bulunur."
-        },
-        {
-          "soru": "f(x) = -5x - 6 (x < 2) ; f(x) = 4x - 4 (x ≥ 2) biçiminde tanımlanan parçalı fonksiyona göre f(6) kaçtır?",
-          "secenekler": [
-            "-34",
-            "20",
-            "-36",
-            "18",
-            "-20"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "6 değeri x ≥ 2 koşulunu sağladığından ikinci parça kullanılır: f(6) = 20."
         },
         {
           "soru": "g(x) = 5x - 6 fonksiyonuna göre g⁻¹(19) kaçtır?",
@@ -44076,54 +41052,6 @@
           "aciklama": "g(x) doğrusal ve katsayısı -3 olduğundan azalan bir fonksiyondur. g(-7)=25, g(5)=-11. Azalan olduğundan değer kümesi [-11, 25] aralığıdır."
         },
         {
-          "soru": "Ayşe iki farklı plan arasında seçim yapacaktır. A planında sabit ücret 154 TL, her dakika için 4 TL; B planında sabit ücret 120 TL, her dakika için 6 TL alınmaktadır. Kaç dakika kullanımda iki planın toplam ücreti birbirine eşit olur?",
-          "secenekler": [
-            "-17",
-            "27,4",
-            "19",
-            "3,4",
-            "17"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "A planı: 154+4x, B planı: 120+6x. Eşitlik: 154+4x = 120+6x → 154-120 = (6-4)x → x = (34)/(2) = 17."
-        },
-        {
-          "soru": "g(x) = -3x - 5 fonksiyonuna göre g(-5) kaçtır?",
-          "secenekler": [
-            "10",
-            "-13",
-            "22",
-            "15",
-            "-10"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "g(x) kuralında x yerine -5 yazılır: g(-5) = -3·(-5) - 5 = 15 - 5 = 10."
-        },
-        {
-          "soru": "g(x) = 2x^2 + 2x + 9 fonksiyonuna göre g(-4) kaçtır?",
-          "secenekler": [
-            "15",
-            "65",
-            "33",
-            "-7",
-            "-15"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "x yerine -4 yazılır: g(-4) = 2·(-4)^2 + 2·(-4) + 9 = 2·16 - 8 + 9 = 33."
-        },
-        {
-          "soru": "h(x) = -2x + 4 (x < 1) ; h(x) = 5x + 5 (x ≥ 1) biçiminde tanımlanan parçalı fonksiyona göre h(6) kaçtır?",
-          "secenekler": [
-            "-7",
-            "-35",
-            "-8",
-            "35",
-            "34"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "6 değeri x ≥ 1 koşulunu sağladığından ikinci parça kullanılır: h(6) = 35."
-        },
-        {
           "soru": "f(x) = -3x^2 + 1x - 9 fonksiyonuna göre f(-3) kaçtır?",
           "secenekler": [
             "6",
@@ -44160,18 +41088,6 @@
           "aciklama": "Önce f(-5) hesaplanır: f(-5) = -7·(-5)+(-3) = 32. Sonra bu değer g fonksiyonunda x yerine yazılır: g(32) = -3·(32)+(-6) = -102. Yani (g∘f)(-5) = -102."
         },
         {
-          "soru": "h(x) = -7x - 5 (x < 0) ; h(x) = 2x - 4 (x ≥ 0) biçiminde tanımlanan parçalı fonksiyona göre h(-5) kaçtır?",
-          "secenekler": [
-            "-14",
-            "30",
-            "31",
-            "-30",
-            "-15"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "-5 değeri x < 0 koşulunu sağladığından birinci parça kullanılır: h(-5) = 30."
-        },
-        {
           "soru": "h(x) = 1/((x-(7))·(x-(6))) fonksiyonu hangi x değerleri için tanımsızdır?",
           "secenekler": [
             "x = 13 ve x = 1",
@@ -44182,18 +41098,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Payda sıfır olduğunda fonksiyon tanımsız olur: (x-(7))·(x-(6)) = 0 denkleminden x = 7 veya x = 6 bulunur."
-        },
-        {
-          "soru": "g(x) = ax + b biçiminde bir doğrusal fonksiyon g(7) = 43 ve g(-8) = -47 koşullarını sağlıyor. Buna göre g(3) kaçtır?",
-          "secenekler": [
-            "-23",
-            "-19",
-            "17",
-            "22",
-            "19"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "a(x--8)=... yerine iki denklem kurulur: a·7+b=43, a·-8+b=-47. Bu denklemlerin ortak çözümünden a=6, b=1 bulunur. Buna göre g(3) = 6·3+1 = 19."
         }
       ]
     },
@@ -46713,18 +43617,6 @@
           "aciklama": "Dizide her terim bir öncekinin 3 katıdır (geometrik dizi, ortak çarpan r=3). Son terim 1458 olduğundan bir sonraki terim 1458 × 3 = 4374 olur."
         },
         {
-          "soru": "Ardışık 6 tek sayının toplamı 48'dir. Buna göre bu sayılardan en küçüğü kaçtır?",
-          "secenekler": [
-            "1",
-            "3",
-            "-1",
-            "5",
-            "7"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Sayılar a, a+2, ..., a+10 olsun. Toplamları 6a + 30 = 48 olduğundan a = 3 bulunur."
-        },
-        {
           "soru": "6, 9, 15, 24, 39, ? şeklinde devam eden dizide her terim kendinden önceki iki terimin toplamıdır. Buna göre '?' yerine gelmesi gereken sayı kaçtır?",
           "secenekler": [
             "101",
@@ -47681,30 +44573,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "A∩B kümesi, hem A hem B'de bulunan ortak elemanlardan oluşur: A∩B = {3, 10}."
-        },
-        {
-          "soru": "A = {2, 3, 6} ve B = {1, 4, 8, 9} kümeleri veriliyor. B-A kümesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "{1, 4, 8, 9}",
-            "{1, 2, 3, 4, 6, 8, 9}",
-            "{2, 3, 6}",
-            "{0, 4, 8, 9}",
-            "{3, 4, 8, 9}"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "B-A kümesi, B'de olup A'da olmayan elemanlardan oluşur: B-A = {1, 4, 8, 9}."
-        },
-        {
-          "soru": "A = {1, 6, 12, 14} ve B = {2, 5, 7, 15} kümeleri veriliyor. A-B kümesi aşağıdakilerden hangisidir?",
-          "secenekler": [
-            "{3, 6, 12, 14}",
-            "{2, 5, 7, 15}",
-            "{1, 6, 12, 14}",
-            "{0, 6, 12, 14}",
-            "{1, 2, 5, 6, 7, 12, 14, 15}"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "A-B kümesi, A'da olup B'de olmayan elemanlardan oluşur: A-B = {1, 6, 12, 14}."
         },
         {
           "soru": "A = {3, 6, 7, 12, 14} ve B = {6, 9, 10, 11, 14} kümeleri veriliyor. B-A kümesi aşağıdakilerden hangisidir?",
@@ -63482,30 +60350,6 @@
           "aciklama": "(6+10)/2 = 16/2 = 8. 16 seçeneği bölmeyi unutmaktan kaynaklanır."
         },
         {
-          "soru": "a*b = a + b + 5 işlemi için birim (etkisiz) eleman kaçtır?",
-          "secenekler": [
-            "5",
-            "-5",
-            "0",
-            "-10",
-            "10"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Birim eleman e için a*e=a olmalı: a+e+5=a → e=-5. Toplama biçimli a+b+k işleminde birim eleman -k'dır."
-        },
-        {
-          "soru": "a*b = a + b - 3 işleminde birim eleman 3'tür. Buna göre 4 sayısının tersi kaçtır?",
-          "secenekler": [
-            "6",
-            "4",
-            "0",
-            "2",
-            "-2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Ters eleman için a*a⁻¹ = birim eleman: 4+x-3 = 3 → x = 2 bulunur."
-        },
-        {
           "soru": "Aşağıda verilen işlemlerden hangisi değişme (komütatif) özelliğine sahiptir?",
           "secenekler": [
             "a*b = 2a + b",
@@ -63674,18 +60518,6 @@
           "aciklama": "3*5 = 3+10 = 13 ve 5*3 = 5+6 = 11'dir. Toplam 13+11 = 24 olur (işlem değişmeli değildir)."
         },
         {
-          "soru": "a∆b = ab + a + b kuralıyla tanımlı işlemin birim (etkisiz) elemanı kaçtır?",
-          "secenekler": [
-            "0",
-            "1",
-            "-1",
-            "2",
-            "-2"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "a∆e = a olmalı: ae + a + e = a → e(a+1) = 0 → her a için e = 0 bulunur."
-        },
-        {
           "soru": "5x ≡ 3 (mod 7) denkliğini sağlayan en küçük pozitif x tam sayısı kaçtır?",
           "secenekler": [
             "1",
@@ -63842,18 +60674,6 @@
           "aciklama": "2^10 = 1024, 1024 = 7·146 + 2 olduğundan kalan 2'dir. (Ayrıca 2³=8≡1, 2^10=2^9·2≡1·2=2.)"
         },
         {
-          "soru": "a*b = a + b - ab kuralıyla tanımlı işlemde 2*3 kaçtır?",
-          "secenekler": [
-            "1",
-            "0",
-            "-1",
-            "-2",
-            "5"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "2 + 3 - 2·3 = 5 - 6 = -1 bulunur."
-        },
-        {
           "soru": "Bir işçi saat 08:00'de işe başlıyor ve aralıksız 19 saat çalışıyor. İşi bitirdiğinde saat kaç olur? (24 saatlik gösterim)",
           "secenekler": [
             "03:00",
@@ -63900,18 +60720,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "2 hafta günü değiştirmez; sadece 3 gün ileri gidilir. Çarşamba'dan 3 gün sonra Cumartesi olur."
-        },
-        {
-          "soru": "Gerçek sayılar kümesinde a*b = a + b + 4 biçiminde tanımlanan işlemin birim elemanı kaçtır?",
-          "secenekler": [
-            "-4",
-            "-2",
-            "0",
-            "2",
-            "8"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Birim eleman e için a*e = a olmalı: a + e + 4 = a, buradan e + 4 = 0 ve e = -4 bulunur. Diğer değerler bu eşitliği sağlamaz."
         },
         {
           "soru": "Gerçek sayılarda a*b = a + b - 6 işlemi tanımlanıyor. Buna göre 5 sayısının bu işleme göre tersi kaçtır?",
@@ -64166,30 +60974,6 @@
           "aciklama": "Toplamsal ters x için 5 + x ≡ 0 (mod 6) olmalı. 5 + 1 = 6 ≡ 0 (mod 6) olduğundan ters 1'dir."
         },
         {
-          "soru": "Gerçek sayılarda a*b = a + b + ab işleminin birim elemanı kaçtır?",
-          "secenekler": [
-            "-1",
-            "0",
-            "1",
-            "2",
-            "-2"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Birim eleman e için a*e = a: a + e + ae = a, yani e + ae = 0, e(1 + a) = 0. Her a için sağlanması gerektiğinden e = 0'dır."
-        },
-        {
-          "soru": "Gerçek sayılarda a*b = a + b + ab işlemi tanımlanıyor (birim eleman 0'dır). Buna göre 3 sayısının bu işleme göre tersi kaçtır?",
-          "secenekler": [
-            "-1/3",
-            "-3/4",
-            "-4/3",
-            "3/4",
-            "-1/4"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Ters x için 3*x = 0: 3 + x + 3x = 0, yani 4x = -3, x = -3/4 bulunur."
-        },
-        {
           "soru": "Aşağıdaki işlemlerden hangisi değişme (komütatif) özelliğine sahip DEĞİLDİR?",
           "secenekler": [
             "a*b = a + b",
@@ -64212,18 +60996,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "Önce 1*2 = 1 + 2·2 = 5. Sonra 5*3 = 5 + 2·3 = 11 bulunur. (Not: bu işlem birleşme özelliği taşımaz.)"
-        },
-        {
-          "soru": "a*b = 2a - b biçiminde tanımlanan işlem için 3*4 ifadesinin değeri kaçtır?",
-          "secenekler": [
-            "1",
-            "2",
-            "5",
-            "10",
-            "-2"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "3*4 = 2·3 - 4 = 6 - 4 = 2 bulunur."
         },
         {
           "soru": "a△b = a² + b² biçiminde tanımlanan işlem için 2△3 ifadesinin değeri kaçtır?",
@@ -64298,18 +61070,6 @@
           "aciklama": "10 ile bölümden kalan, birler basamağıdır. 7'nin periyodu 7,9,3,1; 2023 ≡ 3 (mod 4) olduğundan 3'tür."
         },
         {
-          "soru": "Gerçek sayılarda a*b = a + b + 7 biçiminde tanımlanan işlemin birim elemanı kaçtır?",
-          "secenekler": [
-            "-7",
-            "-3",
-            "0",
-            "3",
-            "7"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Birim eleman e için a + e + 7 = a olmalı: e + 7 = 0, e = -7 bulunur."
-        },
-        {
           "soru": "24 saat formatlı bir saat şu an 10:00'u göstermektedir. 30 saat sonra saat kaçı gösterir?",
           "secenekler": [
             "14:00",
@@ -64356,18 +61116,6 @@
           ],
           "dogruIndex": 4,
           "aciklama": "Toplama işleminde birim eleman, her a için a + e ≡ a (mod 8) sağlayan elemandır. Bu koşulu yalnızca 0 sağlar."
-        },
-        {
-          "soru": "Gerçek sayılarda a*b = ab + a + b biçiminde tanımlanan işlemin birim elemanı kaçtır?",
-          "secenekler": [
-            "-1",
-            "1",
-            "0",
-            "2",
-            "-2"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "İşlem (a+1)(b+1) - 1 biçiminde yazılabilir. Birim eleman e için (a+1)(e+1) - 1 = a olmalı, yani (a+1)(e+1) = a+1, buradan e+1 = 1 ve e = 0 bulunur."
         },
         {
           "soru": "a ∗ b = a + b − a·b olarak tanımlanıyor. Buna göre 3 ∗ 4 işleminin sonucu kaçtır?",
@@ -64586,78 +61334,6 @@
           "aciklama": "2∗0 = 2+0 = 2, sonra 2∗1 = 2+3 = 5."
         },
         {
-          "soru": "a ∗ b = a + b + 3 işleminin birim (etkisiz) elemanı kaçtır?",
-          "secenekler": [
-            "3",
-            "0",
-            "-3",
-            "-6",
-            "6"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "a+e+3 = a → e = −3."
-        },
-        {
-          "soru": "a ∗ b = a + b + 3 işlemine göre 4 elemanının tersi kaçtır?",
-          "secenekler": [
-            "-7",
-            "-10",
-            "10",
-            "-4",
-            "3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Birim −3; 4+x+3 = −3 → x = −10."
-        },
-        {
-          "soru": "a ∗ b = a + b − a·b işleminin birim elemanı kaçtır?",
-          "secenekler": [
-            "0",
-            "1",
-            "-1",
-            "2",
-            "3"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "a+e−ae = a → e(1−a) = 0 → e = 0."
-        },
-        {
-          "soru": "a ∗ b = a + b + 5 işlemine göre 2 elemanının tersi kaçtır?",
-          "secenekler": [
-            "12",
-            "-8",
-            "8",
-            "-12",
-            "-2"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Birim −5; 2+x+5 = −5 → x = −12."
-        },
-        {
-          "soru": "a ∗ b = a + b + 9 işleminin etkisiz elemanı kaçtır?",
-          "secenekler": [
-            "9",
-            "0",
-            "-9",
-            "-3",
-            "3"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "a+e+9 = a → e = −9."
-        },
-        {
-          "soru": "a ∗ b = a + b + 9 işlemine göre 5 elemanının tersi kaçtır?",
-          "secenekler": [
-            "-14",
-            "23",
-            "14",
-            "-5",
-            "-23"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Birim −9; 5+x+9 = −9 → x = −23."
-        },
-        {
           "soru": "a ∗ b = 3·a·b işleminin birim elemanı kaçtır?",
           "secenekler": [
             "3",
@@ -64668,18 +61344,6 @@
           ],
           "dogruIndex": 2,
           "aciklama": "3·a·e = a → e = 1/3."
-        },
-        {
-          "soru": "a ∗ b = a + b − 4 işlemine göre 6 elemanının tersi kaçtır?",
-          "secenekler": [
-            "2",
-            "-2",
-            "4",
-            "6",
-            "0"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Birim 4; 6+x−4 = 4 → x = 2."
         },
         {
           "soru": "a ∗ b = a + b − a·b işlemine göre 3 elemanının tersi kaçtır?",
@@ -64706,18 +61370,6 @@
           "aciklama": "İşlem (a−2)(b−2)+2 biçiminde; e−2 = 1 → e = 3."
         },
         {
-          "soru": "a ∗ b = a + b − 6 işlemine göre 10 elemanının tersi kaçtır?",
-          "secenekler": [
-            "-2",
-            "4",
-            "2",
-            "8",
-            "12"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Birim 6; 10+x−6 = 6 → x = 2."
-        },
-        {
           "soru": "{a, b, c} kümesinde ∗ işlemi şöyle tanımlı: a∗a=b, a∗b=a, a∗c=c, b∗a=c, b∗b=b, b∗c=a, c∗a=a, c∗b=c, c∗c=b. Bu işlemin birim elemanı için ne söylenebilir?",
           "secenekler": [
             "a",
@@ -64728,30 +61380,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Hiçbir eleman tüm elemanlar için e∗x = x = x∗e koşulunu sağlamaz."
-        },
-        {
-          "soru": "a ∗ b = a + b + 1 işlemine göre 4 elemanının tersi kaçtır?",
-          "secenekler": [
-            "6",
-            "-4",
-            "-2",
-            "2",
-            "-6"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Birim −1; 4+x+1 = −1 → x = −6."
-        },
-        {
-          "soru": "a ∗ b = a + b + a·b işlemine göre 2 elemanının tersi kaçtır?",
-          "secenekler": [
-            "-1/3",
-            "-2/3",
-            "2/3",
-            "-2",
-            "-3"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Birim 0; 2+x+2x = 0 → 3x = −2 → x = −2/3."
         },
         {
           "soru": "a ∗ b = 3a + b işleminde |3 ∗ 5 − 5 ∗ 3| değeri kaçtır?",
@@ -65594,18 +62222,6 @@
           "aciklama": "|4 − 7| + 4·7 = 3 + 28 = 31."
         },
         {
-          "soru": "a⊕b = a + b − ab işlemine göre 3⊕2 kaçtır?",
-          "secenekler": [
-            "1",
-            "5",
-            "6",
-            "-1",
-            "-6"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "3 + 2 − 3·2 = 5 − 6 = -1."
-        },
-        {
           "soru": "a*b = a + b + k işleminde 2*3 = 8 olduğuna göre 4*5 kaçtır?",
           "secenekler": [
             "10",
@@ -65772,18 +62388,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "a*e = a → a + e − 4 = a → e = 4."
-        },
-        {
-          "soru": "a*b = a + b − 4 işleminde (birim eleman 4'tür) 6'nın tersi kaçtır?",
-          "secenekler": [
-            "6",
-            "4",
-            "-2",
-            "8",
-            "2"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "6*x = 4 → 6 + x − 4 = 4 → x = 2."
         },
         {
           "soru": "a⊕b = ab + 2 işlemine göre (1⊕2)⊕1 kaçtır?",
