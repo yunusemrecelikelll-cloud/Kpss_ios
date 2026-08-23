@@ -32,15 +32,14 @@ class AdService {
   static const String _androidRewarded = 'ca-app-pub-2208830315848722/6997660328';
   static const String _iosRewarded = 'ca-app-pub-2208830315848722/3832561079';
 
-  // ⚠️ GEÇİŞ (interstitial) reklam birim kimlikleri — kısa reklam (test/oyun/
-  // düello sonunda). ŞU AN GOOGLE'IN RESMÎ TEST BİRİMLERİ kullanılıyor; gelir
-  // için AdMob'da "kpss_interstitial" adıyla GERÇEK birim oluşturup buradaki
-  // iki değeri değiştir (rewarded'da yaptığın gibi). Test birimi mağazaya
-  // gönderilebilir ama gelir getirmez.
-  static const String _androidInterstitialTest =
-      'ca-app-pub-3940256099942544/1033173712';
-  static const String _iosInterstitialTest =
-      'ca-app-pub-3940256099942544/4411468910';
+  // GERÇEK AdMob GEÇİŞ (interstitial) reklam birim kimlikleri (birim adı:
+  // kpss_interstitial) — kısa reklam, oyun/düello/quiz sonunda. Test birimleri
+  // GERÇEK birimlerle değiştirildi (2026-08-24). Yeni birimler ilk ~1 saat boş
+  // dönebilir; sonra dolar.
+  static const String _androidInterstitial =
+      'ca-app-pub-2208830315848722/3723649785';
+  static const String _iosInterstitial =
+      'ca-app-pub-2208830315848722/1117772942';
 
   bool _baslatildi = false;
   RewardedAd? _reklam;
@@ -56,8 +55,8 @@ class AdService {
   }
 
   String get _gecisBirimId {
-    if (kIsWeb) return _androidInterstitialTest;
-    return Platform.isIOS ? _iosInterstitialTest : _androidInterstitialTest;
+    if (kIsWeb) return _androidInterstitial;
+    return Platform.isIOS ? _iosInterstitial : _androidInterstitial;
   }
 
   /// main.dart'ta bir kez çağrılır. Reklam SDK'sını başlatır ve ilk reklamı
