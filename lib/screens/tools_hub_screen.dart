@@ -524,12 +524,24 @@ class LockedFeatureCard extends StatelessWidget {
     onUnlocked!();
   }
 
+  /// Kullanıcının elinde hak varsa: sheet açmadan DOĞRUDAN 1 hak harca ve devam.
+  Future<void> _hakDirekKullan(BuildContext context) async {
+    context.read<SoundService>().click();
+    final storage = context.read<StorageService>();
+    final oldu = await storage.hakHarca(1);
+    if (!oldu || !context.mounted) return;
+    await storage.addExtraPlays(gameId!, 1);
+    onUnlocked!();
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     // Premium kullanıcıya bu ekran zaten hiç gösterilmez; yine de hak butonu
     // premium'da anlamsız olacağı için gizli tutulur.
-    final premium = context.watch<StorageService>().isPremiumUser();
+    final storage = context.watch<StorageService>();
+    final premium = storage.isPremiumUser();
+    final haklar = storage.getHaklar();
     final hakGoster = _hakSunulabilir && !premium;
     return Scaffold(
       appBar: AppBar(title: Text('🔒 $title')),
@@ -561,9 +573,21 @@ class LockedFeatureCard extends StatelessWidget {
                   Text(desc, style: TextStyle(color: c.textFaint, height: 1.6, fontSize: 13)),
                   const SizedBox(height: 18),
                   if (hakGoster) ...[
+                    if (haklar >= 1) ...[
+                      DsPillButton(
+                        label: '🎟️ 1 Hak Kullan ve Oyna  ($haklar hakkın var)',
+                        color: c.mint,
+                        leadingIcon: Icons.play_arrow_rounded,
+                        onPressed: () => _hakDirekKullan(context),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
                     DsPillButton(
-                      label: 'Reklam İzle / Hak Kullan',
+                      label: haklar >= 1
+                          ? 'Reklam İzle (+2 Hak)'
+                          : 'Reklam İzle / Hak Kazan',
                       color: c.violet,
+                      filled: haklar < 1,
                       leadingIcon: Icons.slideshow_rounded,
                       onPressed: () => _hakKazan(context),
                     ),

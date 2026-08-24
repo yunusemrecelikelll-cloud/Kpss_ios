@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../data/turkey_map_data.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../quick_modes/quick_modes_shared.dart' show GameResultStat;
 import '../tools_hub_screen.dart';
@@ -414,7 +415,12 @@ class _HizliTurkiyeScreenState extends State<HizliTurkiyeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('⏳ $_secondsLeft sn', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w800, color: _secondsLeft <= 10 ? colors.danger : colors.text)),
+                  DsCountdownText(
+                    text: '⏳ $_secondsLeft sn',
+                    dikkat: _secondsLeft <= 5 && _secondsLeft > 0,
+                    fontSize: 16,
+                    normalColor: _secondsLeft <= 10 ? colors.danger : colors.text,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [

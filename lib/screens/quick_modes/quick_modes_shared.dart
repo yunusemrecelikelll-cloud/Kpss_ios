@@ -82,6 +82,10 @@ class QuickModeScoreBar extends StatelessWidget {
   final Color? leadingColor;
   final String? extraLine;
 
+  /// Son 5 saniye uyarısı (kullanıcı isteği): true iken [leading] kırmızı renkte
+  /// öne çıkıp yanıp söner (tik-tak sesiyle eşlik eder).
+  final bool leadingDikkat;
+
   const QuickModeScoreBar({
     super.key,
     required this.gameId,
@@ -90,6 +94,7 @@ class QuickModeScoreBar extends StatelessWidget {
     this.leading,
     this.leadingColor,
     this.extraLine,
+    this.leadingDikkat = false,
   });
 
   @override
@@ -104,13 +109,11 @@ class QuickModeScoreBar extends StatelessWidget {
           children: [
             if (leading != null)
               Flexible(
-                child: Text(
-                  leading!,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800,
-                    color: leadingColor ?? colors.text,
-                  ),
+                child: DsCountdownText(
+                  text: leading!,
+                  dikkat: leadingDikkat,
+                  fontSize: 15,
+                  normalColor: leadingColor ?? colors.text,
                 ),
               ),
             Row(

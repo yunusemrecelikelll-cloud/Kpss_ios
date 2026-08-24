@@ -464,7 +464,7 @@ class StorageService extends ChangeNotifier {
 
   // ── Ayarlar ──
   static const Map<String, dynamic> defaultSettings = {
-    'theme': 'default',
+    'theme': 'safak',
     'particleEnabled': true,
     'particleColor': 'rainbow',
     'soundEnabled': true,

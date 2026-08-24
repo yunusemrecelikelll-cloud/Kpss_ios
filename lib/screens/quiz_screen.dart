@@ -524,14 +524,11 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
                 children: [
                   Icon(hasCountdown ? Icons.timer_outlined : Icons.schedule, size: 16),
                   const SizedBox(width: 4),
-                  Text(
-                    TimerService.format(
+                  DsCountdownText(
+                    text: TimerService.format(
                         hasCountdown ? displaySecs : _studySw.elapsed.inSeconds),
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 16,
-                      color: hasCountdown && displaySecs <= 5 ? Colors.red : null,
-                    ),
+                    dikkat: hasCountdown && displaySecs <= 5 && displaySecs > 0,
+                    fontSize: 16,
                   ),
                 ],
               ),

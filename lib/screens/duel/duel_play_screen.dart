@@ -630,12 +630,12 @@ class _DuelPlayScreenState extends State<DuelPlayScreen> {
                     const Spacer(),
                     Icon(Icons.timer_outlined, size: 16, color: remainingSec <= 5 ? c.danger : c.textFaint),
                     const SizedBox(width: 4),
-                    Text('$remainingSec sn',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 13.5,
-                          color: remainingSec <= 5 ? c.danger : c.text,
-                        )),
+                    DsCountdownText(
+                      text: '$remainingSec sn',
+                      dikkat: remainingSec <= 5 && remainingSec > 0,
+                      fontSize: 13.5,
+                      normalColor: c.text,
+                    ),
                   ],
                 ),
               ),

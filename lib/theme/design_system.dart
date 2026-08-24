@@ -790,3 +790,78 @@ class DsProgressBar extends StatelessWidget {
     );
   }
 }
+
+/// ── Geri sayım sayacı (yanıp sönen) ─────────────────────────────────────────
+///
+/// Kalan süre metnini gösterir. [dikkat] true olduğunda (son 5 saniye) yazı
+/// KIRMIZI olur, hafifçe büyüyüp **yanıp söner** (kullanıcı isteği: "5 saniye
+/// kala kırmızı öne çıksın ve sönsün"). KPSS Düello, quiz ve tüm geri sayımlarda
+/// ortak kullanılır. Ses (tik-tak) çağıran ekranda ayrıca tetiklenir.
+class DsCountdownText extends StatefulWidget {
+  final String text;
+  final bool dikkat;
+  final double fontSize;
+  final Color? normalColor;
+  const DsCountdownText({
+    super.key,
+    required this.text,
+    required this.dikkat,
+    this.fontSize = 16,
+    this.normalColor,
+  });
+
+  @override
+  State<DsCountdownText> createState() => _DsCountdownTextState();
+}
+
+class _DsCountdownTextState extends State<DsCountdownText>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ac = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 480),
+  )..repeat(reverse: true);
+
+  @override
+  void dispose() {
+    _ac.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!widget.dikkat) {
+      return Text(
+        widget.text,
+        style: TextStyle(
+          fontWeight: FontWeight.w800,
+          fontSize: widget.fontSize,
+          color: widget.normalColor,
+        ),
+      );
+    }
+    const kirmizi = Color(0xFFF43F5E);
+    return AnimatedBuilder(
+      animation: _ac,
+      builder: (_, __) {
+        final t = _ac.value; // 0..1 (repeat reverse)
+        return Opacity(
+          opacity: 0.30 + 0.70 * (1 - t), // parla → sön
+          child: Transform.scale(
+            scale: 1.0 + 0.14 * (1 - t),
+            child: Text(
+              widget.text,
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: widget.fontSize + 1,
+                color: kirmizi,
+                shadows: [
+                  Shadow(color: kirmizi.withValues(alpha: 0.55), blurRadius: 10),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

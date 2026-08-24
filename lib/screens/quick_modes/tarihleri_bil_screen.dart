@@ -8,6 +8,7 @@ import '../../data/tarihleri_bil_data.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../tools_hub_screen.dart';
 import 'quick_modes_shared.dart';
@@ -122,7 +123,7 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
   void _tick() {
     if (!mounted || _answered) return;
     setState(() => _secondsLeft--);
-    if (_secondsLeft <= 3 && _secondsLeft > 0) {
+    if (_secondsLeft <= 5 && _secondsLeft > 0) {
       context.read<SoundService>().tick();
     }
     if (_secondsLeft <= 0) {
@@ -321,7 +322,7 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
 
   Widget _buildCountdownRing(KpssColors colors) {
     final ratio = (_secondsLeft / kTarihleriBilSureSn).clamp(0.0, 1.0);
-    final ringColor = _secondsLeft <= 3 ? colors.danger : colors.violet;
+    final ringColor = _secondsLeft <= 5 ? colors.danger : colors.violet;
     return SizedBox(
       width: 64,
       height: 64,
@@ -338,7 +339,12 @@ class _TarihleriBilScreenState extends State<TarihleriBilScreen> {
               backgroundColor: colors.border,
             ),
           ),
-          Text('$_secondsLeft', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18, color: ringColor)),
+          DsCountdownText(
+            text: '$_secondsLeft',
+            dikkat: _secondsLeft <= 5 && _secondsLeft > 0,
+            fontSize: 18,
+            normalColor: ringColor,
+          ),
         ],
       ),
     );

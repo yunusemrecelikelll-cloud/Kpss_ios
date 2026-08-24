@@ -310,6 +310,44 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             const SizedBox(height: kDsGap),
+            // ── DERSLER (kullanıcı isteği: EN BAŞTA, Notlar dahil) ──
+            const DsSectionHeader(title: 'Dersler'),
+            const SizedBox(height: 8),
+            GridView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: kDsGap,
+                crossAxisSpacing: kDsGap,
+                mainAxisExtent: 168 *
+                    (MediaQuery.textScalerOf(context).scale(14) / 14).clamp(1.0, 1.6),
+              ),
+              children: [
+                for (final s in subjects.where((s) => s.konular.isNotEmpty))
+                  _SubjectCard(
+                    subject: s,
+                    completedCount: s.konular.where((t) => completed[t.id] == true).length,
+                    studySeconds: storage.getStudyTime()[s.id] ?? 0,
+                    onTap: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => SubjectScreen(subject: s)),
+                      );
+                    },
+                  ),
+                // Dersler ızgarasında Türkçe'nin YANINA "Notlar" kartı.
+                _NotlarKarti(
+                  onTap: () async {
+                    context.read<SoundService>().click();
+                    await Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => const NotlarScreen()));
+                    if (mounted) setState(() {});
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: kDsGap),
             // 2) Giriş banner'ı — anonim oturum "girişli" SAYILMAZ; gerçek
             // hesabı olmayan herkese giriş daveti gösterilmeye devam eder.
             if (!auth.isRealSignedIn) ...[
@@ -520,48 +558,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (_) => const DuelLobbyScreen()));
               },
-            ),
-            const SizedBox(height: 20),
-            // 9) Dersler — projede ayrı bir "tüm dersler" ekranı olmadığı için
-            // başlıkta aksiyon bağlantısı yok.
-            const DsSectionHeader(title: 'Dersler'),
-            const SizedBox(height: 8),
-            GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: kDsGap,
-                crossAxisSpacing: kDsGap,
-                // Sabit en-boy oranı yerine sabit yükseklik: büyük yazı
-                // ölçeğinde kart da büyür, böylece taşma olmaz.
-                mainAxisExtent: 168 *
-                    (MediaQuery.textScalerOf(context).scale(14) / 14).clamp(1.0, 1.6),
-              ),
-              children: [
-                for (final s in subjects.where((s) => s.konular.isNotEmpty))
-                  _SubjectCard(
-                    subject: s,
-                    completedCount: s.konular.where((t) => completed[t.id] == true).length,
-                    studySeconds: storage.getStudyTime()[s.id] ?? 0,
-                    onTap: () {
-                      context.read<SoundService>().click();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => SubjectScreen(subject: s)),
-                      );
-                    },
-                  ),
-                // Dersler ızgarasında Türkçe'nin YANINA "Notlar" kartı
-                // (kullanıcı isteği): önizlemesi son kaydedilen not.
-                _NotlarKarti(
-                  onTap: () async {
-                    context.read<SoundService>().click();
-                    await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => const NotlarScreen()));
-                    if (mounted) setState(() {});
-                  },
-                ),
-              ],
             ),
           ],
         ),

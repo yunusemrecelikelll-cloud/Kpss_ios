@@ -10,7 +10,6 @@ import '../theme/app_theme.dart';
 import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'account_login_screen.dart';
-import 'premium_screen.dart';
 import 'public_profile_screen.dart';
 import '../utils/ust_bildirim.dart';
 
@@ -290,11 +289,8 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
     if (text.isEmpty) return;
     context.read<SoundService>().click();
 
-    if (!widget.premium && storage.getChatMessagesSentToday() >= kFreeMaxChatMessagesPerDay) {
-      _showUpgradeSheet();
-      return;
-    }
-
+    // Sohbet artık ÜCRETSİZDE DE SINIRSIZ (kullanıcı isteği) — günlük mesaj
+    // limiti kaldırıldı.
     setState(() => _sending = true);
     try {
       await widget.chat.sendMessage(
@@ -304,7 +300,6 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
         message: text,
         premium: storage.isPremiumUser(),
       );
-      await storage.incrementChatMessagesSentToday();
       _controller.clear();
     } on ProfanityDetectedException catch (e) {
       if (!mounted) return;
@@ -317,35 +312,6 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
     }
   }
 
-  void _showUpgradeSheet() {
-    showModalBottomSheet(
-      context: context,
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Günlük mesaj hakkın doldu',
-                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
-              const SizedBox(height: 8),
-              Text('Ücretsiz sürümde günde $kFreeMaxChatMessagesPerDay mesaj gönderebilirsin. '
-                  'Sınırsız mesaj ve kişilere DM atabilmek için Premium\'a geç.'),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                },
-                child: const Text("Premium'a Geç"),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   /// Bir mesaja dokunulduğunda açılan kullanıcı işlemleri menüsü.
   ///
@@ -489,12 +455,16 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
     final c = context.watch<ThemeProvider>().colors;
-    final remaining = widget.premium ? null : (kFreeMaxChatMessagesPerDay - storage.getChatMessagesSentToday()).clamp(0, kFreeMaxChatMessagesPerDay);
+    final int? remaining = null; // sohbet sınırsız (kullanıcı isteği)
 
     return Column(
       children: [
         Expanded(
-          child: StreamBuilder<List<ChatMessage>>(
+          child: Container(
+            decoration: _sohbetArkaplani(c),
+            child: Stack(children: [
+          _sohbetIsimaKatmani(c),
+          StreamBuilder<List<ChatMessage>>(
             stream: widget.chat.streamMessages(),
             builder: (context, snap) {
               if (!snap.hasData) return const Center(child: CircularProgressIndicator());
@@ -527,6 +497,8 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
                 },
               );
             },
+          ),
+            ]),
           ),
         ),
         if (remaining != null)
@@ -614,6 +586,50 @@ class _GeneralChatTabState extends State<_GeneralChatTab> {
       ],
     );
   }
+}
+
+/// Sohbet mesaj alanı için temaya uyumlu, yumuşak arka plan (kullanıcı isteği:
+/// "arkaplanı yeniden tasarla, temaya uygun olsun"). Aktif temanın renklerinden
+/// köşelere hafif mor/pembe ışıma + dikey degrade — düz zeminden daha canlı.
+BoxDecoration _sohbetArkaplani(KpssColors c) {
+  return BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [c.bg, c.bg2],
+    ),
+  );
+}
+
+/// Arka planın üstüne binen dekoratif ışıma katmanı (dokunmayı engellemez).
+Widget _sohbetIsimaKatmani(KpssColors c) {
+  return IgnorePointer(
+    child: Stack(
+      children: [
+        Positioned(
+          top: -60,
+          right: -40,
+          child: _isimaTopu(c.violet.withValues(alpha: 0.16), 200),
+        ),
+        Positioned(
+          bottom: -70,
+          left: -50,
+          child: _isimaTopu(c.rose.withValues(alpha: 0.12), 220),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _isimaTopu(Color color, double size) {
+  return Container(
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      gradient: RadialGradient(colors: [color, color.withValues(alpha: 0)]),
+    ),
+  );
 }
 
 class _MessageBubble extends StatelessWidget {
@@ -1503,13 +1519,8 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
     final auth = context.read<AuthService>();
     context.read<SoundService>().click();
 
-    // DM artık ücretsiz kullanıcılar için de açık, ama genel sohbetle AYNI
-    // paylaşılan günlük mesaj hakkına (bkz. kFreeMaxChatMessagesPerDay) tabi —
-    // yeni bir sınır icat etmek yerine mevcut deseni yeniden kullanıyoruz.
-    if (!storage.isPremiumUser() && storage.getChatMessagesSentToday() >= kFreeMaxChatMessagesPerDay) {
-      ustBildirim('Bugünkü ücretsiz mesaj hakkın ($kFreeMaxChatMessagesPerDay) doldu. Sınırsız mesajlaşmak için Premium\'a geç.', tur: UstBildirimTuru.hata);
-      return;
-    }
+    // DM ve genel sohbet ÜCRETSİZDE DE SINIRSIZ (kullanıcı isteği) — günlük
+    // mesaj limiti kaldırıldı.
 
     // Kendi adımı thread'e yazıyorum ki karşı taraf beni hiç kaydetmemiş olsa
     // bile gelen kutusunda adım görünsün (bkz. sendDirectMessage.names).
@@ -1529,7 +1540,6 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
         message: text,
         fromName: benimAdim,
       );
-      if (!storage.isPremiumUser()) await storage.incrementChatMessagesSentToday();
       _controller.clear();
     } on ProfanityDetectedException catch (e) {
       if (!mounted) return;
@@ -1549,10 +1559,7 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final storage = context.watch<StorageService>();
-    final remaining = storage.isPremiumUser()
-        ? null
-        : (kFreeMaxChatMessagesPerDay - storage.getChatMessagesSentToday()).clamp(0, kFreeMaxChatMessagesPerDay);
+    const int? remaining = null; // sohbet sınırsız (kullanıcı isteği)
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
@@ -1565,7 +1572,11 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder<List<DirectMessage>>(
+            child: Container(
+              decoration: _sohbetArkaplani(c),
+              child: Stack(children: [
+            _sohbetIsimaKatmani(c),
+            StreamBuilder<List<DirectMessage>>(
               stream: widget.chat.streamDirectMessages(uidA: widget.myUid, uidB: widget.peerUid),
               builder: (context, snap) {
                 if (!snap.hasData) return const Center(child: CircularProgressIndicator());
@@ -1635,6 +1646,8 @@ class _DmThreadScreenState extends State<_DmThreadScreen> {
                   },
                 );
               },
+            ),
+              ]),
             ),
           ),
           if (remaining != null)

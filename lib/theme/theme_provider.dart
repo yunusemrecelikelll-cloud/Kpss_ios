@@ -7,10 +7,10 @@ class ThemeProvider extends ChangeNotifier {
   // Kullanıcı isteği: uygulama İLK açıldığında (kayıtlı tema yokken) Pembe
   // Rüya temasıyla açılsın. Kayıtlı tercihi olan kullanıcılar kendi temasında
   // kalır. 'pembe' ücretsiz temalar arasında (bkz. kFreeThemeIds).
-  String _themeId = 'pembe';
+  String _themeId = 'safak';
 
   ThemeProvider(this.storage) {
-    _themeId = (storage.getSettings()['theme'] as String?) ?? 'pembe';
+    _themeId = (storage.getSettings()['theme'] as String?) ?? 'safak';
   }
 
   /// Premium düşerse (abonelik iptal vb.) kilitli bir temada takılı kalmasın.

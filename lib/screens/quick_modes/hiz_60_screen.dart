@@ -329,6 +329,7 @@ class _Hiz60ScreenState extends State<Hiz60Screen> {
                 wrong: _wrong,
                 leading: '⏳ $_secondsLeft sn',
                 leadingColor: _secondsLeft <= 10 ? colors.danger : colors.text,
+                leadingDikkat: _secondsLeft <= 5 && _secondsLeft > 0,
                 extraLine: 'Toplam: ${formatPlayDuration(totalSeconds)} oynadın',
               ),
               if (_lastCorrect != null) ...[
