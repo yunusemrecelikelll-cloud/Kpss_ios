@@ -8,6 +8,12 @@ import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'quiz_screen.dart';
 import 'premium_screen.dart';
+import '../utils/ust_bildirim.dart';
+
+/// Ücretsiz kullanıcının GÜNDE çözebileceği yanlış soru sayısı (kullanıcı isteği:
+/// Yanlışlarım ücretsize açık ama günlük belli sayıda; üstü Premium). Premium'da
+/// sınırsız.
+const int kFreeWrongBankDaily = 15;
 
 /// "Yanlışlarım" — kullanıcının yanlış yaptığı soruların bankası. Tasarım
 /// sistemine (DsCard/DsPillButton/DsIllustration) ve tema renklerine uygun,
@@ -32,9 +38,29 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
     'Diğer': '📌',
   };
 
-  void _startWrongTest(BuildContext context, List<Map<String, dynamic>> bank) {
+  Future<void> _startWrongTest(BuildContext context,
+      List<Map<String, dynamic>> bank,
+      {required bool premium, required StorageService storage}) async {
+    // Ücretsiz: günlük kalan hak kadar soru; premium: 20'lik normal tur.
+    int limit = 20;
+    if (!premium) {
+      final kalan = (kFreeWrongBankDaily - storage.getWrongBankSolvedToday())
+          .clamp(0, kFreeWrongBankDaily);
+      if (kalan <= 0) {
+        ustBildirim(
+          'Bugünkü ücretsiz Yanlışlarım hakkın ($kFreeWrongBankDaily soru) doldu. '
+          'Sınırsız çözmek için Premium\'a geç.',
+          tur: UstBildirimTuru.hata,
+        );
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const PremiumScreen()));
+        return;
+      }
+      limit = kalan < 20 ? kalan : 20;
+    }
     final shuffled = List<Map<String, dynamic>>.of(bank)..shuffle();
-    final qs = shuffled.take(20).map((w) => Question(
+    final adet = limit < bank.length ? limit : bank.length;
+    final qs = shuffled.take(adet).map((w) => Question(
           soru: w['soru'] as String,
           secenekler: List<String>.from(w['secenekler'] as List),
           dogruIndex: w['dogruIndex'] as int,
@@ -42,6 +68,9 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
           distractorAciklama: w['distractorAciklama'] as String?,
           kaynak: w['kaynak'] as String?,
         )).toList();
+    // Ücretsizde günlük sayaç, tur başlarken çözülecek soru kadar artar.
+    if (!premium) await storage.addWrongBankSolvedToday(adet);
+    if (!context.mounted) return;
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
       builder: (_) => QuizScreen(
         subjectId: 'wrong',
@@ -100,51 +129,10 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
     final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
 
-    // ── Premium değil: kilit ekranı ──
-    if (!premium) {
-      return Scaffold(
-        appBar: _appBar(context, c),
-        body: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              DsCard(
-                accent: c.gold,
-                padding: const EdgeInsets.all(22),
-                child: Column(
-                  children: [
-                    DsIllustration(emoji: '🔒', glowColor: c.gold, size: 84),
-                    const SizedBox(height: 12),
-                    Text('Yanlışlarım — Premium',
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.w900, color: c.text)),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Yanlış sorularını biriktir, onlara özel testlerle eksiklerini '
-                      'kapat. Bu bölüm Premium ile açılır.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
-                    ),
-                    const SizedBox(height: 18),
-                    DsPillButton(
-                      label: "Premium'a Geç",
-                      color: c.gold,
-                      leadingIcon: Icons.workspace_premium_rounded,
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => const PremiumScreen()));
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
+    // NOT: Yanlışlarım artık ÜCRETSİZE de AÇIK (kullanıcı isteği). Ücretsiz
+    // kullanıcı günde en fazla [kFreeWrongBankDaily] yanlış soru çözebilir;
+    // üstü Premium. Kilit kaldırıldı; aşağıda ücretsize günlük hak bilgisi
+    // gösterilir ve "Yanlışlarımı Sına" o hakka göre sınırlanır.
     final bank = storage.getWrongBank();
 
     // ── Banka boş: kutlama ──
@@ -263,6 +251,38 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
             ],
 
             const SizedBox(height: 8),
+            // ── Ücretsiz günlük hak bilgisi (premium değilse) ──
+            if (!premium) ...[
+              Builder(builder: (_) {
+                final kalan = (kFreeWrongBankDaily -
+                        storage.getWrongBankSolvedToday())
+                    .clamp(0, kFreeWrongBankDaily);
+                return Container(
+                  padding: const EdgeInsets.all(13),
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    color: c.gold.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: c.gold.withValues(alpha: 0.4)),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.bolt_rounded, size: 18, color: c.gold),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          'Ücretsiz: bugün $kalan / $kFreeWrongBankDaily yanlış soru '
+                          'çözebilirsin. Sınırsız çözmek için Premium’a geç.',
+                          style: TextStyle(
+                              fontSize: 12, height: 1.35, color: c.textDim,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ],
             // ── Aksiyonlar ──
             DsPillButton(
               label: 'Yanlışlarımı Sına',
@@ -271,7 +291,8 @@ class _WrongBankScreenState extends State<WrongBankScreen> {
               gradient: LinearGradient(colors: [c.rose, c.violet]),
               onPressed: () {
                 context.read<SoundService>().click();
-                _startWrongTest(context, bank);
+                _startWrongTest(context, bank,
+                    premium: premium, storage: storage);
               },
             ),
             const SizedBox(height: 10),

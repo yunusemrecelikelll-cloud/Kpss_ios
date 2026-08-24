@@ -5953,19 +5953,6 @@
           "examType": "ortaogretim"
         },
         {
-          "soru": "Türkiye Cumhuriyeti'nin kurucusu olan Mustafa Kemal Atatürk'ün liderliğinde gerçekleştirilen Türk Devrimi'nin temel amaçlarından biri, hangi alanda önemli değişiklikler yapmaktı?",
-          "secenekler": [
-            "Sosyal ve kültürel",
-            "Siyasi ve ekonomik",
-            "Hukuki ve anayasal",
-            "Askeri ve stratejik",
-            "Din ve eğitim"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "onlisans"
-        },
-        {
           "soru": "Anayasa'nın 68. ve 69. maddelerine göre siyasi partilerle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "Siyasi partilerin temelli kapatılmasına, Yargıtay Cumhuriyet Başsavcısının açacağı dava üzerine Türkiye Büyük Millet Meclisi karar verir",
@@ -6486,19 +6473,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye Cumhuriyeti'nin kurucusu kimdir?",
-          "secenekler": [
-            "Mustafa Kemal Atatürk",
-            "İkinci Cumhurbaşkanı İsmet İnönü",
-            "Celal Bayar",
-            "Adnan Menderes",
-            "Fevzi Çakmak"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap.",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Anayasa'nın 2. maddesine göre Türkiye Cumhuriyeti'nin dayandığı temel nitelendirme aşağıdakilerden hangisidir?",
           "secenekler": [
             "Sosyalist ve teokratik temelli bir hukuk devletidir",
@@ -6564,19 +6538,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'nin ilk anayasası hangisidir?",
-          "secenekler": [
-            "1921 Anayasası",
-            "1924 Anayasası",
-            "1961 Anayasası",
-            "1982 Anayasası",
-            "1876 Anayasası"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap.",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "1982 Anayasası'nın başlangıç kısmı ile 1., 2. ve 3. maddelerinin ortak özelliği nedir?",
           "secenekler": [
             "Yalnızca yorum yoluyla değiştirilebilirler",
@@ -6601,19 +6562,6 @@
           "dogruIndex": 0,
           "aciklama": "13. madde 2001 değişikliği sonrası tüm hakların yalnızca kendi maddelerinde sayılan özel sebeplerle sınırlanabileceğini öngörmekle birlikte, öğreti ve uygulamada demokratik toplum düzeni ve ölçülülük gibi 13. maddedeki genel ilkelerin tüm sınırlamalarda tamamlayıcı ölçüt olarak devam ettiği kabul edilir.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Anayasa Mahkemesinin görevi nedir?",
-          "secenekler": [
-            "Yasaların anayasaya uygunluğunu denetlemek",
-            "Yürütme erkini temsil edip kanunları uygulamak",
-            "Yargı erkini temsil etmek",
-            "Yasama erkini temsil etmek",
-            "İdari işleri düzenlemek"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap.",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 6. maddesi uyarınca aşağıdaki ifadelerden hangisi doğrudur?",
@@ -6679,19 +6627,6 @@
           "dogruIndex": 1,
           "aciklama": "90. maddenin son fıkrasına göre, usulüne göre yürürlüğe konulmuş temel hak ve özgürlüklere ilişkin milletlerarası andlaşmalarla kanunların aynı konuda farklı hükümler içermesi nedeniyle çıkabilecek uyuşmazlıklarda milletlerarası andlaşma hükümleri esas alınır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Türkiye Cumhuriyeti'nin anayasal yapısı nedir?",
-          "secenekler": [
-            "Parlamenter sistem",
-            "Cumhuriyetçi sistem",
-            "Laik sistem",
-            "Sosyal devlet sistemi",
-            "Çok partili sistem"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap.",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 19. maddesine göre yakalanan veya tutuklanan kişi, tutulma yerine en yakın mahkemeye gönderilmesi için gerekli süre hariç, en geç kaç saat içinde hakim önüne çıkarılmalıdır?",
@@ -6796,19 +6731,6 @@
           "dogruIndex": 0,
           "aciklama": "39. madde, kamu görev ve hizmetinde bulunanlara karşı bu görev ve hizmetin yerine getirilmesiyle ilgili olarak yapılan isnatlardan dolayı açılan hakaret davalarında sanığın iddiasını ispat hakkına sahip olduğunu, ispatın diğer hallerde ancak kişilerin şeref ve haysiyetini korumak veya kamu yararı bulunması halinde istenebileceğini düzenler.",
           "examType": "lisans"
-        },
-        {
-          "soru": "1982 Anayasasının temel ilkeleri nelerdir?",
-          "secenekler": [
-            "Laiklik, sosyal devlet ve hukuk devleti",
-            "Laiklik, Cumhuriyetçilik ve halkçılık",
-            "Laiklik, milliyetçilik ve halkçılık",
-            "Laiklik, sosyal devlet ve demokrasi",
-            "Cumhuriyetçilik, milliyetçilik ve halkçılık"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap.",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 24. maddesine göre kimse, ibadet, dini ayin ve törenlere katılmaya zorlanabilir mi?",
@@ -7032,19 +6954,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "1982 Anayasası'nın kabul edildiği yıl, hangi genel seçimlerin yapıldığı yıldır?",
-          "secenekler": [
-            "1977",
-            "1983",
-            "1973",
-            "1980",
-            "1982"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Anayasa'nın 38. maddesine göre 2004 yılında yapılan değişiklikle hangi ceza türü, savaş hali istisnası dışında tamamen kaldırılmıştır?",
           "secenekler": [
             "Hapis cezası",
@@ -7069,19 +6978,6 @@
           "dogruIndex": 0,
           "aciklama": "55. madde, ücretin emeğin karşılığı olduğunu ve devletin çalışanların yaptıkları işe uygun adaletli bir ücret elde etmeleri ve diğer sosyal yardımlardan yararlanmaları için gerekli tedbirleri alacağını; asgari ücretin tespitinde çalışanların geçim şartları ile ülkenin ekonomik durumunun gözetileceğini düzenler.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Anayasa Mahkemesi, hangi tahun kurulmuştur?",
-          "secenekler": [
-            "1961",
-            "1982",
-            "1963",
-            "1983",
-            "1973"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 41. maddesine göre aile ile ilgili aşağıdakilerden hangisi doğrudur?",
@@ -7110,19 +7006,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "1982 Anayasası'na göre, Türkiye Cumhuriyeti'nin temel organlarından biri hangisidir?",
-          "secenekler": [
-            "Yargı",
-            "Yürütme",
-            "Yasama",
-            "Savunma",
-            "İdare"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Anayasa'nın 42. maddesine göre ilköğrenimle ilgili aşağıdakilerden hangisi doğrudur?",
           "secenekler": [
             "İlköğretim isteğe bağlı olup yalnızca devlet okullarında parasızdır, özel okullarda ise ücrete tabidir",
@@ -7147,19 +7030,6 @@
           "dogruIndex": 0,
           "aciklama": "58. madde, devletin gençleri alkol düşkünlüğünden, uyuşturucu maddelerden, suçluluk, kumar ve benzeri kötü alışkanlıklardan ve cehaletten korumak için gerekli tedbirleri alacağını düzenler.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Hangi anayasa, Türkiye Cumhuriyeti'nin kuruluşundan bu yana kabul edilen ikinci anayasadır?",
-          "secenekler": [
-            "1961 Anayasası",
-            "1982 Anayasası",
-            "1921 Anayasası",
-            "1924 Anayasası",
-            "1971 Anayasası"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 56. maddesine göre çevre ile ilgili aşağıdakilerden hangisi doğrudur?",
@@ -7188,19 +7058,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "1982 Anayasası'na göre, Türkiye Büyük Millet Meclisi'nin üye sayısı kaçtır?",
-          "secenekler": [
-            "400",
-            "450",
-            "500",
-            "550",
-            "600"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Halkoylamasına sunulan bir Anayasa değişikliği teklifinin kabul edilmiş sayılması için hangi oran yeterlidir?",
           "secenekler": [
             "Seçmen kütüğüne kayıtlı tüm seçmenlerin salt çoğunluğunun kabul yönünde oy kullanması",
@@ -7225,19 +7082,6 @@
           "dogruIndex": 0,
           "aciklama": "71. madde, kamu görevine girenlerin mal bildiriminde bulunmalarının ve bu bildirimlerin yenilenme sürelerinin kanunla düzenleneceğini belirtir.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Hangi anayasa, 1982 Anayasası'nın kabul edilmesinden önce geçerli olan son anayasadır?",
-          "secenekler": [
-            "1961 Anayasası",
-            "1982 Anayasası",
-            "1921 Anayasası",
-            "1924 Anayasası",
-            "1971 Anayasası"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Anayasa'nın 176. maddesine göre başlangıç kısmının hukuki niteliği nedir?",
@@ -7266,19 +7110,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "1982 Anayasası'na göre, Cumhurbaşkanı'nın görev süresi kaç yıldır?",
-          "secenekler": [
-            "4",
-            "5",
-            "6",
-            "7",
-            "10"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "1982 Anayasası'nın başlangıç bölümünde vurgulanan temel ilkelerden biri aşağıdakilerden hangisidir?",
           "secenekler": [
             "Yasama, yürütme ve yargı yetkilerinin tek elde toplandığı kuvvetler birliği ilkesinin devletin temel dayanağı olarak esas alınması",
@@ -7303,19 +7134,6 @@
           "dogruIndex": 0,
           "aciklama": "Öğretide genel kabul, 1961 Anayasası'nın daha genel ilkesel (çerçeve), 1982 Anayasası'nın ise hak ve sınırlamaları daha ayrıntılı biçimde düzenleyen kazuistik bir teknik benimsediği yönündedir.",
           "examType": "lisans"
-        },
-        {
-          "soru": "1982 Anayasası'na göre, Türkiye Büyük Millet Meclisi'nin görev ve yetkileri arasında hangisi yoktur?",
-          "secenekler": [
-            "Yasama",
-            "Yürütme",
-            "Yargı",
-            "Savunma",
-            "İdare"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "1982 Anayasası hangi organ tarafından hazırlanıp kabul edilerek halkoyuna sunulmuştur?",
@@ -24933,19 +24751,6 @@
           "examType": "onlisans"
         },
         {
-          "soru": "İdare, kamu hizmetlerinin yürütülmesi sırasında ortaya çıkan uyuşmazlıkları çözümlemek amacıyla hangi mercie başvurur?",
-          "secenekler": [
-            "Danıştay",
-            "Yargıtay",
-            "Anayasa Mahkemesi",
-            "Sayıştay",
-            "İdare Mahkemesi"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "lisans"
-        },
-        {
           "soru": "İl özel idaresi, belediye ve köy yönetimlerinin ortak amacı nedir?",
           "secenekler": [
             "Mahallî müşterek ihtiyaçları karşılamak",
@@ -24970,19 +24775,6 @@
           "dogruIndex": 0,
           "aciklama": "Yerinden yönetim ilkesi gereği mahalli idareler kendi bütçe, personel, mal varlığı ve tüzel kişiliğine sahiptir.",
           "examType": "onlisans"
-        },
-        {
-          "soru": "Kamu hizmetlerinin yürütülmesi sırasında idare ile vatandaşlar arasında ortaya çıkan uyuşmazlıkları çözümlemek amacıyla kurulan merci hangisidir?",
-          "secenekler": [
-            "Danıştay",
-            "Yargıtay",
-            "Anayasa Mahkemesi",
-            "Sayıştay",
-            "İdare Mahkemesi"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "lisans"
         },
         {
           "soru": "Mahalli idare organlarının kararlarının yürütmesinin durdurulması ve iptalinde hangi merci yetkilidir?",
@@ -26894,19 +26686,6 @@
           "dogruIndex": 1,
           "aciklama": "Kamu hizmetinin sürekliliği ilkesi, hizmetin kesintiye uğramadan yürütülmesini zorunlu kılar; idari sözleşmelerde yüklenicinin hizmeti keyfi biçimde durduramaması ve idarenin gerektiğinde müdahale (denetim, yönlendirme, hatta işi bizzat/başkasına yaptırma) yetkisine sahip olması bu ilkeye dayanır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "İdarenin iş ve işlemlerini denetlemek amacıyla kurulan merci hangisidir?",
-          "secenekler": [
-            "Danıştay",
-            "Yargıtay",
-            "Anayasa Mahkemesi",
-            "Sayıştay",
-            "Uyuşmazlık Mahkemesi"
-          ],
-          "dogruIndex": 3,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "İdarenin sorumluluğunun doğabilmesi için genel olarak aranan unsurlar aşağıdakilerden hangisinde eksiksiz verilmiştir?",

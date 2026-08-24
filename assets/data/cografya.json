@@ -1333,19 +1333,6 @@
           "examType": "ortaogretim"
         },
         {
-          "soru": "Türkiye, Asya ve Avrupa kıtalarının birleştiği noktada yer alır. Bu konum itibariyle hangi özelliğe sahiptir?",
-          "secenekler": [
-            "Yalnızca Asya kıtasında yer alan bir ülke konumundadır",
-            "Yalnızca Avrupa kıtasında yer alan bir ülke konumundadır",
-            "Hem Asya hem de Avrupa kıtasında yer alır",
-            "Hem Afrika hem de Asya kıtasında yer alır",
-            "Hem Okyanusya hem de Avrupa kıtasında yer alır"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap.",
-          "examType": "onlisans"
-        },
-        {
           "soru": "Aşağıdakilerden hangisi Türkiye'nin coğrafi konumunun bir sonucu olarak biyoçeşitlilik açısından zenginliğini AÇIKLAR?",
           "secenekler": [
             "Ülkenin baştan sona tek bir iklim tipine ve yalnızca tek bir bitki örtüsüne sahip olmasının, tüm bölgelerde aynı hayvan türlerinin yaşamasına yol açması",
@@ -24002,19 +23989,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Bir harita üzerindeki ölçek 1:100.000'dir. Birim birimi 1 cm ise gerçek dünyada ne kadar uzaklıktır?",
-          "secenekler": [
-            "10 km",
-            "100 m",
-            "1 km",
-            "100 km",
-            "10 m"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Aşağıdakilerden hangisi haritalarda 'alan sembollerine' (örneğin bir ormanı yeşil taramayla göstermek gibi) örnektir?",
           "secenekler": [
             "Bir bölgedeki orman alanının yeşil renkle taranarak gösterilmesi",
@@ -24559,19 +24533,6 @@
           "dogruIndex": 4,
           "aciklama": "1/4.000.000 ölçeğinde haritadaki 1 cm gerçekte 4.000.000 cm'ye karşılık gelir. 5 cm × 4.000.000 = 20.000.000 cm = 200.000 m = 200 km eder.",
           "examType": "ortaogretim"
-        },
-        {
-          "soru": "Bir harita üzerindeki ölçek nedir?",
-          "secenekler": [
-            "Haritanın basıldığı kağıdın kenardan kenara toplam genişliği ile dikey boyunun santimetre cinsinden ölçüsü",
-            "Haritanın derinliği",
-            "Haritanın bir birimiyle gerçek dünya biriminin ne kadarlık bir bölümünün gösterildiğini gösteren oran",
-            "Haritanın üzerindeki birimler",
-            "Haritanın yüzeyindeki birimler"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru",
-          "examType": "onlisans"
         },
         {
           "soru": "Bir platonun (yüksekte, dalgalı ama nispeten düz yüzeyli arazinin) topografya haritasındaki izohips görünümü için aşağıdakilerden hangisi beklenir?",
@@ -31678,19 +31639,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de en çok su potansiyeli bulunan akarsu hangisidir?",
-          "secenekler": [
-            "Fırat Nehri",
-            "Dicle Nehri",
-            "Yeşilırmak Nehri",
-            "Kızılırmak Nehri",
-            "Sakarya Nehri"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Gediz Nehri'nin döküldüğü yer ve oluşturduğu ova aşağıdakilerin hangisinde doğru verilmiştir?",
           "secenekler": [
             "Karadeniz – Bafra Ovası",
@@ -31715,19 +31663,6 @@
           "dogruIndex": 0,
           "aciklama": "Taşkın ovaları, akarsuların düzenli olarak taşıdığı alüvyonlarla zenginleşen, tarım açısından verimli topraklara sahiptir; ancak aynı özellikleri nedeniyle ani ve şiddetli taşkınlara da açık olup zaman zaman tarımsal üretime zarar verebilir.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Türkiye'de barajların ana amacı nedir?",
-          "secenekler": [
-            "Sulama",
-            "Enerji üretimi",
-            "Su depolama",
-            "Tahıl üretimi",
-            "Balıkçılık"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Büyük Menderes Nehri'nin döküldüğü yer ve oluşturduğu ova aşağıdakilerin hangisinde doğru verilmiştir?",
@@ -31756,19 +31691,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de en uzun akarsu hangisidir?",
-          "secenekler": [
-            "Fırat Nehri",
-            "Dicle Nehri",
-            "Kızılırmak Nehri",
-            "Yeşilırmak Nehri",
-            "Sakarya Nehri"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Gediz ve Büyük Menderes nehirlerinin ortak coğrafi özelliği aşağıdakilerden hangisidir?",
           "secenekler": [
             "İkisi de kar erimesiyle beslenen düzensiz rejimli Doğu Anadolu akarsularıdır",
@@ -31793,19 +31715,6 @@
           "dogruIndex": 1,
           "aciklama": "Fırat Nehri, Erzurum dolaylarından doğan Karasu ile Muş-Van yöresinden kaynaklanan Murat Nehri'nin Elazığ-Malatya civarında birleşmesiyle oluşur ve bu birleşim noktasından itibaren 'Fırat' adını alır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Türkiye'de su kaynaklarının büyük çoğunluğu hangi bölgede bulunmakta?",
-          "secenekler": [
-            "Karadeniz Bölgesi",
-            "Marmara Bölgesi",
-            "Ege Bölgesi",
-            "Akdeniz Bölgesi",
-            "Doğu Anadolu Bölgesi"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Aras Nehri'nin havzasıyla ilgili aşağıdaki ifadelerden hangisi doğrudur?",
@@ -31834,19 +31743,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de su kaynaklarının kullanımı hangi sektörde en çok yapılmaktadır?",
-          "secenekler": [
-            "Tarım",
-            "Sanayi",
-            "Enerji",
-            "İçme-Kullanma",
-            "Balıkçılık"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Çoruh Nehri ile ilgili aşağıdaki bilgilerden hangisi doğrudur?",
           "secenekler": [
             "Doğu Anadolu'dan doğar, derin ve dar bir vadide akarak Gürcistan üzerinden Karadeniz'e dökülür",
@@ -31871,19 +31767,6 @@
           "dogruIndex": 1,
           "aciklama": "Meriç Nehri, Trakya'da akar; güzergâhının bir bölümünde Türkiye ile Yunanistan ve Bulgaristan arasında sınır oluşturur ve Ege Denizi'ne dökülür.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Türkiye'de su kaynaklarının korunması için hangi tedbirler alınmaktadır?",
-          "secenekler": [
-            "Atık su arıtma",
-            "Su depolama",
-            "Sulama sistemleri",
-            "Doğal yaşam koruma",
-            "Tüm seçenekler"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Murat Nehri ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
@@ -31912,19 +31795,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de su kaynakları hangi şekilde sınıflandırılmaktadır?",
-          "secenekler": [
-            "Yeraltı suyu, yerüstü suyu",
-            "Taze su, tuzlu su",
-            "Doğal su, yapay su",
-            "İçme suyu, kullanma suyu",
-            "Tüm seçenekler"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Karasu ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
           "secenekler": [
             "Erzurum yöresinden doğar ve Fırat'ın kollarından biridir",
@@ -31951,19 +31821,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de su kaynaklarının yönetiminde hangi kurumlar görev almaktadır?",
-          "secenekler": [
-            "DSİ",
-            "Çevre ve Şehircilik Bakanlığı",
-            "Tarım ve Orman Bakanlığı",
-            "Enerji ve Tabii Kaynaklar Bakanlığı",
-            "Tüm seçenekler"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Türkiye'de kapalı havzaya akan akarsulara örnek olarak aşağıdakilerden hangisi gösterilebilir?",
           "secenekler": [
             "Karadeniz'e dökülerek geniş bir delta oluşturan Kızılırmak",
@@ -31988,19 +31845,6 @@
           "dogruIndex": 1,
           "aciklama": "Fırat, Karasu ve Murat kollarının birleşmesiyle Türkiye topraklarında oluşur; ancak akışına devam ederek Suriye ve Irak topraklarına geçer ve oradan Basra Körfezi'ne ulaşır, bu nedenle toplam uzunluğunun önemli bir bölümü Türkiye dışındadır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Türkiye'de su kaynaklarının verimli kullanımı için hangi önlemler alınmaktadır?",
-          "secenekler": [
-            "Sulama sistemleri",
-            "Su depolama",
-            "Atık su arıtma",
-            "Doğal yaşam koruma",
-            "Tüm seçenekler"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Peri Suyu ve Munzur Suyu ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",

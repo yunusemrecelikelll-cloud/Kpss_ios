@@ -4069,21 +4069,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Türkiye'de ilk olarak hangi yılında 'İstanbul Bienali' yapılmıştır?",
-          "secenekler": [
-            "1990",
-            "1985",
-            "1992",
-            "1995",
-            "1987"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "distractorAciklama": "",
-          "kaynak": "KPSS Genel Kültür",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Mimar Sinan'ın Osmanlı döneminde taşıdığı unvan aşağıdakilerden hangisidir?",
           "secenekler": [
             "Hassa Baş Mimarı (Mimarbaşı)",
@@ -4454,21 +4439,6 @@
           ],
           "dogruIndex": 3,
           "aciklama": "Bu seçenek doğru çünkü Reşat Nuri Güntekin, 'Sinekli Bakkal' adlı eseri yazmıştır.",
-          "distractorAciklama": "",
-          "kaynak": "KPSS Genel Kültür",
-          "examType": "onlisans"
-        },
-        {
-          "soru": "Aşağıdakilerden hangisi modern Türk resminin önemli isimlerinden biridir?",
-          "secenekler": [
-            "Ömer Uluç",
-            "Bedri Rahmi Eyüboğlu",
-            "Cihat Burak",
-            "Fikret Mualla",
-            "Tüm yukarıdakiler"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
           "distractorAciklama": "",
           "kaynak": "KPSS Genel Kültür",
           "examType": "onlisans"

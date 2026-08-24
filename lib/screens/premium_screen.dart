@@ -591,13 +591,18 @@ class _FeatureComparisonTable extends StatelessWidget {
   const _FeatureComparisonTable();
 
   /// (emoji, özellik adı, ücretsiz değeri — null ise ✕, premium değeri)
+  /// Ücretsiz değerler koddaki gerçek sınırlarla birebir tutulur (kullanıcı
+  /// isteği: ücretsiz genişletildi, farklar doğru gösterilsin).
   static const _rows = <(String, String, String?, String)>[
     ('🚫', 'Reklamsız Deneyim', 'Test/oyun sonu reklam', 'Hiç reklam yok'),
-    ('📚', 'Konu başına soru havuzu', '20 soru', 'Sınırsıza yakın'),
-    ('❌', 'Yanlışlarım Bankası', null, 'Tüm yanlışları tekrar çöz'),
-    ('🃏', 'Kart Oyunu & Solitaire', 'Günde 10 oyun', 'Sınırsız oyun'),
-    ('⚔️', 'KPSS Düello & Royale', 'Günde 10 maç', 'Sınırsız maç'),
+    ('📚', 'Konu başına soru havuzu', '40 soru', 'Sınırsıza yakın (binlerce)'),
+    ('🔁', 'Yanlışlarım Bankası', 'Günde 15 soru', 'Sınırsız — tüm yanlışlar'),
+    ('📝', 'Tam Deneme Sınavı', '3 deneme', 'Sınırsız deneme'),
+    ('🃏', 'Kart Oyunu & Solitaire', 'Günde 20 oyun', 'Sınırsız oyun'),
+    ('⚔️', 'KPSS Düello & Royale', 'Günde 6 maç', 'Sınırsız maç'),
     ('🗺️', 'Harita Oyunu', 'Günde 10 mini oyun', 'Sınırsız oyun'),
+    ('💬', 'Genel Sohbet', 'Günde 25 mesaj', 'Sınırsız mesaj'),
+    ('🗓️', 'Çalışma Planı', '3 güne kadar', 'Tam plan (sınırsız gün)'),
     ('🎨', 'Uygulama Temaları', '3 tema', '9 tema'),
     ('🧠', 'Akılda Kalıcı Kodlama', null, 'Tüm mnemonik teknikleri'),
     ('🔔', 'Ders Bildirimleri', null, 'Ders/gün/saat seçmeli hatırlatmalar'),

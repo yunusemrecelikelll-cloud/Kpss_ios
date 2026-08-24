@@ -23,9 +23,9 @@ class AdService {
   AdService._();
   static final AdService instance = AdService._();
 
-  /// Bir ödüllü reklam izleme başına verilen kredi (kullanıcı isteği: her
-  /// reklam 1 hak versin).
-  static const int odulKrediSayisi = 1;
+  /// Bir ödüllü reklam izleme başına verilen kredi (kullanıcı isteği: ücretsiz
+  /// genişletildi — her reklam 2 hak versin).
+  static const int odulKrediSayisi = 2;
 
   // GERÇEK AdMob ödüllü reklam birim kimlikleri (birim adı: kpss_rewarded).
   // Native App ID'ler: AndroidManifest.xml + ios/Runner/Info.plist.

@@ -28,7 +28,7 @@ import '../theme/subject_colors.dart';
 
 /// JS: FREE_CARDGAME_DAILY / FREE_GAME_DAILY — tüm oyunların günlük ücretsiz hakkı 5'tir
 /// (JS'te her oyunun kendi ayrı sayacı vardır, bkz. StorageService.getGamePlayState).
-const int kFreeGameDailyLimit = 5;
+const int kFreeGameDailyLimit = 10;
 
 /// Kart Oyunu (v1 "Kart Eşleştirme Oyunu" + v2 "Kart Oyunu V2") ikisi birden
 /// TEK bir toplam oynama süresi altında toplansın diye kullanılan ortak oyun

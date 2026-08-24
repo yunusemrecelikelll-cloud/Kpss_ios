@@ -9,7 +9,7 @@ import 'quick_modes/quick_modes_shared.dart';
 import 'tools_hub_screen.dart';
 
 /// JS: FREE_CARDGAME_DAILY
-const int kFreeCardGameDaily = 10;
+const int kFreeCardGameDaily = 20;
 
 /// Kart Eşleştirme Oyunu (v1) — JS: renderCardGame / renderCardGameBoard.
 /// Kapalı kartlar, hafıza oyunu — tüm derslerin karışık kart havuzundan oynanır.

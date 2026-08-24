@@ -208,7 +208,7 @@ class StudyPlanService {
 
   /// Ücretsiz kullanıcının planlayabileceği en fazla GÜN sayısı.
   /// (Bir güne eklenebilecek seans sayısı için bkz. [maxSeansPerGun].)
-  static const int kFreeMaxDays = 1;
+  static const int kFreeMaxDays = 3;
 
   /// Gün başına MUTLAK üst sınır — bildirim kimlik şeması (bkz.
   /// NotificationService._planBildirimId) bu sayıya göre bölmelendiği için
@@ -218,7 +218,7 @@ class StudyPlanService {
   /// ÜCRETSİZ kullanıcının bir güne ekleyebileceği en fazla seans/alarm.
   /// Kullanıcı isteği: "1 güne sadece 1 alarm." Premium'da bu sınır kalkar
   /// (bkz. [maxSeansPerGun]).
-  static const int kFreeMaxSeansPerGun = 1;
+  static const int kFreeMaxSeansPerGun = 2;
 
   /// Bu kullanıcı için gün başına eklenebilecek en fazla seans: ücretsizde 1,
   /// premium'da [kSeansIdKapasitesi]. (Kullanıcı isteği: "Premium'da gün

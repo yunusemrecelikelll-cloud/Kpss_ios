@@ -10,7 +10,7 @@ class QuestionPicker {
 
   QuestionPicker(this.storage);
 
-  static const int freeTopicPoolSize = 20; // ücretsiz: 2x10 soruluk farklı test
+  static const int freeTopicPoolSize = 40; // ücretsiz: 2x10 soruluk farklı test
   static const int premiumTopicPoolSize = 100;
 
   List<Question> pickForTopic(List<Question> all, int count, String? topicId, {required bool premium}) {

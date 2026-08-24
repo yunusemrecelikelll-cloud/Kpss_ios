@@ -408,6 +408,22 @@ class StorageService extends ChangeNotifier {
     await _set('chat_daily', {'date': today, 'count': current + 1});
   }
 
+  // ── Yanlışlarım günlük limiti (ücretsiz: günde belli sayıda yanlış soru
+  // çözülebilir; üstü Premium — kullanıcı isteği). ──
+  int getWrongBankSolvedToday() {
+    final today = DateTime.now().toString().split(' ')[0];
+    final data = Map<String, dynamic>.from(_get('wrongbank_daily', {'date': null, 'count': 0}));
+    if (data['date'] != today) return 0;
+    return (data['count'] as num).toInt();
+  }
+
+  Future<void> addWrongBankSolvedToday(int n) async {
+    if (n <= 0) return;
+    final today = DateTime.now().toString().split(' ')[0];
+    final current = getWrongBankSolvedToday();
+    await _set('wrongbank_daily', {'date': today, 'count': current + n});
+  }
+
   /// DM gelen kutusunda karşı tarafın uid'ini görünen isme çevirmek için
   /// yerel önbellek — bir DM ilk başlatıldığında (genel sohbetteki bir
   /// mesajdan) karşı tarafın adı buraya kaydedilir.

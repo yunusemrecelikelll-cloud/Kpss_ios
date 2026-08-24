@@ -4982,19 +4982,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Osmanlı Devleti'nin kurucusu olan Osman Bey'in babası kimdir?",
-          "secenekler": [
-            "Ertuğrul Bey",
-            "Süleyman Şah",
-            "Gündüz Alp",
-            "Turgut Alp",
-            "Dündar Bey"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Yavuz Sultan Selim'in 1517'de Mısır'da Memlük Devleti'ne kesin olarak son verdiği savaş aşağıdakilerden hangisidir?",
           "secenekler": [
             "Mercidabık Savaşı",
@@ -5019,19 +5006,6 @@
           "dogruIndex": 1,
           "aciklama": "Kanuni döneminde Fransa'ya kapitülasyon verilmesinin arkasında, Avrupa'da güçlenen Habsburg hanedanına (Kutsal Roma-İspanya) karşı Fransa ile stratejik bir yakınlaşma kurma amacı bulunmaktadır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Osmanlı Devleti'nin kuruluş yıllarında hangi Türk boyu bölgede bulunuyordu?",
-          "secenekler": [
-            "Kayı Boyu",
-            "Avşar Boyu",
-            "Kınık Boyu",
-            "Salur Boyu",
-            "Eymür Boyu"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Kanuni Sultan Süleyman'ın 1522'de fethederek Doğu Akdeniz'deki Osmanlı deniz gücünü pekiştirdiği ada aşağıdakilerden hangisidir?",
@@ -5060,19 +5034,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Osmanlı Devleti'nin ilk başkenti hangi şehirdir?",
-          "secenekler": [
-            "Söğüt",
-            "Bursa",
-            "İznik",
-            "Köstence",
-            "Karacahisar"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Kanuni Sultan Süleyman'ın 1526'da kazandığı ve Macaristan'ın büyük bölümünün Osmanlı hakimiyetine girmesini sağlayan savaş aşağıdakilerden hangisidir?",
           "secenekler": [
             "Mohaç Savaşı",
@@ -5097,19 +5058,6 @@
           "dogruIndex": 1,
           "aciklama": "Sahn-ı Seman (Fatih Külliyesi) Medreseleri, Fatih Sultan Mehmet döneminde İstanbul'da kurulmuş; dönemin en yüksek düzeyli eğitim kurumları arasında yer almıştır.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Osmanlı Devleti'nin kuruluşunda hangi Bizans şehri önemli bir rol oynamıştır?",
-          "secenekler": [
-            "İznik",
-            "Bursa",
-            "Köstence",
-            "İzmit",
-            "Bilecik"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Kanuni Sultan Süleyman'ın 1529'da gerçekleştirdiği ve başarısızlıkla sonuçlanan kuşatma aşağıdakilerden hangisidir?",
@@ -14242,19 +14190,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Fransız Devrimi'nin başladığı yıl hangisidir?",
-          "secenekler": [
-            "1785",
-            "1789",
-            "1790",
-            "1795",
-            "1800"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Osmanlı Devleti'nin Fransız İhtilali'nden en çok etkilenen unsuru aşağıdakilerden hangisidir?",
           "secenekler": [
             "Ekonomik yapı",
@@ -14281,19 +14216,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Osmanlı Devleti'nin kurucusu kimdir?",
-          "secenekler": [
-            "Orhan Gazi",
-            "Osman Gazi",
-            "Fatih Sultan Mehmet",
-            "Kanuni Sultan Süleyman",
-            "Yavuz Sultan Selim"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Dünya tarihinde ilk kez hangi devlet tarafından kadınların oy kullanma hakkı verilmiştir?",
           "secenekler": [
             "İngiltere",
@@ -14305,19 +14227,6 @@
           "dogruIndex": 1,
           "aciklama": "Amerika Birleşik Devletleri, 1920 yılında kadınların oy kullanma hakkını vermiştir.",
           "examType": "onlisans"
-        },
-        {
-          "soru": "I. Dünya Savaşı'nın başladığı yıl hangisidir?",
-          "secenekler": [
-            "1913",
-            "1914",
-            "1915",
-            "1916",
-            "1917"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Moğolların Çin'e saldırmasıyla başlayan ve 1368 yılında Çin'imparatorluğunun yıkılmasına neden olan olaylar serisi hangisidir?",
@@ -14333,19 +14242,6 @@
           "examType": "onlisans"
         },
         {
-          "soru": "II. Dünya Savaşı'nın sona erdiği yıl hangisidir?",
-          "secenekler": [
-            "1943",
-            "1944",
-            "1945",
-            "1946",
-            "1947"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Hangi olay 1917 yılında Rus Devrimi'nin başlangıcına neden oldu?",
           "secenekler": [
             "Rus-İtalyan Savaşı",
@@ -14359,19 +14255,6 @@
           "examType": "onlisans"
         },
         {
-          "soru": "Mısır'ın bağımsızlığını kazandığı yıl hangisidir?",
-          "secenekler": [
-            "1919",
-            "1922",
-            "1925",
-            "1930",
-            "1935"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Hangi olay 1453 yılında İstanbul'un fethine neden oldu?",
           "secenekler": [
             "Kızıl Ordu'nun İstanbul'a Girişi",
@@ -14383,19 +14266,6 @@
           "dogruIndex": 4,
           "aciklama": "Fatih Sultan Mehmet'in İstanbul'a Girişi, 1453 yılında gerçekleşen olaydır. Bu olayla İstanbul, Osmanlı İmparatorluğu'nun başkenti olmuştur.",
           "examType": "onlisans"
-        },
-        {
-          "soru": "Çin Devrimi'nin lideri kimdir?",
-          "secenekler": [
-            "Mao Zedong",
-            "Deng Xiaoping",
-            "Zhou Enlai",
-            "Jiang Zemin",
-            "Hu Jintao"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "Hangi olay 1492 yılında İspanya'nın Kızılderililere karşı yaptığı savaşa neden oldu?",
@@ -20788,19 +20658,6 @@
           "examType": "ortaogretim"
         },
         {
-          "soru": "Anadolu Selçuklu Devleti'nin kurucusu olan I. Süleyman'ın yerine hangi sultan geçmiştir?",
-          "secenekler": [
-            "I. Kılıç Arslan",
-            "I. Mesud",
-            "II. Kılıç Arslan",
-            "I. Rükneddin Mesud",
-            "II. Süleyman"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "onlisans"
-        },
-        {
           "soru": "II. Kılıçarslan'ın ölümünden sonraki kardeşler arası taht kavgalarına son vererek birliği yeniden sağlayan sultan aşağıdakilerden hangisidir?",
           "secenekler": [
             "I. Rükneddin Süleyman Şah",
@@ -20825,19 +20682,6 @@
           "dogruIndex": 2,
           "aciklama": "Sıralama Malazgirt (1071) - Miryokefalon (1176) - Yassıçemen (1230) - Babailer İsyanı (1240) - Kösedağ (1243) şeklindedir; en önce Malazgirt Savaşı yaşanmıştır.",
           "examType": "ortaogretim"
-        },
-        {
-          "soru": "Anadolu Selçuklu Devleti'nin kuruluşunda hangi olay önemli bir rol oynamıştır?",
-          "secenekler": [
-            "Malazgirt Savaşı",
-            "Manzikert Savaşı",
-            "Miryekefalon Savaşı",
-            "İznik Kuşatması",
-            "Haçlı Seferleri"
-          ],
-          "dogruIndex": 1,
-          "aciklama": "Doğru cevap",
-          "examType": "onlisans"
         },
         {
           "soru": "I. Gıyaseddin Keyhüsrev'in hayatını kaybettiği savaş ve rakibi aşağıdakilerden hangisidir?",
@@ -21321,19 +21165,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Anadolu Selçuklu Devleti'nin en önemli ticaret merkezlerinden biri hangi şehirdir?",
-          "secenekler": [
-            "Konya",
-            "Sivas",
-            "Kayseri",
-            "Ankara",
-            "Bursa"
-          ],
-          "dogruIndex": 2,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "Kutalmışoğlu Süleyman Şah, İznik'i hangi güçten alarak Anadolu Selçuklu Devleti'nin temelini atmıştır?",
           "secenekler": [
             "Bizans İmparatorluğu",
@@ -21360,19 +21191,6 @@
           "examType": "lisans"
         },
         {
-          "soru": "Anadolu Selçuklu Devleti'nin tarihinde hangi sultan en önemli rol oynamıştır?",
-          "secenekler": [
-            "I. Kılıç Arslan",
-            "I. Mesud",
-            "II. Kılıç Arslan",
-            "I. Rükneddin Mesud",
-            "Alaeddin Keykubat"
-          ],
-          "dogruIndex": 4,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
-        },
-        {
           "soru": "İznik'in kaybedilmesinin ardından I. Kılıçarslan'ın I. Haçlı Seferi ordusuna karşı yenildiği savaş aşağıdakilerden hangisidir?",
           "secenekler": [
             "Dorylaion Savaşı",
@@ -21397,19 +21215,6 @@
           "dogruIndex": 0,
           "aciklama": "İlhanlılar, Üçlü Saltanat Dönemi'nde ülkeyi fiilen ikiye ayırmış; II. İzzeddin Keykavus batı bölgelerini, IV. Kılıçarslan ise doğu bölgelerini yönetmiştir.",
           "examType": "lisans"
-        },
-        {
-          "soru": "Anadolu Selçuklu Devleti'nin sosyal yapısında hangi sınıf en önemli rol oynamıştır?",
-          "secenekler": [
-            "Askerler",
-            "Tüccarlar",
-            "Çiftçiler",
-            "Sanatçılar",
-            "Ulema"
-          ],
-          "dogruIndex": 0,
-          "aciklama": "Doğru cevap",
-          "examType": "ortaogretim"
         },
         {
           "soru": "I. Mesud dönemi ile ilgili aşağıdakilerden hangisi doğrudur?",

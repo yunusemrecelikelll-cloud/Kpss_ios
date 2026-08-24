@@ -25,7 +25,7 @@ const String kDuelloGameId = 'duello';
 /// Düello/Royale için ücretsiz GÜNLÜK maç hakkı. Diğer oyunlar
 /// [kFreeGameDailyLimit] (5) kullanır; düello canlı/çok oyunculu olduğu ve
 /// sunucu kaynağı tükettiği için ücretsiz tarafta daha kısıtlı.
-const int kFreeDuelloDaily = 3;
+const int kFreeDuelloDaily = 6;
 
 /// KPSS Düello & Royale giriş/lobi ekranı — oyuncu adı, mod seçimi, oda kur /
 /// özel odaya katıl / tek başına yarış butonları ve canlı açık odalar listesi.

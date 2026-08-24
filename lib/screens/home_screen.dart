@@ -44,7 +44,7 @@ import 'detailed_stats_screen.dart';
 /// Ücretsiz pakette 120 soruluk TAM DENEME sınavı hakkı (toplam, günlük değil).
 /// Deneme sınavı uygulamanın en ağır içeriği olduğu için ücretsiz tarafta
 /// tek denemeyle sınırlı.
-const int kFreeMaxFullTestAttempts = 1;
+const int kFreeMaxFullTestAttempts = 3;
 
 class HomeScreen extends StatefulWidget {
   final List<Subject> subjects;

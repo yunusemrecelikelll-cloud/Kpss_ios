@@ -13,7 +13,7 @@ import '../theme/theme_provider.dart';
 import 'tools_hub_screen.dart';
 
 /// JS: FREE_GAME_DAILY / GAME2_MAX_MISTAKES
-const int kFreeGameDaily = 10;
+const int kFreeGameDaily = 20;
 const int kGame2MaxMistakes = 3;
 const String kGame2Id = 'cardgame2';
 

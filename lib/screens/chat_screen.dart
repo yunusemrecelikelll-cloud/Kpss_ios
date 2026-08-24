@@ -14,7 +14,7 @@ import 'premium_screen.dart';
 import 'public_profile_screen.dart';
 import '../utils/ust_bildirim.dart';
 
-const int kFreeMaxChatMessagesPerDay = 10;
+const int kFreeMaxChatMessagesPerDay = 25;
 
 /// Mesaj saatini "14:05" biçiminde verir. Sunucu damgası henüz işlenmediyse
 /// (yeni gönderilmiş mesaj) boş döner — "00:00" göstermek yanıltıcı olurdu.

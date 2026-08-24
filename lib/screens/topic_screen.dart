@@ -24,7 +24,7 @@ import 'premium_screen.dart';
 import '../utils/ust_bildirim.dart';
 import '../widgets/kodlama_notu.dart';
 
-const int kFreeMaxAttemptsPerTopic = 2;
+const int kFreeMaxAttemptsPerTopic = 4;
 
 /// Türkçe kısa ay adları — "12 Tem 2026" biçimi için.
 const List<String> _kAylarKisa = [
