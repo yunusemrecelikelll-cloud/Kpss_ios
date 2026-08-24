@@ -138,7 +138,7 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
           final dyLeft = (kFreeGameDailyLimit - (dy['plays'] as int)).clamp(0, kFreeGameDailyLimit);
           final ao = storage.getGamePlayState(kAlfabeOyunuGameId);
           final aoLeft = (kFreeGameDailyLimit - (ao['plays'] as int)).clamp(0, kFreeGameDailyLimit);
-          final alfabeRekor = storage.getBestTimeSeconds(kAlfabeOyunuGameId);
+          final alfabeRekor = storage.getHighScore(kAlfabeOyunuGameId);
 
           final c = context.watch<ThemeProvider>().colors;
 
@@ -343,9 +343,9 @@ class _ToolsHubScreenState extends State<ToolsHubScreen> {
                   ToolCard(
                     icon: '🔤',
                     title: 'Alfabe Oyunu',
-                    desc: alfabeRekor != null
-                        ? "A'dan Z'ye tarih soruları. Rekor süren: ${alfabeSureMetni(alfabeRekor)}."
-                        : "A'dan Z'ye her harf için tarih sorusu. Süreyle yarış, rekor kır.",
+                    desc: alfabeRekor > 0
+                        ? "A'dan Z'ye tarih soruları — yazarak cevapla! Rekor puanın: $alfabeRekor."
+                        : "A'dan Z'ye her harf için tarih sorusu. Yazarak cevapla, ipucu al, puan topla.",
                     chipLabel: hakEtiketi(aoLeft),
                     palette: const SubjectPalette(Color(0xFF14B8A6), Color(0xFF0D9488)),
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(

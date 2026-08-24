@@ -264,10 +264,26 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    'Bu ipucu için: ${_clueScoreFor(_clueIndex)} puan  •  '
-                    'İpucu ${_clueIndex + 1}/${round.kisi.ipuclari.length}',
-                    style: TextStyle(fontSize: 11.5, color: colors.textFaint, fontWeight: FontWeight.w700),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colors.gold.withValues(alpha: 0.14),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: colors.gold.withValues(alpha: 0.45)),
+                        ),
+                        child: Text(
+                          '🎯 Şimdi bilirsen: ${_clueScoreFor(_clueIndex)} puan',
+                          style: TextStyle(
+                              fontSize: 12.5, fontWeight: FontWeight.w900, color: colors.gold),
+                        ),
+                      ),
+                      const Spacer(),
+                      Text('İpucu ${_clueIndex + 1}/${round.kisi.ipuclari.length}',
+                          style: TextStyle(
+                              fontSize: 11.5, color: colors.textFaint, fontWeight: FontWeight.w700)),
+                    ],
                   ),
                   const SizedBox(height: 8),
                   for (var i = 0; i < revealed.length; i++)
@@ -286,7 +302,7 @@ class _KimimBenScreenState extends State<KimimBenScreen> {
                       alignment: Alignment.centerRight,
                       child: TextButton(
                         onPressed: _revealNextClue,
-                        child: const Text('Sonraki İpucu →'),
+                        child: const Text('Sonraki İpucu (puan düşer) →'),
                       ),
                     ),
                 ],
