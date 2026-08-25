@@ -51,12 +51,23 @@ class _Cevap {
   const _Cevap(this.onerme, this.kullaniciDedi, this.isabet);
 }
 
-class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
+class _DogruYanlisScreenState extends State<DogruYanlisScreen>
+    with SingleTickerProviderStateMixin {
   final Random _rnd = Random();
 
   _Asama _asama = _Asama.kurulum;
   bool _locked = false;
   bool _booted = false;
+
+  /// Kart animasyonu — hem "sağa-sola tanıtım sallaması" hem de cevaptan
+  /// sonra kartın seçilen yöne UÇUP gitmesi bu tek denetleyiciden sürülür.
+  late final AnimationController _ac =
+      AnimationController(vsync: this)..addListener(() {
+        final a = _kartAnim;
+        if (a != null && mounted) setState(() => _kaydirma = a.value);
+      });
+  Animation<Offset>? _kartAnim;
+  bool _ucusOynuyor = false; // cevap sonrası uçuş sırasında yeni girdi alma
 
   /// Seçili deste boyutu. Ücretsiz kullanıcıda [_boot] bunu
   /// [kUcretsizAdet]'e sabitler — varsayılanı 20 bırakmak, kilitli bir
@@ -76,6 +87,61 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
+  }
+
+  @override
+  void dispose() {
+    _ac.dispose();
+    super.dispose();
+  }
+
+  /// Yeni kart gelince kısa "sağa-sola" tanıtım sallaması — oyuncu kartın
+  /// sürüklenebildiğini ve hangi yönün ne demek olduğunu görür.
+  void _tanitimSallamasi() {
+    if (!mounted || _asama != _Asama.oyun) return;
+    _ucusOynuyor = false;
+    _kartAnim = TweenSequence<Offset>([
+      TweenSequenceItem(
+          tween: Tween(begin: Offset.zero, end: const Offset(58, 0))
+              .chain(CurveTween(curve: Curves.easeOut)),
+          weight: 30),
+      TweenSequenceItem(
+          tween: Tween(begin: const Offset(58, 0), end: const Offset(-58, 0))
+              .chain(CurveTween(curve: Curves.easeInOut)),
+          weight: 46),
+      TweenSequenceItem(
+          tween: Tween(begin: const Offset(-58, 0), end: Offset.zero)
+              .chain(CurveTween(curve: Curves.easeIn)),
+          weight: 30),
+    ]).animate(_ac);
+    _ac
+      ..duration = const Duration(milliseconds: 1150)
+      ..forward(from: 0).whenComplete(() {
+        if (!mounted) return;
+        setState(() {
+          _kartAnim = null;
+          _kaydirma = Offset.zero;
+        });
+      });
+  }
+
+  /// Kartı seçilen yöne UÇURUP sonrasında skoru işler ve sıradaki karta geçer.
+  void _kartiUcur(bool kullaniciDogruDedi) {
+    final genislik = MediaQuery.of(context).size.width;
+    final baslangic = _kaydirma;
+    final hedef = Offset(kullaniciDogruDedi ? genislik * 1.3 : -genislik * 1.3,
+        baslangic.dy);
+    _ucusOynuyor = true;
+    _ac.stop();
+    _kartAnim = Tween(begin: baslangic, end: hedef)
+        .animate(CurvedAnimation(parent: _ac, curve: Curves.easeIn));
+    _ac
+      ..duration = const Duration(milliseconds: 260)
+      ..forward(from: 0).whenComplete(() {
+        _ucusOynuyor = false;
+        _kartAnim = null;
+        _cevabiIsle(kullaniciDogruDedi);
+      });
   }
 
   /// Günlük hak kontrolü — hak kalmamışsa kilit ekranı gösterilir.
@@ -134,12 +200,19 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
       _kaydirma = Offset.zero;
       _asama = _Asama.oyun;
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _tanitimSallamasi());
   }
 
-  /// Tek cevap noktası: hem butonlar hem sürükleme buraya gelir.
+  /// Tek cevap noktası: hem butonlar hem sürükleme buraya gelir. Önce kart
+  /// seçilen yöne uçar ([_kartiUcur]), uçuş bitince skor işlenir ([_cevabiIsle]).
   void _cevapla(bool kullaniciDogruDedi) {
-    if (_asama != _Asama.oyun || _index >= _deste.length) return;
+    if (_asama != _Asama.oyun || _index >= _deste.length || _ucusOynuyor) return;
     context.read<SoundService>().click();
+    _kartiUcur(kullaniciDogruDedi);
+  }
+
+  void _cevabiIsle(bool kullaniciDogruDedi) {
+    if (_index >= _deste.length) return;
     final onerme = _deste[_index];
     final isabet = onerme.dogru == kullaniciDogruDedi;
     setState(() {
@@ -152,7 +225,11 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
       _kaydirma = Offset.zero;
       _index += 1;
     });
-    if (_index >= _deste.length) _bitir();
+    if (_index >= _deste.length) {
+      _bitir();
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _tanitimSallamasi());
+    }
   }
 
   /// Deste bitti: skoru ve tur istatistiğini ortak API üzerinden kaydeder.
@@ -430,8 +507,19 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
                 child: GestureDetector(
-                  onPanUpdate: (d) => setState(() => _kaydirma += d.delta),
+                  // Parmak değince tanıtım sallamasını durdur, kontrolü bırak.
+                  onPanDown: (_) {
+                    if (_kartAnim != null && !_ucusOynuyor) {
+                      _ac.stop();
+                      setState(() => _kartAnim = null);
+                    }
+                  },
+                  onPanUpdate: (d) {
+                    if (_ucusOynuyor) return;
+                    setState(() => _kaydirma += d.delta);
+                  },
                   onPanEnd: (_) {
+                    if (_ucusOynuyor) return;
                     if (_kaydirma.dx > _kSwipeEsigi) {
                       _cevapla(true);
                     } else if (_kaydirma.dx < -_kSwipeEsigi) {
@@ -440,7 +528,9 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen> {
                       setState(() => _kaydirma = Offset.zero);
                     }
                   },
-                  onPanCancel: () => setState(() => _kaydirma = Offset.zero),
+                  onPanCancel: () {
+                    if (!_ucusOynuyor) setState(() => _kaydirma = Offset.zero);
+                  },
                   child: Transform.translate(
                     offset: Offset(_kaydirma.dx, _kaydirma.dy * 0.25),
                     child: Transform.rotate(
@@ -774,16 +864,17 @@ class _OnermeKarti extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 6),
-                Center(
-                  child: Text(
-                    '← YANLIŞ            DOĞRU →',
-                    style: TextStyle(
-                      fontSize: 10.5,
-                      letterSpacing: 0.6,
-                      fontWeight: FontWeight.w800,
-                      color: c.textFaint,
-                    ),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _YonEtiketi(
+                        metin: '← YANLIŞ', renk: c.danger, ikon: Icons.close_rounded),
+                    _YonEtiketi(
+                        metin: 'DOĞRU →',
+                        renk: c.success,
+                        ikon: Icons.check_rounded,
+                        sagda: true),
+                  ],
                 ),
               ],
             ),
@@ -819,6 +910,49 @@ class _OnermeKarti extends StatelessWidget {
               ),
             ),
         ],
+      ),
+    );
+  }
+}
+
+/// Kart altındaki renkli yön rehberi (sol = YANLIŞ/kırmızı, sağ = DOĞRU/yeşil).
+class _YonEtiketi extends StatelessWidget {
+  final String metin;
+  final Color renk;
+  final IconData ikon;
+  final bool sagda;
+  const _YonEtiketi({
+    required this.metin,
+    required this.renk,
+    required this.ikon,
+    this.sagda = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final cocuklar = <Widget>[
+      Icon(ikon, size: 15, color: renk),
+      const SizedBox(width: 4),
+      Text(
+        metin,
+        style: TextStyle(
+          fontSize: 11.5,
+          letterSpacing: 0.4,
+          fontWeight: FontWeight.w900,
+          color: renk,
+        ),
+      ),
+    ];
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: renk.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: renk.withValues(alpha: 0.45)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: sagda ? cocuklar.reversed.toList() : cocuklar,
       ),
     );
   }

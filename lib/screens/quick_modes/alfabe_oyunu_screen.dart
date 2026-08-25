@@ -119,20 +119,55 @@ bool _cevapGecerli(String girilen, String dogru) {
 /// Bir sorunun doğru cevap metni (şık harfi → metin).
 String _dogruCevapMetni(AlfabeSorusu s) => s.siklar[s.dogru] ?? '';
 
-/// Cevaptan kademeli ipuçları üretir (her biri istenince puan düşürür).
+/// Açıklama metninde geçen doğru cevabı (ve ayırt edici kelimelerini) gizler,
+/// böylece açıklama ipucu olarak verilse de cevabı doğrudan ele vermez.
+String _cevabiGizle(String aciklama, String cevap) {
+  var t = aciklama;
+  final varyantlar = <String>{};
+  void ekle(String x) {
+    final v = x.trim();
+    if (v.length >= 3) {
+      varyantlar.add(v);
+      varyantlar.add(v.toLowerCase());
+    }
+  }
+
+  ekle(cevap);
+  for (final w in cevap.split(RegExp(r'\s+'))) {
+    if (w.length >= 4) ekle(w);
+  }
+  // Uzun varyantları önce değiştir ki kısmi çakışma kalmasın.
+  final sirali = varyantlar.toList()..sort((a, b) => b.length.compareTo(a.length));
+  for (final v in sirali) {
+    t = t.replaceAll(v, '•••');
+  }
+  return t;
+}
+
+/// Kademeli, İÇERİK ipuçları üretir: olayı/kişiyi anlatan gerçek bilgiler
+/// (Kimim Ben tarzı). Açıklama cümleleri, cevap gizlenerek ipucuna dönüşür;
+/// son çare olarak yapısal (kelime/harf sayısı) ipucu eklenir. Her ipucu
+/// istenince o sorudan alınacak puan düşer.
 List<String> _ipuclariUret(AlfabeSorusu s) {
   final cevap = _dogruCevapMetni(s).trim();
-  final kelimeler = cevap.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
+  final guvenli = _cevabiGizle(s.aciklama, cevap);
+  final cumleler = guvenli
+      .split(RegExp(r'(?<=[.!?])\s+'))
+      .map((x) => x.trim())
+      .where((x) => x.length >= 12)
+      .toList();
+
+  final ipuclari = <String>[];
+  for (final c in cumleler) {
+    if (ipuclari.length >= 3) break;
+    ipuclari.add(c);
+  }
+  // İçerik yetmezse çeldirici-dışı yapısal ipucu (yine de anlamlı).
+  final kelimeSayisi =
+      cevap.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
   final harfSayisi = cevap.replaceAll(' ', '').length;
-  final maskeli = kelimeler
-      .map((w) => w.length <= 1 ? w : '${w[0]}${'_' * (w.length - 1)}')
-      .join('  ');
-  return [
-    'Cevap "${s.harf}" harfi ile başlıyor.',
-    '${kelimeler.length} kelime · $harfSayisi harf.',
-    'Şablon:  $maskeli',
-    if (kelimeler.isNotEmpty) 'İlk kelime: ${kelimeler.first}',
-  ];
+  ipuclari.add('$kelimeSayisi kelime · $harfSayisi harften oluşuyor.');
+  return ipuclari;
 }
 
 /// Oyun kartına basınca AÇILAN tanıtım/başlangıç ekranı; rekor puanı gösterir.
@@ -252,6 +287,7 @@ class AlfabeOyunuScreen extends StatefulWidget {
 class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
   final Random _rnd = Random();
   final TextEditingController _controller = TextEditingController();
+  final FocusNode _cevapFocus = FocusNode();
 
   bool _locked = false;
   bool _booted = false;
@@ -288,6 +324,7 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
   @override
   void dispose() {
     _controller.dispose();
+    _cevapFocus.dispose();
     super.dispose();
   }
 
@@ -416,6 +453,30 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
     if (acik >= toplam) return;
     context.read<SoundService>().click();
     setState(() => _ipucu[h] = acik + 1);
+    // İpucu sonrası yazmaya devam edebilmek için odağı geri ver (aksi halde
+    // buton odağı alıp klavye kapanıyordu — kullanıcı şikayeti).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _durum[_aktifHarf] != 'dogru') _cevapFocus.requestFocus();
+    });
+  }
+
+  /// Pas: mevcut soruyu bırakıp sıradaki cevaplanmamış harfe geç (bitmez).
+  void _pasGec() {
+    context.read<SoundService>().click();
+    _cevapFocus.unfocus();
+    for (var off = 1; off <= _harfler.length; off++) {
+      final i = (_aktifIndex + off) % _harfler.length;
+      if (_durum[_harfler[i]] == 'bekliyor') {
+        setState(() {
+          _aktifIndex = i;
+          _yanlisTitre = false;
+        });
+        _controller.text = '';
+        return;
+      }
+    }
+    // Hepsi çözülmüşse sadece sonraki harfe geç.
+    _gezin(1);
   }
 
   Future<void> _finish() async {
@@ -489,16 +550,21 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
             title: 'Alfabe Oyunu nasıl oynanır?',
             body:
                 'Her harf için, cevabı o harfle başlayan bir soru sorulur. '
-                'Cevabı klavyeyle YAZ ve "Cevapla"ya bas. Yakın/eksik yazımlar '
+                'Cevabı klavyeyle YAZ ve ✓ butonuna bas. Yakın/eksik yazımlar '
                 '(ör. "ertuğrul" ↔ "Ertuğrul Gazi") da geçerli sayılır.\n\n'
-                'Emin değilsen "İpucu İste" — ama her ipucu o sorudan alacağın '
-                'puanı düşürür. Pas yok; ◀ ▶ ile önceki/sonraki sorulara '
-                'geçebilir, sonra geri dönebilirsin. "Bitir" ile turu bitir.',
+                'Emin değilsen "İpucu İste" — olayı/kişiyi anlatan gerçek '
+                'ipuçları gelir ama her ipucu o sorudan alacağın puanı düşürür. '
+                'İstersen "Pas Geç" ile başka soruya atla; ◀ ▶ ile ileri-geri '
+                'gezinebilirsin. "Bitir" ile turu bitir.',
           ),
         ],
       ),
+      // Boşluğa dokununca klavye kapansın (kullanıcı isteği).
       body: SafeArea(
-        child: Padding(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => _cevapFocus.unfocus(),
+          child: Padding(
           padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
           child: Column(
             children: [
@@ -522,7 +588,7 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                   child: LayoutBuilder(
                     builder: (context, cons) {
                       final boyut = min(cons.maxWidth, cons.maxHeight)
-                          .clamp(190.0, 340.0);
+                          .clamp(220.0, 400.0);
                       return _buildWheel(c, boyut, cozuldu);
                     },
                   ),
@@ -559,6 +625,7 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                     Expanded(
                       child: TextField(
                         controller: _controller,
+                        focusNode: _cevapFocus,
                         textInputAction: TextInputAction.done,
                         textCapitalization: TextCapitalization.sentences,
                         onChanged: (v) => _yazilan[h] = v,
@@ -615,7 +682,7 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                         fontSize: 11.5, color: c.danger, fontWeight: FontWeight.w700)),
               ],
               const SizedBox(height: 8),
-              // İpucu alanı.
+              // İpucu alanı — klavyenin hemen üstünde: İpucu İste + Klavyeyi Kapat.
               if (!cozuldu)
                 Row(
                   children: [
@@ -636,6 +703,17 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                         ),
                       ),
+                    ),
+                    const SizedBox(width: 8),
+                    OutlinedButton(
+                      onPressed: () => _cevapFocus.unfocus(),
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: c.border),
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      ),
+                      child: Icon(Icons.keyboard_hide_rounded,
+                          size: 20, color: c.textDim),
                     ),
                   ],
                 ),
@@ -663,20 +741,38 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                   ),
                 ),
               ],
-              const SizedBox(height: 10),
-              // Gezinme: önceki / durum / sonraki.
+              const SizedBox(height: 6),
+              Center(
+                child: Text(
+                  '${_aktifIndex + 1}/${_harfler.length}  ·  ✅ $_dogruSayi doğru',
+                  style: TextStyle(
+                      fontSize: 11.5, fontWeight: FontWeight.w700, color: c.textFaint),
+                ),
+              ),
+              const SizedBox(height: 6),
+              // Gezinme: önceki · ORTADA Pas Geç · sonraki.
               Row(
                 children: [
                   _navButton(c, Icons.chevron_left_rounded, 'Önceki',
                       _aktifIndex > 0 ? () => _gezin(-1) : null),
                   Expanded(
-                    child: Center(
-                      child: Text(
-                        '${_aktifIndex + 1}/${_harfler.length}  ·  ✅ $_dogruSayi',
-                        style: TextStyle(
-                            fontSize: 12.5,
-                            fontWeight: FontWeight.w800,
-                            color: c.textDim),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: OutlinedButton.icon(
+                        onPressed: cozuldu ? null : _pasGec,
+                        icon: Icon(Icons.skip_next_rounded,
+                            size: 18, color: cozuldu ? c.textFaint : c.violet),
+                        label: Text('Pas Geç',
+                            style: TextStyle(
+                                color: cozuldu ? c.textFaint : c.violet,
+                                fontWeight: FontWeight.w900)),
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(
+                              color: cozuldu
+                                  ? c.border
+                                  : c.violet.withValues(alpha: 0.5)),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                        ),
                       ),
                     ),
                   ),
@@ -686,6 +782,7 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );
@@ -761,8 +858,9 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
       ));
     }
 
-    // Ortadaki soru kartı (çemberin içine sığan en büyük kare).
-    final ic = ((merkez - harfCap - 6) * 1.30).clamp(120.0, boyut);
+    // Ortadaki soru kartı — DAİRE olduğu için, çevredeki harflerin hemen
+    // bitişiğine kadar büyütülür (kullanıcı isteği: daha büyük, harflere yakın).
+    final ic = (boyut - 2 * harfCap - 8).clamp(150.0, boyut);
     cocuklar.add(Positioned(
       left: (boyut - ic) / 2,
       top: (boyut - ic) / 2,
@@ -774,27 +872,25 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
     return SizedBox(width: boyut, height: boyut, child: Stack(children: cocuklar));
   }
 
-  /// Tatlı renkli, gerekirse dikey kaydırılabilen soru kartı.
+  /// Premium görünümlü, gerekirse dikey kaydırılabilen soru kartı (daire).
   Widget _soruKarti(KpssColors colors, bool cozuldu) {
     final soru = _aktifSoru;
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: colors.bg2,
         shape: BoxShape.circle,
-        gradient: LinearGradient(
+        // Premium his: derin menekşe→indigo→gül degrade, altın kenarlık, iç ışık.
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            colors.violet.withValues(alpha: 0.16),
-            colors.rose.withValues(alpha: 0.16),
-          ],
+          colors: [Color(0xFF7C3AED), Color(0xFF6D28D9), Color(0xFFDB2777)],
         ),
-        border: Border.all(color: colors.violet.withValues(alpha: 0.35), width: 1.5),
+        border: Border.all(color: colors.gold.withValues(alpha: 0.75), width: 2),
         boxShadow: [
           BoxShadow(
-            color: colors.violet.withValues(alpha: 0.18),
-            blurRadius: 16,
+            color: const Color(0xFF6D28D9).withValues(alpha: 0.45),
+            blurRadius: 26,
+            spreadRadius: 1,
           ),
         ],
       ),
@@ -803,18 +899,24 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 30,
-            height: 30,
+            width: 34,
+            height: 34,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: cozuldu ? colors.success : colors.violet,
+              color: cozuldu ? colors.success : Colors.white,
               shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.15), blurRadius: 6),
+              ],
             ),
             child: Text(_aktifHarf,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w900, fontSize: 15, color: Colors.white)),
+                style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 16,
+                    color: cozuldu ? Colors.white : const Color(0xFF6D28D9))),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
           // Uzun soru: dikey kaydırılır; kelimeler normal (boşlukta) bölünür.
           Flexible(
             child: SingleChildScrollView(
@@ -822,11 +924,11 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                 soru.soru,
                 textAlign: TextAlign.center,
                 softWrap: true,
-                style: TextStyle(
-                    fontSize: 13.5,
-                    height: 1.32,
+                style: const TextStyle(
+                    fontSize: 14.5,
+                    height: 1.34,
                     fontWeight: FontWeight.w700,
-                    color: colors.text),
+                    color: Colors.white),
               ),
             ),
           ),
