@@ -225,11 +225,9 @@ class _DogruYanlisScreenState extends State<DogruYanlisScreen>
       _kaydirma = Offset.zero;
       _index += 1;
     });
-    if (_index >= _deste.length) {
-      _bitir();
-    } else {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _tanitimSallamasi());
-    }
+    // Tanıtım sallaması SADECE oyun başında gösterilir (her sorudan sonra
+    // tekrarı gereksiz — kullanıcı isteği); burada tetiklenmez.
+    if (_index >= _deste.length) _bitir();
   }
 
   /// Deste bitti: skoru ve tur istatistiğini ortak API üzerinden kaydeder.

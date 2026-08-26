@@ -119,54 +119,56 @@ bool _cevapGecerli(String girilen, String dogru) {
 /// Bir sorunun doğru cevap metni (şık harfi → metin).
 String _dogruCevapMetni(AlfabeSorusu s) => s.siklar[s.dogru] ?? '';
 
-/// Açıklama metninde geçen doğru cevabı (ve ayırt edici kelimelerini) gizler,
-/// böylece açıklama ipucu olarak verilse de cevabı doğrudan ele vermez.
+/// Açıklama metninde geçen doğru cevabın kelimelerini, HARF SAYISIYLA BİRE BİR
+/// nokta dizisiyle ("Amasya" → "••••••") gizler; böylece açıklama ipucu olsa da
+/// cevabı doğrudan ele vermez ama kaç harf olduğu maskede görünür.
 String _cevabiGizle(String aciklama, String cevap) {
   var t = aciklama;
-  final varyantlar = <String>{};
-  void ekle(String x) {
-    final v = x.trim();
-    if (v.length >= 3) {
-      varyantlar.add(v);
-      varyantlar.add(v.toLowerCase());
-    }
-  }
-
-  ekle(cevap);
-  for (final w in cevap.split(RegExp(r'\s+'))) {
-    if (w.length >= 4) ekle(w);
-  }
-  // Uzun varyantları önce değiştir ki kısmi çakışma kalmasın.
-  final sirali = varyantlar.toList()..sort((a, b) => b.length.compareTo(a.length));
-  for (final v in sirali) {
-    t = t.replaceAll(v, '•••');
+  final kelimeler = cevap
+      .split(RegExp(r'\s+'))
+      .map((w) => w.trim())
+      .where((w) => w.length >= 3)
+      .toList()
+    ..sort((a, b) => b.length.compareTo(a.length)); // uzun önce
+  for (final w in kelimeler) {
+    final re = RegExp(RegExp.escape(w), caseSensitive: false);
+    t = t.replaceAllMapped(re, (m) => '•' * m.group(0)!.length);
   }
   return t;
 }
 
 /// Kademeli, İÇERİK ipuçları üretir: olayı/kişiyi anlatan gerçek bilgiler
-/// (Kimim Ben tarzı). Açıklama cümleleri, cevap gizlenerek ipucuna dönüşür;
-/// son çare olarak yapısal (kelime/harf sayısı) ipucu eklenir. Her ipucu
-/// istenince o sorudan alınacak puan düşer.
+/// (Kimim Ben tarzı). Açıklamanın TÜM cümleleri (cevap gizlenerek) + kelime/harf
+/// yapısı + ilk-harf şablonu ipucu olur — böylece her soru için bol ipucu olur.
+/// Her ipucu istenince o sorudan alınacak puan düşer.
 List<String> _ipuclariUret(AlfabeSorusu s) {
   final cevap = _dogruCevapMetni(s).trim();
   final guvenli = _cevabiGizle(s.aciklama, cevap);
   final cumleler = guvenli
       .split(RegExp(r'(?<=[.!?])\s+'))
       .map((x) => x.trim())
-      .where((x) => x.length >= 12)
+      .where((x) => x.length >= 10)
       .toList();
 
   final ipuclari = <String>[];
-  for (final c in cumleler) {
-    if (ipuclari.length >= 3) break;
-    ipuclari.add(c);
-  }
-  // İçerik yetmezse çeldirici-dışı yapısal ipucu (yine de anlamlı).
-  final kelimeSayisi =
-      cevap.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+  // 1) Açıklamanın tüm cümleleri (maskeli) — konuyla ilgili gerçek ipuçları.
+  ipuclari.addAll(cumleler);
+
+  // 2) Kelime/harf yapısı (çok kelimeliyse her kelimenin harf sayısı).
+  final kelimeler =
+      cevap.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
   final harfSayisi = cevap.replaceAll(' ', '').length;
-  ipuclari.add('$kelimeSayisi kelime · $harfSayisi harften oluşuyor.');
+  final yapi = kelimeler.length > 1
+      ? '${kelimeler.length} kelime · $harfSayisi harf (${kelimeler.map((w) => w.length).join(' + ')}).'
+      : '$harfSayisi harften oluşan tek kelime.';
+  ipuclari.add(yapi);
+
+  // 3) İlk-harf şablonu (en güçlü ipucu, en sonda) — "A••••• G••••".
+  final sablon = kelimeler
+      .map((w) => w.isEmpty ? '' : '${w[0]}${'•' * (w.length - 1)}')
+      .join(' ');
+  ipuclari.add('Harf şablonu:  $sablon');
+
   return ipuclari;
 }
 
@@ -533,6 +535,8 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
     final cozuldu = _durum[h] == 'dogru';
     final acikIpucu = _ipucu[h] ?? 0;
     final ipucuListe = _ipuclariUret(_aktifSoru);
+    // Klavye AÇIKKEN (yalnızca o zaman) sağ alt köşede "klavyeyi gizle" tuşu.
+    final klavyeAcik = MediaQuery.of(context).viewInsets.bottom > 6;
 
     return Scaffold(
       appBar: AppBar(
@@ -564,7 +568,9 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () => _cevapFocus.unfocus(),
-          child: Padding(
+          child: Stack(
+            children: [
+              Padding(
           padding: const EdgeInsets.fromLTRB(14, 10, 14, 12),
           child: Column(
             children: [
@@ -704,17 +710,6 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    OutlinedButton(
-                      onPressed: () => _cevapFocus.unfocus(),
-                      style: OutlinedButton.styleFrom(
-                        side: BorderSide(color: c.border),
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                      ),
-                      child: Icon(Icons.keyboard_hide_rounded,
-                          size: 20, color: c.textDim),
-                    ),
                   ],
                 ),
               if (acikIpucu > 0) ...[
@@ -783,6 +778,44 @@ class _AlfabeOyunuScreenState extends State<AlfabeOyunuScreen> {
             ],
           ),
         ),
+        if (klavyeAcik)
+          Positioned(
+            right: 12,
+            bottom: 12,
+            child: _klavyeGizleButonu(c),
+          ),
+        ],
+        ),
+      ),
+      ),
+    );
+  }
+
+  /// Klavye açıkken sağ alt köşede beliren "klavyeyi gizle" tuşu.
+  Widget _klavyeGizleButonu(KpssColors c) {
+    return Material(
+      color: Colors.transparent,
+      shape: const CircleBorder(),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: () => _cevapFocus.unfocus(),
+        child: Container(
+          width: 44,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: c.violet,
+            boxShadow: [
+              BoxShadow(
+                color: c.violet.withValues(alpha: 0.4),
+                blurRadius: 10,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: const Icon(Icons.keyboard_hide_rounded,
+              color: Colors.white, size: 22),
         ),
       ),
     );
