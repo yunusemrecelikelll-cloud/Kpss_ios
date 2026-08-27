@@ -492,24 +492,26 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                 Text('Açık odalara katıl ya da kendi odanı kur.',
                     style: TextStyle(fontSize: 11.5, color: c.textFaint)),
                 const SizedBox(height: kDsGap),
-                if (!_duel.isConfigured)
-                  _InfoCard(
-                    emoji: '📡',
-                    color: c.warn,
-                    text: 'Çevrimdışısın veya bağlantı yok — canlı odalar '
-                        'görünmüyor. "Tek Başına Yarış" ile pratik yapabilirsin.',
-                  )
-                else if (!auth.isRealSignedIn)
-                  // Odalar GERÇEK hesapla girişli kullanıcıya gösterilir. Düello
-                  // altyapısı sessizce ANONİM oturum açtığı için isSignedIn her
-                  // zaman true olur; bu yüzden isRealSignedIn (anonim hariç)
-                  // kullanılır — aksi halde uyarı hiç görünmüyordu.
+                // Giriş kontrolü EN ÖNCE: odalar gerçek hesapla girişli
+                // kullanıcıya gösterilir. Düello altyapısı sessizce ANONİM oturum
+                // açtığı için isSignedIn her zaman true olur; bu yüzden
+                // isRealSignedIn (anonim hariç) kullanılır. Ayrıca bu kontrol
+                // "bağlantı yok" kartından ÖNCE gelir — aksi halde (web/Firebase
+                // yapılandırılmamışken) uyarı hiç görünmüyordu (kullanıcı isteği).
+                if (!auth.isRealSignedIn)
                   _LoginGerekliKarti(
                     onLogin: () {
                       context.read<SoundService>().click();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (_) => const AccountLoginScreen()));
                     },
+                  )
+                else if (!_duel.isConfigured)
+                  _InfoCard(
+                    emoji: '📡',
+                    color: c.warn,
+                    text: 'Çevrimdışısın veya bağlantı yok — canlı odalar '
+                        'görünmüyor. "Tek Başına Yarış" ile pratik yapabilirsin.',
                   )
                 else
                   StreamBuilder<List<RoomSummary>>(
