@@ -601,7 +601,8 @@ class _FeatureComparisonTable extends StatelessWidget {
     ('🃏', 'Kart Oyunu & Solitaire', 'Günde 20 oyun', 'Sınırsız oyun'),
     ('⚔️', 'KPSS Düello & Royale', 'Günde 6 maç', 'Sınırsız maç'),
     ('🗺️', 'Harita Oyunu', 'Günde 10 mini oyun', 'Sınırsız oyun'),
-    ('💬', 'Genel Sohbet', 'Günde 25 mesaj', 'Sınırsız mesaj'),
+    // Genel Sohbet artık ücretsizde de SINIRSIZ (kullanıcı isteği) — premium
+    // ayrıcalığı olmaktan çıktığı için karşılaştırma tablosundan kaldırıldı.
     ('🗓️', 'Çalışma Planı', '3 güne kadar', 'Tam plan (sınırsız gün)'),
     ('🎨', 'Uygulama Temaları', '3 tema', '9 tema'),
     ('🧠', 'Akılda Kalıcı Kodlama', null, 'Tüm mnemonik teknikleri'),
