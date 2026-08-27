@@ -499,9 +499,11 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                     text: 'Çevrimdışısın veya bağlantı yok — canlı odalar '
                         'görünmüyor. "Tek Başına Yarış" ile pratik yapabilirsin.',
                   )
-                else if (!auth.isSignedIn)
-                  // Odalar Firebase'e girişli kullanıcıya gösterilir; giriş
-                  // yoksa uyarı + "Giriş Yap" (kullanıcı isteği).
+                else if (!auth.isRealSignedIn)
+                  // Odalar GERÇEK hesapla girişli kullanıcıya gösterilir. Düello
+                  // altyapısı sessizce ANONİM oturum açtığı için isSignedIn her
+                  // zaman true olur; bu yüzden isRealSignedIn (anonim hariç)
+                  // kullanılır — aksi halde uyarı hiç görünmüyordu.
                   _LoginGerekliKarti(
                     onLogin: () {
                       context.read<SoundService>().click();
