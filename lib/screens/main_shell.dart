@@ -115,13 +115,13 @@ class _MainShellState extends State<MainShell> {
 
   @override
   Widget build(BuildContext context) {
-    final premium = context.watch<StorageService>().isPremiumUser();
-
     final tabWidgets = <String, Widget>{
       'home': HomeScreen(subjects: widget.subjects),
       'chat': const ChatScreen(),
       'games': const ToolsHubScreen(),
-      if (premium) 'wrong': const WrongBankScreen(),
+      // Yanlışlarım artık ÜCRETSİZE de açık (günlük limitli) — sekme herkeste
+      // görünür; ekranın kendisi ücretsiz/premium hak yönetimini yapar.
+      'wrong': const WrongBankScreen(),
       'settings': const SettingsScreen(),
     };
     final ids = tabWidgets.keys.toList();
