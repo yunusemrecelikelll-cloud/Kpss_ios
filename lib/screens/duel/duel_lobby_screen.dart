@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../main.dart' show hakPiliGizle;
 import '../../models/subject.dart';
+import '../../services/auth_service.dart';
 import '../../services/data_service.dart';
 import '../../services/duel_service.dart';
 import '../../services/remote_question_service.dart';
@@ -11,6 +12,7 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
+import '../account_login_screen.dart';
 import '../hak_satin_al_screen.dart';
 import '../premium_screen.dart';
 import '../tools_hub_screen.dart' show HowToPlayButton, formatPlayDuration;
@@ -263,6 +265,7 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final storage = context.watch<StorageService>();
+    final auth = context.watch<AuthService>();
     final premium = storage.isPremiumUser();
     final state = storage.getGamePlayState(kDuelloGameId);
     final left = (kFreeDuelloDaily - (state['plays'] as int)).clamp(0, kFreeDuelloDaily);
@@ -495,6 +498,16 @@ class _DuelLobbyScreenState extends State<DuelLobbyScreen> {
                     color: c.warn,
                     text: 'Çevrimdışısın veya bağlantı yok — canlı odalar '
                         'görünmüyor. "Tek Başına Yarış" ile pratik yapabilirsin.',
+                  )
+                else if (!auth.isSignedIn)
+                  // Odalar Firebase'e girişli kullanıcıya gösterilir; giriş
+                  // yoksa uyarı + "Giriş Yap" (kullanıcı isteği).
+                  _LoginGerekliKarti(
+                    onLogin: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const AccountLoginScreen()));
+                    },
                   )
                 else
                   StreamBuilder<List<RoomSummary>>(
@@ -746,6 +759,62 @@ class _InfoCard extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Odaları görebilmek için giriş gerektiğini bildiren kart + "Giriş Yap" butonu
+/// (kullanıcı isteği: KPSS Düello'da odaların gözükmesi için giriş uyarısı).
+class _LoginGerekliKarti extends StatelessWidget {
+  final VoidCallback onLogin;
+  const _LoginGerekliKarti({required this.onLogin});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      accent: c.violetL,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DsIconBadge(emoji: '🔒', color: c.violetL, size: 40, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Odaları görmek için giriş yap',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w900, color: c.text)),
+                    const SizedBox(height: 4),
+                    Text(
+                      'Canlı odalara katılmak, oda kurmak ve rakiplerle yarışmak '
+                      'için hesabınla giriş yapman gerekiyor. Giriş yaptıktan sonra '
+                      'açık odalar burada listelenir. İstersen "Tek Başına Yarış" ile '
+                      'girişsiz de pratik yapabilirsin.',
+                      style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: DsPillButton(
+              label: 'Giriş Yap',
+              color: c.violet,
+              leadingIcon: Icons.login_rounded,
+              onPressed: onLogin,
             ),
           ),
         ],
