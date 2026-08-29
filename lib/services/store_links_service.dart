@@ -38,7 +38,9 @@ class StoreLinks {
 
   static const StoreLinks defaults = StoreLinks(
     iosUrl: 'https://apps.apple.com/app/id6792403982',
-    androidUrl: '', // henüz Google Play'de yayınlanmadı
+    // Google Play yayın linki (davet paylaşımında kullanılır).
+    androidUrl:
+        'https://play.google.com/store/apps/details?id=com.kpsshazirlik.kpss_telefon',
     iosId: '6792403982',
     androidId: 'com.kpsshazirlik.kpss_telefon',
     appName: 'KPSS Hazırlık',
