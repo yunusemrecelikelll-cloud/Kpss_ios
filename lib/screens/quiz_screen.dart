@@ -431,7 +431,8 @@ class _QuizScreenState extends State<QuizScreen> with WidgetsBindingObserver {
     if (!mounted) return;
     // Test sonunda KISA geçiş reklamı (kullanıcı isteği) — premium'da HİÇ
     // gösterilmez. Reklam yoksa/başarısızsa sessizce geçer, sonuç ekranı yine açılır.
-    await AdService.instance.gecisReklamiGoster(premium: storage.isPremiumUser());
+    await AdService.instance
+        .gecisReklamiGoster(premium: storage.isPremiumUser(), kategori: 'test');
     if (!mounted) return;
     if (isPlacementExam) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io' show Platform;
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -20,8 +21,42 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 /// durumunda olabilir; geliştirme sırasında geçersiz trafik riskine karşı
 /// AdMob konsolundan cihazını "test cihazı" olarak eklemen önerilir.
 class AdService {
-  AdService._();
+  AdService._() {
+    // Sıklık eşiklerini baştan rastgele (3-5) belirle.
+    _testEsik = _rastgeleEsik();
+    _oyunEsik = _rastgeleEsik();
+  }
   static final AdService instance = AdService._();
+
+  // ── Geçiş reklamı SIKLIK kapısı (kullanıcı isteği: her test/oyun sonrası
+  // DEĞİL, her 3-5 test ve her 3-5 oyunda bir reklam). Test ve oyun ayrı
+  // sayılır. Sayaçlar bellekte tutulur (uygulama yeniden açılınca sıfırlanır —
+  // bu da reklamı daha da seyrekleştirir, sorun değil).
+  final Random _rng = Random();
+  int _testSayac = 0;
+  int _oyunSayac = 0;
+  int _testEsik = 3;
+  int _oyunEsik = 3;
+
+  /// 3, 4 veya 5 döndürür (her tetiklemeden sonra yeni bir eşik seçilir).
+  int _rastgeleEsik() => 3 + _rng.nextInt(3);
+
+  /// Bu kategoride reklam gösterme sırası geldi mi? Sayacı artırır; eşiğe
+  /// ulaşınca true döner, sayacı sıfırlar ve yeni bir 3-5 eşiği seçer.
+  bool _gecisSirasiGeldi(String kategori) {
+    if (kategori == 'test') {
+      _testSayac++;
+      if (_testSayac < _testEsik) return false;
+      _testSayac = 0;
+      _testEsik = _rastgeleEsik();
+      return true;
+    }
+    _oyunSayac++;
+    if (_oyunSayac < _oyunEsik) return false;
+    _oyunSayac = 0;
+    _oyunEsik = _rastgeleEsik();
+    return true;
+  }
 
   /// Bir ödüllü reklam izleme başına verilen kredi (kullanıcı isteği: ücretsiz
   /// genişletildi — her reklam 2 hak versin).
@@ -99,10 +134,15 @@ class AdService {
   /// hak sayfasındaki uzun ödüllü reklam gibi olmasın). [premium] true ise HİÇ
   /// gösterilmez (premium'da hiçbir yerde reklam yok). Ödül yoktur; sadece
   /// gösterilir ve kapanır. Reklam hazır değilse sessizce geçer (akışı bloklamaz).
-  Future<void> gecisReklamiGoster({required bool premium}) async {
+  Future<void> gecisReklamiGoster({
+    required bool premium,
+    String kategori = 'oyun',
+  }) async {
     if (premium) return; // premium: kesinlikle reklam yok
     if (kIsWeb || kDebugMode) return; // web/debug: reklam yok, akış bozulmasın
     if (!(Platform.isAndroid || Platform.isIOS)) return;
+    // Sıklık kapısı: her test/oyun sonrası değil, her 3-5'te bir göster.
+    if (!_gecisSirasiGeldi(kategori)) return;
     if (!_baslatildi) await baslat();
     if (_gecis == null) {
       _gecisOnYukle();
