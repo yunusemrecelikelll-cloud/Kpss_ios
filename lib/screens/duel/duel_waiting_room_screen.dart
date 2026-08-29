@@ -32,6 +32,12 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
   DuelRoom? _room;
   bool _navigated = false;
   bool _closed = false;
+  /// Bu cihaz odada EN AZ BİR KEZ oyuncu olarak görüldü mü? Katılıştan hemen
+  /// sonra gelen BAYAT (önbellek) ilk anlık görüntü, oyuncuyu henüz "players"
+  /// içinde göstermediği için yanlışlıkla "çıkarıldın" tetikliyordu. Yalnızca
+  /// ÖNCE odada görülüp SONRA çıkarılınca (gerçek kick) uyarı verilsin diye
+  /// bunu takip ediyoruz.
+  bool _seenSelfInRoom = false;
 
   @override
   void initState() {
@@ -212,9 +218,17 @@ class _DuelWaitingRoomScreenState extends State<DuelWaitingRoomScreen> {
               );
             }
             _room = room;
-            // Kurucu tarafından atıldıysam (artık oyuncular arasında değilim)
-            // odadan çık (kullanıcı isteği: kurucu kullanıcı atabilsin).
-            if (myUid != null &&
+            // Kendimi odada bir kez gördüysem işaretle (bayat ilk anlık
+            // görüntüde yanlış "çıkarıldın" tetiklenmesin diye).
+            if (myUid != null && room.players.containsKey(myUid)) {
+              _seenSelfInRoom = true;
+            }
+            // Kurucu tarafından atıldıysam (ÖNCE odada görüldüm, ARTIK yokum)
+            // odadan çık (kullanıcı isteği: kurucu kullanıcı atabilsin). Sadece
+            // _seenSelfInRoom sonrası kontrol edilir — aksi halde katılıştan
+            // hemen sonraki bayat anlık görüntü oyuncuyu haksız yere atıyordu.
+            if (_seenSelfInRoom &&
+                myUid != null &&
                 !room.players.containsKey(myUid) &&
                 myUid != room.hostUid &&
                 !_closed) {
