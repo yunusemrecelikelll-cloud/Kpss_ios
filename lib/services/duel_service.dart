@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
+import '../data/duel_solo_questions.dart';
 import '../firebase_bootstrap.dart';
 import '../models/question.dart';
 import '../models/subject.dart';
@@ -17,8 +18,9 @@ class DuelNotConfiguredException implements Exception {
   const DuelNotConfiguredException();
   @override
   String toString() =>
-      'Çok oyunculu Düello/Royale için internet bağlantısı ve Firebase '
-      'gereklidir. Çevrimdışıyken "Tek Başına Yarış"ı deneyebilirsin.';
+      'Çok oyunculu Düello/Royale şu an kullanılamıyor: sunucu bağlantısı '
+      'kurulamadı. İnternetini kontrol et; sorun sürerse uygulamayı yeniden '
+      'başlat. Bu sırada "Tek Başına Yarış" çevrimdışı da çalışır.';
 }
 
 /// Oda dolu olduğunda katılmaya çalışılırsa fırlatılır.
@@ -58,6 +60,10 @@ class DuelPlayer {
   final int? eliminatedAtRound;
   final DateTime? joinedAt;
 
+  /// Bekleme odasında oyuncunun "Hazır" işaretleyip işaretlemediği (host'un
+  /// kimlerin hazır olduğunu görmesi için). Host için anlamsızdır.
+  final bool ready;
+
   const DuelPlayer({
     required this.uid,
     required this.name,
@@ -66,6 +72,7 @@ class DuelPlayer {
     required this.eliminated,
     required this.eliminatedAtRound,
     required this.joinedAt,
+    this.ready = false,
   });
 
   factory DuelPlayer.fromMap(String uid, Map data) {
@@ -84,6 +91,7 @@ class DuelPlayer {
       eliminated: data['eliminated'] == true,
       eliminatedAtRound: (data['eliminatedAtRound'] as num?)?.toInt(),
       joinedAt: ts is Timestamp ? ts.toDate() : null,
+      ready: data['ready'] == true,
     );
   }
 }
@@ -105,11 +113,33 @@ class DuelRoom {
   final DateTime? createdAt;
   final DateTime? autoStartAt;
   final DateTime? startedAt;
+  /// Odanın otomatik kapanma anı (açılıştan 2 saat sonra). null ise eski oda.
+  final DateTime? expiresAt;
   final int perQuestionSeconds;
   final int totalQuestions;
   final List<Question> questions;
   final Map<String, DuelPlayer> players;
   final int lastElimRound;
+
+  /// Erken geçişlerle "kazanılmış" toplam süre (ms).
+  ///
+  /// Oyun akışının TEK senkron kaynağı `startedAt`'tir: her istemci soruyu
+  /// "başlangıçtan bu yana geçen süre / soru süresi" ile hesaplar. Tüm
+  /// oyuncular bir soruyu cevapladığında kalan süreyi beklemek anlamsız
+  /// olduğundan, o soruda kalan süre buraya EKLENİR. Böylece herkesin
+  /// hesabındaki "geçen süre" aynı anda ileri sıçrar ve senkron BOZULMADAN
+  /// sonraki soruya geçilir.
+  ///
+  /// Alternatif olarak odaya "şu an kaçıncı sorudayız" diye bir alan
+  /// yazılabilirdi; ama o zaman geri sayım, Royale elemesi ve bitiş kontrolü
+  /// ayrı bir zaman kaynağına bağlanır ve iki kaynak birbirinden kayabilirdi.
+  /// Tek bir sayıyı kaydırmak bu riski tamamen ortadan kaldırıyor.
+  final int timeShiftMs;
+
+  /// Erken geçişin uygulandığı SON soru indeksi (-1: hiç geçilmedi).
+  /// Aynı sorunun birden çok cihaz tarafından tekrar tekrar kaydırılmasını
+  /// engeller — bkz. [DuelService.skipToNextIfAllAnswered].
+  final int lastSkippedIndex;
 
   const DuelRoom({
     required this.id,
@@ -127,15 +157,27 @@ class DuelRoom {
     required this.createdAt,
     required this.autoStartAt,
     required this.startedAt,
+    this.expiresAt,
     required this.perQuestionSeconds,
     required this.totalQuestions,
     required this.questions,
     required this.players,
     required this.lastElimRound,
+    this.timeShiftMs = 0,
+    this.lastSkippedIndex = -1,
   });
 
   bool get isRoyale => mode == 'royale';
   bool get isFull => players.length >= maxPlayers;
+
+  /// Odanın 2 saatlik ömrü doldu mu? expiresAt yoksa createdAt+2s'e bakar.
+  bool get suresiDoldu {
+    final e = expiresAt;
+    if (e != null) return DateTime.now().isAfter(e);
+    final c = createdAt;
+    if (c != null) return DateTime.now().isAfter(c.add(DuelService.odaOmru));
+    return false;
+  }
 
   /// subjectFilter id'lerini okunur ders adlarına çevirir ("Tüm dersler
   /// karışık" boşsa) — [RoomSummary.subjectsLabel] ile aynı mantık.
@@ -156,24 +198,6 @@ class DuelRoom {
   String get configLabel {
     final subj = topicAd != null && topicAd!.isNotEmpty ? '$subjectsLabel · $topicAd' : subjectsLabel;
     return '$subj · $totalQuestions soru · $perQuestionSeconds sn';
-  }
-
-  /// startedAt + geçen süreye göre "şu an kaçıncı soruda olmamız gerektiğini"
-  /// (0 tabanlı) hesaplar — sunucudan gelen zamana göre TAMAMEN istemci
-  /// tarafında. Süre bittiyse totalQuestions döner (oyun bitmiş demektir).
-  int currentQuestionIndex(DateTime now) {
-    if (startedAt == null) return 0;
-    final elapsedMs = now.difference(startedAt!).inMilliseconds;
-    if (elapsedMs < 0) return 0;
-    final idx = elapsedMs ~/ (perQuestionSeconds * 1000);
-    return idx;
-  }
-
-  /// startedAt'e göre içinde bulunulan sorunun bitişine kalan milisaniye.
-  int remainingMsForQuestion(int questionIndex, DateTime now) {
-    if (startedAt == null) return perQuestionSeconds * 1000;
-    final deadline = startedAt!.add(Duration(milliseconds: (questionIndex + 1) * perQuestionSeconds * 1000));
-    return deadline.difference(now).inMilliseconds;
   }
 
   List<DuelPlayer> get playersByScore {
@@ -211,11 +235,16 @@ class DuelRoom {
       createdAt: toDate(data['createdAt']),
       autoStartAt: toDate(data['autoStartAt']),
       startedAt: toDate(data['startedAt']),
+      expiresAt: toDate(data['expiresAt']),
       perQuestionSeconds: (data['perQuestionSeconds'] as num?)?.toInt() ?? 30,
       totalQuestions: (data['totalQuestions'] as num?)?.toInt() ?? 10,
       questions: questions,
       players: players,
       lastElimRound: (data['lastElimRound'] as num?)?.toInt() ?? 0,
+      // Eski odalarda bu alanlar YOKTUR; varsayılanlar (0 / -1) o odaların
+      // eskisi gibi, sadece süreyle ilerlemesini sağlar.
+      timeShiftMs: (data['timeShiftMs'] as num?)?.toInt() ?? 0,
+      lastSkippedIndex: (data['lastSkippedIndex'] as num?)?.toInt() ?? -1,
     );
   }
 }
@@ -304,6 +333,12 @@ class DuelService {
   /// Oda dolmazsa otomatik başlama süresi (oda kurulduktan sonra).
   static const Duration autoStartAfter = Duration(minutes: 2);
 
+  /// Bir odanın azami ömrü (kullanıcı isteği): açıldıktan 2 saat sonra oda
+  /// OTOMATİK kapanır/silinir — kullanıcı oynayıp uygulamayı kapatınca kalan
+  /// "hayalet" odalar sonsuza dek listede kalmasın diye. Süre dolduğunda oyun
+  /// ekranı kullanıcıyı uyarır ve oda silinir (bkz. DuelPlayScreen).
+  static const Duration odaOmru = Duration(hours: 2);
+
   static const String modeDuello = 'duello';
   static const String modeRoyale = 'royale';
 
@@ -387,6 +422,83 @@ class DuelService {
     return _generateCode();
   }
 
+  // ── Tek Başına Yarış (solo) — LOKAL soru havuzu ──
+  //
+  // Solo mod Firestore GEREKTİRMEZ; bu bölüm tamamen çevrimdışı çalışır ve
+  // çok oyunculu (oda) akışını hiçbir şekilde etkilemez.
+
+  /// Solo bir turda sorulacak varsayılan soru sayısı.
+  static const int soloQuestionsPerRound = 10;
+
+  /// Uygulama açık olduğu sürece solo turlarda KULLANILMIŞ soru anahtarları
+  /// ([Question.key]). Turdan tura aynı soruların tekrar gelmesini engeller;
+  /// havuz tükendiğinde [buildSoloQuestions] içinde temizlenip havuz yeniden
+  /// karıştırılır (böylece sonsuz döngü yerine "bitince baştan" davranışı olur).
+  static final Set<String> _soloUsedKeys = <String>{};
+
+  /// Solo turda kullanılmış soru takibini sıfırlar (ör. kullanıcı "havuzu
+  /// yenile" derse ya da testlerde).
+  static void resetSoloProgress() => _soloUsedKeys.clear();
+
+  /// Şu ana kadar bu oturumda solo modda görülen soru sayısı.
+  static int get soloSeenCount => _soloUsedKeys.length;
+
+  /// "Tek Başına Yarış" için bir turluk soru listesi hazırlar.
+  ///
+  /// Havuz İKİ yerel kaynağın birleşimidir — ikisi de internet gerektirmez:
+  ///  1. `assets/data/*.json` ders bankası ([QuickModesShared.collectAll]).
+  ///     [RemoteQuestionService] önbellek varsa tam havuzu, yoksa uygulamayla
+  ///     gömülü yedek soruları ANINDA döndürdüğü için çevrimdışı da doludur.
+  ///  2. [kDuelSoloQuestions] — düello temposuna göre seçilmiş, derleme
+  ///     zamanında gömülü ek havuz. Ders listesi hiç yüklenememişse bile
+  ///     solo modun soru bulmasını GARANTİ eder.
+  ///
+  /// Aynı soru iki kaynakta da varsa [Question.key] üzerinden teke indirilir.
+  /// Daha önce sorulmamış sorular önceliklendirilir; havuz tükenince kullanılmış
+  /// kaydı temizlenip liste yeniden karıştırılır.
+  ///
+  /// Hiçbir durumda istisna fırlatmaz — en kötü ihtimalle gömülü havuzdan döner.
+  Future<List<Question>> buildSoloQuestions({
+    required List<Subject> subjects,
+    RemoteQuestionService? remote,
+    int count = soloQuestionsPerRound,
+  }) async {
+    final pool = <Question>[];
+
+    // 1) JSON ders bankası (varsa).
+    if (subjects.isNotEmpty && remote != null) {
+      try {
+        pool.addAll(await QuickModesShared.collectAll(subjects, remote, rnd: _rnd));
+      } catch (e) {
+        debugPrint('DuelService.buildSoloQuestions: ders bankası okunamadı: $e');
+      }
+    }
+
+    // 2) Gömülü düello havuzu — her zaman eklenir (çevrimdışı garantisi).
+    pool.addAll(kDuelSoloQuestions);
+
+    // Tekrarlayan soruları (aynı metinli) teke indir.
+    final unique = <String, Question>{};
+    for (final q in pool) {
+      if (q.secenekler.length < 2) continue; // bozuk kayıtları ele
+      unique.putIfAbsent(q.key, () => q);
+    }
+    if (unique.isEmpty) return const [];
+
+    final all = unique.values.toList()..shuffle(_rnd);
+
+    // Daha önce sorulmamışları öne al; yetmiyorsa havuzu baştan başlat.
+    var fresh = all.where((q) => !_soloUsedKeys.contains(q.key)).toList();
+    if (fresh.length < count) {
+      _soloUsedKeys.clear();
+      fresh = all;
+    }
+
+    final chosen = fresh.take(count).toList();
+    _soloUsedKeys.addAll(chosen.map((q) => q.key));
+    return chosen;
+  }
+
   // ── Oda oluşturma ──
 
   /// Verilen mod için 10 (royale'de daha fazla) soruyu HEMEN seçer, çakışmayan
@@ -399,33 +511,33 @@ class DuelService {
   /// [totalQuestions] host'un seçtiği süre/soru sayısı yapılandırmasıdır ve
   /// olduğu gibi oda dokümanına yazılır — [DuelPlayScreen] (online) bu
   /// alanları odadan okuyup zamanlayıcıyı/soru döngüsünü buna göre çalıştırır.
-  Future<String> createRoom({
-    required String mode,
-    required String hostName,
+  /// Verilen ders/konu filtresine göre TAZE bir soru havuzu toplar ve Firestore
+  /// map listesine çevirir. Hem [createRoom] hem "Tekrar Oyna" için taze soru
+  /// üreten [resetRoomFresh] bunu kullanır (böylece rematch'te AYNI değil YENİ
+  /// sorular gelir — kullanıcı isteği).
+  ///
+  /// [excludeSubjectFilter]: "Karışık" seçiminde hariç tutulacak ders id'leri.
+  /// Döndürür: (questionMaps, topicAd).
+  Future<(List<Map<String, dynamic>>, String?)> _collectQuestionMaps({
     required List<String> subjectFilter,
-    required int maxPlayers,
-    required bool isPublic,
+    required List<String> excludeSubjectFilter,
+    required String? topicId,
+    required int total,
     required List<Subject> subjects,
     required RemoteQuestionService remote,
-    String? roomName,
-    String? topicId,
-    int perQuestionSeconds = 30,
-    int? totalQuestions,
   }) async {
-    _requireConfigured();
-    final uid = await ensureSignedIn();
-
-    final total = totalQuestions ?? (mode == modeRoyale ? 15 : 10);
-
     // Ders filtresi uygula.
-    final filtered = subjectFilter.isEmpty
+    List<Subject> filtered = subjectFilter.isEmpty
         ? subjects
         : subjects.where((s) => subjectFilter.contains(s.id)).toList();
+    // Karışık'ta hariç tutulan dersleri çıkar (kullanıcı isteği: istenen
+    // ders(ler)i hariç tutabilme). Yalnızca ders seçili DEĞİLKEN anlamlı.
+    if (subjectFilter.isEmpty && excludeSubjectFilter.isNotEmpty) {
+      filtered = filtered.where((s) => !excludeSubjectFilter.contains(s.id)).toList();
+    }
     final poolSubjects = filtered.isEmpty ? subjects : filtered;
 
-    // Konu filtresi uygula: topicId verilmişse SADECE o konudan soru topla
-    // (ders(ler) içinde o id'ye sahip konuyu bul); bulunamazsa (tutarsız/eski
-    // veri) sessizce tüm derse geri dön.
+    // Konu filtresi uygula: topicId verilmişse SADECE o konudan soru topla.
     List<Subject> effectiveSubjects = poolSubjects;
     String? topicAd;
     if (topicId != null) {
@@ -445,14 +557,40 @@ class DuelService {
       remote,
       rnd: _rnd,
     );
-    if (pool.length < total) {
-      // Yeterli soru yoksa yine de eldeki kadarla devam et (en az 5 iste).
-      if (pool.length < 5) {
-        throw const RoomUnavailableException('Soru havuzu yüklenemedi, tekrar dene.');
-      }
+    if (pool.length < 5) {
+      throw const RoomUnavailableException('Soru havuzu yüklenemedi, tekrar dene.');
     }
     final chosen = pool.take(total).toList();
-    final questionMaps = chosen.map(_questionToMap).toList();
+    return (chosen.map(_questionToMap).toList(), topicAd);
+  }
+
+  Future<String> createRoom({
+    required String mode,
+    required String hostName,
+    required List<String> subjectFilter,
+    required int maxPlayers,
+    required bool isPublic,
+    required List<Subject> subjects,
+    required RemoteQuestionService remote,
+    String? roomName,
+    String? topicId,
+    List<String> excludeSubjectFilter = const [],
+    int perQuestionSeconds = 30,
+    int? totalQuestions,
+  }) async {
+    _requireConfigured();
+    final uid = await ensureSignedIn();
+
+    final total = totalQuestions ?? (mode == modeRoyale ? 15 : 10);
+
+    final (questionMaps, topicAd) = await _collectQuestionMaps(
+      subjectFilter: subjectFilter,
+      excludeSubjectFilter: excludeSubjectFilter,
+      topicId: topicId,
+      total: total,
+      subjects: subjects,
+      remote: remote,
+    );
 
     final code = await _generateUniqueCode();
     final now = DateTime.now();
@@ -465,6 +603,9 @@ class DuelService {
       'hostName': hostName,
       'mode': mode,
       'subjectFilter': subjectFilter,
+      // "Karışık"ta hariç tutulan dersler — rematch'te taze soru toplarken de
+      // aynı hariç tutma uygulanabilsin diye saklanır.
+      'excludeSubjectFilter': excludeSubjectFilter,
       'topicId': topicId,
       'topicAd': topicAd,
       'maxPlayers': maxPlayers,
@@ -472,10 +613,16 @@ class DuelService {
       'status': 'waiting',
       'createdAt': FieldValue.serverTimestamp(),
       'autoStartAt': Timestamp.fromDate(now.add(autoStartAfter)),
+      // Oda 2 saat sonra otomatik kapanır (bkz. odaOmru / closeIfExpired).
+      'expiresAt': Timestamp.fromDate(now.add(odaOmru)),
       'startedAt': null,
       'perQuestionSeconds': perQuestionSeconds,
-      'totalQuestions': chosen.length,
+      'totalQuestions': questionMaps.length,
       'lastElimRound': 0,
+      // Erken geçiş durumu (bkz. skipToNextIfAllAnswered). Baştan yazılıyor ki
+      // ilk kaydırma bir "alan oluşturma" değil, düz bir güncelleme olsun.
+      'timeShiftMs': 0,
+      'lastSkippedIndex': -1,
       'questions': questionMaps,
       'players': {
         uid: {
@@ -486,6 +633,14 @@ class DuelService {
           'eliminated': false,
         },
       },
+      // `players` bir HARİTA alanı olduğu için Firestore'da "şu kullanıcıyı
+      // içeren odalar" diye sorgulanamaz. Aynı uid listesini ayrıca bir DİZİ
+      // olarak da tutuyoruz ki `arrayContains` ile sorgulanabilsin — hesap
+      // silme (bkz. AccountDeletionService) bu alan sayesinde kullanıcının
+      // katıldığı TÜM odaları bulup temizleyebiliyor.
+      // İki alan birlikte güncellenmeli: players.<uid> yazan/silen her yer
+      // playerUids'i de arrayUnion/arrayRemove ile güncellemek zorunda.
+      'playerUids': [uid],
     });
     return docRef.id;
   }
@@ -512,6 +667,12 @@ class DuelService {
       final doc = await tx.get(ref);
       if (!doc.exists) throw const RoomUnavailableException('Oda artık mevcut değil.');
       final data = doc.data()!;
+      // Süresi dolmuş (2 saat) "hayalet" odaya katılmayı reddet ve odayı SİL —
+      // kullanıcı isteği (katılınca hemen atan eski odalar temizlensin).
+      if (_suresiDoldu(data)) {
+        tx.delete(ref);
+        throw const RoomUnavailableException('Bu odanın süresi dolmuş, kapatıldı.');
+      }
       final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
       final alreadyIn = players.containsKey(uid);
       final status = data['status'] as String? ?? 'waiting';
@@ -528,6 +689,10 @@ class DuelService {
         if (!alreadyIn) 'players.$uid.score': 0,
         if (!alreadyIn) 'players.$uid.answers': <String, dynamic>{},
         if (!alreadyIn) 'players.$uid.eliminated': false,
+        // Sorgulanabilir uid dizisini de güncel tut (bkz. createRoom'daki
+        // 'playerUids' açıklaması). arrayUnion tekrar eklemeye karşı güvenli,
+        // ayrıca ESKİ odalarda (alan hiç yokken) diziyi oluşturur.
+        'playerUids': FieldValue.arrayUnion([uid]),
       });
     });
   }
@@ -555,6 +720,24 @@ class DuelService {
         .map((snap) {
       final list = snap.docs
           .where((d) => mode == null || (d.data()['mode'] as String?) == mode)
+          // Süresi dolmuş (2 saat) ya da boş "hayalet" odaları GİZLE ve arka
+          // planda SİL — kullanıcı isteği: bu tür odalar listede kalmasın,
+          // katılınca hemen atmasın (bkz. closeIfExpired/closeIfEmpty).
+          .where((d) {
+            final data = d.data();
+            final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
+            if (_suresiDoldu(data)) {
+              // ignore: unawaited_futures
+              closeIfExpired(d.id);
+              return false;
+            }
+            if (players.isEmpty) {
+              // ignore: unawaited_futures
+              closeIfEmpty(d.id);
+              return false;
+            }
+            return true;
+          })
           .map((d) {
         final data = d.data();
         final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
@@ -590,13 +773,6 @@ class DuelService {
       if (!doc.exists) return null;
       return DuelRoom.fromDoc(doc);
     });
-  }
-
-  Future<DuelRoom?> getRoomOnce(String roomId) async {
-    if (!isConfigured) return null;
-    final doc = await _rooms.doc(roomId).get();
-    if (!doc.exists) return null;
-    return DuelRoom.fromDoc(doc);
   }
 
   // ── Başlatma ──
@@ -638,6 +814,176 @@ class DuelService {
     }
   }
 
+  /// "Tekrar Oyna" (kullanıcı isteği): BİTMİŞ bir odayı AYNI oyuncularla
+  /// yeniden 'waiting' durumuna alır — skorlar/cevaplar/eleme sıfırlanır,
+  /// sorular aynı havuzdan YENİDEN KARIŞTIRILIR (taze sıra) ve maç yeniden
+  /// kurucunun "Başlat"masını bekler. Yalnızca oda 'finished' iken çalışır.
+  Future<void> resetRoom(String roomId) async {
+    _requireConfigured();
+    final ref = _rooms.doc(roomId);
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final data = doc.data()!;
+      if ((data['status'] as String?) != 'finished') return;
+
+      final questions = (data['questions'] as List? ?? const [])
+          .whereType<Map>()
+          .map((m) => Map<String, dynamic>.from(m))
+          .toList()
+        ..shuffle(_rnd);
+
+      final players = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
+      final updates = <String, dynamic>{
+        'status': 'waiting',
+        'startedAt': null,
+        'autoStartAt': null,
+        'timeShiftMs': 0,
+        'lastSkippedIndex': -1,
+        'lastElimRound': 0,
+        'questions': questions,
+      };
+      for (final uid in players.keys) {
+        updates['players.$uid.score'] = 0;
+        updates['players.$uid.answers'] = <String, dynamic>{};
+        updates['players.$uid.eliminated'] = false;
+        updates['players.$uid.eliminatedAtRound'] = FieldValue.delete();
+        // Rematch'te herkes tekrar "hazır değil" başlasın.
+        updates['players.$uid.ready'] = false;
+      }
+      tx.update(ref, updates);
+    });
+  }
+
+  /// "Tekrar Oyna" — AMA YENİ SORULARLA (kullanıcı isteği: odaya dönünce aynı
+  /// sorular gelmesin). Odanın ders/konu/hariç filtresini ve soru sayısını
+  /// kullanarak TAZE bir soru havuzu toplar, sonra odayı 'waiting'e alıp
+  /// skor/cevap/eleme/hazır alanlarını sıfırlar. Ağ hatasında çağıran, eski
+  /// [resetRoom]'a (aynı soruları karıştıran) düşebilir.
+  Future<void> resetRoomFresh({
+    required String roomId,
+    required List<Subject> subjects,
+    required RemoteQuestionService remote,
+  }) async {
+    _requireConfigured();
+    final ref = _rooms.doc(roomId);
+    final snap = await ref.get();
+    if (!snap.exists) return;
+    final data = snap.data()!;
+    if ((data['status'] as String?) != 'finished') return;
+
+    final subjectFilter =
+        List<String>.from(data['subjectFilter'] as List? ?? const []);
+    final excludeSubjectFilter =
+        List<String>.from(data['excludeSubjectFilter'] as List? ?? const []);
+    final topicId = data['topicId'] as String?;
+    final total = (data['totalQuestions'] as num?)?.toInt() ??
+        (data['questions'] as List? ?? const []).length;
+
+    final (questionMaps, _) = await _collectQuestionMaps(
+      subjectFilter: subjectFilter,
+      excludeSubjectFilter: excludeSubjectFilter,
+      topicId: topicId,
+      total: total <= 0 ? 10 : total,
+      subjects: subjects,
+      remote: remote,
+    );
+
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final d = doc.data()!;
+      if ((d['status'] as String?) != 'finished') return;
+      final players = Map<String, dynamic>.from(d['players'] as Map? ?? const {});
+      final updates = <String, dynamic>{
+        'status': 'waiting',
+        'startedAt': null,
+        'autoStartAt': null,
+        'timeShiftMs': 0,
+        'lastSkippedIndex': -1,
+        'lastElimRound': 0,
+        'questions': questionMaps,
+        'totalQuestions': questionMaps.length,
+      };
+      for (final uid in players.keys) {
+        updates['players.$uid.score'] = 0;
+        updates['players.$uid.answers'] = <String, dynamic>{};
+        updates['players.$uid.eliminated'] = false;
+        updates['players.$uid.eliminatedAtRound'] = FieldValue.delete();
+        updates['players.$uid.ready'] = false;
+      }
+      tx.update(ref, updates);
+    });
+  }
+
+  /// Kurucu bir oyuncuyu odadan ATAR (kullanıcı isteği). Yalnızca çağıran host
+  /// ise ve hedef host'un kendisi değilse çalışır. Atılan oyuncunun cihazı
+  /// `watchRoom` üzerinden kendini oyuncular arasında bulamayınca odadan çıkar.
+  Future<void> kickPlayer(String roomId, String targetUid) async {
+    _requireConfigured();
+    final uid = currentUid;
+    if (uid == null || uid == targetUid) return;
+    final ref = _rooms.doc(roomId);
+    await _db.runTransaction((tx) async {
+      final doc = await tx.get(ref);
+      if (!doc.exists) return;
+      final data = doc.data()!;
+      if ((data['hostUid'] as String?) != uid) return; // sadece kurucu atabilir
+      tx.update(ref, {
+        'players.$targetUid': FieldValue.delete(),
+        'playerUids': FieldValue.arrayRemove([targetUid]),
+        'kicked': FieldValue.arrayUnion([targetUid]),
+      });
+    });
+  }
+
+  /// Odada hiç oyuncu kalmadıysa odayı tamamen siler (kullanıcı isteği: boş oda
+  /// otomatik kapansın). Bekleme odası ekranı bunu tetikler.
+  Future<void> closeIfEmpty(String roomId) async {
+    if (!isConfigured) return;
+    final ref = _rooms.doc(roomId);
+    try {
+      await _db.runTransaction((tx) async {
+        final doc = await tx.get(ref);
+        if (!doc.exists) return;
+        final players = Map<String, dynamic>.from(
+            doc.data()!['players'] as Map? ?? const {});
+        if (players.isEmpty) tx.delete(ref);
+      });
+    } catch (e) {
+      debugPrint('DuelService.closeIfEmpty başarısız: $e');
+    }
+  }
+
+  /// Süresi (2 saat) dolmuş odayı siler (kullanıcı isteği: her oda 2 saat sonra
+  /// otomatik kapansın). Ayrıca `expiresAt` alanı hiç olmayan ESKİ odalar için
+  /// `createdAt + odaOmru` ile geriye dönük hesaplar. İstisna fırlatmaz.
+  Future<void> closeIfExpired(String roomId) async {
+    if (!isConfigured) return;
+    final ref = _rooms.doc(roomId);
+    try {
+      await _db.runTransaction((tx) async {
+        final doc = await tx.get(ref);
+        if (!doc.exists) return;
+        if (_suresiDoldu(doc.data()!)) tx.delete(ref);
+      });
+    } catch (e) {
+      debugPrint('DuelService.closeIfExpired başarısız: $e');
+    }
+  }
+
+  /// Oda verisinden süresinin dolup dolmadığını hesaplar. `expiresAt` yoksa
+  /// `createdAt + odaOmru`ya bakar; ikisi de yoksa (çok eski/bozuk) süresi
+  /// dolmuş sayılır (temizlensin).
+  bool _suresiDoldu(Map<String, dynamic> data) {
+    final now = DateTime.now();
+    final exp = data['expiresAt'];
+    if (exp is Timestamp) return now.isAfter(exp.toDate());
+    final created = data['createdAt'];
+    if (created is Timestamp) return now.isAfter(created.toDate().add(odaOmru));
+    return true;
+  }
+
   // ── Cevap gönderme ──
 
   /// Bir soruya verilen cevabı işler: puanı hesaplar ve SADECE ilgili oyuncunun
@@ -670,6 +1016,79 @@ class DuelService {
       'players.$uid.answers.$questionIndex': {'idx': answerIdx, 'correctMs': elapsedMs},
       'players.$uid.score': FieldValue.increment(points),
     });
+  }
+
+  /// Tüm oyuncular cevapladığında sonraki soruya geçmeden ÖNCE bırakılan süre.
+  /// Sıfır olsaydı ekran, kullanıcı kendi cevabının doğru/yanlış olduğunu ve
+  /// açıklamasını görmeye fırsat bulamadan anında değişirdi.
+  static const int allAnsweredGraceMs = 1500;
+
+  /// Bir sorudaki TÜM (elenmemiş) oyuncular cevap verdiyse, o soruda kalan
+  /// süreyi `timeShiftMs`'e ekleyerek herkesi aynı anda sonraki soruya taşır.
+  ///
+  /// Neden oda dokümanına yazıyoruz: erken geçiş SADECE geçişi fark eden
+  /// cihazda uygulanırsa oyuncular farklı sorularda kalır ve çok oyunculu
+  /// senkron çöker. Kaydırma odaya yazıldığı için tüm istemciler aynı anda
+  /// aynı sonucu hesaplar.
+  ///
+  /// GÜVENLİK: "herkes cevapladı" iddiası çağırana DEĞİL, transaction içinde
+  /// okunan oda verisine bakılarak doğrulanır. Böylece tek bir oyuncunun
+  /// cihazı, rakipleri henüz cevaplamamışken soruyu ileri saramaz.
+  ///
+  /// `lastSkippedIndex` koşulu sayesinde aynı soru için birden çok cihaz
+  /// çağırsa bile kaydırma YALNIZCA BİR KEZ uygulanır.
+  Future<void> skipToNextIfAllAnswered(String roomId, int questionIndex) async {
+    if (!isConfigured) return;
+    if (questionIndex < 0) return;
+    final ref = _rooms.doc(roomId);
+    try {
+      await _db.runTransaction((tx) async {
+        final doc = await tx.get(ref);
+        if (!doc.exists) return;
+        final data = doc.data()!;
+        if ((data['status'] as String?) != 'active') return;
+
+        final lastSkipped = (data['lastSkippedIndex'] as num?)?.toInt() ?? -1;
+        if (lastSkipped >= questionIndex) return; // Bu soru zaten işlendi.
+
+        final startedAt = data['startedAt'];
+        if (startedAt is! Timestamp) return; // Maç henüz başlamamış.
+
+        final perQ = (data['perQuestionSeconds'] as num?)?.toInt() ?? 30;
+        final shift = (data['timeShiftMs'] as num?)?.toInt() ?? 0;
+
+        // Elenen oyuncular cevap VEREMEZ; onları beklemek oyunu kilitlerdi.
+        final rawPlayers = Map<String, dynamic>.from(data['players'] as Map? ?? const {});
+        final aktif = rawPlayers.values
+            .whereType<Map>()
+            .where((p) => p['eliminated'] != true)
+            .toList();
+        if (aktif.isEmpty) return;
+
+        final hepsiCevapladi = aktif.every((p) {
+          final answers = p['answers'];
+          return answers is Map && answers.containsKey('$questionIndex');
+        });
+        if (!hepsiCevapladi) return;
+
+        final gecen = DateTime.now().difference(startedAt.toDate()).inMilliseconds + shift;
+        final kalan = (questionIndex + 1) * perQ * 1000 - gecen;
+
+        // Süre zaten dolmak üzereyse kaydırmaya gerek yok; yalnızca bu sorunun
+        // tekrar tekrar denenmemesi için işaretliyoruz.
+        if (kalan <= allAnsweredGraceMs) {
+          tx.update(ref, {'lastSkippedIndex': questionIndex});
+          return;
+        }
+
+        tx.update(ref, {
+          'timeShiftMs': shift + (kalan - allAnsweredGraceMs),
+          'lastSkippedIndex': questionIndex,
+        });
+      });
+    } catch (e) {
+      debugPrint('DuelService.skipToNextIfAllAnswered başarısız: $e');
+    }
   }
 
   // ── Royale eleme ──
@@ -727,13 +1146,45 @@ class DuelService {
     }
   }
 
+  /// Bekleme odasında oyuncunun "Hazır" durumunu ayarlar (host kimlerin hazır
+  /// olduğunu görsün diye). Sadece ilgili oyuncunun kendi alanını günceller.
+  Future<void> setReady(String roomId, bool ready) async {
+    if (!isConfigured) return;
+    final uid = currentUid;
+    if (uid == null) return;
+    try {
+      await _rooms.doc(roomId).update({'players.$uid.ready': ready});
+    } catch (e) {
+      debugPrint('DuelService.setReady başarısız: $e');
+    }
+  }
+
+  /// Odayı TAMAMEN siler. Yalnızca oda kurucusu (host) çağırmalı (UI kısıtlar):
+  /// kurucu odayı kapatmak istediğinde ya da maç bitip kurucu ana sayfaya
+  /// döndüğünde çağrılır. Silme, dinleyen tüm istemcilerde odayı `null`'a
+  /// düşürür ve onları da ekrandan çıkarır.
+  Future<void> deleteRoom(String roomId) async {
+    if (!isConfigured) return;
+    try {
+      await _rooms.doc(roomId).delete();
+    } catch (e) {
+      debugPrint('DuelService.deleteRoom başarısız: $e');
+    }
+  }
+
   /// Bir oyuncu odadan ayrılırsa (waiting aşamasında) kendini players'tan siler.
   Future<void> leaveRoom(String roomId) async {
     if (!isConfigured) return;
     final uid = currentUid;
     if (uid == null) return;
     try {
-      await _rooms.doc(roomId).update({'players.$uid': FieldValue.delete()});
+      await _rooms.doc(roomId).update({
+        'players.$uid': FieldValue.delete(),
+        // Harita ve dizi ASLA ayrışmamalı — biri silinip diğeri kalırsa
+        // kullanıcı odadan çıkmış görünmesine rağmen sorgularda çıkmaya
+        // devam eder.
+        'playerUids': FieldValue.arrayRemove([uid]),
+      });
     } catch (e) {
       debugPrint('DuelService.leaveRoom başarısız: $e');
     }

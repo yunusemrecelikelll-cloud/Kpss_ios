@@ -1,37 +1,37 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:provider/provider.dart';
 import '../models/subject.dart';
 import '../data/kategori_eslestirme_data.dart';
 import '../games/solitaire_engine.dart';
 import '../services/sound_service.dart';
+import '../services/ad_service.dart';
 import '../services/storage_service.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import 'tools_hub_screen.dart';
-import 'map_game/map_shared.dart';
 
-/// Günlük ücretsiz oynama hakkı (mevcut oyunlarla aynı desen).
-const int kFreeSolitaireDaily = 10;
+/// Günlük ücretsiz oynama hakkı, DİĞER TÜM OYUNLARLA ORTAK sabitten gelir
+/// ([kFreeGameDailyLimit], bkz. tools_hub_screen.dart). Solitaire'e özel ayrı
+/// bir sabit YOKTUR — aksi hâlde oyunlar listesindeki "Bugün N hak" ile oyun
+/// içindeki "Bugünkü hak" birbirini tutmuyordu.
 const String kSolitaireGameId = 'solitaire';
 
 // ── Oyun-içi coin ekonomisi (kozmetik; gerçek para DEĞİL) ──
-// Denge: her doğru kart +12 coin → ~15-20 kartlık bir seviye ~200-260 coin
-// kazandırır; seviye bitince +60 taban ve kalan hamle başına +1 verimlilik
-// bonusu eklenir. Market fiyatları (ipucu 50 / geri-al 80 / joker 150) bu
-// kazançla dengeli: bir seviye kabaca 1 joker + birkaç ipucu finanse eder.
-const int kCoinPerKart = 12; // doğru eşleşen kart başına
-const int kCoinSeviyeBonus = 60; // seviye tamamlama tabanı
-const int kFiyatIpucu = 50; // market: +1 ipucu
-const int kFiyatGeriAl = 80; // market: +1 geri al
-const int kFiyatJoker = 150; // market: joker (bir kartı otomatik yerleştir)
-const int kFiyatKurtarma = 30; // kayıp ekranı: +10 hamle
-const int kKurtarmaHamle = 10; // kayıp ekranında satın alınan hamle
+// Denge SADE tutuldu: her DOĞRU EŞLEŞTİRME 1 coin. Zorluk çarpanı YOK — Kolay,
+// Orta ve Zor modda kart başına kazanç aynıdır (Zor modda daha çok kart olduğu
+// için toplam kazanç doğal olarak artar). Market'teki HER ürün 10 coin, yani
+// 10 doğru eşleştirme = 1 ürün.
+const int kCoinPerKart = 1; // doğru eşleşen kart başına
+const int kMarketFiyat = 10; // market'teki TÜM ürünlerin ortak fiyatı
+const int kEkHamleAdet = 5; // "5 Ek Hamle" ürününün verdiği hamle
 
 // ── "Oyun masası" sabit paleti ──
-// Bu ekran, uygulamanın genel light/dark temasından BAĞIMSIZ, kendine özgü bir
-// kumar-masası kimliği taşır (referans görseldeki yeşil keçe). ThemeProvider
-// renkleri yalnızca menüde/zorluk seçiminde kullanılır; oyun tahtası aşağıdaki
-// sabitleri kullanır.
+// Oyun TAHTASI, uygulamanın genel light/dark temasından BAĞIMSIZ, kendine özgü
+// bir kumar-masası kimliği taşır (referans görseldeki yeşil keçe) ve öyle
+// KALIR. Menü, market, diyaloglar ve oyun sonu ekranları ise tasarım sistemine
+// (design_system.dart) ve ThemeProvider token'larına bağlıdır.
 const Color _tableGreen = Color(0xFF0F6B3E); // ana keçe yeşili
 const Color _tableGreenDark = Color(0xFF0A4E2C); // koyu ton (app bar / kilitli slot)
 const Color _feltGreen = Color(0xFF148A4F); // açık keçe (vurgu)
@@ -40,25 +40,59 @@ const Color _cardInk = Color(0xFF2A1D10); // kart yazısı (koyu kahve/siyah)
 const Color _goldTrim = Color(0xFFF5B942); // altın kenarlık
 const Color _backBlue = Color(0xFF1E5FA8); // kapalı kart sırtı
 const Color _backBlueDark = Color(0xFF16457A);
+const Color _hedefKartMor = Color(0xFF6C4AB6); // desteden çıkan HEDEF kartı vurgusu
 
 // ── Terim kartı boyut oranı ──
 // Standart iskambil kartı en-boy oranı ~2.5:3.5 (genişlik:yükseklik ≈ 0.714).
-// Kart yüksekliği SABİT bir sayı DEĞİL; her build'de tableau'nun o anki
-// gerçek sütun genişliğinden (bkz. [_EslestirmePlayScreenState._cardHeight])
-// türetilir — böylece ekran genişliği ne olursa olsun (dar/geniş telefon)
-// kart iskambil oranını korur ve sütun taşması/kırpılması yaşanmaz.
+// Kart yüksekliği SABİT bir sayı DEĞİL; her build'de tahtanın o anki gerçek
+// sütun genişliğinden türetilir — böylece ekran ne olursa olsun kart iskambil
+// oranını korur ve taşma/kırpılma yaşanmaz.
 const double kTerimKartOrani = 2.5 / 3.5; // genişlik / yükseklik
+
+// ── Yerleşim sabitleri ──
+/// Kartlar arası yatay/dikey boşluk.
+const double kKartBosluk = 6.0;
+
+/// Hedef kategori slotları tek sırada, tableau sütunlarıyla AYNI genişlik
+/// biriminden dizilir → hedef kartları normal kartlarla birebir aynı boyutta.
+const int kHedefSatirKapasite = kHedefSlotSayisi;
+
+/// Üst çubuk (rozetler + deste) bu yüksekliğin altına inmez.
+const double kUstCubukMinYukseklik = 58.0;
+
+/// Sürüklenen kart, parmağın dokunduğu noktanın BU KADAR üstünde durur —
+/// böylece parmak kartı kapatmaz. Bırakma hedefi de (feedbackOffset ile) aynı
+/// miktarda yukarı taşınır, yani "kartın gördüğü yer" ile "bırakılan yer" aynıdır.
+const double kSuruklemeYukariPay = 66.0;
+
+/// Dokunma (hit-test) alanı, görsel karttan bu kadar BÜYÜK tutulur — kartı
+/// ilk dokunuşta yakalayabilmek için.
+const double kDokunmaPayi = 14.0;
+
+/// Sürükleme yükü: bir tableau kartı/yığını ya da desteden çekilen kart.
+class _Suruklenen {
+  /// Kaynak tableau sütunu — negatifse kart DESTEDEN (çekilen yuvasından) gelir.
+  final int sutun;
+
+  /// Sütundaki başlangıç indeksi; bu karttan İTİBAREN üstündekiler taşınır.
+  final int index;
+
+  /// Desteden çekilen kart bir HEDEF KATEGORİ kartı mı?
+  final bool hedefKarti;
+
+  const _Suruklenen.tableau(this.sutun, this.index) : hedefKarti = false;
+  const _Suruklenen.deste({required this.hedefKarti})
+      : sutun = -1,
+        index = 0;
+
+  bool get destedenMi => sutun < 0;
+}
 
 /// Kategori Eşleştirme Solitaire.
 ///
 /// Klasik iskambil solitaire DEĞİL: KPSS terim kartlarını (İsim, Dik Açı,
 /// Göktürkler, Marmara...) doğru KATEGORİYE (Sözcük Türleri, Açı Türleri, İlk
 /// Türk Devletleri, Türkiye'nin Bölgeleri...) eşleştirme oyunu.
-///
-/// Etkileşim: açık terim kartını basılı tutup (long-press) doğru kategori
-/// kartının üzerine SÜRÜKLE-BIRAK. Yanlış bırakınca kart yerinde kalır ve
-/// kategori kırmızı yanıp söner. Sağ üstteki çekme destesinden yeni kartlar
-/// tableau'ya dağıtılır.
 ///
 /// Dış API KORUNUR: `SolitaireScreen(subjects: subjects)` — tools_hub_screen
 /// bu şekilde çağırır.
@@ -69,86 +103,135 @@ class SolitaireScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final storage = context.watch<StorageService>();
-    final colors = context.watch<ThemeProvider>().colors;
+    final c = context.watch<ThemeProvider>().colors;
     final premium = storage.isPremiumUser();
     final gp = storage.getGamePlayState(kSolitaireGameId);
-    final left = (kFreeSolitaireDaily - (gp['plays'] as int)).clamp(0, kFreeSolitaireDaily);
+    final left = (kFreeGameDailyLimit - (gp['plays'] as int)).clamp(0, kFreeGameDailyLimit);
+    final coins = storage.getSolitaireCoins();
 
     return Scaffold(
       appBar: AppBar(title: const Text('🃏 Eşleştirme Solitaire')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [colors.violet.withValues(alpha: 0.85), colors.rose.withValues(alpha: 0.85)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            // Tanıtım kartı — tasarım sistemi yüzeyi (tema token'larıyla).
+            DsCard(
+              accent: c.violet,
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      DsIconBadge(emoji: '🃏', color: c.violet),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          'Terim kartlarını doğru kategoriye eşleştir',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w900, color: c.text),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Açık bir terim kartını TUTUP doğru hedef kategorinin üstüne '
+                    'SÜRÜKLE. Aynı kategoriden kartları tableau\'da üst üste '
+                    'YIĞABİLİR, bir yığının ortasındaki karta basıp üstündeki tüm '
+                    'kartları birlikte taşıyabilirsin. Sağ üstteki desteden hem '
+                    'terim hem de YENİ HEDEF KATEGORİ kartı çıkar; tamamlanan '
+                    'kategori tahtadan kalkar, boşalan slota yeni hedef koyarsın. '
+                    'Her doğru eşleştirme 🪙 1 coin kazandırır — ama hamle hakkın '
+                    'SINIRLI!',
+                    style: TextStyle(fontSize: 12.5, height: 1.5, color: c.textDim),
+                  ),
+                ],
               ),
-              borderRadius: BorderRadius.circular(20),
             ),
-            child: const Text(
-              'Terim kartlarını doğru KATEGORİYE eşleştir!\n\n'
-              'Açık bir terim kartını (ör. "Dik Açı") BASILI TUTUP üstteki doğru '
-              'kategoriye (ör. "Açı Türleri") SÜRÜKLE. Aynı kategoriden iki açık '
-              'kartı üst üste sürükleyerek YIĞABİLİRSİN (sütun açılır). Her doğru '
-              'eşleştirme 🪙 coin kazandırır — coinle marketten ipucu, geri al ya '
-              'da joker al. Ama DİKKAT: hamle hakkın SINIRLI; biterse kaybedersin!',
-              style: TextStyle(fontSize: 13.5, color: Colors.white, height: 1.5),
+            const SizedBox(height: kDsGap),
+            DsStatStrip(
+              items: [
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🪙', color: c.gold, size: 44),
+                  value: '$coins',
+                  label: 'Coin',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🎟️', color: c.mint, size: 44),
+                  value: premium ? '∞' : '$left',
+                  label: 'Bugünkü hak',
+                  sublabel: premium ? 'Premium' : 'Günlük $kFreeGameDailyLimit',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🛒', color: c.rose, size: 44),
+                  value: '$kMarketFiyat',
+                  label: 'Market fiyatı',
+                  sublabel: 'Her ürün',
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-            child: Text(
-              premium ? 'Premium: sınırsız oynarsın.' : 'Bugün $left oyun hakkın kaldı.',
-              style: TextStyle(fontSize: 12.5, color: colors.textFaint, fontWeight: FontWeight.w600),
+            const SizedBox(height: kDsGap),
+            const DsSectionHeader(title: 'Zorluk Seç'),
+            const SizedBox(height: 4),
+            _ZorlukKarti(
+              emoji: '🟢',
+              title: 'Kolay',
+              desc: '5 hedef kategori — ısınma turu.',
+              accent: c.mint,
+              kategoriSayisi: 5,
             ),
-          ),
-          _ZorlukKarti(
-            title: '🟢 Kolay',
-            desc: '3 hedef kategori — daha az kart, ısınma turu.',
-            kategoriSayisi: 3,
-          ),
-          _ZorlukKarti(
-            title: '🟡 Orta',
-            desc: '4 hedef kategori — dengeli bir seviye.',
-            kategoriSayisi: 4,
-          ),
-          _ZorlukKarti(
-            title: '🔴 Zor',
-            desc: '5 hedef kategori — dolu bir tableau.',
-            kategoriSayisi: 5,
-          ),
-        ],
+            const SizedBox(height: kDsGap),
+            _ZorlukKarti(
+              emoji: '🟡',
+              title: 'Orta',
+              desc: '5 hedefle başlar, desteden gelen yeni hedeflerle 10 kategoriye çıkar.',
+              accent: c.gold,
+              kategoriSayisi: 10,
+            ),
+            const SizedBox(height: kDsGap),
+            _ZorlukKarti(
+              emoji: '🔴',
+              title: 'Zor',
+              desc: '5 hedefle başlar, toplam 20 kategoriye uzanan maraton.',
+              accent: c.rose,
+              kategoriSayisi: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 class _ZorlukKarti extends StatelessWidget {
+  final String emoji;
   final String title;
   final String desc;
+  final Color accent;
   final int kategoriSayisi;
-  const _ZorlukKarti({required this.title, required this.desc, required this.kategoriSayisi});
+  const _ZorlukKarti({
+    required this.emoji,
+    required this.title,
+    required this.desc,
+    required this.accent,
+    required this.kategoriSayisi,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: ListTile(
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w800)),
-        subtitle: Text(desc),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () {
-          context.read<SoundService>().click();
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => _EslestirmePlayScreen(kategoriSayisi: kategoriSayisi)),
-          );
-        },
-      ),
+    return DsListRow(
+      title: title,
+      status: desc,
+      emoji: emoji,
+      accent: accent,
+      onTap: () {
+        context.read<SoundService>().click();
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => _EslestirmePlayScreen(kategoriSayisi: kategoriSayisi)),
+        );
+      },
     );
   }
 }
@@ -162,12 +245,15 @@ class _EslestirmePlayScreen extends StatefulWidget {
   State<_EslestirmePlayScreen> createState() => _EslestirmePlayScreenState();
 }
 
-class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
+class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen>
+    with SingleTickerProviderStateMixin {
   final _engine = KategoriEslestirmeEngine();
   bool _locked = false;
   bool _booted = false;
   bool _finished = false;
   bool _lost = false;
+  // Oyun sonu geçiş reklamı bir kez gösterilsin (premium hariç).
+  bool _sonReklamGosterildi = false;
 
   /// Bu oyuncunun güncel coin/altın bakiyesi (StorageService ile senkron).
   int _coins = 0;
@@ -178,20 +264,59 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
   /// Yanlış bırakılışta kısa süre kırmızı yakılan kategori adı.
   String? _flashKategori;
 
-  /// Yanlış YIĞMA denemesinde kısa süre kırmızı yakılan sütun.
+  /// Yanlış taşıma denemesinde kısa süre kırmızı yakılan sütun.
   int? _flashSutun;
+
+  /// Yanlış bırakılan BOŞ hedef slotu.
+  int? _flashSlot;
 
   /// Sürüklenen kartın o an üzerinde olduğu (hover) kategori — kenarlık vurgusu.
   String? _hoverKategori;
 
-  /// Sürüklenen kartın o an üzerinde olduğu (hover) hedef yığma sütunu.
+  /// Sürüklenen kartın o an üzerinde olduğu (hover) tableau sütunu.
   int? _hoverSutun;
 
-  /// Açık terim kartının o anki (ölçülen sütun genişliğinden türetilmiş)
-  /// yüksekliği — bkz. [kTerimKartOrani]. [_buildBoard] içindeki
-  /// [LayoutBuilder] her build'de gerçek sütun genişliğini ölçüp bunu
-  /// günceller; böylece kart her zaman iskambil oranını korur.
+  /// Sürüklenen HEDEF kartının üzerinde olduğu boş slot.
+  int? _hoverSlot;
+
+  /// ŞU AN sürüklenen tableau yığınının kaynağı. Sürükleme TEK bir kartın
+  /// değil, o karttan itibaren ÜSTÜNDEKİ TÜM kartların işidir; bu yüzden
+  /// durum kartın kendi widget'ında değil, EKRAN düzeyinde tutulur — yoksa
+  /// yalnızca basılan kart soluklaşır, üstündekiler yerinde durur ve yığın
+  /// taşınmıyormuş gibi görünür.
+  int? _dragSutun;
+  int? _dragIndex;
+
+  /// [sutun]/[index] kartı, o an sürüklenen yığının parçası mı?
+  bool _surukleniyor(int sutun, int index) =>
+      _dragSutun == sutun && _dragIndex != null && index >= _dragIndex!;
+
+  /// Yığındaki alt kartların görünen şerit yüksekliği. Hem tableau yerleşimi
+  /// hem de sürükleme feedback'i AYNI adımı kullanır.
+  double get _grupAdim => _cardHeight * 0.24;
+
+  /// Kart ölçüleri — hedef kategori kartları, tableau terim kartları VE sağ
+  /// üstteki deste/çekilen kart bu AYNI ölçüyü kullanır. [_buildBoard]
+  /// içindeki [LayoutBuilder] her build'de kullanılabilir genişlik VE
+  /// yüksekliği ölçüp bunları günceller.
   double _cardHeight = 82.0;
+  double _cardWidth = 82.0 * kTerimKartOrani;
+
+  /// Hedef slot sırasının o anki toplam yüksekliği — dağıtım animasyonunda
+  /// tableau kartlarının başlangıç konumunu hesaplamak için.
+  double _hedefAlanYukseklik = 0;
+
+  /// Seviye açılışındaki "kartlar sağ üstteki desteden dağıtılıyor" animasyonu.
+  late final AnimationController _dagitimCtrl = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+  );
+
+  /// Çekme destesinin, tahta alanı içindeki yaklaşık konumu (dağıtım
+  /// animasyonunun başlangıç noktası). Deste sağ ÜSTTE olduğu için x = sağ
+  /// kenar, y = tahtanın biraz üstü.
+  Offset _destePozisyon(double tahtaGenisligi) =>
+      Offset(tahtaGenisligi - _cardWidth, -(_cardHeight + 40));
 
   @override
   void initState() {
@@ -199,12 +324,18 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
 
+  @override
+  void dispose() {
+    _dagitimCtrl.dispose();
+    super.dispose();
+  }
+
   Future<void> _boot() async {
     final storage = context.read<StorageService>();
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kSolitaireGameId);
-      if ((gp['plays'] as int) >= kFreeSolitaireDaily) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kSolitaireGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -213,19 +344,43 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     }
     if (!mounted) return;
 
+    // Kartları HER OYUNDA karıştır; ayrıca kullanıcı yeniden girdiğinde AYNI
+    // kategorileri görmesin diye daha önce görülenler geriye atılır (görülmeyen
+    // kategoriler önce gelir). Tümü görülünce liste sıfırlanır.
     final pool = List<KategoriGrubu>.from(kKategoriGruplari)..shuffle(Random());
-    final secilen = pool.take(widget.kategoriSayisi.clamp(3, kKategoriGruplari.length)).toList();
+    final int adet =
+        widget.kategoriSayisi < pool.length ? widget.kategoriSayisi : pool.length;
+    var gorulen = storage.getSolitaireSeen().toSet();
+    final gorulmeyen = pool.where((g) => !gorulen.contains(g.kategoriAdi)).toList();
+    // Görülmeyen kategoriler bu tur için yeterli değilse görülen kaydı sıfırla.
+    if (gorulmeyen.length < adet) {
+      storage.clearSolitaireSeen();
+      gorulen = {};
+    }
+    final sirali = [
+      ...pool.where((g) => !gorulen.contains(g.kategoriAdi)),
+      ...pool.where((g) => gorulen.contains(g.kategoriAdi)),
+    ];
+    final secilen = sirali.take(adet).toList();
+    // ignore: unawaited_futures
+    storage.addSolitaireSeen(secilen.map((e) => e.kategoriAdi).toList());
     _engine.startLevel(secilen);
+    _dagitimCtrl.forward(from: 0); // kartlar sağ üstteki desteden dağıtılsın
     setState(() {
       _booted = true;
       _finished = false;
       _lost = false;
+      _sonReklamGosterildi = false;
       _kazanilanCoin = 0;
       _coins = storage.getSolitaireCoins();
       _flashKategori = null;
       _flashSutun = null;
+      _flashSlot = null;
       _hoverKategori = null;
       _hoverSutun = null;
+      _hoverSlot = null;
+      _dragSutun = null;
+      _dragIndex = null;
     });
   }
 
@@ -235,6 +390,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       _locked = false;
       _finished = false;
       _lost = false;
+      _sonReklamGosterildi = false;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
@@ -247,29 +403,46 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     await context.read<StorageService>().addSolitaireCoins(miktar);
   }
 
-  /// Sürükle-bırak eşleştirmesi (Draggable → kategori DragTarget onAccept).
-  Future<void> _onDrop(int sutunIndex, KategoriHedef h) async {
-    setState(() => _hoverKategori = null);
-    final ok = _engine.matchCard(sutunIndex, h.kategoriAdi);
-    if (ok) {
-      context.read<SoundService>().click();
-      // Doğru: düşen kart sayısı kadar coin.
-      await _coinEkle(_engine.sonEslesenAdet * kCoinPerKart);
-      if (!mounted) return;
-      if (_engine.seviyeTamamlandi) {
-        // Seviye bonusu: taban + kalan hamle (verimlilik ödülü).
-        await _coinEkle(kCoinSeviyeBonus + _engine.kalanHamle);
-        if (!mounted) return;
-        setState(() => _finished = true);
-      } else if (_engine.kaybedildi) {
-        // Doğru hamleydi ama bütçe tam bu hamlede tükendiyse yine kayıp.
-        setState(() => _lost = true);
-      } else {
-        setState(() {});
-      }
+  /// Başarılı bir eşleştirme sonrası ortak akış: coin ver, bitiş/kayıp kontrolü.
+  Future<void> _eslesmeSonrasi() async {
+    context.read<SoundService>().click();
+    // Kullanıcı isteği: doğru eşleştirmede telefon TİTRESİN + kartta kısa bir
+    // "pop" animasyonu (aşağıdaki _dogruPopKategori ile kısa süre büyür).
+    HapticFeedback.mediumImpact();
+    _dogruPop();
+    await _coinEkle(_engine.sonEslesenAdet * kCoinPerKart);
+    if (!mounted) return;
+    if (_engine.seviyeTamamlandi) {
+      setState(() => _finished = true);
+    } else if (_engine.kaybedildi) {
+      setState(() => _lost = true);
     } else {
-      // Yanlış: kart engine'de kaldığı için görsel olarak yerinde durur;
-      // kategori kartı kırmızı yanıp söner. Bu yanlış deneme de hamle harcadı.
+      setState(() {});
+    }
+  }
+
+  // ── Bırakma (drop) işleyicileri ─────────────────────────────────────
+
+  /// Bir kartın/yığının HEDEF KATEGORİ kartına bırakılması.
+  Future<void> _onKategoriDrop(_Suruklenen d, KategoriHedef h) async {
+    // Sürükleme durumu HEMEN temizlenir: tahta değiştiği an eski sütun/indeks
+    // bilgisiyle yanlış kartlar soluk görünmesin.
+    setState(() {
+      _hoverKategori = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
+    if (d.destedenMi && d.hedefKarti) {
+      // Hedef kategori kartı bir kategoriye bırakılamaz.
+      _flashWrong(h.kategoriAdi);
+      return;
+    }
+    final ok = d.destedenMi
+        ? _engine.cekilenEslestir(h.kategoriAdi)
+        : _engine.eslestir(d.sutun, d.index, h.kategoriAdi);
+    if (ok) {
+      await _eslesmeSonrasi();
+    } else {
       _flashWrong(h.kategoriAdi);
       if (_engine.kaybedildi) {
         setState(() => _lost = true);
@@ -279,23 +452,64 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     }
   }
 
-  /// Kart-üstüne-kart yığma (bir sütunun açık kartı → başka sütunun açık kartı).
-  void _onStackDrop(int kaynakSutun, int hedefSutun) {
-    setState(() => _hoverSutun = null);
-    if (kaynakSutun == hedefSutun) return;
-    final ok = _engine.stackCard(kaynakSutun, hedefSutun);
+  /// Bir kartın/yığının TABLEAU sütununa bırakılması (yığma ya da boş sütuna
+  /// taşıma).
+  void _onSutunDrop(_Suruklenen d, int hedefSutun) {
+    setState(() {
+      _hoverSutun = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
+    if (d.destedenMi && d.hedefKarti) {
+      _flashWrongSutun(hedefSutun);
+      return;
+    }
+    if (!d.destedenMi && d.sutun == hedefSutun) return;
+    final ok = d.destedenMi
+        ? _engine.cekilenSutunaKoy(hedefSutun)
+        : _engine.tasi(d.sutun, d.index, hedefSutun);
     if (ok) {
       context.read<SoundService>().click();
       setState(() {});
     } else {
-      // Farklı kategori → yığılamaz; hedef sütun kırmızı yanıp söner.
       _flashWrongSutun(hedefSutun);
     }
-    // Yığma da (doğru/yanlış) bir hamle harcadığından bütçe bitmiş olabilir.
+    // Taşıma da (doğru/yanlış) bir hamle harcadığından bütçe bitmiş olabilir.
     if (_engine.kaybedildi) setState(() => _lost = true);
   }
 
+  /// Desteden çekilen HEDEF KATEGORİ kartının BOŞ slota bırakılması.
+  void _onSlotDrop(_Suruklenen d, int slotIndex) {
+    setState(() {
+      _hoverSlot = null;
+      _dragSutun = null;
+      _dragIndex = null;
+    });
+    if (!d.destedenMi || !d.hedefKarti) {
+      // Boş slota normal kart konamaz — yalnızca yeni hedef kategori.
+      _flashWrongSlot(slotIndex);
+      return;
+    }
+    final ok = _engine.cekilenHedefiYerlestir(slotIndex);
+    if (ok) {
+      context.read<SoundService>().click();
+      setState(() {});
+    } else {
+      _flashWrongSlot(slotIndex);
+    }
+  }
+
+  // Doğru eşleşmede kısa "pop" (büyüyüp sönen ✓ rozeti) — build içinde overlay.
+  bool _dogruPopGoster = false;
+  void _dogruPop() {
+    setState(() => _dogruPopGoster = true);
+    Future.delayed(const Duration(milliseconds: 650), () {
+      if (mounted) setState(() => _dogruPopGoster = false);
+    });
+  }
+
   void _flashWrong(String kategoriAdi) {
+    HapticFeedback.lightImpact(); // yanlış: hafif titreşim
     setState(() => _flashKategori = kategoriAdi);
     Future.delayed(const Duration(milliseconds: 550), () {
       if (mounted && _flashKategori == kategoriAdi) setState(() => _flashKategori = null);
@@ -303,15 +517,26 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
   }
 
   void _flashWrongSutun(int sutun) {
+    HapticFeedback.lightImpact();
     setState(() => _flashSutun = sutun);
     Future.delayed(const Duration(milliseconds: 550), () {
       if (mounted && _flashSutun == sutun) setState(() => _flashSutun = null);
     });
   }
 
+  void _flashWrongSlot(int slot) {
+    HapticFeedback.lightImpact();
+    setState(() => _flashSlot = slot);
+    Future.delayed(const Duration(milliseconds: 550), () {
+      if (mounted && _flashSlot == slot) setState(() => _flashSlot = null);
+    });
+  }
+
   void _onCekDeste() {
-    if (_engine.bekleyenSayisi == 0) return;
+    if (!_engine.cekilebilir) return;
+    // Kullanıcı isteği: kart çekme sesi + hafif dokunuş geri bildirimi.
     context.read<SoundService>().click();
+    HapticFeedback.selectionClick();
     setState(() => _engine.cekDeste());
   }
 
@@ -345,32 +570,35 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     setState(() {});
   }
 
-  /// Coin harcayarak ekstra ipucu / geri al / joker satın alınan market.
+  /// Coin harcayarak yardımcı satın alınan MARKET. Yüzey tasarım sistemine ve
+  /// tema token'larına bağlıdır (oyun tahtasının sabit yeşili DEĞİL).
   void _openMarket() {
     context.read<SoundService>().click();
+    final c = context.read<ThemeProvider>().colors;
     showModalBottomSheet<void>(
       context: context,
-      backgroundColor: _tableGreenDark,
+      backgroundColor: c.bg2,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(kDsRadius)),
       ),
       builder: (sheetCtx) {
         return StatefulBuilder(
           builder: (sheetCtx, setSheet) {
+            final sc = sheetCtx.watch<ThemeProvider>().colors;
+
             // Bir satın alma işler: coin düşer, etkiyi uygular, iki tarafı da tazeler.
-            Future<void> satinAl(int fiyat, String basari, void Function() etki) async {
+            Future<void> satinAl(String basari, void Function() etki) async {
               final sheetNav = Navigator.of(sheetCtx); // async gap öncesi yakala
-              final ok = await context.read<StorageService>().spendSolitaireCoins(fiyat);
+              final ok = await context.read<StorageService>().spendSolitaireCoins(kMarketFiyat);
               if (!ok) return; // yetersiz (buton zaten pasif olmalı)
               etki();
               if (!mounted) return;
               _coins = context.read<StorageService>().getSolitaireCoins();
               context.read<SoundService>().click();
-              // Joker seviyeyi bitirmiş olabilir → bonus ver, sheet'i kapat, sonuç.
+              // Joker seviyeyi bitirmiş olabilir → sheet'i kapat, sonucu göster.
               if (_engine.seviyeTamamlandi && !_finished) {
-                await _coinEkle(kCoinSeviyeBonus + _engine.kalanHamle);
+                await _coinEkle(_engine.sonEslesenAdet * kCoinPerKart);
                 if (!mounted) return;
-                _coins = context.read<StorageService>().getSolitaireCoins();
                 if (sheetNav.canPop()) sheetNav.pop();
                 setState(() => _finished = true);
                 return;
@@ -383,53 +611,71 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
               ));
             }
 
+            final yeterli = _coins >= kMarketFiyat;
+
             return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 16, 18),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                     Row(
                       children: [
-                        const Text('🛒 Market',
-                            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: Colors.white)),
-                        const Spacer(),
-                        _coinRozet(_coins),
+                        Expanded(
+                          child: Text('🛒 Market',
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w900, color: sc.text)),
+                        ),
+                        DsChip(label: '🪙 $_coins', color: sc.gold),
                       ],
                     ),
-                    const SizedBox(height: 4),
-                    const Text('Coin harcayarak yardım al. Coinini doğru eşleştirmelerle kazanırsın.',
-                        style: TextStyle(fontSize: 12, color: Colors.white70)),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Her ürün $kMarketFiyat coin. Coinini doğru eşleştirmelerle kazanırsın '
+                      '(her doğru eşleştirme 1 coin).',
+                      style: TextStyle(fontSize: 12, color: sc.textFaint),
+                    ),
                     const SizedBox(height: 14),
                     _marketSatir(
                       emoji: '💡',
                       baslik: '+1 İpucu Hakkı',
-                      fiyat: kFiyatIpucu,
-                      yeterli: _coins >= kFiyatIpucu,
-                      onAl: () => satinAl(kFiyatIpucu, '💡 +1 ipucu hakkı eklendi.',
+                      accent: sc.gold,
+                      yeterli: yeterli,
+                      onAl: () => satinAl('💡 +1 ipucu hakkı eklendi.',
                           () => _engine.satinAlinanIpucu()),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: kDsGap),
                     _marketSatir(
                       emoji: '↩️',
                       baslik: '+1 Geri Al Hakkı',
-                      fiyat: kFiyatGeriAl,
-                      yeterli: _coins >= kFiyatGeriAl,
-                      onAl: () => satinAl(kFiyatGeriAl, '↩️ +1 geri al hakkı eklendi.',
+                      accent: sc.violetL,
+                      yeterli: yeterli,
+                      onAl: () => satinAl('↩️ +1 geri al hakkı eklendi.',
                           () => _engine.satinAlinanGeriAl()),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: kDsGap),
+                    _marketSatir(
+                      emoji: '⏱️',
+                      baslik: '$kEkHamleAdet Ek Hamle',
+                      accent: sc.mint,
+                      yeterli: yeterli,
+                      onAl: () => satinAl('⏱️ +$kEkHamleAdet hamle eklendi.',
+                          () => _engine.hamleEkle(kEkHamleAdet)),
+                    ),
+                    const SizedBox(height: kDsGap),
                     _marketSatir(
                       emoji: '🃏',
                       baslik: 'Joker — bir kartı otomatik yerleştir',
-                      fiyat: kFiyatJoker,
-                      yeterli: _coins >= kFiyatJoker && _engine.jokerUygun,
-                      onAl: () => satinAl(kFiyatJoker, '🃏 Joker bir kartı doğru kategoriye yerleştirdi!',
+                      accent: sc.rose,
+                      yeterli: yeterli && _engine.jokerUygun,
+                      onAl: () => satinAl('🃏 Joker bir kartı doğru kategoriye yerleştirdi!',
                           () => _engine.joker()),
                     ),
                     const SizedBox(height: 8),
                   ],
+                  ),
                 ),
               ),
             );
@@ -442,9 +688,14 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kSolitaireGameId,
+        oyunAdi: 'Eşleştirme Solitaire',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Eşleştirme Solitaire',
-        desc: "Bugünkü $kFreeSolitaireDaily ücretsiz oyun hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
+        desc: "Bugünkü $kFreeGameDailyLimit ücretsiz oyun hakkını kullandın. "
+            "Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
     }
     if (!_booted) {
@@ -453,22 +704,154 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
         body: Center(child: CircularProgressIndicator(color: Colors.white)),
       );
     }
-    if (_finished) {
-      return MapSessionResult(
-        title: '🃏 Eşleştirme Solitaire',
-        emoji: '🎉',
-        message: 'Seviye tamamlandı!\n'
-            '${_engine.toplamTerim} terimin tamamını doğru kategorilere eşleştirdin.\n'
-            '${_engine.hamle}/${_engine.hamleButcesi} hamle kullandın.\n'
-            '🪙 Bu turda +$_kazanilanCoin coin kazandın (toplam: $_coins).',
-        onRetry: _retry,
-      );
-    }
-    if (_lost) {
-      return _buildKayip(context);
-    }
+    if (_finished) return _buildSonuc(context, kazandi: true);
+    if (_lost) return _buildSonuc(context, kazandi: false);
     return _buildBoard(context);
   }
+
+  // ── Oyun sonu ekranı (tasarım sistemi + tema token'ları) ────────────
+
+  /// Kazanma ve kaybetme ekranı — uygulamanın geri kalanıyla AYNI tasarım
+  /// dilinde: [DsCard], [DsIllustration], [DsStatStrip], [DsChip],
+  /// [DsPillButton] ve ThemeProvider renkleri.
+  Widget _buildSonuc(BuildContext context, {required bool kazandi}) {
+    final c = context.watch<ThemeProvider>().colors;
+    final vurgu = kazandi ? c.mint : c.rose;
+    final kurtarilabilir = !kazandi && _coins >= kMarketFiyat;
+
+    // Oyun sonu KISA geçiş reklamı (premium hariç) — bir kez. Bu ekran
+    // GameResultScreen kullanmadığı için reklam elle tetiklenir.
+    if (!_sonReklamGosterildi) {
+      _sonReklamGosterildi = true;
+      final premium = context.read<StorageService>().isPremiumUser();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // ignore: unawaited_futures
+        AdService.instance.gecisReklamiGoster(premium: premium);
+      });
+    }
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('🃏 Eşleştirme Solitaire')),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            DsCard(
+              accent: vurgu,
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  DsIllustration(
+                    emoji: kazandi ? '🏆' : '💥',
+                    size: 92,
+                    glowColor: kazandi ? c.gold : vurgu,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    kazandi ? 'Seviye tamamlandı!' : 'Hamle hakkın bitti!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: c.text),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    kazandi
+                        ? '${_engine.toplamKategori} kategorinin ${_engine.toplamTerim} teriminin '
+                            'tamamını doğru yere yerleştirdin.'
+                        : '${_engine.hamleButcesi} hamlelik bütçen doldu ama hâlâ '
+                            '${_engine.kalanTerim} kart tamamlanmadı.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, height: 1.5, color: c.textDim),
+                  ),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 6,
+                    alignment: WrapAlignment.center,
+                    children: [
+                      DsChip(label: '🪙 BAKİYE $_coins', color: c.gold),
+                      DsChip(label: '🎯 ${_engine.tamamlananlar.length} KATEGORİ', color: vurgu),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: kDsGap),
+            const DsSectionHeader(title: 'Tur Özeti'),
+            const SizedBox(height: 4),
+            DsStatStrip(
+              items: [
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🪙', color: c.gold, size: 44),
+                  value: '+$_kazanilanCoin',
+                  label: 'Kazanılan coin',
+                  sublabel: 'Eşleştirme başına 1',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🎴', color: c.violetL, size: 44),
+                  value: '${_engine.toplamTerim - _engine.kalanTerim}/${_engine.toplamTerim}',
+                  label: 'Eşleşen kart',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '♟️', color: c.mint, size: 44),
+                  value: '${_engine.hamle}/${_engine.hamleButcesi}',
+                  label: 'Hamle',
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            if (kurtarilabilir) ...[
+              Align(
+                alignment: Alignment.center,
+                child: DsPillButton(
+                  label: '🪙 $kMarketFiyat coin → +$kEkHamleAdet Hamle',
+                  onPressed: _onKurtar,
+                  color: c.gold,
+                  leadingIcon: Icons.play_arrow_rounded,
+                ),
+              ),
+              const SizedBox(height: 10),
+            ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DsPillButton(
+                  label: 'Tekrar Oyna',
+                  onPressed: () {
+                    context.read<SoundService>().click();
+                    _retry();
+                  },
+                  color: vurgu,
+                  leadingIcon: Icons.refresh_rounded,
+                ),
+                const SizedBox(width: 10),
+                DsPillButton(
+                  label: 'Menüye Dön',
+                  onPressed: () {
+                    context.read<SoundService>().click();
+                    Navigator.of(context).pop();
+                  },
+                  color: c.violetL,
+                  filled: false,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Kayıp ekranında coin harcayarak hamle satın alıp oyuna devam eder.
+  Future<void> _onKurtar() async {
+    context.read<SoundService>().click();
+    final ok = await context.read<StorageService>().spendSolitaireCoins(kMarketFiyat);
+    if (!ok || !mounted) return;
+    _coins = context.read<StorageService>().getSolitaireCoins();
+    _engine.hamleEkle(kEkHamleAdet);
+    setState(() => _lost = false); // bütçe arttı → oyuna geri dön
+  }
+
+  // ── Oyun tahtası ────────────────────────────────────────────────────
 
   Widget _buildBoard(BuildContext context) {
     return Scaffold(
@@ -476,85 +859,157 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       appBar: AppBar(
         backgroundColor: _tableGreenDark,
         foregroundColor: Colors.white,
-        title: const Text('🃏 Eşleştirme Solitaire'),
+        surfaceTintColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: Colors.white),
+        // Başlık arka planla aynı tona düşüp kaybolmasın: rengi açıkça beyaz.
+        title: const Text(
+          '🃏 Eşleştirme Solitaire',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 17),
+        ),
         elevation: 0,
       ),
-      body: SafeArea(
+      body: Stack(
+        children: [
+        SafeArea(
         child: Column(
           children: [
-            // ── Üst çubuk: ders rozeti + coin · Kalan hamle · çekme destesi ──
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
+            // Üst çubuk + tahta TEK bir LayoutBuilder ile ölçülür: kullanılabilir
+            // genişlik VE yükseklikten kart boyutu türetilir. Böylece sağ üstteki
+            // deste/çekilen kart da tam olarak diğer kartlarla AYNI boyutta olur
+            // ve hiçbir yerde taşma oluşmaz (sabit piksel yok).
+            Expanded(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  const yatayPad = 12.0;
+                  final W = constraints.maxWidth;
+                  final H = constraints.maxHeight;
+                  final tahtaGenislik = W - yatayPad * 2;
+
+                  // Tableau: 5 sütun + aralarındaki boşluklar (0.5 px yuvarlama
+                  // güvenlik payıyla — hairline taşma olmasın).
+                  final sutunGenisligi =
+                      (tahtaGenislik - 0.5 - kKartBosluk * (kSutunSayisi - 1)) / kSutunSayisi;
+                  final idealYukseklik = sutunGenisligi / kTerimKartOrani;
+
+                  // Hedef slotları tek sıra (5 slot) — kapasiteye göre hesaplanır.
+                  var satirSayisi = (kHedefSlotSayisi / kHedefSatirKapasite).ceil();
+                  if (satirSayisi < 1) satirSayisi = 1;
+
+                  // Cihazın yazı ölçeği büyükse başlıklar da büyür → pay onunla
+                  // birlikte artar (aksi hâlde Column taşardı).
+                  final baslikOlcek =
+                      (MediaQuery.textScalerOf(context).scale(12.5) / 12.5).clamp(1.0, 2.0);
+                  final basliklarYukseklik = 20.0 + 36.0 * baslikOlcek;
+                  const ustCubukPay = 12.0; // üst çubuğun dikey iç boşluğu
+                  const tahtaDikeyPay = 12.0; // tahta alanının dikey iç boşluğu
+                  const bolumlerArasi = 8.0;
+                  // Tableau'nun en az bu kadar kart yüksekliğine yeri olmalı.
+                  const tableauPayCarpani = 2.2;
+
+                  final sabitPay = ustCubukPay +
+                      tahtaDikeyPay +
+                      basliklarYukseklik +
+                      bolumlerArasi +
+                      (satirSayisi - 1) * kKartBosluk;
+                  final kartlaraKalan = H - sabitPay;
+                  // Dikey kart bütçesi: üst çubuk destesi (1) + hedef sıraları +
+                  // tableau payı.
+                  final gerekliKart = idealYukseklik * (satirSayisi + tableauPayCarpani + 1.0);
+                  var olcek = (kartlaraKalan <= 0 || gerekliKart <= kartlaraKalan)
+                      ? 1.0
+                      : (kartlaraKalan / gerekliKart);
+                  olcek = olcek.clamp(0.30, 1.0);
+
+                  _cardHeight = idealYukseklik * olcek;
+                  _cardWidth = _cardHeight * kTerimKartOrani;
+                  _hedefAlanYukseklik =
+                      satirSayisi * _cardHeight + (satirSayisi - 1) * kKartBosluk;
+                  final ustCubukYuk = max(_cardHeight, kUstCubukMinYukseklik);
+
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _dersRozeti(),
-                      const SizedBox(height: 6),
-                      _coinRozet(_coins),
-                    ],
-                  ),
-                  const Spacer(),
-                  _hamleBayragi(),
-                  const Spacer(),
-                  _buildCekDeste(),
-                ],
-              ),
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // ── Hedef kategori kartları (DragTarget) ──
-                    const _BolumBasligi('🎯 Hedef Kategoriler'),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        for (final h in _engine.hedefler) _buildKategori(h),
-                        // Kilitli/dekoratif boş slotlar (referans görsel).
-                        for (var k = 0; k < (kSutunSayisi - _engine.hedefler.length).clamp(0, kSutunSayisi); k++)
-                          _kilitliSlot(),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    // ── Tableau sütunları (Draggable açık kartlar) ──
-                    const _BolumBasligi('🂠 Kartlar — açık kartı tutup kategoriye sürükle'),
-                    const SizedBox(height: 10),
-                    // Sütunların GERÇEK genişliğini ölçüp kart yüksekliğini buna göre
-                    // türetiyoruz (bkz. [kTerimKartOrani]) — sabit bir yükseklik
-                    // yerine, dar telefonlarda kart küçülür/geniş telefonlarda
-                    // büyür, ama iskambil oranı ve 5 sütunluk yerleşim HER ZAMAN
-                    // korunur (taşma/kırpılma olmaz).
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        const gapToplam = 6.0 * (kSutunSayisi - 1);
-                        final sutunGenisligi = (constraints.maxWidth - gapToplam) / kSutunSayisi;
-                        _cardHeight = sutunGenisligi / kTerimKartOrani;
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (var i = 0; i < _engine.sutunlar.length; i++)
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: i == _engine.sutunlar.length - 1 ? 0 : 6),
-                                  child: _buildSutun(i),
+                      // ── Üst çubuk: ders rozeti + coin · Kalan hamle · deste ──
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(yatayPad, 8, yatayPad, 4),
+                        child: SizedBox(
+                          height: ustCubukYuk,
+                          child: Row(
+                            children: [
+                              // Rozetler dar/alçak çubukta otomatik küçülür.
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _dersRozeti(),
+                                    const SizedBox(height: 5),
+                                    _coinRozet(_coins),
+                                  ],
                                 ),
                               ),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Center(
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        _hamleBayragi(),
+                                        const SizedBox(height: 4),
+                                        // ANA KART SAYACI: her doğru eşleştirmede
+                                        // düşen "kalan toplam kart".
+                                        _kalanKartRozet(),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              // Çekme destesi HER ZAMAN sağ üst köşede; yanında
+                              // çekilen kartın KENDİ yuvası vardır (hiçbir kartın
+                              // üstüne binmez).
+                              _buildDesteAlani(),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(yatayPad, 4, yatayPad, 8),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // ── Hedef kategori slotları (DragTarget) ──
+                              const _BolumBasligi('🎯 Hedef Kategoriler'),
+                              const SizedBox(height: 6),
+                              SizedBox(
+                                height: _hedefAlanYukseklik,
+                                width: double.infinity,
+                                child: _buildHedefIzgara(tahtaGenislik, satirSayisi),
+                              ),
+                              const SizedBox(height: bolumlerArasi),
+                              // ── Tableau sütunları (Draggable açık kartlar) ──
+                              const _BolumBasligi('🂠 Kartlar — kartı tutup sürükle'),
+                              const SizedBox(height: 6),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: _buildTableau(tahtaGenislik),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
-            // ── Alt araç çubuğu: İpucu · Geri Al ──
+            // ── Alt araç çubuğu: İpucu · Geri Al · Market ──
             Container(
               padding: const EdgeInsets.fromLTRB(14, 8, 14, 12),
               decoration: const BoxDecoration(
@@ -597,6 +1052,42 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
           ],
         ),
       ),
+        // Doğru eşleşme "pop" rozeti (kullanıcı isteği: kartta ufak animasyon).
+        if (_dogruPopGoster)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: Center(
+                child: TweenAnimationBuilder<double>(
+                  key: const ValueKey('dogruPop'),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.elasticOut,
+                  builder: (context, t, _) => Opacity(
+                    opacity: (1.4 - t).clamp(0.0, 1.0),
+                    child: Transform.scale(
+                      scale: 0.5 + t * 0.7,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade600,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.green.withValues(alpha: 0.5),
+                                blurRadius: 24),
+                          ],
+                        ),
+                        child: const Icon(Icons.check_rounded,
+                            color: Colors.white, size: 40),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -620,7 +1111,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       'Karışık': '🎯',
     };
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: _cardCream,
         borderRadius: BorderRadius.circular(10),
@@ -630,10 +1121,10 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(dersEmoji[ders] ?? '🎯', style: const TextStyle(fontSize: 14)),
+          Text(dersEmoji[ders] ?? '🎯', style: const TextStyle(fontSize: 13)),
           const SizedBox(width: 6),
           Text(ders,
-              style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: _cardInk)),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: _cardInk)),
         ],
       ),
     );
@@ -662,11 +1153,35 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     );
   }
 
-  /// Üstteki 🪙 coin göstergesi (krem rozet, altın kenarlık) — market sheet'inde
-  /// de kullanılır.
+  /// ANA KART SAYACI — henüz eşleşmemiş toplam kart. Her DOĞRU eşleştirmede
+  /// (tek kart ya da yığın) anında düşer; sıfırlandığında seviye biter.
+  Widget _kalanKartRozet() {
+    final kalan = _engine.kalanTerim;
+    final toplam = _engine.toplamTerim;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.28),
+        borderRadius: BorderRadius.circular(9),
+        border: Border.all(color: Colors.white38, width: 1),
+      ),
+      child: Text(
+        '🎴 Kalan kart: $kalan/$toplam',
+        maxLines: 1,
+        overflow: TextOverflow.clip,
+        style: const TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.w800,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  /// Üstteki 🪙 coin göstergesi (krem rozet, altın kenarlık).
   Widget _coinRozet(int coins) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: _cardCream,
         borderRadius: BorderRadius.circular(10),
@@ -676,276 +1191,440 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('🪙', style: TextStyle(fontSize: 14)),
+          const Text('🪙', style: TextStyle(fontSize: 13)),
           const SizedBox(width: 6),
           Text('$coins',
-              style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: _cardInk)),
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: _cardInk)),
         ],
       ),
     );
   }
 
-  /// Market bottom sheet'inde tek bir satın alma satırı (emoji · başlık · fiyat ·
-  /// "Satın Al"). Coin yetmezse (ya da joker için yerleştirilecek kart yoksa)
-  /// buton pasif/gri görünür.
+  /// Market satırı — tasarım sistemi kartı + hap buton (tema renkleriyle).
   Widget _marketSatir({
     required String emoji,
     required String baslik,
-    required int fiyat,
+    required Color accent,
     required bool yeterli,
     required VoidCallback onAl,
   }) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.06),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white24),
-      ),
-      child: Row(
-        children: [
-          Text(emoji, style: const TextStyle(fontSize: 20)),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(baslik,
-                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: Colors.white)),
-                const SizedBox(height: 2),
-                Text('🪙 $fiyat coin',
-                    style: const TextStyle(fontSize: 11, color: Colors.white70, fontWeight: FontWeight.w700)),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          ElevatedButton(
-            onPressed: yeterli ? onAl : null,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: _goldTrim,
-              foregroundColor: _cardInk,
-              disabledBackgroundColor: Colors.white24,
-              disabledForegroundColor: Colors.white38,
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              textStyle: const TextStyle(fontWeight: FontWeight.w900, fontSize: 12.5),
-            ),
-            child: const Text('Satın Al'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Hamle bütçesi tükenince gösterilen KAYBETME ekranı. "Tekrar Dene" +
-  /// (coin yeterliyse) coin harcayarak "Hamle Hakkı Satın Al" kurtarma seçeneği.
-  Widget _buildKayip(BuildContext context) {
-    final kurtarilabilir = _coins >= kFiyatKurtarma;
-    return Scaffold(
-      backgroundColor: _tableGreen,
-      appBar: AppBar(
-        backgroundColor: _tableGreenDark,
-        foregroundColor: Colors.white,
-        title: const Text('🃏 Eşleştirme Solitaire'),
-        elevation: 0,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(22),
-          child: Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: _cardCream,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: _goldTrim, width: 2),
-              boxShadow: const [BoxShadow(color: Colors.black45, blurRadius: 12, offset: Offset(0, 6))],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('💥', style: TextStyle(fontSize: 46)),
-                const SizedBox(height: 10),
-                const Text('Hamle hakkın bitti!',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: _cardInk)),
-                const SizedBox(height: 8),
-                Text(
-                  '${_engine.hamleButcesi} hamlelik bütçen doldu ama hâlâ '
-                  '${_engine.kalanTerim} kart tamamlanmadı.\n'
-                  '🪙 Bakiyen: $_coins coin',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 13, height: 1.5, color: _cardInk.withValues(alpha: 0.8)),
-                ),
-                const SizedBox(height: 20),
-                if (kurtarilabilir) ...[
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _onKurtar,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: _goldTrim,
-                        foregroundColor: _cardInk,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        textStyle: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13.5),
-                      ),
-                      child: const Text('🪙 $kFiyatKurtarma coin → +$kKurtarmaHamle Hamle (Devam Et)'),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
+    return Builder(builder: (ctx) {
+      final c = ctx.watch<ThemeProvider>().colors;
+      return DsCard(
+        accent: accent,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        child: Row(
+          children: [
+            DsIconBadge(emoji: emoji, color: accent, size: 42, circle: false, glow: false),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(baslik,
+                      style: TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w800, color: c.text)),
+                  const SizedBox(height: 3),
+                  Text('🪙 $kMarketFiyat coin',
+                      style: TextStyle(
+                          fontSize: 11.5, fontWeight: FontWeight.w700, color: c.textFaint)),
                 ],
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      context.read<SoundService>().click();
-                      _retry();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: _tableGreen,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      textStyle: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13.5),
-                    ),
-                    child: const Text('🔄 Tekrar Dene'),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                TextButton(
-                  onPressed: () {
-                    context.read<SoundService>().click();
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Menüye Dön', style: TextStyle(color: _cardInk.withValues(alpha: 0.7))),
-                ),
-              ],
+              ),
             ),
-          ),
+            const SizedBox(width: 8),
+            DsPillButton(
+              label: 'Satın Al',
+              onPressed: yeterli ? onAl : null,
+              color: yeterli ? accent : c.textFaint,
+            ),
+          ],
         ),
-      ),
-    );
+      );
+    });
   }
 
-  /// Kayıp ekranında coin harcayarak hamle satın alıp oyuna devam eder.
-  Future<void> _onKurtar() async {
-    context.read<SoundService>().click();
-    final ok = await context.read<StorageService>().spendSolitaireCoins(kFiyatKurtarma);
-    if (!ok || !mounted) return;
-    _coins = context.read<StorageService>().getSolitaireCoins();
-    _engine.hamleEkle(kKurtarmaHamle);
-    setState(() => _lost = false); // bütçe arttı → oyuna geri dön
+  // ── Çekme destesi + çekilen kart yuvası (sağ üst) ───────────────────
+
+  /// Sağ üst köşe: kapalı çekme destesi ve HEMEN YANINDA çekilen kartın kendi
+  /// yuvası. Çekilen kart bu yuvada durur — hiçbir zaman başka kartların
+  /// üzerine binmez ve diğer oyun kartlarıyla AYNI boyuttadır. Terim kartı
+  /// çıkarsa kategoriye/sütuna, hedef kartı çıkarsa BOŞ slota sürüklenir.
+  Widget _buildDesteAlani() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        _buildCekilenYuva(),
+        const SizedBox(width: kKartBosluk),
+        _buildCekDeste(),
+      ],
+    );
   }
 
   Widget _buildCekDeste() {
+    // Destede DURAN kart sayısı — her çekişte 1 azalır. Sıfırlandığında, henüz
+    // oynanmamış kartlar varsa deste yeniden dağıtılabilir ("Yeniden").
     final kalan = _engine.bekleyenSayisi;
-    final onizleme = _engine.bekleyenKuyruk.take(2).toList();
-    final aktif = kalan > 0;
+    final aktif = _engine.cekilebilir;
+    final etiket = kalan > 0 ? 'Çek' : (aktif ? 'Yeniden' : 'Bitti');
 
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: aktif ? _onCekDeste : null,
       child: Opacity(
         opacity: aktif ? 1 : 0.55,
         child: SizedBox(
-          width: 96,
-          height: 60,
-          child: Stack(
-            clipBehavior: Clip.none,
-            alignment: Alignment.centerRight,
-            children: [
-              // Önizleme kartları (sıradaki 2 terim), hafif yelpaze.
-              if (onizleme.isNotEmpty)
-                Positioned(
-                  left: 0,
-                  top: 6,
-                  child: Transform.rotate(
-                    angle: -0.18,
-                    child: _miniOnizleme(onizleme.length > 1 ? onizleme[1].terim : onizleme[0].terim),
-                  ),
-                ),
-              if (onizleme.isNotEmpty)
-                Positioned(
-                  left: 14,
-                  top: 2,
-                  child: Transform.rotate(
-                    angle: -0.06,
-                    child: _miniOnizleme(onizleme[0].terim),
-                  ),
-                ),
-              // Kapalı çekme destesi + kalan sayı.
-              Positioned(
-                right: 0,
-                top: 0,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 42,
-                      height: 46,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.white70, width: 1.2),
-                        boxShadow: const [
-                          BoxShadow(color: Colors.black38, blurRadius: 4, offset: Offset(0, 2))
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(7),
-                        child: CustomPaint(
-                          painter: _CardBackPainter(),
-                          child: Center(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.45),
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              child: Text('$kalan',
-                                  style: const TextStyle(
-                                      fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white)),
-                            ),
-                          ),
-                        ),
-                      ),
+          width: _cardWidth,
+          height: _cardHeight,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(9),
+              border: Border.all(color: Colors.white70, width: 1.2),
+              boxShadow: const [
+                BoxShadow(color: Colors.black38, blurRadius: 4, offset: Offset(0, 2))
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: CustomPaint(
+                painter: _CardBackPainter(),
+                child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.45),
+                      borderRadius: BorderRadius.circular(6),
                     ),
-                    const SizedBox(height: 2),
-                    Text(aktif ? 'Çek' : 'Bitti',
-                        style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w800, color: Colors.white)),
-                  ],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('$kalan',
+                            style: TextStyle(
+                                fontSize: (_cardHeight * 0.17).clamp(10.0, 15.0),
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white)),
+                        // "Yeniden" gibi uzun etiket dar kartta taşmasın.
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(etiket,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: (_cardHeight * 0.11).clamp(7.0, 10.0),
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.white)),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _miniOnizleme(String terim) {
-    return Container(
-      width: 34,
-      height: 44,
-      padding: const EdgeInsets.all(3),
-      decoration: BoxDecoration(
-        color: _cardCream,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: _goldTrim.withValues(alpha: 0.8)),
-        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 3, offset: Offset(0, 1))],
-      ),
-      child: Center(
-        child: Text(
-          terim,
-          textAlign: TextAlign.center,
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 6.5, height: 1.05, fontWeight: FontWeight.w800, color: _cardInk),
+  /// Açılan yığının yuvası — boşsa soluk bir çerçeve, doluysa yığının EN
+  /// ÜSTTEKİ kartı SÜRÜKLENEBİLİR olarak çizilir. Altındaki 1-2 kart birkaç
+  /// piksel kaydırılmış kenarlarıyla görünür (yığın olduğu anlaşılsın) ama
+  /// dokunmayı yakalamaz — sürükleme yalnızca üstteki karttan başlar.
+  Widget _buildCekilenYuva() {
+    final ck = _engine.cekilen;
+    final yiginAdet = _engine.acilanSayisi;
+    // Altta gösterilecek dekoratif kart sayısı (en fazla 2).
+    final altAdet = (yiginAdet - 1).clamp(0, 2);
+    // Kaydırma payı: kart yüksekliğine göre küçük bir offset.
+    final kaydirma = (_cardHeight * 0.035).clamp(2.0, 5.0);
+
+    if (ck == null) {
+      return Container(
+        width: _cardWidth,
+        height: _cardHeight,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(9),
+          border: Border.all(color: Colors.white38, width: 1.2),
+          color: Colors.white.withValues(alpha: 0.05),
+        ),
+        child: Center(
+          child: Icon(Icons.touch_app_rounded,
+              color: Colors.white38, size: (_cardHeight * 0.24).clamp(12.0, 22.0)),
+        ),
+      );
+    }
+
+    final hedefMi = ck.hedefMi;
+    final gorsel = hedefMi
+        ? _yeniHedefKarti(ck.hedef!)
+        : _terimKarti(ck.terim!, faded: false);
+
+    final ustKart = LongPressDraggable<_Suruklenen>(
+      data: _Suruklenen.deste(hedefKarti: hedefMi),
+      delay: const Duration(milliseconds: 25),
+      hitTestBehavior: HitTestBehavior.opaque,
+      dragAnchorStrategy: (draggable, ctx, position) =>
+          Offset(_cardWidth / 2, _cardHeight + kSuruklemeYukariPay),
+      feedbackOffset: Offset(0, -(kSuruklemeYukariPay + _cardHeight / 2)),
+      feedback: Material(
+        color: Colors.transparent,
+        child: Transform.scale(
+          scale: 1.06,
+          child: SizedBox(
+            width: _cardWidth,
+            child: hedefMi
+                ? _yeniHedefKarti(ck.hedef!, dragging: true)
+                : _terimKarti(ck.terim!, faded: false, dragging: true),
+          ),
         ),
       ),
+      childWhenDragging: SizedBox(
+        width: _cardWidth,
+        child: hedefMi
+            ? _yeniHedefKarti(ck.hedef!, faded: true)
+            : _terimKarti(ck.terim!, faded: true),
+      ),
+      onDragStarted: () => context.read<SoundService>().click(),
+      child: SizedBox(width: _cardWidth, child: gorsel),
+    );
+
+    // Yığında tek kart varsa eski görünüm aynen korunur.
+    if (altAdet == 0) {
+      return SizedBox(width: _cardWidth, height: _cardHeight, child: ustKart);
+    }
+
+    // Yığın görünümü: alttaki kartlar sola-yukarı doğru birkaç piksel kaydırılmış
+    // sırtlarıyla görünür, üstteki kart tam boyutta ve yuvanın TAM yerinde durur.
+    // Yuvanın ölçüsü (_cardWidth × _cardHeight) DEĞİŞMEZ; kaydırılan sırtlar
+    // Clip.none ile dışarı taşar ama yer kaplamaz, böylece üst çubuk kaymaz.
+    return SizedBox(
+      width: _cardWidth,
+      height: _cardHeight,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // Dekoratif alt kartlar — en alttaki en çok kaydırılmış olsun.
+          for (var i = altAdet; i >= 1; i--)
+            Positioned(
+              left: -kaydirma * i,
+              top: -kaydirma * i,
+              child: IgnorePointer(
+                child: Opacity(
+                  opacity: 0.85,
+                  child: SizedBox(
+                    width: _cardWidth,
+                    height: _cardHeight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(9),
+                        border: Border.all(color: Colors.white54, width: 1),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: CustomPaint(painter: _CardBackPainter()),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          // Oynanabilir ÜST kart.
+          Positioned.fill(child: ustKart),
+          // Yığındaki kart sayısı rozeti ("×3").
+          Positioned(
+            right: 2,
+            top: 2,
+            child: IgnorePointer(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                decoration: BoxDecoration(
+                  color: Colors.black.withValues(alpha: 0.62),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  '×$yiginAdet',
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: (_cardHeight * 0.11).clamp(7.0, 11.0),
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Desteden çıkan YENİ HEDEF KATEGORİ kartı (mor vurgulu) — boş slota
+  /// sürüklenerek tahtaya eklenir.
+  Widget _yeniHedefKarti(KategoriHedef h, {bool dragging = false, bool faded = false}) {
+    final adFont = (_cardHeight * 0.115).clamp(7.0, 12.0);
+    final ustFont = (_cardHeight * 0.10).clamp(6.0, 10.0);
+    final ic = (_cardHeight * 0.06).clamp(3.0, 8.0);
+    return Container(
+      height: _cardHeight,
+      padding: EdgeInsets.all(ic),
+      decoration: BoxDecoration(
+        color: faded ? _cardCream.withValues(alpha: 0.3) : _cardCream,
+        borderRadius: BorderRadius.circular(9),
+        border: Border.all(color: _hedefKartMor, width: dragging ? 2.6 : 2),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: dragging ? 0.35 : 0.22),
+            blurRadius: dragging ? 10 : 5,
+            offset: Offset(0, dragging ? 5 : 2),
+          )
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text('🎯 YENİ HEDEF',
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.clip,
+              style: TextStyle(
+                  fontSize: ustFont,
+                  fontWeight: FontWeight.w900,
+                  color: _hedefKartMor)),
+          Expanded(
+            child: _KayanMetin(
+              metin: h.kategoriAdi,
+              hizalama: TextAlign.center,
+              stil: TextStyle(
+                fontSize: adFont,
+                fontWeight: FontWeight.w900,
+                height: 1.12,
+                color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Dağıtım animasyonu ──────────────────────────────────────────────
+
+  /// Kartı, sağ üstteki çekme destesinden yerine "uçurarak" gösterir.
+  Widget _desteDagitim({
+    required int sira,
+    required int toplam,
+    required Offset yerelKonum,
+    required double tahtaGenislik,
+    required Widget child,
+  }) {
+    return AnimatedBuilder(
+      animation: _dagitimCtrl,
+      child: child,
+      builder: (context, icerik) {
+        final basla = toplam <= 1 ? 0.0 : (sira / toplam) * 0.5;
+        final ham = ((_dagitimCtrl.value - basla) / (1 - basla)).clamp(0.0, 1.0);
+        if (ham >= 1.0) return icerik!;
+        final t = Curves.easeOutCubic.transform(ham);
+        final baslangic = _destePozisyon(tahtaGenislik) - yerelKonum;
+        return Transform.translate(
+          offset: baslangic * (1 - t),
+          child: Opacity(opacity: 0.35 + 0.65 * t, child: icerik),
+        );
+      },
+    );
+  }
+
+  // ── Hedef slot ızgarası ─────────────────────────────────────────────
+
+  Widget _buildHedefIzgara(double tahtaGenislik, int satirSayisi) {
+    final slotlar = _engine.slotlar;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (var s = 0; s < satirSayisi; s++) ...[
+          if (s > 0) const SizedBox(height: kKartBosluk),
+          SizedBox(
+            height: _cardHeight,
+            child: Row(
+              children: [
+                for (var k = 0; k < kHedefSatirKapasite; k++)
+                  if (s * kHedefSatirKapasite + k < slotlar.length) ...[
+                    if (k > 0) const SizedBox(width: kKartBosluk),
+                    Builder(builder: (_) {
+                      final idx = s * kHedefSatirKapasite + k;
+                      final konum = Offset(
+                          k * (_cardWidth + kKartBosluk), s * (_cardHeight + kKartBosluk));
+                      final h = slotlar[idx];
+                      return h == null
+                          ? _buildBosSlot(idx)
+                          : _buildKategori(h, idx, konum, tahtaGenislik);
+                    }),
+                  ],
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  /// Tamamlanan kategori kalkınca boşalan slot. YALNIZCA desteden çekilen yeni
+  /// bir HEDEF KATEGORİ kartını kabul eder — normal kart konamaz.
+  Widget _buildBosSlot(int slotIndex) {
+    final flashing = _flashSlot == slotIndex;
+    final hovering = _hoverSlot == slotIndex;
+    return DragTarget<_Suruklenen>(
+      hitTestBehavior: HitTestBehavior.opaque,
+      onWillAcceptWithDetails: (details) {
+        if (_hoverSlot != slotIndex) setState(() => _hoverSlot = slotIndex);
+        return true; // yanlış kart bırakılırsa kırmızı flaşla uyarılır
+      },
+      onLeave: (_) {
+        if (_hoverSlot == slotIndex) setState(() => _hoverSlot = null);
+      },
+      onAcceptWithDetails: (details) => _onSlotDrop(details.data, slotIndex),
+      builder: (context, candidate, rejected) {
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          width: _cardWidth,
+          height: _cardHeight,
+          padding: EdgeInsets.all((_cardHeight * 0.06).clamp(3.0, 8.0)),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.06),
+            borderRadius: BorderRadius.circular(9),
+            border: Border.all(
+              color: flashing
+                  ? const Color(0xFFE23B3B)
+                  : (hovering ? const Color(0xFF2ECC71) : Colors.white38),
+              width: flashing || hovering ? 2.4 : 1.2,
+            ),
+          ),
+          child: Center(
+            child: Text(
+              // Destede hâlâ hedef kartı varsa buraya yeni bir hedef konabilir;
+              // yoksa slot kalıcı olarak tamamlanmış demektir.
+              _engine.bekleyenHedefSayisi > 0 ? 'Boş slot\nyeni hedef' : '👑\ntamamlandı',
+              textAlign: TextAlign.center,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: (_cardHeight * 0.10).clamp(6.0, 10.5),
+                height: 1.2,
+                fontWeight: FontWeight.w800,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 
   // ── Kategori hedef kartı (DragTarget) ───────────────────────────────
 
-  Widget _buildKategori(KategoriHedef h) {
+  Widget _buildKategori(KategoriHedef h, int sira, Offset yerelKonum, double tahtaGenislik) {
     final flashing = _flashKategori == h.kategoriAdi;
     final hovering = _hoverKategori == h.kategoriAdi;
-    final done = h.tamamlandi;
 
     Color borderColor = _goldTrim;
     double borderW = 1.4;
@@ -957,15 +1636,18 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     } else if (hovering) {
       borderColor = const Color(0xFF2ECC71);
       borderW = 2.8;
-    } else if (done) {
-      borderColor = _goldTrim;
-      borderW = 2.2;
     }
 
-    return DragTarget<int>(
+    // Yazı ölçüleri kart yüksekliğinden türetilir (sabit piksel yok).
+    final sayacFont = (_cardHeight * 0.155).clamp(8.5, 15.0);
+    final adFont = (_cardHeight * 0.115).clamp(7.0, 12.0);
+    final dersFont = (_cardHeight * 0.095).clamp(6.0, 10.0);
+    final ic = (_cardHeight * 0.06).clamp(3.0, 8.0);
+
+    final kart = DragTarget<_Suruklenen>(
+      // Kartın TAMAMI bırakma alanı olsun (şeffaf boşluklar dâhil).
+      hitTestBehavior: HitTestBehavior.opaque,
       onWillAcceptWithDetails: (details) {
-        // Tamamlanmış kategori yeni kart kabul etmez; onun dışında hover göster.
-        if (done) return false;
         if (_hoverKategori != h.kategoriAdi) {
           setState(() => _hoverKategori = h.kategoriAdi);
         }
@@ -974,152 +1656,232 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       onLeave: (_) {
         if (_hoverKategori == h.kategoriAdi) setState(() => _hoverKategori = null);
       },
-      onAcceptWithDetails: (details) => _onDrop(details.data, h),
+      onAcceptWithDetails: (details) => _onKategoriDrop(details.data, h),
       builder: (context, candidate, rejected) {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 150),
-          width: 150,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 9),
+          // Hedef kartı, normal terim kartıyla BİREBİR aynı ölçüde.
+          width: _cardWidth,
+          height: _cardHeight,
+          padding: EdgeInsets.symmetric(horizontal: ic, vertical: ic),
           decoration: BoxDecoration(
             color: bg,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(9),
             border: Border.all(color: borderColor, width: borderW),
             boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(done ? '👑' : '🎯', style: const TextStyle(fontSize: 14)),
-                  const SizedBox(width: 6),
-                  Text('${h.eslesen}/${h.hedef}',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 14,
-                          color: done ? const Color(0xFFB8860B) : _cardInk)),
+                  Text('🎯', style: TextStyle(fontSize: sayacFont)),
+                  const SizedBox(width: 3),
+                  Flexible(
+                    child: Text('${h.eslesen}/${h.hedef}',
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: sayacFont,
+                            color: _cardInk)),
+                  ),
                 ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                h.kategoriAdi,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                    fontSize: 11, fontWeight: FontWeight.w800, height: 1.15, color: _cardInk),
+              Expanded(
+                // Uzun kategori adı karta sığmazsa dikey olarak kayar.
+                child: _KayanMetin(
+                  metin: h.kategoriAdi,
+                  hizalama: TextAlign.center,
+                  stil: TextStyle(
+                      fontSize: adFont,
+                      fontWeight: FontWeight.w800,
+                      height: 1.12,
+                      color: _cardInk),
+                ),
               ),
-              const SizedBox(height: 2),
               Text(h.ders,
-                  style: TextStyle(fontSize: 9.5, color: _cardInk.withValues(alpha: 0.6))),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: dersFont, color: _cardInk.withValues(alpha: 0.6))),
             ],
           ),
         );
       },
     );
-  }
 
-  /// Kilitli/dekoratif kategori slotu — koyu yeşil, yarı saydam, taç ikonlu.
-  Widget _kilitliSlot() {
-    return Container(
-      width: 150,
-      height: 64,
-      decoration: BoxDecoration(
-        color: _tableGreenDark.withValues(alpha: 0.55),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white24),
-      ),
-      child: const Center(
-        child: Text('👑', style: TextStyle(fontSize: 20, color: Colors.white38)),
-      ),
+    // Hedef kartları da (terim kartları gibi) sağ üstteki desteden dağıtılır.
+    return _desteDagitim(
+      sira: sira,
+      toplam: kHedefSlotSayisi + kSutunSayisi,
+      yerelKonum: yerelKonum,
+      tahtaGenislik: tahtaGenislik,
+      child: kart,
     );
   }
 
-  // ── Tableau sütunu ──────────────────────────────────────────────────
+  // ── Tableau (5 sütun) ───────────────────────────────────────────────
 
-  Widget _buildSutun(int i) {
+  /// Tableau satırı. Sütun genişliği [_cardWidth] olarak SABİTLENİR (Expanded
+  /// değil) — böylece terim kartları hedef kategori kartlarıyla birebir aynı
+  /// boyutta olur; satır ortalanır.
+  Widget _buildTableau(double tahtaGenislik) {
+    final sutunlar = _engine.sutunlar;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (var i = 0; i < sutunlar.length; i++) ...[
+          if (i > 0) const SizedBox(width: kKartBosluk),
+          SizedBox(width: _cardWidth, child: _buildSutun(i, tahtaGenislik)),
+        ],
+      ],
+    );
+  }
+
+  /// Bir tableau sütunu. Sütunun TAMAMI bir [DragTarget]'tır: boş sütuna da
+  /// (kategori şartı olmadan) kart taşınabilir, dolu sütunda ise yalnızca aynı
+  /// kategoriden kartlar yığılabilir.
+  Widget _buildSutun(int i, double tahtaGenislik) {
     final c = _engine.sutunlar[i];
-    if (c.isEmpty) {
-      // Boş yuva — çekme destesi buraya kart koyabilir. Dolu sütunlarla hizalı
-      // kalması için yükseklik terim kartıyla aynı ölçekten türetilir.
-      return Container(
-        height: _cardHeight + 10,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white38, width: 1.2),
-          color: Colors.white.withValues(alpha: 0.05),
-        ),
-        child: const Center(child: Icon(Icons.add_rounded, color: Colors.white38, size: 20)),
-      );
-    }
+    final yerelKonum = Offset(
+      i * (_cardWidth + kKartBosluk),
+      _hedefAlanYukseklik + kKartBosluk * 5,
+    );
+    final flashing = _flashSutun == i;
+    final hovering = _hoverSutun == i;
 
     // Sondaki açık grup (yığma ile 1'den fazla olabilir); geri kalanı kapalı.
-    final grup = _engine.acikGrup(i);
-    final acikAdet = grup.isEmpty ? 0 : grup.length;
-    final kapaliAdet = c.length - acikAdet;
+    final acikBas = _engine.acikBaslangic(i);
+    final acikAdet = acikBas < 0 ? 0 : c.length - acikBas;
+    final kapaliAdet = acikBas < 0 ? c.length : acikBas;
     final kapaliGorunur = min(kapaliAdet, 4);
 
-    const kapaliOffset = 10.0;
-    const grupOffset = 16.0; // yığındaki alt kartların görünen "peek" payı
-    final acikYukseklik = _cardHeight; // iskambil oranından türetilmiş (bkz. LayoutBuilder)
+    // Kaydırma payları da kart yüksekliğinden türetilir (sabit piksel yok).
+    final kapaliOffset = _cardHeight * 0.11;
+    final kapaliKartY = _cardHeight * 0.26; // kapalı kart sırtının görünen payı
+    // Açık yığındaki alt kartların görünen payı — bu şerit, o karta (ve
+    // üstündekilere) dokunup birlikte taşımak için kullanılır.
+    final grupOffset = _grupAdim;
     final base = kapaliGorunur * kapaliOffset;
     final grupYuksek = acikAdet <= 1 ? 0.0 : (acikAdet - 1) * grupOffset;
-    final toplamYukseklik = base + grupYuksek + acikYukseklik;
+    final toplamYukseklik =
+        (c.isEmpty ? _cardHeight : base + grupYuksek + _cardHeight + kDokunmaPayi);
 
-    return SizedBox(
-      height: toplamYukseklik,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          // Kapalı (mavi sırt) kartlar.
-          for (var k = 0; k < kapaliGorunur; k++)
-            Positioned(
-              top: k * kapaliOffset,
-              left: 2,
-              right: 2,
-              child: _kapaliKart(),
+    final govde = DragTarget<_Suruklenen>(
+      hitTestBehavior: HitTestBehavior.opaque,
+      onWillAcceptWithDetails: (details) {
+        if (!details.data.destedenMi && details.data.sutun == i) return false;
+        if (_hoverSutun != i) setState(() => _hoverSutun = i);
+        return true;
+      },
+      onLeave: (_) {
+        if (_hoverSutun == i) setState(() => _hoverSutun = null);
+      },
+      onAcceptWithDetails: (details) => _onSutunDrop(details.data, i),
+      builder: (context, candidate, rejected) {
+        if (c.isEmpty) {
+          // Boş yuva — yanındaki açık kartlar/yığınlar buraya taşınabilir.
+          return AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            height: _cardHeight,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(9),
+              border: Border.all(
+                color: flashing
+                    ? const Color(0xFFE23B3B)
+                    : (hovering ? const Color(0xFF2ECC71) : Colors.white38),
+                width: flashing || hovering ? 2.4 : 1.2,
+              ),
+              color: Colors.white.withValues(alpha: 0.05),
             ),
-          // Fazla gizli kapalı kart sayacı.
-          if (kapaliAdet > kapaliGorunur)
-            Positioned(
-              top: 0,
-              right: 2,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                decoration: BoxDecoration(
-                  color: _backBlueDark,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.white54, width: 0.8),
+            child: Center(
+              child: Icon(Icons.add_rounded,
+                  color: Colors.white38, size: (_cardHeight * 0.22).clamp(12.0, 22.0)),
+            ),
+          );
+        }
+
+        return SizedBox(
+          height: toplamYukseklik,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Kapalı (mavi sırt) kartlar.
+              for (var k = 0; k < kapaliGorunur; k++)
+                Positioned(
+                  top: k * kapaliOffset,
+                  left: 2,
+                  right: 2,
+                  child: _kapaliKart(kapaliKartY),
                 ),
-                child: Text('+$kapaliAdet',
-                    style: const TextStyle(fontSize: 9, color: Colors.white, fontWeight: FontWeight.w800)),
-              ),
-            ),
-          // Yığındaki ALT açık kartlar (sadece görsel "peek").
-          if (acikAdet > 1)
-            for (var g = 0; g < acikAdet - 1; g++)
-              Positioned(
-                top: base + g * grupOffset,
-                left: 0,
-                right: 0,
-                child: _terimKarti(grup[g], faded: false),
-              ),
-          // Açık grubun EN ÜST kartı — sürüklenebilir + yığma hedefi.
-          if (acikAdet > 0)
-            Positioned(
-              top: base + grupYuksek,
-              left: 0,
-              right: 0,
-              child: _buildAcikKart(i, grup.last, acikAdet),
-            ),
-        ],
-      ),
+              // Fazla gizli kapalı kart sayacı. IgnorePointer: bu rozet,
+              // altındaki kartın dokunma alanını ASLA engellemesin.
+              if (kapaliAdet > kapaliGorunur)
+                Positioned(
+                  top: 0,
+                  right: 2,
+                  child: IgnorePointer(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                      decoration: BoxDecoration(
+                        color: _backBlueDark,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.white54, width: 0.8),
+                      ),
+                      child: Text('+$kapaliAdet',
+                          style: const TextStyle(
+                              fontSize: 9, color: Colors.white, fontWeight: FontWeight.w800)),
+                    ),
+                  ),
+                ),
+              // Açık kartların HEPSİ ayrı ayrı sürüklenebilir: bir yığının
+              // ortasındaki karta basılınca o kart VE üstündeki tüm kartlar
+              // birlikte taşınır (klasik solitaire davranışı).
+              //
+              // DOKUNMA KUTULARI ÖRTÜŞMEZ: en üstteki kart tam kart yüksekliği
+              // (+ dokunma payı) kadar, alttakiler ise YALNIZCA görünen şeritleri
+              // kadar yer kaplar. Kart görseli [OverflowBox] ile şeridin dışına
+              // taşarak çizilir. Böylece hangi karta basıldığı Stack'in çizim/
+              // hit-test sırasından bağımsız olarak KESİNDİR.
+              for (var g = 0; g < acikAdet; g++)
+                Positioned(
+                  top: base + g * grupOffset,
+                  left: 0,
+                  right: 0,
+                  height: g == acikAdet - 1
+                      ? _cardHeight + kDokunmaPayi
+                      : grupOffset,
+                  child: _buildAcikKart(
+                    sutunIndex: i,
+                    kartIndex: acikBas + g,
+                    kart: c[acikBas + g],
+                    grupAdet: acikAdet - g,
+                    enUstte: g == acikAdet - 1,
+                    flashing: flashing,
+                    hovering: hovering,
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+
+    return _desteDagitim(
+      sira: kHedefSlotSayisi + i,
+      toplam: kHedefSlotSayisi + kSutunSayisi,
+      yerelKonum: yerelKonum,
+      tahtaGenislik: tahtaGenislik,
+      child: govde,
     );
   }
 
-  Widget _kapaliKart() {
+  Widget _kapaliKart(double yukseklik) {
     return Container(
-      height: 22,
+      height: yukseklik,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         border: Border.all(color: Colors.white54, width: 0.8),
@@ -1132,48 +1894,121 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     );
   }
 
-  Widget _buildAcikKart(int sutunIndex, TerimKart kart, int grupAdet) {
-    final flashing = _flashSutun == sutunIndex;
-    final hovering = _hoverSutun == sutunIndex;
-    // Basılı tutup sürükle: liste kaydırmasıyla çakışmayan LongPressDraggable
-    // — ama gecikmeyi (varsayılan ~500ms) neredeyse sıfıra indirdik ki
-    // dokunur dokunmaz sürükleme başlasın (uzun basmaya gerek kalmasın),
-    // yine de hızlı bir dikey kaydırma (scroll) hâlâ kaydırma olarak
-    // algılanır (parmak eşik mesafesinden fazla hareket ederse long-press
-    // iptal olur ve ScrollView jesti kazanır).
-    final draggable = LongPressDraggable<int>(
-      data: sutunIndex,
-      delay: const Duration(milliseconds: 60),
-      dragAnchorStrategy: pointerDragAnchorStrategy,
+  /// Tek bir AÇIK tableau kartı — kendisinden itibaren üstündeki tüm kartları
+  /// (grupAdet) birlikte taşıyan sürükleyici.
+  ///
+  /// ── Dokunma hassasiyeti (korunan davranış) ──
+  /// 1) Gecikme 25 ms: kart neredeyse dokunur dokunmaz yakalanır.
+  /// 2) [hitTestBehavior] = opaque: kartın dokunma kutusunun TAMAMI aktiftir.
+  /// 3) EN ÜSTTEKİ kart [kDokunmaPayi] kadar büyütülmüş şeffaf alanla sarılır.
+  /// 4) Tableau kendi kaydırma bölmesinde durduğu için kaydırma jesti dokunuşu
+  ///    çalmaz.
+  ///
+  /// ── Yığın taşıma ──
+  /// Sürükleme başlayınca ([onDragStarted]) kaynak sütun/indeks EKRAN durumuna
+  /// yazılır; böylece üstteki tüm kartlar da solar ve feedback'te grubun
+  /// TAMAMI görünür.
+  Widget _buildAcikKart({
+    required int sutunIndex,
+    required int kartIndex,
+    required TerimKart kart,
+    required int grupAdet,
+    required bool enUstte,
+    required bool flashing,
+    required bool hovering,
+  }) {
+    // Bu kart, hâlihazırda sürüklenen yığının bir parçası mı?
+    final grupta = _surukleniyor(sutunIndex, kartIndex);
+    // Sürüklenecek grubun kartları (sıralama korunur: alttan üste).
+    final grup = _engine.altGrup(sutunIndex, kartIndex);
+
+    // Kart görselini, kendisine ayrılan (dar) dokunma şeridinin dışına taşarak
+    // çizmesi için sarmalar.
+    Widget kutu(Widget icerik) => OverflowBox(
+          alignment: Alignment.topCenter,
+          minHeight: 0,
+          maxHeight: _cardHeight + (enUstte ? kDokunmaPayi : 0),
+          child: Padding(
+            // Şeffaf dokunma payı yalnızca en üstteki karta uygulanır; alttaki
+            // kartlarda pay verilirse üsttekinin şeridini kapatırdı.
+            padding: EdgeInsets.symmetric(vertical: enUstte ? kDokunmaPayi / 2 : 0),
+            child: icerik,
+          ),
+        );
+
+    final gorsel = _terimKarti(
+      kart,
+      faded: grupta,
+      flash: flashing && enUstte,
+      hover: hovering && enUstte,
+      grupAdet: grupAdet,
+    );
+
+    return LongPressDraggable<_Suruklenen>(
+      data: _Suruklenen.tableau(sutunIndex, kartIndex),
+      delay: const Duration(milliseconds: 25),
+      hitTestBehavior: HitTestBehavior.opaque,
+      // Sürüklenen kart parmağın BİRAZ ÜSTÜNDE dursun (parmak kartı kapatmasın).
+      dragAnchorStrategy: (draggable, ctx, position) =>
+          Offset(_cardWidth / 2, _cardHeight + kSuruklemeYukariPay),
+      // Bırakma hedefi parmağın değil, KARTIN göründüğü noktadan hesaplansın.
+      feedbackOffset: Offset(0, -(kSuruklemeYukariPay + _cardHeight / 2)),
       feedback: Material(
         color: Colors.transparent,
         child: Transform.scale(
           scale: 1.06,
-          child: SizedBox(
-            // Sürükleme "hayaleti" de gerçek kart oranıyla (kTerimKartOrani)
-            // eşleşsin diye genişlik, o anki kart yüksekliğinden türetilir.
-            width: _cardHeight * kTerimKartOrani,
-            child: _terimKarti(kart, faded: false, dragging: true, grupAdet: grupAdet),
-          ),
+          alignment: Alignment.topCenter,
+          child: _grupFeedback(grup.isEmpty ? [kart] : grup),
         ),
       ),
-      childWhenDragging: _terimKarti(kart, faded: true, grupAdet: grupAdet),
-      onDragStarted: () => context.read<SoundService>().click(),
-      child: _terimKarti(kart, faded: false, flash: flashing, hover: hovering, grupAdet: grupAdet),
+      childWhenDragging: kutu(_terimKarti(kart, faded: true, grupAdet: grupAdet)),
+      onDragStarted: () {
+        context.read<SoundService>().click();
+        setState(() {
+          _dragSutun = sutunIndex;
+          _dragIndex = kartIndex;
+        });
+      },
+      onDragEnd: (_) => _dragBitti(),
+      onDraggableCanceled: (hiz, konum) => _dragBitti(),
+      child: kutu(gorsel),
     );
+  }
 
-    return DragTarget<int>(
-      onWillAcceptWithDetails: (details) {
-        // Kendine bırakma yok; sadece başka sütunun açık kartını kabul et.
-        if (details.data == sutunIndex) return false;
-        if (_hoverSutun != sutunIndex) setState(() => _hoverSutun = sutunIndex);
-        return true;
-      },
-      onLeave: (_) {
-        if (_hoverSutun == sutunIndex) setState(() => _hoverSutun = null);
-      },
-      onAcceptWithDetails: (details) => _onStackDrop(details.data, sutunIndex),
-      builder: (context, candidate, rejected) => draggable,
+  void _dragBitti() {
+    if (!mounted) return;
+    if (_dragSutun == null && _dragIndex == null) return;
+    setState(() {
+      _dragSutun = null;
+      _dragIndex = null;
+    });
+  }
+
+  /// Sürükleme feedback'i: grubun TAMAMI, tableau'daki ile aynı basamaklı
+  /// dizilişte. En alttaki (tutulan) kart ×N rozetini taşır.
+  Widget _grupFeedback(List<TerimKart> grup) {
+    final adet = grup.length;
+    final adim = _grupAdim;
+    return SizedBox(
+      width: _cardWidth,
+      height: _cardHeight + (adet - 1) * adim,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          for (var i = 0; i < adet; i++)
+            Positioned(
+              top: i * adim,
+              left: 0,
+              right: 0,
+              child: _terimKarti(
+                grup[i],
+                faded: false,
+                dragging: true,
+                grupAdet: i == 0 ? adet : 1,
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -1185,7 +2020,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
     bool hover = false,
     int grupAdet = 1,
   }) {
-    // Kenarlık önceliği: yanlış yığma flaşı (kırmızı) > yığma hover (yeşil) >
+    // Kenarlık önceliği: yanlış hamle flaşı (kırmızı) > hover (yeşil) >
     // sürükleme (yeşil) > varsayılan.
     Color borderColor = const Color(0xFFCBB07A);
     double borderW = 1;
@@ -1201,7 +2036,7 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
       children: [
         Container(
           height: _cardHeight,
-          padding: const EdgeInsets.all(6),
+          padding: EdgeInsets.all((_cardHeight * 0.06).clamp(3.0, 8.0)),
           decoration: BoxDecoration(
             color: faded
                 ? _cardCream.withValues(alpha: 0.3)
@@ -1216,35 +2051,37 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
               )
             ],
           ),
-          child: Center(
-            child: Text(
-              kart.terim,
-              textAlign: TextAlign.center,
-              maxLines: 4,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 9.5,
-                height: 1.12,
-                fontWeight: FontWeight.w900,
-                color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
-              ),
+          // Terim karta sığmıyorsa kart içinde yavaşça aşağı-yukarı kayar.
+          child: _KayanMetin(
+            metin: kart.terim,
+            hizalama: TextAlign.center,
+            stil: TextStyle(
+              // Yazı boyu da kart yüksekliğinden türetilir (sabit piksel yok).
+              fontSize: (_cardHeight * 0.115).clamp(7.0, 13.0),
+              height: 1.12,
+              fontWeight: FontWeight.w900,
+              color: faded ? _cardInk.withValues(alpha: 0.4) : _cardInk,
             ),
           ),
         ),
-        // Yığın rozeti: bu sütunda kaç açık kart üst üste (×N).
+        // Yığın rozeti: bu karttan itibaren kaç kart birlikte taşınacak (×N).
+        // IgnorePointer — rozet, kartın dokunma alanını engellemesin.
         if (grupAdet > 1 && !faded)
           Positioned(
             top: -6,
             right: -4,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-              decoration: BoxDecoration(
-                color: const Color(0xFF148A4F),
-                borderRadius: BorderRadius.circular(9),
-                border: Border.all(color: Colors.white, width: 1),
+            child: IgnorePointer(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                decoration: BoxDecoration(
+                  color: _feltGreen,
+                  borderRadius: BorderRadius.circular(9),
+                  border: Border.all(color: Colors.white, width: 1),
+                ),
+                child: Text('×$grupAdet',
+                    style: const TextStyle(
+                        fontSize: 9, fontWeight: FontWeight.w900, color: Colors.white)),
               ),
-              child: Text('×$grupAdet',
-                  style: const TextStyle(fontSize: 9, fontWeight: FontWeight.w900, color: Colors.white)),
             ),
           ),
       ],
@@ -1252,7 +2089,155 @@ class _EslestirmePlayScreenState extends State<_EslestirmePlayScreen> {
   }
 }
 
-/// Küçük yeşil bölüm başlığı.
+/// Karta SIĞMAYAN metni kart içinde sürekli aşağı-yukarı kaydıran (dikey
+/// marquee) yazı.
+///
+/// Davranış:
+///  * Metin verilen kutuya SIĞIYORSA hiç animasyon başlatılmaz; yazı dikeyde
+///    ortalanmış ve SABİT durur (çok sayıda kart olduğu için bu performans
+///    açısından kritiktir).
+///  * Sığmıyorsa yazı yavaşça yukarı kayar, sonda kısa duraklar, geri iner ve
+///    başta yine kısa durur; döngü kesintisiz sürer.
+///  * Sığıp sığmadığı her yerleşimde [TextPainter] ile GERÇEKTEN ölçülür
+///    (tahmin yok); ölçüm sonucu önbelleğe alınır.
+///  * [AnimationController] [dispose] içinde MUTLAKA kapatılır.
+class _KayanMetin extends StatefulWidget {
+  final String metin;
+  final TextStyle stil;
+  final TextAlign hizalama;
+
+  const _KayanMetin({
+    required this.metin,
+    required this.stil,
+    this.hizalama = TextAlign.center,
+  });
+
+  @override
+  State<_KayanMetin> createState() => _KayanMetinState();
+}
+
+class _KayanMetinState extends State<_KayanMetin> with SingleTickerProviderStateMixin {
+  /// Sığma/taşma kararında kullanılan tolerans (yuvarlama hatalarına karşı).
+  static const double _esik = 0.5;
+
+  late final AnimationController _ctrl = AnimationController(vsync: this);
+
+  // Ölçüm önbelleği — aynı metin/genişlik/punto için tekrar layout yapılmaz.
+  String? _olcumMetin;
+  double? _olcumGenislik;
+  double? _olcumPunto;
+  double _metinYukseklik = 0;
+
+  @override
+  void dispose() {
+    // Kart sayısı fazla olduğundan sızıntı kritik: controller HER durumda kapanır.
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  double _olc(BuildContext context, double maxGenislik) {
+    final punto = widget.stil.fontSize ?? 12.0;
+    if (_olcumMetin == widget.metin &&
+        _olcumGenislik == maxGenislik &&
+        _olcumPunto == punto) {
+      return _metinYukseklik;
+    }
+    final tp = TextPainter(
+      text: TextSpan(text: widget.metin, style: widget.stil),
+      textAlign: widget.hizalama,
+      textDirection: Directionality.of(context),
+      textScaler: MediaQuery.textScalerOf(context),
+    )..layout(maxWidth: maxGenislik);
+    _metinYukseklik = tp.height;
+    tp.dispose();
+    _olcumMetin = widget.metin;
+    _olcumGenislik = maxGenislik;
+    _olcumPunto = punto;
+    return _metinYukseklik;
+  }
+
+  /// Animasyonu build DIŞINDA (kare sonunda) kurar/durdurur — build sırasında
+  /// controller'a dokunmak "setState during build" hatasına yol açardı.
+  double? _sonAyarTasma;
+
+  void _animasyonAyarla(double tasma) {
+    // Tahta çok sık yeniden çizilir (hover/flash); taşma değişmediyse yeni bir
+    // kare-sonu işi kuyruğa alma.
+    if (_sonAyarTasma != null && (_sonAyarTasma! - tasma).abs() < 0.01) return;
+    _sonAyarTasma = tasma;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      if (tasma <= _esik) {
+        if (_ctrl.isAnimating) _ctrl.stop();
+        if (_ctrl.value != 0) _ctrl.value = 0;
+        return;
+      }
+      // Taşma ne kadar büyükse kayma o kadar uzun sürer → hız sabit ve YAVAŞ.
+      final sure = Duration(
+        milliseconds: (3400 + tasma * 90).clamp(3400.0, 14000.0).round(),
+      );
+      if (_ctrl.duration != sure) {
+        _ctrl.duration = sure;
+        _ctrl.repeat();
+      } else if (!_ctrl.isAnimating) {
+        _ctrl.repeat();
+      }
+    });
+  }
+
+  /// 0→1 ilerlemeyi kayma oranına çevirir: başta bekle, yavaşça in, sonda
+  /// bekle, yavaşça geri dön.
+  double _kaymaOrani(double t) {
+    const bekle = 0.18; // uçlardaki duraklama payı
+    const orta = 0.5; // gidişin bittiği nokta
+    if (t <= bekle) return 0;
+    if (t < orta) return Curves.easeInOut.transform((t - bekle) / (orta - bekle));
+    if (t <= orta + bekle) return 1;
+    return 1 - Curves.easeInOut.transform((t - orta - bekle) / (1 - orta - bekle));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, cons) {
+        final yazi = Text(
+          widget.metin,
+          textAlign: widget.hizalama,
+          style: widget.stil,
+        );
+        if (!cons.hasBoundedHeight || cons.maxWidth <= 0 || cons.maxHeight <= 0) {
+          return yazi;
+        }
+
+        final yukseklik = _olc(context, cons.maxWidth);
+        final tasma = yukseklik - cons.maxHeight;
+        _animasyonAyarla(tasma);
+
+        // Sığıyor → sabit, ortalanmış yazı (animasyon YOK).
+        if (tasma <= _esik) return Center(child: yazi);
+
+        // Sığmıyor → kutu içinde dikey marquee.
+        return ClipRect(
+          child: OverflowBox(
+            alignment: Alignment.topCenter,
+            minHeight: 0,
+            maxHeight: yukseklik,
+            child: AnimatedBuilder(
+              animation: _ctrl,
+              child: yazi,
+              builder: (context, icerik) => Transform.translate(
+                offset: Offset(0, -tasma * _kaymaOrani(_ctrl.value)),
+                child: icerik,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// Küçük beyaz bölüm başlığı (oyun tahtası üzerinde).
 class _BolumBasligi extends StatelessWidget {
   final String text;
   const _BolumBasligi(this.text);
@@ -1261,6 +2246,8 @@ class _BolumBasligi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(
         fontSize: 12.5,
         fontWeight: FontWeight.w900,
@@ -1271,7 +2258,7 @@ class _BolumBasligi extends StatelessWidget {
   }
 }
 
-/// "Hamle N" bayrağı için sağ kenarı içe çentikli (flama) şekil.
+/// "Kalan Hamle" bayrağı için sağ kenarı içe çentikli (flama) şekil.
 class _FlamaClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

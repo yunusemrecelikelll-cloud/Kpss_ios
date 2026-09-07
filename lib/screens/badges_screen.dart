@@ -64,8 +64,11 @@ class _BadgeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    final medalColor = unlocked ? badge.color : Colors.grey;
-    const gold = Color(0xFFD4AF37);
+    // Kilitli rozet "sönük" görünsün ama zemine göre sönük olsun: sabit gri
+    // açık temada da koyu temada da aynı kalıyordu.
+    final medalColor = unlocked ? badge.color : c.textFaint;
+    // Madalya çerçevesinin altın parıltısı artık temanın kendi altın tonundan.
+    final gold = c.gold;
 
     return Container(
       decoration: BoxDecoration(

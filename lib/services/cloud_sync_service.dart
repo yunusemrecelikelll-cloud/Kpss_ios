@@ -27,9 +27,19 @@ class CloudSyncService {
   }
 
   /// Yerel StorageService verisini Firestore'a yedekler (upsert/merge).
-  /// Kullanıcı giriş yapmamışsa ya da Firebase yapılandırılmamışsa `false`
-  /// döner ve hiçbir şey yapmaz.
+  ///
+  /// Şu üç durumdan biri varsa hiçbir şey yapmaz ve `false` döner:
+  ///   • Firebase yapılandırılmamış
+  ///   • Kullanıcı giriş yapmamış
+  ///   • Kullanıcı "Bulut yedekleme" ayarını AÇMAMIŞ (varsayılan: kapalı)
+  ///
+  /// Üçüncü koşul kritik: bu kontrol eskiden YOKTU, dolayısıyla ayar kapalı
+  /// (hatta hiç açılmamış) olsa bile kullanıcının test sonuçları, çalışma
+  /// süresi ve adı Firestore'a yükleniyordu. Ayar ekrandaki anahtarı yalnızca
+  /// görsel olarak etkiliyordu. Bu hem yanıltıcıydı hem de App Store
+  /// "App Privacy" / Play "Data Safety" beyanını yanlış çıkarıyordu.
   Future<bool> syncUp(StorageService storage) async {
+    if (!storage.getCloudBackupEnabled()) return false;
     final uid = _currentUid;
     final doc = uid == null ? null : _backupDocFor(uid);
     if (doc == null) return false;
@@ -43,7 +53,13 @@ class CloudSyncService {
         'studyTime': storage.getStudyTime(),
         'wrongBank': storage.getWrongBank(),
         'userName': storage.getUserName(),
+        'nameConfirmed': storage.getNameConfirmed(),
         'plan': storage.getUserPlan(),
+        // Hak cüzdanı: satın alınan/kazanılan haklar. TÜKETİLEBİLİR satın alma
+        // mağazadan geri yüklenmediği için bunu yedeklemezsek kullanıcı
+        // uygulamayı silince/cihaz değiştirince parasını verdiği hakları
+        // kaybederdi.
+        'haklar': storage.getHaklar(),
         'updatedAt': FieldValue.serverTimestamp(),
       };
       await doc.set(data, SetOptions(merge: true));
@@ -66,6 +82,14 @@ class CloudSyncService {
   ///
   /// Kullanıcı giriş yapmamışsa, Firebase yapılandırılmamışsa ya da bulutta
   /// hiç yedek yoksa `false` döner.
+  ///
+  /// NOT: [syncUp]'ın aksine bu metod "Bulut yedekleme" ayarına BAKMAZ ve bu
+  /// kasıtlıdır. Geri yükleme yalnızca YEREL'e yazar, buluta hiçbir şey
+  /// göndermez; kullanıcının kendi kimliğiyle kendi verisini geri alması bir
+  /// gizlilik sorunu değil, yeni cihaza geçerken beklenen davranıştır. Ayarı
+  /// sonradan kapatmış bir kullanıcının ESKİ yedeği hâlâ duruyorsa onu geri
+  /// alabilmesi de bilinçli bir tercih (veriyi tamamen silmek isteyen
+  /// kullanıcı için Ayarlar > Hesabımı Sil var).
   Future<bool> syncDown(StorageService storage) async {
     final uid = _currentUid;
     final doc = uid == null ? null : _backupDocFor(uid);
@@ -147,6 +171,24 @@ class CloudSyncService {
       final remoteName = data['userName'] as String?;
       if (storage.getUserName().isEmpty && remoteName != null && remoteName.isNotEmpty) {
         await storage.setUserName(remoteName);
+      }
+
+      // İsim onayı: bu hesap başka bir cihazda ismini onayladıysa, yeni cihazda
+      // TEKRAR sorulmasın diye onay bayrağını da geri yükle (asla true'dan
+      // false'a düşürme — yerelde zaten onaylıysa dokunma).
+      if (data['nameConfirmed'] == true && !storage.getNameConfirmed()) {
+        await storage.setNameConfirmed(true);
+      }
+
+      // Hak cüzdanı: yalnızca buluttaki bakiye YERELDEN FAZLAYSA yereli ona
+      // yükselt (asla düşürme). Böylece yeniden kurulum/cihaz değişiminde
+      // satın alınan haklar geri gelir; yerelde harcanan haklar geri
+      // "yüklenmez" (tek cihazda syncUp her değişimde buluta yazdığından
+      // bulut zaten güncel kalır).
+      final remoteHaklar = (data['haklar'] as num?)?.toInt() ?? 0;
+      final yerelHaklar = storage.getHaklar();
+      if (remoteHaklar > yerelHaklar) {
+        await storage.hakEkle(remoteHaklar - yerelHaklar);
       }
 
       return true;

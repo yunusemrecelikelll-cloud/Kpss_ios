@@ -47,13 +47,13 @@ class QuizEngine extends ChangeNotifier {
     this.topicId = topicId;
     this.topicBaslik = topicBaslik;
     this.questions = questions;
-    this.currentIndex = 0;
-    this.answers = List<int?>.filled(questions.length, null);
+    currentIndex = 0;
+    answers = List<int?>.filled(questions.length, null);
     this.durationSec = durationSec;
     this.isFullTest = isFullTest;
     this.isWrongBankMode = isWrongBankMode;
     this.isPlacementExam = isPlacementExam;
-    this.startedAt = DateTime.now();
+    startedAt = DateTime.now();
     _saveDraft();
     notifyListeners();
   }
@@ -115,12 +115,14 @@ class QuizEngine extends ChangeNotifier {
   void goTo(int i) {
     if (i < 0 || i >= questions.length) return;
     currentIndex = i;
+    _saveDraft(); // yarıda çıkışta anasayfadaki "devam et" güncel kalsın
     notifyListeners();
   }
 
   void next() {
     if (currentIndex < questions.length - 1) {
       currentIndex++;
+      _saveDraft();
       notifyListeners();
     }
   }
@@ -128,6 +130,7 @@ class QuizEngine extends ChangeNotifier {
   void prev() {
     if (currentIndex > 0) {
       currentIndex--;
+      _saveDraft();
       notifyListeners();
     }
   }
@@ -195,13 +198,19 @@ class QuizEngine extends ChangeNotifier {
     for (final key in resolvedWrongBankKeys) {
       await storage.removeFromWrongBank(key);
     }
-    // Haftalık lig puanı: her doğru cevap 10 puan (bkz. LeagueService).
-    await storage.addWeeklyPoints(dogru * 10);
-    // Toplam XP (kalıcı, seviye sistemi için) + Sezon XP (aylık, ay değişince
-    // sıfırlanır) — ikisi de aynı katsayıyla (doğru başına 5 XP) beslenir ama
-    // haftalık lig puanından TAMAMEN AYRI iki alandır.
-    await storage.addXp(dogru * 5);
-    await storage.addSeasonXp(dogru * 5);
+    // Lig puanı / XP SADECE normal testlerde verilir. "Yanlışlarım" ve teşhis
+    // sınavı modlarında verilmez — aksi hâlde aynı yanlış sorular tekrar tekrar
+    // çözülüp lig puanı/XP FARM'lanabilirdi (lig rekabetçi + sunucu-kurallı).
+    // Bu, quiz_screen'deki `if (!wrongBankMode)` istatistik korumasıyla tutarlı.
+    if (!isWrongBankMode && !isPlacementExam) {
+      // Haftalık lig puanı: her doğru cevap 5 puan (kullanıcı isteği — 10→1→5).
+      // Efsane 1000 eşiği ≈ haftada 200 doğru (bkz. LeagueService).
+      await storage.addWeeklyPoints(dogru * 5);
+      // Toplam XP (kalıcı, seviye sistemi) + Sezon XP (aylık) — ikisi de doğru
+      // başına 5 XP; haftalık lig puanından ayrı alanlardır.
+      await storage.addXp(dogru * 5);
+      await storage.addSeasonXp(dogru * 5);
+    }
 
     await storage.clearDraft(topicId ?? '');
     questions = [];
@@ -210,10 +219,4 @@ class QuizEngine extends ChangeNotifier {
     return result;
   }
 
-  void abandon() {
-    storage.clearDraft(topicId ?? '');
-    questions = [];
-    answers = [];
-    notifyListeners();
-  }
 }

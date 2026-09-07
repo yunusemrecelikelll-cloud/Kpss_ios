@@ -28,9 +28,10 @@ class AuthResult {
   const AuthResult.failure(this.errorMessage)
       : success = false,
         user = null;
-
-  bool get isNotConfigured => errorMessage == kFirebaseNotConfiguredMessage;
 }
+
+/// `usernames` koleksiyonunun doküman kimliğinde kullanılan sabitler.
+const String kUsernamesCollection = 'usernames';
 
 /// Google / Apple ile giriş için ince bir servis katmanı.
 ///
@@ -52,6 +53,19 @@ class AuthService extends ChangeNotifier {
   User? get currentUser => isConfigured ? FirebaseAuth.instance.currentUser : null;
 
   bool get isSignedIn => currentUser != null;
+
+  /// GERÇEK (anonim olmayan) bir hesapla giriş var mı?
+  ///
+  /// ÖNEMLİ AYRIM: Düello/sohbet altyapısı gerektiğinde SESSİZCE anonim oturum
+  /// açar (bkz. DuelService.ensureSignedIn). Anonim oturum `isSignedIn`'i true
+  /// yapar ama ortada isim/e-posta yoktur — bu yüzden Ayarlar "giriş yapılmış"
+  /// gösterirken anasayfa "Misafir" diyordu. Kullanıcıya dönük TÜM "giriş
+  /// yaptın mı?" kontrolleri (Ayarlar'daki Giriş Yap/Çıkış Yap, anasayfa
+  /// karşılama ve giriş banner'ı) BUNU kullanmalı.
+  bool get isRealSignedIn {
+    final u = currentUser;
+    return u != null && !u.isAnonymous;
+  }
 
   /// Apple ile giriş sadece iOS'ta gösterilmeli (App Store kuralları gereği
   /// diğer platformlarda zorunlu değildir).
@@ -128,6 +142,101 @@ class AuthService extends ChangeNotifier {
       return AuthResult.failure('Apple ile giriş başarısız: ${e.message ?? e.code}');
     } catch (e) {
       return AuthResult.failure('Apple ile giriş başarısız: $e');
+    }
+  }
+
+  /// Hesap silme gibi hassas işlemler için kimliği TAZELER.
+  ///
+  /// Firebase, `user.delete()` çağrısını yalnızca yakın zamanda giriş yapmış
+  /// oturumlarda kabul eder; oturum eskiyse `requires-recent-login` döner. Bu
+  /// metod kullanıcının HANGİ sağlayıcıyla giriş yaptığını `providerData`'dan
+  /// okur ve aynı sağlayıcıyla yeniden doğrulama yapar.
+  ///
+  /// Anonim kullanıcılarda yeniden doğrulama diye bir şey yoktur — bu durumda
+  /// başarılı sayılır (Auth kaydı zaten doğrudan silinebilir).
+  /// E-posta/şifre ('password') sağlayıcısıyla girmiş kullanıcılarda yeniden
+  /// doğrulama şifre gerektirir; bu durumda [password] verilmelidir. Parametre
+  /// opsiyoneldir — Google/Apple hesaplarında eski çağrı biçimi aynen çalışır.
+  Future<AuthResult> reauthenticate({String? password}) async {
+    if (!isConfigured) return const AuthResult.failure(kFirebaseNotConfiguredMessage);
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return const AuthResult.failure('Oturum açık değil.');
+    if (user.isAnonymous) return AuthResult.success(user);
+
+    final saglayicilar = user.providerData.map((p) => p.providerId).toSet();
+    try {
+      if (saglayicilar.contains('apple.com')) {
+        final appleCredential = await SignInWithApple.getAppleIDCredential(
+          scopes: const [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+        final credential = OAuthProvider('apple.com').credential(
+          idToken: appleCredential.identityToken,
+          accessToken: appleCredential.authorizationCode,
+        );
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      if (saglayicilar.contains('google.com')) {
+        await _ensureGoogleSignInInitialized();
+        final googleSignIn = _googleSignIn!;
+        if (!googleSignIn.supportsAuthenticate()) {
+          return const AuthResult.failure(
+            'Bu platformda Google ile yeniden giriş desteklenmiyor.',
+          );
+        }
+        final account = await googleSignIn.authenticate();
+        final idToken = account.authentication.idToken;
+        if (idToken == null) {
+          return const AuthResult.failure(
+            'Google kimlik doğrulaması bir idToken döndürmedi.',
+          );
+        }
+        final credential = GoogleAuthProvider.credential(idToken: idToken);
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      if (saglayicilar.contains('password')) {
+        final eposta = user.email;
+        if (eposta == null || eposta.isEmpty) {
+          return const AuthResult.failure(
+            'Hesaba bağlı e-posta bulunamadı, yeniden doğrulama yapılamıyor.',
+          );
+        }
+        if (password == null || password.isEmpty) {
+          return const AuthResult.failure(
+            'Devam etmek için hesabının şifresini girmen gerekiyor.',
+          );
+        }
+        final credential = EmailAuthProvider.credential(
+          email: eposta,
+          password: password,
+        );
+        await user.reauthenticateWithCredential(credential);
+        return AuthResult.success(FirebaseAuth.instance.currentUser);
+      }
+
+      return const AuthResult.failure(
+        'Bu hesabın giriş yöntemi için yeniden doğrulama desteklenmiyor.',
+      );
+    } on SignInWithAppleAuthorizationException catch (e) {
+      if (e.code == AuthorizationErrorCode.canceled) {
+        return const AuthResult.failure('Giriş iptal edildi.');
+      }
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.message}');
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        return const AuthResult.failure('Giriş iptal edildi.');
+      }
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.description ?? e.code}');
+    } on FirebaseAuthException catch (e) {
+      return AuthResult.failure('Yeniden giriş başarısız: ${e.message ?? e.code}');
+    } catch (e) {
+      return AuthResult.failure('Yeniden giriş başarısız: $e');
     }
   }
 

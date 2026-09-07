@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Doğru mu Yanlış mı?</title>
+<style>
+  /* Uygulamadaki "Doğru mu Yanlış mı?" oyunuyla BİREBİR (Pembe Rüya teması):
+     bg #FFF0F6, violet #9333EA, doğru=teal #0D9488, yanlış=kırmızı #E11D48,
+     ink #3B0A2A. Tinder tarzı: sağa sürükle=DOĞRU, sola=YANLIŞ. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(180deg,#FFF0F6 0%,#FFE4F0 100%);color:#3B0A2A;overflow:hidden;touch-action:none}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
+
+  .bar{background:#FFE4F0;padding:10px 16px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid #F6C6DD;flex:0 0 auto}
+  .bar .t{font-weight:900;font-size:16px;color:#3B0A2A}
+
+  /* Üst CTA yazısı (uygulamaya çekici) */
+  .ctaTop{background:#9333EA;color:#fff;text-align:center;font-size:11.5px;font-weight:800;
+    padding:5px 10px;line-height:1.25}
+  .ctaTop b{color:#FDE68A}
+
+  /* Üst şerit: ilerleme + sayaçlar */
+  .strip{padding:9px 16px 0}
+  .strow{display:flex;align-items:center;gap:6px;font-size:12px}
+  .kn{font-weight:800;color:#6B2349}
+  .sp{flex:1}
+  .chip{font-size:11.5px;font-weight:900;padding:3px 9px;border-radius:999px}
+  .chip.ok{background:rgba(13,148,136,.14);color:#0D9488}
+  .chip.no{background:rgba(225,29,72,.14);color:#E11D48}
+  .prog{height:6px;background:#F3D9E6;border-radius:999px;overflow:hidden;margin-top:8px}
+  .prog>i{display:block;height:100%;width:0;background:#9333EA;border-radius:999px;transition:width .3s}
+
+  /* Kart alanı */
+  .alan{flex:1;position:relative;padding:14px 16px 6px;min-height:0}
+  .stack{position:absolute;inset:14px 16px 6px}
+  .bgc{position:absolute;inset:0;background:#fff;border:1px solid #ECD1E0;border-radius:20px;
+    box-shadow:0 6px 18px rgba(147,51,234,.10)}
+  .bgc.b2{transform:scale(.92) translateY(16px)}
+  /* Alttaki (sıradaki) gerçek kart — üstteki çekilince görünür */
+  .kart.arka{transform:scale(.955) translateY(9px);pointer-events:none;
+    box-shadow:0 6px 18px rgba(147,51,234,.10)}
+
+  .kart{position:absolute;inset:0;background:#fff;border:1.5px solid #ECD1E0;border-radius:20px;
+    box-shadow:0 10px 26px rgba(147,51,234,.16);display:flex;flex-direction:column;padding:18px;
+    cursor:grab;overflow:hidden}
+  .kart.anim{transition:transform .32s ease, opacity .32s ease, border-color .15s, background .15s}
+  .kart.dogruTint{border-color:#0D9488;background:#EAF7F5}
+  .kart.yanlisTint{border-color:#E11D48;background:#FDECF1}
+  .krow{display:flex;align-items:center}
+  .ders{font-size:10.5px;font-weight:900;letter-spacing:.6px;color:#9333EA;
+    background:rgba(147,51,234,.12);padding:4px 9px;border-radius:999px}
+  .krow .em{margin-left:auto;font-size:20px}
+  .metin{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;
+    font-weight:800;color:#3B0A2A;line-height:1.35;padding:8px 4px;overflow:auto}
+  .ipuc{text-align:center;font-size:10.5px;letter-spacing:.6px;font-weight:800;color:#89576E}
+
+  /* Sürükleme damgası */
+  .damga{position:absolute;top:52px;padding:5px 12px;border-radius:10px;font-size:20px;font-weight:900;
+    letter-spacing:1.2px;opacity:0;pointer-events:none}
+  .damga.d{left:18px;transform:rotate(-16deg);border:3px solid #0D9488;color:#0D9488}
+  .damga.y{right:18px;transform:rotate(16deg);border:3px solid #E11D48;color:#E11D48}
+
+  /* Son cevap şeridi */
+  .son{margin:0 16px;padding:9px 12px;border-radius:14px;display:none;gap:8px;align-items:flex-start;font-size:11.5px}
+  .son.show{display:flex}
+  .son .ic{font-size:15px}
+  .son .b{font-weight:900}
+  .son .ac{color:#6B2349;line-height:1.3;margin-top:1px}
+
+  /* Alt DOĞRU/YANLIŞ butonları */
+  .butonlar{display:flex;gap:12px;padding:10px 16px 8px}
+  .btnc{flex:1;border-radius:999px;padding:13px;text-align:center;font-weight:900;font-size:15px;
+    letter-spacing:.8px;border:1.6px solid;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btnc.no{color:#E11D48;border-color:rgba(225,29,72,.65);background:rgba(225,29,72,.12)}
+  .btnc.ok{color:#0D9488;border-color:rgba(13,148,136,.65);background:rgba(13,148,136,.12)}
+
+  /* Alt CTA / promo */
+  .promo{background:#9333EA;padding:9px 12px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .promo .badge{font-size:20px}
+  .promo .txt{flex:1;font-size:12px;line-height:1.25;color:#fff}
+  .promo .txt b{color:#FDE68A}
+  .promo .go{background:#FDE68A;color:#3B0A2A;font-weight:900;font-size:12px;padding:8px 12px;
+    border-radius:999px;white-space:nowrap}
+
+  /* Bitiş */
+  #end{position:absolute;inset:0;background:rgba(255,240,246,.97);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:20}
+  #end.show{display:flex}
+  #end .cup{font-size:54px}
+  #end h2{font-size:23px;font-weight:900;color:#3B0A2A}
+  #end p{font-size:14px;line-height:1.55;color:#6B2349;max-width:330px}
+  #end p b{color:#9333EA}
+  .btn{background:linear-gradient(90deg,#9333EA,#E11D48);color:#fff;border:none;border-radius:16px;
+    padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;width:100%;max-width:320px;
+    box-shadow:0 10px 26px rgba(147,51,234,.4);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .store{font-size:12px;color:#89576E}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bar"><span style="font-size:18px">🤔</span><span class="t">Doğru mu Yanlış mı?</span></div>
+  <div class="ctaTop">Kaydırarak öğren! <b>Sağa = Doğru</b> · <b>Sola = Yanlış</b> — KPSS Hazırlık</div>
+
+  <div class="strip">
+    <div class="strow"><span class="kn" id="kn">Kart 1/16</span><span class="sp"></span>
+      <span class="chip ok" id="cok">✓ 0</span><span class="chip no" id="cno">✗ 0</span></div>
+    <div class="prog"><i id="bar"></i></div>
+  </div>
+
+  <div class="alan">
+    <div class="stack">
+      <div class="bgc b2"></div>
+      <!-- Alttaki (sıradaki) kart — üstteki çekilirken görünür -->
+      <div class="kart arka" id="kart2">
+        <div class="krow"><span class="ders" id="ders2">TARİH</span><span class="em">🤔</span></div>
+        <div class="metin" id="metin2"></div>
+        <div class="ipuc">← YANLIŞ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOĞRU →</div>
+      </div>
+      <div class="kart anim" id="kart">
+        <div class="krow"><span class="ders" id="ders">TARİH</span><span class="em">🤔</span></div>
+        <div class="metin" id="metin"></div>
+        <div class="ipuc">← YANLIŞ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DOĞRU →</div>
+        <div class="damga d" id="damgaD">DOĞRU</div>
+        <div class="damga y" id="damgaY">YANLIŞ</div>
+      </div>
+    </div>
+    <div id="end">
+      <div class="cup">🏆</div>
+      <h2 id="endh">Turu bitirdin!</h2>
+      <p><b>Doğru mu Yanlış mı</b>, KPSS Hazırlık'taki oyunlardan biri. <b>300+ önerme</b>,
+         konu anlatımları, denemeler ve 16.000+ soru — tamamı ücretsiz.</p>
+      <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+      <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+    </div>
+  </div>
+
+  <div class="son" id="son"></div>
+
+  <div class="butonlar">
+    <div class="btnc no" onclick="cevapla(false)">✗ YANLIŞ</div>
+    <div class="btnc ok" onclick="cevapla(true)">✓ DOĞRU</div>
+  </div>
+
+  <div class="promo" onclick="installClick()">
+    <span class="badge">📚</span>
+    <div class="txt"><b>KPSS Hazırlık</b> — kaydır, öğren, sınavı kazan!</div>
+    <span class="go">İNDİR</span>
+  </div>
+</div>
+
+<script>
+var STORE_URL='https://apps.apple.com/tr/app/kpss-haz%C4%B1rl%C4%B1k-soru-bankas%C4%B1/id6792403982?l=tr';
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+/* Gerçek uygulama verisi — 16 önerme (8 doğru + 8 yanlış), karışık dersler. */
+var ONERMELER=[
+  {metin:"Tarihte bilinen ilk yazılı antlaşma Kadeş Antlaşması'dır.", dogru:true, ders:"Tarih", aciklama:"Kadeş Antlaşması Hititler ile Mısırlılar arasında imzalanmıştır."},
+  {metin:"Anadolu'da parayı ilk kullanan uygarlık Frigyalılardır.", dogru:false, ders:"Tarih", aciklama:"Parayı ilk kullanan uygarlık Lidyalılardır."},
+  {metin:"Uygurlar yerleşik hayata geçen ilk Türk topluluğudur.", dogru:true, ders:"Tarih", aciklama:"Uygurlar şehir kurup yerleşik düzene geçen ilk Türk topluluğudur."},
+  {metin:"İlk Türk-İslam devleti Gaznelilerdir.", dogru:false, ders:"Tarih", aciklama:"İlk Türk-İslam devleti Karahanlılar'dır."},
+  {metin:"Talas Savaşı Türklerin İslamlaşmasını hızlandırmıştır.", dogru:true, ders:"Tarih", aciklama:"Talas sonrası Türk-Arap ilişkileri gelişmiş, İslamlaşma hızlanmıştır."},
+  {metin:"Divan-ı Hikmet Yusuf Has Hacip tarafından yazılmıştır.", dogru:false, ders:"Tarih", aciklama:"Divan-ı Hikmet Ahmet Yesevi'ye aittir."},
+  {metin:"Türkiye bor rezervlerinde dünyada ilk sıradadır.", dogru:true, ders:"Coğrafya", aciklama:"Türkiye dünya bor rezervlerinin büyük bölümüne sahiptir."},
+  {metin:"Tuz Gölü Türkiye'nin en büyük tatlı su gölüdür.", dogru:false, ders:"Coğrafya", aciklama:"Tuz Gölü tuzludur; en büyük tatlı su gölümüz Beyşehir'dir."},
+  {metin:"Kral Yolu Lidyalılar tarafından yaptırılmıştır.", dogru:true, ders:"Coğrafya", aciklama:"Kral Yolu, Sardes ile Sus arasındaki ticaret yoludur."},
+  {metin:"Aras Nehri Karadeniz'e dökülür.", dogru:false, ders:"Coğrafya", aciklama:"Aras Nehri, Kura ile birleşip Hazar Denizi'ne dökülür."},
+  {metin:"21 Aralık, Kuzey Yarım Küre'de yılın en uzun gecesidir.", dogru:true, ders:"Coğrafya", aciklama:"21 Aralık Kuzey Yarım Küre'de kış başlangıcı ve en uzun gecedir."},
+  {metin:"Nemrut Dağı tümülüsü Malatya'dadır.", dogru:false, ders:"Coğrafya", aciklama:"Nemrut Dağı tümülüsü Adıyaman'dadır."},
+  {metin:"Anayasa'nın ilk üç maddesi değiştirilemez.", dogru:true, ders:"Vatandaşlık", aciklama:"Anayasa'nın 4. maddesi ilk üç maddenin değiştirilemeyeceğini belirtir."},
+  {metin:"Devlet Memurları Kanunu 4857 sayılı kanundur.", dogru:false, ders:"Vatandaşlık", aciklama:"DMK 657 sayılıdır; 4857 sayılı kanun İş Kanunu'dur."},
+  {metin:"\"Anne\" kelimesi büyük ünlü uyumuna uymaz.", dogru:true, ders:"Türkçe", aciklama:"\"Anne\"de a kalın, e incedir; büyük ünlü uyumu bozulur."},
+  {metin:"Türkçe, Hint-Avrupa dil ailesine mensuptur.", dogru:false, ders:"Türkçe", aciklama:"Türkçe, Ural-Altay grubunun Altay koluna dâhil edilir."},
+  {metin:"İstanbul Boğazı Karadeniz ile Marmara'yı bağlar.", dogru:true, ders:"Coğrafya", aciklama:"İstanbul Boğazı Karadeniz ile Marmara'yı bağlar."},
+  {metin:"Göbeklitepe Şanlıurfa'dadır.", dogru:true, ders:"Genel Kültür", aciklama:"Göbeklitepe, Şanlıurfa'daki tarih öncesi tapınak alanıdır."},
+  {metin:"Türk alfabesinde 29 harf bulunur.", dogru:true, ders:"Türkçe", aciklama:"Latin kökenli Türk alfabesinde 29 harf vardır."},
+  {metin:"Bir üçgenin iç açıları toplamı 180 derecedir.", dogru:true, ders:"Matematik", aciklama:"Her üçgende iç açılar toplamı 180 derecedir."},
+  {metin:"Türkiye'de seçmen olabilme yaşı 18'dir.", dogru:true, ders:"Vatandaşlık", aciklama:"18 yaşını dolduran her vatandaş oy kullanabilir."},
+  {metin:"Kutadgu Bilig'i Yusuf Has Hacip yazmıştır.", dogru:true, ders:"Tarih", aciklama:"Kutadgu Bilig, Karahanlılar döneminde Yusuf Has Hacip'e aittir."},
+  {metin:"Ekvator'un uzunluğu yaklaşık 40.000 km'dir.", dogru:true, ders:"Coğrafya", aciklama:"Ekvator çevresi yaklaşık 40.000 km'dir."},
+  {metin:"2, hem asal hem çift olan tek sayıdır.", dogru:true, ders:"Matematik", aciklama:"2, çift olan tek asal sayıdır."},
+  {metin:"Van Gölü'nün suları tatlıdır.", dogru:false, ders:"Coğrafya", aciklama:"Van Gölü sodalı (acı) sulu kapalı havza gölüdür."},
+  {metin:"\"Herkes\"in doğru yazımı \"herkez\"dir.", dogru:false, ders:"Türkçe", aciklama:"Doğru yazım \"herkes\"tir."},
+  {metin:"1 sayısı asal sayıdır.", dogru:false, ders:"Matematik", aciklama:"1 asal değildir; en küçük asal sayı 2'dir."},
+  {metin:"Efes Antik Kenti Muğla ilindedir.", dogru:false, ders:"Genel Kültür", aciklama:"Efes Antik Kenti İzmir (Selçuk) ilindedir."},
+  {metin:"Türkiye'nin başkenti İstanbul'dur.", dogru:false, ders:"Vatandaşlık", aciklama:"Anayasa'nın 3. maddesine göre başkent Ankara'dır."},
+  {metin:"Göktürk Devleti'ni Mete Han kurmuştur.", dogru:false, ders:"Tarih", aciklama:"Göktürk'ü Bumin Kağan kurmuştur; Mete Han Asya Hun hükümdarıdır."},
+  {metin:"Kızılırmak Akdeniz'e dökülür.", dogru:false, ders:"Coğrafya", aciklama:"Kızılırmak Karadeniz'e dökülür."},
+  {metin:"9 sayısı bir asal sayıdır.", dogru:false, ders:"Matematik", aciklama:"9 = 3×3 olduğu için asal değildir."}
+];
+// HAVUZ = 34 önerme; her reklam gösteriminde KARIŞTIRIP farklı bir alt küme
+// (GOSTER kadar) seçilir → her impression'da farklı kartlar çıkar.
+var HAVUZ=ONERMELER, GOSTER=14;
+
+var ESIK=92; // swipe eşiği (px)
+var kart=document.getElementById('kart'), metinEl=document.getElementById('metin'),
+    dersEl=document.getElementById('ders'), damgaD=document.getElementById('damgaD'),
+    damgaY=document.getElementById('damgaY'), sonEl=document.getElementById('son'),
+    kart2=document.getElementById('kart2'), metin2El=document.getElementById('metin2'),
+    ders2El=document.getElementById('ders2');
+var idx=0, dogru=0, yanlis=0, dx=0, dy=0, dragging=false, sx=0, sy=0, ipucuAktif=true, kilit=false;
+
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
+// Her gösterimde farklı kartlar: havuzu karıştır, GOSTER kadarını al.
+ONERMELER=karistir(HAVUZ.slice()).slice(0,GOSTER);
+
+function punto(n){ return n>130?17:n>90?19:n>55?22:25; }
+
+// Alttaki (sıradaki) kartı doldur — üstteki çekilirken görünür.
+function ikinciKartDoldur(){
+  if(idx+1<ONERMELER.length){
+    var n=ONERMELER[idx+1];
+    ders2El.textContent=n.ders.toUpperCase();
+    metin2El.textContent=n.metin;
+    metin2El.style.fontSize=punto(n.metin.length)+'px';
+    kart2.style.display='flex';
+  } else { kart2.style.display='none'; }
+}
+
+function goster(){
+  if(idx>=ONERMELER.length){ bitir(); return; }
+  var o=ONERMELER[idx];
+  dersEl.textContent=o.ders.toUpperCase();
+  metinEl.textContent=o.metin;
+  metinEl.style.fontSize=punto(o.metin.length)+'px';
+  ikinciKartDoldur();
+  document.getElementById('kn').textContent='Kart '+(idx+1)+'/'+ONERMELER.length;
+  document.getElementById('bar').style.width=(idx/ONERMELER.length*100)+'%';
+  // ANINDA merkeze koy — çekilen kart geri GELMESİN (slide animasyonu yok).
+  kart.classList.remove('anim','dogruTint','yanlisTint');
+  kart.style.transform='translate(0px,0px)';
+  kart.style.opacity='1';
+  setDamga(0);
+  void kart.offsetWidth; // reflow
+  kart.classList.add('anim');
+}
+
+function setTransform(x,y,anim){
+  kart.classList.toggle('anim',!!anim);
+  kart.style.transform='translate('+x+'px,'+(y*0.25)+'px) rotate('+(x/1600)+'rad)';
+}
+function setDamga(x){
+  var n=Math.min(1,Math.abs(x)/ESIK);
+  damgaD.style.opacity=x>2?n:0;
+  damgaY.style.opacity=x<-2?n:0;
+  kart.classList.toggle('dogruTint',x>ESIK*0.5);
+  kart.classList.toggle('yanlisTint',x<-ESIK*0.5);
+}
+
+/* ── Sürükleme ── */
+kart.addEventListener('pointerdown',function(e){
+  if(kilit) return; durIpucu();
+  dragging=true; sx=e.clientX; sy=e.clientY; dx=0; dy=0;
+  kart.classList.remove('anim'); kart.setPointerCapture&&kart.setPointerCapture(e.pointerId);
+});
+kart.addEventListener('pointermove',function(e){
+  if(!dragging) return;
+  dx=e.clientX-sx; dy=e.clientY-sy; setTransform(dx,dy,false); setDamga(dx);
+});
+kart.addEventListener('pointerup',function(e){
+  if(!dragging) return; dragging=false;
+  if(dx>ESIK){ ucur(true); } else if(dx<-ESIK){ ucur(false); }
+  else { setTransform(0,0,true); setDamga(0); }
+});
+kart.addEventListener('pointercancel',function(){ dragging=false; setTransform(0,0,true); setDamga(0); });
+
+/* Kartı ekran dışına uçur, sonra cevabı işle */
+function ucur(dediDogru){
+  kilit=true;
+  var yon=dediDogru?1:-1;
+  setDamga(yon*ESIK);
+  kart.classList.add('anim');
+  kart.style.transform='translate('+(yon*600)+'px,40px) rotate('+(yon*0.4)+'rad)';
+  kart.style.opacity='0';
+  setTimeout(function(){ isle(dediDogru); },300);
+}
+
+function cevapla(dediDogru){ if(kilit||idx>=ONERMELER.length) return; durIpucu(); ucur(dediDogru); }
+
+function isle(dediDogru){
+  var o=ONERMELER[idx];
+  var isabet=(o.dogru===dediDogru);
+  if(isabet) dogru++; else yanlis++;
+  document.getElementById('cok').textContent='✓ '+dogru;
+  document.getElementById('cno').textContent='✗ '+yanlis;
+  // son cevap şeridi
+  var renk=isabet?'#0D9488':'#E11D48';
+  sonEl.style.background=isabet?'rgba(13,148,136,.12)':'rgba(225,29,72,.12)';
+  sonEl.style.border='1px solid '+(isabet?'rgba(13,148,136,.45)':'rgba(225,29,72,.45)');
+  sonEl.innerHTML='<span class="ic">'+(isabet?'✅':'❌')+'</span><div><div class="b" style="color:'+renk+'">'+
+    (isabet?'Bildin! Önerme '+(o.dogru?'DOĞRU':'YANLIŞ'):'Kaçırdın — önerme '+(o.dogru?'DOĞRU':'YANLIŞ'))+
+    '</div><div class="ac">'+o.aciklama+'</div></div>';
+  sonEl.classList.add('show');
+  idx++;
+  kilit=false;
+  goster();
+}
+
+function bitir(){
+  var toplam=ONERMELER.length||1, yuzde=Math.round(dogru*100/toplam);
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('endh').textContent='Tur bitti — %'+yuzde+' isabet!';
+  document.getElementById('end').classList.add('show');
+}
+
+/* ── İlk açılış ipucu animasyonu: sağa (DOĞRU) ve sola (YANLIŞ) ── */
+var ipTimers=[];
+function durIpucu(){ if(!ipucuAktif) return; ipucuAktif=false; ipTimers.forEach(clearTimeout);
+  setTransform(0,0,true); setDamga(0); }
+function ipucuOyna(){
+  // Daha YAVAŞ tanıtım: sağa (DOĞRU) ve sola (YANLIŞ) yumuşak hareket,
+  // aralar geniş tutuldu (damga daha uzun görünür).
+  var seq=[
+    [800,  74], [1900,  0],   // sağa (DOĞRU) → merkez
+    [3000,-74], [4100,  0],   // sola (YANLIŞ) → merkez
+    [5200, 74], [6300,  0]    // bir kez daha sağa
+  ];
+  seq.forEach(function(s){
+    ipTimers.push(setTimeout(function(){
+      if(!ipucuAktif) return;
+      kart.classList.add('anim'); setTransform(s[1],0,true); setDamga(s[1]);
+    },s[0]));
+  });
+}
+
+goster();
+ipucuOyna();
+</script>
+</body>
+</html>

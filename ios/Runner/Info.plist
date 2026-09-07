@@ -6,8 +6,17 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<!-- Ana ekranda uygulama ikonunun altında görünen isim. App Store'daki
+	     isimle tutarlı olmalı (Guideline 2.3.7). Önceden Flutter şablonundan
+	     kalan "Kpss Telefon" yazıyordu. -->
 	<key>CFBundleDisplayName</key>
-	<string>Kpss Telefon</string>
+	<string>KPSS Hazırlık</string>
+	<!-- Şifreleme beyanı: uygulama yalnızca standart HTTPS kullanıyor, ihraç
+	     kısıtlamasına tabi özel şifreleme içermiyor. Bu anahtar olmadan her
+	     yüklemede App Store Connect "Missing Compliance" sorar ve build
+	     TestFlight'a/incelemeye düşmeden bekler. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,6 +33,26 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<!-- Google ile Giriş geri dönüş (callback) URL şeması.
+	     DEĞER, ios/Runner/GoogleService-Info.plist içindeki REVERSED_CLIENT_ID
+	     ile BİREBİR AYNI olmalıdır. İkisi ayrışırsa Google girişi, kullanıcı
+	     hesabını seçtikten sonra uygulamaya geri dönemez.
+
+	     Firebase Console'da Google sağlayıcısı açık olduğu için indirilen
+	     plist artık CLIENT_ID / REVERSED_CLIENT_ID içeriyor ve aşağıdaki
+	     değer gerçek değerdir. Firebase projesi değişirse ikisi de birlikte
+	     güncellenmelidir. Bkz. FIREBASE_IOS_SETUP.md -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.993008276386-78k2ralk6pk3adsr2uut0lhlc7g0m4kj</string>
+			</array>
+		</dict>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>
@@ -66,5 +95,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- AdMob uygulama kimliği. ŞU AN GOOGLE'IN RESMÎ TEST KİMLİĞİ — uygulama
+	     çökmesin diye zorunlu. Gerçek yayında AdMob konsolundan aldığın iOS
+	     App ID ile değiştir. Reklam BİRİM kimlikleri ad_service.dart'ta. -->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-2208830315848722~5684578652</string>
 </dict>
 </plist>

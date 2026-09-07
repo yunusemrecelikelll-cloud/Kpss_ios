@@ -35,7 +35,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
   late List<String> _queue;
   TurkeyProvince? _tapped;
   bool _showResult = false;
-  String? _flashWrongId;
+  final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
   @override
@@ -76,14 +76,13 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       _attempts = 0;
       _finished = false;
       // ÖNEMLİ (düzeltilen hata): retry ("tekrar başla") sonrası bir önceki
-      // oyunun SON sorusundan kalan _showResult/_tapped/_flashWrongId burada
+      // oyunun SON sorusundan kalan _showResult/_tapped/_yanlisSecilen burada
       // sıfırlanmıyordu — bu yüzden yeni oyun ilk karede hiçbir dokunuş
       // olmadan doğrudan eski (ve genelde yanlış eşleşen) sonuç banner'ını
       // ("3 hakkını da kullandın") gösteriyordu. Artık her boot'ta (ilk açılış
       // ve retry) TÜM tur-bazlı durum alanları sıfırlanıyor.
       _showResult = false;
       _tapped = null;
-      _flashWrongId = null;
     });
   }
 
@@ -97,30 +96,41 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kBolgeBulGameId, 'cografya', true);
       });
       return;
     }
     _attempts++;
+    context.read<StorageService>().addGameAnswer(kBolgeBulGameId, 'cografya', false);
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
       });
     } else {
-      _flashWrong(p.id);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌ Yanlış, tekrar dene! (${kMapMaxAttempts - _attempts} hakkın kaldı)'),
-        duration: const Duration(milliseconds: 1400),
-      ));
+      // Kullanıcı isteği: ilk yanlış işaret 2. seçime kadar KALSIN;
+      // alt uyarı (haritaBekleyenAfis) pendingNotice ile gösterilir.
+      setState(() {});
     }
   }
 
-  /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
-  void _flashWrong(String id) {
-    setState(() => _flashWrongId = id);
-    Future.delayed(const Duration(milliseconds: 550), () {
-      if (mounted && _flashWrongId == id) setState(() => _flashWrongId = null);
-    });
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    haritaYanlisKaydet(
+      context,
+      soru: '"$_target" Bölgesi\'nden bir il seç',
+      dogruId: '',
+      dogruAd: '$_target Bölgesi',
+      // O bölgedeki TÜM iller tekrar-testte kabul edilir.
+      dogruIds:
+          kTurkeyProvinces.where((p) => p.bolge == _target).map((p) => p.id).toList(),
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kBolgeBulGameId,
+      modAd: 'Bölgeyi Bul',
+    );
   }
 
   void _next() {
@@ -134,7 +144,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       _tapped = null;
       _showResult = false;
       _attempts = 0;
-      _flashWrongId = null;
+      _yanlisSecilen.clear();
     });
   }
 
@@ -149,7 +159,11 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kMapGameId,
+        oyunAdi: 'Harita Oyunu',
+        onUnlocked: _retry,
+
         title: 'Bölgeyi Bul',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz harita oyunu hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -158,12 +172,12 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      return MapSessionResult(
+      return MapQuizResult(
         title: '🧭 Bölgeyi Bul',
-        emoji: _score >= (_queue.length * 0.7) ? '🎉' : '📚',
-        message: '${_queue.length} sorudan $_score tanesini doğru bildin.',
+        modeId: kBolgeBulGameId,
+        score: _score,
+        total: _queue.length,
         onRetry: _retry,
-        palette: mapModePaletteFor(kBolgeBulGameId),
       );
     }
     return _buildRound(context);
@@ -171,6 +185,7 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '🧭 Bölgeyi Bul',
       promptText: '"$_target" Bölgesi\'nden bir il seç!',
@@ -182,8 +197,8 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
         provinces: kTurkeyProvinces,
         colorFor: (p) {
           if (!_showResult) {
-            if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            if (_yanlisSecilen.any((x) => x.id == p.id)) return colors.danger;
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.bolge == _target) return regionColor(_target).withValues(alpha: 0.75);
           return colors.violet.withValues(alpha: 0.12);
@@ -196,38 +211,28 @@ class _BolgeyiBulScreenState extends State<BolgeyiBulScreen> {
         onTap: _onTapProvince,
       ),
       feedback: _showResult ? _buildFeedback(colors) : null,
+      pendingNotice: (!_showResult && _yanlisSecilen.isNotEmpty)
+          ? haritaBekleyenAfis(context,
+              secilenAd: _yanlisSecilen.last.ad,
+              kalanHak: kMapMaxAttempts - _attempts)
+          : null,
     );
   }
 
   Widget _buildFeedback(KpssColors colors) {
     final correct = _tapped?.bolge == _target;
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! ${_tapped?.ad}, $_target Bölgesi\'ndedir.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. ${_tapped?.ad}, ${_tapped?.bolge} Bölgesi\'nde yer alır (aranan: $_target).',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? '${_tapped?.ad}, $_target Bölgesi\'ndedir.'
+          : '${_tapped?.ad}, ${_tapped?.bolge} Bölgesi\'nde (aranan: $_target).',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(kBolgeBulGameId, '$_target Bölgesi',
+              _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

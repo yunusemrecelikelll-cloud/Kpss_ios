@@ -1,34 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../models/subject.dart';
 import '../models/badge.dart';
 import '../services/league_service.dart';
+import '../services/presence_service.dart';
 import '../services/storage_service.dart';
 import '../services/sound_service.dart';
 import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
 import '../theme/theme_provider.dart';
 import '../utils/exam_dates.dart';
 import 'badges_screen.dart';
 import 'detailed_stats_screen.dart';
 import 'premium_screen.dart';
-
-/// Kullanıcının hedeflediği KPSS mesleği — profilde ve isteğe bağlı olarak
-/// ileride kişiselleştirilmiş içerikte (ör. ilgili kadro soruları) kullanılmak
-/// üzere sadece yerelde saklanır.
-const List<({String id, String label, String icon})> kTargetProfessions = [
-  (id: 'polis', label: 'Polis', icon: '👮'),
-  (id: 'ogretmen', label: 'Öğretmen', icon: '👨‍🏫'),
-  (id: 'memur', label: 'Memur', icon: '👨‍💼'),
-  (id: 'uzman-yardimcisi', label: 'Uzman Yardımcısı', icon: '👨‍⚖️'),
-];
-
-({String id, String label, String icon})? _targetProfessionOrNull(String id) {
-  for (final p in kTargetProfessions) {
-    if (p.id == id) return p;
-  }
-  return null;
-}
+import 'predictor_screen.dart';
+import 'league_screen.dart';
+import 'score_calculator_screen.dart';
 
 /// JS karşılığı: renderProfile() (src/js/app.js).
 class ProfileScreen extends StatelessWidget {
@@ -40,9 +29,7 @@ class ProfileScreen extends StatelessWidget {
     final c = context.watch<ThemeProvider>().colors;
     // İsim önceliği getUserName()'e verildi: profil düzenleme diyaloğu
     // StorageService.setUserName() ile kaydediyor, güncel değer hemen görünsün diye.
-    final name = storage.getUserName().isNotEmpty
-        ? storage.getUserName()
-        : (storage.getActiveUser().isNotEmpty ? storage.getActiveUser() : 'Aday');
+    final name = storage.getDisplayName();
     final gender = storage.getUserGender();
     final premium = storage.isPremiumUser();
     final overall = storage.computeOverall();
@@ -98,7 +85,6 @@ class ProfileScreen extends StatelessWidget {
                   initialName: name == 'Aday' ? '' : name,
                   initialGender: gender,
                   initialExamType: storage.getExamType(),
-                  initialProfession: storage.getTargetProfession(),
                 ),
               );
             },
@@ -109,69 +95,70 @@ class ProfileScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('👤 $name Profili',
-                                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                              const SizedBox(height: 4),
-                              Text(
-                                "Ücretsiz hesabın temel özetini, Premium'da ise detaylı analizleri gör.",
-                                style: TextStyle(fontSize: 12.5, color: c.textFaint),
-                              ),
-                              if (_targetProfessionOrNull(storage.getTargetProfession()) case final p?) ...[
-                                const SizedBox(height: 6),
-                                Chip(
-                                  label: Text('${p.icon} Hedef: ${p.label}', style: const TextStyle(fontSize: 11.5)),
-                                  visualDensity: VisualDensity.compact,
-                                  backgroundColor: c.violet.withValues(alpha: 0.12),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
+            // ── Kimlik kartı ───────────────────────────────────────────
+            // Büyük avatar + isim + hedef/sınav bilgisi + seviye ilerlemesi.
+            DsCard(
+              accent: premium ? c.gold : c.violet,
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _ProfileAvatar(name: name, gender: gender, premium: premium),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Chip(
-                              label: Text(premium ? 'Premium' : 'Ücretsiz'),
-                              backgroundColor: premium
-                                  ? c.gold.withValues(alpha: 0.2)
-                                  : null,
+                            Text(
+                              name,
+                              style: TextStyle(
+                                  fontSize: 19, fontWeight: FontWeight.w900, color: c.text),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            if (premium) ...[
-                              const SizedBox(height: 4),
-                              const Text('VIP', style: TextStyle(fontSize: 11, fontWeight: FontWeight.w800)),
-                            ],
+                            const SizedBox(height: 6),
+                            Wrap(
+                              spacing: 6,
+                              runSpacing: 6,
+                              children: [
+                                DsChip(
+                                  label: premium ? 'PREMIUM' : 'ÜCRETSİZ',
+                                  color: premium ? c.gold : c.textDim,
+                                ),
+                                if (examInfoFor(storage.getExamType()) case final e?)
+                                  DsChip(label: 'KPSS ${e.label}'.toUpperCase(), color: c.violetL),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 14),
-                    const Divider(height: 1),
-                    const SizedBox(height: 12),
-                    _LevelXpSection(storage: storage, colors: c),
-                    const SizedBox(height: 10),
-                    Text(
-                      '🗓️ ${storage.getCurrentSeasonLabel()} Sezonu: ${storage.getSeasonXp()} XP',
-                      style: TextStyle(fontSize: 11.5, color: c.textFaint, fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  _LevelXpSection(storage: storage, colors: c),
+                  const SizedBox(height: 10),
+                  Text(
+                    '🗓️ ${storage.getCurrentSeasonLabel()} Sezonu: ${storage.getSeasonXp()} XP',
+                    style: TextStyle(fontSize: 11.5, color: c.textFaint, fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 14),
-            Card(
+            const SizedBox(height: kDsGap),
+            DsCard(
+              padding: EdgeInsets.zero,
               child: SwitchListTile(
+                secondary: DsIconBadge(
+                  icon: Icons.visibility_off_outlined,
+                  color: c.violetL,
+                  size: 42,
+                  circle: false,
+                  glow: false,
+                ),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kDsRadius)),
                 value: hideStats,
                 onChanged: (v) async {
                   context.read<SoundService>().click();
@@ -187,22 +174,34 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 14),
-            GridView.count(
-              crossAxisCount: 2,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 1.6,
-              children: [
-                _StatCard(label: 'Genel Başarı', value: '${overall.rate}%', foot: 'Çözdüğün soruların başarı oranı.'),
-                _StatCard(label: 'Çözülen Soru', value: '${overall.solved}', foot: 'Toplam tamamlanan soru adedi.'),
-                _StatCard(label: 'Günlük Seri', value: '$streakCount', foot: 'Kesintisiz çalışma gün sayısı.'),
-                _StatCard(label: 'Yanlışlar', value: '$wrongCount', foot: 'Yanlış soruların özel çalışma bankası.'),
+            const SizedBox(height: kDsGap),
+            const DsSectionHeader(title: '📊 Özet İstatistikler'),
+            const SizedBox(height: 8),
+            DsStatStrip(
+              items: [
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🎯', color: c.violetL, size: 38, glow: false),
+                  value: '${overall.rate}%',
+                  label: 'Genel Başarı',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '📝', color: c.mint, size: 38, glow: false),
+                  value: '${overall.solved}',
+                  label: 'Çözülen Soru',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '🔥', color: c.gold, size: 38, glow: false),
+                  value: '$streakCount',
+                  label: 'Günlük Seri',
+                ),
+                DsStatItem(
+                  visual: DsIconBadge(emoji: '❌', color: c.roseL, size: 38, glow: false),
+                  value: '$wrongCount',
+                  label: 'Yanlışlar',
+                ),
               ],
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: kDsGap),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -228,33 +227,74 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 14),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.query_stats, color: c.violet),
-                title: const Text('Detaylı İstatistikler', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14)),
-                subtitle: Text(
-                  'Ders/konu bazlı başarı, seri geçmişi, çalışma süresi ve rozet ilerlemeni gör.',
-                  style: TextStyle(fontSize: 11.5, color: c.textFaint),
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios, size: 14),
-                onTap: () {
-                  context.read<SoundService>().click();
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DetailedStatsScreen()));
-                },
-              ),
+            const SizedBox(height: 18),
+            const DsSectionHeader(title: '🧭 Analiz Araçları'),
+            const SizedBox(height: 8),
+            DsListRow(
+              icon: Icons.query_stats,
+              accent: c.violetL,
+              title: 'Detaylı İstatistikler',
+              status: 'Ders/konu başarısı, seri geçmişi, çalışma süresi.',
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => const DetailedStatsScreen()));
+              },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: kDsGap),
+            // ÖNCEDEN "Oyunlar" sekmesindeki "Diğer Araçlar" bölümündeydi —
+            // üçü de kişisel performansla ilgili olduğu için Profil'e taşındı
+            // (bkz. tools_hub_screen.dart). Premium kilidi aynen korunuyor:
+            // premium olmayan kullanıcı dokununca Premium ekranına yönlenir.
+            DsListRow(
+              icon: Icons.track_changes,
+              accent: c.rose,
+              title: 'Bugün Sınava Girsen Kaç Alırsın?',
+              status: premium
+                  ? 'Geçmiş performansına göre tahmini puanın.'
+                  : '🔒 Premium — tahmini puanını gör.',
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => premium ? const PredictorScreen() : const PremiumScreen()));
+              },
+            ),
+            const SizedBox(height: kDsGap),
+            DsListRow(
+              icon: Icons.emoji_events,
+              accent: c.gold,
+              title: 'Lig',
+              // Lig artık ücretsiz (kullanıcı isteği) — herkes rütbesini görür.
+              status: 'Başarı seviyene göre lig rütbeni gör.',
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const LeagueScreen()));
+              },
+            ),
+            const SizedBox(height: kDsGap),
+            DsListRow(
+              icon: Icons.calculate,
+              accent: c.mint,
+              title: 'Puan Hesaplama',
+              status: 'Doğru/yanlış gir, net ve tahmini KPSS puanını gör.',
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ScoreCalculatorScreen()));
+              },
+            ),
+            const SizedBox(height: 18),
             _UnlockedBadgesCard(unlockedIds: storage.getUnlockedBadges().toSet()),
             const SizedBox(height: 16),
             if (premium)
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: Column(
+              DsCard(
+                padding: const EdgeInsets.all(18),
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('📈 Konu Başarı Grafiği', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
+                      Text('📈 Konu Başarı Grafiği',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 15, color: c.text)),
                       const SizedBox(height: 14),
                       if (subjectAverages.isEmpty)
                         const Padding(
@@ -315,34 +355,45 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
               )
             else
-              Card(
-                color: c.gold.withValues(alpha: 0.08),
-                child: Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("🔒 Premium İstatistiklere Geç",
-                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-                      const SizedBox(height: 6),
-                      const Text(
-                        "Ücretsiz hesapla temel verileri görürsün. Premium'da grafikler, konu analizi ve gelişmiş raporlar açılır.",
-                        style: TextStyle(fontSize: 12.5),
-                      ),
-                      const SizedBox(height: 12),
-                      ElevatedButton(
+              DsCard(
+                accent: c.gold,
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        DsIconBadge(emoji: '🔒', color: c.gold, size: 44),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text("Premium İstatistiklere Geç",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 15, color: c.text)),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Ücretsiz hesapla temel verileri görürsün. Premium'da grafikler, konu analizi ve gelişmiş raporlar açılır.",
+                      style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textDim),
+                    ),
+                    const SizedBox(height: 14),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: DsPillButton(
+                        label: "Premium'a Geç",
+                        color: c.gold,
+                        trailingIcon: Icons.arrow_forward,
                         onPressed: () {
                           context.read<SoundService>().click();
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) => const PremiumScreen()));
                         },
-                        child: const Text("Premium'a Geç →"),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             if (premium) ...[
@@ -371,6 +422,57 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
+/// Profil kimlik kartındaki büyük dairesel avatar — ismin baş harfini,
+/// tema renklerinden türeyen bir degrade halka içinde gösterir. Premium
+/// kullanıcıda halka altın rengine döner.
+class _ProfileAvatar extends StatelessWidget {
+  final String name;
+  final String gender;
+  final bool premium;
+  const _ProfileAvatar({required this.name, required this.gender, required this.premium});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final bas = name.trim().isEmpty ? '?' : name.trim().characters.first.toUpperCase();
+    final halka = premium ? c.gold : c.violetL;
+    return Container(
+      width: 66,
+      height: 66,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            halka.withValues(alpha: c.isLight ? 0.22 : 0.32),
+            c.rose.withValues(alpha: c.isLight ? 0.14 : 0.22),
+          ],
+        ),
+        border: Border.all(color: halka.withValues(alpha: 0.55), width: 2),
+        boxShadow: [BoxShadow(color: halka.withValues(alpha: 0.25), blurRadius: 16)],
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Text(bas,
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: c.text)),
+          // Cinsiyet seçilmişse küçük bir işaret — profil düzenlemede
+          // kaydedilen mevcut değer, uydurma bir alan değil.
+          if (gender == 'k' || gender == 'e')
+            Positioned(
+              right: 2,
+              bottom: 0,
+              child: Text(gender == 'k' ? '👩' : '👨',
+                  style: const TextStyle(fontSize: 15)),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 /// Seviye + XP ilerleme çubuğu — mevcut seviyeden bir sonraki seviyeye olan
 /// ilerlemeyi gösterir (bkz. StorageService.getLevelForXp/xpForNextLevel).
 class _LevelXpSection extends StatelessWidget {
@@ -391,49 +493,24 @@ class _LevelXpSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('⭐ Seviye $level', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13.5)),
+            Expanded(
+              child: Text('⭐ Seviye $level',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w800, fontSize: 13.5, color: colors.text)),
+            ),
+            const SizedBox(width: 8),
             Text('$xp XP toplam', style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
           ],
         ),
+        const SizedBox(height: 8),
+        DsProgressBar(value: ratio.toDouble(), color: colors.violetL, height: 8),
         const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(6),
-          child: LinearProgressIndicator(value: ratio, minHeight: 8),
-        ),
-        const SizedBox(height: 4),
         Text(
           'Sonraki seviyeye $into / $span XP',
           style: TextStyle(fontSize: 10.5, color: colors.textFaint),
         ),
       ],
-    );
-  }
-}
-
-class _StatCard extends StatelessWidget {
-  final String label, value, foot;
-  const _StatCard({required this.label, required this.value, required this.foot});
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.watch<ThemeProvider>().colors;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(label, style: TextStyle(fontSize: 11.5, color: c.textFaint)),
-            const SizedBox(height: 4),
-            Text(value, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900)),
-            const SizedBox(height: 4),
-            Text(foot, style: const TextStyle(fontSize: 10), maxLines: 2, overflow: TextOverflow.ellipsis),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -448,52 +525,63 @@ class _UnlockedBadgesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
     final unlocked = kBadgeDefs.where((b) => unlockedIds.contains(b.id)).toList();
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('🏅 Rozetlerim (${unlocked.length}/${kBadgeDefs.length})',
-                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-            const SizedBox(height: 12),
-            if (unlocked.isEmpty)
-              Text('Henüz rozet açmadın. Test çözmeye devam et, ilk rozetin yakında!',
-                  style: TextStyle(fontSize: 12.5, color: c.textFaint))
-            else
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  for (final b in unlocked)
-                    Tooltip(
-                      message: b.desc,
-                      child: Container(
-                        width: 72,
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
-                        decoration: BoxDecoration(
-                          color: b.color.withValues(alpha: 0.14),
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: b.color.withValues(alpha: 0.4)),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(b.icon, style: const TextStyle(fontSize: 22)),
-                            const SizedBox(height: 4),
-                            Text(b.name,
-                                textAlign: TextAlign.center,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 9.5, fontWeight: FontWeight.w700)),
-                          ],
-                        ),
+    return DsCard(
+      padding: const EdgeInsets.all(18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(emoji: '🏅', color: c.gold, size: 42, circle: false, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text('Rozetlerim',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 15, color: c.text)),
+              ),
+              DsChip(label: '${unlocked.length}/${kBadgeDefs.length}', color: c.gold),
+            ],
+          ),
+          const SizedBox(height: 14),
+          if (unlocked.isEmpty)
+            Text('Henüz rozet açmadın. Test çözmeye devam et, ilk rozetin yakında!',
+                style: TextStyle(fontSize: 12.5, color: c.textFaint))
+          else
+            Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                for (final b in unlocked)
+                  Tooltip(
+                    message: b.desc,
+                    child: Container(
+                      width: 72,
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+                      decoration: BoxDecoration(
+                        color: b.color.withValues(alpha: c.isLight ? 0.10 : 0.14),
+                        borderRadius: BorderRadius.circular(kDsRadiusSm),
+                        border: Border.all(color: b.color.withValues(alpha: 0.4)),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(b.icon, style: const TextStyle(fontSize: 22)),
+                          const SizedBox(height: 4),
+                          Text(b.name,
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.w700,
+                                  color: c.text)),
+                        ],
                       ),
                     ),
-                ],
-              ),
-          ],
-        ),
+                  ),
+              ],
+            ),
+        ],
       ),
     );
   }
@@ -506,17 +594,16 @@ class _InfoBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 12.5)),
-            const SizedBox(height: 4),
-            Text(text, style: TextStyle(fontSize: 10.5, color: c.textFaint)),
-          ],
-        ),
+    return DsCard(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 12.5, color: c.text)),
+          const SizedBox(height: 4),
+          Text(text, style: TextStyle(fontSize: 10.5, height: 1.3, color: c.textFaint)),
+        ],
       ),
     );
   }
@@ -542,49 +629,62 @@ class _PremiumPerksCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = context.watch<ThemeProvider>().colors;
-    return Card(
-      color: c.gold.withValues(alpha: 0.08),
-      child: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('✨ Premium Ayrıcalıkların',
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15)),
-            const SizedBox(height: 10),
-            for (final p in _perks)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Row(
-                  children: [
-                    Text(p.$1, style: const TextStyle(fontSize: 16)),
-                    const SizedBox(width: 10),
-                    Expanded(child: Text(p.$2, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600))),
-                    Icon(Icons.check_circle, size: 16, color: c.success),
-                  ],
-                ),
+    return DsCard(
+      accent: c.gold,
+      padding: const EdgeInsets.all(18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              DsIconBadge(emoji: '✨', color: c.gold, size: 42, circle: false, glow: false),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text('Premium Ayrıcalıkların',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900, fontSize: 15, color: c.text)),
               ),
-          ],
-        ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          for (final p in _perks)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                children: [
+                  Text(p.$1, style: const TextStyle(fontSize: 16)),
+                  const SizedBox(width: 10),
+                  Expanded(
+                      child: Text(p.$2,
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w600, color: c.text))),
+                  Icon(Icons.check_circle, size: 16, color: c.success),
+                ],
+              ),
+            ),
+        ],
       ),
     );
   }
 }
 
-/// İsim ve cinsiyet düzenleme diyaloğu.
-/// Kaydedince StorageService.setUserName() / setUserGender() çağrılır.
+/// İsim / cinsiyet / sınav türü düzenleme diyaloğu.
+///
+/// Tasarım dili uygulamanın geri kalanıyla aynı: zemin `c.bg2`, bölümler
+/// [DsCard] içinde, seçimler hap biçimli, eylemler [DsPillButton]. Tüm renkler
+/// [ThemeProvider] token'larından gelir — 9 tema + açık temada okunur kalır.
+/// Kaydedince StorageService.setUserName() / setUserGender() / setExamType()
+/// çağrılır.
 class _EditProfileDialog extends StatefulWidget {
   final StorageService storage;
   final String initialName;
   final String initialGender;
   final String initialExamType;
-  final String initialProfession;
   const _EditProfileDialog({
     required this.storage,
     required this.initialName,
     required this.initialGender,
     required this.initialExamType,
-    required this.initialProfession,
   });
 
   @override
@@ -595,7 +695,9 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
   late final TextEditingController _nameCtrl;
   late String _gender;
   late String _examType;
-  late String _profession;
+
+  /// İsim boşken "Kaydet"e basılırsa alan altında gösterilen uyarı.
+  String? _isimHata;
 
   @override
   void initState() {
@@ -603,7 +705,6 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
     _nameCtrl = TextEditingController(text: widget.initialName);
     _gender = widget.initialGender;
     _examType = widget.initialExamType;
-    _profession = widget.initialProfession;
   }
 
   @override
@@ -615,103 +716,313 @@ class _EditProfileDialogState extends State<_EditProfileDialog> {
   Future<void> _save() async {
     final name = _nameCtrl.text.trim();
     if (name.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Lütfen bir isim gir.')));
+      setState(() => _isimHata = 'Lütfen bir isim gir.');
       return;
     }
     await widget.storage.setUserName(name);
     await widget.storage.setUserGender(_gender);
     await widget.storage.setExamType(_examType);
-    await widget.storage.setTargetProfession(_profession);
+
+    // Seçilen isim HER YERDE geçerli olsun (kullanıcı isteği): Firebase
+    // hesabının görünen adına ve yönetici panelindeki kayda da yansıt.
+    // Best-effort — ağ yoksa yerel isim yine de kaydedilmiş olur; sunucu
+    // tarafı bir sonraki fırsatta (sohbet açılışı/nabız) yakalar.
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null && !user.isAnonymous) {
+        await user.updateDisplayName(widget.storage.getUserName());
+        // ignore: unawaited_futures
+        PresenceService.instance.bildir(widget.storage, zorla: true);
+      }
+    } catch (e) {
+      debugPrint('Profil adı sunucuya yansıtılamadı (yerel kayıt tamam): $e');
+    }
+
     if (!mounted) return;
     Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Text('Profili Düzenle'),
-      content: SingleChildScrollView(
-        child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-            controller: _nameCtrl,
-            decoration: const InputDecoration(labelText: 'İsim'),
-            textCapitalization: TextCapitalization.words,
+    final c = context.watch<ThemeProvider>().colors;
+    final secilenSinav = examInfoFor(_examType);
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 460),
+        child: Container(
+          decoration: BoxDecoration(
+            color: c.bg2,
+            borderRadius: BorderRadius.circular(kDsRadius),
+            border: Border.all(color: c.border),
           ),
-          const SizedBox(height: 16),
-          const Text('Cinsiyet', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Row(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: ChoiceChip(
-                  label: const Text('👩 Kadın'),
-                  selected: _gender == 'k',
-                  onSelected: (_) => setState(() => _gender = 'k'),
+              // ── Başlık ────────────────────────────────────────────────
+              Row(
+                children: [
+                  DsIconBadge(
+                    icon: Icons.edit_outlined,
+                    color: c.violetL,
+                    size: 42,
+                    circle: false,
+                    glow: false,
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Profili Düzenle',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 16.5,
+                              fontWeight: FontWeight.w900,
+                              color: c.text),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          'Bu bilgiler yalnızca cihazında saklanır.',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 11.5, color: c.textFaint),
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (secilenSinav != null) ...[
+                    const SizedBox(width: 8),
+                    DsChip(
+                        label: 'KPSS ${secilenSinav.label}'.toUpperCase(),
+                        color: c.violetL),
+                  ],
+                ],
+              ),
+              const SizedBox(height: 14),
+
+              // ── Alanlar (klavye açıkken kaydırılabilir) ───────────────
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DsCard(
+                        padding: const EdgeInsets.all(14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const _AlanBasligi(text: 'İsmin'),
+                            const SizedBox(height: 8),
+                            TextField(
+                              controller: _nameCtrl,
+                              textCapitalization: TextCapitalization.words,
+                              textInputAction: TextInputAction.done,
+                              onChanged: (_) {
+                                if (_isimHata != null) {
+                                  setState(() => _isimHata = null);
+                                }
+                              },
+                              onSubmitted: (_) => _save(),
+                              style: TextStyle(fontSize: 14.5, color: c.text),
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: c.glass2,
+                                hintText: 'Adın nasıl görünsün?',
+                                hintStyle:
+                                    TextStyle(fontSize: 13.5, color: c.textFaint),
+                                prefixIcon: Icon(Icons.person_outline,
+                                    size: 19, color: c.textFaint),
+                                errorText: _isimHata,
+                                errorStyle:
+                                    TextStyle(fontSize: 11.5, color: c.danger),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 14, vertical: 14),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide: BorderSide(color: c.border),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide:
+                                      BorderSide(color: c.violetL, width: 1.6),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide: BorderSide(color: c.danger),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(kDsRadiusSm),
+                                  borderSide:
+                                      BorderSide(color: c.danger, width: 1.6),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: kDsGap),
+                      DsCard(
+                        padding: const EdgeInsets.all(14),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const _AlanBasligi(text: 'Cinsiyet'),
+                            const SizedBox(height: 10),
+                            Wrap(
+                              spacing: 8,
+                              runSpacing: 8,
+                              children: [
+                                _SecimPili(
+                                  label: '👩 Kadın',
+                                  selected: _gender == 'k',
+                                  onTap: () => setState(() => _gender = 'k'),
+                                ),
+                                _SecimPili(
+                                  label: '👨 Erkek',
+                                  selected: _gender == 'e',
+                                  onTap: () => setState(() => _gender = 'e'),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      // NOT: "Hangi sınava gireceksin?" seçimi buradan KALDIRILDI
+                      // ve Ayarlar > "Gireceğin KPSS Sınavı" bölümüne taşındı.
+                      // Sınav türü artık tek yerden yönetiliyor; burada yalnızca
+                      // ad/cinsiyet düzenleniyor.
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: ChoiceChip(
-                  label: const Text('👨 Erkek'),
-                  selected: _gender == 'e',
-                  onSelected: (_) => setState(() => _gender = 'e'),
-                ),
+
+              // ── Eylemler ──────────────────────────────────────────────
+              const SizedBox(height: 14),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      context.read<SoundService>().click();
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Vazgeç',
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: c.textDim)),
+                  ),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: DsPillButton(
+                      label: 'Kaydet',
+                      color: c.violetL,
+                      leadingIcon: Icons.check_rounded,
+                      onPressed: () {
+                        context.read<SoundService>().click();
+                        _save();
+                      },
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          const Text('Hangi sınava gireceksin?', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final e in kExamTypes)
-                ChoiceChip(
-                  label: Text(e.label),
-                  selected: _examType == e.id,
-                  onSelected: (_) => setState(() => _examType = e.id),
-                ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          const Text('Hedef mesleğin', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5)),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final p in kTargetProfessions)
-                ChoiceChip(
-                  label: Text('${p.icon} ${p.label}'),
-                  selected: _profession == p.id,
-                  onSelected: (_) => setState(() => _profession = p.id),
-                ),
-            ],
-          ),
-        ],
         ),
       ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            context.read<SoundService>().click();
-            Navigator.of(context).pop();
-          },
-          child: const Text('Vazgeç'),
+    );
+  }
+}
+
+/// Düzenleme diyaloğundaki bölüm başlığı ("İsmin", "Cinsiyet" ...).
+class _AlanBasligi extends StatelessWidget {
+  final String text;
+  const _AlanBasligi({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return Text(
+      text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.w800, color: c.textDim),
+    );
+  }
+}
+
+/// Seçilebilir hap etiketi — cinsiyet ve sınav türü seçimlerinde kullanılır.
+/// Seçiliyken tema vurgu rengine boyanır, değilken cam zeminde sönük durur;
+/// her iki durumda da metin kontrastı korunur.
+class _SecimPili extends StatelessWidget {
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  const _SecimPili({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(999),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(999),
+          color: selected
+              ? c.violetL.withValues(alpha: c.isLight ? 0.16 : 0.22)
+              : c.glass2,
+          border: Border.all(
+            color: selected ? c.violetL : c.border,
+            width: selected ? 1.6 : 1,
+          ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            context.read<SoundService>().click();
-            _save();
-          },
-          child: const Text('Kaydet'),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (selected) ...[
+              Icon(Icons.check_rounded, size: 15, color: c.violetL),
+              const SizedBox(width: 6),
+            ],
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
+                  color: selected ? c.violetL : c.textDim,
+                ),
+              ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

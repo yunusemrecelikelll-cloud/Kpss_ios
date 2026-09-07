@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Kart Oyunu V2</title>
+<style>
+  /* Uygulamadaki Kart Oyunu V2 ile BİREBİR: Pembe Rüya bg #FFF0F6,
+     kart beyaz + kenar #F0C4D8, ink #3B0A2A, çift renk paleti, eşleşince
+     renkli ok; yanlış = kırmızı #E53935. 8 çift (kSabitCiftSayisi), 3 yanlış hakkı. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:linear-gradient(180deg,#FFF0F6 0%,#FFE4F0 100%);color:#3B0A2A;overflow:hidden}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+
+  .bar{background:#FFE4F0;padding:11px 16px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid #F6C6DD;flex:0 0 auto}
+  .bar .t{font-weight:900;font-size:16px;color:#3B0A2A}
+
+  .info{font-size:12px;color:#89576E;padding:9px 16px 6px;font-weight:600;line-height:1.35}
+  .info b{color:#9333EA}
+  .info .say{color:#3B0A2A;font-weight:900}
+  .info .yanlis{color:#E53935;font-weight:900}
+
+  .board{flex:1;position:relative;padding:4px 14px 6px;min-height:0}
+  .grid{display:flex;gap:30px;height:100%}
+  .col{flex:1;display:flex;flex-direction:column;gap:6px;justify-content:space-between;min-width:0}
+  .card{background:#fff;border:1.5px solid #F0C4D8;border-radius:10px;padding:6px 6px;
+    text-align:center;font-size:11px;font-weight:700;color:#3B0A2A;cursor:pointer;flex:1;
+    box-shadow:0 2px 6px rgba(150,40,90,.10);transition:.12s;line-height:1.14;
+    display:flex;align-items:center;justify-content:center;word-break:break-word}
+  .card:active{transform:scale(.97)}
+  .card.sel{border-color:#9333EA;background:#F7ECFE;box-shadow:0 0 0 3px rgba(147,51,234,.18)}
+  .card.matched{cursor:default}
+  .card.wrong{border-color:#E53935;background:#FDECEA;animation:sh .4s}
+
+  svg.lines{position:absolute;inset:4px 14px 6px;pointer-events:none;width:calc(100% - 28px);height:calc(100% - 10px)}
+
+  .promo{background:#9333EA;padding:9px 12px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .promo .badge{font-size:20px}
+  .promo .txt{flex:1;font-size:12px;line-height:1.25;color:#fff}
+  .promo .txt b{color:#FDE68A}
+  .promo .go{background:#FDE68A;color:#3B0A2A;font-weight:900;font-size:12px;padding:8px 12px;
+    border-radius:999px;white-space:nowrap}
+
+  #end{position:absolute;inset:0;background:rgba(255,240,246,.97);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:10}
+  #end.show{display:flex}
+  #end .cup{font-size:54px}
+  #end h2{font-size:23px;font-weight:900;color:#3B0A2A}
+  #end p{font-size:14px;line-height:1.55;color:#6B2349;max-width:330px}
+  #end p b{color:#9333EA}
+  .btn{background:linear-gradient(90deg,#9333EA,#E11D48);color:#fff;border:none;border-radius:16px;
+    padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;width:100%;max-width:320px;
+    box-shadow:0 10px 26px rgba(147,51,234,.4);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .store{font-size:12px;color:#89576E}
+  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+  /* Bölüm geçiş katmanı */
+  #gecis{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;gap:8px;background:rgba(255,240,246,.94);z-index:8}
+  #gecis.show{display:flex;animation:pop .3s}
+  #gecis .ic{font-size:48px}
+  #gecis .b1{font-size:20px;font-weight:900;color:#9333EA}
+  #gecis .b2{font-size:13px;color:#6B2349}
+  @keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bar"><span style="font-size:18px">🃏</span><span class="t">Kart Oyunu V2</span></div>
+
+  <div class="info">Sol <b>terimi</b> sağdaki <b>tanımıyla</b> eşleştir.
+     <b id="bolum" style="color:#9333EA">Bölüm 1/3</b> • Eşleşen: <span class="say" id="say">0/8</span></div>
+
+  <div class="board">
+    <svg class="lines" id="lines"></svg>
+    <div class="grid">
+      <div class="col" id="colL"></div>
+      <div class="col" id="colR"></div>
+    </div>
+
+    <div id="gecis"></div>
+
+    <div id="end">
+      <div class="cup" id="cup">🎉</div>
+      <h2 id="endh">Turu tamamladın!</h2>
+      <p><b>Kart Oyunu V2</b>, KPSS Hazırlık'taki oyunlardan biri. Güncel Bilgiler, konu
+         anlatımları, denemeler ve <b>16.000+ soru</b> — tamamı ücretsiz.</p>
+      <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+      <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+    </div>
+  </div>
+
+  <div class="promo" onclick="installClick()">
+    <span class="badge">📚</span>
+    <div class="txt"><b>KPSS Hazırlık</b> — eşleştir, öğren, sınavı kazan!</div>
+    <span class="go">İNDİR</span>
+  </div>
+</div>
+
+<script>
+var STORE_URL='https://apps.apple.com/tr/app/kpss-haz%C4%B1rl%C4%B1k-soru-bankas%C4%B1/id6792403982?l=tr';
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+var RENKLER=['#2E9E5B','#7C4DFF','#F57C00','#1E88E5','#E91E63','#00897B','#C9A227','#3F51B5'];
+
+/* 3 ZOR BÖLÜM — KPSS seviyesi Tarih + Coğrafya. Basit "en büyük göl" tarzı
+   sorular yok; olay↔yıl ve yer şekli↔il gibi bilgi isteyen çiftler. */
+var BOLUMLER=[
+  // Bölüm 1 — Tarih (olay ↔ yıl)
+  [
+    {sol:'Kavimler Göçü', sag:'375'},
+    {sol:'Talas Savaşı', sag:'751'},
+    {sol:'Pasarofça Antlaşması', sag:'1718'},
+    {sol:'Sened-i İttifak', sag:'1808'},
+    {sol:'Vaka-i Hayriye', sag:'1826'},
+    {sol:'Balta Limanı Antlaşması', sag:'1838'},
+    {sol:'Islahat Fermanı', sag:'1856'},
+    {sol:'I. Meşrutiyet', sag:'1876'}
+  ],
+  // Bölüm 2 — Coğrafya (yer şekli / özellik ↔ il-bölge)
+  [
+    {sol:'Travertenler', sag:'Pamukkale (Denizli)'},
+    {sol:'Peribacaları', sag:'Nevşehir'},
+    {sol:'Obruklar', sag:'Konya'},
+    {sol:'En Büyük Delta Ovası', sag:'Çukurova'},
+    {sol:'En Çok Yağış Alan İl', sag:'Rize'},
+    {sol:'Volkanik Dağ', sag:'Erciyes'},
+    {sol:'Karstik Göl (Salda)', sag:'Burdur'},
+    {sol:'Krom Madeni', sag:'Elazığ'}
+  ],
+  // Bölüm 3 — İnkılap / kurumlar (olay ↔ yıl)
+  [
+    {sol:'Teşkilat-ı Esasiye', sag:'1921'},
+    {sol:'Saltanatın Kaldırılması', sag:'1922'},
+    {sol:'Halifeliğin Kaldırılması', sag:'1924'},
+    {sol:'Aşar Vergisi Kaldırıldı', sag:'1925'},
+    {sol:'Kabotaj Kanunu', sag:'1926'},
+    {sol:'Harf İnkılabı', sag:'1928'},
+    {sol:'Kadınlara Seçme Hakkı', sag:'1934'},
+    {sol:'Çok Partili Hayat', sag:'1946'}
+  ]
+];
+var MAX_YANLIS=3, BOLUM_SAYISI=BOLUMLER.length;
+
+// Fisher-Yates — her bölümde sorular karışık gelir.
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
+
+var colL=document.getElementById('colL'), colR=document.getElementById('colR'), linesSvg=document.getElementById('lines');
+var bolum=0, ciftler=[], selL=null, selR=null, matched=0, yanlis=0, locked=false;
+
+function hud(){
+  document.getElementById('bolum').textContent='Bölüm '+(bolum+1)+'/'+BOLUM_SAYISI;
+  document.getElementById('say').textContent=matched+'/'+ciftler.length;
+}
+function build(col,arr,side){
+  arr.forEach(function(item,idx){
+    var d=document.createElement('div'); d.className='card'; d.textContent=item.text;
+    d.dataset.pid=item.pid; d.onclick=function(){ pick(side,idx,d,item); };
+    col.appendChild(d);
+  });
+}
+
+// Bir bölümü yükle: kartları temizle, karıştırıp yeniden kur.
+function yukleBolum(){
+  ciftler=BOLUMLER[bolum];
+  matched=0; yanlis=0; selL=null; selR=null; locked=false;
+  colL.innerHTML=''; colR.innerHTML=''; linesSvg.innerHTML='';
+  var sol=ciftler.map(function(c,i){return{text:c.sol,pid:i};});
+  var sag=ciftler.map(function(c,i){return{text:c.sag,pid:i};});
+  karistir(sol); karistir(sag); // sol/sağ AYRI karışır — karşılıklı hizalanmaz
+  build(colL,sol,'L'); build(colR,sag,'R');
+  hud();
+}
+yukleBolum();
+
+function pick(side,idx,el,item){
+  if(locked||el.classList.contains('matched')) return;
+  if(side==='L'){ if(selL) selL.el.classList.remove('sel'); selL={el:el,pid:item.pid}; }
+  else { if(selR) selR.el.classList.remove('sel'); selR={el:el,pid:item.pid}; }
+  el.classList.add('sel');
+  if(selL&&selR){ locked=true; setTimeout(kontrol,170); }
+}
+
+function kontrol(){
+  var l=selL, r=selR;
+  if(l.pid===r.pid){
+    var renk=RENKLER[l.pid%RENKLER.length];
+    l.el.classList.remove('sel'); r.el.classList.remove('sel');
+    l.el.classList.add('matched'); r.el.classList.add('matched');
+    boya(l.el,renk); boya(r.el,renk); cizOk(l.el,r.el,renk);
+    matched++; selL=selR=null; locked=false; hud();
+    if(matched>=ciftler.length){ bolumBitti(); }
+  } else {
+    // Yanlış eşleşme: sadece kısa kırmızı uyarı; oyun BİTMEZ, sınırsız denenir.
+    l.el.classList.add('wrong'); r.el.classList.add('wrong');
+    setTimeout(function(){
+      l.el.classList.remove('wrong','sel'); r.el.classList.remove('wrong','sel');
+      selL=selR=null; locked=false;
+    },430);
+  }
+}
+
+// Bir bölüm tamamlandı: son bölümse CTA, değilse SIRADAKİ bölümün kartları gelir.
+function bolumBitti(){
+  if(bolum>=BOLUM_SAYISI-1){ setTimeout(function(){ bitis(true); },500); return; }
+  locked=true;
+  var g=document.getElementById('gecis');
+  g.innerHTML='<div class="ic">✅</div><div class="b1">Bölüm '+(bolum+1)+' tamamlandı!</div>'+
+    '<div class="b2">Sıradaki bölümün kartları geliyor…</div>';
+  setTimeout(function(){ g.classList.add('show'); },420);
+  setTimeout(function(){ g.classList.remove('show'); bolum++; yukleBolum(); },1700);
+}
+
+function bitis(kazandi){
+  setTimeout(function(){
+    if(kazandi){
+      document.getElementById('cup').textContent='🏆';
+      document.getElementById('endh').textContent='3 bölümü de bitirdin!';
+    } else {
+      document.getElementById('cup').textContent='📚';
+      document.getElementById('endh').textContent='Yine de öğrendin!';
+    }
+    document.getElementById('end').classList.add('show');
+  },450);
+}
+
+function boya(el,renk){ el.style.borderColor=renk; el.style.background=hexA(renk,0.16); el.style.boxShadow='none'; }
+
+function cizOk(lEl,rEl,renk){
+  var board=linesSvg.getBoundingClientRect();
+  var a=lEl.getBoundingClientRect(), b=rEl.getBoundingClientRect();
+  var x1=a.right-board.left, y1=a.top-board.top+a.height/2;
+  var x2=b.left-board.left,  y2=b.top-board.top+b.height/2;
+  var ns='http://www.w3.org/2000/svg';
+  var line=document.createElementNS(ns,'line');
+  line.setAttribute('x1',x1);line.setAttribute('y1',y1);line.setAttribute('x2',x2);line.setAttribute('y2',y2);
+  line.setAttribute('stroke',renk);line.setAttribute('stroke-width','2.4');line.setAttribute('stroke-linecap','round');
+  var len=Math.hypot(x2-x1,y2-y1);
+  line.setAttribute('stroke-dasharray',len);line.setAttribute('stroke-dashoffset',len);
+  linesSvg.appendChild(line);
+  var ang=Math.atan2(y2-y1,x2-x1), s=6.5;
+  var poly=document.createElementNS(ns,'polygon');
+  poly.setAttribute('points',x2+','+y2+' '+(x2-s*Math.cos(ang-0.5))+','+(y2-s*Math.sin(ang-0.5))+' '+(x2-s*Math.cos(ang+0.5))+','+(y2-s*Math.sin(ang+0.5)));
+  poly.setAttribute('fill',renk); poly.style.opacity='0'; linesSvg.appendChild(poly);
+  var c1=document.createElementNS(ns,'circle');
+  c1.setAttribute('cx',x1);c1.setAttribute('cy',y1);c1.setAttribute('r','2.6');c1.setAttribute('fill',renk);
+  linesSvg.appendChild(c1);
+  requestAnimationFrame(function(){
+    line.style.transition='stroke-dashoffset .5s ease'; line.setAttribute('stroke-dashoffset','0');
+    setTimeout(function(){poly.style.transition='opacity .2s';poly.style.opacity='1';},400);
+  });
+}
+function hexA(hex,a){var n=parseInt(hex.slice(1),16);return 'rgba('+((n>>16)&255)+','+((n>>8)&255)+','+(n&255)+','+a+')';}
+</script>
+</body>
+</html>

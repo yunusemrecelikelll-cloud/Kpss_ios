@@ -37,16 +37,14 @@ class SubjectPlacementStat {
   bool get isWeak => total > 0 && rate < kWeakSubjectThreshold;
 }
 
-/// Cinsiyete göre teşhis sınavı sonrası genel karşılama başlığı.
-/// home_screen.dart _heroGreetingFor / result_screen.dart motivationMessageFor
-/// ile AYNI hitap deseni (Prensesim/Aslanım), ama burada tek bir konu değil
-/// TÜM sınavın genel sonucu için — bu yüzden ayrı bir fonksiyon.
-String placementHeadlineFor(String gender, String name, int overallRate) {
-  final hitap = gender == 'k' ? 'Prensesim' : (gender == 'e' ? 'Aslanım' : '');
-  final selam = hitap.isEmpty ? name : '$hitap $name';
-  if (overallRate >= 80) return '$selam, harika başlangıç! 🌟 Genel olarak çok iyi durumdasın.';
-  if (overallRate >= 60) return '$selam, gayet iyi gidiyorsun! 💪 Birkaç konuya odaklanman yeterli.';
-  return '$selam, bu senin başlangıç noktan! 🌱 Aşağıdaki dersler senin için harika bir yol haritası.';
+/// Teşhis sınavı sonrası genel karşılama başlığı. Tek bir konu değil TÜM
+/// sınavın genel sonucu için — bu yüzden ayrı bir fonksiyon.
+///
+/// CİNSİYETE GÖRE HİTAP KALDIRILDI (bkz. home_screen.dart'taki aynı not).
+String placementHeadlineFor(String name, int overallRate) {
+  if (overallRate >= 80) return '$name, harika başlangıç! 🌟 Genel olarak çok iyi durumdasın.';
+  if (overallRate >= 60) return '$name, gayet iyi gidiyorsun! 💪 Birkaç konuya odaklanman yeterli.';
+  return '$name, bu senin başlangıç noktan! 🌱 Aşağıdaki dersler senin için harika bir yol haritası.';
 }
 
 /// "Beni Sına" teşhis sınavı bitince gösterilen ders bazlı zayıf/güçlü analiz
@@ -119,11 +117,8 @@ class _PlacementResultScreenState extends State<PlacementResultScreen> {
     final c = context.watch<ThemeProvider>().colors;
     final result = widget.result;
     final stats = _computeStats(subjects, data);
-    final name = storage.getActiveUser().isNotEmpty
-        ? storage.getActiveUser()
-        : (storage.getUserName().isNotEmpty ? storage.getUserName() : 'Aday');
-    final gender = storage.getUserGender();
-    final headline = placementHeadlineFor(gender, name, result.skor);
+    final name = storage.getDisplayName();
+    final headline = placementHeadlineFor(name, result.skor);
     final headlineColor = motivationColorFor(result.skor, c);
 
     return Scaffold(
@@ -232,9 +227,12 @@ class _SubjectStatCard extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
+              // DERS ADI METNİN İÇİNDE: "bu derse çalışman gerekiyor" derken
+              // hangi ders olduğu açıkça yazsın (kullanıcı isteği — başlıktaki
+              // ada bakmak gerekmesin).
               stat.isWeak
-                  ? '📌 Bu konuda çalışman gerekiyor — ama endişelenme, biraz pratikle hızla toparlarsın!'
-                  : '✅ Bu derste gayet iyisin, böyle devam!',
+                  ? '📌 ${stat.subjectAd} dersine çalışman gerekiyor — ama endişelenme, biraz pratikle hızla toparlarsın!'
+                  : '✅ ${stat.subjectAd} dersinde gayet iyisin, böyle devam!',
               style: TextStyle(fontSize: 12.5, color: colors.textDim),
             ),
             if (stat.isWeak) ...[

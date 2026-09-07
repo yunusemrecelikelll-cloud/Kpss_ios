@@ -19,7 +19,7 @@ const String kHizliKararGameId = 'hizli-karar';
 const int kHizliKararSoruSayisi = 15;
 
 /// Her soru için verilen süre (saniye) — "3-5 saniye" isteğine göre 4 sn.
-const int kHizliKararSureSn = 4;
+const int kHizliKararSureSn = 10;
 
 /// Normal 5 şıklı [Question]'dan türetilmiş, 2 şıklı (A/B) hızlı karar
 /// sorusu: doğru şık ile rastgele bir yanlış şık alınır, hangisinin A/B
@@ -99,7 +99,7 @@ class _HizliKararScreenState extends State<HizliKararScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kHizliKararGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kHizliKararGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -209,7 +209,11 @@ class _HizliKararScreenState extends State<HizliKararScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kHizliKararGameId,
+        oyunAdi: 'Hızlı Karar',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Hızlı Karar',
         desc: "Bugünkü ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -223,11 +227,28 @@ class _HizliKararScreenState extends State<HizliKararScreen> {
       );
     }
     if (_finished) {
-      return QuickModeResultCard(
+      final colors = context.watch<ThemeProvider>().colors;
+      final toplam = _queue.length;
+      final isabet = toplam == 0 ? 0 : (_correct * 100 / toplam).round();
+      final basari = _correct >= (kHizliKararSoruSayisi * 0.7);
+      return GameResultScreen(
         title: '⚡ Hızlı Karar',
-        emoji: _correct >= (kHizliKararSoruSayisi * 0.7) ? '🎉' : '📚',
-        message: '$_correct / ${_queue.length} doğru yaptın!',
-        subMessage: 'Refleks + bilgi bir arada ölçüldü. Daha hızlı karar vermeyi dene!',
+        emoji: (toplam > 0 && _correct == toplam)
+            ? '🏆'
+            : (basari ? '🎉' : (isabet >= 40 ? '💪' : '📚')),
+        headline: basari ? 'Refleksin çok iyi!' : 'Tur bitti',
+        message: '$toplam sorudan $_correct tanesini doğru bildin.\n'
+            'Refleks + bilgi bir arada ölçüldü — daha hızlı karar vermeyi dene!',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_correct', label: 'Doğru', color: colors.success),
+          GameResultStat(
+            emoji: '❌',
+            value: '${(toplam - _correct).clamp(0, toplam)}',
+            label: 'Yanlış',
+            color: colors.danger,
+          ),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
         onRetry: _retry,
       );
     }

@@ -117,8 +117,9 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
   late List<TurkeyProvince> _queue;
   TurkeyProvince? _tapped;
   bool _showResult = false;
-  String? _flashWrongId;
   DateTime? _sessionStart;
+  // Bu sorudaki yanlış işaretlenen iller (yanlışlarım bankası + sebep için).
+  final List<TurkeyProvince> _yanlisSecilen = [];
 
   @override
   void initState() {
@@ -155,7 +156,6 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       // sonuç durumunun sızmaması için tur-bazlı alanlar burada da sıfırlanır.
       _showResult = false;
       _tapped = null;
-      _flashWrongId = null;
     });
   }
 
@@ -165,6 +165,8 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
     if (_showResult) return;
     context.read<SoundService>().click();
     if (p.id == _target.id) {
+      // Oyun istatistiği: doğru cevap (bu oyun coğrafya ile ilişkilendirilir).
+      context.read<StorageService>().addGameAnswer(kIliBulGameId, 'cografya', true);
       setState(() {
         _tapped = p;
         _showResult = true;
@@ -173,26 +175,33 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       return;
     }
     _attempts++;
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
+    context.read<StorageService>().addGameAnswer(kIliBulGameId, 'cografya', false);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
       });
     } else {
-      _flashWrong(p.id);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌ Yanlış, tekrar dene! (${kMapMaxAttempts - _attempts} hakkın kaldı)'),
-        duration: const Duration(milliseconds: 1400),
-      ));
+      // Kullanıcı isteği: ilk yanlış işaret 2. seçime kadar KALSIN;
+      // alt uyarı (haritaBekleyenAfis) pendingNotice ile gösterilir.
+      setState(() {});
     }
   }
 
-  /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
-  void _flashWrong(String id) {
-    setState(() => _flashWrongId = id);
-    Future.delayed(const Duration(milliseconds: 550), () {
-      if (mounted && _flashWrongId == id) setState(() => _flashWrongId = null);
-    });
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    haritaYanlisKaydet(
+      context,
+      soru: '"${_target.ad}" ilini haritada bul',
+      dogruId: _target.id,
+      dogruAd: _target.ad,
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kIliBulGameId,
+      modAd: 'İli Bul',
+    );
   }
 
   void _next() {
@@ -206,7 +215,7 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       _tapped = null;
       _showResult = false;
       _attempts = 0;
-      _flashWrongId = null;
+      _yanlisSecilen.clear();
     });
   }
 
@@ -221,7 +230,11 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kMapGameId,
+        oyunAdi: 'Harita Oyunu',
+        onUnlocked: _retry,
+
         title: 'İli Bul',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz harita oyunu hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -230,12 +243,12 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      return MapSessionResult(
+      return MapQuizResult(
         title: '🔎 İli Bul',
-        emoji: _score >= (_queue.length * 0.7) ? '🎉' : '📚',
-        message: '${_queue.length} sorudan $_score tanesini doğru bildin.',
+        modeId: kIliBulGameId,
+        score: _score,
+        total: _queue.length,
         onRetry: _retry,
-        palette: mapModePaletteFor(kIliBulGameId),
       );
     }
     return _buildRound(context);
@@ -243,6 +256,7 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     return MapQuizScaffold(
       title: '🔎 İli Bul',
       promptText: '"${_target.ad}" ilini haritada bul!',
@@ -254,48 +268,38 @@ class _IliBulPlayScreenState extends State<_IliBulPlayScreen> {
         provinces: kTurkeyProvinces,
         colorFor: (p) {
           if (!_showResult) {
-            if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            if (_yanlisSecilen.any((x) => x.id == p.id)) return colors.danger;
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.id == _target.id) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;
-          return colors.violet.withValues(alpha: 0.15);
+          return mapRenk.withValues(alpha: 0.15);
         },
         onTap: _onTapProvince,
       ),
       feedback: _showResult ? _buildFeedback(colors) : null,
+      pendingNotice: (!_showResult && _yanlisSecilen.isNotEmpty)
+          ? haritaBekleyenAfis(context,
+              secilenAd: _yanlisSecilen.last.ad,
+              kalanHak: kMapMaxAttempts - _attempts)
+          : null,
     );
   }
 
   Widget _buildFeedback(KpssColors colors) {
     final correct = _tapped?.id == _target.id;
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct
-                ? '✅ Doğru! Bu il ${_target.ad}.'
-                : '❌ $kMapMaxAttempts hakkını da kullandın. Doğru cevap: ${_target.ad}.',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct
+          ? 'Doğru! Bu il ${_target.ad}.'
+          : 'Doğru cevap: ${_target.ad}.',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(
+              kIliBulGameId, _target.ad, _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

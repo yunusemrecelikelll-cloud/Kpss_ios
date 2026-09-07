@@ -27,8 +27,9 @@ const Map<String, SubjectPalette> kSubjectPalettes = {
   'tarih': SubjectPalette(Color(0xFFF59E0B), Color(0xFF92400E)),
   // Coğrafya — yeşil/deniz mavisi (teal).
   'cografya': SubjectPalette(Color(0xFF34D399), Color(0xFF0D9488)),
-  // Vatandaşlık — koyu mavi/mor (adalet/otorite hissi).
-  'vatandaslik': SubjectPalette(Color(0xFF6366F1), Color(0xFF7C3AED)),
+  // Vatandaşlık — mor/fuşya (matematik'in mavisinden net ayrışsın; otorite +
+  // canlılık). Kullanıcı isteği: renkler birbirinden farklı olsun.
+  'vatandaslik': SubjectPalette(Color(0xFF8B5CF6), Color(0xFFD946EF)),
   // Güncel Bilgiler — kırmızı/altın (haber/manşet hissi).
   'guncel': SubjectPalette(Color(0xFFF43F5E), Color(0xFFFACC15)),
 };
@@ -62,9 +63,12 @@ BoxDecoration subjectCardDecoration({
   required bool isLight,
   double radius = 16,
 }) {
-  final alphaA = isLight ? 0.20 : 0.32;
-  final alphaB = isLight ? 0.10 : 0.16;
-  final borderAlpha = isLight ? 0.35 : 0.45;
+  // Kullanıcı isteği: anasayfadaki kartların renkleri birbirinden AÇIKÇA
+  // ayrışsın. Renkli yıkama (wash) yoğunluğu artırılarak her dersin kendi
+  // palet kimliği (gül, mavi, amber, yeşil, mor, kırmızı) belirginleşir.
+  final alphaA = isLight ? 0.30 : 0.48;
+  final alphaB = isLight ? 0.15 : 0.26;
+  final borderAlpha = isLight ? 0.50 : 0.62;
   return BoxDecoration(
     borderRadius: BorderRadius.circular(radius),
     gradient: LinearGradient(

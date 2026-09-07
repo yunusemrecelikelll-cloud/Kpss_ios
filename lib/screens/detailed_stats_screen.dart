@@ -4,20 +4,28 @@ import 'package:fl_chart/fl_chart.dart';
 import '../models/attempt.dart';
 import '../models/badge.dart';
 import '../models/subject.dart';
+import '../services/sound_service.dart';
+import 'game_stats_screen.dart';
 import '../services/storage_service.dart';
-import '../theme/app_theme.dart';
+import '../theme/design_system.dart';
+import '../theme/subject_colors.dart';
 import '../theme/theme_provider.dart';
 
-/// Anasayfa'da sadece kısa bir stat özeti (genel başarı / çözülen soru / konu
-/// sayısı — bkz. home_screen.dart _StatCard satırı) gösterilir; TÜM diğer
-/// istatistikler (ders/konu bazlı başarı, seri, çalışma süresi, yanlış
-/// bankası, rozet ilerlemesi, deneme geçmişi) buraya taşındı. Profil
-/// ekranındaki "Detaylı İstatistikler →" kartından açılır.
+/// Anasayfa'da yalnızca kısa bir stat özeti + "İstatistik" kısayolu gösterilir;
+/// TÜM ayrıntılı istatistikler (ders/konu bazlı başarı, seri, çalışma süresi,
+/// yanlış bankası, rozet ilerlemesi, deneme geçmişi) buradadır. Profil ya da
+/// anasayfadaki "İstatistik" kartından açılır.
 ///
-/// Tamamen StorageService'teki GERÇEK veriden üretilir, hiçbir yer tutucu
-/// (placeholder) sayı içermez.
+/// Tamamen StorageService'teki GERÇEK veriden üretilir, hiçbir yer tutucu sayı
+/// içermez. Tasarım: tasarım sistemine (DsCard) taşındı; grafikler renkli
+/// gradyan çubuklarla ve performansa göre renklenen barlarla canlandırıldı
+/// (kullanıcı isteği: "premium tema + daha canlı grafikler + redesign").
 class DetailedStatsScreen extends StatelessWidget {
   const DetailedStatsScreen({super.key});
+
+  /// Başarı yüzdesine göre canlı renk (yeşil/sarı/kırmızı).
+  static Color _perfColor(int avg, dynamic c) =>
+      avg >= 70 ? c.success : (avg >= 45 ? c.warn : c.danger);
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +42,16 @@ class DetailedStatsScreen extends StatelessWidget {
     final studyTimeBySubject = storage.getStudyTime();
     final attempts = storage.getAttempts()..sort((a, b) => b.tarih.compareTo(a.tarih));
 
-    // Ders bazlı ortalama başarı (sadece en az bir denemesi olan dersler).
+    // Ders bazlı ortalama başarı (sadece en az bir denemesi olan dersler),
+    // en yüksekten düşüğe sıralı (grafik ve liste okunur olsun).
     final subjectAverages = <({String id, String label, String icon, int avg})>[];
     for (final meta in kSubjects) {
       final avg = storage.computeSubjectAvg(meta.id);
-      if (avg != null) subjectAverages.add((id: meta.id, label: meta.ad, icon: meta.icon, avg: avg));
+      if (avg != null) {
+        subjectAverages.add((id: meta.id, label: meta.ad, icon: meta.icon, avg: avg));
+      }
     }
+    subjectAverages.sort((a, b) => b.avg.compareTo(a.avg));
 
     return Scaffold(
       appBar: AppBar(title: const Text('📊 Detaylı İstatistikler')),
@@ -47,48 +59,109 @@ class DetailedStatsScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // ── Üst özet (premium hero): genel başarı göstergesi ─────────────
+            _HeroOzet(
+              rate: overall.rate,
+              solved: overall.solved,
+              tests: overall.tests,
+              correct: overall.correct,
+            ),
+            const SizedBox(height: kDsGap),
+            // ── Oyun İstatistikleri kısayolu (kullanıcı isteği) ──────────────
+            DsCard(
+              accent: c.gold,
+              onTap: () {
+                context.read<SoundService>().click();
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const GameStatsScreen()));
+              },
+              child: Row(
+                children: [
+                  DsIconBadge(emoji: '🎮', color: c.gold, size: 44),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('Oyun İstatistikleri',
+                            style: TextStyle(
+                                fontSize: 14.5,
+                                fontWeight: FontWeight.w900,
+                                color: c.text)),
+                        const SizedBox(height: 2),
+                        Text(
+                            'Oyunlardaki doğru/yanlışlara göre hangi ders iyi, hangisi zayıf',
+                            style: TextStyle(fontSize: 12, color: c.textDim)),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.chevron_right, color: c.textDim),
+                ],
+              ),
+            ),
+            const SizedBox(height: kDsGap),
+            // ── Mini stat ızgarası ───────────────────────────────────────────
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 1.7,
+              mainAxisSpacing: kDsGap,
+              crossAxisSpacing: kDsGap,
+              childAspectRatio: 2.1,
               children: [
-                _MiniStat(label: 'Toplam Test', value: '${overall.tests}', icon: '📝', colors: c),
-                _MiniStat(label: 'Çözülen Soru', value: '${overall.solved}', icon: '🎯', colors: c),
-                _MiniStat(label: 'Şu Anki Seri', value: '$streakCount gün', icon: '🔥', colors: c),
-                _MiniStat(label: 'En Uzun Maraton', value: '$bestMarathon soru', icon: '🏃', colors: c),
-                _MiniStat(label: 'Toplam Çalışma', value: _fmtStudy(totalStudySeconds), icon: '⏱️', colors: c),
-                _MiniStat(label: 'Yanlışlar Bankası', value: '$wrongCount soru', icon: '❌', colors: c),
+                _MiniStat(label: 'Toplam Test', value: '${overall.tests}', emoji: '📝', renk: c.violet),
+                _MiniStat(label: 'Çözülen Soru', value: '${overall.solved}', emoji: '🎯', renk: c.mint),
+                _MiniStat(label: 'Şu Anki Seri', value: '$streakCount gün', emoji: '🔥', renk: c.rose),
+                _MiniStat(label: 'En Uzun Maraton', value: '$bestMarathon soru', emoji: '🏃', renk: c.gold),
+                _MiniStat(label: 'Toplam Çalışma', value: _fmtStudy(totalStudySeconds), emoji: '⏱️', renk: c.violetL),
+                _MiniStat(label: 'Yanlışlar', value: '$wrongCount soru', emoji: '❌', renk: c.danger),
               ],
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: kDsGap),
+            // ── Ders bazlı başarı grafiği (renkli gradyan çubuklar) ──────────
             _SectionCard(
-              colors: c,
               title: '📈 Ders Bazlı Başarı Oranı',
+              accent: c.violet,
               child: subjectAverages.isEmpty
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(
-                        'Henüz yeterli veri yok. Birkaç test çöz, grafik burada oluşsun.',
-                        style: TextStyle(fontSize: 12.5, color: c.textFaint),
-                      ),
-                    )
+                  ? _bosVeri(c, 'Henüz yeterli veri yok. Birkaç test çöz, grafik burada oluşsun.')
                   : SizedBox(
                       height: 220,
                       child: BarChart(
                         BarChartData(
                           maxY: 100,
                           alignment: BarChartAlignment.spaceAround,
-                          barTouchData: BarTouchData(enabled: false),
-                          gridData: const FlGridData(show: true, drawVerticalLine: false),
+                          barTouchData: BarTouchData(
+                            enabled: true,
+                            touchTooltipData: BarTouchTooltipData(
+                              getTooltipColor: (_) => c.bg3,
+                              getTooltipItem: (group, gi, rod, ri) => BarTooltipItem(
+                                '%${rod.toY.round()}',
+                                TextStyle(
+                                    color: c.text,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 12),
+                              ),
+                            ),
+                          ),
+                          gridData: FlGridData(
+                            show: true,
+                            drawVerticalLine: false,
+                            getDrawingHorizontalLine: (v) =>
+                                FlLine(color: c.border, strokeWidth: 1),
+                          ),
                           borderData: FlBorderData(show: false),
                           titlesData: FlTitlesData(
                             topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
                             rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                            leftTitles: const AxisTitles(
-                              sideTitles: SideTitles(showTitles: true, reservedSize: 32, interval: 25),
+                            leftTitles: AxisTitles(
+                              sideTitles: SideTitles(
+                                showTitles: true,
+                                reservedSize: 30,
+                                interval: 25,
+                                getTitlesWidget: (v, m) => Text('${v.toInt()}',
+                                    style: TextStyle(fontSize: 9, color: c.textFaint)),
+                              ),
                             ),
                             bottomTitles: AxisTitles(
                               sideTitles: SideTitles(
@@ -96,12 +169,15 @@ class DetailedStatsScreen extends StatelessWidget {
                                 reservedSize: 42,
                                 getTitlesWidget: (value, meta) {
                                   final i = value.toInt();
-                                  if (i < 0 || i >= subjectAverages.length) return const SizedBox.shrink();
+                                  if (i < 0 || i >= subjectAverages.length) {
+                                    return const SizedBox.shrink();
+                                  }
                                   final label = subjectAverages[i].label;
                                   final short = label.length > 6 ? label.substring(0, 6) : label;
                                   return Padding(
                                     padding: const EdgeInsets.only(top: 6),
-                                    child: Text(short, style: const TextStyle(fontSize: 9)),
+                                    child: Text(short,
+                                        style: TextStyle(fontSize: 9, color: c.textDim)),
                                   );
                                 },
                               ),
@@ -112,9 +188,26 @@ class DetailedStatsScreen extends StatelessWidget {
                               BarChartGroupData(x: i, barRods: [
                                 BarChartRodData(
                                   toY: subjectAverages[i].avg.toDouble(),
-                                  color: c.violet,
                                   width: 20,
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(6)),
+                                  // Her ders kendi renk paletinden gradyanla —
+                                  // tek renk yerine canlı, ayırt edilebilir.
+                                  gradient: LinearGradient(
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      subjectPaletteFor(subjectAverages[i].id)
+                                          .a
+                                          .withValues(alpha: 0.55),
+                                      subjectPaletteFor(subjectAverages[i].id).b,
+                                    ],
+                                  ),
+                                  backDrawRodData: BackgroundBarChartRodData(
+                                    show: true,
+                                    toY: 100,
+                                    color: c.glass2,
+                                  ),
                                 ),
                               ]),
                           ],
@@ -122,12 +215,13 @@ class DetailedStatsScreen extends StatelessWidget {
                       ),
                     ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: kDsGap),
+            // ── Ders bazlı ayrıntı (performansa göre renkli barlar) ──────────
             _SectionCard(
-              colors: c,
               title: '📚 Ders Bazlı Ayrıntı',
+              accent: c.mint,
               child: subjectAverages.isEmpty
-                  ? Text('Henüz veri yok.', style: TextStyle(fontSize: 12.5, color: c.textFaint))
+                  ? _bosVeri(c, 'Henüz veri yok.')
                   : Column(
                       children: [
                         for (var i = 0; i < subjectAverages.length; i++) ...[
@@ -136,18 +230,22 @@ class DetailedStatsScreen extends StatelessWidget {
                             label: subjectAverages[i].label,
                             avg: subjectAverages[i].avg,
                             studySeconds: studyTimeBySubject[subjectAverages[i].id] ?? 0,
-                            testCount: attempts.where((a) => a.subjectId == subjectAverages[i].id).length,
-                            colors: c,
+                            testCount: attempts
+                                .where((a) => a.subjectId == subjectAverages[i].id)
+                                .length,
+                            renk: _perfColor(subjectAverages[i].avg, c),
                           ),
-                          if (i < subjectAverages.length - 1) const Divider(height: 18),
+                          if (i < subjectAverages.length - 1)
+                            Divider(height: 18, color: c.border),
                         ],
                       ],
                     ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: kDsGap),
+            // ── Rozet ilerlemesi (altın gradyan) ─────────────────────────────
             _SectionCard(
-              colors: c,
               title: '🏅 Rozet İlerlemesi',
+              accent: c.gold,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -155,36 +253,39 @@ class DetailedStatsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('${unlockedBadges.length} / ${kBadgeDefs.length} rozet açıldı',
-                          style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 13, color: c.text)),
                       Text(
                         '%${kBadgeDefs.isEmpty ? 0 : ((unlockedBadges.length / kBadgeDefs.length) * 100).round()}',
-                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 13, color: c.gold),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 14, color: c.gold),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: LinearProgressIndicator(
-                      value: kBadgeDefs.isEmpty ? 0 : unlockedBadges.length / kBadgeDefs.length,
-                      minHeight: 8,
-                      color: c.gold,
-                    ),
+                  const SizedBox(height: 10),
+                  DsProgressBar(
+                    value: kBadgeDefs.isEmpty
+                        ? 0
+                        : unlockedBadges.length / kBadgeDefs.length,
+                    color: c.gold,
+                    height: 9,
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: kDsGap),
+            // ── Son denemeler ────────────────────────────────────────────────
             _SectionCard(
-              colors: c,
               title: '🕓 Son Denemeler',
+              accent: c.rose,
               child: attempts.isEmpty
-                  ? Text('Henüz test çözmedin.', style: TextStyle(fontSize: 12.5, color: c.textFaint))
+                  ? _bosVeri(c, 'Henüz test çözmedin.')
                   : Column(
                       children: [
                         for (var i = 0; i < attempts.length && i < 10; i++) ...[
-                          _AttemptRow(attempt: attempts[i], colors: c),
-                          if (i < attempts.length - 1 && i < 9) const Divider(height: 16),
+                          _AttemptRow(attempt: attempts[i]),
+                          if (i < attempts.length - 1 && i < 9)
+                            Divider(height: 16, color: c.border),
                         ],
                       ],
                     ),
@@ -194,10 +295,14 @@ class DetailedStatsScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _bosVeri(dynamic c, String metin) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Text(metin, style: TextStyle(fontSize: 12.5, height: 1.4, color: c.textFaint)),
+      );
 }
 
 /// Saniyeyi "1sa 20dk" / "45dk" gibi kısa okunur bir süreye çevirir.
-/// (home_screen.dart'taki _fmtStudyShort ile aynı mantık.)
 String _fmtStudy(int seconds) {
   final minutes = seconds ~/ 60;
   if (minutes < 1) return '0dk';
@@ -205,26 +310,133 @@ String _fmtStudy(int seconds) {
   return h > 0 ? '${h}sa ${m}dk' : '${m}dk';
 }
 
-class _MiniStat extends StatelessWidget {
-  final String label, value, icon;
-  final KpssColors colors;
-  const _MiniStat({required this.label, required this.value, required this.icon, required this.colors});
+/// Üstteki premium özet: gradyan zemin + genel başarı halkası ve üç anahtar
+/// sayı. Ekrana "detaylı analiz" hissi veren giriş kartı.
+class _HeroOzet extends StatelessWidget {
+  final int rate, solved, tests, correct;
+  const _HeroOzet({
+    required this.rate,
+    required this.solved,
+    required this.tests,
+    required this.correct,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(icon, style: const TextStyle(fontSize: 16)),
-            const SizedBox(height: 4),
-            Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900)),
-            Text(label, style: TextStyle(fontSize: 10.5, color: colors.textFaint)),
+    final c = context.watch<ThemeProvider>().colors;
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kDsRadius),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            c.violet.withValues(alpha: c.isLight ? 0.16 : 0.28),
+            c.rose.withValues(alpha: c.isLight ? 0.10 : 0.18),
           ],
         ),
+        border: Border.all(color: c.violet.withValues(alpha: 0.35)),
+      ),
+      child: Row(
+        children: [
+          // Başarı halkası
+          SizedBox(
+            width: 84,
+            height: 84,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox.expand(
+                  child: CircularProgressIndicator(
+                    value: (rate / 100).clamp(0.0, 1.0),
+                    strokeWidth: 8,
+                    strokeCap: StrokeCap.round,
+                    backgroundColor: c.glass2,
+                    valueColor: AlwaysStoppedAnimation<Color>(c.violetL),
+                  ),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('%$rate',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w900, color: c.text)),
+                    Text('başarı',
+                        style: TextStyle(fontSize: 9.5, color: c.textFaint)),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 18),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Genel Başarın',
+                    style: TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
+                const SizedBox(height: 8),
+                _satir(c, '🎯', '$correct / $solved doğru'),
+                const SizedBox(height: 4),
+                _satir(c, '📝', '$tests test çözüldü'),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _satir(dynamic c, String emoji, String metin) => Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 13)),
+          const SizedBox(width: 6),
+          Text(metin, style: TextStyle(fontSize: 12.5, color: c.textDim)),
+        ],
+      );
+}
+
+class _MiniStat extends StatelessWidget {
+  final String label, value, emoji;
+  final Color renk;
+  const _MiniStat({
+    required this.label,
+    required this.value,
+    required this.emoji,
+    required this.renk,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      accent: renk,
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+      child: Row(
+        children: [
+          DsIconBadge(emoji: emoji, color: renk, size: 34, glow: false),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(value,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: c.text)),
+                Text(label,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 10.5, color: c.textFaint)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -233,22 +445,23 @@ class _MiniStat extends StatelessWidget {
 class _SectionCard extends StatelessWidget {
   final String title;
   final Widget child;
-  final KpssColors colors;
-  const _SectionCard({required this.title, required this.child, required this.colors});
+  final Color accent;
+  const _SectionCard({required this.title, required this.child, required this.accent});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14.5)),
-            const SizedBox(height: 12),
-            child,
-          ],
-        ),
+    final c = context.watch<ThemeProvider>().colors;
+    return DsCard(
+      accent: accent,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title,
+              style: TextStyle(
+                  fontWeight: FontWeight.w900, fontSize: 14.5, color: c.text)),
+          const SizedBox(height: 12),
+          child,
+        ],
       ),
     );
   }
@@ -259,18 +472,19 @@ class _SubjectDetailRow extends StatelessWidget {
   final int avg;
   final int studySeconds;
   final int testCount;
-  final KpssColors colors;
+  final Color renk;
   const _SubjectDetailRow({
     required this.icon,
     required this.label,
     required this.avg,
     required this.studySeconds,
     required this.testCount,
-    required this.colors,
+    required this.renk,
   });
 
   @override
   Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
     return Row(
       children: [
         Text(icon, style: const TextStyle(fontSize: 18)),
@@ -279,22 +493,31 @@ class _SubjectDetailRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(label, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13)),
-              const SizedBox(height: 4),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: LinearProgressIndicator(value: avg / 100, minHeight: 6),
-              ),
+              Text(label,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 13, color: c.text)),
+              const SizedBox(height: 5),
+              DsProgressBar(value: (avg / 100).clamp(0.0, 1.0), color: renk),
               const SizedBox(height: 4),
               Text(
                 '$testCount test · ${_fmtStudy(studySeconds)} çalışma',
-                style: TextStyle(fontSize: 10.5, color: colors.textFaint),
+                style: TextStyle(fontSize: 10.5, color: c.textFaint),
               ),
             ],
           ),
         ),
         const SizedBox(width: 10),
-        Text('%$avg', style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14)),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(999),
+            color: renk.withValues(alpha: 0.16),
+            border: Border.all(color: renk.withValues(alpha: 0.4)),
+          ),
+          child: Text('%$avg',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900, fontSize: 13, color: c.text)),
+        ),
       ],
     );
   }
@@ -302,13 +525,16 @@ class _SubjectDetailRow extends StatelessWidget {
 
 class _AttemptRow extends StatelessWidget {
   final Attempt attempt;
-  final KpssColors colors;
-  const _AttemptRow({required this.attempt, required this.colors});
+  const _AttemptRow({required this.attempt});
 
-  String _fmtDate(DateTime d) => '${d.day.toString().padLeft(2, '0')}.${d.month.toString().padLeft(2, '0')}.${d.year}';
+  String _fmtDate(DateTime d) =>
+      '${d.day.toString().padLeft(2, '0')}.${d.month.toString().padLeft(2, '0')}.${d.year}';
 
   @override
   Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    final iyi = attempt.skor >= 70;
+    final renk = iyi ? c.success : c.warn;
     return Row(
       children: [
         Expanded(
@@ -316,32 +542,31 @@ class _AttemptRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(attempt.topicBaslik,
-                  style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12.5),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700, fontSize: 12.5, color: c.text),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis),
               const SizedBox(height: 2),
               Text(
                 '${attempt.subjectAd} · ${_fmtDate(attempt.tarih)} · ${attempt.dogru}/${attempt.toplam} doğru',
-                style: TextStyle(fontSize: 10.5, color: colors.textFaint),
+                style: TextStyle(fontSize: 10.5, color: c.textFaint),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),
         ),
         const SizedBox(width: 8),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
           decoration: BoxDecoration(
-            color: (attempt.skor >= 70 ? colors.success : colors.warn).withValues(alpha: 0.16),
-            borderRadius: BorderRadius.circular(8),
+            color: renk.withValues(alpha: 0.16),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(color: renk.withValues(alpha: 0.4)),
           ),
-          child: Text(
-            '%${attempt.skor}',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-              fontSize: 12,
-              color: attempt.skor >= 70 ? colors.success : colors.warn,
-            ),
-          ),
+          child: Text('%${attempt.skor}',
+              style: TextStyle(
+                  fontWeight: FontWeight.w900, fontSize: 12, color: renk)),
         ),
       ],
     );

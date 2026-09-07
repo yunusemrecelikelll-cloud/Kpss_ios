@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import '../firebase_bootstrap.dart';
 import 'storage_service.dart';
 
-/// "Özel Lig" ligi/kademesi — kullanıcının bu haftaki lig puanına göre
-/// diğer kullanıcılara kıyasla bulunduğu kademe.
+/// Lig kademesi — kullanıcının bu haftaki lig puanına göre diğer kullanıcılara
+/// kıyasla bulunduğu kademe.
 enum LeagueTier { bronz, gumus, altin, platin, elmas, efsane }
 
 extension LeagueTierLabel on LeagueTier {
@@ -27,6 +27,40 @@ extension LeagueTierLabel on LeagueTier {
         LeagueTier.elmas => '💎',
         LeagueTier.efsane => '👑',
       };
+
+  /// Bu kademeye girmek için gereken ALT PUAN sınırı (dahil). TEK KAYNAK:
+  /// hem kademe ataması ([tierForPoints]) hem ekranda gösterilen aralık bundan
+  /// türetilir; böylece "puanım X ama farklı ligdeyim" tutarsızlığı olmaz.
+  int get minPoints => switch (this) {
+        LeagueTier.bronz => 0,
+        LeagueTier.gumus => 200,
+        LeagueTier.altin => 400,
+        LeagueTier.platin => 600,
+        LeagueTier.elmas => 800,
+        LeagueTier.efsane => 1000,
+      };
+
+  /// Ekranda gösterilen haftalık puan aralığı (kademenin üstünde yazar).
+  String get pointRange => switch (this) {
+        LeagueTier.bronz => '0–199 puan',
+        LeagueTier.gumus => '200–399 puan',
+        LeagueTier.altin => '400–599 puan',
+        LeagueTier.platin => '600–799 puan',
+        LeagueTier.elmas => '800–999 puan',
+        LeagueTier.efsane => '1000+ puan',
+      };
+}
+
+/// Haftalık lig PUANINA göre (MUTLAK, yüzdelik değil) kademe. Efsane 1000+;
+/// her kademe 200 puan aralığında. Kullanıcı isteği: puan hangi kademedeyse
+/// ekranda o kademe yazsın. Tek eşleme kaynağı burasıdır.
+LeagueTier tierForPoints(int points) {
+  if (points >= 1000) return LeagueTier.efsane;
+  if (points >= 800) return LeagueTier.elmas;
+  if (points >= 600) return LeagueTier.platin;
+  if (points >= 400) return LeagueTier.altin;
+  if (points >= 200) return LeagueTier.gumus;
+  return LeagueTier.bronz;
 }
 
 /// Gerçek zamanlı Firestore skorlarına göre hesaplanan lig sonucu.
@@ -40,12 +74,36 @@ class LeagueResult {
   /// Bu haftaki (Pazartesi'den bugüne) lig puanı — bkz. StorageService.getWeeklyPoints.
   final int myWeeklyPoints;
 
+  /// Kullanıcının bu haftaki genel SIRA numarası (1 = birinci). Kendisinden
+  /// daha yüksek puanlı katılımcı sayısı + 1. (Anasayfa lig widget'ında
+  /// "X. sıra" olarak gösterilir.)
+  final int myRank;
+
+  /// Her kademede bu hafta kaç kişi yer aldığı (kullanıcı isteği: "lig başına
+  /// kişi sayısı görünsün"). Her katılımcının puanı kendi yüzdelik dilimine,
+  /// o da bir kademeye eşlenip sayılır. Boş harita olabilir (offline).
+  final Map<LeagueTier, int> tierCounts;
+
+  /// Bu haftanın BİRİNCİSİ — en yüksek lig puanına sahip kullanıcının adı ve
+  /// puanı (kullanıcı isteği: "ligde 1. olan kişinin ismi lig bölümünün üstünde
+  /// 'haftanın birincisi' gibi yazsın"). Katılımcı yoksa/offline ise null.
+  final String? leaderName;
+  final int leaderPoints;
+
+  /// Birinci BEN miyim? (vitrinde "sensin!" vurgusu için.)
+  final bool leaderIsMe;
+
   const LeagueResult({
     required this.tier,
     required this.percentile,
     required this.totalParticipants,
     required this.myRate,
     required this.myWeeklyPoints,
+    this.myRank = 1,
+    this.tierCounts = const {},
+    this.leaderName,
+    this.leaderPoints = 0,
+    this.leaderIsMe = false,
   });
 }
 
@@ -79,8 +137,14 @@ class PublicUserProfile {
   });
 }
 
-/// Firestore'daki gerçek kullanıcı skorlarına göre "Özel Lig" yüzdelik
-/// dilimini hesaplayan servis.
+/// Firestore'daki gerçek kullanıcı skorlarına göre Lig yüzdelik dilimini
+/// hesaplayan servis.
+///
+/// GİZLİ İSTATİSTİK — KATILIM: Kullanıcı "İstatistiklerimi Gizle"yi açsa bile
+/// lige DAHİL olur (skoru [publishMyScore] ile yayınlanır ve karşılaştırmaya
+/// katılır). `hideStats` yalnızca BAŞKALARININ profil ekranında istatistik
+/// görünürlüğünü etkiler; lig sıralamasındaki VARLIĞINI değil (kullanıcı
+/// isteği: "gizli tutsa da lige katılsın").
 ///
 /// Firebase yapılandırılmamışsa, kullanıcı giriş yapmamışsa ya da ağ
 /// hatası/offline durum varsa [computeMyLeagueTier] `null` döner — hiçbir
@@ -194,38 +258,65 @@ class LeagueService {
           .map((d) => (d.data()['weeklyPoints'] as num?)?.toInt() ?? 0)
           .toList();
 
+      // Haftanın birincisi: en yüksek lig puanlı doküman (0 puanlılar da olsa
+      // en tepedeki alınır; hepsi 0 ise yine ilk sıradaki gösterilir).
+      String? leaderName;
+      int leaderPoints = 0;
+      bool leaderIsMe = false;
+      for (final d in snap.docs) {
+        final p = (d.data()['weeklyPoints'] as num?)?.toInt() ?? 0;
+        if (leaderName == null || p > leaderPoints) {
+          leaderPoints = p;
+          final ad = (d.data()['displayName'] as String?)?.trim();
+          leaderName = (ad == null || ad.isEmpty) ? 'Bir aday' : ad;
+          leaderIsMe = d.id == uid;
+        }
+      }
+
       if (points.isEmpty) {
         return LeagueResult(
-          tier: _tierFor(0),
+          tier: tierForPoints(myPoints),
           percentile: 0,
           totalParticipants: 1,
           myRate: myOverall.rate,
           myWeeklyPoints: myPoints,
+          myRank: 1,
+          tierCounts: {tierForPoints(myPoints): 1},
+          leaderName: leaderName,
+          leaderPoints: leaderPoints,
+          leaderIsMe: leaderIsMe,
         );
       }
 
       final below = points.where((p) => p < myPoints).length;
       final percentile = (below / points.length) * 100;
+      // SIRA numarası: benden daha yüksek puanlı kaç kişi var + 1.
+      final myRank = points.where((p) => p > myPoints).length + 1;
+
+      // Kademe dağılımı MUTLAK puana göre: her katılımcının puanı doğrudan bir
+      // kademeye eşlenir. Böylece "her ligde kaç kişi var" doğru sayılır ve
+      // ekrandaki puan aralıklarıyla tam tutarlı olur.
+      final tierCounts = {for (final t in LeagueTier.values) t: 0};
+      for (final p in points) {
+        final t = tierForPoints(p);
+        tierCounts[t] = tierCounts[t]! + 1;
+      }
 
       return LeagueResult(
-        tier: _tierFor(percentile),
+        tier: tierForPoints(myPoints),
         percentile: percentile,
         totalParticipants: points.length,
         myRate: myOverall.rate,
         myWeeklyPoints: myPoints,
+        myRank: myRank,
+        tierCounts: tierCounts,
+        leaderName: leaderName,
+        leaderPoints: leaderPoints,
+        leaderIsMe: leaderIsMe,
       );
     } catch (e) {
       debugPrint('LeagueService.computeMyLeagueTier başarısız (offline olabilir): $e');
       return null;
     }
-  }
-
-  LeagueTier _tierFor(double percentile) {
-    if (percentile >= 95) return LeagueTier.efsane;
-    if (percentile >= 85) return LeagueTier.elmas;
-    if (percentile >= 70) return LeagueTier.platin;
-    if (percentile >= 50) return LeagueTier.altin;
-    if (percentile >= 25) return LeagueTier.gumus;
-    return LeagueTier.bronz;
   }
 }

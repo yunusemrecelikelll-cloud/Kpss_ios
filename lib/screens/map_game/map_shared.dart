@@ -7,6 +7,9 @@ import '../../services/storage_service.dart';
 import '../../theme/subject_colors.dart';
 import '../../theme/theme_provider.dart';
 import '../../widgets/turkey_map_painter.dart';
+// Sonuç ekranı TÜM oyunlarda ortak olsun diye Hızlı Modlar'daki
+// [GameResultScreen] burada da kullanılır (tek tasarım dili, tek yer).
+import '../quick_modes/quick_modes_shared.dart';
 import '../tools_hub_screen.dart';
 
 /// Harita Oyunu — JS karşılığı yok (yeni Flutter-özel oyun), diğer oyunlarla
@@ -38,6 +41,528 @@ const Map<String, Color> kRegionColors = {
 };
 
 Color regionColor(String bolge) => kRegionColors[bolge] ?? Colors.grey;
+
+/// Yanlış dokunuşta ALT TARAFTA çıkan yeniden tasarlanmış afiş (kullanıcı
+/// isteği). "Kalan hak: N" biçiminde bilgi verir; kırmızı aksanlı, ikonlu.
+void haritaYanlisAfis(BuildContext context, int kalanHak) {
+  final c = context.read<ThemeProvider>().colors;
+  final m = ScaffoldMessenger.of(context);
+  m.clearSnackBars();
+  m.showSnackBar(SnackBar(
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    duration: const Duration(milliseconds: 1500),
+    content: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color.alphaBlend(c.danger.withValues(alpha: 0.22), c.bg2),
+            c.bg2,
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: c.danger.withValues(alpha: 0.55)),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.black.withValues(alpha: 0.28),
+              blurRadius: 16,
+              offset: const Offset(0, 6)),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 34,
+            height: 34,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: c.danger.withValues(alpha: 0.18),
+                shape: BoxShape.circle),
+            child: const Text('❌', style: TextStyle(fontSize: 16)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Yanlış! Tekrar dene.',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 13.5,
+                        color: c.text)),
+                const SizedBox(height: 2),
+                Text('Kalan hak: $kalanHak',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                        color: c.danger)),
+              ],
+            ),
+          ),
+          // Kalan hakları nokta olarak da göster.
+          Row(
+            children: [
+              for (var i = 0; i < kMapMaxAttempts; i++)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: Icon(
+                    i < kalanHak ? Icons.favorite : Icons.favorite_border,
+                    size: 15,
+                    color: c.danger,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  ));
+}
+
+/// İl adının Türkçe BELİRTME HÂLİ (ör. Ankara→"Ankara'yı", İzmir→"İzmir'i",
+/// İstanbul→"İstanbul'u"). Ünlü uyumuna göre ek seçilir; ünlüyle biten adlara
+/// kaynaştırma 'y'si eklenir. "Ankara'yı seçtin" gibi doğal cümle için.
+String haritaBelirtmeHali(String ad) {
+  const unluler = 'aeıioöuü';
+  final kucuk = ad.toLowerCase();
+  String sonUnlu = '';
+  for (var i = kucuk.length - 1; i >= 0; i--) {
+    if (unluler.contains(kucuk[i])) {
+      sonUnlu = kucuk[i];
+      break;
+    }
+  }
+  final String ek;
+  if ('aı'.contains(sonUnlu)) {
+    ek = 'ı';
+  } else if ('ei'.contains(sonUnlu)) {
+    ek = 'i';
+  } else if ('ou'.contains(sonUnlu)) {
+    ek = 'u';
+  } else if ('öü'.contains(sonUnlu)) {
+    ek = 'ü';
+  } else {
+    ek = 'ı';
+  }
+  final sonHarf = kucuk.isNotEmpty ? kucuk[kucuk.length - 1] : '';
+  final y = unluler.contains(sonHarf) ? 'y' : '';
+  return "$ad'$y$ek";
+}
+
+/// İlk yanlış seçimden sonra 2. seçim yapılana kadar ALT TARAFTA KALICI duran
+/// uyarı (kullanıcı isteği: "Ankara'yı seçtin. Emin misin?"). Seçilen ili ve
+/// kalan hakkı gösterir — snackbar DEĞİL, ekranda kalan bir karttır; böylece
+/// ilk yanlış işaret 2. cevaba kadar kaybolmaz.
+Widget haritaBekleyenAfis(BuildContext context,
+    {required String secilenAd, required int kalanHak}) {
+  final c = context.watch<ThemeProvider>().colors;
+  return Container(
+    width: double.infinity,
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(colors: [
+        Color.alphaBlend(c.warn.withValues(alpha: 0.22), c.bg2),
+        c.bg2,
+      ]),
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: c.warn.withValues(alpha: 0.60)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black.withValues(alpha: 0.28),
+            blurRadius: 16,
+            offset: const Offset(0, 6)),
+      ],
+    ),
+    child: Row(
+      children: [
+        Container(
+          width: 34,
+          height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: c.warn.withValues(alpha: 0.18), shape: BoxShape.circle),
+          child: const Text('🤔', style: TextStyle(fontSize: 16)),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('${haritaBelirtmeHali(secilenAd)} seçtin. Emin misin?',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.5,
+                      color: c.text)),
+              const SizedBox(height: 2),
+              Text('Yanlış işaretledin — son hakkını dikkatli kullan.',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: c.warn)),
+            ],
+          ),
+        ),
+        Row(
+          children: [
+            for (var i = 0; i < kMapMaxAttempts; i++)
+              Padding(
+                padding: const EdgeInsets.only(left: 4),
+                child: Icon(
+                  i < kalanHak ? Icons.favorite : Icons.favorite_border,
+                  size: 15,
+                  color: c.danger,
+                ),
+              ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+/// Yanlış işaretlemenin OLASI SEBEBİNİ açıklayan metin (kullanıcı isteği:
+/// "büyük ihtimalle şu sebepten bu illeri seçtin"). Mod ve seçilen yanlış
+/// illere göre biçimlenir.
+String haritaYanlisSebebi(
+    String modId, String dogruAd, List<String> secilenAdlar) {
+  final secilen = secilenAdlar.isEmpty
+      ? ''
+      : (secilenAdlar.length == 1
+          ? '${secilenAdlar.first} ilini'
+          : '${secilenAdlar.join(", ")} illerini');
+  switch (modId) {
+    case kIliBulGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; büyük ihtimalle bu '
+          'illerin haritadaki konumunu $dogruAd ile karıştırdın.';
+    case kBolgeBulGameId:
+      return 'Doğru cevap $dogruAd. $secilen seçtin; bu iller sorulan bölgeye '
+          'değil, başka bir coğrafi bölgeye ait olduğu için yanıldın.';
+    case kKomsuIlGameId:
+      return '$secilen seçtin; ama bu iller sorudaki ile SINIR KOMŞUSU değil. '
+          'Komşuluğu yanlış hatırlamış olabilirsin (doğru: $dogruAd).';
+    case kTarihHaritasiGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; olayın geçtiği ili '
+          'başka bir tarihî merkezle karıştırmış olabilirsin.';
+    case kIklimAviGameId:
+      return 'Doğru cevap $dogruAd. $secilen seçtin; benzer iklim özelliklerine '
+          'sahip başka illerle karıştırmış olabilirsin.';
+    case kUrunHaritasiGameId:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin; ürünün asıl '
+          'yetiştiği/çıkarıldığı ili yakın illerle karıştırdın.';
+    default:
+      return 'Doğru cevap $dogruAd. $secilen işaretledin.';
+  }
+}
+
+/// Harita sorusu bittiğinde gösterilen SONUÇ afişi — yeni afiş diliyle
+/// (kullanıcı isteği: "en son eklediğin gibi afiş olsun, arkasındaki sonraki
+/// soru afişini kaldır"). Doğru/yanlışa göre yeşil/kırmızı gradyan, ikon,
+/// başlık, isteğe bağlı açıklama ve içinde "Sonraki Soru →" düğmesi.
+Widget haritaSonucAfisi(
+  BuildContext context, {
+  required bool dogru,
+  required String baslik,
+  String? aciklama,
+  required bool sonSoru,
+  required VoidCallback onNext,
+}) {
+  final c = context.watch<ThemeProvider>().colors;
+  final renk = dogru ? c.success : c.danger;
+  return Container(
+    padding: const EdgeInsets.all(14),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color.alphaBlend(renk.withValues(alpha: 0.22), c.bg2), c.bg2],
+      ),
+      borderRadius: BorderRadius.circular(18),
+      border: Border.all(color: renk.withValues(alpha: 0.55)),
+      boxShadow: [
+        BoxShadow(
+            color: Colors.black.withValues(alpha: 0.24),
+            blurRadius: 16,
+            offset: const Offset(0, 6)),
+      ],
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              width: 34,
+              height: 34,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: renk.withValues(alpha: 0.18), shape: BoxShape.circle),
+              child: Text(dogru ? '✅' : '❌',
+                  style: const TextStyle(fontSize: 16)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(baslik,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 13.5,
+                      color: c.text)),
+            ),
+          ],
+        ),
+        if (aciklama != null && aciklama.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: c.warn.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: c.warn.withValues(alpha: 0.35)),
+            ),
+            child: Text('💡 $aciklama',
+                style: TextStyle(fontSize: 12, height: 1.4, color: c.text)),
+          ),
+        ],
+        const SizedBox(height: 12),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: c.violet,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              padding: const EdgeInsets.symmetric(vertical: 12),
+            ),
+            onPressed: onNext,
+            child: Text(sonSoru ? 'Bitir' : 'Sonraki Soru →',
+                style: const TextStyle(fontWeight: FontWeight.w900)),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// Yanlış cevabı harita YANLIŞLARIM bankasına kaydeder.
+Future<void> haritaYanlisKaydet(
+  BuildContext context, {
+  required String soru,
+  required String dogruId,
+  required String dogruAd,
+  required List<String> secilenIds,
+  required List<String> secilenAdlar,
+  required String modId,
+  required String modAd,
+  // Tekrar-testte KABUL EDİLEBİLİR il id'leri. Bölge/Komşu modlarında tek bir
+  // doğru il yoktur (dogruId boş kalır); bu liste sayesinde tekrar-test bu
+  // kayıtları da çözebilir (eskiden dogruId:'' olduğu için ASLA çözülemiyor ve
+  // her dokunuş yanlış görünüyordu).
+  List<String> dogruIds = const [],
+}) async {
+  // Kullanıcı isteği: sonuç afişi çıkarken önceki "Kalan hak" afişi (SnackBar)
+  // üst üste binmesin — sonuç gösterildiği an (bu fonksiyon çağrıldığında)
+  // açık afişleri kapat.
+  ScaffoldMessenger.of(context).clearSnackBars();
+  if (secilenIds.isEmpty) return;
+  await context.read<StorageService>().addMapWrong({
+    'soru': soru,
+    'dogruId': dogruId,
+    'dogruAd': dogruAd,
+    if (dogruIds.isNotEmpty) 'dogruIds': dogruIds,
+    'secilenIds': secilenIds,
+    'secilenAdlar': secilenAdlar,
+    'mod': modId,
+    'modAd': modAd,
+    'aciklama': haritaYanlisSebebi(modId, dogruAd, secilenAdlar),
+  });
+}
+
+/// Kullanıcının haritalarda seçebileceği vurgu renkleri (kullanıcı isteği:
+/// "haritanın rengi değiştirilebilir olsun, üst köşede renk seçeneği olsun ve
+/// hatırlansın"). İlk seçenek `null` = TEMA rengi (varsayılan).
+const List<(String, Color?)> kMapRenkSecenekleri = [
+  ('Tema', null),
+  ('Mor', Color(0xFF8B5CF6)),
+  ('Mavi', Color(0xFF3B82F6)),
+  ('Camgöbeği', Color(0xFF06B6D4)),
+  ('Yeşil', Color(0xFF22C55E)),
+  ('Amber', Color(0xFFF59E0B)),
+  ('Turuncu', Color(0xFFF97316)),
+  ('Kırmızı', Color(0xFFEF4444)),
+  ('Pembe', Color(0xFFEC4899)),
+  ('Altın', Color(0xFFD4AF37)),
+];
+
+/// Haritalarda illerin vurgulanacağı GÜNCEL rengi döndürür: kullanıcı bir renk
+/// seçtiyse o, seçmediyse temanın mor/vurgu rengi (bkz. StorageService
+/// getMapColorValue). `context.watch<StorageService>()` sayesinde renk
+/// değişince ekran otomatik yenilenir.
+Color mapHighlightColor(BuildContext context) {
+  final v = context.watch<StorageService>().getMapColorValue();
+  if (v != 0) return Color(v);
+  return context.watch<ThemeProvider>().colors.violet;
+}
+
+/// Haritalardaki NÖTR (hedef/geri bildirim olmayan) illerin taban dolgusu —
+/// seçilen harita renginin verilen saydamlıkta tonu. Böylece kullanıcı harita
+/// rengini değiştirince mini oyunlardaki taban harita da o renge döner
+/// (başarı/hata/hedef renkleri DEĞİŞMEZ, onlar success/danger/target'tır).
+Color mapNeutral(BuildContext context, double alpha) =>
+    mapHighlightColor(context).withValues(alpha: alpha);
+
+/// AppBar'a konulan renk seçici düğmesi — dokununca alttan bir yaprak açılır,
+/// [kMapRenkSecenekleri] içinden seçilen renk kalıcı olarak kaydedilir.
+class MapColorPickerAction extends StatelessWidget {
+  const MapColorPickerAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final aktif = mapHighlightColor(context);
+    return IconButton(
+      tooltip: 'Harita rengi',
+      onPressed: () => _renkSec(context),
+      icon: Stack(
+        alignment: Alignment.center,
+        children: [
+          const Icon(Icons.palette_outlined),
+          Positioned(
+            right: 2,
+            bottom: 2,
+            child: Container(
+              width: 9,
+              height: 9,
+              decoration: BoxDecoration(
+                color: aktif,
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white70, width: 1),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _renkSec(BuildContext context) {
+    final storage = context.read<StorageService>();
+    final c = context.read<ThemeProvider>().colors;
+    final secili = storage.getMapColorValue();
+    context.read<SoundService>().click();
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: c.bg2,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+      ),
+      builder: (sheetCtx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Text('🎨', style: TextStyle(fontSize: 20)),
+                  const SizedBox(width: 8),
+                  Text('Harita Rengi',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          color: c.text)),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text('Seçtiğin renk tüm haritalarda kullanılır ve hatırlanır.',
+                  style: TextStyle(fontSize: 12.5, color: c.textFaint)),
+              const SizedBox(height: 16),
+              Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                children: [
+                  for (final (ad, renk) in kMapRenkSecenekleri)
+                    _RenkKutusu(
+                      ad: ad,
+                      renk: renk ?? c.violet,
+                      temaMi: renk == null,
+                      secili: (renk?.toARGB32() ?? 0) == secili,
+                      onTap: () {
+                        storage.setMapColorValue(renk?.toARGB32() ?? 0);
+                        Navigator.of(sheetCtx).pop();
+                      },
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RenkKutusu extends StatelessWidget {
+  final String ad;
+  final Color renk;
+  final bool temaMi;
+  final bool secili;
+  final VoidCallback onTap;
+  const _RenkKutusu({
+    required this.ad,
+    required this.renk,
+    required this.temaMi,
+    required this.secili,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.watch<ThemeProvider>().colors;
+    return InkWell(
+      borderRadius: BorderRadius.circular(14),
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: renk,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: secili ? c.text : Colors.white24,
+                width: secili ? 3 : 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                    color: renk.withValues(alpha: 0.5),
+                    blurRadius: secili ? 12 : 4),
+              ],
+            ),
+            child: temaMi
+                ? const Icon(Icons.auto_awesome, size: 20, color: Colors.white)
+                : (secili
+                    ? const Icon(Icons.check, size: 22, color: Colors.white)
+                    : null),
+          ),
+          const SizedBox(height: 5),
+          Text(ad,
+              style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: secili ? c.text : c.textFaint)),
+        ],
+      ),
+    );
+  }
+}
 
 // ── Harita oyunu modlarının kimlikleri (oyun-bazlı SÜRE takibi için) ──
 // NOT: Bunlar [kMapGameId] (günlük ORTAK oynama hakkı sayacı) ile KARIŞTIRILMAMALI
@@ -118,7 +643,9 @@ Future<void> showHowToPlaySheet(BuildContext context, {required String title, re
   final colors = context.read<ThemeProvider>().colors;
   return showModalBottomSheet(
     context: context,
-    backgroundColor: colors.glass2,
+    // Kullanıcı isteği: panelin arkası OPAK olsun (yarı saydam cam arkaplandaki
+    // yazılarla çakışıyordu). Solid bg2 kullanılıyor.
+    backgroundColor: colors.bg2,
     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     builder: (ctx) => SafeArea(
       child: Padding(
@@ -165,7 +692,7 @@ Future<bool> consumeMapGameDailyPlay(BuildContext context) async {
   final storage = context.read<StorageService>();
   if (storage.isPremiumUser()) return true;
   final gp = storage.getGamePlayState(kMapGameId);
-  if ((gp['plays'] as int) >= kFreeGameDailyLimit) return false;
+  if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kMapGameId)) return false;
   await storage.useGamePlay(kMapGameId);
   return true;
 }
@@ -212,23 +739,60 @@ class TurkeyMapCanvas extends StatefulWidget {
   State<TurkeyMapCanvas> createState() => _TurkeyMapCanvasState();
 }
 
-class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> {
-  // ÖNEMLİ (düzeltilen hata): `boundaryMargin: EdgeInsets.zero` ile pan+zoom
-  // birlikte kullanıldığında InteractiveViewer'ın dahili kırpma/sınır mantığı
-  // "büyütülüyor ama küçültülemiyor" şeklinde bir sıkışmaya yol açabiliyordu
-  // (kullanıcı zoom yaptıktan sonra tekrar 1.0 ölçeğe dönemiyordu). Şimdi:
-  // (1) küçük bir boundaryMargin ile sınır matematiğine nefes payı verildi,
-  // (2) bir TransformationController + çift dokunuşla/butonla anında
-  // "yakınlaştırmayı sıfırla" imkânı eklendi (gesture matematiği her zaman
-  // mükemmel olmasa bile kullanıcı için her zaman bir çıkış yolu olsun diye).
-  final _controller = TransformationController();
+class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> with SingleTickerProviderStateMixin {
+  // ── Yakınlaşma/uzaklaşma (zoom) davranışı ──────────────────────────────
+  // ÖNEMLİ (düzeltilen hata): Eskiden `constrained: false` kullanılıyordu.
+  // Bu modda InteractiveViewer çocuğu SINIRSIZ ölçüyle yerleştirir ve dahili
+  // sınır (boundary) matematiği viewport ile çocuğun ölçüsünü karıştırdığından
+  // harita "büyüyor ama bir daha küçülmüyor" ve büyürken sıçramalı/dengesiz
+  // davranıyordu. Artık:
+  //   (1) `constrained: true` (varsayılan) — viewport = çocuk, sınır
+  //       matematiği tutarlı; ölçek her iki yönde de serbestçe değişebilir,
+  //   (2) `boundaryMargin` cömert tutuldu ki içeri/dışarı sıkışma olmasın,
+  //   (3) parmak kaldırıldığında ölçek 1.0'a çok yaklaşmışsa harita YUMUŞAK
+  //       bir animasyonla tam oturmuş hâline geri döner (küçültememe hatasına
+  //       karşı garantili çıkış yolu).
+  static const double _kMinScale = 1.0;
+  static const double _kMaxScale = 4.0;
+  static const Duration _kZoomDuration = Duration(milliseconds: 260);
 
-  void _resetZoom() {
-    _controller.value = Matrix4.identity();
+  final _controller = TransformationController();
+  late final AnimationController _anim;
+  Animation<Matrix4>? _zoomAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _anim = AnimationController(vsync: this, duration: _kZoomDuration)
+      ..addListener(() {
+        final a = _zoomAnimation;
+        if (a != null) _controller.value = a.value;
+      });
+  }
+
+  /// Mevcut dönüşümden [target] dönüşüme yumuşak (kademeli) geçiş.
+  void _animateTo(Matrix4 target) {
+    _zoomAnimation = Matrix4Tween(begin: _controller.value, end: target)
+        .animate(CurvedAnimation(parent: _anim, curve: Curves.easeOutCubic));
+    _anim.forward(from: 0);
+  }
+
+  void _resetZoom() => _animateTo(Matrix4.identity());
+
+  double get _scale => _controller.value.getMaxScaleOnAxis();
+
+  /// Parmak kaldırıldığında ölçek tam oturmuş hâle çok yakınsa küçük
+  /// kaymaları temizleyip haritayı tam oturmuş hâline geri yaslar.
+  void _snapIfNearFit() {
+    if (_scale <= _kMinScale + 0.02) {
+      final m = _controller.value;
+      if (m != Matrix4.identity()) _animateTo(Matrix4.identity());
+    }
   }
 
   @override
   void dispose() {
+    _anim.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -246,70 +810,64 @@ class _TurkeyMapCanvasState extends State<TurkeyMapCanvas> {
         for (final g in geos)
           if (widget.overlayFor!(byId[g.id]!) != null) g.id: widget.overlayFor!(byId[g.id]!)!,
     };
-    return LayoutBuilder(builder: (context, constraints) {
-      final w = constraints.maxWidth;
-      final h = w / kMapAspectRatio;
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(18),
-        child: SizedBox(
-          width: w,
-          height: h,
-          child: Stack(
-            children: [
-              GestureDetector(
-                onDoubleTap: _resetZoom,
-                child: InteractiveViewer(
-                  transformationController: _controller,
-                  constrained: false,
-                  minScale: 1.0,
-                  maxScale: 3.2,
-                  boundaryMargin: const EdgeInsets.all(40),
-                  child: SizedBox(
-                    width: w,
-                    height: h,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: colors.glass,
-                        border: Border.all(color: colors.border),
-                      ),
-                      child: TurkeyMapWidget(
-                        geos: geos,
-                        fillColors: fillColors,
-                        defaultFillColor: colors.violet.withValues(alpha: 0.15),
-                        borderColor: colors.border,
-                        dimmedIds: widget.dimmed,
-                        overlays: overlays,
-                        onProvinceTap: widget.onTap == null
-                            ? null
-                            : (id) {
-                                final p = byId[id];
-                                if (p == null) return;
-                                context.read<SoundService>().click();
-                                widget.onTap!(p);
-                              },
-                      ),
-                    ),
-                  ),
+    // NOT: Haritanın arkasında ARTIK beyaz/`glass` bir dolgu ve çerçeve YOK —
+    // kullanıcı "haritanın etrafındaki beyazlığı kaldır" dedi. Harita kendi
+    // en/boy oranını koruyup alana ortalandığı için (bkz. TurkeyMapWidget)
+    // artan boşluk şeffaf kalır ve ekranın tema gradyanı görünür.
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(18),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            // NOT: Eskiden burada çift-dokunuşla yakınlaştırma (onDoubleTap)
+            // vardı; bu, TEK dokunuşun ~300 ms "çift mi olacak?" gecikmesiyle
+            // çözülmesine yol açıyordu — kullanıcı "hızlı tıklayınca algılamıyor"
+            // dedi. Çift dokunuş kaldırıldı; il seçimi artık ANINDA çözülür.
+            // Yakınlaştırma için iki parmak (pinch) + sağ alttaki sıfırla
+            // düğmesi kullanılır.
+            child: InteractiveViewer(
+              transformationController: _controller,
+              minScale: _kMinScale,
+              maxScale: _kMaxScale,
+              boundaryMargin: const EdgeInsets.all(48),
+              onInteractionStart: (_) {
+                if (_anim.isAnimating) _anim.stop();
+              },
+              onInteractionEnd: (_) => _snapIfNearFit(),
+              child: TurkeyMapWidget(
+                  geos: geos,
+                  fillColors: fillColors,
+                  defaultFillColor: mapNeutral(context, 0.15),
+                  borderColor: colors.border,
+                  dimmedIds: widget.dimmed,
+                  overlays: overlays,
+                  onProvinceTap: widget.onTap == null
+                      ? null
+                      : (id) {
+                          final p = byId[id];
+                          if (p == null) return;
+                          context.read<SoundService>().click();
+                          widget.onTap!(p);
+                        },
                 ),
               ),
-              Positioned(
-                right: 6,
-                bottom: 6,
-                child: Material(
-                  color: colors.glass2,
-                  shape: const CircleBorder(),
-                  child: IconButton(
-                    tooltip: 'Yakınlaştırmayı sıfırla',
-                    icon: Icon(Icons.zoom_out_map, size: 18, color: colors.text),
-                    onPressed: _resetZoom,
-                  ),
-                ),
+            ),
+          Positioned(
+            right: 6,
+            bottom: 6,
+            child: Material(
+              color: colors.glass2,
+              shape: const CircleBorder(),
+              child: IconButton(
+                tooltip: 'Yakınlaştırmayı sıfırla',
+                icon: Icon(Icons.zoom_out_map, size: 18, color: colors.text),
+                onPressed: _resetZoom,
               ),
-            ],
+            ),
           ),
-        ),
-      );
-    });
+        ],
+      ),
+    );
   }
 }
 
@@ -322,6 +880,9 @@ class MapQuizScaffold extends StatelessWidget {
   final String statusText;
   final Widget map;
   final Widget? feedback;
+  /// İlk yanlıştan sonra, sonuç gösterilmeden önce ALT TARAFTA KALICI duran
+  /// uyarı (bkz. [haritaBekleyenAfis]). feedback null iken gösterilir.
+  final Widget? pendingNotice;
   /// Bu modun renk kimliği — verilirse Scaffold gövdesine hafif bir gradyan
   /// arka plan yıkaması uygulanır (bkz. map_shared.dart `kMapModePalettes`).
   final SubjectPalette? palette;
@@ -335,6 +896,7 @@ class MapQuizScaffold extends StatelessWidget {
     required this.statusText,
     required this.map,
     this.feedback,
+    this.pendingNotice,
     this.palette,
     this.howToPlay,
   });
@@ -346,6 +908,7 @@ class MapQuizScaffold extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
         actions: [
+          const MapColorPickerAction(),
           if (howToPlay != null)
             IconButton(
               tooltip: 'Nasıl oynanır?',
@@ -367,6 +930,10 @@ class MapQuizScaffold extends StatelessWidget {
                 Text(statusText, style: TextStyle(fontSize: 12.5, color: colors.textFaint)),
                 const SizedBox(height: 10),
                 Expanded(child: map),
+                if (feedback == null && pendingNotice != null) ...[
+                  const SizedBox(height: 10),
+                  pendingNotice!,
+                ],
                 if (feedback != null) ...[
                   const SizedBox(height: 10),
                   // ÖNEMLİ (düzeltilen hata — bkz. Ürün Haritası): geri bildirim
@@ -391,66 +958,142 @@ class MapQuizScaffold extends StatelessWidget {
   }
 }
 
-/// Genel bir "oturum bitti" sonuç kartı (skor + tekrar oyna / menüye dön).
+/// Soru-cevap tipli harita modlarının (İli Bul, Bölgeyi Bul, Komşu İl, Ürün
+/// Haritası, Tarih Haritası, İklim Avı) ORTAK sonuç ekranı.
+///
+/// Hepsi "N sorudan M tanesini doğru bildin" biçiminde bittiği için başarı
+/// emojisi, başlık, doğru/yanlış/isabet şeridi ve arka plan tek yerden üretilir
+/// — böylece bir modda yapılan iyileştirme hepsine birden yansır.
+class MapQuizResult extends StatelessWidget {
+  final String title;
+
+  /// Modun kimliği — rengi ([kMapModePalettes]) buradan gelir.
+  final String modeId;
+  final int score;
+  final int total;
+  final VoidCallback onRetry;
+
+  const MapQuizResult({
+    super.key,
+    required this.title,
+    required this.modeId,
+    required this.score,
+    required this.total,
+    required this.onRetry,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.watch<ThemeProvider>().colors;
+    final yanlis = (total - score).clamp(0, total);
+    final oran = total <= 0 ? 0 : (score * 100 / total).round();
+    // Başarıya göre illüstrasyon: kusursuz tur 🏆, iyi tur 🎉, orta 💪, düşük 📚.
+    final String emoji;
+    final String baslik;
+    if (total > 0 && score == total) {
+      emoji = '🏆';
+      baslik = 'Kusursuz tur!';
+    } else if (oran >= 70) {
+      emoji = '🎉';
+      baslik = 'Harika iş!';
+    } else if (oran >= 40) {
+      emoji = '💪';
+      baslik = 'Fena değil!';
+    } else {
+      emoji = '📚';
+      baslik = 'Biraz daha çalışmalısın';
+    }
+
+    return MapSessionResult(
+      title: title,
+      emoji: emoji,
+      headline: baslik,
+      message: '$total sorudan $score tanesini doğru bildin.',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$score', label: 'Doğru', color: colors.success),
+        GameResultStat(emoji: '❌', value: '$yanlis', label: 'Yanlış', color: colors.danger),
+        GameResultStat(emoji: '🎯', value: '%$oran', label: 'İsabet'),
+      ],
+      onRetry: onRetry,
+      palette: mapModePaletteFor(modeId),
+    );
+  }
+}
+
+/// Genel bir "oturum bitti" sonuç kartı — TÜM harita modlarının (İli Bul,
+/// Bölgeyi Bul, Komşu İl, Ürün/Tarih Haritası, İklim Avı, 60 Saniyede Türkiye)
+/// ortak sonuç ekranı.
+///
+/// Artık kendi düzenini çizmez; Hızlı Modlar ve Kart Oyunu ile AYNI tasarım
+/// dilini kullanan ortak [GameResultScreen]'i sarmalar (bkz.
+/// quick_modes/quick_modes_shared.dart). Modun kendi rengi ([palette]) hem
+/// arka plan gradyanına hem butonlara vurgu olarak geçer.
 class MapSessionResult extends StatelessWidget {
   final String title;
   final String emoji;
+
+  /// Kısa değerlendirme cümlesi ("5 sorudan 4 tanesini doğru bildin." gibi).
   final String message;
+
+  /// Büyük başlık — verilmezse "Oturum Bitti!".
+  final String? headline;
+
+  /// [DsStatStrip] ile gösterilecek sayısal özet.
+  final List<GameResultStat> stats;
+
+  /// Kalıcı rekor (yalnızca rekor tutan modlarda verilir — ör. 60 Saniyede
+  /// Türkiye). null ise rekor satırı çizilmez.
+  final int? highScore;
+  final bool newRecord;
+
+  /// Uzun "neye çalışmalısın" yorumu.
+  final String? note;
+
   final VoidCallback onRetry;
   final SubjectPalette? palette;
+
+  /// Butonların etiketleri ve geri dönüş davranışı — 81 İl Fethi gibi haritaya
+  /// sonuç döndüren modlar bunları özelleştirir.
+  final String retryLabel;
+  final String backLabel;
+  final VoidCallback? onBack;
+
   const MapSessionResult({
     super.key,
     required this.title,
     required this.emoji,
     required this.message,
     required this.onRetry,
+    this.headline,
+    this.stats = const [],
+    this.highScore,
+    this.newRecord = false,
+    this.note,
     this.palette,
+    this.retryLabel = 'Tekrar Oyna',
+    this.backLabel = 'Oyunlara Dön',
+    this.onBack,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Container(
-        decoration: palette != null ? mapModeBackgroundDecoration(palette!, colors.isLight) : null,
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(emoji, style: const TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                Text(message, textAlign: TextAlign.center, style: TextStyle(color: colors.textFaint, height: 1.5)),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        onRetry();
-                      },
-                      child: const Text('🔄 Tekrar Oyna'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Menüye Dön'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return GameResultScreen(
+      title: title,
+      emoji: emoji,
+      headline: headline ?? 'Oturum Bitti!',
+      message: message,
+      stats: stats,
+      highScore: highScore,
+      newRecord: newRecord,
+      note: note,
+      accent: palette?.a,
+      backgroundDecoration:
+          palette != null ? mapModeBackgroundDecoration(palette!, colors.isLight) : null,
+      onRetry: onRetry,
+      retryLabel: retryLabel,
+      backLabel: backLabel,
+      onBack: onBack,
     );
   }
 }

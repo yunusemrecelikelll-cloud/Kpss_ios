@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import 'auth_service.dart';
 import 'cloud_sync_service.dart';
+import 'presence_service.dart';
 import 'storage_service.dart';
 
 /// ============================================================================
@@ -19,8 +20,20 @@ import 'storage_service.dart';
 const String kOgrenciPremiumId = 'premium_ogrenci_aylik';
 const String kTamPremiumId = 'premium_tam_aylik';
 
+/// TÜKETİLEBİLİR (consumable) "hak paketi": 10 hak, ~9,99 TL. Aboneliklerden
+/// farklı olarak tekrar tekrar satın alınabilir; her satın almada cüzdana
+/// [kHakPaketiMiktar] hak eklenir ve mağazada TÜKETİLİR (completePurchase +
+/// consume) ki kullanıcı yeniden alabilsin. Mağazada bu ID ile "consumable"
+/// ürün tanımlanmalı (Play: uygulama içi ürün / App Store: tüketilebilir).
+const String kHakPaketiId = 'hak_paketi_10';
+const int kHakPaketiMiktar = 10;
+
 /// Sorgulanacak / satın alınabilecek tüm ürün ID'lerinin kümesi.
-const Set<String> kPremiumProductIds = {kOgrenciPremiumId, kTamPremiumId};
+const Set<String> kPremiumProductIds = {
+  kOgrenciPremiumId,
+  kTamPremiumId,
+  kHakPaketiId,
+};
 
 /// Mağaza / satın alma akışının o anki durumu. UI bu duruma göre buton
 /// metnini, yükleniyor göstergesini ve hata mesajını belirler.
@@ -73,7 +86,6 @@ class PurchaseService extends ChangeNotifier {
   String? lastError;
   bool _initialized = false;
 
-  bool get isReady => status == PurchaseServiceStatus.ready;
   bool get isPurchasing => status == PurchaseServiceStatus.purchasing;
 
   ProductDetails? productFor(String id) {
@@ -90,7 +102,22 @@ class PurchaseService extends ChangeNotifier {
   Future<void> init() async {
     if (_initialized) return;
     _initialized = true;
+    await _yukle();
+  }
 
+  /// Kullanıcı "Tekrar Dene"ye bastığında (ya da mağaza geç hazır olduğunda)
+  /// ürünleri yeniden yükler. init()'ten farkı: `_initialized` bayrağına
+  /// bakmaz, her çağrıda yeniden sorgular.
+  Future<void> yenidenDene() => _yukle();
+
+  /// Mağazayı hazırlar ve ürünleri çeker. Ürün sorgusu, iOS'ta App Review
+  /// ortamında sık görülen GEÇİCİ "StoreKit: Failed to get response from
+  /// platform" hatasına karşı BİRKAÇ KEZ denenir — tek seferlik geçici bir
+  /// hata artık kalıcı "kullanılamıyor" durumuna düşürmez (red sebebi buydu).
+  Future<void> _yukle() async {
+    status = PurchaseServiceStatus.idle;
+    lastError = null;
+    notifyListeners();
     try {
       final available = await _iap.isAvailable();
       if (!available) {
@@ -100,9 +127,9 @@ class PurchaseService extends ChangeNotifier {
         return;
       }
 
-      // Satın alma güncellemelerini dinlemeye başla (isAvailable true olsa da
-      // olmasa da güvenli — ama pratikte sadece mağaza varsa anlamlı).
-      _subscription = _iap.purchaseStream.listen(
+      // Satın alma güncellemelerini dinle — yalnızca BİR KEZ abone ol
+      // (yenidenDene defalarca çağrılabilir; çift abonelik olmasın).
+      _subscription ??= _iap.purchaseStream.listen(
         _onPurchaseUpdate,
         onDone: () => _subscription?.cancel(),
         onError: (Object e) {
@@ -112,18 +139,29 @@ class PurchaseService extends ChangeNotifier {
         },
       );
 
-      final response = await _iap.queryProductDetails(kPremiumProductIds);
+      // ÜRÜN SORGUSU — en fazla 3 deneme, artan bekleme ile. StoreKit ilk
+      // açılışta / zayıf ağda ilk sorguya bazen yanıt vermez; tekrar deneyince
+      // döner. (App Store denetçisinin gördüğü "Failed to get response from
+      // platform" tam olarak bu geçici durumdu.)
+      ProductDetailsResponse? response;
+      for (var deneme = 1; deneme <= 3; deneme++) {
+        response = await _iap.queryProductDetails(kPremiumProductIds);
+        final basarili =
+            response.error == null && response.productDetails.isNotEmpty;
+        if (basarili || deneme == 3) break;
+        await Future.delayed(Duration(milliseconds: 700 * deneme));
+      }
 
-      if (response.error != null) {
+      if (response == null || response.error != null) {
         status = PurchaseServiceStatus.unavailable;
-        lastError = response.error!.message;
+        lastError = response?.error?.message ?? 'Mağaza yanıt vermedi.';
         notifyListeners();
         return;
       }
 
       if (response.productDetails.isEmpty) {
-        // TODO: App Store Connect / Play Console'da ürünler henüz
-        // tanımlanmadıysa ya da onay bekliyorsa buraya düşülür.
+        // App Store Connect / Play Console'da ürünler henüz onaylı/eklenmemişse
+        // ya da Paid Apps sözleşmesi aktif değilse buraya düşülür.
         status = PurchaseServiceStatus.unavailable;
         lastError = 'Ürünler mağazada bulunamadı (henüz tanımlanmamış olabilir).';
         notifyListeners();
@@ -162,8 +200,14 @@ class PurchaseService extends ChangeNotifier {
       notifyListeners();
 
       final purchaseParam = PurchaseParam(productDetails: product);
-      // Abonelik = non-consumable akış (yukarıdaki nota bakın).
-      await _iap.buyNonConsumable(purchaseParam: purchaseParam);
+      if (productId == kHakPaketiId) {
+        // Hak paketi TÜKETİLEBİLİR: tekrar tekrar alınabilsin diye consumable
+        // akışıyla satın alınır.
+        await _iap.buyConsumable(purchaseParam: purchaseParam);
+      } else {
+        // Abonelik = non-consumable akış (yukarıdaki nota bakın).
+        await _iap.buyNonConsumable(purchaseParam: purchaseParam);
+      }
       // Sonuç purchaseStream üzerinden _onPurchaseUpdate'e gelecek.
     } catch (e) {
       status = PurchaseServiceStatus.error;
@@ -205,14 +249,39 @@ class PurchaseService extends ChangeNotifier {
           // backend'e gönderilip Apple/Google API'leriyle doğrulanmalı ve
           // premium SADECE doğrulama başarılıysa açılmalı. Bkz. IAP_SETUP.md.
           // ------------------------------------------------------------
+          // KRİTİK (kullanıcı isteği): Premium yalnızca GERÇEKTEN GİRİŞ YAPMIŞ
+          // (anonim değil) hesaba tanımlanır. iOS'ta StoreKit, uygulama silinip
+          // yeniden kurulunca Apple ID'ye bağlı aboneliği "restored" olarak
+          // tekrar yayınlar; bu olayı MİSAFİR profiline yazarsak giriş yapmamış
+          // kullanıcı premium görünürdü. Bu yüzden girişli değilse premium AÇMA
+          // — kullanıcı giriş yapınca zaten buluttan (syncDown) geri gelir.
+          final girisli = AuthService().isRealSignedIn;
           if (purchase.productID == kOgrenciPremiumId ||
               purchase.productID == kTamPremiumId) {
-            await _storage.setUserPlan('premium');
-            // Satın alma anında girişliyse buluta hemen yansıt — böylece
-            // başka bir cihazda/kurulumda tekrar giriş yapınca premium
-            // durumu kaybolmuş görünmez (bkz. CloudSyncService.syncDown).
-            // ignore: unawaited_futures
-            CloudSyncService().syncUp(_storage);
+            if (girisli) {
+              await _storage.setUserPlan('premium');
+              // ignore: unawaited_futures
+              CloudSyncService().syncUp(_storage);
+              // ignore: unawaited_futures
+              PresenceService.instance.bildir(_storage, zorla: true);
+            }
+            // Girişli değilse: premium yazma. (Restore edilen abonelik, kullanıcı
+            // giriş yapınca premium_screen'deki "Satın alımları geri yükle" ya da
+            // buluttan senkron ile hesaba bağlanır.)
+          } else if (purchase.productID == kHakPaketiId &&
+              purchase.status == PurchaseStatus.purchased) {
+            // TÜKETİLEBİLİR hak paketi: cüzdana ekle (yalnızca yeni 'purchased';
+            // "restored"da tüketilebilir eklenmez). Premium aboneliğin aksine
+            // hak paketi HERKESE açık (misafir de satın alabilir) — tüketilebilir
+            // olduğu için StoreKit'in reinstall'da yeniden yayınlama/premium
+            // sızıntısı sorunu burada YOKTUR. Paranın karşılığı kesin verilsin.
+            await _storage.hakEkle(kHakPaketiMiktar);
+            // Yalnızca girişliyse buluta yaz (misafirin hakkı yerelde kalır,
+            // reklamla kazanılan hak gibi).
+            if (girisli) {
+              // ignore: unawaited_futures
+              CloudSyncService().syncUp(_storage);
+            }
           }
           if (purchase.pendingCompletePurchase) {
             await _iap.completePurchase(purchase);
@@ -245,10 +314,3 @@ class PurchaseService extends ChangeNotifier {
     super.dispose();
   }
 }
-
-/// iOS'ta App Store'un satın alma kuyruğunu StoreKit 2 ile uyumlu şekilde
-/// başlatmak için bazı kurulumlarda gerekli olabilecek yardımcı — bu proje
-/// varsayılan in_app_purchase davranışını kullanıyor, burada sadece
-/// platformun iOS olup olmadığını basitçe kontrol etmek için tutuluyor
-/// (ör. ileride StoreKit'e özgü bir ayar eklenmek istenirse).
-bool get isApplePlatform => Platform.isIOS || Platform.isMacOS;

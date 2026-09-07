@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/turkey_map_data.dart';
 import '../../data/turkey_map_quiz_data.dart';
+import '../../data/turkey_map_quiz_extra_data.dart';
 import '../../models/badge.dart';
 import '../../models/question.dart';
 import '../../models/subject.dart';
@@ -9,14 +10,16 @@ import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
 import '../../theme/theme_provider.dart';
+import '../quick_modes/quick_modes_shared.dart' show GameResultStat;
 import 'map_shared.dart';
 
 /// Çoktan seçmeli seçenek harfleri (A, B, C, D, E).
 const List<String> kOptionLetters = ['A', 'B', 'C', 'D', 'E'];
 
 const String _kHowToPlay =
-    'Haritada bir ile dokun, 5 soruluk mini bir quiz çöz. En az 3/5 doğru '
-    'cevaplarsan o ili fethedersin. Günlük hak sınırı YOKTUR — istediğin '
+    'Haritada bir ile dokun, 5 soruluk mini bir quiz çöz. 5 sorunun 5\'ini de '
+    'doğru cevaplarsan o ili fethedersin — tek bir yanlış bile fethi engeller. '
+    'Günlük hak sınırı YOKTUR — istediğin '
     'kadar il deneyebilir, fethedilmiş illeri de tekrar oynayabilirsin. 81 '
     'ilin tamamını fethedince özel bir "KPSS Fatihi" rozeti kazanırsın.';
 
@@ -84,7 +87,7 @@ class _IlFethiScreenState extends State<IlFethiScreen> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Bir ile dokun, 5 soruluk mini quiz\'i çöz, ili fethet! Günlük hak sınırı YOK.',
+                      'Bir ile dokun, 5 soruluk mini quiz\'i çöz. 5/5 doğru yaparsan ili fethedersin! Günlük hak sınırı YOK.',
                       style: TextStyle(fontSize: 13, color: colors.textFaint),
                     ),
                   ),
@@ -144,7 +147,9 @@ class _IlFethiScreenState extends State<IlFethiScreen> {
   }
 }
 
-/// Bir ilin 5 soruluk fetih quiz'i. En az 3/5 doğru cevap ile il fethedilir.
+/// Bir ilin 5 soruluk fetih quiz'i. İl ancak SORULARIN TAMAMI (5/5) doğru
+/// cevaplanırsa fethedilir — kullanıcı isteği üzerine eşik 3/5'ten 5/5'e
+/// yükseltildi (bkz. [_ProvinceQuizScreenState.kPassThreshold]).
 class _ProvinceQuizScreen extends StatefulWidget {
   final TurkeyProvince province;
   final bool alreadyConquered;
@@ -168,12 +173,33 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
   bool _finished = false;
   bool _justUnlockedFatih = false;
 
-  static const int kPassThreshold = 3;
+  /// Bir fetih denemesinde sorulacak soru sayısı. İl havuzu bundan büyükse
+  /// her denemede rastgele bu kadarı seçilir — böylece havuz genişledikçe
+  /// (bkz. kTurkeyProvinceQuiz) fetih zorluğu SABİT kalır ama sorular denemeden
+  /// denemeye değişir (tekrar oynanabilirlik).
+  static const int _quizSoruSayisi = 5;
+
+  /// Fetih eşiği: o denemede sorulan TÜM soruların doğru cevaplanması gerekir.
+  int get _passThreshold => _questions.length;
+
+  /// İl havuzundan bu deneme için rastgele soru seti hazırlar.
+  ///
+  /// Havuz İKİ kaynağın birleşimidir: temel quiz (kTurkeyProvinceQuiz, il başına
+  /// 5 soru) + ek sorular (kTurkeyProvinceQuizEk, il başına 2 soru — iklim ve
+  /// ikinci ilginç bilgi). Böylece il başına ~7 soruluk havuzdan her denemede
+  /// rastgele 5'i seçilir; sorular tekrar oynayışta değişir, fetih zorluğu sabit.
+  List<Question> _seciliSorular() {
+    final havuz = <Question>[
+      ...?kTurkeyProvinceQuiz[widget.province.id],
+      ...?kTurkeyProvinceQuizEk[widget.province.id],
+    ]..shuffle();
+    return havuz.length <= _quizSoruSayisi ? havuz : havuz.take(_quizSoruSayisi).toList();
+  }
 
   @override
   void initState() {
     super.initState();
-    _questions = List<Question>.from(kTurkeyProvinceQuiz[widget.province.id] ?? const []);
+    _questions = _seciliSorular();
   }
 
   void _select(int i) {
@@ -197,7 +223,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
       return;
     }
     // Quiz bitti.
-    final passedNow = _correct >= kPassThreshold;
+    final passedNow = _correct >= _passThreshold;
     if (passedNow) {
       final storage = context.read<StorageService>();
       final before = storage.getGamePassedTopics(kMapGameId).length;
@@ -214,7 +240,7 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
 
   void _retry() {
     setState(() {
-      _questions = List<Question>.from(kTurkeyProvinceQuiz[widget.province.id] ?? const [])..shuffle();
+      _questions = _seciliSorular();
       _index = 0;
       _correct = 0;
       _given = null;
@@ -337,57 +363,36 @@ class _ProvinceQuizScreenState extends State<_ProvinceQuizScreen> {
   }
 
   Widget _buildFinished(BuildContext context) {
-    final passedNow = _correct >= kPassThreshold;
+    final passedNow = _correct >= _passThreshold;
     if (_justUnlockedFatih) {
       return const _FatihCelebrationScreen();
     }
     final colors = context.watch<ThemeProvider>().colors;
-    return Scaffold(
-      appBar: AppBar(title: Text('👑 ${widget.province.ad}')),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(passedNow ? '🎉' : '📚', style: const TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                Text(
-                  passedNow
-                      ? '${widget.province.ad} ilini fethettin! ${_questions.length} sorudan $_correct tanesini doğru bildin.'
-                      : '${widget.province.ad} ilini fethedemedin (${_questions.length} sorudan $_correct doğru, en az $kPassThreshold doğru gerekiyor). Tekrar dene!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: colors.textFaint, height: 1.5),
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        _retry();
-                      },
-                      child: const Text('🔄 Tekrar Dene'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop(true);
-                      },
-                      child: const Text('Haritaya Dön'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+    final toplam = _questions.length;
+    return MapSessionResult(
+      title: '👑 ${widget.province.ad}',
+      emoji: passedNow ? '🏆' : (_correct >= toplam * 0.6 ? '💪' : '📚'),
+      headline: passedNow
+          ? '${widget.province.ad} fethedildi!'
+          : '${widget.province.ad} henüz senin değil',
+      message: passedNow
+          ? '$toplam sorunun tamamını doğru bildin — bu il artık haritanda senin rengin.'
+          : 'Fetih için soruların TAMAMINI ($toplam/$toplam) doğru bilmen gerekiyor. Tekrar dene!',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$_correct', label: 'Doğru', color: colors.success),
+        GameResultStat(
+          emoji: '❌',
+          value: '${(toplam - _correct).clamp(0, toplam)}',
+          label: 'Yanlış',
+          color: colors.danger,
         ),
-      ),
+        GameResultStat(emoji: '🎯', value: '$_correct/$toplam', label: 'Fetih Barajı'),
+      ],
+      onRetry: _retry,
+      retryLabel: 'Tekrar Dene',
+      backLabel: 'Haritaya Dön',
+      onBack: () => Navigator.of(context).pop(true),
+      palette: mapModePaletteFor(kIlFethiTimeGameId),
     );
   }
 }

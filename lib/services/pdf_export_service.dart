@@ -184,7 +184,10 @@ class PdfExportService {
 
   /// Cevap anahtarı satırı — doğru şıkkın harfi + açıklama.
   static pw.Widget _answerBlock(int i, Question q) {
-    final letter = String.fromCharCode(65 + q.dogruIndex);
+    // dogruIndex bozuk veride aralık dışı olabilir; harfin çöp çıkmaması için
+    // 0..(şık sayısı-1) aralığına sıkıştır.
+    final safeIdx = q.dogruIndex.clamp(0, (q.secenekler.length - 1).clamp(0, 25));
+    final letter = String.fromCharCode(65 + safeIdx);
     final aciklama = _noEmoji(q.aciklama);
     return pw.Padding(
       padding: const pw.EdgeInsets.only(bottom: 10),

@@ -24,6 +24,18 @@ class SoundService {
 
   bool get _enabled => _storage.getSettings()['soundEnabled'] != false;
 
+  // ── Geçici bastırma (test ekranı) ──
+  // Test sırasında buton tıklama sesleri dikkat dağıtmasın diye QuizScreen
+  // açılırken setSuppressed(true), kapanırken setSuppressed(false) çağırır.
+  // Kullanıcının Ayarlar'daki KALICI ses tercihini (soundEnabled) DEĞİŞTİRMEZ;
+  // sadece bu oturum boyunca click() sesini susturur.
+  bool _suppressed = false;
+
+  /// Tıklama seslerini geçici olarak susturur/açar (bkz. [_suppressed]).
+  void setSuppressed(bool value) {
+    _suppressed = value;
+  }
+
   final _QuickPlayerPool _clickPool =
       _QuickPlayerPool('sounds/click.wav', poolSize: 4);
   final _QuickPlayerPool _tickPool =
@@ -57,9 +69,10 @@ class SoundService {
     _WeightedEvent('soft_cough', 1),
   ];
 
-  /// Dolgun tık — buton/etkileşim sesi. Ayarlardaki soundEnabled'a bağlıdır.
+  /// Dolgun tık — buton/etkileşim sesi. Ayarlardaki soundEnabled'a ve geçici
+  /// bastırma bayrağına ([setSuppressed]) bağlıdır.
   Future<void> click() async {
-    if (!_enabled) return;
+    if (!_enabled || _suppressed) return;
     await _clickPool.play();
   }
 
@@ -75,8 +88,6 @@ class SoundService {
   void resetTickPhase() {
     _tickPhase = false;
   }
-
-  bool get isFocusPlaying => _ambiencePlaying;
 
   /// Sınav ortamı odaklanma seslerini başlatır: çok alçak sesle sürekli
   /// döngülü bir fon uğultusu + 15-40sn arası rastgele aralıklarla tetiklenen

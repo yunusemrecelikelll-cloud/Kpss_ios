@@ -116,11 +116,26 @@ class KpssPoints {
   final int p94;
   const KpssPoints({required this.net, required this.p3, required this.p93, required this.p94});
 
-  factory KpssPoints.compute({required int dogru, required int yanlis}) {
+  /// KPSS puan tahmini. Puanlar STANDARDİZE edildiği için basit bir doğrusal
+  /// modelle YAKLAŞIK üretilir: performans ORANI (net / toplam soru, 0..1) bir
+  /// puan aralığına eşlenir. Böylece 10 soruluk bir testte 0 doğru artık
+  /// "P3 120" gibi saçma bir değer vermez; puan performansla orantılı ve
+  /// gerçekçi bir aralıkta kalır.
+  ///
+  /// [toplam] verilmezse (dogru+yanlis) varsayılır. Negatif net 0'a kırpılır.
+  factory KpssPoints.compute({
+    required int dogru,
+    required int yanlis,
+    int? toplam,
+  }) {
     final net = double.parse((dogru - yanlis * 0.25).toStringAsFixed(2));
-    final p3 = (120 + net * 0.95).round().clamp(40, 1000000);
-    final p93 = (67 + net * 0.65).round().clamp(40, 1000000);
-    final p94 = (62 + net * 0.68).round().clamp(40, 1000000);
+    final total = toplam ?? (dogru + yanlis);
+    final safeTotal = total <= 0 ? 1 : total;
+    final oran = (net / safeTotal).clamp(0.0, 1.0);
+    // 0 net -> taban, tam doğru -> tavan (KPSS puan aralıklarına yakın).
+    final p3 = (55 + oran * 40).round();
+    final p93 = (52 + oran * 40).round();
+    final p94 = (50 + oran * 40).round();
     return KpssPoints(net: net, p3: p3, p93: p93, p94: p94);
   }
 }

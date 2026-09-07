@@ -12,6 +12,7 @@ class SubjectMeta {
 /// JS tarafındaki SUBJECTS sabitinin birebir karşılığı.
 const List<SubjectMeta> kSubjects = [
   SubjectMeta(id: 'guncel', ad: 'Güncel Bilgiler', icon: '📰', dosya: 'assets/data/guncel.json'),
+  SubjectMeta(id: 'genel', ad: 'Genel Kültür', icon: '🌍', dosya: 'assets/data/genel.json'),
   SubjectMeta(id: 'vatandaslik', ad: 'Vatandaşlık', icon: '⚖️', dosya: 'assets/data/vatandaslik.json'),
   SubjectMeta(id: 'cografya', ad: 'Coğrafya', icon: '🗺️', dosya: 'assets/data/cografya.json'),
   SubjectMeta(id: 'tarih', ad: 'Tarih', icon: '🏛️', dosya: 'assets/data/tarih.json'),

@@ -160,14 +160,38 @@ class _GununPatronuScreenState extends State<GununPatronuScreen> {
       return const Scaffold(body: Center(child: Text('Yeterli soru bulunamadı.')));
     }
     if (_finished) {
+      final colors = context.watch<ThemeProvider>().colors;
       final storage = context.read<StorageService>();
       final count = storage.getGununPatronuCompletedCount();
-      return QuickModeResultCard(
+      final toplam = _questions.length;
+      final isabet = toplam == 0 ? 0 : (_correct * 100 / toplam).round();
+      final basari = _correct >= (kGununPatronuSoruSayisi * 0.7);
+      return GameResultScreen(
         title: '👑 Günün Patronu',
-        emoji: _correct >= (kGununPatronuSoruSayisi * 0.7) ? '🎉' : '👑',
-        message: '$_correct / ${_questions.length} doğru yaptın!',
-        subMessage: 'Günün Patronu\'nu $count kez tamamladın (rozet için 7 gerekli).'
-            '${_newlyUnlocked.isNotEmpty ? ' 🏅 Yeni rozet: ${_newlyUnlocked.map((b) => b.name).join(', ')}!' : ''}',
+        emoji: (toplam > 0 && _correct == toplam)
+            ? '🏆'
+            : (basari ? '🎉' : (isabet >= 40 ? '💪' : '📚')),
+        headline: basari ? 'Bugünün patronu sensin!' : 'Bugünlük bu kadar',
+        message: '$toplam sorudan $_correct tanesini doğru bildin.',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_correct', label: 'Doğru', color: colors.success),
+          GameResultStat(
+            emoji: '❌',
+            value: '${(toplam - _correct).clamp(0, toplam)}',
+            label: 'Yanlış',
+            color: colors.danger,
+          ),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
+        // Rozet, "kaç kez tamamladın" ilerlemesinden geldiği için rekor satırı
+        // burada tamamlama sayacını gösterir.
+        highScore: count,
+        highScoreLabel: 'Tamamlama (rozet için 7 gerekli)',
+        note: _newlyUnlocked.isEmpty
+            ? null
+            : '🏅 Yeni rozet: ${_newlyUnlocked.map((b) => b.name).join(', ')}!',
+        // Günün Patronu günde bir kez oynanır — "Tekrar Oyna" yok.
+        onRetry: null,
       );
     }
     return _buildBoard(context);

@@ -153,6 +153,18 @@ const kThemes = <String, KpssColors>{
     success: Color(0xFF34D399), danger: Color(0xFFF87171), warn: Color(0xFFFDE68A),
     isLight: false,
   ),
+  'siyahaltin': KpssColors(
+    id: 'siyahaltin', name: 'Siyah Altın', icon: '🖤',
+    bg: Color(0xFF050505), bg2: Color(0xFF0D0D0B), bg3: Color(0xFF15130D),
+    headerBg: Color(0xCC050505), glass: Color(0x12FFD700), glass2: Color(0x1FFFD700),
+    border: Color(0x40E5B84B),
+    violet: Color(0xFFE5B84B), violetL: Color(0xFFF5D77E),
+    rose: Color(0xFFC9962E), roseL: Color(0xFFE5B84B),
+    gold: Color(0xFFFFE082), mint: Color(0xFF34D399),
+    text: Color(0xFFFFF8E6), textDim: Color(0xFFDFC98C), textFaint: Color(0xFF9C8850),
+    success: Color(0xFF34D399), danger: Color(0xFFF87171), warn: Color(0xFFFFE082),
+    isLight: false,
+  ),
   'ferahlik': KpssColors(
     id: 'ferahlik', name: 'Ferahlık', icon: '🍃',
     bg: Color(0xFFF0FBF9), bg2: Color(0xFFE1F6F1), bg3: Color(0xFFD1EFE7),

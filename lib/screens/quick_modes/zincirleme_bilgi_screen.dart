@@ -7,6 +7,7 @@ import '../../services/storage_service.dart';
 import '../../theme/theme_provider.dart';
 import '../../theme/app_theme.dart';
 import '../tools_hub_screen.dart';
+import 'quick_modes_shared.dart';
 
 /// Mini oyun — Zincirleme Bilgi: her doğru cevap bir sonraki sorunun
 /// ipucunu/bağlantısını oluşturur (ör. Samsun'a çıkış → Amasya Genelgesi →
@@ -35,7 +36,9 @@ class ZincirlemeBilgiScreen extends StatelessWidget {
         children: [
           Text(
             'Bir bilgi zinciri seç: her doğru cevap seni bir sonraki soruya '
-            'taşır. ${premium ? "Sınırsız oynarsın." : "Bugün $left zincir hakkın kaldı."}',
+            'taşır. Zincirin TAMAMLANMIŞ (✅) sayılması için tüm adımları '
+            'hatasız bilmelisin. '
+            '${premium ? "Sınırsız oynarsın." : "Bugün $left zincir hakkın kaldı."}',
             style: TextStyle(fontSize: 13.5, color: colors.textFaint),
           ),
           const SizedBox(height: 16),
@@ -45,7 +48,12 @@ class ZincirlemeBilgiScreen extends StatelessWidget {
               child: ListTile(
                 leading: Text(passed[chain.id] == true ? '✅' : '🔗', style: const TextStyle(fontSize: 22)),
                 title: Text(chain.baslik, style: const TextStyle(fontWeight: FontWeight.w800)),
-                subtitle: Text('${chain.adimlar.length} adımlık zincir', style: TextStyle(fontSize: 11.5, color: colors.textFaint)),
+                subtitle: Text(
+                  passed[chain.id] == true
+                      ? '${chain.adimlar.length} adım • Tamamlandı 🏆'
+                      : '${chain.adimlar.length} adımlık zincir',
+                  style: TextStyle(fontSize: 11.5, color: colors.textFaint),
+                ),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   context.read<SoundService>().click();
@@ -79,6 +87,12 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
   int? _selected;
   bool _showResult = false;
 
+  /// Zincir GERÇEKTEN tamamlandı mı — yani tüm adımlar HATASIZ bilindi mi?
+  /// Daha önce bu bayrak yoktu ve zincir, kaç yanlış yapılırsa yapılsın
+  /// "tamamlandı" sayılıyordu; artık tamamlanma yalnızca hatasız turda olur
+  /// ve kutlama ekranı buna göre değişir.
+  bool _zincirTamamlandi = false;
+
   @override
   void initState() {
     super.initState();
@@ -90,7 +104,7 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kZincirlemeBilgiGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kZincirlemeBilgiGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -106,6 +120,7 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
       _mistakes = 0;
       _selected = null;
       _showResult = false;
+      _zincirTamamlandi = false;
     });
   }
 
@@ -137,10 +152,18 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
     context.read<SoundService>().click();
     final isLast = _stepIndex + 1 >= widget.chain.adimlar.length;
     if (isLast) {
-      final storage = context.read<StorageService>();
-      await storage.markGameTopicPassed(kZincirlemeBilgiGameId, widget.chain.id);
-      if (!mounted) return;
-      setState(() => _finished = true);
+      // Zincir SADECE hiç yanlış yapılmadıysa tamamlanmış sayılır; kalıcı
+      // "✅ tamamlandı" işareti de yalnızca o zaman kaydedilir.
+      final tamamlandi = _mistakes == 0;
+      if (tamamlandi) {
+        final storage = context.read<StorageService>();
+        await storage.markGameTopicPassed(kZincirlemeBilgiGameId, widget.chain.id);
+        if (!mounted) return;
+      }
+      setState(() {
+        _zincirTamamlandi = tamamlandi;
+        _finished = true;
+      });
       return;
     }
     setState(() {
@@ -153,7 +176,11 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kZincirlemeBilgiGameId,
+        oyunAdi: 'Zincirleme Bilgi',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Zincirleme Bilgi',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz zincir hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -283,54 +310,27 @@ class _ChainPlayScreenState extends State<_ChainPlayScreen> {
 
   Widget _buildCompletion(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
-    return Scaffold(
-      appBar: AppBar(title: Text('🔗 ${widget.chain.baslik}')),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(28),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text('🏁', style: TextStyle(fontSize: 44)),
-                const SizedBox(height: 12),
-                const Text('Zincir Tamamlandı!', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-                const SizedBox(height: 8),
-                Text(
-                  '"${widget.chain.baslik}" zincirini bitirdin.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: colors.textFaint),
-                ),
-                const SizedBox(height: 6),
-                Text('⭐ $_score puan • $_mistakes yanlış', style: TextStyle(color: colors.textFaint, fontSize: 12.5)),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 10,
-                  runSpacing: 8,
-                  alignment: WrapAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text('Zincirlere Dön'),
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        context.read<SoundService>().click();
-                        _retry();
-                      },
-                      child: const Text('🔄 Tekrar Oyna'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    final total = widget.chain.adimlar.length;
+    final dogru = (total - _mistakes).clamp(0, total);
+    // KURAL DEĞİŞMEDİ: zincir yalnızca HATASIZ turda tamamlanmış sayılır
+    // (_zincirTamamlandi); buradaki değişiklik sadece görseldir.
+    return GameResultScreen(
+      title: '🔗 ${widget.chain.baslik}',
+      emoji: _zincirTamamlandi ? '🏆' : (_mistakes <= 2 ? '💪' : '📚'),
+      headline: _zincirTamamlandi ? 'Zincir Tamamlandı!' : 'Zincir Koptu',
+      message: _zincirTamamlandi
+          ? '"${widget.chain.baslik}" zincirinin $total adımını da hatasız bildin. '
+              'Bu zincir artık listende ✅ olarak işaretlendi!'
+          : '"${widget.chain.baslik}" zincirini bitirdin ama $_mistakes adımda hata yaptın. '
+              'Zincirin tamamlanması için TÜM adımları hatasız bilmelisin — tekrar dene!',
+      stats: [
+        GameResultStat(emoji: '✅', value: '$dogru', label: 'Doğru', color: colors.success),
+        GameResultStat(emoji: '❌', value: '$_mistakes', label: 'Yanlış', color: colors.danger),
+        GameResultStat(emoji: '⭐', value: '$_score', label: 'Puan', color: colors.gold),
+      ],
+      accent: _zincirTamamlandi ? colors.success : colors.violet,
+      onRetry: _retry,
+      backLabel: 'Zincirlere Dön',
     );
   }
 }

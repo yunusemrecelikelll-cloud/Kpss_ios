@@ -2,22 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- "Günün Kilit Ekranı Kodu" widget'ı (DailyCodeWidget extension) ile
-	     ana uygulama arasında home_widget verisi paylaşmak için App Group.
-	     Değer, ios/DailyCodeWidget/DailyCodeWidget.entitlements ve Dart
-	     tarafındaki LockWidgetService.iosAppGroupId ile birebir aynı olmalı.
+	<!-- "Apple ile Giriş Yap" (sign_in_with_apple paketi) için ZORUNLU.
+	     Bu entitlement olmadan SignInWithApple.getAppleIDCredential()
+	     iOS'ta her zaman hata döner.
 
-	     TODO(Mac/Xcode): Bu dosya proje diskinde hazır ama HENÜZ
-	     Runner target'ının "Code Signing Entitlements" build setting'ine
-	     bağlı DEĞİL (project.pbxproj bu makinede — Windows'ta — güvenli
-	     şekilde düzenlenemediği için elle bırakıldı). Xcode'da:
+	     Xcode tarafındaki karşılığı:
 	       Runner target > Signing & Capabilities > + Capability >
-	       App Groups > "group.com.kpsshazirlik.kpss_telefon" ekle.
-	     Bu adım Xcode'un kendi otomatik ürettiği entitlements dosyasıyla
-	     bu dosyayı birleştirir/değiştirir. -->
-	<key>com.apple.security.application-groups</key>
+	       "Sign in with Apple"
+	     Otomatik imzalama açık olduğu için Xcode bunu App ID'ye de ekler. -->
+	<key>com.apple.developer.applesignin</key>
 	<array>
-		<string>group.com.kpsshazirlik.kpss_telefon</string>
+		<string>Default</string>
 	</array>
+
+	<!-- NOT: "Günün Kilit Ekranı Kodu" widget'ı (DailyCodeWidget) henüz
+	     Xcode projesine bir target olarak EKLENMEDİ (project.pbxproj içinde
+	     hiç referansı yok). App Group entitlement'ı, provisioning profile'da
+	     karşılığı olmadığında imzalamayı bozduğu için buradan çıkarıldı.
+	     Widget target'ı eklendiğinde geri konmalı:
+
+	       <key>com.apple.security.application-groups</key>
+	       <array>
+	         <string>group.com.kpsshazirlik.kpss_telefon</string>
+	       </array>
+	-->
 </dict>
 </plist>

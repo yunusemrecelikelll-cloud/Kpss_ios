@@ -8,6 +8,7 @@ import '../../data/yazim_yanlislari_data.dart';
 import '../../services/sound_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/app_theme.dart';
+import '../../theme/design_system.dart';
 import '../../theme/theme_provider.dart';
 import '../tools_hub_screen.dart';
 import 'quick_modes_shared.dart';
@@ -21,6 +22,11 @@ import 'quick_modes_shared.dart';
 const String kYazimYanlislariGameId = 'yazim-yanlislari';
 const int kYazimYanlislariSoruSayisi = 25;
 const int kYazimYanlislariSureSn = 8;
+
+/// Cevap YANLIŞ (ya da süre doldu) olduğunda doğru yazımın ekranda kaldığı
+/// süre — bu sırada soru sayacı DURUR ve sonraki soruya otomatik geçilir.
+/// Doğru cevapta ise hiç beklenmez, anında sonraki soruya geçilir.
+const Duration kYazimYanlislariYanlisBekleme = Duration(milliseconds: 1800);
 
 class YazimYanlislariScreen extends StatefulWidget {
   const YazimYanlislariScreen({super.key});
@@ -53,6 +59,13 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   String? _selectedText;
   Timer? _ticker;
 
+  /// Yanlış cevaptan sonra sonraki soruya otomatik geçişi sağlayan zamanlayıcı
+  /// — ekran kapanırsa iptal edilebilsin diye alanda tutuluyor.
+  Timer? _autoNext;
+
+  /// Rekor bir kez kaydedilsin diye.
+  bool _yeniRekor = false;
+
   @override
   void initState() {
     super.initState();
@@ -62,6 +75,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   @override
   void dispose() {
     _ticker?.cancel();
+    _autoNext?.cancel();
     super.dispose();
   }
 
@@ -70,7 +84,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kYazimYanlislariGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kYazimYanlislariGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -112,7 +126,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   void _tick() {
     if (!mounted || _answered) return;
     setState(() => _secondsLeft--);
-    if (_secondsLeft <= 3 && _secondsLeft > 0) {
+    if (_secondsLeft <= 5 && _secondsLeft > 0) {
       context.read<SoundService>().tick();
     }
     if (_secondsLeft <= 0) {
@@ -121,9 +135,13 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
     }
   }
 
+  /// Cevap işlenir. DOĞRUYSA hiç beklemeden sonraki soruya geçilir; YANLIŞSA
+  /// (ya da süre dolduysa) süre durur, doğru yazım ekranda gösterilir ve
+  /// [kYazimYanlislariYanlisBekleme] kadar sonra otomatik olarak sonraki
+  /// soruya geçilir — kullanıcının butona basması gerekmez.
   void _answer(String? metin) {
     if (_answered) return;
-    _ticker?.cancel();
+    _ticker?.cancel(); // süre DURUR
     if (metin != null) context.read<SoundService>().click();
     final item = _order[_index];
     final correct = metin == item.dogru;
@@ -137,23 +155,44 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
         _wrongCount++;
       }
     });
+    if (correct) {
+      _next();
+    } else {
+      _autoNext?.cancel();
+      _autoNext = Timer(kYazimYanlislariYanlisBekleme, () {
+        if (!mounted) return;
+        _next();
+      });
+    }
   }
 
   void _next() {
-    context.read<SoundService>().click();
+    _autoNext?.cancel();
     final isLast = _index + 1 >= _order.length;
     if (isLast) {
-      setState(() => _finished = true);
+      _finish();
       return;
     }
     setState(() => _index++);
     _startQuestion();
   }
 
+  /// Test bitti: doğru sayısını rekor olarak kaydeder.
+  Future<void> _finish() async {
+    setState(() => _finished = true);
+    final storage = context.read<StorageService>();
+    final yeni = await storage.submitHighScore(kYazimYanlislariGameId, _correctCount);
+    await storage.setLastRoundStats(kYazimYanlislariGameId, correct: _correctCount, wrong: _wrongCount);
+    if (!mounted) return;
+    setState(() => _yeniRekor = yeni);
+  }
+
   void _retry() {
+    _autoNext?.cancel();
     setState(() {
       _locked = false;
       _booted = false;
+      _yeniRekor = false;
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _boot());
   }
@@ -161,7 +200,11 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kYazimYanlislariGameId,
+        oyunAdi: 'Yazım Yanlışları',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Yazım Yanlışları',
         desc: "Bugünkü ücretsiz Yazım Yanlışları hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -173,12 +216,24 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
       );
     }
     if (_finished) {
+      final colors = context.watch<ThemeProvider>().colors;
       final basari = _correctCount >= (_order.length * 0.7);
-      return QuickModeResultCard(
+      final record = context.watch<StorageService>().getHighScore(kYazimYanlislariGameId);
+      final isabet = _order.isEmpty ? 0 : (_correctCount * 100 / _order.length).round();
+      return GameResultScreen(
         title: '✍️ Yazım Yanlışları',
-        emoji: basari ? '🎉' : '📚',
-        message: '$_correctCount/${_order.length} doğru yazımı buldun!',
-        subMessage: '✓ $_correctCount doğru   •   ✗ $_wrongCount yanlış',
+        emoji: _yeniRekor ? '🏆' : (basari ? '🎉' : (isabet >= 40 ? '💪' : '📚')),
+        headline: _yeniRekor
+            ? 'Yeni rekor kırdın!'
+            : (basari ? 'Yazımın çok iyi!' : 'Tur bitti'),
+        message: '${_order.length} sorudan $_correctCount doğru yazımı buldun.',
+        stats: [
+          GameResultStat(emoji: '✅', value: '$_correctCount', label: 'Doğru', color: colors.success),
+          GameResultStat(emoji: '❌', value: '$_wrongCount', label: 'Yanlış', color: colors.danger),
+          GameResultStat(emoji: '🎯', value: '%$isabet', label: 'İsabet'),
+        ],
+        highScore: record,
+        newRecord: _yeniRekor,
         onRetry: _retry,
       );
     }
@@ -194,18 +249,12 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('${_index + 1}/${_order.length}', style: TextStyle(fontSize: 12.5, color: colors.textFaint, fontWeight: FontWeight.w700)),
-                Row(
-                  children: [
-                    Text('✓ $_correctCount', style: TextStyle(color: colors.success, fontWeight: FontWeight.w800)),
-                    const SizedBox(width: 10),
-                    Text('✗ $_wrongCount', style: TextStyle(color: colors.danger, fontWeight: FontWeight.w800)),
-                  ],
-                ),
-              ],
+            QuickModeScoreBar(
+              gameId: kYazimYanlislariGameId,
+              correct: _correctCount,
+              wrong: _wrongCount,
+              leading: '${_index + 1}/${_order.length}',
+              leadingColor: colors.textFaint,
             ),
             const SizedBox(height: 6),
             ClipRRect(
@@ -222,31 +271,36 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
             ),
             const SizedBox(height: 12),
             for (final opt in _options) _buildOption(opt, colors),
-            if (_answered) ...[
+            // Doğru cevapta anında sonraki soruya geçildiği için bu panel
+            // pratikte YALNIZCA yanlış cevap / süre dolması durumunda görünür:
+            // doğru yazımı gösterir, süre durmuştur ve kısa bir bekleyişin
+            // ardından sonraki soruya otomatik geçilir.
+            if (_answered && !_lastCorrect) ...[
               const SizedBox(height: 8),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                  color: (_lastCorrect ? colors.success : colors.danger).withValues(alpha: 0.12),
+                  color: colors.danger.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: (_lastCorrect ? colors.success : colors.danger).withValues(alpha: 0.4)),
+                  border: Border.all(color: colors.danger.withValues(alpha: 0.4)),
                 ),
-                child: Text(
-                  _lastCorrect
-                      ? '✅ Doğru!'
-                      : (_selectedText == null
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      _selectedText == null
                           ? '⏰ Süre doldu! Doğru yazım: "${_order[_index].dogru}"'
-                          : '❌ Doğru yazım: "${_order[_index].dogru}"'),
-                  style: TextStyle(fontWeight: FontWeight.w800, color: _lastCorrect ? colors.success : colors.danger),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ElevatedButton(
-                  onPressed: _next,
-                  child: Text(_index + 1 >= _order.length ? 'Bitir 🏁' : 'Sonraki Soru →'),
+                          : '❌ Doğru yazım: "${_order[_index].dogru}"',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: colors.danger),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      _index + 1 >= _order.length ? 'Test bitiyor...' : 'Sonraki soruya geçiliyor...',
+                      style: TextStyle(fontSize: 11.5, color: colors.textFaint),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -258,7 +312,7 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
 
   Widget _buildCountdownRing(KpssColors colors) {
     final ratio = (_secondsLeft / kYazimYanlislariSureSn).clamp(0.0, 1.0);
-    final ringColor = _secondsLeft <= 3 ? colors.danger : colors.violet;
+    final ringColor = _secondsLeft <= 5 ? colors.danger : colors.violet;
     return SizedBox(
       width: 64,
       height: 64,
@@ -275,7 +329,12 @@ class _YazimYanlislariScreenState extends State<YazimYanlislariScreen> {
               backgroundColor: colors.border,
             ),
           ),
-          Text('$_secondsLeft', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18, color: ringColor)),
+          DsCountdownText(
+            text: '$_secondsLeft',
+            dikkat: _secondsLeft <= 5 && _secondsLeft > 0,
+            fontSize: 18,
+            normalColor: ringColor,
+          ),
         ],
       ),
     );

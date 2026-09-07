@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik Politikası — KPSS Hazırlık</title>
+<meta name="description" content="KPSS Hazırlık uygulamasının gizlilik politikası: hangi verileri topluyoruz, nerede saklıyoruz, nasıl silebilirsin.">
+<style>
+  :root{
+    --bg:#0A0612; --card:#150C24; --line:#2A1D3F;
+    --text:#F1EEFF; --dim:#C4B5FD; --faint:#8B7AA8; --accent:#A78BFA;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#FAF7FF; --card:#FFFFFF; --line:#E4DAF7;
+           --text:#1E1633; --dim:#4C3A73; --faint:#6B5C8A; --accent:#6D28D9; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       padding:24px 16px 64px}
+  .wrap{max-width:760px;margin:0 auto}
+  header{margin-bottom:28px}
+  h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px;font-weight:800}
+  .sub{color:var(--faint);font-size:.92rem}
+  section{background:var(--card);border:1px solid var(--line);border-radius:16px;
+          padding:20px 22px;margin-bottom:14px}
+  h2{font-size:1.06rem;margin:0 0 10px;font-weight:800;color:var(--accent)}
+  p{margin:0 0 12px;color:var(--dim)}
+  p:last-child{margin-bottom:0}
+  ul{margin:0 0 12px;padding-left:20px;color:var(--dim)}
+  li{margin-bottom:6px}
+  strong{color:var(--text)}
+  a{color:var(--accent);word-break:break-word}
+  .callout{border-left:3px solid var(--accent);padding-left:14px;margin:14px 0}
+  footer{margin-top:28px;text-align:center;color:var(--faint);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Gizlilik Politikası</h1>
+  <div class="sub">KPSS Hazırlık · Son güncelleme: 21 Temmuz 2026</div>
+</header>
+
+<section>
+  <h2>1. Kısaca</h2>
+  <p>KPSS Hazırlık, KPSS'ye hazırlanan adaylar için bir çalışma uygulamasıdır.
+  Verilerinin büyük kısmı <strong>kendi cihazında</strong> saklanır. Bulut
+  tarafı yalnızca sen hesabına giriş yaptığında devreye girer.</p>
+  <p><strong>Reklam göstermiyoruz, analiz (analytics) veya izleme (tracking)
+  SDK'sı kullanmıyoruz, verilerini kimseye satmıyoruz.</strong></p>
+</section>
+
+<section>
+  <h2>2. Cihazında yerel olarak saklanan veriler</h2>
+  <p>Aşağıdaki bilgiler öncelikli olarak kendi cihazında saklanır:</p>
+  <ul>
+    <li>Profil bilgilerin: isim, cinsiyet, hedeflediğin sınav türü</li>
+    <li>Çözdüğün testler, doğru/yanlış sayıların, konu bazlı ilerlemen</li>
+    <li>Rozet, seviye/XP, günlük görev ve çalışma serisi bilgilerin</li>
+    <li>Uygulama ayarların (tema, ses tercihleri)</li>
+    <li>Yanlış yaptığın soruların listesi ("Yanlışlarım Bankası")</li>
+  </ul>
+  <div class="callout">
+    <p><strong>Önemli — bulut yedekleme nasıl çalışır:</strong></p>
+    <ul>
+      <li>Hesabınla <strong>giriş yapmadığın sürece</strong> bu verilerin hiçbiri
+      sunucularımıza gönderilmez; her şey yalnızca cihazında kalır.</li>
+      <li>Bir hesapla giriş yaptığında (e-posta, Google ya da Apple) bulut
+      yedekleme <strong>otomatik olarak açılır</strong> ve yukarıdaki verilerin
+      bir kısmı hesabına bağlı olarak buluta yedeklenmeye başlar. Amacı,
+      telefonunu değiştirdiğinde ya da uygulamayı yeniden kurduğunda
+      ilerlemenin kaybolmamasıdır.</li>
+      <li><strong>Cinsiyet ve sınav türü</strong> bilgilerin <strong>yalnızca
+      cihazında</strong> kalır; bulut yedeğine ya da sunucularımıza hiçbir zaman
+      gönderilmez. Buluta yedeklenen tek profil bilgin adındır.</li>
+      <li>Bunu istemiyorsan <strong>Ayarlar &gt; Hesap</strong> bölümündeki
+      "Bulut yedekleme" seçeneğini istediğin zaman kapatabilirsin. Kapalıyken
+      yeni ilerleme verisi sunucularımıza gönderilmez.</li>
+    </ul>
+  </div>
+  <p>Yerel veriler, uygulamayı cihazından kaldırdığında tamamen silinir. Ancak
+  bu, buluttaki hesabını <strong>silmez</strong> — bunun için 6. bölüme bak.</p>
+</section>
+
+<section>
+  <h2>3. Bulut sunucularında (Firebase) saklanan veriler</h2>
+  <p>Aşağıdakiler yalnızca giriş yaptığında oluşur ve Google LLC tarafından
+  işletilen Firebase altyapısında saklanır:</p>
+  <ul>
+    <li><strong>Hesap bilgileri:</strong> Apple/Google girişinden gelen kullanıcı kimliği, ad ve e-posta</li>
+    <li><strong>Sohbet:</strong> genel sohbete yazdığın mesajlar ve özel konuşmaların</li>
+    <li><strong>Şikayet ve engelleme kayıtları:</strong> moderasyon amaçlı</li>
+    <li><strong>Lig:</strong> sıralama için kullanıcı adın ve puanın</li>
+    <li><strong>Düello:</strong> katıldığın odalardaki cevapların ve skorların</li>
+    <li><strong>Bulut yedeği:</strong> "Bulut yedekleme" açıkken ilerleme verilerin (giriş yapınca otomatik açılır)</li>
+    <li><strong>Abonelik durumu:</strong> premium olup olmadığın</li>
+  </ul>
+</section>
+
+<section>
+  <h2>4. Verilerini neden kullanıyoruz</h2>
+  <ul>
+    <li>Çalışma ilerlemeni kaydetmek ve sana göstermek</li>
+    <li>Cihaz değiştirdiğinde ilerlemenin kaybolmaması (yedekleme açıksa)</li>
+    <li>Sohbet, düello ve lig gibi çok kullanıcılı özellikleri çalıştırmak</li>
+    <li>Abonelik durumunu doğrulamak</li>
+    <li>Kötüye kullanımı önlemek (küfür filtresi, şikayet, engelleme)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. Üçüncü taraf servisler</h2>
+  <p>Uygulama şu servisleri kullanır: <strong>Firebase</strong> (Authentication,
+  Firestore) — Google LLC; <strong>Google Sign-In</strong> ve
+  <strong>Sign in with Apple</strong> — hesap girişi için;
+  <strong>App Store / Google Play</strong> — abonelik satın alımları için.
+  Bu servislerin kendi gizlilik politikaları da geçerlidir.</p>
+</section>
+
+<section>
+  <h2>6. Verilerini silme hakkın</h2>
+  <p>Hesabını ve tüm verilerini <strong>uygulama içinden, tek başına</strong>
+  silebilirsin: <strong>Ayarlar &gt; Hesap &gt; "Hesabımı Sil"</strong>.</p>
+  <p>Bu işlem geri alınamaz ve şunların tamamını kalıcı olarak siler: giriş
+  hesabın, bulut yedeğin, test sonuçların ve istatistiklerin, rozetlerin ve lig
+  kaydın, genel sohbetteki mesajların, özel konuşmaların, engellediğin kullanıcı
+  listesi, gönderdiğin şikayet kayıtları ve açtığın düello odaları. Ayrıca
+  cihazındaki tüm yerel ilerleme de temizlenir.</p>
+  <p>Uygulamayı kaldıramıyorsan ya da hesabına erişemiyorsan, silme talebini
+  <a href="hesap-silme.html">hesap silme talep sayfası</a> üzerinden ya da
+  doğrudan <a href="mailto:yunusemrecelikelll@gmail.com">yunusemrecelikelll@gmail.com</a>
+  adresine iletebilirsin. Talebi aldıktan sonra en geç 30 gün içinde ilgili
+  verileri sileriz.</p>
+  <p><strong>Not:</strong> Bir aboneliğin varsa hesap silmek aboneliği
+  durdurmaz — aboneliği App Store / Google Play hesabından ayrıca iptal etmen
+  gerekir.</p>
+</section>
+
+<section>
+  <h2>7. Çocukların gizliliği</h2>
+  <p>Uygulama KPSS'ye hazırlanan yetişkin adaylar için tasarlanmıştır ve bilerek
+  13 yaş altı çocuklardan veri toplamayı hedeflemez.</p>
+</section>
+
+<section>
+  <h2>8. Bu politikadaki değişiklikler</h2>
+  <p>Bu politika zaman zaman güncellenebilir; önemli değişikliklerde uygulama
+  içinde bilgilendirme yapılır. Güncel sürüm her zaman bu sayfada yer alır.</p>
+</section>
+
+<section>
+  <h2>9. İletişim</h2>
+  <p>Gizlilikle ilgili sorular, veri erişim veya silme talepleri için:<br>
+  <a href="mailto:yunusemrecelikelll@gmail.com">yunusemrecelikelll@gmail.com</a></p>
+</section>
+
+<footer>KPSS Hazırlık · Gizlilik Politikası</footer>
+
+</div>
+</body>
+</html>

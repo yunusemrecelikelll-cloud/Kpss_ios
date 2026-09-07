@@ -41,6 +41,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
   bool _lastCorrect = false;
   int _streak = 0;
   int _best = 0;
+  bool _yeniRekor = false; // bu oturumda eski rekor gerçekten AŞILDI mı
 
   @override
   void initState() {
@@ -53,7 +54,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
     final premium = storage.isPremiumUser();
     if (!premium) {
       final gp = storage.getGamePlayState(kBilgiMaratonuGameId);
-      if ((gp['plays'] as int) >= kFreeGameDailyLimit) {
+      if ((gp['plays'] as int) >= kFreeGameDailyLimit + storage.getExtraPlays(kBilgiMaratonuGameId)) {
         if (!mounted) return;
         setState(() => _locked = true);
         return;
@@ -79,6 +80,7 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
       _ptr = 0;
       _best = storage.getBestMarathonStreak();
       _streak = 0;
+      _yeniRekor = false;
       _given = null;
       _showResult = false;
       _finished = false;
@@ -118,7 +120,11 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
       return;
     }
     final storage = context.read<StorageService>();
+    // GERÇEK yeni rekor mu (eski rekoru AŞTI mı) — eşitlik rekor sayılmaz.
+    // build() bunu kullanır; `_streak >= _best` demek, _best güncellendikten
+    // sonra eşitlikte de "yeni rekor" gösterirdi (hatalıydı).
     if (_streak > _best) {
+      _yeniRekor = true;
       await storage.setBestMarathonStreak(_streak);
       _best = _streak;
     }
@@ -138,7 +144,11 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kBilgiMaratonuGameId,
+        oyunAdi: 'Bilgi Maratonu',
+        onUnlocked: () => setState(() => _locked = false),
+
         title: 'Bilgi Maratonu',
         desc: "Bugünkü ücretsiz hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -150,12 +160,22 @@ class _BilgiMaratonuScreenState extends State<BilgiMaratonuScreen> {
       return const Scaffold(body: Center(child: Text('Yeterli soru bulunamadı.')));
     }
     if (_finished) {
-      final beatBest = _streak >= _best && _streak > 0;
-      return QuickModeResultCard(
+      final colors = context.watch<ThemeProvider>().colors;
+      final beatBest = _yeniRekor && _streak > 0;
+      return GameResultScreen(
         title: '🏃 Bilgi Maratonu',
-        emoji: beatBest ? '🏆' : '📚',
-        message: 'Serin: $_streak doğru',
-        subMessage: 'En uzun serin: $_best${beatBest ? ' — yeni rekor! 🎉' : ''}',
+        emoji: beatBest ? '🏆' : (_streak >= 10 ? '🎉' : (_streak >= 4 ? '💪' : '📚')),
+        headline: beatBest ? 'Yeni rekor kırdın!' : 'Seri bozuldu',
+        message: _streak == 0
+            ? 'İlk soruda takıldın — bir dahakine daha dikkatli oku!'
+            : 'Art arda $_streak soruyu doğru bildin.',
+        stats: [
+          GameResultStat(emoji: '🔥', value: '$_streak', label: 'Bu Serin', color: colors.success),
+          GameResultStat(emoji: '🏅', value: '$_best', label: 'En Uzun Seri', color: colors.gold),
+        ],
+        highScore: _best,
+        highScoreLabel: 'En Uzun Seri',
+        newRecord: beatBest,
         onRetry: _retry,
       );
     }

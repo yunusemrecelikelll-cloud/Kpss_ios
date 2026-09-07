@@ -10,7 +10,6 @@ class TimerService extends ChangeNotifier {
   void Function()? _onExpire;
 
   int get remaining => _remaining;
-  bool get isRunning => _ticker != null;
 
   void start(int totalSeconds, {void Function()? onExpire}) {
     stop();

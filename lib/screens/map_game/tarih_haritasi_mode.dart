@@ -63,7 +63,7 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
   late List<TarihOlayi> _queue;
   TurkeyProvince? _tapped;
   bool _showResult = false;
-  String? _flashWrongId;
+  final List<TurkeyProvince> _yanlisSecilen = [];
   DateTime? _sessionStart;
 
   @override
@@ -101,7 +101,6 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
       // sonuç durumunun sızmaması için tur-bazlı alanlar burada da sıfırlanır.
       _showResult = false;
       _tapped = null;
-      _flashWrongId = null;
     });
   }
 
@@ -115,30 +114,39 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
         _tapped = p;
         _showResult = true;
         _score++;
+        context.read<StorageService>().addGameAnswer(kTarihHaritasiGameId, 'tarih', true);
       });
       return;
     }
     _attempts++;
+    if (!_yanlisSecilen.any((x) => x.id == p.id)) _yanlisSecilen.add(p);
+    context.read<StorageService>().addGameAnswer(kTarihHaritasiGameId, 'tarih', false);
     if (_attempts >= kMapMaxAttempts) {
+      _kaydetYanlis();
       setState(() {
         _tapped = p;
         _showResult = true;
       });
     } else {
-      _flashWrong(p.id);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('❌ Yanlış, tekrar dene! (${kMapMaxAttempts - _attempts} hakkın kaldı)'),
-        duration: const Duration(milliseconds: 1400),
-      ));
+      // Kullanıcı isteği: ilk yanlış işaret 2. seçime kadar KALSIN;
+      // alt uyarı (haritaBekleyenAfis) pendingNotice ile gösterilir.
+      setState(() {});
     }
   }
 
-  /// Yanlış dokunulan ili kısa süreliğine kırmızı yakıp söndürür.
-  void _flashWrong(String id) {
-    setState(() => _flashWrongId = id);
-    Future.delayed(const Duration(milliseconds: 550), () {
-      if (mounted && _flashWrongId == id) setState(() => _flashWrongId = null);
-    });
+  void _kaydetYanlis() {
+    if (_yanlisSecilen.isEmpty) return;
+    final dogruIl = kTurkeyProvinces.firstWhere((p) => p.id == _target.ilId);
+    haritaYanlisKaydet(
+      context,
+      soru: _target.olay,
+      dogruId: _target.ilId,
+      dogruAd: dogruIl.ad,
+      secilenIds: _yanlisSecilen.map((e) => e.id).toList(),
+      secilenAdlar: _yanlisSecilen.map((e) => e.ad).toList(),
+      modId: kTarihHaritasiGameId,
+      modAd: 'Tarih Haritası',
+    );
   }
 
   void _next() {
@@ -149,10 +157,10 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
     }
     setState(() {
       _round++;
+      _yanlisSecilen.clear();
       _tapped = null;
       _showResult = false;
       _attempts = 0;
-      _flashWrongId = null;
     });
   }
 
@@ -167,7 +175,11 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
   @override
   Widget build(BuildContext context) {
     if (_locked) {
-      return const LockedFeatureCard(
+      return LockedFeatureCard(
+        gameId: kMapGameId,
+        oyunAdi: 'Harita Oyunu',
+        onUnlocked: _retry,
+
         title: 'Tarih Haritası',
         desc: "Bugünkü $kFreeGameDailyLimit ücretsiz harita oyunu hakkını kullandın. Yarın tekrar oyna ya da Premium'a geçip sınırsız oyna.",
       );
@@ -176,12 +188,12 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_finished) {
-      return MapSessionResult(
+      return MapQuizResult(
         title: '🕰️ Tarih Haritası',
-        emoji: _score >= (_queue.length * 0.7) ? '🎉' : '📚',
-        message: '${_queue.length} sorudan $_score tanesini doğru bildin.',
+        modeId: kTarihHaritasiGameId,
+        score: _score,
+        total: _queue.length,
         onRetry: _retry,
-        palette: mapModePaletteFor(kTarihHaritasiGameId),
       );
     }
     return _buildRound(context);
@@ -189,6 +201,7 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
 
   Widget _buildRound(BuildContext context) {
     final colors = context.watch<ThemeProvider>().colors;
+    final mapRenk = mapHighlightColor(context);
     final targetName = kTurkeyProvinces.firstWhere((p) => p.id == _target.ilId).ad;
     return MapQuizScaffold(
       title: '🕰️ Tarih Haritası',
@@ -201,8 +214,8 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
         provinces: kTurkeyProvinces,
         colorFor: (p) {
           if (!_showResult) {
-            if (p.id == _flashWrongId) return colors.danger;
-            return colors.violet.withValues(alpha: 0.32);
+            if (_yanlisSecilen.any((x) => x.id == p.id)) return colors.danger;
+            return mapRenk.withValues(alpha: 0.32);
           }
           if (p.id == _target.ilId) return colors.success;
           if (p.id == _tapped?.id) return colors.danger;
@@ -213,36 +226,26 @@ class _TarihHaritasiScreenState extends State<TarihHaritasiScreen> {
       feedback: _showResult
           ? _buildFeedback(colors, targetName)
           : null,
+      pendingNotice: (!_showResult && _yanlisSecilen.isNotEmpty)
+          ? haritaBekleyenAfis(context,
+              secilenAd: _yanlisSecilen.last.ad,
+              kalanHak: kMapMaxAttempts - _attempts)
+          : null,
     );
   }
 
   Widget _buildFeedback(KpssColors colors, String targetName) {
     final correct = _target.ilId == _tapped?.id;
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: (correct ? colors.success : colors.danger).withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: correct ? colors.success : colors.danger),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            correct ? '✅ Doğru! $targetName.' : '❌ $kMapMaxAttempts hakkını da kullandın. Doğru cevap: $targetName.',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
-          ),
-          const SizedBox(height: 10),
-          Align(
-            alignment: Alignment.centerRight,
-            child: ElevatedButton(
-              onPressed: _next,
-              child: Text(_round + 1 < _queue.length ? 'Sonraki Soru →' : 'Bitir'),
-            ),
-          ),
-        ],
-      ),
+    return haritaSonucAfisi(
+      context,
+      dogru: correct,
+      baslik: correct ? 'Doğru! $targetName.' : 'Doğru cevap: $targetName.',
+      aciklama: (!correct && _yanlisSecilen.isNotEmpty)
+          ? haritaYanlisSebebi(kTarihHaritasiGameId, targetName,
+              _yanlisSecilen.map((e) => e.ad).toList())
+          : null,
+      sonSoru: _round + 1 >= _queue.length,
+      onNext: _next,
     );
   }
 }

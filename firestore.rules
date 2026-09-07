@@ -1,0 +1,439 @@
+// ===========================================================================
+// KPSS Hazırlık — Firestore güvenlik kuralları
+// ===========================================================================
+//
+// Firebase Console > Firestore Database > Rules ekranına BU DOSYANIN TAMAMINI
+// yapıştırıp "Publish" de. Ya da Firebase CLI ile:
+//     firebase deploy --only firestore:rules
+//
+// KRİTİK: "Hesabımı Sil" akışının (bkz. lib/services/account_deletion_service.dart)
+// çalışabilmesi için kullanıcının KENDİ dokümanlarını silme izni ŞARTTIR.
+// Bu kurallar yayınlanmazsa silme adımları sessizce başarısız olur, kullanıcı
+// "hesabım silindi" görür ama veriler sunucuda durmaya devam eder — hem
+// App Store 5.1.1(v) hem Google Play veri silme şartının ihlali olur.
+// ===========================================================================
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Yardımcılar ────────────────────────────────────────────────────────
+    function girisli() {
+      return request.auth != null;
+    }
+    function sahip(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+    // YÖNETİCİ KİMLİĞİ — yönetici web paneli (admin_panel.html) bu uid ile
+    // giriş yapan hesaba: tüm kullanıcı durumlarını okuma ve premium
+    // verme/geri alma yetkisi tanır. 'OdTRShrgauSH2EodN5L9NzXmSpZ2' değerini Firebase
+    // Console > Authentication > Users listesinden KENDİ hesabının UID'siyle
+    // değiştir (panel, giriş yapınca UID'ini gösterir — oradan kopyala).
+    function yonetici() {
+      return request.auth != null && request.auth.uid == 'OdTRShrgauSH2EodN5L9NzXmSpZ2';
+    }
+
+    // ── Alan doğrulama yardımcıları ────────────────────────────────────────
+    // Cloud Functions olmadan (Spark planı) rekabetçi verinin SUNUCU TARAFINDA
+    // en azından TİP ve MAKUL ARALIK denetimi yapılabilmesi için. Bu, gerçek
+    // bir anti-cheat değildir (kararlı bir kullanıcı hâlâ "makul ama şişirilmiş"
+    // bir skor yazabilir), ancak değiştirilmiş bir istemcinin lig tablosuna
+    // absürt (ör. 999.999.999 puan) değerler enjekte etmesini engeller.
+    // Her alan YALNIZCA yazımda VARSA denetlenir; böylece parçalı (merge)
+    // yazımlar (ör. yalnızca {kod, displayName}) bozulmaz ve ileride eklenecek
+    // alanlar kuralı kırmaz.
+    function optNum(d, f, lo, hi) {
+      return !(f in d) || (d[f] is number && d[f] >= lo && d[f] <= hi);
+    }
+    function optStr(d, f, maxLen) {
+      return !(f in d) || (d[f] is string && d[f].size() <= maxLen);
+    }
+    function optBool(d, f) {
+      return !(f in d) || d[f] is bool;
+    }
+    function optList(d, f, maxSize) {
+      return !(f in d) || (d[f] is list && d[f].size() <= maxSize);
+    }
+    // league_scores dokümanının rekabetçi alanlarının geçerlilik denetimi.
+    function gecerliLigVerisi(d) {
+      return optStr(d, 'displayName', 60)
+          && optStr(d, 'kod', 6)
+          && optStr(d, 'weekStart', 16)
+          && optNum(d, 'rate', 0, 100)
+          && optNum(d, 'solved', 0, 5000000)
+          && optNum(d, 'correct', 0, 5000000)
+          && optNum(d, 'tests', 0, 1000000)
+          && optNum(d, 'weeklyPoints', 0, 5000000)
+          && optNum(d, 'streakCount', 0, 200000)
+          && optNum(d, 'badgeCount', 0, 2000)
+          && optBool(d, 'hideStats')
+          && optList(d, 'unlockedBadgeIds', 1000);
+    }
+
+    // ── Soru bankaları: herkes okur, kimse yazamaz ─────────────────────────
+    // İçerik yalnızca Firebase Console / Admin SDK üzerinden güncellenir.
+    match /question_banks/{topicId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Uygulama meta verisi (içerik sürümü) ───────────────────────────────
+    match /app_meta/{doc} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // ── Düello / Royale odaları ────────────────────────────────────────────
+    // Odalar kısa ömürlü maç oturumlarıdır ve oyun akışı TAMAMEN istemci
+    // tarafında yürür (proje Spark planında, Cloud Functions yok). Bu yüzden
+    // katılımcıların birbirinin skor/cevap alanlarını yazabilmesi gerekir —
+    // mükemmel bir anti-cheat hedeflenmiyor, makul bir seviye hedefleniyor.
+    match /duel_rooms/{roomId} {
+
+      // OKUMA giriş yapmış herkese açık: kod ile katılırken kullanıcı henüz
+      // odanın oyuncusu DEĞİLDİR, önce odayı okuyup var olduğunu görmesi
+      // gerekir. Okumayı "sadece oyuncular" diye kısıtlamak katılmayı
+      // tamamen bozar.
+      allow read: if girisli();
+
+      // Oluştururken kendini host yazmak zorunda — başkasının adına oda
+      // açılamaz.
+      allow create: if girisli()
+                    && request.resource.data.hostUid == request.auth.uid;
+
+      // Güncellemede DEĞİŞMEZ alanlar korunur. Böylece bir katılımcı odanın
+      // kodunu, sahibini, modunu veya kapasitesini değiştiremez; sadece kendi
+      // oyun durumunu (players, status, startedAt vb.) yazabilir.
+      //
+      // NOT: `questions` alanı bilerek bu listede DEĞİL — büyük bir dizinin
+      // kural içinde alan-alan karşılaştırılması kırılgandır ve zaten her
+      // oyuncu soruları oynayabilmek için okumak zorunda, yani gizlilik
+      // kazancı yok.
+      // Güncellemede DEĞİŞMEZ alanlar korunur VE yazan kişi ODANIN İÇİNDE
+      // olmak zorundadır (host, mevcut oyuncu ya da o an KATILMAKTA olan yeni
+      // oyuncu). Böylece odaya hiç girmemiş rastgele bir kullanıcı başka bir
+      // odanın skor/durum/oyuncu alanlarını BOZAMAZ (griefing/skor enjeksiyonu
+      // yüzeyi daraltıldı). Not: aynı odadaki bir oyuncunun BAŞKA oyuncunun
+      // skorunu yazması hâlâ kural düzeyinde tümüyle engellenemez (dinamik map
+      // anahtarları) — tam anti-cheat Cloud Functions ister.
+      allow update: if girisli()
+                    && request.resource.data.code == resource.data.code
+                    && request.resource.data.hostUid == resource.data.hostUid
+                    && request.resource.data.mode == resource.data.mode
+                    && request.resource.data.maxPlayers == resource.data.maxPlayers
+                    && (
+                      request.auth.uid == resource.data.hostUid
+                      || (resource.data.playerUids is list
+                          && request.auth.uid in resource.data.playerUids)
+                      || (request.resource.data.playerUids is list
+                          && request.auth.uid in request.resource.data.playerUids)
+                    );
+
+      // Silme: normalde yalnızca oda sahibi. AMA "hayalet oda" temizliği için
+      // (kullanıcı isteği: her oda 2 saatte kapansın) SÜRESİ DOLMUŞ ya da
+      // TAMAMEN BOŞ odaları giriş yapmış herhangi bir kullanıcı da silebilir —
+      // bu odalar zaten geçersiz olduğundan güvenli. "Hesabımı Sil" akışı da
+      // host olarak kendi odalarını siler.
+      allow delete: if girisli()
+                    && (
+                      request.auth.uid == resource.data.hostUid
+                      || (resource.data.expiresAt is timestamp
+                          && resource.data.expiresAt < request.time)
+                      || (resource.data.players is map
+                          && resource.data.players.size() == 0)
+                    );
+
+      // Uygulama duel_rooms altında alt koleksiyon KULLANMIYOR (sorular/oyuncular
+      // ana dokümanda). Bu yüzden alt koleksiyon yazımı tamamen kapatıldı
+      // (eskiden "girisli()" ile herkese açıktı — gereksiz yazma yüzeyi).
+      match /{sub=**} {
+        allow read: if girisli();
+        allow write: if false;
+      }
+    }
+
+    // ── Herkese açık profil / lig özeti ────────────────────────────────────
+    // Sohbetten "Profili Görüntüle" diyen herkes okuyabilmeli; yalnızca
+    // sahibi yazabilir/silebilir.
+    match /league_scores/{uid} {
+      allow read: if true;
+      // Yalnızca sahibi yazar VE yazdığı rekabetçi değerler tip/aralık
+      // denetiminden geçmek zorundadır (absürt lig puanı enjeksiyonunu önler).
+      allow create, update: if sahip(uid)
+                    && gecerliLigVerisi(request.resource.data);
+      allow delete: if sahip(uid);
+    }
+
+    // ── Bulut yedeği ───────────────────────────────────────────────────────
+    // Tamamen özel: sadece sahibi okur, yazar ve siler.
+    match /cloud_backups/{uid} {
+      allow read, create, update, delete: if sahip(uid);
+    }
+
+    // ── Bildirimler ────────────────────────────────────────────────────────
+    // Kullanıcı kendi bildirimlerini okur/siler. Başka bir kullanıcının
+    // bildirim OLUŞTURABİLMESİ gerekir (ör. şikayet sonucu bilgilendirme),
+    // bu yüzden create girişli herkese açık; okuma/silme sahibine kapalı.
+    match /user_notifications/{uid} {
+      allow read, write, delete: if sahip(uid);
+
+      match /items/{itemId} {
+        allow read, update, delete: if sahip(uid);
+
+        // Oluşturma bilerek GENİŞ: bildirimi yazan (şikayet eden) ile kutunun
+        // sahibi (şikayet edilen) FARKLI kişilerdir, dolayısıyla "sadece
+        // kendi belgeni yaz" deseni burada işlemez.
+        //
+        // Kötüye kullanımı sınırlamak için iki kısıt var: `type` sabit bir
+        // kümeyle sınırlı ve `message` en fazla 200 karakter. İstemci
+        // tarafında bu yazmayı yalnızca ChatService._notifyUser tetikliyor ve
+        // metni kullanıcıdan almıyor (bkz. chat_service.dart).
+        // GÜVENLİK: Bildirimi yazan (fromUid) KENDİ uid'ini yazmak ZORUNDA —
+        // böylece sahte "sistem bildirimi" enjekte eden anonim/kimliksiz yazma
+        // engellenir ve kötüye kullanımda kaynak izlenebilir. type sabit küme,
+        // message en fazla 200 karakter.
+        allow create: if girisli()
+                      && request.resource.data.fromUid == request.auth.uid
+                      && request.resource.data.type in ['info', 'report_notice']
+                      && request.resource.data.message is string
+                      && request.resource.data.message.size() <= 200;
+      }
+    }
+
+    // ── Engellenen kullanıcı listesi ───────────────────────────────────────
+    match /blocked_users/{uid} {
+      allow read, write, delete: if sahip(uid);
+
+      match /users/{blockedUid} {
+        allow read, create, update, delete: if sahip(uid);
+      }
+    }
+
+    // ── Genel sohbet ───────────────────────────────────────────────────────
+    // Giriş yapan herkes okur. Mesajı yalnızca sahibi oluşturabilir ve
+    // silebilir (hesap silmede toplu silme bu izne dayanır).
+    // Güncelleme kapalı: gönderilmiş mesaj sonradan değiştirilemez.
+    match /chat_messages/{msgId} {
+      allow read: if girisli();
+      // Mesajı yalnızca sahibi yazabilir; ayrıca metin ve gönderen adı MAKUL
+      // uzunlukta olmak zorunda (dev doküman/spam yazımı ve UI taşması önlenir).
+      allow create: if girisli()
+                    && request.resource.data.senderUid == request.auth.uid
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() <= 500
+                    && (!('senderName' in request.resource.data)
+                        || request.resource.data.senderName.size() <= 40);
+      allow delete: if girisli()
+                    && resource.data.senderUid == request.auth.uid;
+      allow update: if false;
+    }
+
+    // ── Özel mesajlar (DM) ─────────────────────────────────────────────────
+    // Yalnızca konuşmanın taraflarına açık.
+    match /dm_threads/{threadId} {
+      // `resource == null` ŞART: mesaj göndermeden önce istemci thread'in
+      // mevcut durumunu (accepted/requestFrom) okur. Yeni bir sohbette bu
+      // doküman HENÜZ YOKTUR; Firestore, var olmayan dokümanı resource.data'ya
+      // bakan kuralla okumayı permission-denied ile reddeder ve YENİ birine
+      // İLK mesaj hiç gönderilemezdi (friend_requests'teki tuzağın aynısı).
+      allow read: if girisli()
+                    && (resource == null
+                        || request.auth.uid in resource.data.participants);
+      allow update, delete: if girisli()
+                    && request.auth.uid in resource.data.participants;
+      allow create: if girisli()
+                    && request.auth.uid in request.resource.data.participants;
+
+      match /messages/{msgId} {
+        // Üst thread'in katılımcısı olmak şart.
+        allow read, delete: if girisli()
+          && request.auth.uid in
+             get(/databases/$(database)/documents/dm_threads/$(threadId))
+               .data.participants;
+        // Oluştururken AYRICA senderUid = yazan olmak zorunda — böylece iki
+        // kişilik thread içinde karşı tarafın kimliğiyle mesaj yazılamaz.
+        allow create: if girisli()
+          && request.resource.data.senderUid == request.auth.uid
+          && request.auth.uid in
+             get(/databases/$(database)/documents/dm_threads/$(threadId))
+               .data.participants;
+        allow update: if false;
+      }
+    }
+
+    // ── Moderasyon şikayetleri ─────────────────────────────────────────────
+    // Kullanıcı kendi şikayetini oluşturur, okur ve (hesap silmede) siler.
+    // Başkasının şikayetini göremez; moderasyon Console/Admin SDK ile yapılır.
+    match /chat_reports/{reportId} {
+      allow create: if girisli()
+                    && request.resource.data.reporterUid == request.auth.uid;
+      allow read, delete: if girisli()
+                    && resource.data.reporterUid == request.auth.uid;
+      allow update: if false;
+    }
+
+    // ── Kullanıcı adı → e-posta eşlemesi ───────────────────────────────────
+    // Doküman kimliği = kullanıcı adının KÜÇÜK HARFE çevrilmiş hâli.
+    // Alanlar: email (string), uid (string), username (string).
+    //
+    // GÜVENLİK — OKUMA ARTIK SAHİBE KAPALI (e-posta sızıntısı kapatıldı):
+    // Eskiden okuma herkese açıktı çünkü "kullanıcı adı + şifre" ile giriş,
+    // şifreyi Auth'a göndermeden ÖNCE adı e-postaya çevirmek zorundaydı ve o an
+    // kimlik doğrulanmamış oluyordu. O giriş yöntemi KALDIRILDI (artık yalnızca
+    // Google/Apple). Dolayısıyla herkese açık okumanın gerekçesi kalmadı; açık
+    // bırakmak yalnızca "usernames koleksiyonunu çekip tüm e-postaları topla"
+    // saldırısına kapı aralıyordu.
+    //
+    // Yeni kural: kullanıcı YALNIZCA kendi kaydını okuyabilir/sorgulayabilir
+    // (uid == auth.uid). "Hesabımı Sil" akışı bu kaydı `where('uid'==uid)` ile
+    // sorgulayıp sildiği için bu izin yeterli ve gerekli; başka hiçbir yer bu
+    // koleksiyonu okumaz. Not: koleksiyonda ESKİDEN kalmış e-postalı belgeler
+    // varsa artık dışarıya görünmez, ama tümüyle temizlemek için Console'dan
+    // eski `usernames` belgelerini silmek en temizi.
+    match /usernames/{usernameKey} {
+      allow read: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+
+      // Yalnızca kendi adına rezervasyon yapılabilir.
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+
+      // Güncelleme/silme yalnızca kaydın sahibine açık ("Hesabımı Sil" buna dayanır).
+      allow update, delete: if request.auth != null
+                    && resource.data.uid == request.auth.uid;
+    }
+
+    // ── Kullanıcı ID'si (6 haneli kod → uid) ───────────────────────────────
+    // Doküman kimliği = 6 haneli kod. Kullanıcılar birbirini bu kodla arayıp
+    // arkadaş ekler; bu yüzden giriş yapan herkes OKUYABİLİR. Kaydı yalnızca
+    // sahibi (uid == kendi uid'i) oluşturur/günceller/siler.
+    match /user_ids/{kod} {
+      allow read: if girisli();
+      allow create: if girisli()
+                    && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if girisli()
+                    && resource.data.uid == request.auth.uid;
+    }
+
+    // ── Arkadaşlık istekleri ───────────────────────────────────────────────
+    // Doküman kimliği "{gonderenUid}_{alanUid}" biçimindedir.
+    match /friend_requests/{requestId} {
+      // İsteği yalnızca tarafları görebilir.
+      //
+      // `resource == null` ŞART: istek göndermeden önce istemci "karşı taraf
+      // bana zaten istek atmış mı?" diye TERS dokümanı okuyor. O doküman çoğu
+      // zaman YOKTUR. Firestore'da var olmayan bir dokümanı, kural
+      // `resource.data`'ya bakarken okumaya çalışmak permission-denied ile
+      // reddedilir (resource null olduğu için kural değerlendirmesi hata
+      // verir). Bu yüzden var olmayan dokümanın okunmasına açıkça izin
+      // veriyoruz — geriye null döner, hiçbir veri sızmaz. Bu satır olmadan
+      // arkadaşlık isteği GÖNDERİLEMİYORDU.
+      allow read: if girisli()
+                  && (resource == null
+                      || resource.data.fromUid == request.auth.uid
+                      || resource.data.toUid == request.auth.uid);
+
+      // İsteği yalnızca GÖNDEREN oluşturabilir ve kendi adına göndermek
+      // zorundadır — başkasının adına istek gönderilemez. Kendine istek
+      // göndermek de engellenir.
+      allow create: if girisli()
+                    && request.resource.data.fromUid == request.auth.uid
+                    && request.resource.data.toUid is string
+                    && request.resource.data.toUid != request.auth.uid;
+
+      // Silme iki tarafa da açık: gönderen isteğini geri çeker, alan ise
+      // kabul ya da reddeder.
+      allow delete: if girisli()
+                    && (resource.data.fromUid == request.auth.uid
+                        || resource.data.toUid == request.auth.uid);
+
+      // Gönderilmiş bir istek sonradan DEĞİŞTİRİLEMEZ (ör. gönderen kendini
+      // başkası gibi göstermek için fromName'i değiştiremez). Yeniden
+      // göndermek isteyen silip yeniden oluşturur.
+      allow update: if false;
+    }
+
+    // ── Arkadaş listesi ────────────────────────────────────────────────────
+    // Arkadaşlık ÇİFT YÖNLÜ saklanır: kabul anında hem kabul edenin hem
+    // gönderenin listesine birer kayıt yazılır.
+    match /friends/{uid}/list/{friendUid} {
+      // Listemi yalnızca ben okurum.
+      allow read: if sahip(uid);
+
+      // Kendi listemi serbestçe yönetirim.
+      allow create, update, delete: if sahip(uid);
+
+      // BAŞKASININ listesine yazma — arkadaşlığın çift yönlü kurulabilmesi
+      // için ŞART. İki kısıtla sınırlandırılmıştır:
+      //   1. Yazılan kayıt BEN olmak zorundayım (friendUid == kendi uid'im);
+      //      yani başkasının listesine üçüncü bir kişiyi ekleyemem.
+      //   2. Aramızda GERÇEKTEN bekleyen bir istek olmak zorunda. Bu koşul
+      //      olmasaydı herkes kendini istediği kişinin arkadaş listesine
+      //      zorla ekleyebilirdi.
+      allow create: if girisli()
+                    && friendUid == request.auth.uid
+                    && exists(/databases/$(database)/documents/friend_requests/$(uid + '_' + request.auth.uid));
+
+      // Arkadaşlıktan çıkarma da çift yönlü olmalı: kendimi karşı tarafın
+      // listesinden çıkarabilirim. Burada istek şartı ARANMAZ — ayrılmayı
+      // zorlaştırmak, ilişki kurmayı zorlaştırmaktan farklı olarak kullanıcının
+      // aleyhinedir.
+      allow delete: if girisli() && friendUid == request.auth.uid;
+    }
+
+    // ── Kullanıcı canlılık kaydı (yönetici paneli verisi) ──────────────────
+    // Uygulama açılış/öne gelişte kullanıcı KENDİ dokümanını yazar (ad,
+    // e-posta, premium, lastSeen). Yalnızca YÖNETİCİ tümünü okuyabilir —
+    // sıradan kullanıcılar birbirinin e-postasını/son görülmesini GÖREMEZ.
+    match /user_status/{uid} {
+      allow read: if yonetici() || sahip(uid);
+      allow create, update: if sahip(uid);
+      allow delete: if sahip(uid) || yonetici();
+    }
+
+    // ── Panelden premium verme ─────────────────────────────────────────────
+    // Yalnızca yönetici yazar; kullanıcı KENDİ kaydını okur (uygulama girişte
+    // kontrol edip premium'u uygular) ve hesap silmede silebilir.
+    match /premium_grants/{uid} {
+      allow read: if sahip(uid) || yonetici();
+      allow create, update: if yonetici();
+      allow delete: if sahip(uid) || yonetici();
+    }
+
+    // ── Davet (referans) cihaz kayıtları — sahtecilik koruması ─────────────
+    // Doküman kimliği = CİHAZ kimliği (IDFV/Android ID). Bir cihaz bir davet
+    // kodunu YALNIZCA 1 KEZ kullanabilir: kayıt bir kez oluşturulur, ASLA
+    // güncellen/silinemez (silinebilseydi kullanıcı silip yeniden davet
+    // farm'layabilirdi). Yazan, kendini claimer yazmak ve kendi kodunu
+    // kullanmamak zorunda. Okuma: transaction'ın var-mı kontrolü için girişli.
+    match /invite_claims/{deviceId} {
+      allow read: if girisli();
+      allow create: if girisli()
+                    && request.resource.data.claimerUid == request.auth.uid
+                    && request.resource.data.inviterUid is string
+                    && request.resource.data.inviterUid != request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    // ── Davet ödülü gelen kutusu ───────────────────────────────────────────
+    // invite_rewards/{davetEden}/items/{id}. Ödülü DAVET EDİLEN yazar, davet
+    // EDEN okuyup uygular ve siler. KRİTİK: fromUid == yazan VE yazan != kutu
+    // sahibi — böylece kimse KENDİNE ödül yazamaz (self-reward engellendi).
+    match /invite_rewards/{ownerUid}/items/{itemId} {
+      allow read, delete: if sahip(ownerUid);
+      allow create: if girisli()
+                    && request.resource.data.fromUid == request.auth.uid
+                    && request.auth.uid != ownerUid
+                    && request.resource.data.premiumGun is number
+                    && request.resource.data.premiumGun <= 1;
+      allow update: if false;
+    }
+
+    // ── Varsayılan: her şey kapalı ─────────────────────────────────────────
+    // Yukarıda açıkça izin verilmeyen hiçbir yola erişilemez.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

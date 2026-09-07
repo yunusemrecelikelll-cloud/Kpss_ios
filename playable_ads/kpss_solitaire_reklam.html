@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>KPSS Hazırlık — Eşleştirme Solitaire</title>
+<style>
+  /* Uygulamadaki Eşleştirme Solitaire ile BİREBİR renkler + GERÇEK İSKAMBİL
+     kartı oranı (2.5:3.5). Sütunlarda sadece EN ÖNDEKİ kart açık; arkasındakiler
+     kart sırtı (kapalı). 5 hedef kategori + deste + Kalan Hamle/Kalan kart. */
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  html,body{height:100%;font-family:-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+    background:#0F6B3E;color:#fff;overflow:hidden;touch-action:none}
+  #app{max-width:520px;margin:0 auto;height:100%;display:flex;flex-direction:column;position:relative}
+
+  .bar{background:#0A4E2C;padding:10px 14px;display:flex;align-items:center;gap:8px;flex:0 0 auto}
+  .bar .t{font-weight:900;font-size:16px}
+
+  .ust{display:flex;align-items:center;gap:8px;padding:8px 12px 4px}
+  .col-l{display:flex;flex-direction:column;gap:5px}
+  .badge{background:#FAF3E4;border:1.4px solid #F5B942;border-radius:10px;padding:5px 9px;
+    color:#2A1D10;font-weight:900;font-size:12px;display:flex;align-items:center;gap:5px;
+    box-shadow:0 2px 4px rgba(0,0,0,.25);white-space:nowrap}
+  .mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .flama{background:#148A4F;color:#fff;font-weight:900;font-size:12px;padding:6px 18px 6px 12px;
+    clip-path:polygon(0 0,100% 0,86% 50%,100% 100%,0 100%)}
+  .flama.az{background:#C0392B}
+  .kalan{background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.38);border-radius:9px;
+    padding:3px 9px;font-size:11px;font-weight:800;white-space:nowrap}
+  .deste{display:flex;align-items:flex-start;gap:6px}
+
+  .basl{font-size:12px;font-weight:900;color:#DFF3E6;padding:6px 14px 4px}
+
+  /* Hedef kartları da GERÇEK İSKAMBİL boyutunda (--cw × --ch), aynı krem/altın stil */
+  .hedefler{display:flex;gap:6px;padding:0 12px;justify-content:center}
+  .hedef{flex:0 0 auto;width:var(--cw);height:var(--ch);background:#FAF3E4;
+    border:2px solid #F5B942;border-radius:calc(var(--cw)*0.12);padding:5px 3px;
+    text-align:center;color:#2A1D10;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:3px;box-shadow:0 3px 8px rgba(0,0,0,.25);transition:.12s}
+  .hedef.hot{outline:3px solid #6C4AB6;outline-offset:1px;transform:translateY(-2px)}
+  .hedef.shake{animation:sh .3s}
+  .hedef .h-ic{font-size:15px}
+  .hedef .h-ad{font-size:calc(var(--cw)*0.135);font-weight:900;line-height:1.12}
+  .hedef .h-say{font-size:calc(var(--cw)*0.16);font-weight:900;color:#0F6B3E}
+  .hedef .h-say.tam{color:#2E9E5B}
+
+  .tableau{flex:1;overflow-y:auto;padding:8px 12px 10px;display:flex;gap:6px;align-items:flex-start}
+  .sutun{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
+
+  /* Gerçek iskambil kartı — oran 2.5:3.5, boyut JS ile hesaplanır (--cw/--ch) */
+  .isk{width:var(--cw);height:var(--ch);border-radius:calc(var(--cw)*0.12);position:relative;
+    flex:0 0 auto;box-shadow:0 2px 5px rgba(0,0,0,.30)}
+  .isk.kapali{margin-top:calc(-1 * var(--ch) + var(--sliver))}
+  .isk.acik{margin-top:calc(-1 * var(--ch) + var(--sliver))}
+  .sutun .isk:first-child{margin-top:0}
+
+  /* Kapalı kart (sırt) */
+  .isk.kapali .yuz{position:absolute;inset:0;border-radius:inherit;border:1.4px solid rgba(255,255,255,.75);
+    background:repeating-linear-gradient(45deg,#1E5FA8 0 7px,#16457A 7px 14px)}
+  .isk.kapali .yuz::after{content:"";position:absolute;inset:14%;border-radius:6px;
+    border:1.5px solid rgba(255,255,255,.35)}
+
+  /* Açık kart (krem, altın kenar, ink yazı, köşe pip'leri) */
+  .isk.acik .yuz{position:absolute;inset:0;border-radius:inherit;background:#FAF3E4;
+    border:1.6px solid #F5B942;display:flex;align-items:center;justify-content:center;
+    padding:12% 6%;cursor:grab}
+  .isk.acik .txt{font-size:var(--fs);font-weight:800;color:#2A1D10;text-align:center;line-height:1.12;
+    word-break:break-word}
+  .isk.acik .pip{position:absolute;font-size:calc(var(--cw)*0.13);color:#B07A1E;font-weight:900}
+  .isk.acik .pip.tl{top:4%;left:7%}
+  .isk.acik .pip.br{bottom:4%;right:7%;transform:rotate(180deg)}
+  .isk.acik.sel .yuz{outline:3px solid #6C4AB6;outline-offset:1px}
+  .isk.drag .yuz{opacity:.35}
+
+  /* Deste (kapalı, "Çek") — üst çubukta kompakt sabit boyut */
+  .destekart{width:46px;height:64px;border-radius:8px;
+    border:1.4px solid rgba(255,255,255,.75);
+    background:repeating-linear-gradient(45deg,#1E5FA8 0 7px,#16457A 7px 14px);
+    box-shadow:0 3px 6px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:2px;position:relative;cursor:pointer}
+  .destekart .n{font-size:13px;font-weight:900;text-shadow:0 1px 2px #000}
+  .destekart .lbl{font-size:9px;font-weight:800;color:#F5B942}
+
+  .alt{flex:0 0 auto;background:#0A4E2C;border-top:1px solid rgba(255,255,255,.24);
+    padding:8px 12px;display:flex;gap:8px}
+  .tool{flex:1;border:1px solid rgba(255,255,255,.4);border-radius:12px;padding:8px 4px;
+    text-align:center;font-size:11px;font-weight:800;color:#DFF3E6;opacity:.9}
+
+  #ghost{position:fixed;z-index:50;pointer-events:none;display:none;transform:translate(-50%,-60%) scale(1.05)}
+
+  #end{position:absolute;inset:0;background:rgba(10,78,44,.96);display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;gap:12px;padding:24px;z-index:60}
+  #end.show{display:flex}
+  #end .cup{font-size:54px}
+  #end h2{font-size:23px;font-weight:900}
+  #end p{font-size:14px;line-height:1.55;color:#DFF3E6;max-width:330px}
+  #end p b{color:#F5B942}
+  .btn{background:linear-gradient(90deg,#F5B942,#F59E0B);color:#2A1D10;border:none;border-radius:16px;
+    padding:16px 22px;font-size:17px;font-weight:900;cursor:pointer;width:100%;max-width:320px;
+    box-shadow:0 10px 26px rgba(245,185,66,.5);animation:pulse 1.5s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+  .store{font-size:12px;color:#CDEBD8}
+  @keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bar"><span style="font-size:18px">🃏</span><span class="t">Eşleştirme Solitaire</span></div>
+
+  <div class="ust">
+    <div class="col-l">
+      <div class="badge">🎯 Karışık</div>
+      <div class="badge">🪙 <span id="coin">10</span></div>
+    </div>
+    <div class="mid">
+      <div class="flama" id="flama">Kalan Hamle: 75</div>
+      <div class="kalan" id="kalan">🎴 Kalan kart: 30/30</div>
+    </div>
+    <div class="deste">
+      <div class="destekart" onclick="cekDeste()"><span class="n" id="desteN">6</span><span class="lbl">Çek</span></div>
+    </div>
+  </div>
+
+  <div class="basl">🎯 Hedef Kategoriler</div>
+  <div class="hedefler" id="hedefler"></div>
+
+  <div class="basl">🂠 Kartlar — öndeki açık kartı tut ve sürükle</div>
+  <div class="tableau" id="tableau"></div>
+
+  <div id="end">
+    <div class="cup">🏆</div>
+    <h2>Seviye tamamlandı!</h2>
+    <p><b>Eşleştirme Solitaire</b>, KPSS Hazırlık uygulamasındaki oyunlardan sadece biri.
+       Türkçe, Tarih, Coğrafya, Matematik ve daha fazlası — <b>16.000+ soru, ücretsiz.</b></p>
+    <button class="btn" onclick="installClick()">Ücretsiz İndir ▸</button>
+    <div class="store">App Store'da <b>KPSS Hazırlık: Soru Bankası</b></div>
+  </div>
+</div>
+
+<div id="ghost"></div>
+
+<script>
+var STORE_URL='https://apps.apple.com/tr/app/kpss-haz%C4%B1rl%C4%B1k-soru-bankas%C4%B1/id6792403982?l=tr';
+function installClick(){
+  try{ if(window.mraid && mraid.open){ mraid.open(STORE_URL); return; } }catch(e){}
+  try{ if(window.ExitApi && ExitApi.exit){ ExitApi.exit(); return; } }catch(e){}
+  try{ if(window.FbPlayableAd && FbPlayableAd.onCTAClick){ FbPlayableAd.onCTAClick(); return; } }catch(e){}
+  try{ window.open(STORE_URL,'_blank'); }catch(e){}
+}
+
+/* Gerçek uygulama verisi — Kolay 5 kategori (Türkçe), toplam 30 kart. */
+var KATLAR=[
+  {ad:'Sözcük Türleri', terimler:['İsim','Fiil','Sıfat','Zamir','Zarf','Edat','Bağlaç','Ünlem']},
+  {ad:'Ses Olayları', terimler:['Ünlü Düşmesi','Ünlü Daralması','Ünsüz Yumuşaması','Ünsüz Benzeşmesi','Ünsüz Türemesi','Ulama','Kaynaştırma']},
+  {ad:'Zamir (Adıl) Çeşitleri', terimler:['Kişi','İşaret','Soru Zamiri','Belgisiz','İlgi','Dönüşlülük']},
+  {ad:'Cümlenin Ögeleri', terimler:['Özne','Yüklem','Nesne','Dolaylı Tümleç','Zarf Tümleci']},
+  {ad:'Fiil Çatısı', terimler:['Etken','Edilgen','Dönüşlü','İşteş']}
+];
+var TOPLAM=KATLAR.reduce(function(a,k){return a+k.terimler.length;},0); // 30
+var kalanHamle=Math.ceil(TOPLAM*2.5); // 75
+var yerlesen=KATLAR.map(function(){return 0;});
+var kalanKart=TOPLAM, matched=0, coin=10;
+
+/* Fisher-Yates — kartlar her açılışta KARIŞIK gelir. */
+function karistir(a){for(var x=a.length-1;x>0;x--){var j=Math.floor(Math.random()*(x+1));var t=a[x];a[x]=a[j];a[j]=t;}return a;}
+
+var TUM=[];
+KATLAR.forEach(function(k,ki){ k.terimler.forEach(function(t){ TUM.push({t:t,k:ki}); }); });
+karistir(TUM);
+
+/* 24 kart tableau'ya (5 sütun), 6 kart desteye. */
+var DESTE=TUM.splice(0,6);
+var SUTUNLAR=[[],[],[],[],[]];
+TUM.forEach(function(c,i){ SUTUNLAR[i%5].push(c); });
+
+var hedeflerEl=document.getElementById('hedefler'), tableauEl=document.getElementById('tableau');
+var sel=null; // {c, col}
+
+/* Kart boyutunu GERÇEK kapsayıcı genişliğine göre hesapla (5 sütun her zaman
+   sığsın). Oran gerçek iskambil kartı: 2.5:3.5. */
+function boyutla(){
+  var app=document.getElementById('app');
+  var W=(app&&app.clientWidth)?app.clientWidth:Math.min(window.innerWidth,520);
+  var cw=Math.floor((W-24-4*6)/5);            // 24 = 12px×2 kenar, 4 boşluk×6px
+  cw=Math.max(40,cw);                         // üst sınır YOK — 5 sütun garantili sığar
+  var ch=Math.round(cw/(2.5/3.5));            // oran
+  document.documentElement.style.setProperty('--cw',cw+'px');
+  document.documentElement.style.setProperty('--ch',ch+'px');
+  document.documentElement.style.setProperty('--sliver',Math.round(ch*0.30)+'px');
+  document.documentElement.style.setProperty('--fs',Math.max(8,Math.round(cw*0.14))+'px');
+}
+
+function renderHedefler(){
+  hedeflerEl.innerHTML='';
+  KATLAR.forEach(function(k,ki){
+    var d=document.createElement('div'); d.className='hedef'; d.dataset.k=ki;
+    var tam=yerlesen[ki]>=k.terimler.length;
+    d.innerHTML='<div class="h-ic">🎯</div><div class="h-ad">'+k.ad+'</div>'+
+      '<div class="h-say'+(tam?' tam':'')+'">'+yerlesen[ki]+'/'+k.terimler.length+'</div>';
+    d.onclick=function(){ if(sel) tryPlace(ki,d); };
+    hedeflerEl.appendChild(d);
+  });
+}
+
+function kartAcikEl(c){
+  var el=document.createElement('div'); el.className='isk acik';
+  el.innerHTML='<div class="yuz"><span class="pip tl">🃟</span><span class="txt">'+c.t+
+    '</span><span class="pip br">🃟</span></div>';
+  return el;
+}
+function kartKapaliEl(){
+  var el=document.createElement('div'); el.className='isk kapali';
+  el.innerHTML='<div class="yuz"></div>'; return el;
+}
+
+function renderTableau(){
+  tableauEl.innerHTML='';
+  for(var s=0;s<5;s++){
+    var col=document.createElement('div'); col.className='sutun';
+    var kartlar=SUTUNLAR[s];
+    kartlar.forEach(function(c,idx){
+      var onde=(idx===kartlar.length-1); // EN ÖNDEKİ (son) kart AÇIK, arkası KAPALI
+      var el=onde?kartAcikEl(c):kartKapaliEl();
+      if(onde){ bindKart(el,c,s); if(sel&&sel.c===c) el.classList.add('sel'); }
+      col.appendChild(el);
+    });
+    tableauEl.appendChild(col);
+  }
+  document.getElementById('desteN').textContent=DESTE.length;
+}
+
+function hud(){
+  document.getElementById('coin').textContent=coin;
+  document.getElementById('kalan').textContent='🎴 Kalan kart: '+kalanKart+'/'+TOPLAM;
+  var f=document.getElementById('flama'); f.textContent='Kalan Hamle: '+kalanHamle;
+  f.classList.toggle('az',kalanHamle<=5);
+}
+
+function kartCikar(s){ SUTUNLAR[s.col].pop(); } // öndeki (son) kart
+
+function tryPlace(ki,hedefEl){
+  if(!sel) return;
+  var c=sel.c;
+  if(c.k===ki){
+    kartCikar(sel);
+    matched++; kalanKart--; yerlesen[ki]++; coin++; kalanHamle--;
+    sel=null;
+    renderHedefler(); renderTableau(); hud();
+    if(matched>=TOPLAM){ setTimeout(function(){document.getElementById('end').classList.add('show');},400); }
+  } else {
+    kalanHamle--; hud();
+    hedefEl.classList.add('shake'); setTimeout(function(){hedefEl.classList.remove('shake');},320);
+  }
+}
+
+function cekDeste(){
+  if(DESTE.length===0){ return; }
+  // Çekilen kart EN KISA sütunun önüne (açık kart olarak) eklenir.
+  var mi=0; for(var i=1;i<5;i++){ if(SUTUNLAR[i].length<SUTUNLAR[mi].length) mi=i; }
+  SUTUNLAR[mi].push(DESTE.shift());
+  sel=null; renderTableau(); hud();
+}
+
+/* ── Sürükle-bırak (pointer) + dokun-seç ── */
+var ghost=document.getElementById('ghost');
+var dragInfo=null, moved=false, sx=0, sy=0;
+
+function bindKart(el,c,col){
+  var info={c:c,col:col,el:el};
+  el.addEventListener('pointerdown',function(e){
+    dragInfo=info; moved=false; sx=e.clientX; sy=e.clientY;
+    el.setPointerCapture&&el.setPointerCapture(e.pointerId);
+  });
+  el.addEventListener('pointermove',function(e){
+    if(dragInfo!==info) return;
+    if(!moved && Math.hypot(e.clientX-sx,e.clientY-sy)<6) return;
+    if(!moved){ moved=true; el.classList.add('drag');
+      ghost.innerHTML=''; var g=kartAcikEl(c); g.style.margin='0'; ghost.appendChild(g); ghost.style.display='block'; }
+    ghost.style.left=e.clientX+'px'; ghost.style.top=e.clientY+'px';
+    hotHedef(e.clientX,e.clientY);
+  });
+  el.addEventListener('pointerup',function(e){
+    if(dragInfo!==info) return;
+    el.classList.remove('drag'); ghost.style.display='none'; clearHot();
+    if(moved){
+      var h=hedefUnder(e.clientX,e.clientY);
+      if(h!=null){ sel=info; tryPlace(h,hedeflerEl.children[h]); }
+      else { sel=null; renderTableau(); }
+    } else {
+      sel=(sel&&sel.c===c)?null:info; renderTableau();
+    }
+    dragInfo=null; moved=false;
+  });
+  el.addEventListener('pointercancel',function(){ el.classList.remove('drag'); ghost.style.display='none'; clearHot(); dragInfo=null; moved=false; });
+}
+function hedefUnder(x,y){var els=document.elementsFromPoint(x,y);for(var i=0;i<els.length;i++){var h=els[i].closest&&els[i].closest('.hedef');if(h)return +h.dataset.k;}return null;}
+function hotHedef(x,y){clearHot();var k=hedefUnder(x,y);if(k!=null)hedeflerEl.children[k].classList.add('hot');}
+function clearHot(){Array.prototype.forEach.call(hedeflerEl.children,function(h){h.classList.remove('hot');});}
+
+window.addEventListener('resize',function(){ boyutla(); });
+boyutla(); renderHedefler(); renderTableau(); hud();
+</script>
+</body>
+</html>
